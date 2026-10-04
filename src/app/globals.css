@@ -1,26 +1,103 @@
 @import "tailwindcss";
 
+@theme {
+  --color-bg: #F6F3EE;
+  --color-ink: #15140F;
+  --color-muted: #6C675E;
+  --color-hairline: #DDD7CC;
+  --color-accent: #2F4A3C;
+  --color-accent-hover: #24382E;
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #F6F3EE;
+  --color-ink: #15140F;
+  --color-muted: #6C675E;
+  --color-hairline: #DDD7CC;
+  --color-accent: #2F4A3C;
+  --color-accent-hover: #24382E;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html {
+  scroll-behavior: smooth;
+  background-color: #F6F3EE;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: #15140F;
+  background-color: #F6F3EE;
+  font-family: var(--font-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.65;
+}
+
+/* Headings in base layer so utility classes like text-white override them */
+@layer base {
+  h1, h2, h3 {
+    font-family: var(--font-serif), Georgia, serif;
+    font-weight: 300;
+    letter-spacing: -0.025em;
+  }
+}
+
+/* Hairline border utilities */
+.hairline-b {
+  border-bottom: 1px solid #DDD7CC;
+}
+
+.hairline-t {
+  border-top: 1px solid #DDD7CC;
+}
+
+.hairline-r {
+  border-right: 1px solid #DDD7CC;
+}
+
+.hairline-l {
+  border-left: 1px solid #DDD7CC;
+}
+
+.hairline-border {
+  border: 1px solid #DDD7CC;
+}
+
+/* Accessible focus ring */
+*:focus-visible {
+  outline: 2px solid #2F4A3C;
+  outline-offset: 2px;
+}
+
+/* Form checkbox styles */
+.filter-checkbox {
+  accent-color: #2F4A3C;
+}
+
+/* 600ms fade-up animation */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
