@@ -5,6 +5,7 @@ interface SectionHeaderProps {
   headline: string;
   description?: string;
   centered?: boolean;
+  dark?: boolean;
 }
 
 export function SectionHeader({
@@ -12,19 +13,20 @@ export function SectionHeader({
   headline,
   description,
   centered = false,
+  dark = false,
 }: SectionHeaderProps) {
   return (
     <ScrollReveal className={`max-w-3xl ${centered ? 'mx-auto text-center' : ''} mb-12 md:mb-16`}>
       {eyebrow && (
-        <p className="text-xs uppercase tracking-widest text-[#6C675E] font-medium mb-3">
+        <p className={`text-xs uppercase tracking-widest font-medium mb-3 ${dark ? 'text-[#E59217]' : 'text-[#4A4A4A]'}`}>
           {eyebrow}
         </p>
       )}
-      <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#15140F] tracking-tight leading-[1.1]">
+      <h2 className={`font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] ${dark ? 'text-white' : 'text-black'}`}>
         {headline}
       </h2>
       {description && (
-        <p className="mt-4 text-[#6C675E] text-base md:text-lg leading-relaxed font-normal">
+        <p className={`mt-4 text-base md:text-lg leading-relaxed font-normal ${dark ? 'text-white/70' : 'text-[#4A4A4A]'}`}>
           {description}
         </p>
       )}

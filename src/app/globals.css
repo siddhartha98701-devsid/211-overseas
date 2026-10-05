@@ -1,28 +1,31 @@
 @import "tailwindcss";
 
-@theme {
-  --color-bg: #F6F3EE;
-  --color-ink: #15140F;
-  --color-muted: #6C675E;
-  --color-hairline: #DDD7CC;
-  --color-accent: #2F4A3C;
-  --color-accent-hover: #24382E;
-  --font-serif: var(--font-serif);
-  --font-sans: var(--font-sans);
+@theme inline {
+  --color-bg: #FFFFFF;
+  --color-ink: #000000;
+  --color-muted: #4A4A4A;
+  --color-hairline: #E5E5E5;
+  --color-mustard: #E59217;
+  --color-mustard-hover: #F2A23A;
+  --color-mustard-deep: #A86500;
+  --color-accent: #E59217;
+  --color-accent-hover: #F2A23A;
+  /* Brand fonts first (Boston Angel Bold / Gordita), free look-alikes as fallback */
+  --font-serif: "Boston Angel", "Boston Angel Bold", var(--font-display), Georgia, serif;
+  --font-sans: "Gordita", var(--font-body), system-ui, sans-serif;
 }
 
 :root {
-  --color-bg: #F6F3EE;
-  --color-ink: #15140F;
-  --color-muted: #6C675E;
-  --color-hairline: #DDD7CC;
-  --color-accent: #2F4A3C;
-  --color-accent-hover: #24382E;
+  --color-bg: #FFFFFF;
+  --color-ink: #000000;
+  --color-muted: #4A4A4A;
+  --color-hairline: #E5E5E5;
+  --color-mustard: #E59217;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #F6F3EE;
+  background-color: #FFFFFF;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -37,9 +40,9 @@ html {
 }
 
 body {
-  color: #15140F;
-  background-color: #F6F3EE;
-  font-family: var(--font-sans), sans-serif;
+  color: #000000;
+  background-color: #FFFFFF;
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   line-height: 1.65;
@@ -48,42 +51,42 @@ body {
 /* Headings in base layer so utility classes like text-white override them */
 @layer base {
   h1, h2, h3 {
-    font-family: var(--font-serif), Georgia, serif;
-    font-weight: 300;
-    letter-spacing: -0.025em;
+    font-family: var(--font-serif);
+    font-weight: 700;
+    letter-spacing: -0.02em;
   }
 }
 
 /* Hairline border utilities */
 .hairline-b {
-  border-bottom: 1px solid #DDD7CC;
+  border-bottom: 1px solid #E5E5E5;
 }
 
 .hairline-t {
-  border-top: 1px solid #DDD7CC;
+  border-top: 1px solid #E5E5E5;
 }
 
 .hairline-r {
-  border-right: 1px solid #DDD7CC;
+  border-right: 1px solid #E5E5E5;
 }
 
 .hairline-l {
-  border-left: 1px solid #DDD7CC;
+  border-left: 1px solid #E5E5E5;
 }
 
 .hairline-border {
-  border: 1px solid #DDD7CC;
+  border: 1px solid #E5E5E5;
 }
 
 /* Accessible focus ring */
 *:focus-visible {
-  outline: 2px solid #2F4A3C;
+  outline: 2px solid #E59217;
   outline-offset: 2px;
 }
 
 /* Form checkbox styles */
 .filter-checkbox {
-  accent-color: #2F4A3C;
+  accent-color: #E59217;
 }
 
 /* 600ms fade-up animation */
@@ -100,4 +103,70 @@ body {
 
 .animate-fade-up {
   animation: fadeUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+::selection {
+  background: #E59217;
+  color: #000000;
+}
+
+/* ---------- Brand motion ---------- */
+
+/* Mustard "shine" sweep for primary buttons */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(110deg, transparent 30%, rgba(255, 255, 255, 0.55) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.btn-shine:hover::after {
+  transform: translateX(120%);
+}
+
+/* Underline that draws in from the left on hover */
+.link-draw {
+  background-image: linear-gradient(#E59217, #E59217);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 2px;
+  transition: background-size 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-draw:hover {
+  background-size: 100% 2px;
+}
+
+/* Infinite marquee (duplicated track, moves exactly one track width) */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 38s linear infinite;
+}
+.marquee:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Gentle float for decorative marks */
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-floaty {
+  animation: floaty 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track,
+  .animate-floaty {
+    animation: none !important;
+  }
 }

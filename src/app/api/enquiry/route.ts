@@ -10,9 +10,17 @@ export async function POST(req: NextRequest) {
     }
 
     // Required fields validation
-    if (!body.fullName || !body.mobile || !body.email) {
+    if (!body.fullName || !body.mobile) {
       return NextResponse.json(
-        { success: false, message: 'Please provide full name, mobile number and email address.' },
+        { success: false, message: 'Please provide your name and mobile number.' },
+        { status: 400 }
+      );
+    }
+
+    // Consent is mandatory (IT Act 2000 / DPDP Act)
+    if (body.consent !== true) {
+      return NextResponse.json(
+        { success: false, message: 'Please consent to being contacted so we can process your profile.' },
         { status: 400 }
       );
     }
@@ -24,7 +32,8 @@ export async function POST(req: NextRequest) {
     console.log(`Time: ${timestamp}`);
     console.log(`Candidate Name: ${body.fullName}`);
     console.log(`Mobile: ${body.mobile}`);
-    console.log(`Email: ${body.email}`);
+    console.log(`Email: ${body.email || 'Not specified'}`);
+    console.log(`Source: ${body.source || 'enquiry-form'}`);
     console.log(`Age: ${body.age || 'Not specified'}`);
     console.log(`City: ${body.city || 'Not specified'}`);
     console.log(`Qualification: ${body.qualification || 'Not specified'}`);

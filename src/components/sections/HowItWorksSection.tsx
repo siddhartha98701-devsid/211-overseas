@@ -1,53 +1,71 @@
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
+'use client';
+
+import { useRef } from 'react';
+import { motion, useScroll, useSpring } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
+import { SectionHeader } from '@/components/ui/SectionHeader';
 import { siteContent } from '@/content/site';
+
+const EASE = [0.16, 1, 0.3, 1] as const;
 
 export function HowItWorksSection() {
   const { howItWorks } = siteContent;
+  const listRef = useRef<HTMLOListElement>(null);
+  const reduce = usePrefersReducedMotion();
+
+  // The mustard line fills as the list scrolls through the viewport
+  const { scrollYProgress } = useScroll({ target: listRef, offset: ['start 65%', 'end 55%'] });
+  const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.3 });
 
   return (
-    <section className="py-24 md:py-36 border-b border-[#DDD7CC]" aria-label="Our advisory process">
+    <section className="py-24 md:py-36 bg-black text-white overflow-x-clip" aria-label="Our advisory process">
       <div className="max-w-[1280px] mx-auto px-6">
-        <ScrollReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start mb-16">
-            <div className="lg:col-span-5">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#15140F] tracking-tight leading-[1.1]">
-                How 211 Overseas works
-              </h2>
-            </div>
-            <div className="lg:col-span-7">
-              <p className="text-base sm:text-lg text-[#6C675E] leading-relaxed font-light">
-                From initial assessment to your departure day, we provide transparent, structured
-                guidance at every milestone.
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-32">
+              <SectionHeader dark eyebrow="How 211 OVERSEAS works" headline="Your overseas journey, simplified" />
+              <p className="-mt-6 text-base sm:text-lg text-white/70 leading-relaxed max-w-md">
+                From initial assessment to your departure day, we provide transparent, structured guidance at
+                every milestone.
               </p>
             </div>
           </div>
 
-          {/* Single vertical list with hairline dividers (7 steps rendered ONCE) */}
-          <div className="border-t border-[#DDD7CC]">
-            {howItWorks.steps.map((step) => (
-              <div
-                key={step.number}
-                className="py-8 sm:py-10 border-b border-[#DDD7CC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
-              >
-                <div className="md:col-span-2">
-                  <span className="font-serif text-2xl sm:text-3xl font-light text-[#6C675E]">
+          <div className="lg:col-span-7">
+            <ol ref={listRef} className="relative">
+              {/* Track + animated fill */}
+              <span aria-hidden="true" className="absolute left-5 top-2 bottom-2 w-px bg-white/15" />
+              <motion.span
+                aria-hidden="true"
+                className="absolute left-5 top-2 bottom-2 w-px origin-top bg-[#E59217]"
+                style={{ scaleY: reduce ? 1 : fill }}
+              />
+
+              {howItWorks.steps.map((step) => (
+                <motion.li
+                  key={step.number}
+                  initial={reduce ? false : { opacity: 0, x: 28 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: '-12% 0px -12% 0px' }}
+                  transition={{ duration: 0.7, ease: EASE }}
+                  className="relative pl-16 pb-12 last:pb-0"
+                >
+                  <motion.span
+                    initial={reduce ? false : { backgroundColor: '#000000', color: '#E59217', scale: 0.8 }}
+                    whileInView={{ backgroundColor: '#E59217', color: '#000000', scale: 1 }}
+                    viewport={{ once: true, margin: '-12% 0px -12% 0px' }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                    className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#E59217] text-xs font-bold"
+                  >
                     {step.number}
-                  </span>
-                </div>
-                <div className="md:col-span-4">
-                  <h3 className="font-serif text-xl sm:text-2xl font-light text-[#15140F] tracking-tight">
-                    {step.title}
-                  </h3>
-                </div>
-                <div className="md:col-span-6">
-                  <p className="text-sm sm:text-base text-[#6C675E] leading-relaxed">
-                    {step.description}
-                  </p>
-                </div>
-              </div>
-            ))}
+                  </motion.span>
+                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">{step.title}</h3>
+                  <p className="mt-2 text-sm sm:text-base text-white/65 leading-relaxed max-w-xl">{step.description}</p>
+                </motion.li>
+              ))}
+            </ol>
           </div>
-        </ScrollReveal>
+        </div>
       </div>
     </section>
   );

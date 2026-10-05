@@ -1,11 +1,20 @@
 export const siteContent = {
   brand: {
-    name: '211 OVERSEAS',
+    name: '211 OVERSEAS study abroad',
+    shortName: '211 OVERSEAS',
+    domain: 'www.211overseas.com',
     tagline: 'Your Future Has No Borders',
+    taglines: [
+      'Your future has no borders',
+      'Dream Learn Grow Globally',
+      'Turn Your Passion Into a Global Degree',
+      'A Global Education for a Brighter Tomorrow',
+    ],
     description: 'Ahmedabad-based international education and overseas career consultancy helping students and professionals explore opportunities beyond India.',
     phone: '+91 99985 85211',
     whatsapp: 'https://wa.me/919998585211',
-    address: 'Ahmedabad, Gujarat, India',
+    address: 'B-1405, The Capital, Science City Road, Sola, Ahmedabad 380060',
+    city: 'Ahmedabad, Gujarat, India',
   },
   nav: {
     links: [
@@ -103,7 +112,7 @@ export const siteContent = {
     cta: 'Book Free Counselling',
   },
   howItWorks: {
-    eyebrow: 'How 211 Overseas Works',
+    eyebrow: 'How 211 OVERSEAS Works',
     headline: 'Your Overseas Journey, Simplified',
     steps: [
       { number: '01', title: 'Tell Us Your Goal', description: 'Study abroad? Build an international career? Looking for a particular country? Start with a conversation.' },
@@ -116,7 +125,7 @@ export const siteContent = {
     ],
   },
   whyUs: {
-    eyebrow: 'Why 211 Overseas?',
+    eyebrow: 'Why 211 OVERSEAS?',
     points: [
       { title: 'Personalised Approach', description: 'Your options are based on your profile, not simply on the destination someone wants to sell you.' },
       { title: 'Specialised Focus', description: 'Study in South Korea, Healthcare Careers in Germany, Career Opportunities in UAE — along with selected opportunities across other countries.' },
@@ -282,8 +291,8 @@ export const siteContent = {
   },
   // ABOUT PAGE
   about: {
-    headline: 'About 211 Overseas',
-    description: '211 Overseas is an Ahmedabad-based international education and overseas career consultancy helping students and professionals explore opportunities beyond India.',
+    headline: 'About 211 OVERSEAS',
+    description: '211 OVERSEAS is an Ahmedabad-based international education and overseas career consultancy helping students and professionals explore opportunities beyond India.',
     focus: 'Our focus is simple: Understand the candidate first. Recommend the pathway second.',
     keyAreas: [
       'Study in South Korea',
@@ -295,8 +304,8 @@ export const siteContent = {
   },
   // FOOTER
   footer: {
-    disclaimer: '211 Overseas is an independent overseas education and career guidance consultancy. Universities and institutions referenced on this website are provided for general informational purposes. Their inclusion does not imply affiliation, endorsement or partnership unless specifically stated. University admissions, scholarships, employment opportunities, visa approvals and immigration outcomes are determined by the respective authorities and are subject to individual eligibility.',
-    copyright: '© 211 Overseas. All Rights Reserved.',
+    disclaimer: '211 OVERSEAS is an independent overseas education and career guidance consultancy. Universities and institutions referenced on this website are provided for general informational purposes. Their inclusion does not imply affiliation, endorsement or partnership unless specifically stated. University admissions, scholarships, employment opportunities, visa approvals and immigration outcomes are determined by the respective authorities and are subject to individual eligibility.',
+    copyright: '© 211 OVERSEAS. All Rights Reserved.',
   },
 };
 

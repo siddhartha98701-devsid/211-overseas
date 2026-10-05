@@ -3,7 +3,10 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
+import { Logo } from './Logo';
+import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
 const navLinks = [
   { label: 'Study in South Korea', href: '/study-in-south-korea' },
@@ -17,13 +20,14 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { openCallback } = useCallbackModal();
   const isHomePage = pathname === '/';
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 80);
-    };
+  const { scrollYProgress } = useScroll();
+  const progress = useSpring(scrollYProgress, { stiffness: 140, damping: 30, mass: 0.3 });
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 80);
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
@@ -36,43 +40,33 @@ export function Navbar() {
 
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
+    document.body.style.overflow = isOpen ? 'hidden' : '';
     return () => {
       document.body.style.overflow = '';
     };
   }, [isOpen]);
 
-  // Determine appearance
-  // If home page and not scrolled, transparent header over hero image
-  // If scrolled or subpage, solid off-white #F6F3EE with hairline border
+  // Transparent over the home hero; solid white once scrolled or on sub-pages
   const isSolid = scrolled || !isHomePage;
 
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isSolid
-            ? 'bg-[#F6F3EE] border-b border-[#DDD7CC]'
+            ? 'bg-white/95 backdrop-blur border-b border-[#E5E5E5] shadow-[0_1px_0_rgba(0,0,0,0.02)]'
             : 'bg-transparent border-b border-white/10'
         }`}
       >
-        <div className="max-w-[1280px] mx-auto px-6 h-20 flex items-center justify-between">
-          {/* Wordmark in serif */}
-          <Link
-            href="/"
-            className={`font-serif text-2xl tracking-tight transition-colors ${
-              isSolid ? 'text-[#15140F]' : 'text-white'
-            }`}
-            aria-label="211 Overseas home"
-          >
-            211 Overseas
+        <div
+          className={`max-w-[1280px] mx-auto px-6 flex items-center justify-between transition-all duration-300 ${
+            isSolid ? 'h-[72px]' : 'h-20'
+          }`}
+        >
+          <Link href="/" aria-label="211 OVERSEAS study abroad - home" className="block shrink-0">
+            <Logo variant={isSolid ? 'primary' : 'primary-white'} height={isSolid ? 40 : 46} priority />
           </Link>
 
-          {/* Desktop 5 text links */}
           <nav className="hidden lg:flex items-center space-x-8" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -80,15 +74,16 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`text-sm tracking-normal transition-colors ${
+                  className={`link-draw text-sm tracking-normal transition-colors py-1 ${
                     isSolid
                       ? isActive
-                        ? 'text-[#15140F] font-medium'
-                        : 'text-[#6C675E] hover:text-[#15140F]'
+                        ? 'text-black font-medium'
+                        : 'text-[#4A4A4A] hover:text-black'
                       : isActive
                       ? 'text-white font-medium'
                       : 'text-white/80 hover:text-white'
                   }`}
+                  style={isActive ? { backgroundSize: '100% 2px' } : undefined}
                 >
                   {link.label}
                 </Link>
@@ -96,26 +91,19 @@ export function Navbar() {
             })}
           </nav>
 
-          {/* Desktop outlined CTA */}
           <div className="hidden lg:flex items-center">
-            <Link
-              href="/contact"
-              className={`text-xs uppercase tracking-wider px-5 py-2.5 transition-all duration-200 ${
-                isSolid
-                  ? 'border border-[#15140F] text-[#15140F] hover:bg-[#15140F] hover:text-[#F6F3EE]'
-                  : 'border border-white/80 text-white hover:bg-white hover:text-[#15140F]'
-              }`}
+            <button
+              type="button"
+              onClick={() => openCallback({ source: 'navbar' })}
+              className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors cursor-pointer"
             >
-              Book Consultation
-            </Link>
+              Free Counselling
+            </button>
           </div>
 
-          {/* Mobile hamburger */}
           <button
             type="button"
-            className={`lg:hidden p-2 -mr-2 transition-colors ${
-              isSolid ? 'text-[#15140F]' : 'text-white'
-            }`}
+            className={`lg:hidden p-2 -mr-2 transition-colors ${isSolid ? 'text-black' : 'text-white'}`}
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isOpen}
@@ -123,78 +111,85 @@ export function Navbar() {
             {isOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
           </button>
         </div>
+
+        {/* Mustard scroll-progress bar */}
+        <motion.div
+          aria-hidden="true"
+          className="absolute bottom-[-1px] left-0 right-0 h-[3px] origin-left bg-[#E59217]"
+          style={{ scaleX: progress }}
+        />
       </header>
 
-      {/* Mobile Full-Screen Menu */}
-      {isOpen && (
-        <div
-          className="fixed inset-0 z-50 bg-[#F6F3EE] flex flex-col justify-between px-6 py-8 lg:hidden animate-fade-up"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Mobile Navigation"
-        >
-          <div className="flex items-center justify-between h-12">
-            <Link
-              href="/"
-              className="font-serif text-2xl text-[#15140F] tracking-tight"
-              onClick={() => setIsOpen(false)}
-            >
-              211 Overseas
-            </Link>
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="p-2 -mr-2 text-[#15140F]"
-              aria-label="Close menu"
-            >
-              <X size={24} strokeWidth={1.5} />
-            </button>
-          </div>
-
-          <nav className="flex flex-col space-y-6 my-auto" aria-label="Mobile Navigation Links">
-            <Link
-              href="/"
-              className="font-serif text-3xl text-[#15140F] hover:text-[#6C675E] transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Home
-            </Link>
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="font-serif text-3xl text-[#15140F] hover:text-[#6C675E] transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                {link.label}
+      {/* Mobile full-screen menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="mobile-menu"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 bg-black text-white flex flex-col justify-between px-6 py-8 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+          >
+            <div className="flex items-center justify-between h-12">
+              <Link href="/" onClick={() => setIsOpen(false)} aria-label="211 OVERSEAS home">
+                <Logo variant="primary-white" height={40} />
               </Link>
-            ))}
-            <Link
-              href="/contact"
-              className="font-serif text-3xl text-[#15140F] hover:text-[#6C675E] transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Contact
-            </Link>
-          </nav>
-
-          <div className="pt-8 border-t border-[#DDD7CC]">
-            <Link
-              href="/contact"
-              className="block w-full text-center py-4 bg-[#2F4A3C] text-white text-sm uppercase tracking-wider hover:bg-[#24382E] transition-colors"
-              onClick={() => setIsOpen(false)}
-            >
-              Book Free Consultation
-            </Link>
-            <div className="mt-6 flex justify-between text-xs text-[#6C675E]">
-              <span>Ahmedabad, Gujarat</span>
-              <a href="tel:+919998585211" className="hover:text-[#15140F]">
-                +91 99985 85211
-              </a>
+              <button
+                type="button"
+                onClick={() => setIsOpen(false)}
+                className="p-2 -mr-2 text-white"
+                aria-label="Close menu"
+              >
+                <X size={24} strokeWidth={1.5} />
+              </button>
             </div>
-          </div>
-        </div>
-      )}
+
+            <nav className="flex flex-col space-y-5 my-auto" aria-label="Mobile Navigation Links">
+              {[{ label: 'Home', href: '/' }, ...navLinks, { label: 'Contact', href: '/contact' }].map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, x: -24 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.06 * i + 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                >
+                  <Link
+                    href={link.href}
+                    className={`font-serif text-3xl transition-colors ${
+                      pathname === link.href ? 'text-[#E59217]' : 'text-white hover:text-[#E59217]'
+                    }`}
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
+            </nav>
+
+            <div className="pt-8 border-t border-white/15">
+              <button
+                type="button"
+                className="btn-shine block w-full text-center py-4 bg-[#E59217] text-black text-sm uppercase tracking-wider font-medium cursor-pointer"
+                onClick={() => {
+                  setIsOpen(false);
+                  openCallback({ source: 'mobile-menu' });
+                }}
+              >
+                Request a call back
+              </button>
+              <div className="mt-6 flex justify-between text-xs text-white/70">
+                <span>Ahmedabad, Gujarat</span>
+                <a href="tel:+919998585211" className="hover:text-[#E59217]">
+                  +91 99985 85211
+                </a>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }

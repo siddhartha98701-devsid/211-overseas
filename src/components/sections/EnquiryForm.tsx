@@ -1,11 +1,12 @@
 'use client';
 
 import { useState, useEffect, Suspense } from 'react';
+import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Check, AlertCircle, ArrowRight } from 'lucide-react';
+import { Check, AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { siteContent } from '@/content/site';
 
 const enquirySchema = z.object({
@@ -21,11 +22,25 @@ const enquirySchema = z.object({
   courseOrCareer: z.string().optional(),
   budget: z.string().optional(),
   intakeTimeline: z.string().optional(),
+  // Mandatory opt-in required by the brand & legal guidelines (IT Act 2000 / DPDP Act)
+  consent: z.boolean().refine((v) => v === true, 'Please tick the consent box to submit your profile'),
   // Honeypot field for anti-spam bots
   faxNumber: z.string().max(0, 'Spam detected').optional(),
 });
 
 type EnquiryFormData = z.infer<typeof enquirySchema>;
+
+const STEPS = [
+  { title: 'About you', hint: 'How can we reach you?' },
+  { title: 'Your background', hint: 'Education and current work' },
+  { title: 'Your goals', hint: 'Where, what and when' },
+] as const;
+
+const STEP_FIELDS: (keyof EnquiryFormData)[][] = [
+  ['fullName', 'mobile', 'email', 'age', 'city'],
+  ['qualification', 'occupation'],
+  ['destination', 'courseOrCareer', 'budget', 'intakeTimeline', 'interests', 'consent'],
+];
 
 const QUALIFICATION_OPTIONS = [
   '10th / SSC',
@@ -63,6 +78,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
 
   const {
     register,
@@ -70,6 +86,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
     setValue,
     watch,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<EnquiryFormData>({
     resolver: zodResolver(enquirySchema),
@@ -86,6 +103,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       courseOrCareer: '',
       budget: '',
       intakeTimeline: '',
+      consent: false,
       faxNumber: '',
     },
   });
@@ -109,6 +127,17 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       current.push(interest);
     }
     setValue('interests', current, { shouldValidate: true });
+  };
+
+  const goNext = async () => {
+    const ok = await trigger(STEP_FIELDS[step]);
+    if (ok) setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  };
+
+  // On an invalid final submit, jump back to the first step that has an error
+  const onInvalid = (errs: Record<string, unknown>) => {
+    const first = STEP_FIELDS.findIndex((fields) => fields.some((f) => f in errs));
+    if (first >= 0) setStep(first);
   };
 
   const onSubmit = async (data: EnquiryFormData) => {
@@ -135,6 +164,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
 
       setSubmitSuccess(true);
       reset();
+      setStep(0);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErrorMessage(err.message);
@@ -149,16 +179,31 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
   return (
     <div id="enquiry-form" className="relative scroll-mt-28">
       {/* Editorial Form Container */}
-      <div className="bg-[#F6F3EE] border border-[#DDD7CC] p-8 sm:p-12 md:p-16">
+      <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-8 sm:p-12 md:p-16">
         <div className="mb-10 max-w-xl">
-          <h3 className="font-serif text-3xl sm:text-4xl font-light text-[#15140F] tracking-tight">
+          <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#000000] tracking-tight">
             Submit your profile
           </h3>
-          <p className="text-sm text-[#6C675E] mt-3 leading-relaxed">
+          <p className="text-sm text-[#4A4A4A] mt-3 leading-relaxed">
             Fill in your details below. We review every profile carefully before recommending
             universities or career pathways.
           </p>
         </div>
+
+        {/* Step progress */}
+        <ol className="mb-10 grid grid-cols-3 gap-2" aria-label="Form progress">
+          {STEPS.map((st, i) => (
+            <li key={st.title} aria-current={i === step ? 'step' : undefined}>
+              <div className="h-1 bg-[#E5E5E5] overflow-hidden">
+                <div className={`h-full bg-[#E59217] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
+              </div>
+              <p className={`mt-2 text-[11px] uppercase tracking-wider font-medium ${i <= step ? 'text-black' : 'text-[#4A4A4A]/60'}`}>
+                <span className="text-[#A86500]">{i + 1}.</span> {st.title}
+              </p>
+              <p className="hidden sm:block text-xs text-[#4A4A4A]">{st.hint}</p>
+            </li>
+          ))}
+        </ol>
 
         {errorMessage && (
           <div className="mb-8 p-4 border border-red-300 bg-red-50 text-red-800 text-sm flex items-center gap-3">
@@ -167,7 +212,18 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+        <form
+          onSubmit={(e) => {
+            if (step < STEPS.length - 1) {
+              e.preventDefault();
+              void goNext();
+              return;
+            }
+            return handleSubmit(onSubmit, onInvalid)(e);
+          }}
+          className="space-y-6"
+          noValidate
+        >
           {/* Honeypot field (hidden from real users) */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="faxNumber">Do not fill this</label>
@@ -180,13 +236,14 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             />
           </div>
 
-          {/* Primary Personal Details Grid */}
+          {/* Step 1: About you */}
+          <div className={step === 0 ? 'block' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Full Name */}
             <div>
               <label
                 htmlFor="fullName"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Full Name *
               </label>
@@ -194,8 +251,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="fullName"
                 type="text"
                 placeholder="Enter your full name"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors ${
-                  errors.fullName ? 'border-red-500' : 'border-[#DDD7CC]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
+                  errors.fullName ? 'border-red-500' : 'border-[#E5E5E5]'
                 }`}
                 {...register('fullName')}
               />
@@ -208,7 +265,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="mobile"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Mobile Number *
               </label>
@@ -216,8 +273,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="mobile"
                 type="tel"
                 placeholder="+91 98765 43210"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors ${
-                  errors.mobile ? 'border-red-500' : 'border-[#DDD7CC]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
+                  errors.mobile ? 'border-red-500' : 'border-[#E5E5E5]'
                 }`}
                 {...register('mobile')}
               />
@@ -230,7 +287,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Email Address *
               </label>
@@ -238,8 +295,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="email"
                 type="email"
                 placeholder="name@example.com"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors ${
-                  errors.email ? 'border-red-500' : 'border-[#DDD7CC]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
+                  errors.email ? 'border-red-500' : 'border-[#E5E5E5]'
                 }`}
                 {...register('email')}
               />
@@ -252,7 +309,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="age"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Age
               </label>
@@ -262,7 +319,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 min="15"
                 max="65"
                 placeholder="e.g. 24"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('age')}
               />
             </div>
@@ -271,7 +328,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="city"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 City
               </label>
@@ -279,22 +336,28 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="city"
                 type="text"
                 placeholder="Ahmedabad, Gujarat"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('city')}
               />
             </div>
 
+          </div>
+          </div>
+
+          {/* Step 2: Your background */}
+          <div className={step === 1 ? 'block' : 'hidden'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Highest Qualification */}
             <div>
               <label
                 htmlFor="qualification"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Highest Qualification
               </label>
               <select
                 id="qualification"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('qualification')}
               >
                 <option value="">Select qualification...</option>
@@ -310,7 +373,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="occupation"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Current Occupation
               </label>
@@ -318,22 +381,28 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="occupation"
                 type="text"
                 placeholder="Student, Staff Nurse, Engineer..."
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('occupation')}
               />
             </div>
 
+          </div>
+          </div>
+
+          {/* Step 3: Your goals */}
+          <div className={step === 2 ? 'block space-y-6' : 'hidden'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Preferred Destination */}
             <div>
               <label
                 htmlFor="destination"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Preferred Destination
               </label>
               <select
                 id="destination"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('destination')}
               >
                 <option value="">Select destination...</option>
@@ -349,7 +418,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="courseOrCareer"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Preferred Course / Career
               </label>
@@ -357,7 +426,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="courseOrCareer"
                 type="text"
                 placeholder="Computer Science, Nursing, Hospitality..."
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('courseOrCareer')}
               />
             </div>
@@ -366,7 +435,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="budget"
-                className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
               >
                 Approximate Budget
               </label>
@@ -374,7 +443,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="budget"
                 type="text"
                 placeholder="e.g. 10–15 Lakhs, Self-funded, Scholarship"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
                 {...register('budget')}
               />
             </div>
@@ -384,7 +453,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
           <div>
             <label
               htmlFor="intakeTimeline"
-              className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2"
+              className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
             >
               Preferred Intake / Timeline
             </label>
@@ -392,14 +461,14 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
               id="intakeTimeline"
               type="text"
               placeholder="e.g. Autumn 2026, Spring 2027, Immediate"
-              className="w-full px-4 py-3 text-sm bg-white border border-[#DDD7CC] text-[#15140F] placeholder-[#6C675E]/60 focus:outline-none focus:border-[#2F4A3C] transition-colors"
+              className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
               {...register('intakeTimeline')}
             />
           </div>
 
           {/* Minimal Checkbox Options for "I Am Interested In" */}
-          <div className="pt-4 border-t border-[#DDD7CC]">
-            <label className="block text-xs uppercase tracking-wider text-[#15140F] font-medium mb-3">
+          <div className="pt-4 border-t border-[#E5E5E5]">
+            <label className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-3">
               I am interested in (Select all that apply)
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -412,16 +481,16 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                     onClick={() => toggleInterest(interest)}
                     className={`flex items-center justify-between p-3 border text-left text-sm transition-colors ${
                       isSelected
-                        ? 'border-[#2F4A3C] bg-[#2F4A3C]/5 text-[#15140F] font-medium'
-                        : 'border-[#DDD7CC] bg-white text-[#6C675E] hover:border-[#15140F]'
+                        ? 'border-[#E59217] bg-[#E59217]/5 text-[#000000] font-medium'
+                        : 'border-[#E5E5E5] bg-white text-[#4A4A4A] hover:border-[#000000]'
                     }`}
                   >
                     <span className="pr-2 text-xs uppercase tracking-wide">{interest}</span>
                     <span
                       className={`w-4 h-4 border flex items-center justify-center transition-colors ${
                         isSelected
-                          ? 'border-[#2F4A3C] bg-[#2F4A3C] text-white'
-                          : 'border-[#DDD7CC] bg-white'
+                          ? 'border-[#E59217] bg-[#E59217] text-black'
+                          : 'border-[#E5E5E5] bg-white'
                       }`}
                     >
                       {isSelected && <Check size={12} strokeWidth={3} />}
@@ -432,27 +501,76 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             </div>
           </div>
 
-          {/* Submit Action */}
+          {/* Mandatory consent */}
+          <div className="pt-2">
+            <label className="flex items-start gap-3 cursor-pointer group">
+              <input
+                type="checkbox"
+                className="mt-1 h-4 w-4 shrink-0 cursor-pointer filter-checkbox"
+                aria-invalid={errors.consent ? 'true' : 'false'}
+                aria-describedby={errors.consent ? 'consent-error' : undefined}
+                {...register('consent')}
+              />
+              <span className="text-sm text-[#4A4A4A] leading-relaxed group-hover:text-black transition-colors">
+                I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.
+              </span>
+            </label>
+            {errors.consent && (
+              <p id="consent-error" role="alert" className="mt-2 text-xs text-red-600">
+                {errors.consent.message}
+              </p>
+            )}
+          </div>
+
+          </div>
+
+          {/* Step navigation / submit */}
           <div className="pt-6">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[#2F4A3C] hover:bg-[#24382E] disabled:opacity-60 text-white text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
-            >
-              {isSubmitting ? (
-                <>
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Submitting Profile...
-                </>
-              ) : (
-                <>
-                  Submit My Profile
-                  <ArrowRight size={16} />
-                </>
+            <div className="flex gap-3">
+              {step > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(step - 1)}
+                  className="flex items-center justify-center gap-2 border border-black px-6 py-4 text-xs uppercase tracking-widest font-medium text-black hover:bg-black hover:text-white transition-colors cursor-pointer"
+                >
+                  <ArrowLeft size={16} /> Back
+                </button>
               )}
-            </button>
-            <p className="text-center text-xs text-[#6C675E] mt-3">
-              By submitting, you agree to receive guidance from 211 Overseas counsellors.
+              {step < STEPS.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={goNext}
+                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                >
+                  Continue
+                  <ArrowRight size={16} />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] disabled:opacity-60 text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                      Submitting Profile...
+                    </>
+                  ) : (
+                    <>
+                      Submit My Profile
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
+            <p className="text-center text-xs text-[#4A4A4A] mt-3">
+              Your data is handled as described in our{' '}
+              <Link href="/privacy-policy" className="underline decoration-[#E59217] underline-offset-2 hover:text-black">
+                Privacy Policy
+              </Link>
+              .
             </p>
           </div>
         </form>
@@ -461,21 +579,21 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       {/* Confirmation Modal */}
       {submitSuccess && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
-          <div className="bg-[#F6F3EE] border border-[#DDD7CC] p-8 sm:p-10 max-w-md w-full text-center">
-            <div className="w-12 h-12 bg-[#2F4A3C] text-white flex items-center justify-center mx-auto mb-4">
+          <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-8 sm:p-10 max-w-md w-full text-center">
+            <div className="w-12 h-12 bg-[#E59217] text-black flex items-center justify-center mx-auto mb-4">
               <Check size={24} strokeWidth={2} />
             </div>
-            <h4 className="font-serif text-2xl font-light text-[#15140F] mb-2">
+            <h4 className="font-serif text-2xl font-bold text-[#000000] mb-2">
               Profile received
             </h4>
-            <p className="text-sm text-[#6C675E] leading-relaxed mb-6">
-              Thank you for sharing your details with 211 Overseas. A dedicated counsellor will review
+            <p className="text-sm text-[#4A4A4A] leading-relaxed mb-6">
+              Thank you for sharing your details with 211 OVERSEAS. A dedicated counsellor will review
               your profile and reach out shortly via phone or WhatsApp.
             </p>
             <button
               type="button"
               onClick={() => setSubmitSuccess(false)}
-              className="w-full bg-[#15140F] hover:bg-[#2F4A3C] text-white text-xs uppercase tracking-widest py-3 transition-colors"
+              className="w-full bg-[#000000] hover:bg-[#E59217] hover:text-black text-white text-xs uppercase tracking-widest py-3 transition-colors"
             >
               Done
             </button>
@@ -490,7 +608,7 @@ export function EnquiryForm(props: EnquiryFormProps) {
   return (
     <Suspense
       fallback={
-        <div className="bg-[#F6F3EE] border border-[#DDD7CC] p-10 min-h-[400px] animate-pulse" />
+        <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-10 min-h-[400px] animate-pulse" />
       }
     >
       <FormContent {...props} />

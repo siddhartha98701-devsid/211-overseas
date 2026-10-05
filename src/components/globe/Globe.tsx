@@ -5,33 +5,12 @@ import { Canvas, useFrame, useThree } from '@react-three/fiber';
 import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 
-// Destinations and pins data
-export interface GlobePin {
-  name: string;
-  country: string;
-  lat: number;
-  lon: number;
-  href: string;
-  isOrigin?: boolean;
-  isPrimary?: boolean;
-}
-
-export const GLOBE_PINS: GlobePin[] = [
-  { name: 'Ahmedabad', country: 'India (HQ)', lat: 23.0225, lon: 72.5714, href: '/contact', isOrigin: true },
-  { name: 'Seoul', country: 'South Korea', lat: 37.5665, lon: 126.9780, href: '/study-in-south-korea', isPrimary: true },
-  { name: 'Berlin', country: 'Germany', lat: 52.5200, lon: 13.4050, href: '/work-in-germany', isPrimary: true },
-  { name: 'Dubai', country: 'UAE', lat: 25.2048, lon: 55.2708, href: '/work-in-uae', isPrimary: true },
-  { name: 'Tokyo', country: 'Japan', lat: 35.6762, lon: 139.6503, href: '/other-destinations' },
-  { name: 'Taipei', country: 'Taiwan', lat: 25.0330, lon: 121.5654, href: '/other-destinations' },
-  { name: 'Singapore', country: 'Singapore', lat: 1.3521, lon: 103.8198, href: '/other-destinations' },
-  { name: 'London', country: 'United Kingdom', lat: 51.5074, lon: -0.1278, href: '/other-destinations' },
-  { name: 'New York', country: 'United States', lat: 40.7128, lon: -74.0060, href: '/other-destinations' },
-  { name: 'Toronto', country: 'Canada', lat: 43.6532, lon: -79.3832, href: '/other-destinations' },
-  { name: 'Sydney', country: 'Australia', lat: -33.8688, lon: 151.2093, href: '/other-destinations' },
-];
+export { GLOBE_PINS, type GlobePin } from './pins';
+import { GLOBE_PINS, type GlobePin } from './pins';
+import { isLand } from './landMask';
 
 const GLOBE_RADIUS = 2.2;
-const ACCENT_COLOR = '#1D3FFF';
+const ACCENT_COLOR = '#E59217';
 
 export function latLonToVector3(lat: number, lon: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -43,79 +22,26 @@ export function latLonToVector3(lat: number, lon: number, radius: number): THREE
   );
 }
 
-// Simplified fast landmass check to cluster dots onto continents
 function isPointOnLand(lat: number, lon: number): boolean {
-  // Normalize lon to [-180, 180]
-  let l = lon;
-  while (l > 180) l -= 360;
-  while (l < -180) l += 360;
+  return isLand(lat, lon);
+}
 
-  // Antarctica filter (minimal dots at extreme south)
-  if (lat < -60) return lat > -85 && (Math.sin(lat * 5 + l) > 0.3);
-
-  // North America
-  if (lat >= 15 && lat <= 72 && l >= -168 && l <= -52) {
-    if (lat < 30 && l < -105 && l > -120) return true; // Mexico / Baja
-    if (lat >= 25 && l >= -125 && l <= -70) return true; // USA
-    if (lat >= 48 && l >= -140 && l <= -55) return true; // Canada
-    if (lat >= 60 && l >= -45 && l <= -20) return true; // Greenland
-    return true;
-  }
-  // Central America
-  if (lat >= 7 && lat < 15 && l >= -92 && l <= -77) return true;
-
-  // South America
-  if (lat >= -56 && lat <= 13 && l >= -82 && l <= -34) {
-    if (l > -40 && lat < -25) return false;
-    return true;
-  }
-
-  // Europe
-  if (lat >= 36 && lat <= 71 && l >= -11 && l <= 45) {
-    if (lat > 55 && l < 5 && l > -10) return true; // UK & Ireland
-    if (lat >= 55 && l >= 5 && l <= 30) return true; // Scandinavia
-    return true;
-  }
-
-  // Africa
-  if (lat >= -35 && lat <= 37 && l >= -18 && l <= 52) {
-    if (lat > 15 && l < 30) return true; // North Africa
-    if (lat <= 15 && lat >= -35 && l >= 8 && l <= 42) return true; // Central / Southern Africa
-    if (lat < 15 && lat > -5 && l < 10 && l > -18) return true; // West Africa
-    if (lat >= -26 && lat <= -12 && l >= 43 && l <= 51) return true; // Madagascar
-    return true;
-  }
-
-  // Asia
-  if (lat >= 5 && lat <= 78 && l >= 45 && l <= 170) {
-    if (lat <= 30 && l >= 40 && l <= 60) return true; // Middle East / Arabian Peninsula
-    if (lat >= 8 && lat <= 35 && l >= 68 && l <= 92) return true; // Indian Subcontinent
-    if (lat >= 30 && lat <= 45 && l >= 124 && l <= 131) return true; // Korea
-    if (lat >= 30 && lat <= 46 && l >= 129 && l <= 146) return true; // Japan
-    if (lat >= 21 && lat <= 26 && l >= 119 && l <= 123) return true; // Taiwan
-    if (lat >= 10 && lat <= 55 && l >= 75 && l <= 135) return true; // Central / East Asia / China
-    if (lat >= -11 && lat <= 20 && l >= 95 && l <= 142) return true; // SE Asia / Indonesia / Philippines
-    if (lat > 50 && l >= 50 && l <= 170) return true; // Russia / Siberia
-    return true;
-  }
-
-  // Australia & New Zealand
-  if (lat >= -44 && lat <= -10 && l >= 112 && l <= 154) return true;
-  if (lat >= -47 && lat <= -34 && l >= 165 && l <= 179) return true; // New Zealand
-
-  return false;
+// Deterministic 0..1 value so dot shading is stable across renders
+function pseudoRandom(n: number) {
+  const x = Math.sin(n * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
 }
 
 // Dotted landmass component
-function DottedGlobe({ count = 22000 }: { count?: number }) {
+function DottedGlobe({ count = 28000, dark = false }: { count?: number; dark?: boolean }) {
   const { positions, colors, sizes } = useMemo(() => {
     const posList: number[] = [];
     const colList: number[] = [];
     const sizeList: number[] = [];
 
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
-    const inkColor = new THREE.Color('#0B0B0F');
-    const faintColor = new THREE.Color('#D2D2D8');
+    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#000000');
+    const faintColor = new THREE.Color(dark ? '#3A3A3A' : '#D9D9D9');
 
     for (let i = 0; i < count; i++) {
       const theta = 2 * Math.PI * i / goldenRatio;
@@ -138,9 +64,9 @@ function DottedGlobe({ count = 22000 }: { count?: number }) {
 
         if (onLand) {
           // Near black dots on land with slight variation
-          const factor = 0.25 + Math.random() * 0.15;
+          const factor = dark ? 0.55 + pseudoRandom(i) * 0.45 : 0.9 + pseudoRandom(i) * 0.6;
           colList.push(inkColor.r * factor, inkColor.g * factor, inkColor.b * factor);
-          sizeList.push(1.6 + Math.random() * 0.9);
+          sizeList.push(1.6 + pseudoRandom(i + 7) * 0.9);
         } else {
           // Very faint ocean dots
           colList.push(faintColor.r, faintColor.g, faintColor.b);
@@ -154,7 +80,7 @@ function DottedGlobe({ count = 22000 }: { count?: number }) {
       colors: new Float32Array(colList),
       sizes: new Float32Array(sizeList),
     };
-  }, [count]);
+  }, [count, dark]);
 
   return (
     <points>
@@ -169,10 +95,10 @@ function DottedGlobe({ count = 22000 }: { count?: number }) {
         />
       </bufferGeometry>
       <pointsMaterial
-        size={0.024}
+        size={0.036}
         vertexColors
         transparent
-        opacity={0.7}
+        opacity={0.9}
         sizeAttenuation
         depthWrite={false}
       />
@@ -181,14 +107,14 @@ function DottedGlobe({ count = 22000 }: { count?: number }) {
 }
 
 // Faint outer atmosphere rim
-function AtmosphereRim() {
+function AtmosphereRim({ dark = false }: { dark?: boolean }) {
   return (
     <mesh>
       <sphereGeometry args={[GLOBE_RADIUS * 1.04, 48, 48]} />
       <meshBasicMaterial
-        color="#1D3FFF"
+        color="#E59217"
         transparent
-        opacity={0.03}
+        opacity={dark ? 0.1 : 0.04}
         side={THREE.BackSide}
       />
     </mesh>
@@ -199,13 +125,19 @@ function AtmosphereRim() {
 function PinMarker({
   pin,
   isHovered,
+  isSelected,
+  dark = false,
   onHover,
   onUnhover,
+  onSelect,
 }: {
   pin: GlobePin;
+  dark?: boolean;
   isHovered: boolean;
+  isSelected: boolean;
   onHover: () => void;
   onUnhover: () => void;
+  onSelect?: () => void;
 }) {
   const meshRef = useRef<THREE.Mesh>(null);
   const ringRef = useRef<THREE.Mesh>(null);
@@ -213,16 +145,16 @@ function PinMarker({
 
   const isOrigin = pin.isOrigin;
   const isPrimary = pin.isPrimary;
-  const color = isOrigin ? ACCENT_COLOR : isPrimary ? '#0B0B0F' : '#6E6E7A';
-  const scale = isOrigin ? 1.25 : isPrimary ? 1.0 : 0.65;
+  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#000000') : dark ? '#9A9A9A' : '#4A4A4A';
+  const scale = isSelected ? 1.5 : isOrigin ? 1.25 : isPrimary ? 1.0 : 0.65;
 
   useFrame(({ clock }) => {
     const t = clock.getElapsedTime();
-    if (meshRef.current && isOrigin) {
+    if (meshRef.current && (isOrigin || isSelected)) {
       const pulse = 1 + 0.18 * Math.sin(t * 3);
       meshRef.current.scale.setScalar(pulse * scale);
     }
-    if (ringRef.current && isOrigin) {
+    if (ringRef.current && (isOrigin || isSelected)) {
       const ringPulse = 1 + 0.35 * Math.sin(t * 2);
       ringRef.current.scale.setScalar(ringPulse);
     }
@@ -231,60 +163,63 @@ function PinMarker({
   return (
     <group position={pos}>
       {/* Pin dot */}
+      <mesh ref={meshRef} scale={scale}>
+        <sphereGeometry args={[0.036, 16, 16]} />
+        <meshBasicMaterial color={color} />
+      </mesh>
+
+      {/* Larger invisible hit area so pins are easy to hover and tap */}
       <mesh
-        ref={meshRef}
-        scale={scale}
         onPointerOver={(e) => {
           e.stopPropagation();
           onHover();
         }}
         onPointerOut={onUnhover}
+        onClick={(e) => {
+          e.stopPropagation();
+          onSelect?.();
+        }}
       >
-        <sphereGeometry args={[0.036, 16, 16]} />
-        <meshBasicMaterial color={color} />
+        <sphereGeometry args={[0.1, 12, 12]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
 
-      {/* Origin pulsating ring */}
-      {isOrigin && (
+      {/* Pulsating ring for origin and selected pin */}
+      {(isOrigin || isSelected) && (
         <mesh ref={ringRef} lookAt={new THREE.Vector3(0, 0, 0)}>
           <ringGeometry args={[0.05, 0.07, 32]} />
-          <meshBasicMaterial color={ACCENT_COLOR} transparent opacity={0.35} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={ACCENT_COLOR} transparent opacity={0.4} side={THREE.DoubleSide} />
         </mesh>
       )}
 
       {/* Primary destination ring */}
-      {isPrimary && (
+      {isPrimary && !isSelected && (
         <mesh lookAt={new THREE.Vector3(0, 0, 0)}>
           <ringGeometry args={[0.045, 0.06, 24]} />
-          <meshBasicMaterial color="#0B0B0F" transparent opacity={0.25} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={dark ? '#FFFFFF' : '#000000'} transparent opacity={0.3} side={THREE.DoubleSide} />
         </mesh>
       )}
 
-      {/* Tooltip on hover */}
-      {isHovered && (
-        <Html
-          position={[0, 0.1, 0]}
-          center
-          distanceFactor={7}
-          className="pointer-events-auto select-none"
-        >
-          <a
-            href={pin.href}
-            className="glass-strong rounded-2xl px-3.5 py-2 block whitespace-nowrap shadow-[0_8px_24px_rgba(11,11,15,0.12)] border border-white/90 text-left transition-transform hover:scale-105"
-            style={{ textDecoration: 'none' }}
+      {/* Label on hover or selection. The <Html> stays mounted (unmounting it throws a
+          removeChild error in drei) and only its content toggles. */}
+      <Html position={[0, 0.2, 0]} center distanceFactor={4.2} className="pointer-events-none select-none">
+        {(isHovered || isSelected) && (
+          <span
+            className={`block whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.25)] ${
+              dark ? 'bg-black border-[#E59217] text-white' : 'bg-white border-[#E5E5E5] text-black'
+            }`}
           >
-            <span className="block text-[10px] uppercase tracking-wider font-semibold text-[#6E6E7A]">
-              {pin.isOrigin ? 'Origin (Headquarters)' : 'Destination Pathway'}
+            <span
+              className={`block text-[10px] uppercase tracking-wider font-medium ${
+                dark ? 'text-[#E59217]' : 'text-[#4A4A4A]'
+              }`}
+            >
+              {pin.isOrigin ? 'Headquarters' : pin.country}
             </span>
-            <span className="font-semibold text-xs text-[#0B0B0F] block">
-              {pin.name}, {pin.country}
-            </span>
-            <span className="text-[10px] text-[#1D3FFF] font-medium block mt-0.5">
-              {pin.isOrigin ? 'Connect with us →' : 'Explore pathway →'}
-            </span>
-          </a>
-        </Html>
-      )}
+            <span className="block text-xs font-medium">{pin.name}</span>
+          </span>
+        )}
+      </Html>
     </group>
   );
 }
@@ -294,10 +229,12 @@ function FlightArc({
   from,
   to,
   reducedMotion,
+  highlight = false,
 }: {
   from: { lat: number; lon: number };
   to: { lat: number; lon: number };
   reducedMotion: boolean;
+  highlight?: boolean;
 }) {
   const particleRef = useRef<THREE.Mesh>(null);
 
@@ -345,41 +282,72 @@ function FlightArc({
             args={[linePositions, 3]}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#1D3FFF" transparent opacity={0.25} linewidth={1} />
+        <lineBasicMaterial color="#E59217" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
       </line>
 
       {/* Traveling particle */}
       {!reducedMotion && (
         <mesh ref={particleRef}>
           <sphereGeometry args={[0.024, 8, 8]} />
-          <meshBasicMaterial color="#1D3FFF" transparent opacity={0.8} />
+          <meshBasicMaterial color="#E59217" transparent opacity={0.8} />
         </mesh>
       )}
     </group>
   );
 }
 
-// Scene with mouse/touch drag controls and inertia
+/** Group rotation that brings a lat/lon to the centre of the view, facing the camera. */
+function rotationForPin(pin: GlobePin) {
+  const v = latLonToVector3(pin.lat, pin.lon, 1);
+  const y = Math.atan2(-v.x, v.z);
+  const zAfterYaw = -v.x * Math.sin(y) + v.z * Math.cos(y);
+  const x = Math.max(-0.8, Math.min(0.8, Math.atan2(v.y, zAfterYaw)));
+  return { x, y };
+}
+
+const TWO_PI = Math.PI * 2;
+function wrapAngle(a: number) {
+  return a - TWO_PI * Math.round(a / TWO_PI);
+}
+
+// Scene with mouse/touch drag controls, inertia and focus-on-selection
 function GlobeScene({
   reducedMotion = false,
   highlightCountry,
+  selectedName,
+  onSelect,
+  dark = false,
 }: {
+  dark?: boolean;
   reducedMotion?: boolean;
   highlightCountry?: string;
+  selectedName?: string | null;
+  onSelect?: (name: string) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const isDragging = useRef(false);
+  const dragDistance = useRef(0);
   const prevPointer = useRef({ x: 0, y: 0 });
   const velocity = useRef({ x: 0, y: 0 });
+  const focusTarget = useRef<{ x: number; y: number } | null>(null);
   const autoRotatePauseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isAutoRotatePaused = useRef(false);
   const [hoveredPinIdx, setHoveredPinIdx] = useState<number | null>(null);
   const { gl } = useThree();
 
+  // Rotate to the selected destination whenever the selection changes
+  useEffect(() => {
+    const pin = GLOBE_PINS.find((p) => p.name === selectedName);
+    focusTarget.current = pin ? rotationForPin(pin) : null;
+    velocity.current = { x: 0, y: 0 };
+  }, [selectedName]);
+
   const handlePointerDown = useCallback((e: PointerEvent) => {
     isDragging.current = true;
+    dragDistance.current = 0;
     prevPointer.current = { x: e.clientX, y: e.clientY };
     velocity.current = { x: 0, y: 0 };
+    focusTarget.current = null; // user takes control
     isAutoRotatePaused.current = true;
     if (autoRotatePauseTimer.current) clearTimeout(autoRotatePauseTimer.current);
   }, []);
@@ -388,6 +356,7 @@ function GlobeScene({
     if (!isDragging.current || !groupRef.current) return;
     const deltaX = e.clientX - prevPointer.current.x;
     const deltaY = e.clientY - prevPointer.current.y;
+    dragDistance.current += Math.abs(deltaX) + Math.abs(deltaY);
 
     velocity.current = {
       x: deltaX * 0.005,
@@ -395,7 +364,7 @@ function GlobeScene({
     };
 
     groupRef.current.rotation.y += deltaX * 0.005;
-    groupRef.current.rotation.x = Math.max(-0.6, Math.min(0.6, groupRef.current.rotation.x + deltaY * 0.003));
+    groupRef.current.rotation.x = Math.max(-0.8, Math.min(0.8, groupRef.current.rotation.x + deltaY * 0.003));
 
     prevPointer.current = { x: e.clientX, y: e.clientY };
   }, []);
@@ -413,20 +382,32 @@ function GlobeScene({
     el.addEventListener('pointerdown', handlePointerDown);
     window.addEventListener('pointermove', handlePointerMove);
     window.addEventListener('pointerup', handlePointerUp);
+    window.addEventListener('pointercancel', handlePointerUp);
     return () => {
       el.removeEventListener('pointerdown', handlePointerDown);
       window.removeEventListener('pointermove', handlePointerMove);
       window.removeEventListener('pointerup', handlePointerUp);
+      window.removeEventListener('pointercancel', handlePointerUp);
       if (autoRotatePauseTimer.current) clearTimeout(autoRotatePauseTimer.current);
     };
   }, [gl, handlePointerDown, handlePointerMove, handlePointerUp]);
 
   useFrame((_, delta) => {
-    if (!groupRef.current) return;
+    const group = groupRef.current;
+    if (!group) return;
 
-    // Auto-rotation when not dragging and motion is permitted
-    if (!reducedMotion && !isAutoRotatePaused.current && !isDragging.current) {
-      groupRef.current.rotation.y += 0.04 * delta;
+    // Ease toward the selected destination
+    const target = focusTarget.current;
+    if (target && !isDragging.current) {
+      const k = reducedMotion ? 1 : Math.min(1, delta * 4);
+      group.rotation.y += wrapAngle(target.y - group.rotation.y) * k;
+      group.rotation.x += (target.x - group.rotation.x) * k;
+      return;
+    }
+
+    // Auto-rotation only while nothing is selected
+    if (!reducedMotion && !selectedName && !isAutoRotatePaused.current && !isDragging.current) {
+      group.rotation.y += 0.04 * delta;
     }
 
     // Inertia decay
@@ -434,43 +415,54 @@ function GlobeScene({
       velocity.current.x *= 0.94;
       velocity.current.y *= 0.94;
       if (Math.abs(velocity.current.x) > 0.0001) {
-        groupRef.current.rotation.y += velocity.current.x;
+        group.rotation.y += velocity.current.x;
       }
       if (Math.abs(velocity.current.y) > 0.0001) {
-        groupRef.current.rotation.x = Math.max(-0.6, Math.min(0.6, groupRef.current.rotation.x + velocity.current.y));
+        group.rotation.x = Math.max(-0.8, Math.min(0.8, group.rotation.x + velocity.current.y));
       }
     }
   });
 
   const originPin = GLOBE_PINS[0]; // Ahmedabad
-  const primaryPins = GLOBE_PINS.filter((p) => p.isPrimary);
+  const selectedPin = GLOBE_PINS.find((p) => p.name === selectedName);
+  const arcPins = GLOBE_PINS.filter((p) => !p.isOrigin && (p.isPrimary || p.name === selectedName));
 
   return (
     <group ref={groupRef} rotation={[0.2, 0.5, 0]}>
-      <DottedGlobe />
-      <AtmosphereRim />
+      <DottedGlobe dark={dark} />
+      <AtmosphereRim dark={dark} />
 
       {/* Pins */}
       {GLOBE_PINS.map((pin, idx) => {
-        const isTarget = highlightCountry && pin.country.toLowerCase().includes(highlightCountry.toLowerCase());
+        const isTarget = !!highlightCountry && pin.country.toLowerCase().includes(highlightCountry.toLowerCase());
         return (
           <PinMarker
             key={pin.name}
             pin={pin}
-            isHovered={hoveredPinIdx === idx || !!isTarget}
+            isHovered={hoveredPinIdx === idx || isTarget}
+            isSelected={selectedPin?.name === pin.name}
+            dark={dark}
             onHover={() => setHoveredPinIdx(idx)}
             onUnhover={() => setHoveredPinIdx(null)}
+            onSelect={
+              onSelect
+                ? () => {
+                    if (dragDistance.current < 6) onSelect(pin.name);
+                  }
+                : undefined
+            }
           />
         );
       })}
 
-      {/* Primary pathway arcs */}
-      {primaryPins.map((dest) => (
+      {/* Pathway arcs from Ahmedabad: primary destinations plus the selected one */}
+      {arcPins.map((dest) => (
         <FlightArc
           key={dest.name}
           from={{ lat: originPin.lat, lon: originPin.lon }}
           to={{ lat: dest.lat, lon: dest.lon }}
           reducedMotion={reducedMotion}
+          highlight={dest.name === selectedName}
         />
       ))}
     </group>
@@ -482,11 +474,11 @@ export function GlobeStaticFallback({ className = '' }: { className?: string }) 
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border border-gray-200/80 bg-gradient-to-b from-gray-50 to-white shadow-inner flex items-center justify-center">
-        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#1D3FFF]/20 flex items-center justify-center">
+        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#E59217]/20 flex items-center justify-center">
           <div className="text-center p-4">
-            <span className="inline-block w-3 h-3 rounded-full bg-[#1D3FFF] mb-2 animate-ping" />
-            <p className="text-xs font-semibold text-[#0B0B0F] uppercase tracking-wider">Ahmedabad HQ</p>
-            <p className="text-[11px] text-[#6E6E7A] mt-1">Connecting to Global Destinations</p>
+            <span className="inline-block w-3 h-3 rounded-full bg-[#E59217] mb-2 animate-ping" />
+            <p className="text-xs font-semibold text-[#000000] uppercase tracking-wider">Ahmedabad HQ</p>
+            <p className="text-[11px] text-[#4A4A4A] mt-1">Connecting to Global Destinations</p>
           </div>
         </div>
       </div>
@@ -498,9 +490,15 @@ export function GlobeStaticFallback({ className = '' }: { className?: string }) 
 export default function Globe({
   className = '',
   highlightCountry,
+  selectedName,
+  onSelect,
+  tone = 'light',
 }: {
+  tone?: 'light' | 'dark';
   className?: string;
   highlightCountry?: string;
+  selectedName?: string | null;
+  onSelect?: (name: string) => void;
 }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
@@ -529,14 +527,20 @@ export default function Globe({
   }
 
   return (
-    <div className={`relative cursor-grab active:cursor-grabbing select-none ${className}`}>
+    <div className={`relative cursor-grab active:cursor-grabbing select-none touch-pan-y ${className}`}>
       <Canvas
-        camera={{ position: [0, 0, 5.8], fov: 45 }}
+        camera={{ position: [0, 0, 6.8], fov: 45 }}
         dpr={[1, 2]} // Cap devicePixelRatio at 2 as requested
         gl={{ alpha: true, antialias: true, powerPreference: 'high-performance' }}
         style={{ width: '100%', height: '100%', pointerEvents: 'auto' }}
       >
-        <GlobeScene reducedMotion={reducedMotion} highlightCountry={highlightCountry} />
+        <GlobeScene
+          reducedMotion={reducedMotion}
+          highlightCountry={highlightCountry}
+          selectedName={selectedName}
+          onSelect={onSelect}
+          dark={tone === 'dark'}
+        />
       </Canvas>
     </div>
   );

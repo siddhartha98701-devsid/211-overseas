@@ -1,63 +1,66 @@
 import type { Metadata } from 'next';
+import { LegalPage } from '@/components/ui/LegalPage';
+import { siteContent } from '@/content/site';
 
 export const metadata: Metadata = {
-  title: 'Terms & Conditions | 211 Overseas',
-  description: 'Terms and Conditions for 211 Overseas.',
+  title: 'Terms & Conditions',
+  description: 'Terms and Conditions for using the 211 OVERSEAS study abroad website and consultancy services.',
 };
 
 export default function TermsPage() {
   return (
-    <section className="pt-36 pb-24 md:pt-44 md:pb-36 border-b border-[#DDD7CC]" aria-label="Terms and conditions">
-      <div className="max-w-3xl mx-auto px-6">
-        <h1 className="font-serif text-4xl sm:text-5xl font-light text-[#15140F] tracking-tight leading-[1.1] mb-10">
-          Terms &amp; conditions
-        </h1>
-        <div className="text-[#6C675E] leading-relaxed space-y-6 text-sm sm:text-base font-light">
-          <p>
-            These Terms and Conditions govern your use of the 211 Overseas website, consultations, and
-            related guidance services.
-          </p>
-          <div className="border-t border-[#DDD7CC] pt-6">
-            <h2 className="font-serif text-2xl font-light text-[#15140F] mb-3">
-              Consultancy services
-            </h2>
+    <LegalPage
+      title="Terms & Conditions"
+      label="Terms and conditions"
+      updated="5 October 2026"
+      intro={
+        <>
+          By accessing {siteContent.brand.domain} and utilizing the services of 211 OVERSEAS, you agree to comply with
+          and be bound by the following Terms and Conditions.
+        </>
+      }
+      sections={[
+        {
+          heading: 'Scope of Services',
+          body: (
             <p>
-              211 Overseas provides education and career advisory services. We assist with course identification,
-              documentation guidance, and visa application procedures, but we do not guarantee admissions,
-              scholarships, employment offers, or visa outcomes.
+              211 OVERSEAS provides study abroad consultancy, which includes university selection, application
+              processing, interview preparation, and visa guidance. We act as an advisory bridge between the student and
+              the educational institution.
             </p>
-          </div>
-          <div className="border-t border-[#DDD7CC] pt-6">
-            <h2 className="font-serif text-2xl font-light text-[#15140F] mb-3">
-              Independent advisory disclaimer
-            </h2>
+          ),
+        },
+        {
+          heading: 'Student Responsibilities & Document Authenticity',
+          body: (
             <p>
-              211 Overseas is an independent consultancy. Universities, institutions, and governmental bodies
-              referenced on this website are provided strictly for informational purposes. Reference to them does
-              not imply affiliation, endorsement, or formal partnership unless explicitly specified.
+              You agree to provide 100% accurate, genuine, and unaltered documents for your applications. 211 OVERSEAS is
+              not responsible for application rejections, visa denials, or legal consequences resulting from fraudulent,
+              forged, or misrepresented documentation provided by the applicant.
             </p>
-          </div>
-          <div className="border-t border-[#DDD7CC] pt-6">
-            <h2 className="font-serif text-2xl font-light text-[#15140F] mb-3">
-              Limitation of liability
-            </h2>
+          ),
+        },
+        {
+          heading: 'Third-Party Decisions',
+          body: (
             <p>
-              Final decisions regarding admissions, scholarships, work permits, and visas remain under the sole
-              discretion of the respective university admission committees, employer organizations, and consular
-              authorities.
+              211 OVERSEAS acts solely as a consultant. Final decisions regarding university admissions, scholarship
+              awards, and visa issuances rest entirely with the respective university admissions boards and government
+              embassies. We have no authority to alter or influence these independent decisions.
             </p>
-          </div>
-          <div className="border-t border-[#DDD7CC] pt-6">
-            <h2 className="font-serif text-2xl font-light text-[#15140F] mb-3">
-              Contact
-            </h2>
+          ),
+        },
+        {
+          heading: 'Limitation of Liability',
+          body: (
             <p>
-              For legal or terms inquiries, contact our Ahmedabad office at +91 99985 85211 or via postal mail in
-              Ahmedabad, Gujarat, India.
+              While we strive to provide the most accurate and up-to-date guidance, 211 OVERSEAS shall not be held
+              liable for any direct, indirect, or consequential loss or damage arising from changes in university
+              policies, immigration laws, or delayed processing times.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
+          ),
+        },
+      ]}
+    />
   );
 }

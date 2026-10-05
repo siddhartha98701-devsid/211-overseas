@@ -3,14 +3,14 @@ import { siteContent } from '@/content/site';
 
 export function WhyUsSection() {
   return (
-    <section className="py-24 md:py-36 border-b border-[#DDD7CC]" aria-label="Why 211 Overseas">
+    <section className="py-24 md:py-36 border-b border-[#E5E5E5]" aria-label="Why 211 OVERSEAS">
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
           <div className="max-w-3xl mb-16">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#15140F] tracking-tight leading-[1.1] mb-6">
-              Why 211 Overseas
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#000000] tracking-tight leading-[1.1] mb-6">
+              Why 211 OVERSEAS
             </h2>
-            <p className="text-base sm:text-lg text-[#6C675E] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#4A4A4A] leading-relaxed font-light">
               We prioritize candidates over commissions. Here is how our consulting methodology sets you
               up for long-term international success.
             </p>
@@ -20,10 +20,10 @@ export function WhyUsSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             {siteContent.whyUs.points.map((point, i) => (
               <div key={i} className="space-y-2">
-                <h3 className="font-serif text-xl sm:text-2xl font-light text-[#15140F] tracking-tight">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#000000] tracking-tight">
                   {point.title}
                 </h3>
-                <p className="text-sm sm:text-base text-[#6C675E] leading-relaxed">
+                <p className="text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
                   {point.description}
                 </p>
               </div>
