@@ -29,9 +29,10 @@ export function PathGatewaySection() {
   const [, germany, uae] = siteContent.pathways;
 
   return (
-    <section id="paths" className="py-24 md:py-32 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Choose study or work abroad">
+    <section id="paths" className="py-16 md:py-24 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Choose study or work abroad">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
+          compact
           eyebrow="Two ways to go global"
           headline="Do you want to study abroad or work abroad?"
           description="Pick your path and we’ll show you where we can guide you."

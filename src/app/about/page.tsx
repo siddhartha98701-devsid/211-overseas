@@ -1,10 +1,10 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
+import { WhoCanConnectSection } from '@/components/sections/WhoCanConnectSection';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 };
 
 export default function AboutPage() {
-  const { about, whoCanConnect } = siteContent;
+  const { about } = siteContent;
 
   return (
     <>
@@ -115,38 +115,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Who Can Connect */}
-      <section className="py-24 md:py-36 border-b border-[#E5E5E5]" aria-label="Who can connect">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-12">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#000000] tracking-tight leading-[1.1] mb-6">
-                Who can connect with us
-              </h2>
-              <p className="text-base sm:text-lg text-[#4A4A4A] leading-relaxed font-light">
-                Our advisory services are tailored for candidates across diverse educational and professional milestones.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 border-t border-[#E5E5E5] pt-8">
-              {whoCanConnect.profiles.map((profile) => (
-                <div key={profile} className="py-4 border-b border-[#E5E5E5]/60">
-                  <span className="text-sm text-[#000000] font-normal">{profile}</span>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12">
-              <Link
-                href="/contact"
-                className="inline-block bg-[#E59217] hover:bg-[#F2A23A] text-black px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-              >
-                Schedule free consultation
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
+      <WhoCanConnectSection />
 
       {/* Form Section */}
       <CtaStrip source="about" />

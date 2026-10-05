@@ -8,16 +8,18 @@ import { SectionHeader } from '@/components/ui/SectionHeader';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 import { FAQS } from '@/content/faqs';
 
-export function FaqSection() {
+export function FaqSection({ limit }: { limit?: number }) {
   const [open, setOpen] = useState<number | null>(0);
+  const [showAll, setShowAll] = useState(false);
+  const visible = limit && !showAll ? FAQS.slice(0, limit) : FAQS;
   const { openCallback } = useCallbackModal();
 
   return (
-    <section id="faq" className="py-24 md:py-32 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Frequently asked questions">
+    <section id="faq" className="py-16 md:py-20 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Frequently asked questions">
       <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">
-            <SectionHeader eyebrow="FAQs" headline="Questions students ask us" />
+            <SectionHeader compact eyebrow="FAQs" headline="Questions students ask us" />
             <p className="-mt-6 text-sm text-[#4A4A4A] leading-relaxed">Can&apos;t find your answer? Our counsellors are happy to help.</p>
             <button
               type="button"
@@ -30,7 +32,7 @@ export function FaqSection() {
         </div>
 
         <div className="lg:col-span-8 border-t border-[#E5E5E5]">
-          {FAQS.map((f, i) => {
+          {visible.map((f, i) => {
             const isOpen = open === i;
             return (
               <div key={f.q} className="border-b border-[#E5E5E5]">
@@ -73,6 +75,15 @@ export function FaqSection() {
               </div>
             );
           })}
+          {limit && FAQS.length > limit && (
+            <button
+              type="button"
+              onClick={() => setShowAll((v) => !v)}
+              className="mt-5 text-xs uppercase tracking-widest font-medium text-black cursor-pointer"
+            >
+              <span className="link-draw pb-1">{showAll ? 'Show fewer questions' : `Show all ${FAQS.length} questions`}</span>
+            </button>
+          )}
         </div>
       </div>
 
