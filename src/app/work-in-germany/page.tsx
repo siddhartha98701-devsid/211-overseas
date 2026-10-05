@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 
 export const metadata: Metadata = {
   title: 'Work in Germany',
@@ -137,6 +138,7 @@ export default function GermanyPage() {
       </section>
 
       {/* Form Section */}
+      <CtaStrip interest="Work in Germany – Nursing" source="work-in-germany" />
       <FormSection />
     </>
   );

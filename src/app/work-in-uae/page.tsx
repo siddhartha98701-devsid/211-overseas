@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 import { UAESectorsTabs } from './UAESectorsTabs';
 
 export const metadata: Metadata = {
@@ -118,6 +119,7 @@ export default function UAEPage() {
       </section>
 
       {/* Form Section */}
+      <CtaStrip interest="Work in UAE / Dubai" source="work-in-uae" />
       <FormSection />
     </>
   );

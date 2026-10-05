@@ -5,6 +5,9 @@ import { KoreaHighlights } from '@/components/sections/KoreaHighlights';
 import { ProgramFinderSection } from '@/components/sections/ProgramFinderSection';
 import { EligibilitySection } from '@/components/sections/EligibilitySection';
 import { FaqSection } from '@/components/sections/FaqSection';
+import { PathGatewaySection } from '@/components/sections/PathGatewaySection';
+import { WhoCanConnectSection } from '@/components/sections/WhoCanConnectSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 import { PathwaysSection } from '@/components/sections/PathwaysSection';
 import { GlobeExplorerSection } from '@/components/sections/GlobeExplorerSection';
 import { NotSureSection } from '@/components/sections/NotSureSection';
@@ -23,13 +26,17 @@ export default function HomePage() {
     <>
       <HeroSection />
       <TaglineMarquee />
+      <PathGatewaySection />
       <KoreaHighlights />
       <ProgramFinderSection />
       <EligibilitySection />
       <PathwaysSection />
+      <CtaStrip source="after-pathways" />
       <GlobeExplorerSection />
+      <WhoCanConnectSection />
       <NotSureSection />
       <HowItWorksSection />
+      <CtaStrip heading="Ready to start step one?" source="after-how-it-works" />
       <WhyUsSection />
       <FaqSection />
       <FormSection />

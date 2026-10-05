@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 import { CourseTabs } from './CourseTabs';
 
 export const metadata: Metadata = {
@@ -327,6 +328,7 @@ export default function SouthKoreaPage() {
       </section>
 
       {/* Form Section */}
+      <CtaStrip interest="Study in South Korea" source="study-in-south-korea" />
       <FormSection />
     </>
   );

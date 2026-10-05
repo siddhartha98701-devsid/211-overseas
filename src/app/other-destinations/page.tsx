@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 
 export const metadata: Metadata = {
   title: 'Other Destinations',
@@ -94,6 +95,7 @@ export default function OtherDestinationsPage() {
       </section>
 
       {/* Form Section */}
+      <CtaStrip interest="Study in Other Countries" source="other-destinations" />
       <FormSection />
     </>
   );

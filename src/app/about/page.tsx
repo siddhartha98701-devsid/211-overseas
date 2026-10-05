@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -148,6 +149,7 @@ export default function AboutPage() {
       </section>
 
       {/* Form Section */}
+      <CtaStrip source="about" />
       <FormSection />
     </>
   );

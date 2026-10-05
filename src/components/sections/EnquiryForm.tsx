@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Check, AlertCircle, ArrowRight } from 'lucide-react';
+import { Check, AlertCircle, ArrowRight, ArrowLeft } from 'lucide-react';
 import { siteContent } from '@/content/site';
 
 const enquirySchema = z.object({
@@ -29,6 +29,18 @@ const enquirySchema = z.object({
 });
 
 type EnquiryFormData = z.infer<typeof enquirySchema>;
+
+const STEPS = [
+  { title: 'About you', hint: 'How can we reach you?' },
+  { title: 'Your background', hint: 'Education and current work' },
+  { title: 'Your goals', hint: 'Where, what and when' },
+] as const;
+
+const STEP_FIELDS: (keyof EnquiryFormData)[][] = [
+  ['fullName', 'mobile', 'email', 'age', 'city'],
+  ['qualification', 'occupation'],
+  ['destination', 'courseOrCareer', 'budget', 'intakeTimeline', 'interests', 'consent'],
+];
 
 const QUALIFICATION_OPTIONS = [
   '10th / SSC',
@@ -66,6 +78,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [step, setStep] = useState(0);
 
   const {
     register,
@@ -73,6 +86,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
     setValue,
     watch,
     reset,
+    trigger,
     formState: { errors },
   } = useForm<EnquiryFormData>({
     resolver: zodResolver(enquirySchema),
@@ -115,6 +129,17 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
     setValue('interests', current, { shouldValidate: true });
   };
 
+  const goNext = async () => {
+    const ok = await trigger(STEP_FIELDS[step]);
+    if (ok) setStep((s) => Math.min(s + 1, STEPS.length - 1));
+  };
+
+  // On an invalid final submit, jump back to the first step that has an error
+  const onInvalid = (errs: Record<string, unknown>) => {
+    const first = STEP_FIELDS.findIndex((fields) => fields.some((f) => f in errs));
+    if (first >= 0) setStep(first);
+  };
+
   const onSubmit = async (data: EnquiryFormData) => {
     // Honeypot check
     if (data.faxNumber && data.faxNumber.length > 0) {
@@ -139,6 +164,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
 
       setSubmitSuccess(true);
       reset();
+      setStep(0);
     } catch (err: unknown) {
       if (err instanceof Error) {
         setErrorMessage(err.message);
@@ -164,6 +190,21 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
           </p>
         </div>
 
+        {/* Step progress */}
+        <ol className="mb-10 grid grid-cols-3 gap-2" aria-label="Form progress">
+          {STEPS.map((st, i) => (
+            <li key={st.title} aria-current={i === step ? 'step' : undefined}>
+              <div className="h-1 bg-[#E5E5E5] overflow-hidden">
+                <div className={`h-full bg-[#E59217] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
+              </div>
+              <p className={`mt-2 text-[11px] uppercase tracking-wider font-medium ${i <= step ? 'text-black' : 'text-[#4A4A4A]/60'}`}>
+                <span className="text-[#A86500]">{i + 1}.</span> {st.title}
+              </p>
+              <p className="hidden sm:block text-xs text-[#4A4A4A]">{st.hint}</p>
+            </li>
+          ))}
+        </ol>
+
         {errorMessage && (
           <div className="mb-8 p-4 border border-red-300 bg-red-50 text-red-800 text-sm flex items-center gap-3">
             <AlertCircle size={18} className="flex-shrink-0" />
@@ -171,7 +212,18 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
+        <form
+          onSubmit={(e) => {
+            if (step < STEPS.length - 1) {
+              e.preventDefault();
+              void goNext();
+              return;
+            }
+            return handleSubmit(onSubmit, onInvalid)(e);
+          }}
+          className="space-y-6"
+          noValidate
+        >
           {/* Honeypot field (hidden from real users) */}
           <div className="hidden" aria-hidden="true">
             <label htmlFor="faxNumber">Do not fill this</label>
@@ -184,7 +236,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             />
           </div>
 
-          {/* Primary Personal Details Grid */}
+          {/* Step 1: About you */}
+          <div className={step === 0 ? 'block' : 'hidden'}>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Full Name */}
             <div>
@@ -288,6 +341,12 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
               />
             </div>
 
+          </div>
+          </div>
+
+          {/* Step 2: Your background */}
+          <div className={step === 1 ? 'block' : 'hidden'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Highest Qualification */}
             <div>
               <label
@@ -327,6 +386,12 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
               />
             </div>
 
+          </div>
+          </div>
+
+          {/* Step 3: Your goals */}
+          <div className={step === 2 ? 'block space-y-6' : 'hidden'}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {/* Preferred Destination */}
             <div>
               <label
@@ -457,25 +522,49 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             )}
           </div>
 
-          {/* Submit Action */}
+          </div>
+
+          {/* Step navigation / submit */}
           <div className="pt-6">
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-[#E59217] hover:bg-[#F2A23A] disabled:opacity-60 text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
-            >
-              {isSubmitting ? (
-                <>
-                  <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  Submitting Profile...
-                </>
-              ) : (
-                <>
-                  Submit My Profile
-                  <ArrowRight size={16} />
-                </>
+            <div className="flex gap-3">
+              {step > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setStep(step - 1)}
+                  className="flex items-center justify-center gap-2 border border-black px-6 py-4 text-xs uppercase tracking-widest font-medium text-black hover:bg-black hover:text-white transition-colors cursor-pointer"
+                >
+                  <ArrowLeft size={16} /> Back
+                </button>
               )}
-            </button>
+              {step < STEPS.length - 1 ? (
+                <button
+                  type="button"
+                  onClick={goNext}
+                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                >
+                  Continue
+                  <ArrowRight size={16} />
+                </button>
+              ) : (
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] disabled:opacity-60 text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                >
+                  {isSubmitting ? (
+                    <>
+                      <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                      Submitting Profile...
+                    </>
+                  ) : (
+                    <>
+                      Submit My Profile
+                      <ArrowRight size={16} />
+                    </>
+                  )}
+                </button>
+              )}
+            </div>
             <p className="text-center text-xs text-[#4A4A4A] mt-3">
               Your data is handled as described in our{' '}
               <Link href="/privacy-policy" className="underline decoration-[#E59217] underline-offset-2 hover:text-black">
