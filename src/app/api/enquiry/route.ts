@@ -17,6 +17,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Consent is mandatory (IT Act 2000 / DPDP Act)
+    if (body.consent !== true) {
+      return NextResponse.json(
+        { success: false, message: 'Please consent to being contacted so we can process your profile.' },
+        { status: 400 }
+      );
+    }
+
     // Server-side logging of candidate profile
     const timestamp = new Date().toISOString();
     console.log(`\n======================================================`);

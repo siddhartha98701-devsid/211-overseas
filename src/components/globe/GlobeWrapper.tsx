@@ -13,15 +13,17 @@ interface GlobeWrapperProps {
   highlightCountry?: string;
   selectedName?: string | null;
   onSelect?: (name: string) => void;
+  tone?: 'light' | 'dark';
 }
 
-export function GlobeWrapper({ className = '', highlightCountry, selectedName, onSelect }: GlobeWrapperProps) {
+export function GlobeWrapper({ className = '', highlightCountry, selectedName, onSelect, tone }: GlobeWrapperProps) {
   return (
     <Globe
       className={className}
       highlightCountry={highlightCountry}
       selectedName={selectedName}
       onSelect={onSelect}
+      tone={tone}
     />
   );
 }

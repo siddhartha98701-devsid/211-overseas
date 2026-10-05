@@ -12,11 +12,11 @@ export function WhoCanConnectSection() {
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <ScrollReveal>
-          <p className="eyebrow text-[#1D3FFF] mb-3">Target Candidates</p>
-          <h2 className="headline-lg mb-4 text-[#0B0B0F]">
-            Who can <em className="font-display italic text-[#1D3FFF]">connect</em> with us
+          <p className="eyebrow text-[#A86500] mb-3">Target Candidates</p>
+          <h2 className="headline-lg mb-4 text-[#000000]">
+            Who can <em className="font-display italic text-[#A86500]">connect</em> with us
           </h2>
-          <p className="text-sm md:text-base text-[#6E6E7A] max-w-xl mx-auto mb-10">
+          <p className="text-sm md:text-base text-[#4A4A4A] max-w-xl mx-auto mb-10">
             Our pathways are customized for individuals at every career and educational stage.
           </p>
         </ScrollReveal>
@@ -28,7 +28,7 @@ export function WhoCanConnectSection() {
                 key={profile}
                 whileHover={{ scale: 1.04, y: -2 }}
                 whileTap={{ scale: 0.97 }}
-                className="glass-strong rounded-full px-6 py-3 border border-white/90 shadow-sm text-[14.5px] font-medium text-[#0B0B0F] hover:border-[#1D3FFF]/30 hover:text-[#1D3FFF] transition-all cursor-default"
+                className="glass-strong rounded-full px-6 py-3 border border-white/90 shadow-sm text-[14.5px] font-medium text-[#000000] hover:border-[#E59217]/30 hover:text-[#A86500] transition-all cursor-default"
               >
                 {profile}
               </motion.div>

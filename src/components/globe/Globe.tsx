@@ -10,7 +10,7 @@ import { GLOBE_PINS, type GlobePin } from './pins';
 import { isLand } from './landMask';
 
 const GLOBE_RADIUS = 2.2;
-const ACCENT_COLOR = '#2F4A3C';
+const ACCENT_COLOR = '#E59217';
 
 export function latLonToVector3(lat: number, lon: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -33,15 +33,15 @@ function pseudoRandom(n: number) {
 }
 
 // Dotted landmass component
-function DottedGlobe({ count = 28000 }: { count?: number }) {
+function DottedGlobe({ count = 28000, dark = false }: { count?: number; dark?: boolean }) {
   const { positions, colors, sizes } = useMemo(() => {
     const posList: number[] = [];
     const colList: number[] = [];
     const sizeList: number[] = [];
 
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
-    const inkColor = new THREE.Color('#15140F');
-    const faintColor = new THREE.Color('#D6D0C4');
+    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#000000');
+    const faintColor = new THREE.Color(dark ? '#3A3A3A' : '#D9D9D9');
 
     for (let i = 0; i < count; i++) {
       const theta = 2 * Math.PI * i / goldenRatio;
@@ -64,7 +64,7 @@ function DottedGlobe({ count = 28000 }: { count?: number }) {
 
         if (onLand) {
           // Near black dots on land with slight variation
-          const factor = 0.9 + pseudoRandom(i) * 0.6;
+          const factor = dark ? 0.55 + pseudoRandom(i) * 0.45 : 0.9 + pseudoRandom(i) * 0.6;
           colList.push(inkColor.r * factor, inkColor.g * factor, inkColor.b * factor);
           sizeList.push(1.6 + pseudoRandom(i + 7) * 0.9);
         } else {
@@ -80,7 +80,7 @@ function DottedGlobe({ count = 28000 }: { count?: number }) {
       colors: new Float32Array(colList),
       sizes: new Float32Array(sizeList),
     };
-  }, [count]);
+  }, [count, dark]);
 
   return (
     <points>
@@ -107,14 +107,14 @@ function DottedGlobe({ count = 28000 }: { count?: number }) {
 }
 
 // Faint outer atmosphere rim
-function AtmosphereRim() {
+function AtmosphereRim({ dark = false }: { dark?: boolean }) {
   return (
     <mesh>
       <sphereGeometry args={[GLOBE_RADIUS * 1.04, 48, 48]} />
       <meshBasicMaterial
-        color="#2F4A3C"
+        color="#E59217"
         transparent
-        opacity={0.04}
+        opacity={dark ? 0.1 : 0.04}
         side={THREE.BackSide}
       />
     </mesh>
@@ -126,11 +126,13 @@ function PinMarker({
   pin,
   isHovered,
   isSelected,
+  dark = false,
   onHover,
   onUnhover,
   onSelect,
 }: {
   pin: GlobePin;
+  dark?: boolean;
   isHovered: boolean;
   isSelected: boolean;
   onHover: () => void;
@@ -143,7 +145,7 @@ function PinMarker({
 
   const isOrigin = pin.isOrigin;
   const isPrimary = pin.isPrimary;
-  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? '#15140F' : '#6C675E';
+  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#000000') : dark ? '#9A9A9A' : '#4A4A4A';
   const scale = isSelected ? 1.5 : isOrigin ? 1.25 : isPrimary ? 1.0 : 0.65;
 
   useFrame(({ clock }) => {
@@ -194,7 +196,7 @@ function PinMarker({
       {isPrimary && !isSelected && (
         <mesh lookAt={new THREE.Vector3(0, 0, 0)}>
           <ringGeometry args={[0.045, 0.06, 24]} />
-          <meshBasicMaterial color="#15140F" transparent opacity={0.25} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={dark ? '#FFFFFF' : '#000000'} transparent opacity={0.3} side={THREE.DoubleSide} />
         </mesh>
       )}
 
@@ -202,11 +204,19 @@ function PinMarker({
           removeChild error in drei) and only its content toggles. */}
       <Html position={[0, 0.2, 0]} center distanceFactor={4.2} className="pointer-events-none select-none">
         {(isHovered || isSelected) && (
-          <span className="block whitespace-nowrap bg-[#F6F3EE] border border-[#DDD7CC] px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(21,20,15,0.10)]">
-            <span className="block text-[10px] uppercase tracking-wider font-medium text-[#6C675E]">
+          <span
+            className={`block whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.25)] ${
+              dark ? 'bg-black border-[#E59217] text-white' : 'bg-white border-[#E5E5E5] text-black'
+            }`}
+          >
+            <span
+              className={`block text-[10px] uppercase tracking-wider font-medium ${
+                dark ? 'text-[#E59217]' : 'text-[#4A4A4A]'
+              }`}
+            >
               {pin.isOrigin ? 'Headquarters' : pin.country}
             </span>
-            <span className="block text-xs font-medium text-[#15140F]">{pin.name}</span>
+            <span className="block text-xs font-medium">{pin.name}</span>
           </span>
         )}
       </Html>
@@ -272,14 +282,14 @@ function FlightArc({
             args={[linePositions, 3]}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#2F4A3C" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
+        <lineBasicMaterial color="#E59217" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
       </line>
 
       {/* Traveling particle */}
       {!reducedMotion && (
         <mesh ref={particleRef}>
           <sphereGeometry args={[0.024, 8, 8]} />
-          <meshBasicMaterial color="#2F4A3C" transparent opacity={0.8} />
+          <meshBasicMaterial color="#E59217" transparent opacity={0.8} />
         </mesh>
       )}
     </group>
@@ -306,7 +316,9 @@ function GlobeScene({
   highlightCountry,
   selectedName,
   onSelect,
+  dark = false,
 }: {
+  dark?: boolean;
   reducedMotion?: boolean;
   highlightCountry?: string;
   selectedName?: string | null;
@@ -417,8 +429,8 @@ function GlobeScene({
 
   return (
     <group ref={groupRef} rotation={[0.2, 0.5, 0]}>
-      <DottedGlobe />
-      <AtmosphereRim />
+      <DottedGlobe dark={dark} />
+      <AtmosphereRim dark={dark} />
 
       {/* Pins */}
       {GLOBE_PINS.map((pin, idx) => {
@@ -429,6 +441,7 @@ function GlobeScene({
             pin={pin}
             isHovered={hoveredPinIdx === idx || isTarget}
             isSelected={selectedPin?.name === pin.name}
+            dark={dark}
             onHover={() => setHoveredPinIdx(idx)}
             onUnhover={() => setHoveredPinIdx(null)}
             onSelect={
@@ -461,11 +474,11 @@ export function GlobeStaticFallback({ className = '' }: { className?: string }) 
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border border-gray-200/80 bg-gradient-to-b from-gray-50 to-white shadow-inner flex items-center justify-center">
-        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#2F4A3C]/20 flex items-center justify-center">
+        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#E59217]/20 flex items-center justify-center">
           <div className="text-center p-4">
-            <span className="inline-block w-3 h-3 rounded-full bg-[#2F4A3C] mb-2 animate-ping" />
-            <p className="text-xs font-semibold text-[#15140F] uppercase tracking-wider">Ahmedabad HQ</p>
-            <p className="text-[11px] text-[#6C675E] mt-1">Connecting to Global Destinations</p>
+            <span className="inline-block w-3 h-3 rounded-full bg-[#E59217] mb-2 animate-ping" />
+            <p className="text-xs font-semibold text-[#000000] uppercase tracking-wider">Ahmedabad HQ</p>
+            <p className="text-[11px] text-[#4A4A4A] mt-1">Connecting to Global Destinations</p>
           </div>
         </div>
       </div>
@@ -479,7 +492,9 @@ export default function Globe({
   highlightCountry,
   selectedName,
   onSelect,
+  tone = 'light',
 }: {
+  tone?: 'light' | 'dark';
   className?: string;
   highlightCountry?: string;
   selectedName?: string | null;
@@ -524,6 +539,7 @@ export default function Globe({
           highlightCountry={highlightCountry}
           selectedName={selectedName}
           onSelect={onSelect}
+          dark={tone === 'dark'}
         />
       </Canvas>
     </div>

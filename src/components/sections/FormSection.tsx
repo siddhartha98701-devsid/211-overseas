@@ -15,13 +15,13 @@ export function FormSection() {
           className="object-cover object-center"
         />
         {/* Scrim ensuring WCAG AA contrast for text */}
-        <div className="absolute inset-0 bg-[#15140F]/80" />
+        <div className="absolute inset-0 bg-[#000000]/80" />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <ScrollReveal>
           <div className="max-w-2xl mb-12 text-white">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light tracking-tight leading-[1.1] mb-4 text-white">
+            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
               Start your overseas journey
             </h2>
             <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed">

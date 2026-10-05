@@ -28,10 +28,10 @@ export function Button({
     size === 'lg' ? 'px-8 py-3.5 text-sm uppercase tracking-wider' : 'px-6 py-2.5 text-xs uppercase tracking-wider';
 
   const variantClasses = {
-    primary: 'bg-[#2F4A3C] hover:bg-[#24382E] text-white',
-    secondary: 'bg-[#DDD7CC]/50 hover:bg-[#DDD7CC] text-[#15140F]',
-    outline: 'border border-[#15140F] text-[#15140F] hover:bg-[#15140F] hover:text-[#F6F3EE]',
-    ghost: 'hover:bg-[#DDD7CC]/30 text-[#15140F]',
+    primary: 'bg-[#E59217] hover:bg-[#F2A23A] text-black',
+    secondary: 'bg-[#E5E5E5]/50 hover:bg-[#E5E5E5] text-[#000000]',
+    outline: 'border border-[#000000] text-[#000000] hover:bg-[#000000] hover:text-[#FFFFFF]',
+    ghost: 'hover:bg-[#E5E5E5]/30 text-[#000000]',
   };
 
   const classes = `${baseClasses} ${sizeClasses} ${variantClasses[variant]} ${className}`;

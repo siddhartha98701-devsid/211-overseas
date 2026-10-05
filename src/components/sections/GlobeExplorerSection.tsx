@@ -2,7 +2,8 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from 'react';
 import Link from 'next/link';
-import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { GlobeWrapper } from '@/components/globe/GlobeWrapper';
 import { GLOBE_PINS } from '@/components/globe/pins';
@@ -73,7 +74,7 @@ export function GlobeExplorerSection() {
   const destinations = DESTINATIONS;
   const [selected, setSelected] = useState(destinations[0].pin);
   const railRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = usePrefersReducedMotion();
 
   const index = destinations.findIndex((d) => d.pin === selected);
   const current = destinations[index];
@@ -110,11 +111,12 @@ export function GlobeExplorerSection() {
   return (
     <section
       id="globe"
-      className="py-24 md:py-36 border-b border-[#DDD7CC] scroll-mt-24"
+      className="relative py-24 md:py-36 bg-black text-white scroll-mt-24 overflow-hidden"
       aria-label="Choose your destination"
     >
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
+          dark
           eyebrow="Choose your destination"
           headline="Spin the globe. Find your direction."
           description="Drag the globe, tap a pin, or slide through the destinations below — each one shows the pathways we can guide you on."
@@ -125,13 +127,15 @@ export function GlobeExplorerSection() {
             {/* Globe + slider */}
             <div className="lg:col-span-7 min-w-0">
               <div className="relative mx-auto aspect-square w-full max-w-[560px]">
+                <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(229,146,23,0.22)_0%,rgba(229,146,23,0)_70%)] blur-2xl" />
                 <GlobeWrapper
                   className="h-full w-full"
+                  tone="dark"
                   selectedName={selected}
                   onSelect={setSelected}
                 />
               </div>
-              <p className="mt-2 text-center text-[11px] uppercase tracking-widest text-[#6C675E]">
+              <p className="mt-2 text-center text-[11px] uppercase tracking-widest text-white/50">
                 Drag to rotate · tap a pin to select
               </p>
 
@@ -141,7 +145,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(-1)}
                   aria-label="Previous destination"
-                  className="shrink-0 h-10 w-10 border border-[#DDD7CC] text-[#15140F] hover:border-[#15140F] transition-colors flex items-center justify-center"
+                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#E59217] hover:text-[#E59217] transition-colors flex items-center justify-center"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -166,18 +170,18 @@ export function GlobeExplorerSection() {
                         onClick={() => setSelected(d.pin)}
                         className={`snap-center shrink-0 w-40 text-left px-4 py-3 border transition-colors ${
                           active
-                            ? 'bg-[#2F4A3C] border-[#2F4A3C] text-white'
-                            : 'bg-transparent border-[#DDD7CC] text-[#15140F] hover:border-[#15140F]'
+                            ? 'bg-[#E59217] border-[#E59217] text-black'
+                            : 'bg-transparent border-white/20 text-white hover:border-[#E59217]'
                         }`}
                       >
                         <span
                           className={`block text-[10px] uppercase tracking-widest ${
-                            active ? 'text-white/70' : 'text-[#6C675E]'
+                            active ? 'text-black/70' : 'text-white/55'
                           }`}
                         >
                           {d.label}
                         </span>
-                        <span className="block font-serif text-lg font-light leading-tight mt-1">{d.country}</span>
+                        <span className="block font-serif text-lg font-bold leading-tight mt-1">{d.country}</span>
                       </button>
                     );
                   })}
@@ -187,7 +191,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(1)}
                   aria-label="Next destination"
-                  className="shrink-0 h-10 w-10 border border-[#DDD7CC] text-[#15140F] hover:border-[#15140F] transition-colors flex items-center justify-center"
+                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#E59217] hover:text-[#E59217] transition-colors flex items-center justify-center"
                 >
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -204,27 +208,27 @@ export function GlobeExplorerSection() {
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-xs uppercase tracking-widest text-[#6C675E] font-medium">
+                  <span className="text-xs uppercase tracking-widest text-[#E59217] font-medium">
                     {current.featured ? 'Featured pathway' : 'Other destination'}
                     {pinMeta ? ` · ${pinMeta.name}` : ''}
                   </span>
-                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-light text-[#15140F] tracking-tight leading-[1.1] mt-3 mb-6">
+                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
                     {current.country}
                   </h3>
-                  <p className="text-sm sm:text-base text-[#6C675E] leading-relaxed mb-8">{current.description}</p>
+                  <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-8">{current.description}</p>
 
                   {current.bullets.length > 0 && (
-                    <div className="pt-6 border-t border-[#DDD7CC] mb-8">
-                      <p className="text-xs uppercase tracking-wider text-[#15140F] font-medium mb-2">
+                    <div className="pt-6 border-t border-white/15 mb-8">
+                      <p className="text-xs uppercase tracking-wider text-white font-medium mb-2">
                         Key opportunities
                       </p>
-                      <p className="text-sm text-[#6C675E] leading-relaxed">{current.bullets.join(', ')}.</p>
+                      <p className="text-sm text-white/65 leading-relaxed">{current.bullets.join(', ')}.</p>
                     </div>
                   )}
 
                   <Link
                     href={current.href}
-                    className="inline-flex items-center text-xs uppercase tracking-widest text-[#15140F] hover:text-[#2F4A3C] font-medium transition-colors group"
+                    className="btn-shine inline-flex items-center gap-2 bg-[#E59217] hover:bg-[#F2A23A] text-black px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
                   >
                     <span>{current.cta}</span>
                     <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>

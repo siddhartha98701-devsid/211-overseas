@@ -1,7 +1,8 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useScroll, useSpring, useTransform } from 'framer-motion';
+import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 import { Plane } from './Plane';
 
 interface FlightPathProps {
@@ -23,8 +24,8 @@ function pointAt(t: number) {
  * plane that travels along it as the page scrolls. Only transform/opacity are
  * animated (compositor-only), so there is no layout work during scroll.
  */
-export function FlightPath({ color = '#2F4A3C' }: FlightPathProps) {
-  const reduceMotion = useReducedMotion();
+export function FlightPath({ color = '#000000' }: FlightPathProps) {
+  const reduceMotion = usePrefersReducedMotion();
   const [viewport, setViewport] = useState({ w: 1440, h: 900 });
 
   useEffect(() => {
@@ -82,8 +83,8 @@ export function FlightPath({ color = '#2F4A3C' }: FlightPathProps) {
       >
         <path
           d={pathD}
-          stroke={color}
-          strokeOpacity={0.22}
+          stroke="#E59217"
+          strokeOpacity={0.55}
           strokeWidth={1.25}
           strokeDasharray="2 9"
           strokeLinecap="round"
@@ -110,7 +111,7 @@ export function FlightPath({ color = '#2F4A3C' }: FlightPathProps) {
             marginLeft: -size / 2,
             marginTop: -size / 2,
             rotate: reduceMotion ? 18 : rotate,
-            opacity: 0.55,
+            opacity: 0.85,
           }}
         >
           <Plane size={size} color={color} />

@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/contact',
     '/privacy-policy',
     '/terms-and-conditions',
+    '/disclaimer',
+    '/refund-policy',
   ];
 
   return routes.map((route) => ({

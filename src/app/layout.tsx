@@ -1,29 +1,32 @@
 import type { Metadata, Viewport } from 'next';
-import { Newsreader, Hanken_Grotesk } from 'next/font/google';
+import { Playfair_Display, Outfit } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
+import { MotionProvider } from '@/components/ui/MotionProvider';
 import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
 
-const newsreader = Newsreader({
+// Free look-alikes for the brand fonts (Boston Angel Bold / Gordita). The licensed
+// fonts, when added, are listed first in the --font-serif / --font-sans stacks.
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['600', '700', '800'],
   style: ['normal', 'italic'],
-  variable: '--font-serif',
+  variable: '--font-display',
   display: 'swap',
 });
 
-const hankenGrotesk = Hanken_Grotesk({
+const outfit = Outfit({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-sans',
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-body',
   display: 'swap',
 });
 
 export const viewport: Viewport = {
-  themeColor: '#F6F3EE',
+  themeColor: '#000000',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -32,33 +35,45 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL('https://211overseas.com'),
   title: {
-    default: '211 Overseas — Your Future Has No Borders',
-    template: '%s | 211 Overseas',
+    default: '211 OVERSEAS study abroad — Your Future Has No Borders',
+    template: '%s | 211 OVERSEAS',
   },
   description: siteContent.brand.description,
   keywords: [
     'Study in South Korea',
+    'Seoul',
+    'Busan',
+    'Expert Guidance',
+    '100% English-Taught Programs',
+    'Undergraduate Programs',
+    'Graduate Programs',
+    'Game Development',
+    'Animation',
+    'Film and Visual Effects',
+    'Digital Design',
+    'Korean Language and Business',
+    'Global Business Administration',
+    'Computer Science',
+    'IELTS 5.5+',
+    'Duolingo Accepted',
     'Work in Germany',
-    'Healthcare in Germany',
-    'Nurses Germany',
     'Work in UAE',
-    'Dubai Jobs',
-    'Overseas Education Ahmedabad',
-    'Study Abroad Consultancy Gujarat',
+    'Study Abroad Consultancy Ahmedabad',
   ],
-  authors: [{ name: '211 Overseas' }],
-  creator: '211 Overseas',
+
+  authors: [{ name: '211 OVERSEAS study abroad' }],
+  creator: '211 OVERSEAS study abroad',
   openGraph: {
-    title: '211 Overseas — Your Future Has No Borders',
+    title: '211 OVERSEAS study abroad — Your Future Has No Borders',
     description: siteContent.brand.description,
-    url: 'https://211overseas.com',
-    siteName: '211 Overseas',
+    url: 'https://www.211overseas.com',
+    siteName: '211 OVERSEAS study abroad',
     locale: 'en_IN',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '211 Overseas — Your Future Has No Borders',
+    title: '211 OVERSEAS study abroad — Your Future Has No Borders',
     description: siteContent.brand.description,
   },
   robots: {
@@ -73,8 +88,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${hankenGrotesk.variable} ${newsreader.variable}`}>
-      <body className="font-sans antialiased bg-[#F6F3EE] text-[#15140F] selection:bg-[#2F4A3C]/15 selection:text-[#15140F]">
+    <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
+      <body className="font-sans antialiased bg-[#FFFFFF] text-[#000000]">
+        <MotionProvider>
         <FlightPath />
         <Navbar />
         <main className="relative z-[1] min-h-screen">{children}</main>
@@ -87,14 +103,16 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': ['LocalBusiness', 'EducationalOrganization'],
-              name: '211 Overseas',
-              alternateName: '211 Overseas Consultancy',
+              name: '211 OVERSEAS study abroad',
+              alternateName: '211 OVERSEAS',
               description: siteContent.brand.description,
               telephone: siteContent.brand.phone,
               address: {
                 '@type': 'PostalAddress',
+                streetAddress: 'B-1405, The Capital, Science City Road, Sola',
                 addressLocality: 'Ahmedabad',
                 addressRegion: 'Gujarat',
+                postalCode: '380060',
                 addressCountry: 'IN',
               },
               url: 'https://211overseas.com',
@@ -104,6 +122,7 @@ export default function RootLayout({
           }}
         />
         <ContactFloatingButtons />
+        </MotionProvider>
       </body>
     </html>
   );
