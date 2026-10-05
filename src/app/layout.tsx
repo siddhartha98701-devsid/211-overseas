@@ -4,6 +4,7 @@ import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
+import { CallbackProvider } from '@/components/lead/CallbackProvider';
 import { MotionProvider } from '@/components/ui/MotionProvider';
 import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
@@ -91,6 +92,7 @@ export default function RootLayout({
     <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
       <body className="font-sans antialiased bg-[#FFFFFF] text-[#000000]">
         <MotionProvider>
+        <CallbackProvider>
         <FlightPath />
         <Navbar />
         <main className="relative z-[1] min-h-screen">{children}</main>
@@ -122,6 +124,7 @@ export default function RootLayout({
           }}
         />
         <ContactFloatingButtons />
+        </CallbackProvider>
         </MotionProvider>
       </body>
     </html>

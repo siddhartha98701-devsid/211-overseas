@@ -2,6 +2,9 @@ import type { Metadata } from 'next';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { TaglineMarquee } from '@/components/sections/TaglineMarquee';
 import { KoreaHighlights } from '@/components/sections/KoreaHighlights';
+import { ProgramFinderSection } from '@/components/sections/ProgramFinderSection';
+import { EligibilitySection } from '@/components/sections/EligibilitySection';
+import { FaqSection } from '@/components/sections/FaqSection';
 import { PathwaysSection } from '@/components/sections/PathwaysSection';
 import { GlobeExplorerSection } from '@/components/sections/GlobeExplorerSection';
 import { NotSureSection } from '@/components/sections/NotSureSection';
@@ -21,11 +24,14 @@ export default function HomePage() {
       <HeroSection />
       <TaglineMarquee />
       <KoreaHighlights />
+      <ProgramFinderSection />
+      <EligibilitySection />
       <PathwaysSection />
       <GlobeExplorerSection />
       <NotSureSection />
       <HowItWorksSection />
       <WhyUsSection />
+      <FaqSection />
       <FormSection />
     </>
   );

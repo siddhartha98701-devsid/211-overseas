@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
+import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
 const navLinks = [
   { label: 'Study in South Korea', href: '/study-in-south-korea' },
@@ -19,6 +20,7 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const { openCallback } = useCallbackModal();
   const isHomePage = pathname === '/';
 
   const { scrollYProgress } = useScroll();
@@ -90,12 +92,13 @@ export function Navbar() {
           </nav>
 
           <div className="hidden lg:flex items-center">
-            <Link
-              href="/contact"
-              className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors"
+            <button
+              type="button"
+              onClick={() => openCallback({ source: 'navbar' })}
+              className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors cursor-pointer"
             >
-              Book Consultation
-            </Link>
+              Free Counselling
+            </button>
           </div>
 
           <button
@@ -167,13 +170,16 @@ export function Navbar() {
             </nav>
 
             <div className="pt-8 border-t border-white/15">
-              <Link
-                href="/contact"
-                className="btn-shine block w-full text-center py-4 bg-[#E59217] text-black text-sm uppercase tracking-wider font-medium"
-                onClick={() => setIsOpen(false)}
+              <button
+                type="button"
+                className="btn-shine block w-full text-center py-4 bg-[#E59217] text-black text-sm uppercase tracking-wider font-medium cursor-pointer"
+                onClick={() => {
+                  setIsOpen(false);
+                  openCallback({ source: 'mobile-menu' });
+                }}
               >
-                Book Free Consultation
-              </Link>
+                Request a call back
+              </button>
               <div className="mt-6 flex justify-between text-xs text-white/70">
                 <span>Ahmedabad, Gujarat</span>
                 <a href="tel:+919998585211" className="hover:text-[#E59217]">

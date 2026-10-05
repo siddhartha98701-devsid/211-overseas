@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { motion, type Variants } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 import { Plane } from '@/components/ui/Plane';
+import { LeadMiniForm } from '@/components/lead/LeadMiniForm';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
 const ARC = 'M -40 640 C 240 610, 600 480, 930 215';
@@ -93,8 +94,8 @@ export function HeroSection() {
         </g>
       </svg>
 
-      <div className="max-w-[1280px] mx-auto px-6 w-full pb-24 md:pb-32 pt-36 relative z-10">
-        <div className="max-w-3xl">
+      <div className="max-w-[1280px] mx-auto px-6 w-full pb-24 md:pb-32 pt-36 relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
+        <div className="lg:col-span-7">
           <motion.p
             variants={fadeUp}
             custom={0.15}
@@ -167,6 +168,21 @@ export function HeroSection() {
             </Link>
           </motion.div>
         </div>
+
+        {/* Quick lead capture */}
+        <motion.aside
+          variants={fadeUp}
+          custom={1.4}
+          initial={reduce ? false : 'hidden'}
+          animate="show"
+          aria-label="Get free counselling"
+          className="lg:col-span-5 w-full max-w-md lg:max-w-none lg:ml-auto bg-white border-t-4 border-[#E59217] p-6 sm:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+        >
+          <p className="text-xs uppercase tracking-[0.25em] text-[#A86500] font-medium">Free counselling</p>
+          <h2 className="mt-1 mb-1 font-serif text-2xl sm:text-3xl font-bold text-black">Talk to an expert</h2>
+          <p className="mb-5 text-sm text-[#4A4A4A]">Get a call back about studying in South Korea.</p>
+          <LeadMiniForm interest="Study in South Korea" source="hero-form" />
+        </motion.aside>
       </div>
 
       {/* Scroll cue */}

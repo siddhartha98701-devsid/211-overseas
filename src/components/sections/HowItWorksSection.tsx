@@ -18,7 +18,7 @@ export function HowItWorksSection() {
   const fill = useSpring(scrollYProgress, { stiffness: 120, damping: 28, mass: 0.3 });
 
   return (
-    <section className="py-24 md:py-36 bg-black text-white" aria-label="Our advisory process">
+    <section className="py-24 md:py-36 bg-black text-white overflow-x-clip" aria-label="Our advisory process">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-5">
