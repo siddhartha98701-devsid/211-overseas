@@ -4,6 +4,7 @@ import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
+import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
 
 const newsreader = Newsreader({
@@ -74,9 +75,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${hankenGrotesk.variable} ${newsreader.variable}`}>
       <body className="font-sans antialiased bg-[#F6F3EE] text-[#15140F] selection:bg-[#2F4A3C]/15 selection:text-[#15140F]">
+        <FlightPath />
         <Navbar />
-        <main className="min-h-screen">{children}</main>
-        <Footer />
+        <main className="relative z-[1] min-h-screen">{children}</main>
+        <div className="relative z-[1]">
+          <Footer />
+        </div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
