@@ -11,8 +11,17 @@ const Globe = dynamic(() => import('./Globe'), {
 interface GlobeWrapperProps {
   className?: string;
   highlightCountry?: string;
+  selectedName?: string | null;
+  onSelect?: (name: string) => void;
 }
 
-export function GlobeWrapper({ className = '', highlightCountry }: GlobeWrapperProps) {
-  return <Globe className={className} highlightCountry={highlightCountry} />;
+export function GlobeWrapper({ className = '', highlightCountry, selectedName, onSelect }: GlobeWrapperProps) {
+  return (
+    <Globe
+      className={className}
+      highlightCountry={highlightCountry}
+      selectedName={selectedName}
+      onSelect={onSelect}
+    />
+  );
 }

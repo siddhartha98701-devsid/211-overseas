@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { HeroSection } from '@/components/sections/HeroSection';
 import { PathwaysSection } from '@/components/sections/PathwaysSection';
+import { GlobeExplorerSection } from '@/components/sections/GlobeExplorerSection';
 import { NotSureSection } from '@/components/sections/NotSureSection';
 import { HowItWorksSection } from '@/components/sections/HowItWorksSection';
 import { WhyUsSection } from '@/components/sections/WhyUsSection';
@@ -17,6 +18,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <PathwaysSection />
+      <GlobeExplorerSection />
       <NotSureSection />
       <HowItWorksSection />
       <WhyUsSection />
