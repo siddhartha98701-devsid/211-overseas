@@ -6,6 +6,8 @@ interface SectionHeaderProps {
   description?: string;
   centered?: boolean;
   dark?: boolean;
+  /** Tighter bottom margin for condensed sections. */
+  compact?: boolean;
 }
 
 export function SectionHeader({
@@ -14,9 +16,10 @@ export function SectionHeader({
   description,
   centered = false,
   dark = false,
+  compact = false,
 }: SectionHeaderProps) {
   return (
-    <ScrollReveal className={`max-w-3xl ${centered ? 'mx-auto text-center' : ''} mb-12 md:mb-16`}>
+    <ScrollReveal className={`max-w-3xl ${centered ? 'mx-auto text-center' : ''} ${compact ? 'mb-8 md:mb-10' : 'mb-12 md:mb-16'}`}>
       {eyebrow && (
         <p className={`text-xs uppercase tracking-widest font-medium mb-3 ${dark ? 'text-[#E59217]' : 'text-[#4A4A4A]'}`}>
           {eyebrow}

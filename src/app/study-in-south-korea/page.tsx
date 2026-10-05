@@ -5,6 +5,9 @@ import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
+import { KoreaHighlights } from '@/components/sections/KoreaHighlights';
+import { ProgramFinderSection } from '@/components/sections/ProgramFinderSection';
+import { EligibilitySection } from '@/components/sections/EligibilitySection';
 import { CourseTabs } from './CourseTabs';
 
 export const metadata: Metadata = {
@@ -78,6 +81,8 @@ export default function SouthKoreaPage() {
       </section>
 
       {/* Why Study in South Korea - 7 Points */}
+      <KoreaHighlights />
+
       <section className="py-24 md:py-36 border-b border-[#E5E5E5]" aria-label="Why study in South Korea">
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
@@ -328,6 +333,8 @@ export default function SouthKoreaPage() {
       </section>
 
       {/* Form Section */}
+      <ProgramFinderSection />
+      <EligibilitySection />
       <CtaStrip interest="Study in South Korea" source="study-in-south-korea" />
       <FormSection />
     </>

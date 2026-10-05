@@ -4,7 +4,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export function FormSection() {
   return (
-    <section className="relative py-24 md:py-36 overflow-hidden" aria-label="Begin your overseas journey">
+    <section className="relative py-16 md:py-24 overflow-hidden" aria-label="Begin your overseas journey">
       {/* Full-bleed background image with subtle scrim */}
       <div className="absolute inset-0 z-0">
         <Image
