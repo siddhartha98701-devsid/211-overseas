@@ -1,31 +1,32 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-bg: #FFFFFF;
-  --color-ink: #000000;
-  --color-muted: #4A4A4A;
-  --color-hairline: #E5E5E5;
-  --color-mustard: #E59217;
-  --color-mustard-hover: #F2A23A;
-  --color-mustard-deep: #A86500;
-  --color-accent: #E59217;
-  --color-accent-hover: #F2A23A;
+  --color-black: #2A2A2A; /* warm charcoal from the poster, used for text and dark sections */
+  --color-bg: #FBF8F1;
+  --color-ink: #2A2A2A;
+  --color-muted: #57514A;
+  --color-hairline: #E6DDCC;
+  --color-mustard: #B88740;
+  --color-mustard-hover: #7A5622;
+  --color-mustard-deep: #8A6020;
+  --color-accent: #B88740;
+  --color-accent-hover: #7A5622;
   /* Brand fonts first (Boston Angel Bold / Gordita), free look-alikes as fallback */
   --font-serif: "Boston Angel", "Boston Angel Bold", var(--font-display), Georgia, serif;
   --font-sans: "Gordita", var(--font-body), system-ui, sans-serif;
 }
 
 :root {
-  --color-bg: #FFFFFF;
-  --color-ink: #000000;
-  --color-muted: #4A4A4A;
-  --color-hairline: #E5E5E5;
-  --color-mustard: #E59217;
+  --color-bg: #FBF8F1;
+  --color-ink: #2A2A2A;
+  --color-muted: #57514A;
+  --color-hairline: #E6DDCC;
+  --color-mustard: #B88740;
 }
 
 html {
   scroll-behavior: smooth;
-  background-color: #FFFFFF;
+  background-color: #FBF8F1;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -40,7 +41,7 @@ html {
 }
 
 body {
-  color: #000000;
+  color: #2A2A2A;
   /* No background here: html paints the page colour, so the layered section backgrounds below
      (z-index -2) and the flight path (z-index -1) can show between it and the content. */
   font-family: var(--font-sans);
@@ -53,41 +54,41 @@ body {
 @layer base {
   h1, h2, h3 {
     font-family: var(--font-serif);
-    font-weight: 700;
-    letter-spacing: -0.02em;
+    font-weight: 600;
+    letter-spacing: -0.015em;
   }
 }
 
 /* Hairline border utilities */
 .hairline-b {
-  border-bottom: 1px solid #E5E5E5;
+  border-bottom: 1px solid #E6DDCC;
 }
 
 .hairline-t {
-  border-top: 1px solid #E5E5E5;
+  border-top: 1px solid #E6DDCC;
 }
 
 .hairline-r {
-  border-right: 1px solid #E5E5E5;
+  border-right: 1px solid #E6DDCC;
 }
 
 .hairline-l {
-  border-left: 1px solid #E5E5E5;
+  border-left: 1px solid #E6DDCC;
 }
 
 .hairline-border {
-  border: 1px solid #E5E5E5;
+  border: 1px solid #E6DDCC;
 }
 
 /* Accessible focus ring */
 *:focus-visible {
-  outline: 2px solid #E59217;
+  outline: 2px solid #B88740;
   outline-offset: 2px;
 }
 
 /* Form checkbox styles */
 .filter-checkbox {
-  accent-color: #E59217;
+  accent-color: #B88740;
 }
 
 /* 600ms fade-up animation */
@@ -107,8 +108,8 @@ body {
 }
 
 ::selection {
-  background: #E59217;
-  color: #000000;
+  background: #B88740;
+  color: #2A2A2A;
 }
 
 /* ---------- Brand motion ---------- */
@@ -134,7 +135,7 @@ body {
 
 /* Underline that draws in from the left on hover */
 .link-draw {
-  background-image: linear-gradient(#E59217, #E59217);
+  background-image: linear-gradient(#B88740, #B88740);
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0% 2px;
@@ -188,6 +189,12 @@ body {
   background: var(--bgl, transparent);
   pointer-events: none;
 }
-.bgl-black { --bgl: #000000; }
-.bgl-gray { --bgl: #F5F5F5; }
-.bgl-mustard { --bgl: #E59217; }
+.bgl-black { --bgl: #2A2A2A; }
+.bgl-gray { --bgl: #F3EBDD; }
+.bgl-mustard { --bgl: #B88740; }
+.bgl-cream { --bgl: #F3EBDD; }
+
+/* Poster-style headings: semibold serif (the utility font-bold would be heavier than the poster) */
+.font-serif.font-bold {
+  font-weight: 600;
+}

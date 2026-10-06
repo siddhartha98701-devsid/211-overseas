@@ -38,7 +38,7 @@ export function KoreaHighlights() {
   };
 
   return (
-    <section className="py-24 md:py-32 border-b border-[#E5E5E5]" aria-label="Study in South Korea at a glance">
+    <section className="py-24 md:py-32 border-b border-[#E6DDCC]" aria-label="Study in South Korea at a glance">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           eyebrow="Study in South Korea"
@@ -59,24 +59,24 @@ export function KoreaHighlights() {
               variants={item}
               whileHover={reduce ? undefined : { y: -6 }}
               transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              className="group relative border border-[#E5E5E5] bg-white p-6 overflow-hidden"
+              className="group relative border border-[#E6DDCC] bg-white p-6 overflow-hidden"
             >
               {/* Mustard fill that rises on hover */}
               <span
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1 bg-[#E59217] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                className="absolute inset-x-0 bottom-0 h-1 bg-[#94682B] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
               />
-              <span className="flex h-11 w-11 items-center justify-center bg-black text-[#E59217] transition-colors duration-300 group-hover:bg-[#E59217] group-hover:text-black">
+              <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors duration-300 group-hover:bg-[#94682B] group-hover:text-white">
                 <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
               </span>
               <h3 className="mt-5 font-serif text-xl font-bold text-black leading-snug">{title}</h3>
-              <p className="mt-2 text-sm text-[#4A4A4A] leading-relaxed">{text}</p>
+              <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
             </motion.li>
           ))}
         </motion.ul>
 
         <div className="mt-14">
-          <p className="text-xs uppercase tracking-widest text-[#4A4A4A] font-medium mb-4">Key academic disciplines</p>
+          <p className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-4">Key academic disciplines</p>
           <motion.ul
             variants={container}
             initial="hidden"
@@ -89,7 +89,7 @@ export function KoreaHighlights() {
                 key={d}
                 variants={item}
                 whileHover={reduce ? undefined : { scale: 1.05 }}
-                className="border border-black px-4 py-2 text-sm text-black transition-colors hover:bg-[#E59217] hover:border-[#E59217] cursor-default"
+                className="border border-black px-4 py-2 text-sm text-black transition-colors hover:bg-[#94682B] hover:border-[#B88740] cursor-default"
               >
                 {d}
               </motion.li>

@@ -31,7 +31,7 @@ function TrailSegment({ index, progress }: { index: number; progress: MotionValu
   return (
     <motion.path
       d={d}
-      stroke="#E59217"
+      stroke="#B88740"
       strokeOpacity={0.85 * (1 - k) ** 1.4}
       strokeWidth={5.5 * (1 - k) + 0.8}
       strokeLinecap="butt"
@@ -119,7 +119,7 @@ export function FlightPath() {
       {/* The shadow lives on this non-rotating wrapper so it keeps one direction while the plane turns */}
       <motion.div
         className="absolute left-0 top-0 will-change-transform"
-        style={{ x, y, filter: 'drop-shadow(10px 16px 9px rgba(0,0,0,0.26))' }}
+        style={{ x, y, opacity: 0.4, filter: 'drop-shadow(10px 16px 9px rgba(42,42,42,0.22))' }}
       >
         <motion.div
           style={{

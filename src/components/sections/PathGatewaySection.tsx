@@ -29,7 +29,7 @@ export function PathGatewaySection() {
   const [, germany, uae] = siteContent.pathways;
 
   return (
-    <section id="paths" className="py-16 md:py-24 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Choose study or work abroad">
+    <section id="paths" className="py-16 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Choose study or work abroad">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           compact
@@ -52,13 +52,13 @@ export function PathGatewaySection() {
                 type="button"
                 onClick={() => setMode(id)}
                 className={`relative text-left p-4 sm:p-5 border transition-colors cursor-pointer ${
-                  active ? 'bg-black text-white border-black' : 'bg-white text-black border-[#E5E5E5] hover:border-black'
+                  active ? 'bg-black text-white border-black' : 'bg-white text-black border-[#E6DDCC] hover:border-black'
                 }`}
               >
-                <Icon size={22} className={active ? 'text-[#E59217]' : 'text-[#A86500]'} aria-hidden="true" />
+                <Icon size={22} className={active ? 'text-[#D1A95F]' : 'text-[#8A6020]'} aria-hidden="true" />
                 <span className="mt-3 block font-serif text-xl sm:text-2xl font-bold">{label}</span>
-                <span className={`block text-xs sm:text-sm ${active ? 'text-white/65' : 'text-[#4A4A4A]'}`}>{sub}</span>
-                {active && <motion.span layoutId="gateway-underline" className="absolute inset-x-0 bottom-0 h-1 bg-[#E59217]" />}
+                <span className={`block text-xs sm:text-sm ${active ? 'text-white/65' : 'text-[#57514A]'}`}>{sub}</span>
+                {active && <motion.span layoutId="gateway-underline" className="absolute inset-x-0 bottom-0 h-1 bg-[#94682B]" />}
               </button>
             );
           })}
@@ -78,16 +78,16 @@ export function PathGatewaySection() {
               className="grid grid-cols-1 lg:grid-cols-12 gap-4"
             >
               <div className="lg:col-span-7 bg-black text-white p-7 sm:p-10">
-                <p className="text-xs uppercase tracking-[0.25em] text-[#E59217] font-medium">Featured destination</p>
+                <p className="text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">Featured destination</p>
                 <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold">South Korea</h3>
                 <p className="mt-3 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{siteContent.pathways[0].description}</p>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {KOREA_FOCUS.map((f) => (
-                    <li key={f} className="border border-[#E59217]/60 px-3 py-1.5 text-sm text-white">{f}</li>
+                    <li key={f} className="border border-[#B88740]/60 px-3 py-1.5 text-sm text-white">{f}</li>
                   ))}
                 </ul>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href="/study-in-south-korea" className="btn-shine inline-flex items-center gap-2 bg-[#E59217] hover:bg-[#F2A23A] text-black px-5 py-3 text-xs uppercase tracking-widest font-medium transition-colors">
+                  <Link href="/study-in-south-korea" className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-5 py-3 text-xs uppercase tracking-widest font-medium transition-colors">
                     Explore South Korea <ArrowRight size={14} />
                   </Link>
                   <button type="button" onClick={() => openCallback({ interest: 'Study in South Korea', source: 'gateway-study' })} className={`${ghostBtn} border-white/40 text-white hover:bg-white hover:text-black cursor-pointer`}>
@@ -99,8 +99,8 @@ export function PathGatewaySection() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 border border-[#E5E5E5] p-7 sm:p-10 flex flex-col">
-                <p className="text-xs uppercase tracking-[0.25em] text-[#A86500] font-medium">Also explore</p>
+              <div className="lg:col-span-5 border border-[#E6DDCC] p-7 sm:p-10 flex flex-col">
+                <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Also explore</p>
                 <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-black">Other study destinations</h3>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {OTHER_STUDY.map((c) => (
@@ -108,14 +108,14 @@ export function PathGatewaySection() {
                       <button
                         type="button"
                         onClick={() => openCallback({ interest: 'Study in Other Countries', source: `gateway-study:${c}` })}
-                        className="border border-[#E5E5E5] px-3 py-1.5 text-sm text-black hover:bg-[#E59217] hover:border-[#E59217] transition-colors cursor-pointer"
+                        className="border border-[#E6DDCC] px-3 py-1.5 text-sm text-black hover:bg-[#94682B] hover:border-[#B88740] transition-colors cursor-pointer"
                       >
                         {c}
                       </button>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-sm text-[#4A4A4A] leading-relaxed">Tap a country to talk to a counsellor about it.</p>
+                <p className="mt-5 text-sm text-[#57514A] leading-relaxed">Tap a country to talk to a counsellor about it.</p>
                 <Link href="/other-destinations" className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-black group">
                   <span className="link-draw pb-1">See all destinations</span>
                   <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
@@ -138,17 +138,17 @@ export function PathGatewaySection() {
                 { key: 'germany', p: germany, label: 'Healthcare careers', roles: ['Nurses', 'Physiotherapists'], interest: 'Work in Germany – Nursing', title: 'Germany', wa: 'Hi 211 OVERSEAS, I want to work in Germany (healthcare).' },
                 { key: 'uae', p: uae, label: 'Multi-industry careers', roles: uae.bullets, interest: 'Work in UAE / Dubai', title: 'Dubai & UAE', wa: 'Hi 211 OVERSEAS, I want to work in Dubai / UAE.' },
               ].map(({ key, p, label, roles, interest, title, wa }, i) => (
-                <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E5E5E5] bg-white text-black'}`}>
-                  <p className={`text-xs uppercase tracking-[0.25em] font-medium ${i === 0 ? 'text-[#E59217]' : 'text-[#A86500]'}`}>{label}</p>
+                <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
+                  <p className={`text-xs uppercase tracking-[0.25em] font-medium ${i === 0 ? 'text-[#D1A95F]' : 'text-[#8A6020]'}`}>{label}</p>
                   <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold">{title}</h3>
-                  <p className={`mt-3 text-sm sm:text-base leading-relaxed ${i === 0 ? 'text-white/70' : 'text-[#4A4A4A]'}`}>{p.description}</p>
+                  <p className={`mt-3 text-sm sm:text-base leading-relaxed ${i === 0 ? 'text-white/70' : 'text-[#57514A]'}`}>{p.description}</p>
                   <ul className="mt-6 flex flex-wrap gap-2">
                     {roles.map((r) => (
-                      <li key={r} className={`px-3 py-1.5 text-sm border ${i === 0 ? 'border-[#E59217]/60' : 'border-[#E5E5E5]'}`}>{r}</li>
+                      <li key={r} className={`px-3 py-1.5 text-sm border ${i === 0 ? 'border-[#B88740]/60' : 'border-[#E6DDCC]'}`}>{r}</li>
                     ))}
                   </ul>
                   <div className="mt-auto pt-8 flex flex-wrap gap-3">
-                    <Link href={p.cta.href} className="btn-shine inline-flex items-center gap-2 bg-[#E59217] hover:bg-[#F2A23A] text-black px-5 py-3 text-xs uppercase tracking-widest font-medium transition-colors">
+                    <Link href={p.cta.href} className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-5 py-3 text-xs uppercase tracking-widest font-medium transition-colors">
                       {p.cta.label} <ArrowRight size={14} />
                     </Link>
                     <button type="button" onClick={() => openCallback({ interest, source: `gateway-work:${title}` })} className={`${ghostBtn} cursor-pointer ${i === 0 ? 'border-white/40 text-white hover:bg-white hover:text-black' : 'border-black text-black hover:bg-black hover:text-white'}`}>

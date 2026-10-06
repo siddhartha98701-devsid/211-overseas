@@ -60,9 +60,9 @@ export function HeroSection() {
       >
         <defs>
           <linearGradient id="arc-fade" gradientUnits="userSpaceOnUse" x1="-40" y1="640" x2="930" y2="215">
-            <stop offset="0" stopColor="#E59217" stopOpacity="0" />
-            <stop offset="0.45" stopColor="#E59217" stopOpacity="0.85" />
-            <stop offset="1" stopColor="#E59217" />
+            <stop offset="0" stopColor="#B88740" stopOpacity="0" />
+            <stop offset="0.45" stopColor="#B88740" stopOpacity="0.85" />
+            <stop offset="1" stopColor="#B88740" />
           </linearGradient>
         </defs>
         <motion.path
@@ -101,9 +101,9 @@ export function HeroSection() {
             custom={0.15}
             initial={reduce ? false : 'hidden'}
             animate="show"
-            className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#E59217] font-medium mb-6"
+            className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium mb-6"
           >
-            <span className="h-px w-10 bg-[#E59217]" />
+            <span className="h-px w-10 bg-[#94682B]" />
             211 OVERSEAS · study abroad
           </motion.p>
 
@@ -117,7 +117,7 @@ export function HeroSection() {
                     variants={word}
                     initial={reduce ? false : 'hidden'}
                     animate="show"
-                    className={`inline-block ${i === HEADLINE.length - 1 ? 'text-[#E59217]' : ''}`}
+                    className={`inline-block ${i === HEADLINE.length - 1 ? 'text-[#D1A95F]' : ''}`}
                   >
                     {w}
                   </motion.span>
@@ -156,7 +156,7 @@ export function HeroSection() {
           >
             <Link
               href="#globe"
-              className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black px-8 py-3.5 text-xs uppercase tracking-widest transition-colors font-medium"
+              className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest transition-colors font-medium"
             >
               Explore destinations
             </Link>
@@ -176,11 +176,11 @@ export function HeroSection() {
           initial={reduce ? false : 'hidden'}
           animate="show"
           aria-label="Get free counselling"
-          className="lg:col-span-5 w-full max-w-md lg:max-w-none lg:ml-auto bg-white border-t-4 border-[#E59217] p-6 sm:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
+          className="lg:col-span-5 w-full max-w-md lg:max-w-none lg:ml-auto bg-white border-t-4 border-[#B88740] p-6 sm:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-[#A86500] font-medium">Free counselling</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Free counselling</p>
           <h2 className="mt-1 mb-1 font-serif text-2xl sm:text-3xl font-bold text-black">Talk to an expert</h2>
-          <p className="mb-5 text-sm text-[#4A4A4A]">Get a call back about studying in South Korea.</p>
+          <p className="mb-5 text-sm text-[#57514A]">Get a call back about studying in South Korea.</p>
           <LeadMiniForm interest="Study in South Korea" source="hero-form" />
         </motion.aside>
       </div>
@@ -196,7 +196,7 @@ export function HeroSection() {
         Scroll
         <span className="relative h-10 w-px overflow-hidden bg-white/25">
           <motion.span
-            className="absolute inset-x-0 top-0 h-4 bg-[#E59217]"
+            className="absolute inset-x-0 top-0 h-4 bg-[#94682B]"
             animate={reduce ? undefined : { y: [-16, 40] }}
             transition={{ duration: 1.6, repeat: Infinity, ease: 'easeInOut' }}
           />

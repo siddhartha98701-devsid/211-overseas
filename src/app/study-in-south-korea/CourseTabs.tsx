@@ -10,7 +10,7 @@ export function CourseTabs() {
   return (
     <div>
       {/* Minimal Tab Bar with Hairline Border */}
-      <div className="flex border-b border-[#E5E5E5] mb-12 overflow-x-auto scrollbar-hide">
+      <div className="flex border-b border-[#E6DDCC] mb-12 overflow-x-auto scrollbar-hide">
         {categories.map((cat, i) => {
           const isActive = activeTab === i;
           return (
@@ -20,8 +20,8 @@ export function CourseTabs() {
               onClick={() => setActiveTab(i)}
               className={`pb-4 px-4 sm:px-6 text-sm whitespace-nowrap transition-colors relative cursor-pointer font-normal ${
                 isActive
-                  ? 'text-[#000000] font-medium border-b-2 border-[#000000] -mb-[1px]'
-                  : 'text-[#4A4A4A] hover:text-[#000000]'
+                  ? 'text-[#2A2A2A] font-medium border-b-2 border-[#2A2A2A] -mb-[1px]'
+                  : 'text-[#57514A] hover:text-[#2A2A2A]'
               }`}
               aria-pressed={isActive}
             >
@@ -39,11 +39,11 @@ export function CourseTabs() {
             return (
               <div className="grid md:grid-cols-3 gap-8">
                 {cat.subcategories.map((sub) => (
-                  <div key={sub.name} className="border-t border-[#E5E5E5] pt-6">
-                    <h4 className="font-serif text-xl font-bold text-[#000000] mb-4">
+                  <div key={sub.name} className="border-t border-[#E6DDCC] pt-6">
+                    <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
                       {sub.name}
                     </h4>
-                    <ul className="space-y-2 text-sm text-[#4A4A4A]">
+                    <ul className="space-y-2 text-sm text-[#57514A]">
                       {sub.courses.map((course) => (
                         <li key={course} className="leading-relaxed">
                           {course}
@@ -56,11 +56,11 @@ export function CourseTabs() {
             );
           } else if ('courses' in cat && cat.courses) {
             return (
-              <div className="border-t border-[#E5E5E5] pt-6">
+              <div className="border-t border-[#E6DDCC] pt-6">
                 <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
                   {cat.courses.map((course) => (
-                    <div key={course} className="py-2 border-b border-[#E5E5E5]/60">
-                      <span className="text-sm text-[#000000]">{course}</span>
+                    <div key={course} className="py-2 border-b border-[#E6DDCC]/60">
+                      <span className="text-sm text-[#2A2A2A]">{course}</span>
                     </div>
                   ))}
                 </div>

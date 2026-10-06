@@ -14,7 +14,7 @@ export function ContactFloatingButtons() {
         <a
           href={telUrl}
           aria-label="Call 211 OVERSEAS"
-          className="group flex items-center justify-center w-12 h-12 md:w-auto md:h-12 md:px-5 rounded-full bg-[#E59217] hover:bg-[#F2A23A] text-black shadow-[0_4px_16px_rgba(229,146,23,0.35)] transition-all duration-200 hover:scale-105 active:scale-95"
+          className="group flex items-center justify-center w-12 h-12 md:w-auto md:h-12 md:px-5 rounded-full bg-[#94682B] hover:bg-[#7A5622] text-white shadow-[0_4px_16px_rgba(184,135,64,0.35)] transition-all duration-200 hover:scale-105 active:scale-95"
         >
           {/* Phone Icon */}
           <svg
@@ -46,7 +46,7 @@ export function ContactFloatingButtons() {
       >
         {/* Desktop-only Hover Tooltip */}
         <span
-          className="hidden md:block pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#000000] text-[#FFFFFF] text-xs font-normal px-2.5 py-1 rounded shadow-md whitespace-nowrap mr-3"
+          className="hidden md:block pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#2A2A2A] text-[#FFFFFF] text-xs font-normal px-2.5 py-1 rounded shadow-md whitespace-nowrap mr-3"
           aria-hidden="true"
         >
           Chat with us
@@ -61,7 +61,7 @@ export function ContactFloatingButtons() {
         >
           {/* Tooltip embedded for clean hover trigger */}
           <span
-            className="hidden md:block absolute right-full mr-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#000000] text-[#FFFFFF] text-xs font-normal px-2.5 py-1 rounded shadow-md whitespace-nowrap"
+            className="hidden md:block absolute right-full mr-3 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-200 bg-[#2A2A2A] text-[#FFFFFF] text-xs font-normal px-2.5 py-1 rounded shadow-md whitespace-nowrap"
             aria-hidden="true"
           >
             Chat with us

@@ -81,21 +81,21 @@ export function CallbackProvider({ children }: { children: ReactNode }) {
               animate={{ y: 0, opacity: 1, scale: 1 }}
               exit={{ y: 20, opacity: 0 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="relative w-full max-w-md max-h-[92vh] overflow-y-auto bg-white border-t-4 border-[#E59217] p-6 sm:p-8"
+              className="relative w-full max-w-md max-h-[92vh] overflow-y-auto bg-white border-t-4 border-[#B88740] p-6 sm:p-8"
             >
               <button
                 type="button"
                 onClick={close}
                 aria-label="Close"
-                className="absolute right-3 top-3 p-2 text-black hover:text-[#A86500] transition-colors"
+                className="absolute right-3 top-3 p-2 text-black hover:text-[#8A6020] transition-colors"
               >
                 <X size={20} />
               </button>
-              <p className="text-xs uppercase tracking-[0.25em] text-[#A86500] font-medium">Free counselling</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Free counselling</p>
               <h2 id="callback-title" className="mt-2 mb-1 font-serif text-3xl font-bold text-black">
                 Request a call back
               </h2>
-              <p className="mb-6 text-sm text-[#4A4A4A]">
+              <p className="mb-6 text-sm text-[#57514A]">
                 Share your details and an expert counsellor will get in touch — no obligation.
               </p>
               <LeadMiniForm

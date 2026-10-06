@@ -12,14 +12,14 @@ export function CounsellingSection() {
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <ScrollReveal>
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#E59217]/10 text-[#A86500] text-xs font-semibold uppercase tracking-wider mb-4">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#E59217]" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#94682B]/10 text-[#8A6020] text-xs font-semibold uppercase tracking-wider mb-4">
+            <span className="w-1.5 h-1.5 rounded-full bg-[#94682B]" />
             One-on-One Advisory
           </div>
-          <h2 className="headline-lg text-[#000000] mb-4">
-            Start Your <em className="font-display italic text-[#A86500]">Overseas Journey</em>
+          <h2 className="headline-lg text-[#2A2A2A] mb-4">
+            Start Your <em className="font-display italic text-[#8A6020]">Overseas Journey</em>
           </h2>
-          <p className="text-base md:text-lg text-[#4A4A4A] max-w-xl mx-auto mb-10">
+          <p className="text-base md:text-lg text-[#57514A] max-w-xl mx-auto mb-10">
             {counselling.description}
           </p>
         </ScrollReveal>
@@ -32,8 +32,8 @@ export function CounsellingSection() {
             <div className="space-y-4">
               {counselling.questions.map((q, i) => (
                 <div key={i} className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/60 border border-gray-100">
-                  <span className="w-2 h-2 rounded-full bg-[#E59217] flex-shrink-0" />
-                  <p className="font-display text-lg sm:text-xl text-[#000000] italic">
+                  <span className="w-2 h-2 rounded-full bg-[#94682B] flex-shrink-0" />
+                  <p className="font-display text-lg sm:text-xl text-[#2A2A2A] italic">
                     &ldquo;{q}&rdquo;
                   </p>
                 </div>
@@ -41,7 +41,7 @@ export function CounsellingSection() {
             </div>
 
             <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between flex-wrap gap-2 text-xs">
-              <span className="font-semibold text-[#A86500] uppercase tracking-wider">
+              <span className="font-semibold text-[#8A6020] uppercase tracking-wider">
                 {counselling.note}
               </span>
               <span className="text-[#8A8A8A]">Online &amp; In-Person in Ahmedabad</span>

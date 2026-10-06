@@ -37,7 +37,7 @@ export function HowItWorksSection() {
               <span aria-hidden="true" className="absolute left-5 top-2 bottom-2 w-px bg-white/15" />
               <motion.span
                 aria-hidden="true"
-                className="absolute left-5 top-2 bottom-2 w-px origin-top bg-[#E59217]"
+                className="absolute left-5 top-2 bottom-2 w-px origin-top bg-[#94682B]"
                 style={{ scaleY: reduce ? 1 : fill }}
               />
 
@@ -51,11 +51,11 @@ export function HowItWorksSection() {
                   className="relative pl-16 pb-12 last:pb-0"
                 >
                   <motion.span
-                    initial={reduce ? false : { backgroundColor: '#000000', color: '#E59217', scale: 0.8 }}
-                    whileInView={{ backgroundColor: '#E59217', color: '#000000', scale: 1 }}
+                    initial={reduce ? false : { backgroundColor: '#2A2A2A', color: '#B88740', scale: 0.8 }}
+                    whileInView={{ backgroundColor: '#B88740', color: '#2A2A2A', scale: 1 }}
                     viewport={{ once: true, margin: '-12% 0px -12% 0px' }}
                     transition={{ duration: 0.5, delay: 0.1 }}
-                    className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#E59217] text-xs font-bold"
+                    className="absolute left-0 top-0 flex h-10 w-10 items-center justify-center rounded-full border border-[#B88740] text-xs font-bold"
                   >
                     {step.number}
                   </motion.span>

@@ -18,16 +18,16 @@ export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-36 pb-20 md:pt-44 md:pb-28 border-b border-[#E5E5E5]" aria-label="About hero">
+      <section className="pt-36 pb-20 md:pt-44 md:pb-28 border-b border-[#E6DDCC]" aria-label="About hero">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#4A4A4A] font-medium mb-3 block">
+            <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               About 211 OVERSEAS
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#000000] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Understand the candidate first. Recommend the pathway second.
             </h1>
-            <p className="text-lg sm:text-xl text-[#4A4A4A] leading-relaxed font-light">
+            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
               {about.description}
             </p>
           </div>
@@ -35,9 +35,9 @@ export default function AboutPage() {
       </section>
 
       {/* Photography Banner */}
-      <section className="border-b border-[#E5E5E5]" aria-label="Consultancy atmosphere">
+      <section className="border-b border-[#E6DDCC]" aria-label="Consultancy atmosphere">
         <div className="max-w-[1280px] mx-auto px-6 py-12">
-          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-[#E5E5E5]/20">
+          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-[#E6DDCC]/20">
             <Image
               src="/images/guidance.jpg"
               alt="Students discussing international educational opportunities"
@@ -50,23 +50,23 @@ export default function AboutPage() {
       </section>
 
       {/* Philosophy & Four Focus Areas */}
-      <section className="py-24 md:py-36 border-b border-[#E5E5E5]" aria-label="Our philosophy">
+      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Our philosophy">
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start mb-24">
               <div className="lg:col-span-5">
-                <span className="text-xs uppercase tracking-widest text-[#4A4A4A] font-medium mb-3 block">
+                <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
                   Our guiding principle
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#000000] tracking-tight leading-[1.1]">
+                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
                   A transparent, profile-first methodology
                 </h2>
               </div>
               <div className="lg:col-span-7">
-                <blockquote className="font-serif text-2xl sm:text-3xl font-bold text-[#000000] leading-snug">
+                <blockquote className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] leading-snug">
                   &ldquo;{about.focus}&rdquo;
                 </blockquote>
-                <p className="mt-6 text-sm sm:text-base text-[#4A4A4A] leading-relaxed">
+                <p className="mt-6 text-sm sm:text-base text-[#57514A] leading-relaxed">
                   Different students and working professionals require distinct international pathways.
                   Rather than selling destinations based on quotas, our guidance begins by understanding
                   academic background, long-term career aspirations, financial parameters, and language readiness.
@@ -75,20 +75,20 @@ export default function AboutPage() {
             </div>
 
             {/* Four Key Areas */}
-            <div className="border-t border-[#E5E5E5] pt-16">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#000000] mb-12">
+            <div className="border-t border-[#E6DDCC] pt-16">
+              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] mb-12">
                 Four specialized focus areas
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
                 {about.keyAreas.map((area, i) => (
-                  <div key={area} className="border-t border-[#E5E5E5] pt-6">
-                    <span className="font-serif text-xs text-[#4A4A4A] block mb-2">
+                  <div key={area} className="border-t border-[#E6DDCC] pt-6">
+                    <span className="font-serif text-xs text-[#57514A] block mb-2">
                       0{i + 1}
                     </span>
-                    <h4 className="font-serif text-xl font-bold text-[#000000] mb-3">
+                    <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-3">
                       {area}
                     </h4>
-                    <p className="text-xs text-[#4A4A4A] leading-relaxed">
+                    <p className="text-xs text-[#57514A] leading-relaxed">
                       Structured assessment, document preparation, qualification recognition, and visa guidance.
                     </p>
                   </div>
@@ -100,14 +100,14 @@ export default function AboutPage() {
       </section>
 
       {/* Our Vision */}
-      <section className="py-24 md:py-36 border-b border-[#E5E5E5]" aria-label="Our vision">
+      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Our vision">
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl">
-              <span className="text-xs uppercase tracking-widest text-[#4A4A4A] font-medium mb-3 block">
+              <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
                 Our vision
               </span>
-              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#000000] leading-[1.2] tracking-tight">
+              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] leading-[1.2] tracking-tight">
                 &ldquo;{about.vision}&rdquo;
               </p>
             </div>
