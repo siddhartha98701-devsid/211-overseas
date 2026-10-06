@@ -9,15 +9,15 @@ export function TaglineMarquee() {
     <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {items.map((t) => (
         <li key={t} className="flex items-center whitespace-nowrap">
-          <span className="font-serif italic text-2xl sm:text-3xl font-bold text-white px-8 sm:px-12">{t}</span>
-          <Plane size={30} color="#E59217" className="shrink-0" />
+          <span className="font-serif italic text-xl sm:text-2xl font-bold text-white px-8 sm:px-12">{t}</span>
+          <Plane size={30} color="#B88740" className="shrink-0" />
         </li>
       ))}
     </ul>
   );
 
   return (
-    <section className="marquee bg-black border-y border-[#E59217]/40 py-5 overflow-hidden" aria-label="Our promise">
+    <section className="marquee bgl bgl-black border-y border-[#B88740]/40 py-5 overflow-hidden" aria-label="Our promise">
       <div className="marquee-track flex w-max">
         {track(false)}
         {track(true)}

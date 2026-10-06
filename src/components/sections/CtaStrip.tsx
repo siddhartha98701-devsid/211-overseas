@@ -23,9 +23,9 @@ export function CtaStrip({
   const { phone } = siteContent.brand;
 
   return (
-    <section className="bg-[#E59217] text-black" aria-label="Talk to a counsellor">
+    <section className="bgl bgl-mustard text-black" aria-label="Talk to a counsellor">
       <div className="max-w-[1280px] mx-auto px-6 py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
-        <p className="font-serif text-2xl sm:text-3xl font-bold leading-tight">{heading}</p>
+        <p className="font-serif text-xl sm:text-2xl font-bold leading-tight">{heading}</p>
         <div className="flex flex-wrap items-center gap-3">
           <button
             type="button"

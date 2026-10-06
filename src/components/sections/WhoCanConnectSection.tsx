@@ -38,7 +38,7 @@ export function WhoCanConnectSection() {
   const Icon = seg.icon;
 
   return (
-    <section id="who" className="py-24 md:py-32 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Who can connect with us">
+    <section id="who" className="py-24 md:py-32 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Who can connect with us">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           eyebrow="Who can connect with us"
@@ -61,10 +61,10 @@ export function WhoCanConnectSection() {
                   type="button"
                   onClick={() => setActive(s.id)}
                   className={`flex items-center gap-3 px-4 py-3 text-left border transition-colors cursor-pointer lg:w-full ${
-                    on ? 'bg-[#E59217] border-[#E59217] text-black' : 'border-[#E5E5E5] text-black hover:border-black'
+                    on ? 'bg-[#94682B] border-[#B88740] text-white' : 'border-[#E6DDCC] text-white hover:border-black'
                   }`}
                 >
-                  <SIcon size={18} aria-hidden="true" className={on ? 'text-black' : 'text-[#A86500]'} />
+                  <SIcon size={18} aria-hidden="true" className={on ? 'text-black' : 'text-[#8A6020]'} />
                   <span className="font-medium text-sm sm:text-base">{s.label}</span>
                   <ArrowRight size={16} aria-hidden="true" className={`ml-auto hidden lg:block transition-transform ${on ? 'translate-x-0' : '-translate-x-2 opacity-0'}`} />
                 </button>
@@ -82,17 +82,17 @@ export function WhoCanConnectSection() {
                 transition={{ duration: 0.25 }}
                 className="bg-black text-white p-7 sm:p-10 min-h-[22rem] flex flex-col"
               >
-                <span className="flex h-12 w-12 items-center justify-center bg-[#E59217] text-black">
+                <span className="flex h-12 w-12 items-center justify-center bg-[#94682B] text-white">
                   <Icon size={24} aria-hidden="true" />
                 </span>
-                <p className="mt-5 text-xs uppercase tracking-[0.25em] text-[#E59217] font-medium">{seg.label}</p>
-                <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold leading-tight">{seg.headline}</h3>
+                <p className="mt-5 text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">{seg.label}</p>
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold leading-tight">{seg.headline}</h3>
                 <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{seg.text}</p>
                 <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
                   <button
                     type="button"
                     onClick={() => openCallback({ interest: seg.interest, source: `audience:${seg.label}` })}
-                    className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
+                    className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
                   >
                     Book free counselling
                   </button>

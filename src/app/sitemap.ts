@@ -1,9 +1,11 @@
 import { MetadataRoute } from 'next';
+import { SUBPAGES, subpageHref } from '@/content/subpages';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://211overseas.com';
 
   const routes = [
+    ...SUBPAGES.map(subpageHref),
     '',
     '/study-in-south-korea',
     '/work-in-germany',

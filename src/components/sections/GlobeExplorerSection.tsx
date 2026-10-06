@@ -10,6 +10,7 @@ import { GLOBE_PINS } from '@/components/globe/pins';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { siteContent } from '@/content/site';
+import { countryHref } from '@/content/subpages';
 
 interface Destination {
   /** Matches a pin name in GLOBE_PINS */
@@ -51,7 +52,7 @@ function buildDestinations(): Destination[] {
       label: 'Study · Work',
       description: `Explore education and career pathways in ${country}, matched to your profile.`,
       bullets: entry?.bullets ?? [],
-      href: '/other-destinations',
+      href: countryHref(country),
       cta: `Explore ${country}`,
       featured: false,
     };
@@ -111,7 +112,7 @@ export function GlobeExplorerSection() {
   return (
     <section
       id="globe"
-      className="relative py-16 md:py-24 bg-black text-white scroll-mt-24 overflow-hidden"
+      className="bgl bgl-black py-16 md:py-24 text-white scroll-mt-24 overflow-hidden"
       aria-label="Choose your destination"
     >
       <div className="max-w-[1280px] mx-auto px-6">
@@ -128,7 +129,7 @@ export function GlobeExplorerSection() {
             {/* Globe + slider */}
             <div className="lg:col-span-7 min-w-0">
               <div className="relative mx-auto aspect-square w-full max-w-[560px]">
-                <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(229,146,23,0.22)_0%,rgba(229,146,23,0)_70%)] blur-2xl" />
+                <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(184,135,64,0.22)_0%,rgba(184,135,64,0)_70%)] blur-2xl" />
                 <GlobeWrapper
                   className="h-full w-full"
                   tone="dark"
@@ -146,7 +147,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(-1)}
                   aria-label="Previous destination"
-                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#E59217] hover:text-[#E59217] transition-colors flex items-center justify-center"
+                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -171,8 +172,8 @@ export function GlobeExplorerSection() {
                         onClick={() => setSelected(d.pin)}
                         className={`snap-center shrink-0 w-40 text-left px-4 py-3 border transition-colors ${
                           active
-                            ? 'bg-[#E59217] border-[#E59217] text-black'
-                            : 'bg-transparent border-white/20 text-white hover:border-[#E59217]'
+                            ? 'bg-[#94682B] border-[#B88740] text-white'
+                            : 'bg-transparent border-white/20 text-white hover:border-[#B88740]'
                         }`}
                       >
                         <span
@@ -182,7 +183,7 @@ export function GlobeExplorerSection() {
                         >
                           {d.label}
                         </span>
-                        <span className="block font-serif text-lg font-bold leading-tight mt-1">{d.country}</span>
+                        <span className="block font-serif text-base font-bold leading-tight mt-1">{d.country}</span>
                       </button>
                     );
                   })}
@@ -192,7 +193,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(1)}
                   aria-label="Next destination"
-                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#E59217] hover:text-[#E59217] transition-colors flex items-center justify-center"
+                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center"
                 >
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -209,11 +210,11 @@ export function GlobeExplorerSection() {
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-xs uppercase tracking-widest text-[#E59217] font-medium">
+                  <span className="text-xs uppercase tracking-widest text-[#D1A95F] font-medium">
                     {current.featured ? 'Featured pathway' : 'Other destination'}
                     {pinMeta ? ` · ${pinMeta.name}` : ''}
                   </span>
-                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
                     {current.country}
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-8">{current.description}</p>
@@ -229,7 +230,7 @@ export function GlobeExplorerSection() {
 
                   <Link
                     href={current.href}
-                    className="btn-shine inline-flex items-center gap-2 bg-[#E59217] hover:bg-[#F2A23A] text-black px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
+                    className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
                   >
                     <span>{current.cta}</span>
                     <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>

@@ -18,31 +18,31 @@ interface LegalPageProps {
 /** Shared layout for the legal pages required by the brand & legal guidelines. */
 export function LegalPage({ title, label, updated, intro, sections, footer }: LegalPageProps) {
   return (
-    <section className="pt-36 pb-24 md:pt-44 md:pb-36 border-b border-[#E5E5E5]" aria-label={label}>
+    <section className="pt-36 pb-24 md:pt-44 md:pb-36 border-b border-[#E6DDCC]" aria-label={label}>
       <div className="max-w-3xl mx-auto px-6">
-        <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A86500] font-medium mb-4">
-          <span className="h-px w-10 bg-[#E59217]" />
+        <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
+          <span className="h-px w-10 bg-[#94682B]" />
           Legal
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-black tracking-tight leading-[1.1] mb-3">
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black tracking-tight leading-[1.1] mb-3">
           {title}
         </h1>
-        <p className="text-sm text-[#4A4A4A] mb-10">Last updated: {updated}</p>
+        <p className="text-sm text-[#57514A] mb-10">Last updated: {updated}</p>
 
-        <div className="text-[#4A4A4A] leading-relaxed space-y-6 text-sm sm:text-base">
+        <div className="text-[#57514A] leading-relaxed space-y-6 text-sm sm:text-base">
           {intro && <p>{intro}</p>}
           {sections.map((s, i) => (
             <ScrollReveal key={s.heading}>
-              <div className="border-t border-[#E5E5E5] pt-6">
-                <h2 className="font-serif text-2xl font-bold text-black mb-3">
-                  <span className="text-[#E59217] mr-2">{i + 1}.</span>
+              <div className="border-t border-[#E6DDCC] pt-6">
+                <h2 className="font-serif text-xl font-bold text-black mb-3">
+                  <span className="text-[#D1A95F] mr-2">{i + 1}.</span>
                   {s.heading}
                 </h2>
                 <div className="space-y-3">{s.body}</div>
               </div>
             </ScrollReveal>
           ))}
-          {footer && <div className="border-t border-[#E5E5E5] pt-6">{footer}</div>}
+          {footer && <div className="border-t border-[#E6DDCC] pt-6">{footer}</div>}
         </div>
       </div>
     </section>

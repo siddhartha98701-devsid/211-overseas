@@ -33,7 +33,7 @@ interface LeadMiniFormProps {
 }
 
 const INPUT =
-  'w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-black placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] focus:ring-1 focus:ring-[#E59217] transition-colors';
+  'w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] focus:ring-1 focus:ring-[#B88740] transition-colors';
 const LABEL = 'block text-xs uppercase tracking-wider text-black font-medium mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
@@ -76,11 +76,11 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
         className="py-6 text-center"
         role="status"
       >
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-[#E59217] text-black">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-[#94682B] text-white">
           <Check size={24} strokeWidth={2.5} />
         </div>
-        <h4 className="font-serif text-2xl font-bold text-black">Thank you!</h4>
-        <p className="mt-2 text-sm text-[#4A4A4A] leading-relaxed">
+        <h4 className="font-serif text-xl font-bold text-black">Thank you!</h4>
+        <p className="mt-2 text-sm text-[#57514A] leading-relaxed">
           A 211 OVERSEAS counsellor will call or WhatsApp you shortly on the number you shared.
         </p>
       </motion.div>
@@ -140,9 +140,9 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
       <div>
         <label className="flex items-start gap-3 cursor-pointer">
           <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 filter-checkbox" {...register('consent')} />
-          <span className="text-xs text-[#4A4A4A] leading-relaxed">
+          <span className="text-xs text-[#57514A] leading-relaxed">
             I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.{' '}
-            <Link href="/privacy-policy" className="underline decoration-[#E59217] underline-offset-2 hover:text-black">
+            <Link href="/privacy-policy" className="underline decoration-[#B88740] underline-offset-2 hover:text-black">
               Privacy Policy
             </Link>
           </span>
@@ -157,7 +157,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
       <button
         type="submit"
         disabled={busy}
-        className="btn-shine w-full flex items-center justify-center gap-2 bg-[#E59217] hover:bg-[#F2A23A] disabled:opacity-60 text-black text-xs uppercase tracking-widest font-medium py-3.5 transition-colors cursor-pointer"
+        className="btn-shine w-full flex items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-medium py-3.5 transition-colors cursor-pointer"
       >
         {busy ? 'Submitting…' : submitLabel}
         {!busy && <ArrowRight size={16} />}

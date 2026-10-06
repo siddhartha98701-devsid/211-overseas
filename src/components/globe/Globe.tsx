@@ -10,7 +10,7 @@ import { GLOBE_PINS, type GlobePin } from './pins';
 import { isLand } from './landMask';
 
 const GLOBE_RADIUS = 2.2;
-const ACCENT_COLOR = '#E59217';
+const ACCENT_COLOR = '#B88740';
 
 export function latLonToVector3(lat: number, lon: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -40,7 +40,7 @@ function DottedGlobe({ count = 28000, dark = false }: { count?: number; dark?: b
     const sizeList: number[] = [];
 
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
-    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#000000');
+    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#2A2A2A');
     const faintColor = new THREE.Color(dark ? '#3A3A3A' : '#D9D9D9');
 
     for (let i = 0; i < count; i++) {
@@ -112,7 +112,7 @@ function AtmosphereRim({ dark = false }: { dark?: boolean }) {
     <mesh>
       <sphereGeometry args={[GLOBE_RADIUS * 1.04, 48, 48]} />
       <meshBasicMaterial
-        color="#E59217"
+        color="#B88740"
         transparent
         opacity={dark ? 0.1 : 0.04}
         side={THREE.BackSide}
@@ -145,7 +145,7 @@ function PinMarker({
 
   const isOrigin = pin.isOrigin;
   const isPrimary = pin.isPrimary;
-  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#000000') : dark ? '#9A9A9A' : '#4A4A4A';
+  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#2A2A2A') : dark ? '#9A9A9A' : '#57514A';
   const scale = isSelected ? 1.5 : isOrigin ? 1.25 : isPrimary ? 1.0 : 0.65;
 
   useFrame(({ clock }) => {
@@ -196,7 +196,7 @@ function PinMarker({
       {isPrimary && !isSelected && (
         <mesh lookAt={new THREE.Vector3(0, 0, 0)}>
           <ringGeometry args={[0.045, 0.06, 24]} />
-          <meshBasicMaterial color={dark ? '#FFFFFF' : '#000000'} transparent opacity={0.3} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={dark ? '#FFFFFF' : '#2A2A2A'} transparent opacity={0.3} side={THREE.DoubleSide} />
         </mesh>
       )}
 
@@ -206,12 +206,12 @@ function PinMarker({
         {(isHovered || isSelected) && (
           <span
             className={`block whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.25)] ${
-              dark ? 'bg-black border-[#E59217] text-white' : 'bg-white border-[#E5E5E5] text-black'
+              dark ? 'bg-black border-[#B88740] text-white' : 'bg-white border-[#E6DDCC] text-black'
             }`}
           >
             <span
               className={`block text-[10px] uppercase tracking-wider font-medium ${
-                dark ? 'text-[#E59217]' : 'text-[#4A4A4A]'
+                dark ? 'text-[#D1A95F]' : 'text-[#57514A]'
               }`}
             >
               {pin.isOrigin ? 'Headquarters' : pin.country}
@@ -282,14 +282,14 @@ function FlightArc({
             args={[linePositions, 3]}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#E59217" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
+        <lineBasicMaterial color="#B88740" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
       </line>
 
       {/* Traveling particle */}
       {!reducedMotion && (
         <mesh ref={particleRef}>
           <sphereGeometry args={[0.024, 8, 8]} />
-          <meshBasicMaterial color="#E59217" transparent opacity={0.8} />
+          <meshBasicMaterial color="#B88740" transparent opacity={0.8} />
         </mesh>
       )}
     </group>
@@ -474,11 +474,11 @@ export function GlobeStaticFallback({ className = '' }: { className?: string }) 
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border border-gray-200/80 bg-gradient-to-b from-gray-50 to-white shadow-inner flex items-center justify-center">
-        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#E59217]/20 flex items-center justify-center">
+        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#B88740]/20 flex items-center justify-center">
           <div className="text-center p-4">
-            <span className="inline-block w-3 h-3 rounded-full bg-[#E59217] mb-2 animate-ping" />
-            <p className="text-xs font-semibold text-[#000000] uppercase tracking-wider">Ahmedabad HQ</p>
-            <p className="text-[11px] text-[#4A4A4A] mt-1">Connecting to Global Destinations</p>
+            <span className="inline-block w-3 h-3 rounded-full bg-[#94682B] mb-2 animate-ping" />
+            <p className="text-xs font-semibold text-[#2A2A2A] uppercase tracking-wider">Ahmedabad HQ</p>
+            <p className="text-[11px] text-[#57514A] mt-1">Connecting to Global Destinations</p>
           </div>
         </div>
       </div>

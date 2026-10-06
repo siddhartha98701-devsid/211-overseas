@@ -54,7 +54,7 @@ export function Navbar() {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isSolid
-            ? 'bg-white/95 backdrop-blur border-b border-[#E5E5E5] shadow-[0_1px_0_rgba(0,0,0,0.02)]'
+            ? 'bg-[#FBF8F1]/95 backdrop-blur border-b border-[#E6DDCC] shadow-[0_1px_0_rgba(0,0,0,0.02)]'
             : 'bg-transparent border-b border-white/10'
         }`}
       >
@@ -78,7 +78,7 @@ export function Navbar() {
                     isSolid
                       ? isActive
                         ? 'text-black font-medium'
-                        : 'text-[#4A4A4A] hover:text-black'
+                        : 'text-[#57514A] hover:text-black'
                       : isActive
                       ? 'text-white font-medium'
                       : 'text-white/80 hover:text-white'
@@ -95,7 +95,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => openCallback({ source: 'navbar' })}
-              className="btn-shine bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors cursor-pointer"
+              className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors cursor-pointer"
             >
               Free Counselling
             </button>
@@ -115,7 +115,7 @@ export function Navbar() {
         {/* Mustard scroll-progress bar */}
         <motion.div
           aria-hidden="true"
-          className="absolute bottom-[-1px] left-0 right-0 h-[3px] origin-left bg-[#E59217]"
+          className="absolute bottom-[-1px] left-0 right-0 h-[3px] origin-left bg-[#94682B]"
           style={{ scaleX: progress }}
         />
       </header>
@@ -158,8 +158,8 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`font-serif text-3xl transition-colors ${
-                      pathname === link.href ? 'text-[#E59217]' : 'text-white hover:text-[#E59217]'
+                    className={`font-serif text-2xl transition-colors ${
+                      pathname === link.href ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'
                     }`}
                     onClick={() => setIsOpen(false)}
                   >
@@ -172,7 +172,7 @@ export function Navbar() {
             <div className="pt-8 border-t border-white/15">
               <button
                 type="button"
-                className="btn-shine block w-full text-center py-4 bg-[#E59217] text-black text-sm uppercase tracking-wider font-medium cursor-pointer"
+                className="btn-shine block w-full text-center py-4 bg-[#94682B] text-white text-sm uppercase tracking-wider font-medium cursor-pointer"
                 onClick={() => {
                   setIsOpen(false);
                   openCallback({ source: 'mobile-menu' });
@@ -182,7 +182,7 @@ export function Navbar() {
               </button>
               <div className="mt-6 flex justify-between text-xs text-white/70">
                 <span>Ahmedabad, Gujarat</span>
-                <a href="tel:+919998585211" className="hover:text-[#E59217]">
+                <a href="tel:+919998585211" className="hover:text-[#D1A95F]">
                   +91 99985 85211
                 </a>
               </div>

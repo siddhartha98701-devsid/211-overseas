@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Playfair_Display, Outfit } from 'next/font/google';
+import { Source_Serif_4, Figtree } from 'next/font/google';
 import './globals.css';
 import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
@@ -9,17 +9,18 @@ import { MotionProvider } from '@/components/ui/MotionProvider';
 import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
 
-// Free look-alikes for the brand fonts (Boston Angel Bold / Gordita). The licensed
+// Fonts matched to the owner's poster: Source Serif 4 headings, Figtree body. (Boston Angel / Gordita remain
+// first in the --font-serif / --font-sans stacks if licensed files are ever added.) The licensed
 // fonts, when added, are listed first in the --font-serif / --font-sans stacks.
-const playfair = Playfair_Display({
+const sourceSerif = Source_Serif_4({
   subsets: ['latin'],
-  weight: ['600', '700', '800'],
+  weight: ['400', '500', '600', '700'],
   style: ['normal', 'italic'],
   variable: '--font-display',
   display: 'swap',
 });
 
-const outfit = Outfit({
+const figtree = Figtree({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-body',
@@ -27,7 +28,7 @@ const outfit = Outfit({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#000000',
+  themeColor: '#2A2A2A',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -89,16 +90,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-[#FFFFFF] text-[#000000]">
+    <html lang="en" className={`${figtree.variable} ${sourceSerif.variable}`}>
+      <body className="font-sans antialiased text-[#2A2A2A]">
         <MotionProvider>
         <CallbackProvider>
         <FlightPath />
         <Navbar />
-        <main className="relative z-[1] min-h-screen">{children}</main>
-        <div className="relative z-[1]">
-          <Footer />
-        </div>
+        <main className="min-h-screen">{children}</main>
+        <Footer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

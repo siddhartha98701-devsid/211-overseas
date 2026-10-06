@@ -7,8 +7,8 @@ interface AirlinerProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'
 
 /**
  * Top-down airliner, nose pointing right (+x). White fuselage with soft shading, swept grey wings,
- * under-wing engines and mustard livery accents (tail tips, engine rings, winglets), with a drop
- * shadow so it reads as flying above the page.
+ * under-wing engines and mustard livery accents (tail tips, engine rings, winglets). The drop shadow is
+ * added by the parent so it keeps a fixed direction while the plane turns.
  */
 export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProps) {
   return (
@@ -36,12 +36,9 @@ export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProp
           <stop offset="0" stopColor="#e8eaed" />
           <stop offset="1" stopColor="#9da2a9" />
         </linearGradient>
-        <filter id="al-shadow" x="-20%" y="-30%" width="150%" height="190%">
-          <feDropShadow dx="8" dy="14" stdDeviation="6" floodColor="#000" floodOpacity="0.28" />
-        </filter>
       </defs>
 
-      <g filter="url(#al-shadow)" stroke="#9aa0a8" strokeWidth="0.8" strokeLinejoin="round">
+      <g stroke="#9aa0a8" strokeWidth="0.8" strokeLinejoin="round">
         {/* tailplanes */}
         <path d="M44 66 L14 40 L8 42 L26 70 Z" fill="url(#al-wing)" />
         <path d="M44 74 L14 100 L8 98 L26 70 Z" fill="url(#al-wing)" />
@@ -49,13 +46,13 @@ export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProp
         <path d="M122 64 L74 10 L62 12 L88 70 Z" fill="url(#al-wing)" />
         <path d="M122 76 L74 130 L62 128 L88 70 Z" fill="url(#al-wing)" />
         {/* winglet tips in mustard */}
-        <path d="M74 10 L62 12 L60 6 L70 5 Z" fill="#E59217" stroke="#c97a0e" />
-        <path d="M74 130 L62 128 L60 134 L70 135 Z" fill="#E59217" stroke="#c97a0e" />
+        <path d="M74 10 L62 12 L60 6 L70 5 Z" fill="#B88740" stroke="#8F6429" />
+        <path d="M74 130 L62 128 L60 134 L70 135 Z" fill="#B88740" stroke="#8F6429" />
         {/* engines */}
         {[44, 96].map((y) => (
           <g key={y}>
             <rect x="82" y={y - 7} width="34" height="14" rx="7" fill="url(#al-eng)" />
-            <rect x="109" y={y - 7} width="7" height="14" rx="3.5" fill="#E59217" stroke="#c97a0e" />
+            <rect x="109" y={y - 7} width="7" height="14" rx="3.5" fill="#B88740" stroke="#8F6429" />
             <rect x="84" y={y - 1.2} width="22" height="2.4" rx="1.2" fill="#fff" opacity="0.55" stroke="none" />
           </g>
         ))}
@@ -66,9 +63,9 @@ export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProp
         />
         {/* tail fin seen from above + mustard tail tip */}
         <path d="M60 68.4 L12 69.2 L12 70.8 L60 71.6 Z" fill="#d6d9de" stroke="none" />
-        <path d="M30 68.8 L10 69.4 L10 70.6 L30 71.2 Z" fill="#E59217" stroke="none" />
+        <path d="M30 68.8 L10 69.4 L10 70.6 L30 71.2 Z" fill="#B88740" stroke="none" />
         {/* cheatline */}
-        <path d="M200 66.4 L58 66.8" stroke="#E59217" strokeWidth="1.6" fill="none" opacity="0.9" />
+        <path d="M200 66.4 L58 66.8" stroke="#B88740" strokeWidth="1.6" fill="none" opacity="0.9" />
         {/* cockpit */}
         <path d="M222 70 C219 65.5 212 64.4 206 64.2 L206 75.8 C212 75.6 219 74.5 222 70 Z" fill="#2c3440" stroke="none" />
         <path d="M219 68 C216 66.4 212 65.8 209 65.7" stroke="#8fb4d8" strokeWidth="1" fill="none" opacity="0.8" />

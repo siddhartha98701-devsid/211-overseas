@@ -69,11 +69,15 @@ const DESTINATION_OPTIONS = [
 
 interface EnquiryFormProps {
   defaultInterest?: string;
+  /** Pre-selected destination; must be one of DESTINATION_OPTIONS (e.g. 'Japan'). */
+  defaultDestination?: string;
 }
 
-function FormContent({ defaultInterest }: EnquiryFormProps) {
+function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) {
   const searchParams = useSearchParams();
   const paramInterest = searchParams.get('interest');
+  const paramDestination = searchParams.get('destination');
+  const initialDestination = [paramDestination, defaultDestination].find((d) => d && DESTINATION_OPTIONS.includes(d)) ?? '';
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -99,7 +103,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       qualification: '',
       occupation: '',
       interests: defaultInterest ? [defaultInterest] : [],
-      destination: '',
+      destination: initialDestination,
       courseOrCareer: '',
       budget: '',
       intakeTimeline: '',
@@ -179,12 +183,12 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
   return (
     <div id="enquiry-form" className="relative scroll-mt-28">
       {/* Editorial Form Container */}
-      <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-8 sm:p-12 md:p-16">
+      <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-8 sm:p-12 md:p-16">
         <div className="mb-10 max-w-xl">
-          <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#000000] tracking-tight">
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight">
             Submit your profile
           </h3>
-          <p className="text-sm text-[#4A4A4A] mt-3 leading-relaxed">
+          <p className="text-sm text-[#57514A] mt-3 leading-relaxed">
             Fill in your details below. We review every profile carefully before recommending
             universities or career pathways.
           </p>
@@ -194,13 +198,13 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
         <ol className="mb-10 grid grid-cols-3 gap-2" aria-label="Form progress">
           {STEPS.map((st, i) => (
             <li key={st.title} aria-current={i === step ? 'step' : undefined}>
-              <div className="h-1 bg-[#E5E5E5] overflow-hidden">
-                <div className={`h-full bg-[#E59217] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
+              <div className="h-1 bg-[#E6DDCC] overflow-hidden">
+                <div className={`h-full bg-[#94682B] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
               </div>
-              <p className={`mt-2 text-[11px] uppercase tracking-wider font-medium ${i <= step ? 'text-black' : 'text-[#4A4A4A]/60'}`}>
-                <span className="text-[#A86500]">{i + 1}.</span> {st.title}
+              <p className={`mt-2 text-[11px] uppercase tracking-wider font-medium ${i <= step ? 'text-black' : 'text-[#57514A]/60'}`}>
+                <span className="text-[#8A6020]">{i + 1}.</span> {st.title}
               </p>
-              <p className="hidden sm:block text-xs text-[#4A4A4A]">{st.hint}</p>
+              <p className="hidden sm:block text-xs text-[#57514A]">{st.hint}</p>
             </li>
           ))}
         </ol>
@@ -243,7 +247,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="fullName"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Full Name *
               </label>
@@ -251,8 +255,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="fullName"
                 type="text"
                 placeholder="Enter your full name"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
-                  errors.fullName ? 'border-red-500' : 'border-[#E5E5E5]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors ${
+                  errors.fullName ? 'border-red-500' : 'border-[#E6DDCC]'
                 }`}
                 {...register('fullName')}
               />
@@ -265,7 +269,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="mobile"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Mobile Number *
               </label>
@@ -273,8 +277,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="mobile"
                 type="tel"
                 placeholder="+91 98765 43210"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
-                  errors.mobile ? 'border-red-500' : 'border-[#E5E5E5]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors ${
+                  errors.mobile ? 'border-red-500' : 'border-[#E6DDCC]'
                 }`}
                 {...register('mobile')}
               />
@@ -287,7 +291,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="email"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Email Address *
               </label>
@@ -295,8 +299,8 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="email"
                 type="email"
                 placeholder="name@example.com"
-                className={`w-full px-4 py-3 text-sm bg-white border text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors ${
-                  errors.email ? 'border-red-500' : 'border-[#E5E5E5]'
+                className={`w-full px-4 py-3 text-sm bg-white border text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors ${
+                  errors.email ? 'border-red-500' : 'border-[#E6DDCC]'
                 }`}
                 {...register('email')}
               />
@@ -309,7 +313,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="age"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Age
               </label>
@@ -319,7 +323,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 min="15"
                 max="65"
                 placeholder="e.g. 24"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('age')}
               />
             </div>
@@ -328,7 +332,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="city"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 City
               </label>
@@ -336,7 +340,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="city"
                 type="text"
                 placeholder="Ahmedabad, Gujarat"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('city')}
               />
             </div>
@@ -351,13 +355,13 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="qualification"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Highest Qualification
               </label>
               <select
                 id="qualification"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('qualification')}
               >
                 <option value="">Select qualification...</option>
@@ -373,7 +377,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="occupation"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Current Occupation
               </label>
@@ -381,7 +385,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="occupation"
                 type="text"
                 placeholder="Student, Staff Nurse, Engineer..."
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('occupation')}
               />
             </div>
@@ -396,13 +400,13 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="destination"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Preferred Destination
               </label>
               <select
                 id="destination"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('destination')}
               >
                 <option value="">Select destination...</option>
@@ -418,7 +422,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="courseOrCareer"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Preferred Course / Career
               </label>
@@ -426,7 +430,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="courseOrCareer"
                 type="text"
                 placeholder="Computer Science, Nursing, Hospitality..."
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('courseOrCareer')}
               />
             </div>
@@ -435,7 +439,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div>
               <label
                 htmlFor="budget"
-                className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
               >
                 Approximate Budget
               </label>
@@ -443,7 +447,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 id="budget"
                 type="text"
                 placeholder="e.g. 10–15 Lakhs, Self-funded, Scholarship"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
                 {...register('budget')}
               />
             </div>
@@ -453,7 +457,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
           <div>
             <label
               htmlFor="intakeTimeline"
-              className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-2"
+              className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
             >
               Preferred Intake / Timeline
             </label>
@@ -461,14 +465,14 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
               id="intakeTimeline"
               type="text"
               placeholder="e.g. Autumn 2026, Spring 2027, Immediate"
-              className="w-full px-4 py-3 text-sm bg-white border border-[#E5E5E5] text-[#000000] placeholder-[#4A4A4A]/60 focus:outline-none focus:border-[#E59217] transition-colors"
+              className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] transition-colors"
               {...register('intakeTimeline')}
             />
           </div>
 
           {/* Minimal Checkbox Options for "I Am Interested In" */}
-          <div className="pt-4 border-t border-[#E5E5E5]">
-            <label className="block text-xs uppercase tracking-wider text-[#000000] font-medium mb-3">
+          <div className="pt-4 border-t border-[#E6DDCC]">
+            <label className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-3">
               I am interested in (Select all that apply)
             </label>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
@@ -481,16 +485,16 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                     onClick={() => toggleInterest(interest)}
                     className={`flex items-center justify-between p-3 border text-left text-sm transition-colors ${
                       isSelected
-                        ? 'border-[#E59217] bg-[#E59217]/5 text-[#000000] font-medium'
-                        : 'border-[#E5E5E5] bg-white text-[#4A4A4A] hover:border-[#000000]'
+                        ? 'border-[#B88740] bg-[#94682B]/5 text-[#2A2A2A] font-medium'
+                        : 'border-[#E6DDCC] bg-white text-[#57514A] hover:border-[#2A2A2A]'
                     }`}
                   >
                     <span className="pr-2 text-xs uppercase tracking-wide">{interest}</span>
                     <span
                       className={`w-4 h-4 border flex items-center justify-center transition-colors ${
                         isSelected
-                          ? 'border-[#E59217] bg-[#E59217] text-black'
-                          : 'border-[#E5E5E5] bg-white'
+                          ? 'border-[#B88740] bg-[#94682B] text-white'
+                          : 'border-[#E6DDCC] bg-white'
                       }`}
                     >
                       {isSelected && <Check size={12} strokeWidth={3} />}
@@ -511,7 +515,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 aria-describedby={errors.consent ? 'consent-error' : undefined}
                 {...register('consent')}
               />
-              <span className="text-sm text-[#4A4A4A] leading-relaxed group-hover:text-black transition-colors">
+              <span className="text-sm text-[#57514A] leading-relaxed group-hover:text-black transition-colors">
                 I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.
               </span>
             </label>
@@ -540,7 +544,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 <button
                   type="button"
                   onClick={goNext}
-                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                  className="btn-shine flex-1 bg-[#94682B] hover:bg-[#7A5622] text-white text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
                 >
                   Continue
                   <ArrowRight size={16} />
@@ -549,7 +553,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="btn-shine flex-1 bg-[#E59217] hover:bg-[#F2A23A] disabled:opacity-60 text-black text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
+                  className="btn-shine flex-1 bg-[#94682B] hover:bg-[#7A5622] disabled:opacity-60 text-white text-xs uppercase tracking-widest py-4 transition-colors flex items-center justify-center gap-2 cursor-pointer font-medium"
                 >
                   {isSubmitting ? (
                     <>
@@ -565,9 +569,9 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
                 </button>
               )}
             </div>
-            <p className="text-center text-xs text-[#4A4A4A] mt-3">
+            <p className="text-center text-xs text-[#57514A] mt-3">
               Your data is handled as described in our{' '}
-              <Link href="/privacy-policy" className="underline decoration-[#E59217] underline-offset-2 hover:text-black">
+              <Link href="/privacy-policy" className="underline decoration-[#B88740] underline-offset-2 hover:text-black">
                 Privacy Policy
               </Link>
               .
@@ -579,21 +583,21 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       {/* Confirmation Modal */}
       {submitSuccess && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40">
-          <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-8 sm:p-10 max-w-md w-full text-center">
-            <div className="w-12 h-12 bg-[#E59217] text-black flex items-center justify-center mx-auto mb-4">
+          <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-8 sm:p-10 max-w-md w-full text-center">
+            <div className="w-12 h-12 bg-[#94682B] text-white flex items-center justify-center mx-auto mb-4">
               <Check size={24} strokeWidth={2} />
             </div>
-            <h4 className="font-serif text-2xl font-bold text-[#000000] mb-2">
+            <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-2">
               Profile received
             </h4>
-            <p className="text-sm text-[#4A4A4A] leading-relaxed mb-6">
+            <p className="text-sm text-[#57514A] leading-relaxed mb-6">
               Thank you for sharing your details with 211 OVERSEAS. A dedicated counsellor will review
               your profile and reach out shortly via phone or WhatsApp.
             </p>
             <button
               type="button"
               onClick={() => setSubmitSuccess(false)}
-              className="w-full bg-[#000000] hover:bg-[#E59217] hover:text-black text-white text-xs uppercase tracking-widest py-3 transition-colors"
+              className="w-full bg-[#2A2A2A] hover:bg-[#94682B] hover:text-white text-white text-xs uppercase tracking-widest py-3 transition-colors"
             >
               Done
             </button>
@@ -608,7 +612,7 @@ export function EnquiryForm(props: EnquiryFormProps) {
   return (
     <Suspense
       fallback={
-        <div className="bg-[#FFFFFF] border border-[#E5E5E5] p-10 min-h-[400px] animate-pulse" />
+        <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-10 min-h-[400px] animate-pulse" />
       }
     >
       <FormContent {...props} />
