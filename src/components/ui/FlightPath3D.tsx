@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Trail } from '@react-three/drei';
 import * as THREE from 'three';
 
 const MUSTARD = '#E59217';
@@ -29,9 +28,49 @@ const WAYPOINTS: [number, number, number][] = [
   [0.86, -0.82, 0.5],
 ];
 
-// Shared by the single plane instance; created once in the browser (this module is client-only).
-const BODY_MAT = new THREE.MeshStandardMaterial({ color: MUSTARD, roughness: 0.42, metalness: 0.25, transparent: true });
-const DARK_MAT = new THREE.MeshStandardMaterial({ color: '#111111', roughness: 0.5, metalness: 0.3, transparent: true });
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
+
+/* ------------------------------------------------------------------ materials (module-level) */
+// Mustard body, mid-grey wings: both read on white and on black sections.
+const BODY_MAT = new THREE.MeshStandardMaterial({ color: MUSTARD, roughness: 0.3, metalness: 0.35 });
+const WING_MAT = new THREE.MeshStandardMaterial({ color: '#a9a9a9', roughness: 0.32, metalness: 0.45, side: THREE.DoubleSide });
+const DARK_MAT = new THREE.MeshStandardMaterial({ color: '#5c5c5c', roughness: 0.4, metalness: 0.5 });
+const PLANE_MATS = [BODY_MAT, WING_MAT, DARK_MAT];
+
+/* ------------------------------------------------------------------ the dotted route */
+const DOT_COUNT = 72;
+const DOTS_BEHIND = 0.24; // how much of the route trails behind the plane (fraction of the path)
+const DOTS_AHEAD = 0.08;
+const DOT_POS = new Float32Array(DOT_COUNT * 3);
+const DOT_COL = new Float32Array(DOT_COUNT * 4);
+const DOT_GEO = new THREE.BufferGeometry();
+DOT_GEO.setAttribute('position', new THREE.BufferAttribute(DOT_POS, 3));
+DOT_GEO.setAttribute('color', new THREE.BufferAttribute(DOT_COL, 4));
+const DOT_MUSTARD = new THREE.Color(MUSTARD);
+const DOT_GREY = new THREE.Color('#8a8a8a');
+const DOT_MAT = (() => {
+  const c = document.createElement('canvas');
+  c.width = c.height = 64;
+  const x = c.getContext('2d')!;
+  const gr = x.createRadialGradient(32, 32, 0, 32, 32, 30);
+  gr.addColorStop(0, 'rgba(255,255,255,1)');
+  gr.addColorStop(0.7, 'rgba(255,255,255,1)');
+  gr.addColorStop(1, 'rgba(255,255,255,0)');
+  x.fillStyle = gr;
+  x.fillRect(0, 0, 64, 64);
+  return new THREE.PointsMaterial({
+    size: 0.13,
+    map: new THREE.CanvasTexture(c),
+    vertexColors: true,
+    transparent: true,
+    depthWrite: false,
+    sizeAttenuation: true,
+  });
+})();
+
 const TMP = {
   p: new THREE.Vector3(),
   a: new THREE.Vector3(),
@@ -67,83 +106,71 @@ function textOverlap(cx: number, cy: number, r: number) {
   return hits / pts.length;
 }
 
-const smoothstep = (a: number, b: number, x: number) => {
-  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
-  return t * t * (3 - 2 * t);
-};
-
-/** Procedural airliner: nose along +z, wings along x, up is +y. */
-function PlaneModel({ bodyMat, darkMat }: { bodyMat: THREE.Material; darkMat: THREE.Material }) {
-  const wingGeo = useMemo(() => {
-    // Swept wing, drawn in (x, y) and laid flat: shape y -> world -z, so larger y sweeps backward.
-    const s = new THREE.Shape();
-    s.moveTo(0, -0.18);
-    s.lineTo(1.05, 0.34);
-    s.lineTo(1.05, 0.52);
-    s.lineTo(0, 0.24);
-    s.closePath();
-    const g = new THREE.ExtrudeGeometry(s, { depth: 0.035, bevelEnabled: false });
-    g.rotateX(-Math.PI / 2);
-    g.translate(0, 0.0, 0);
-    return g;
-  }, []);
-
-  const finGeo = useMemo(() => {
-    const s = new THREE.Shape();
-    s.moveTo(0.46, 0.05);
-    s.lineTo(0.9, 0.05);
-    s.lineTo(0.9, 0.55);
-    s.lineTo(0.74, 0.55);
-    s.closePath();
-    const g = new THREE.ExtrudeGeometry(s, { depth: 0.035, bevelEnabled: false });
-    g.rotateY(Math.PI / 2);
-    g.translate(-0.0175, 0, 0);
-    return g;
-  }, []);
-
-  return (
-    <group>
-      {/* fuselage */}
-      <mesh rotation={[Math.PI / 2, 0, 0]} material={bodyMat} scale={[1, 1.9, 1]}>
-        <capsuleGeometry args={[0.1, 0.9, 8, 20]} />
-      </mesh>
-      {/* tapered tail cone */}
-      <mesh position={[0, 0.02, -0.98]} rotation={[-Math.PI / 2, 0, 0]} material={bodyMat}>
-        <coneGeometry args={[0.1, 0.55, 20]} />
-      </mesh>
-      {/* cockpit window band */}
-      <mesh position={[0, 0.055, 0.92]} rotation={[0.35, 0, 0]} material={darkMat} scale={[1, 0.35, 0.8]}>
-        <sphereGeometry args={[0.1, 14, 10]} />
-      </mesh>
-      {/* wings */}
-      <mesh geometry={wingGeo} material={bodyMat} position={[0.08, -0.03, 0.12]} />
-      <mesh geometry={wingGeo} material={bodyMat} position={[-0.08, -0.03, 0.12]} scale={[-1, 1, 1]} />
-      {/* tailplanes */}
-      <mesh geometry={wingGeo} material={bodyMat} position={[0.05, 0.0, -0.72]} scale={[0.34, 0.34, 0.34]} />
-      <mesh geometry={wingGeo} material={bodyMat} position={[-0.05, 0.0, -0.72]} scale={[-0.34, 0.34, 0.34]} />
-      {/* fin */}
-      <mesh geometry={finGeo} material={darkMat} position={[0, 0.07, -0.55]} />
-      {/* engines */}
-      {[0.42, -0.42].map((x) => (
-        <mesh key={x} position={[x, -0.12, 0.2]} rotation={[Math.PI / 2, 0, 0]} material={darkMat}>
-          <cylinderGeometry args={[0.065, 0.065, 0.34, 16]} />
-        </mesh>
-      ))}
-    </group>
-  );
+/* ------------------------------------------------------------------ the plane model */
+function extrude(points: [number, number][], depth: number, bevel: number) {
+  const s = new THREE.Shape();
+  points.forEach(([x, y], i) => (i ? s.lineTo(x, y) : s.moveTo(x, y)));
+  s.closePath();
+  return new THREE.ExtrudeGeometry(s, { depth, bevelEnabled: true, bevelThickness: bevel, bevelSize: bevel, bevelSegments: 2 });
 }
 
+/** Glossy airliner, nose along +z, wings along x, up is +y (length about 2.6 units, span about 2.9). */
+function buildAirliner() {
+  const g = new THREE.Group();
+
+  // Smooth fuselage: lathe profile with a rounded nose and a tapering tail
+  const pts: THREE.Vector2[] = [];
+  for (let i = 0; i <= 60; i++) {
+    const t = i / 60;
+    const tail = 0.035 + 0.115 * THREE.MathUtils.smoothstep(t, 0, 0.38);
+    const nose = t < 0.8 ? 1 : Math.sqrt(Math.max(0, 1 - ((t - 0.8) / 0.2) ** 2));
+    pts.push(new THREE.Vector2(Math.max(0.002, tail * nose), -1.3 + 2.6 * t));
+  }
+  const fus = new THREE.Mesh(new THREE.LatheGeometry(pts, 48), BODY_MAT);
+  fus.rotation.x = Math.PI / 2;
+  g.add(fus);
+
+  const cockpit = new THREE.Mesh(new THREE.SphereGeometry(0.1, 20, 12), DARK_MAT);
+  cockpit.scale.set(0.85, 0.5, 1.5);
+  cockpit.position.set(0, 0.06, 0.88);
+  g.add(cockpit);
+
+  // Tapered, swept wings with a little dihedral
+  const wing = extrude([[0, -0.3], [1.45, 0.44], [1.45, 0.62], [0, 0.42]], 0.05, 0.014);
+  wing.rotateX(-Math.PI / 2);
+  // Tailplanes
+  const stab = extrude([[0, -0.15], [0.62, 0.2], [0.62, 0.3], [0, 0.22]], 0.035, 0.01);
+  stab.rotateX(-Math.PI / 2);
+  for (const sx of [1, -1]) {
+    const w = new THREE.Mesh(wing, WING_MAT);
+    w.position.set(sx * 0.1, -0.06, 0.12);
+    w.scale.x = sx;
+    w.rotation.z = sx * 0.07;
+    g.add(w);
+    const s = new THREE.Mesh(stab, WING_MAT);
+    s.position.set(sx * 0.05, 0.01, -1.05);
+    s.scale.x = sx;
+    g.add(s);
+  }
+
+  // Tail fin
+  const fin = extrude([[0.7, 0], [1.3, 0], [1.3, 0.62], [1.1, 0.62]], 0.04, 0.008);
+  fin.rotateY(Math.PI / 2);
+  fin.translate(-0.02, 0, 0);
+  const finM = new THREE.Mesh(fin, BODY_MAT);
+  finM.position.set(0, 0.1, 0);
+  g.add(finM);
+
+  return g;
+}
+const PLANE_MODEL = buildAirliner();
+
+/* ------------------------------------------------------------------ scene */
 function PlaneRig({ compact }: { compact: boolean }) {
   const { size, invalidate, camera } = useThree();
   const rig = useRef<THREE.Group>(null);
-  const fade = useRef(1);
   const ghost = useRef(1);
-  // The trail only starts once the plane has been placed, otherwise it would draw a streak from the origin
-  const [placed, setPlaced] = useState(false);
   const placedRef = useRef(false);
-  // Bumped when the plane jumps (anchor links, back-to-top) so the trail restarts instead of drawing a chord
-  const [trailKey, setTrailKey] = useState(0);
-  const lastScreen = useRef({ x: 0, y: 0, resetAt: 0 });
   const progress = useRef({ target: 0, current: 0, bank: 0 });
 
   const curve = useMemo(
@@ -171,13 +198,12 @@ function PlaneRig({ compact }: { compact: boolean }) {
     const g = rig.current;
     if (!g) return;
     const pr = progress.current;
-    pr.current += (pr.target - pr.current) * (1 - Math.exp(-dt * 5));
-    const aspect = size.width / size.height;
     if (!placedRef.current) {
       placedRef.current = true;
       pr.current = pr.target; // start exactly on the scroll position, no fly-in from the origin
-      setPlaced(true);
     }
+    pr.current += (pr.target - pr.current) * (1 - Math.exp(-dt * 5));
+    const aspect = size.width / size.height;
 
     // Map a path parameter to world space so "u" always means the same fraction of the screen width
     const toWorld = (t: number, out: THREE.Vector3) => {
@@ -204,32 +230,56 @@ function PlaneRig({ compact }: { compact: boolean }) {
     pr.bank += (targetBank - pr.bank) * Math.min(1, dt * 4);
     g.rotateZ(pr.bank);
 
-    // Bigger on large screens; fade out whenever the plane crosses the middle of the screen
-    curve.getPointAt(Math.min(1, Math.max(0, t)), TMP.c);
-    g.scale.setScalar((compact ? 0.7 : (size.width / 1280) ** 0.35) * 0.825 * 1.5);
-    // Ghost out while over text or buttons, solid over backgrounds and empty space
+    // Size: smaller than the first version, scaled for the screen
+    g.scale.setScalar((compact ? 0.7 : (size.width / 1280) ** 0.35) * 0.825 * 1.2);
+
+    // Ghost out while over text or controls, solid over backgrounds and empty space
     const worldPerPx = (2 * Math.tan(THREE.MathUtils.degToRad(FOV / 2)) * (CAM_Z - TMP.p.z)) / size.height;
     TMP.proj.copy(g.position).project(camera);
     const sx = (TMP.proj.x * 0.5 + 0.5) * size.width;
     const sy = (-TMP.proj.y * 0.5 + 0.5) * size.height;
-    const radiusPx = (2.2 * g.scale.x * 0.5) / worldPerPx;
-    const ls = lastScreen.current;
-    const jumped = Math.hypot(sx - ls.x, sy - ls.y) > 160;
-    ls.x = sx;
-    ls.y = sy;
-    if (jumped && state.clock.elapsedTime - ls.resetAt > 0.3) {
-      ls.resetAt = state.clock.elapsedTime;
-      setTrailKey((k) => k + 1);
-    }
+    const radiusPx = (2.9 * g.scale.x * 0.5) / worldPerPx;
+    curve.getPointAt(Math.min(1, Math.max(0, t)), TMP.c);
+    const edge = smoothstep(0.3, 0.7, Math.abs(TMP.c.x));
+    g.visible = edge > 0.02;
     const overlap = g.visible ? textOverlap(sx, sy, radiusPx) : 0;
     const ghostTarget = 1 - 0.88 * overlap;
     ghost.current += (ghostTarget - ghost.current) * Math.min(1, dt * 9);
 
-    const f = smoothstep(0.3, 0.7, Math.abs(TMP.c.x)) * (compact ? 0.85 : 1) * ghost.current;
-    fade.current = f;
-    BODY_MAT.opacity = f;
-    DARK_MAT.opacity = f;
-    g.visible = smoothstep(0.3, 0.7, Math.abs(TMP.c.x)) > 0.02;
+    const f = edge * (compact ? 0.85 : 1) * ghost.current;
+    for (const m of PLANE_MATS) {
+      const translucent = f < 0.995;
+      if (m.transparent !== translucent) {
+        m.transparent = translucent;
+        m.needsUpdate = true;
+      }
+      m.opacity = f;
+    }
+
+    // Dotted route: mustard dots trail behind the plane, a few faint grey ones lead ahead.
+    // Every dot is computed from the path itself (not from past frames), so it can never jitter,
+    // and each dot fades near the middle of the screen so it stays off the text.
+    for (let i = 0; i < DOT_COUNT; i++) {
+      const ts = t - DOTS_BEHIND + (i / (DOT_COUNT - 1)) * (DOTS_BEHIND + DOTS_AHEAD);
+      const inRange = ts >= 0 && ts <= 1 && Math.abs(ts - t) > 0.01;
+      toWorld(ts, TMP.a);
+      DOT_POS[i * 3] = TMP.a.x;
+      DOT_POS[i * 3 + 1] = TMP.a.y;
+      DOT_POS[i * 3 + 2] = TMP.a.z;
+      const behind = ts < t;
+      const along = behind ? 1 - (t - ts) / DOTS_BEHIND : 1 - (ts - t) / DOTS_AHEAD;
+      const base = behind ? 0.95 * along ** 1.3 : 0.4 * along;
+      const lateral = smoothstep(0.3, 0.7, Math.abs(TMP.c.x));
+      const col = behind ? DOT_MUSTARD : DOT_GREY;
+      DOT_COL[i * 4] = col.r;
+      DOT_COL[i * 4 + 1] = col.g;
+      DOT_COL[i * 4 + 2] = col.b;
+      DOT_COL[i * 4 + 3] = inRange ? base * lateral * (compact ? 0.85 : 1) : 0;
+    }
+    DOT_GEO.attributes.position.needsUpdate = true;
+    DOT_GEO.attributes.color.needsUpdate = true;
+    DOT_MAT.size = compact ? 0.1 : 0.13;
+    DOT_MAT.opacity = 0.35 + 0.65 * ghost.current;
 
     // Keep rendering until the plane has settled on the scroll position
     if (
@@ -242,18 +292,12 @@ function PlaneRig({ compact }: { compact: boolean }) {
   });
 
   return (
-    <group ref={rig}>
-      <PlaneModel bodyMat={BODY_MAT} darkMat={DARK_MAT} />
-      {/* The trail thins out with the plane's fade, so it never streaks across text */}
-      {placed && (
-        <Trail key={trailKey} width={compact ? 1.1 : 1.7} length={4} color={MUSTARD} decay={2} attenuation={(w) => w * w * fade.current * fade.current}>
-          <mesh position={[0, 0, -1.05]}>
-            <sphereGeometry args={[0.01, 4, 4]} />
-            <meshBasicMaterial visible={false} />
-          </mesh>
-        </Trail>
-      )}
-    </group>
+    <>
+      <group ref={rig}>
+        <primitive object={PLANE_MODEL} />
+      </group>
+      <points geometry={DOT_GEO} material={DOT_MAT} frustumCulled={false} />
+    </>
   );
 }
 
@@ -269,9 +313,9 @@ export default function FlightPath3D() {
         style={{ pointerEvents: 'none' }}
         eventSource={undefined}
       >
-        <ambientLight intensity={1.05} />
-        <directionalLight position={[4, 6, 8]} intensity={2.2} />
-        <directionalLight position={[-6, -2, 4]} intensity={0.8} color="#ffd9a0" />
+        <ambientLight intensity={1.0} />
+        <directionalLight position={[4, 6, 8]} intensity={2.3} />
+        <directionalLight position={[-6, -2, 4]} intensity={0.9} color="#ffd9a0" />
         <PlaneRig compact={compact} />
       </Canvas>
     </div>
