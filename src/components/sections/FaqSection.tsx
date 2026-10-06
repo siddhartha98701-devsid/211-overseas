@@ -6,12 +6,12 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
-import { FAQS } from '@/content/faqs';
+import { FAQS, type Faq } from '@/content/faqs';
 
-export function FaqSection({ limit }: { limit?: number }) {
+export function FaqSection({ limit, items = FAQS, headline = 'Questions students ask us' }: { limit?: number; items?: Faq[]; headline?: string }) {
   const [open, setOpen] = useState<number | null>(0);
   const [showAll, setShowAll] = useState(false);
-  const visible = limit && !showAll ? FAQS.slice(0, limit) : FAQS;
+  const visible = limit && !showAll ? items.slice(0, limit) : items;
   const { openCallback } = useCallbackModal();
 
   return (
@@ -19,7 +19,7 @@ export function FaqSection({ limit }: { limit?: number }) {
       <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">
-            <SectionHeader compact eyebrow="FAQs" headline="Questions students ask us" />
+            <SectionHeader compact eyebrow="FAQs" headline={headline} />
             <p className="-mt-6 text-sm text-[#57514A] leading-relaxed">Can&apos;t find your answer? Our counsellors are happy to help.</p>
             <button
               type="button"
@@ -75,13 +75,13 @@ export function FaqSection({ limit }: { limit?: number }) {
               </div>
             );
           })}
-          {limit && FAQS.length > limit && (
+          {limit && items.length > limit && (
             <button
               type="button"
               onClick={() => setShowAll((v) => !v)}
               className="mt-5 text-xs uppercase tracking-widest font-medium text-black cursor-pointer"
             >
-              <span className="link-draw pb-1">{showAll ? 'Show fewer questions' : `Show all ${FAQS.length} questions`}</span>
+              <span className="link-draw pb-1">{showAll ? 'Show fewer questions' : `Show all ${items.length} questions`}</span>
             </button>
           )}
         </div>
@@ -93,7 +93,7 @@ export function FaqSection({ limit }: { limit?: number }) {
           __html: JSON.stringify({
             '@context': 'https://schema.org',
             '@type': 'FAQPage',
-            mainEntity: FAQS.map((f) => ({
+            mainEntity: items.map((f) => ({
               '@type': 'Question',
               name: f.q,
               acceptedAnswer: { '@type': 'Answer', text: f.a },

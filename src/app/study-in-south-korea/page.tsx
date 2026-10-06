@@ -5,6 +5,7 @@ import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
+import { SubpageCards } from '@/components/pages/SubpageCards';
 import { KoreaHighlights } from '@/components/sections/KoreaHighlights';
 import { ProgramFinderSection } from '@/components/sections/ProgramFinderSection';
 import { EligibilitySection } from '@/components/sections/EligibilitySection';
@@ -333,6 +334,7 @@ export default function SouthKoreaPage() {
       </section>
 
       {/* Form Section */}
+      <SubpageCards group="study-in-south-korea" heading="Choose your study route" intro="Bachelor’s, master’s or a Korean language program: see requirements and next steps for each." />
       <ProgramFinderSection />
       <EligibilitySection />
       <CtaStrip interest="Study in South Korea" source="study-in-south-korea" />

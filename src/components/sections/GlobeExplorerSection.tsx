@@ -10,6 +10,7 @@ import { GLOBE_PINS } from '@/components/globe/pins';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { siteContent } from '@/content/site';
+import { countryHref } from '@/content/subpages';
 
 interface Destination {
   /** Matches a pin name in GLOBE_PINS */
@@ -51,7 +52,7 @@ function buildDestinations(): Destination[] {
       label: 'Study · Work',
       description: `Explore education and career pathways in ${country}, matched to your profile.`,
       bullets: entry?.bullets ?? [],
-      href: '/other-destinations',
+      href: countryHref(country),
       cta: `Explore ${country}`,
       featured: false,
     };

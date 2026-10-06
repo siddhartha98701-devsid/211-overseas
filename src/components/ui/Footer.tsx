@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { Logo } from './Logo';
+import { countryHref } from '@/content/subpages';
 
 export function Footer() {
   return (
@@ -46,42 +47,42 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Japan")} className="hover:text-[#D1A95F] transition-colors">
                   Japan
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Taiwan")} className="hover:text-[#D1A95F] transition-colors">
                   Taiwan
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Singapore")} className="hover:text-[#D1A95F] transition-colors">
                   Singapore
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Europe")} className="hover:text-[#D1A95F] transition-colors">
                   Europe
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("United Kingdom")} className="hover:text-[#D1A95F] transition-colors">
                   United Kingdom
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("United States")} className="hover:text-[#D1A95F] transition-colors">
                   United States
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Canada")} className="hover:text-[#D1A95F] transition-colors">
                   Canada
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Australia")} className="hover:text-[#D1A95F] transition-colors">
                   Australia
                 </Link>
               </li>
@@ -95,12 +96,12 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-white/65" aria-label="Work abroad destinations">
               <li>
-                <Link href="/work-in-germany" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-in-germany/nurses" className="hover:text-[#D1A95F] transition-colors">
                   Germany – Nurses
                 </Link>
               </li>
               <li>
-                <Link href="/work-in-germany" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-in-germany/physiotherapists" className="hover:text-[#D1A95F] transition-colors">
                   Germany – Physiotherapists
                 </Link>
               </li>

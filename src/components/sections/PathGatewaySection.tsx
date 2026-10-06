@@ -9,6 +9,7 @@ import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 import { whatsappLink } from '@/lib/contact';
 import { siteContent } from '@/content/site';
+import { countryHref } from '@/content/subpages';
 
 type Mode = 'study' | 'work';
 
@@ -105,17 +106,16 @@ export function PathGatewaySection() {
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {OTHER_STUDY.map((c) => (
                     <li key={c}>
-                      <button
-                        type="button"
-                        onClick={() => openCallback({ interest: 'Study in Other Countries', source: `gateway-study:${c}` })}
-                        className="border border-[#E6DDCC] px-3 py-1.5 text-sm text-black hover:bg-[#94682B] hover:border-[#B88740] transition-colors cursor-pointer"
+                      <Link
+                        href={countryHref(c)}
+                        className="inline-block border border-[#E6DDCC] px-3 py-1.5 text-sm text-black hover:bg-[#94682B] hover:border-[#B88740] hover:text-white transition-colors"
                       >
                         {c}
-                      </button>
+                      </Link>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-5 text-sm text-[#57514A] leading-relaxed">Tap a country to talk to a counsellor about it.</p>
+                <p className="mt-5 text-sm text-[#57514A] leading-relaxed">Tap a country for requirements, intakes and how we help.</p>
                 <Link href="/other-destinations" className="mt-auto pt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-black group">
                   <span className="link-draw pb-1">See all destinations</span>
                   <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />

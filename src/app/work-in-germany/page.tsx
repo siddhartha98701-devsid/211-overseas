@@ -5,6 +5,7 @@ import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
+import { SubpageCards } from '@/components/pages/SubpageCards';
 
 export const metadata: Metadata = {
   title: 'Work in Germany',
@@ -90,7 +91,7 @@ export default function GermanyPage() {
 
                 <div>
                   <Link
-                    href="/contact?interest=Work+in+Germany+%E2%80%93+Nursing#enquiry-form"
+                    href="/work-in-germany/nurses"
                     className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
                   >
                     Check nursing eligibility
@@ -125,7 +126,7 @@ export default function GermanyPage() {
 
                 <div>
                   <Link
-                    href="/contact?interest=Work+in+Germany+%E2%80%93+Physiotherapy#enquiry-form"
+                    href="/work-in-germany/physiotherapists"
                     className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
                   >
                     Check physiotherapy eligibility
@@ -138,6 +139,7 @@ export default function GermanyPage() {
       </section>
 
       {/* Form Section */}
+      <SubpageCards group="work-in-germany" heading="Choose your healthcare pathway" intro="Detailed guidance for each profession: language, recognition, interviews and visa." />
       <CtaStrip interest="Work in Germany – Nursing" source="work-in-germany" />
       <FormSection />
     </>

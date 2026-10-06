@@ -2,7 +2,14 @@ import Image from 'next/image';
 import { EnquiryForm } from '@/components/sections/EnquiryForm';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
-export function FormSection() {
+interface FormSectionProps {
+  defaultInterest?: string;
+  defaultDestination?: string;
+  /** Optional heading override, e.g. "Start your Japan journey". */
+  heading?: string;
+}
+
+export function FormSection({ defaultInterest, defaultDestination, heading }: FormSectionProps = {}) {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden" aria-label="Begin your overseas journey">
       {/* Full-bleed background image with subtle scrim */}
@@ -22,7 +29,7 @@ export function FormSection() {
         <ScrollReveal>
           <div className="max-w-2xl mb-12 text-white">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
-              Start your overseas journey
+              {heading ?? 'Start your overseas journey'}
             </h2>
             <p className="text-base sm:text-base text-white/80 font-light leading-relaxed">
               Confused about where to start? Start with your profile — not a country. Limited
@@ -31,7 +38,7 @@ export function FormSection() {
           </div>
 
           <div className="max-w-3xl">
-            <EnquiryForm />
+            <EnquiryForm defaultInterest={defaultInterest} defaultDestination={defaultDestination} />
           </div>
         </ScrollReveal>
       </div>

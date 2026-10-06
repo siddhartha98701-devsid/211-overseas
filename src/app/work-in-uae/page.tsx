@@ -5,6 +5,7 @@ import { siteContent } from '@/content/site';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
+import { SubpageCards } from '@/components/pages/SubpageCards';
 import { UAESectorsTabs } from './UAESectorsTabs';
 
 export const metadata: Metadata = {
@@ -119,6 +120,7 @@ export default function UAEPage() {
       </section>
 
       {/* Form Section */}
+      <SubpageCards group="work-in-uae" heading="Explore careers by sector" intro="See what each sector looks for and how we guide you." />
       <CtaStrip interest="Work in UAE / Dubai" source="work-in-uae" />
       <FormSection />
     </>

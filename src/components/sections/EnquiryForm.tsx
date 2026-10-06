@@ -69,11 +69,15 @@ const DESTINATION_OPTIONS = [
 
 interface EnquiryFormProps {
   defaultInterest?: string;
+  /** Pre-selected destination; must be one of DESTINATION_OPTIONS (e.g. 'Japan'). */
+  defaultDestination?: string;
 }
 
-function FormContent({ defaultInterest }: EnquiryFormProps) {
+function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) {
   const searchParams = useSearchParams();
   const paramInterest = searchParams.get('interest');
+  const paramDestination = searchParams.get('destination');
+  const initialDestination = [paramDestination, defaultDestination].find((d) => d && DESTINATION_OPTIONS.includes(d)) ?? '';
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -99,7 +103,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       qualification: '',
       occupation: '',
       interests: defaultInterest ? [defaultInterest] : [],
-      destination: '',
+      destination: initialDestination,
       courseOrCareer: '',
       budget: '',
       intakeTimeline: '',

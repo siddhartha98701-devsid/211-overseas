@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteContent } from '@/content/site';
+import { countryHref } from '@/content/subpages';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
@@ -80,7 +81,7 @@ export default function OtherDestinationsPage() {
                   </div>
                   <div>
                     <Link
-                      href={`/contact?interest=Study+in+Other+Countries&destination=${encodeURIComponent(country.name)}#enquiry-form`}
+                      href={countryHref(country.name)}
                       className="inline-flex items-center text-xs uppercase tracking-widest text-[#2A2A2A] hover:text-[#8A6020] font-medium transition-colors group"
                     >
                       <span>Explore {country.name}</span>
