@@ -24,7 +24,7 @@ export function LegalPage({ title, label, updated, intro, sections, footer }: Le
           <span className="h-px w-10 bg-[#94682B]" />
           Legal
         </p>
-        <h1 className="font-serif text-4xl sm:text-5xl font-bold text-black tracking-tight leading-[1.1] mb-3">
+        <h1 className="font-serif text-3xl sm:text-4xl font-bold text-black tracking-tight leading-[1.1] mb-3">
           {title}
         </h1>
         <p className="text-sm text-[#57514A] mb-10">Last updated: {updated}</p>
@@ -34,7 +34,7 @@ export function LegalPage({ title, label, updated, intro, sections, footer }: Le
           {sections.map((s, i) => (
             <ScrollReveal key={s.heading}>
               <div className="border-t border-[#E6DDCC] pt-6">
-                <h2 className="font-serif text-2xl font-bold text-black mb-3">
+                <h2 className="font-serif text-xl font-bold text-black mb-3">
                   <span className="text-[#D1A95F] mr-2">{i + 1}.</span>
                   {s.heading}
                 </h2>

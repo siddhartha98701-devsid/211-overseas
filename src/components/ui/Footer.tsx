@@ -13,7 +13,7 @@ export function Footer() {
               <Link href="/" aria-label="211 OVERSEAS study abroad - home" className="inline-block">
                 <Logo variant="primary-white" height={56} />
               </Link>
-              <p className="mt-3 font-serif italic text-lg text-[#D1A95F]">
+              <p className="mt-3 font-serif italic text-base text-[#D1A95F]">
                 {siteContent.brand.tagline}
               </p>
             </div>

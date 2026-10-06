@@ -86,7 +86,7 @@ export function WhoCanConnectSection() {
                   <Icon size={24} aria-hidden="true" />
                 </span>
                 <p className="mt-5 text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">{seg.label}</p>
-                <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold leading-tight">{seg.headline}</h3>
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold leading-tight">{seg.headline}</h3>
                 <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{seg.text}</p>
                 <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
                   <button

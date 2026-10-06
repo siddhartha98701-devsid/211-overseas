@@ -7,10 +7,10 @@ export function WhyUsSection() {
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
           <div className="max-w-3xl mb-16">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
               Why 211 OVERSEAS
             </h2>
-            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
               We prioritize candidates over commissions. Here is how our consulting methodology sets you
               up for long-term international success.
             </p>
@@ -20,7 +20,7 @@ export function WhyUsSection() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
             {siteContent.whyUs.points.map((point, i) => (
               <div key={i} className="space-y-2">
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
+                <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
                   {point.title}
                 </h3>
                 <p className="text-sm sm:text-base text-[#57514A] leading-relaxed">

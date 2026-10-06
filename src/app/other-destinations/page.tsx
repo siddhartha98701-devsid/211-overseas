@@ -24,10 +24,10 @@ export default function OtherDestinationsPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               Global pathways
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Your future doesn&apos;t have to be limited to one country.
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               {otherDestinations.description}
             </p>
           </div>
@@ -54,10 +54,10 @@ export default function OtherDestinationsPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Explore worldwide destinations
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Tailored education and professional pathways across prominent study-abroad and immigration destinations.
               </p>
             </div>
@@ -67,7 +67,7 @@ export default function OtherDestinationsPage() {
                 <div key={country.name} className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
                   <div>
                     <div className="flex items-baseline justify-between mb-3">
-                      <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight">
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
                         {country.name}
                       </h3>
                       <span className="font-serif text-xs text-[#57514A]">

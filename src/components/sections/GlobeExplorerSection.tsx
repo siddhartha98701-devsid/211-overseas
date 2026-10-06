@@ -182,7 +182,7 @@ export function GlobeExplorerSection() {
                         >
                           {d.label}
                         </span>
-                        <span className="block font-serif text-lg font-bold leading-tight mt-1">{d.country}</span>
+                        <span className="block font-serif text-base font-bold leading-tight mt-1">{d.country}</span>
                       </button>
                     );
                   })}
@@ -213,7 +213,7 @@ export function GlobeExplorerSection() {
                     {current.featured ? 'Featured pathway' : 'Other destination'}
                     {pinMeta ? ` · ${pinMeta.name}` : ''}
                   </span>
-                  <h3 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
                     {current.country}
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-8">{current.description}</p>

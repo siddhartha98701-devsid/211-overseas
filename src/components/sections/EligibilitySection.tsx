@@ -89,7 +89,7 @@ export function EligibilitySection() {
                 >
                   {step === 0 && (
                     <fieldset>
-                      <legend className="font-serif text-2xl font-bold mb-5">What is your current education level?</legend>
+                      <legend className="font-serif text-xl font-bold mb-5">What is your current education level?</legend>
                       <div className="space-y-3">
                         {EDUCATION.map((e) => (
                           <button key={e.id} type="button" className={option(edu?.id === e.id)} onClick={() => { setEdu(e); setStep(1); }}>
@@ -102,7 +102,7 @@ export function EligibilitySection() {
 
                   {step === 1 && (
                     <fieldset>
-                      <legend className="font-serif text-2xl font-bold mb-5">Your English proficiency?</legend>
+                      <legend className="font-serif text-xl font-bold mb-5">Your English proficiency?</legend>
                       <div className="space-y-3">
                         {ENGLISH.map((e) => (
                           <button key={e.id} type="button" className={option(eng?.id === e.id)} onClick={() => { setEng(e); setStep(2); }}>
@@ -115,7 +115,7 @@ export function EligibilitySection() {
 
                   {step === 2 && (
                     <fieldset>
-                      <legend className="font-serif text-2xl font-bold mb-5">Which field interests you most?</legend>
+                      <legend className="font-serif text-xl font-bold mb-5">Which field interests you most?</legend>
                       <div className="grid sm:grid-cols-2 gap-3">
                         {[...FIELDS, { id: 'notsure', label: "I'm not sure yet" }].map((f) => (
                           <button key={f.id} type="button" className={option(field === f.id)} onClick={() => { setField(f.id); setStep(3); }}>
@@ -129,7 +129,7 @@ export function EligibilitySection() {
                   {done && edu && eng && (
                     <div role="status" aria-live="polite">
                       <p className="text-xs uppercase tracking-widest text-[#D1A95F] font-medium">Your indicative result</p>
-                      <h3 className="mt-2 font-serif text-3xl font-bold">
+                      <h3 className="mt-2 font-serif text-2xl font-bold">
                         {eng.ok ? 'Good news — you look ready to explore.' : 'You can still get started.'}
                       </h3>
                       <ul className="mt-5 space-y-3 text-sm text-white/80 leading-relaxed">

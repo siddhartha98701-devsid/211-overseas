@@ -38,7 +38,7 @@ export function ProcessStrip() {
                 <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-white text-xs font-bold">
                   {s.number}
                 </span>
-                <h3 className="mt-3 font-serif text-base sm:text-lg font-bold leading-snug">{s.title}</h3>
+                <h3 className="mt-3 font-serif text-base sm:text-base font-bold leading-snug">{s.title}</h3>
                 <p className="mt-1 text-xs text-white/60 leading-relaxed">{s.description}</p>
               </motion.li>
             ))}

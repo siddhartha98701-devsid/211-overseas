@@ -97,7 +97,7 @@ export function ProgramFinderSection() {
                     </span>
                     <span className="text-[10px] uppercase tracking-widest font-medium px-2 py-1 bg-[#94682B]/15 text-[#8A6020]">{l}</span>
                   </div>
-                  <h3 className="mt-5 font-serif text-xl font-bold text-black">{f.label}</h3>
+                  <h3 className="mt-5 font-serif text-lg font-bold text-black">{f.label}</h3>
                   <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{f.blurb}</p>
                   <ul className="mt-4 flex flex-wrap gap-2">
                     {f.topics.map((t) => (

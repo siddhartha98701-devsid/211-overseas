@@ -33,7 +33,7 @@ export function UAESectorsTabs() {
 
       {/* Sector Roles Panel */}
       <div className="border-t border-[#E6DDCC] pt-8">
-        <h4 className="font-serif text-2xl font-bold text-[#2A2A2A] mb-6">
+        <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-6">
           {sectors[activeSector].name} roles
         </h4>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">

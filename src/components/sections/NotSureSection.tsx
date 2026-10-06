@@ -15,7 +15,7 @@ export function NotSureSection() {
               <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
                 Profile-first guidance
               </span>
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Not sure which country?
               </h2>
               <p className="text-base text-[#57514A] leading-relaxed mb-8">

@@ -25,10 +25,10 @@ export default function UAEPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               Career opportunities
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Work in Dubai & UAE
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               {uae.hero.description}
             </p>
           </div>
@@ -55,10 +55,10 @@ export default function UAEPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-12">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Key employment sectors
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Explore high-growth sectors actively recruiting experienced talent in the United Arab Emirates.
               </p>
             </div>
@@ -73,10 +73,10 @@ export default function UAEPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Our UAE recruitment process
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 A transparent, step-by-step pathway from candidate profile submission to onboarding in the UAE.
               </p>
             </div>
@@ -88,12 +88,12 @@ export default function UAEPage() {
                   className="py-8 sm:py-10 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
                 >
                   <div className="md:col-span-2">
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#57514A]">
+                    <span className="font-serif text-xl sm:text-2xl font-bold text-[#57514A]">
                       {step.number}
                     </span>
                   </div>
                   <div className="md:col-span-4">
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
                       {step.title}
                     </h3>
                   </div>

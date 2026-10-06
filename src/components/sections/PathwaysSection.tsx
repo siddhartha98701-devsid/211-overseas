@@ -17,7 +17,7 @@ export function PathwaysSection() {
                 </span>
               </div>
               <div className="md:col-span-8">
-                <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] leading-[1.35] tracking-tight">
+                <p className="font-serif text-xl sm:text-2xl md:text-3xl font-bold text-[#2A2A2A] leading-[1.35] tracking-tight">
                   {siteContent.intro.text}
                 </p>
               </div>
@@ -47,7 +47,7 @@ export function PathwaysSection() {
                 <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3">
                   Featured study destination
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                   Study in South Korea
                 </h2>
                 <p className="text-sm sm:text-base text-[#57514A] leading-relaxed mb-8">
@@ -89,7 +89,7 @@ export function PathwaysSection() {
                 <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3">
                   Healthcare pathways
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                   Work in Germany
                 </h2>
                 <p className="text-sm sm:text-base text-[#57514A] leading-relaxed mb-8">
@@ -153,7 +153,7 @@ export function PathwaysSection() {
                 <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3">
                   Professional opportunities
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+                <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                   Work in Dubai & UAE
                 </h2>
                 <p className="text-sm sm:text-base text-[#57514A] leading-relaxed mb-8">

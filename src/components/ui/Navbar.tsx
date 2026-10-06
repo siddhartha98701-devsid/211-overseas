@@ -158,7 +158,7 @@ export function Navbar() {
                 >
                   <Link
                     href={link.href}
-                    className={`font-serif text-3xl transition-colors ${
+                    className={`font-serif text-2xl transition-colors ${
                       pathname === link.href ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'
                     }`}
                     onClick={() => setIsOpen(false)}

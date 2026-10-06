@@ -9,7 +9,7 @@ export function TaglineMarquee() {
     <ul className="flex shrink-0 items-center" aria-hidden={hidden || undefined}>
       {items.map((t) => (
         <li key={t} className="flex items-center whitespace-nowrap">
-          <span className="font-serif italic text-2xl sm:text-3xl font-bold text-white px-8 sm:px-12">{t}</span>
+          <span className="font-serif italic text-xl sm:text-2xl font-bold text-white px-8 sm:px-12">{t}</span>
           <Plane size={30} color="#B88740" className="shrink-0" />
         </li>
       ))}

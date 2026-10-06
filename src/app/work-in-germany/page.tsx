@@ -24,10 +24,10 @@ export default function GermanyPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               Healthcare careers
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Work in Germany
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               {germany.hero.description}
             </p>
           </div>
@@ -54,10 +54,10 @@ export default function GermanyPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Structured pathways for healthcare professionals
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Germany offers regulated, highly supportive career transitions for international nurses and physiotherapists.
               </p>
             </div>
@@ -69,7 +69,7 @@ export default function GermanyPage() {
                   <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
                     {germany.nurses.tag}
                   </span>
-                  <h3 className="font-serif text-3xl font-bold text-[#2A2A2A] tracking-tight mb-4">
+                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-4">
                     {germany.nurses.title}
                   </h3>
                   <p className="text-sm text-[#57514A] leading-relaxed mb-8">
@@ -104,7 +104,7 @@ export default function GermanyPage() {
                   <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
                     {germany.physio.tag}
                   </span>
-                  <h3 className="font-serif text-3xl font-bold text-[#2A2A2A] tracking-tight mb-4">
+                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-4">
                     {germany.physio.title}
                   </h3>
                   <p className="text-sm text-[#57514A] leading-relaxed mb-8">

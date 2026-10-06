@@ -55,10 +55,10 @@ export default function SouthKoreaPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               Featured study destination
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Study in South Korea
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               {southKorea.hero.description}
             </p>
           </div>
@@ -87,10 +87,10 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Why study in South Korea?
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 South Korea combines world-class technological infrastructure with globally recognized academic rigor.
               </p>
             </div>
@@ -102,12 +102,12 @@ export default function SouthKoreaPage() {
                   className="py-8 sm:py-10 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
                 >
                   <div className="md:col-span-2">
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#57514A]">
+                    <span className="font-serif text-xl sm:text-2xl font-bold text-[#57514A]">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
                   <div className="md:col-span-4">
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
                       {point.title}
                     </h3>
                   </div>
@@ -128,10 +128,10 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Leading South Korean universities to explore
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Renowned public and private research universities known for engineering, business, sciences, and innovation.
               </p>
             </div>
@@ -143,7 +143,7 @@ export default function SouthKoreaPage() {
                     <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
                       {uni.abbr}
                     </span>
-                    <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-3">
+                    <h3 className="font-serif text-xl font-bold text-[#2A2A2A] tracking-tight mb-3">
                       {uni.name}
                     </h3>
                     <p className="text-sm text-[#57514A] leading-relaxed">
@@ -156,7 +156,7 @@ export default function SouthKoreaPage() {
                 <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
                   Additional
                 </span>
-                <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-3">
+                <h3 className="font-serif text-xl font-bold text-[#2A2A2A] tracking-tight mb-3">
                   And many more
                 </h3>
                 <p className="text-sm text-[#57514A] leading-relaxed">
@@ -167,7 +167,7 @@ export default function SouthKoreaPage() {
 
             {/* University Selection Factors */}
             <div className="mt-20 pt-16 border-t border-[#E6DDCC]">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] mb-8">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] mb-8">
                 Key factors when selecting your university
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
@@ -200,10 +200,10 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-12">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Course categories to explore
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Switch between disciplines to view high-demand specialization areas in South Korean universities.
               </p>
             </div>
@@ -218,10 +218,10 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Program levels
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Whether starting undergraduate studies, pursuing research, or mastering Korean language proficiency.
               </p>
             </div>
@@ -229,7 +229,7 @@ export default function SouthKoreaPage() {
             <div className="grid md:grid-cols-3 gap-8">
               <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] mb-4">
+                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
                     {southKorea.programs.korean.title}
                   </h3>
                   <p className="text-sm text-[#57514A] leading-relaxed mb-6">
@@ -246,7 +246,7 @@ export default function SouthKoreaPage() {
 
               <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] mb-4">
+                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
                     {southKorea.programs.bachelors.title}
                   </h3>
                   <p className="text-sm text-[#57514A] leading-relaxed mb-6">
@@ -263,7 +263,7 @@ export default function SouthKoreaPage() {
 
               <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] mb-4">
+                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
                     {southKorea.programs.masters.title}
                   </h3>
                   <p className="text-sm text-[#57514A] leading-relaxed mb-6">
@@ -287,10 +287,10 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
                 Our South Korea process
               </h2>
-              <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
                 Our structured 8-stage roadmap to successfully gaining admissions and visa issuance in South Korea.
               </p>
             </div>
@@ -302,12 +302,12 @@ export default function SouthKoreaPage() {
                   className="py-8 sm:py-10 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
                 >
                   <div className="md:col-span-2">
-                    <span className="font-serif text-2xl sm:text-3xl font-bold text-[#57514A]">
+                    <span className="font-serif text-xl sm:text-2xl font-bold text-[#57514A]">
                       {step.number}
                     </span>
                   </div>
                   <div className="md:col-span-4">
-                    <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
                       {step.title}
                     </h3>
                   </div>

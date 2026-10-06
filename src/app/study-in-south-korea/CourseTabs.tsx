@@ -40,7 +40,7 @@ export function CourseTabs() {
               <div className="grid md:grid-cols-3 gap-8">
                 {cat.subcategories.map((sub) => (
                   <div key={sub.name} className="border-t border-[#E6DDCC] pt-6">
-                    <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
+                    <h4 className="font-serif text-lg font-bold text-[#2A2A2A] mb-4">
                       {sub.name}
                     </h4>
                     <ul className="space-y-2 text-sm text-[#57514A]">

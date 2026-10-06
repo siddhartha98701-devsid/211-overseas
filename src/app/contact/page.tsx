@@ -19,10 +19,10 @@ export default function ContactPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               Contact 211 OVERSEAS
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Start a conversation with our advisors
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               Confused about where to start? Start with your profile — not a country. Share your
               details or connect directly with our Ahmedabad team.
             </p>
@@ -40,7 +40,7 @@ export default function ContactPage() {
                 <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
                   Office location
                 </span>
-                <p className="font-serif text-2xl font-bold text-[#2A2A2A] mb-1">
+                <p className="font-serif text-xl font-bold text-[#2A2A2A] mb-1">
                   {siteContent.brand.address}
                 </p>
                 <p className="text-xs text-[#57514A]">
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 </span>
                 <a
                   href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`}
-                  className="font-serif text-2xl font-bold text-[#2A2A2A] hover:text-[#8A6020] transition-colors block mb-1"
+                  className="font-serif text-xl font-bold text-[#2A2A2A] hover:text-[#8A6020] transition-colors block mb-1"
                 >
                   {siteContent.brand.phone}
                 </a>
@@ -73,7 +73,7 @@ export default function ContactPage() {
                   href={siteContent.brand.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-serif text-2xl font-bold text-[#2A2A2A] hover:text-[#8A6020] transition-colors block mb-1"
+                  className="font-serif text-xl font-bold text-[#2A2A2A] hover:text-[#8A6020] transition-colors block mb-1"
                 >
                   WhatsApp Us →
                 </a>

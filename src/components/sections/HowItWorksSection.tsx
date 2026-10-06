@@ -24,7 +24,7 @@ export function HowItWorksSection() {
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32">
               <SectionHeader dark eyebrow="How 211 OVERSEAS works" headline="Your overseas journey, simplified" />
-              <p className="-mt-6 text-base sm:text-lg text-white/70 leading-relaxed max-w-md">
+              <p className="-mt-6 text-base sm:text-base text-white/70 leading-relaxed max-w-md">
                 From initial assessment to your departure day, we provide transparent, structured guidance at
                 every milestone.
               </p>
@@ -59,7 +59,7 @@ export function HowItWorksSection() {
                   >
                     {step.number}
                   </motion.span>
-                  <h3 className="font-serif text-xl sm:text-2xl font-bold text-white tracking-tight">{step.title}</h3>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight">{step.title}</h3>
                   <p className="mt-2 text-sm sm:text-base text-white/65 leading-relaxed max-w-xl">{step.description}</p>
                 </motion.li>
               ))}

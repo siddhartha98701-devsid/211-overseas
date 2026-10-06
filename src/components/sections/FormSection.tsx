@@ -21,10 +21,10 @@ export function FormSection() {
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">
         <ScrollReveal>
           <div className="max-w-2xl mb-12 text-white">
-            <h2 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
               Start your overseas journey
             </h2>
-            <p className="text-base sm:text-lg text-white/80 font-light leading-relaxed">
+            <p className="text-base sm:text-base text-white/80 font-light leading-relaxed">
               Confused about where to start? Start with your profile — not a country. Limited
               counselling slots available each week.
             </p>

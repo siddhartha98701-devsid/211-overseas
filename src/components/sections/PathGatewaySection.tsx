@@ -56,7 +56,7 @@ export function PathGatewaySection() {
                 }`}
               >
                 <Icon size={22} className={active ? 'text-[#D1A95F]' : 'text-[#8A6020]'} aria-hidden="true" />
-                <span className="mt-3 block font-serif text-xl sm:text-2xl font-bold">{label}</span>
+                <span className="mt-3 block font-serif text-lg sm:text-xl font-bold">{label}</span>
                 <span className={`block text-xs sm:text-sm ${active ? 'text-white/65' : 'text-[#57514A]'}`}>{sub}</span>
                 {active && <motion.span layoutId="gateway-underline" className="absolute inset-x-0 bottom-0 h-1 bg-[#94682B]" />}
               </button>
@@ -79,7 +79,7 @@ export function PathGatewaySection() {
             >
               <div className="lg:col-span-7 bg-black text-white p-7 sm:p-10">
                 <p className="text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">Featured destination</p>
-                <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold">South Korea</h3>
+                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold">South Korea</h3>
                 <p className="mt-3 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{siteContent.pathways[0].description}</p>
                 <ul className="mt-6 flex flex-wrap gap-2">
                   {KOREA_FOCUS.map((f) => (
@@ -101,7 +101,7 @@ export function PathGatewaySection() {
 
               <div className="lg:col-span-5 border border-[#E6DDCC] p-7 sm:p-10 flex flex-col">
                 <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Also explore</p>
-                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold text-black">Other study destinations</h3>
+                <h3 className="mt-2 font-serif text-xl sm:text-2xl font-bold text-black">Other study destinations</h3>
                 <ul className="mt-5 flex flex-wrap gap-2">
                   {OTHER_STUDY.map((c) => (
                     <li key={c}>
@@ -140,7 +140,7 @@ export function PathGatewaySection() {
               ].map(({ key, p, label, roles, interest, title, wa }, i) => (
                 <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
                   <p className={`text-xs uppercase tracking-[0.25em] font-medium ${i === 0 ? 'text-[#D1A95F]' : 'text-[#8A6020]'}`}>{label}</p>
-                  <h3 className="mt-2 font-serif text-3xl sm:text-4xl font-bold">{title}</h3>
+                  <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold">{title}</h3>
                   <p className={`mt-3 text-sm sm:text-base leading-relaxed ${i === 0 ? 'text-white/70' : 'text-[#57514A]'}`}>{p.description}</p>
                   <ul className="mt-6 flex flex-wrap gap-2">
                     {roles.map((r) => (

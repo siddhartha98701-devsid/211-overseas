@@ -181,7 +181,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
       {/* Editorial Form Container */}
       <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-8 sm:p-12 md:p-16">
         <div className="mb-10 max-w-xl">
-          <h3 className="font-serif text-3xl sm:text-4xl font-bold text-[#2A2A2A] tracking-tight">
+          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight">
             Submit your profile
           </h3>
           <p className="text-sm text-[#57514A] mt-3 leading-relaxed">
@@ -583,7 +583,7 @@ function FormContent({ defaultInterest }: EnquiryFormProps) {
             <div className="w-12 h-12 bg-[#94682B] text-white flex items-center justify-center mx-auto mb-4">
               <Check size={24} strokeWidth={2} />
             </div>
-            <h4 className="font-serif text-2xl font-bold text-[#2A2A2A] mb-2">
+            <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-2">
               Profile received
             </h4>
             <p className="text-sm text-[#57514A] leading-relaxed mb-6">

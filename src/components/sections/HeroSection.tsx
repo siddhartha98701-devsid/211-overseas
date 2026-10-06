@@ -107,7 +107,7 @@ export function HeroSection() {
             211 OVERSEAS · study abroad
           </motion.p>
 
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-bold text-white tracking-tight leading-[1.02] mb-6">
+          <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white tracking-tight leading-[1.02] mb-6">
             <span className="sr-only">Your future has no borders.</span>
             <span aria-hidden="true" className="flex flex-wrap gap-x-[0.28em]">
               {HEADLINE.map((w, i) => (
@@ -131,7 +131,7 @@ export function HeroSection() {
             custom={1.0}
             initial={reduce ? false : 'hidden'}
             animate="show"
-            className="text-lg sm:text-xl text-white/90 font-light mb-4"
+            className="text-base sm:text-lg text-white/90 font-light mb-4"
           >
             Study abroad. Work abroad. Build your global future.
           </motion.p>
@@ -179,7 +179,7 @@ export function HeroSection() {
           className="lg:col-span-5 w-full max-w-md lg:max-w-none lg:ml-auto bg-white border-t-4 border-[#B88740] p-6 sm:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
         >
           <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Free counselling</p>
-          <h2 className="mt-1 mb-1 font-serif text-2xl sm:text-3xl font-bold text-black">Talk to an expert</h2>
+          <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-black">Talk to an expert</h2>
           <p className="mb-5 text-sm text-[#57514A]">Get a call back about studying in South Korea.</p>
           <LeadMiniForm interest="Study in South Korea" source="hero-form" />
         </motion.aside>

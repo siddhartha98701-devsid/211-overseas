@@ -19,7 +19,7 @@ export function CounsellingSection() {
           <h2 className="headline-lg text-[#2A2A2A] mb-4">
             Start Your <em className="font-display italic text-[#8A6020]">Overseas Journey</em>
           </h2>
-          <p className="text-base md:text-lg text-[#57514A] max-w-xl mx-auto mb-10">
+          <p className="text-base md:text-base text-[#57514A] max-w-xl mx-auto mb-10">
             {counselling.description}
           </p>
         </ScrollReveal>
@@ -33,7 +33,7 @@ export function CounsellingSection() {
               {counselling.questions.map((q, i) => (
                 <div key={i} className="flex items-center gap-3.5 p-3 rounded-2xl bg-white/60 border border-gray-100">
                   <span className="w-2 h-2 rounded-full bg-[#94682B] flex-shrink-0" />
-                  <p className="font-display text-lg sm:text-xl text-[#2A2A2A] italic">
+                  <p className="font-display text-base sm:text-lg text-[#2A2A2A] italic">
                     &ldquo;{q}&rdquo;
                   </p>
                 </div>

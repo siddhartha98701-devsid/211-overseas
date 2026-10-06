@@ -24,10 +24,10 @@ export default function AboutPage() {
             <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
               About 211 OVERSEAS
             </span>
-            <h1 className="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
               Understand the candidate first. Recommend the pathway second.
             </h1>
-            <p className="text-lg sm:text-xl text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
               {about.description}
             </p>
           </div>
@@ -58,12 +58,12 @@ export default function AboutPage() {
                 <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
                   Our guiding principle
                 </span>
-                <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
                   A transparent, profile-first methodology
                 </h2>
               </div>
               <div className="lg:col-span-7">
-                <blockquote className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] leading-snug">
+                <blockquote className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] leading-snug">
                   &ldquo;{about.focus}&rdquo;
                 </blockquote>
                 <p className="mt-6 text-sm sm:text-base text-[#57514A] leading-relaxed">
@@ -76,7 +76,7 @@ export default function AboutPage() {
 
             {/* Four Key Areas */}
             <div className="border-t border-[#E6DDCC] pt-16">
-              <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] mb-12">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] mb-12">
                 Four specialized focus areas
               </h3>
               <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -85,7 +85,7 @@ export default function AboutPage() {
                     <span className="font-serif text-xs text-[#57514A] block mb-2">
                       0{i + 1}
                     </span>
-                    <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-3">
+                    <h4 className="font-serif text-lg font-bold text-[#2A2A2A] mb-3">
                       {area}
                     </h4>
                     <p className="text-xs text-[#57514A] leading-relaxed">
@@ -107,7 +107,7 @@ export default function AboutPage() {
               <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
                 Our vision
               </span>
-              <p className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] leading-[1.2] tracking-tight">
+              <p className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] leading-[1.2] tracking-tight">
                 &ldquo;{about.vision}&rdquo;
               </p>
             </div>

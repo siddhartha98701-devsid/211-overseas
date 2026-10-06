@@ -79,7 +79,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-[#94682B] text-white">
           <Check size={24} strokeWidth={2.5} />
         </div>
-        <h4 className="font-serif text-2xl font-bold text-black">Thank you!</h4>
+        <h4 className="font-serif text-xl font-bold text-black">Thank you!</h4>
         <p className="mt-2 text-sm text-[#57514A] leading-relaxed">
           A 211 OVERSEAS counsellor will call or WhatsApp you shortly on the number you shared.
         </p>

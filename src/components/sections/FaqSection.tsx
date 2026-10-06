@@ -44,7 +44,7 @@ export function FaqSection({ limit }: { limit?: number }) {
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-6 py-5 text-left cursor-pointer group"
                   >
-                    <span className="font-serif text-lg sm:text-xl font-bold text-black group-hover:text-[#8A6020] transition-colors">{f.q}</span>
+                    <span className="font-serif text-base sm:text-lg font-bold text-black group-hover:text-[#8A6020] transition-colors">{f.q}</span>
                     <motion.span animate={{ rotate: isOpen ? 45 : 0 }} className="shrink-0 flex h-8 w-8 items-center justify-center bg-[#94682B] text-white">
                       <Plus size={18} aria-hidden="true" />
                     </motion.span>

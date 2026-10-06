@@ -69,7 +69,7 @@ export function KoreaHighlights() {
               <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors duration-300 group-hover:bg-[#94682B] group-hover:text-white">
                 <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
               </span>
-              <h3 className="mt-5 font-serif text-xl font-bold text-black leading-snug">{title}</h3>
+              <h3 className="mt-5 font-serif text-lg font-bold text-black leading-snug">{title}</h3>
               <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
             </motion.li>
           ))}
