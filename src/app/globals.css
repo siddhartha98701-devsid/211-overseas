@@ -41,7 +41,8 @@ html {
 
 body {
   color: #000000;
-  background-color: #FFFFFF;
+  /* No background here: html paints the page colour, so the layered section backgrounds below
+     (z-index -2) and the flight path (z-index -1) can show between it and the content. */
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -170,3 +171,23 @@ body {
     animation: none !important;
   }
 }
+
+/* ---------- Layered section backgrounds ----------
+   Backgrounds of full-width sections are painted at z-index -2, the background flight path sits at -1
+   and all content paints above it. That way the plane stays visible over dark sections too, and is
+   only ever hidden by real content (text, cards, forms, photos). Nothing between these elements and
+   the root may create a stacking context (no z-index/transform/opacity on <main> or wrappers). */
+.bgl {
+  position: relative;
+}
+.bgl::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background: var(--bgl, transparent);
+  pointer-events: none;
+}
+.bgl-black { --bgl: #000000; }
+.bgl-gray { --bgl: #F5F5F5; }
+.bgl-mustard { --bgl: #E59217; }

@@ -6,7 +6,7 @@ export function FormSection() {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden" aria-label="Begin your overseas journey">
       {/* Full-bleed background image with subtle scrim */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-[-2]">
         <Image
           src="/images/cta.jpg"
           alt="Airplane wing flying high above clouds"

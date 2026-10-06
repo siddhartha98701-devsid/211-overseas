@@ -43,7 +43,7 @@ export function ProgramFinderSection() {
   const cards = fields.flatMap((f) => levels.map((l) => ({ f, l })));
 
   return (
-    <section id="programs" className="py-24 md:py-32 bg-[#F5F5F5] border-b border-[#E5E5E5] scroll-mt-24" aria-label="Find your program">
+    <section id="programs" className="bgl bgl-gray py-24 md:py-32 border-b border-[#E5E5E5] scroll-mt-24" aria-label="Find your program">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           eyebrow="Program finder"

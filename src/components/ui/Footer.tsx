@@ -4,7 +4,7 @@ import { Logo } from './Logo';
 
 export function Footer() {
   return (
-    <footer className="relative bg-black text-white border-t-4 border-[#E59217] overflow-hidden" aria-label="Footer">
+    <footer className="bgl bgl-black text-white border-t-4 border-[#E59217] overflow-hidden" aria-label="Footer">
       <div className="max-w-[1280px] mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}

@@ -30,10 +30,10 @@ export function HeroSection() {
   const reduce = usePrefersReducedMotion();
 
   return (
-    <section className="relative min-h-[92vh] md:min-h-screen flex items-end overflow-hidden bg-black" aria-label="Hero">
+    <section className="bgl bgl-black min-h-[92vh] md:min-h-screen flex items-end overflow-hidden" aria-label="Hero">
       {/* Hero photo with a slow settle-in zoom */}
       <motion.div
-        className="absolute inset-0 z-0"
+        className="absolute inset-0 z-[-2]"
         initial={reduce ? false : { scale: 1.12 }}
         animate={{ scale: 1 }}
         transition={{ duration: 2.4, ease: EASE }}

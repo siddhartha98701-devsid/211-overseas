@@ -90,15 +90,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${outfit.variable} ${playfair.variable}`}>
-      <body className="font-sans antialiased bg-[#FFFFFF] text-[#000000]">
+      <body className="font-sans antialiased text-[#000000]">
         <MotionProvider>
         <CallbackProvider>
         <FlightPath />
         <Navbar />
-        <main className="relative z-[1] min-h-screen">{children}</main>
-        <div className="relative z-[1]">
-          <Footer />
-        </div>
+        <main className="min-h-screen">{children}</main>
+        <Footer />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

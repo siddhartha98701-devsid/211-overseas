@@ -11,7 +11,7 @@ export function ProcessStrip() {
   const { steps } = siteContent.howItWorks;
 
   return (
-    <section id="process" className="py-16 md:py-20 bg-black text-white overflow-x-clip scroll-mt-24" aria-label="How it works">
+    <section id="process" className="bgl bgl-black py-16 md:py-20 text-white overflow-x-clip scroll-mt-24" aria-label="How it works">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader dark compact eyebrow="How 211 OVERSEAS works" headline="Your journey in 7 simple steps" />
 

@@ -111,7 +111,7 @@ export function GlobeExplorerSection() {
   return (
     <section
       id="globe"
-      className="relative py-16 md:py-24 bg-black text-white scroll-mt-24 overflow-hidden"
+      className="bgl bgl-black py-16 md:py-24 text-white scroll-mt-24 overflow-hidden"
       aria-label="Choose your destination"
     >
       <div className="max-w-[1280px] mx-auto px-6">

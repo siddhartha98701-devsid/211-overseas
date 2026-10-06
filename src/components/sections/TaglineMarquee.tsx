@@ -17,7 +17,7 @@ export function TaglineMarquee() {
   );
 
   return (
-    <section className="marquee bg-black border-y border-[#E59217]/40 py-5 overflow-hidden" aria-label="Our promise">
+    <section className="marquee bgl bgl-black border-y border-[#E59217]/40 py-5 overflow-hidden" aria-label="Our promise">
       <div className="marquee-track flex w-max">
         {track(false)}
         {track(true)}

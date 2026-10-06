@@ -7,8 +7,8 @@ interface AirlinerProps extends Omit<SVGProps<SVGSVGElement>, 'width' | 'height'
 
 /**
  * Top-down airliner, nose pointing right (+x). White fuselage with soft shading, swept grey wings,
- * under-wing engines and mustard livery accents (tail tips, engine rings, winglets), with a drop
- * shadow so it reads as flying above the page.
+ * under-wing engines and mustard livery accents (tail tips, engine rings, winglets). The drop shadow is
+ * added by the parent so it keeps a fixed direction while the plane turns.
  */
 export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProps) {
   return (
@@ -36,12 +36,9 @@ export function AirlinerTopDown({ size = 160, className, ...rest }: AirlinerProp
           <stop offset="0" stopColor="#e8eaed" />
           <stop offset="1" stopColor="#9da2a9" />
         </linearGradient>
-        <filter id="al-shadow" x="-20%" y="-30%" width="150%" height="190%">
-          <feDropShadow dx="8" dy="14" stdDeviation="6" floodColor="#000" floodOpacity="0.28" />
-        </filter>
       </defs>
 
-      <g filter="url(#al-shadow)" stroke="#9aa0a8" strokeWidth="0.8" strokeLinejoin="round">
+      <g stroke="#9aa0a8" strokeWidth="0.8" strokeLinejoin="round">
         {/* tailplanes */}
         <path d="M44 66 L14 40 L8 42 L26 70 Z" fill="url(#al-wing)" />
         <path d="M44 74 L14 100 L8 98 L26 70 Z" fill="url(#al-wing)" />
