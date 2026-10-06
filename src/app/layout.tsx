@@ -6,7 +6,7 @@ import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
 import { CallbackProvider } from '@/components/lead/CallbackProvider';
 import { MotionProvider } from '@/components/ui/MotionProvider';
-import { FlightPath } from '@/components/ui/FlightPath';
+import { FlightPathLayer } from '@/components/ui/FlightPathLayer';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
 
 // Free look-alikes for the brand fonts (Boston Angel Bold / Gordita). The licensed
@@ -93,7 +93,7 @@ export default function RootLayout({
       <body className="font-sans antialiased bg-[#FFFFFF] text-[#000000]">
         <MotionProvider>
         <CallbackProvider>
-        <FlightPath />
+        <FlightPathLayer />
         <Navbar />
         <main className="relative z-[1] min-h-screen">{children}</main>
         <div className="relative z-[1]">
