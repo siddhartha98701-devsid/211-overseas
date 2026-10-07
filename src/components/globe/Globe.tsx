@@ -2,7 +2,6 @@
 
 import { useRef, useMemo, useState, useCallback, useEffect } from 'react';
 import { Canvas, useFrame, useThree } from '@react-three/fiber';
-import { Html } from '@react-three/drei';
 import * as THREE from 'three';
 
 export { GLOBE_PINS, type GlobePin } from './pins';
@@ -200,39 +199,6 @@ function PinMarker({
           <meshBasicMaterial color={dark ? '#FFFFFF' : '#2A2A2A'} transparent opacity={0.3} side={THREE.DoubleSide} />
         </mesh>
       )}
-
-      {/* Label on hover or selection. The <Html> stays mounted (unmounting it throws a
-          removeChild error in drei) and only its content toggles. */}
-      <Html position={[0, 0.22, 0]} center distanceFactor={4.2} className="pointer-events-none select-none z-20">
-        {(isHovered || isSelected) && (
-          <div
-            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-sm ${
-              dark ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
-            }`}
-          >
-            <CountryFlag
-              country={pin.isOrigin ? 'India' : pin.country}
-              className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
-              width={28}
-              height={20}
-              loading="eager"
-              fadeIn
-            />
-            <div className="flex flex-col justify-center">
-              <span
-                className={`block text-[10px] uppercase tracking-wider font-medium leading-tight ${
-                  dark ? 'text-[#D1A95F]' : 'text-[#57514A]'
-                }`}
-              >
-                {pin.isOrigin ? 'Headquarters' : pin.country}
-              </span>
-              <span className={`block text-xs font-semibold leading-tight ${dark ? 'text-white' : 'text-black'}`}>
-                {pin.name}
-              </span>
-            </div>
-          </div>
-        )}
-      </Html>
     </group>
   );
 }
@@ -330,12 +296,18 @@ function GlobeScene({
   selectedName,
   onSelect,
   dark = false,
+  labelRef,
+  activePin,
+  onHoverPin,
 }: {
   dark?: boolean;
   reducedMotion?: boolean;
   highlightCountry?: string;
   selectedName?: string | null;
   onSelect?: (name: string) => void;
+  labelRef: React.RefObject<HTMLDivElement | null>;
+  activePin: GlobePin | null;
+  onHoverPin: (pin: GlobePin | null) => void;
 }) {
   const groupRef = useRef<THREE.Group>(null);
   const isDragging = useRef(false);
@@ -345,8 +317,7 @@ function GlobeScene({
   const focusTarget = useRef<{ x: number; y: number } | null>(null);
   const autoRotatePauseTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isAutoRotatePaused = useRef(false);
-  const [hoveredPinIdx, setHoveredPinIdx] = useState<number | null>(null);
-  const { gl } = useThree();
+  const { gl, camera } = useThree();
 
   // Rotate to the selected destination whenever the selection changes
   useEffect(() => {
@@ -434,6 +405,26 @@ function GlobeScene({
         group.rotation.x = Math.max(-0.8, Math.min(0.8, group.rotation.x + velocity.current.y));
       }
     }
+    // Update floating HTML label position by projecting active pin from 3D to 2D
+    if (labelRef.current && activePin && groupRef.current) {
+      const local = latLonToVector3(activePin.lat, activePin.lon, GLOBE_RADIUS * 1.02);
+      const worldPos = new THREE.Vector3().copy(local).applyMatrix4(groupRef.current.matrixWorld);
+
+      // Facing the camera if worldPos.z > 0.05
+      if (worldPos.z > 0.05) {
+        worldPos.y += 0.22; // position slightly above the pin
+        worldPos.project(camera);
+        const x = (worldPos.x * 0.5 + 0.5) * 100;
+        const y = (-worldPos.y * 0.5 + 0.5) * 100;
+        labelRef.current.style.opacity = '1';
+        labelRef.current.style.left = `${x.toFixed(2)}%`;
+        labelRef.current.style.top = `${y.toFixed(2)}%`;
+      } else {
+        labelRef.current.style.opacity = '0';
+      }
+    } else if (labelRef.current) {
+      labelRef.current.style.opacity = '0';
+    }
   });
 
   const originPin = GLOBE_PINS[0]; // Ahmedabad
@@ -446,17 +437,19 @@ function GlobeScene({
       <AtmosphereRim dark={dark} />
 
       {/* Pins */}
-      {GLOBE_PINS.map((pin, idx) => {
+      {GLOBE_PINS.map((pin) => {
         const isTarget = !!highlightCountry && pin.country.toLowerCase().includes(highlightCountry.toLowerCase());
+        const isHovered = activePin?.name === pin.name || isTarget;
+        const isSelected = selectedPin?.name === pin.name;
         return (
           <PinMarker
             key={pin.name}
             pin={pin}
-            isHovered={hoveredPinIdx === idx || isTarget}
-            isSelected={selectedPin?.name === pin.name}
+            isHovered={isHovered}
+            isSelected={isSelected}
             dark={dark}
-            onHover={() => setHoveredPinIdx(idx)}
-            onUnhover={() => setHoveredPinIdx(null)}
+            onHover={() => onHoverPin(pin)}
+            onUnhover={() => onHoverPin(null)}
             onSelect={
               onSelect
                 ? () => {
@@ -515,6 +508,11 @@ export default function Globe({
 }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
+  const [hoveredPin, setHoveredPin] = useState<GlobePin | null>(null);
+  const labelRef = useRef<HTMLDivElement>(null);
+
+  const selectedPin = GLOBE_PINS.find((p) => p.name === selectedName) || GLOBE_PINS[1];
+  const activePin = hoveredPin || selectedPin;
 
   useEffect(() => {
     // Check reduced motion preference
@@ -553,8 +551,51 @@ export default function Globe({
           selectedName={selectedName}
           onSelect={onSelect}
           dark={tone === 'dark'}
+          labelRef={labelRef}
+          activePin={activePin}
+          onHoverPin={setHoveredPin}
         />
       </Canvas>
+
+      {/* Floating 3D-projected label with flag */}
+      {activePin && (
+        <div
+          ref={labelRef}
+          className="pointer-events-none select-none absolute z-20 -translate-x-1/2 -translate-y-full transition-opacity duration-150"
+          style={{ opacity: 0, left: '50%', top: '50%' }}
+        >
+          <div
+            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm ${
+              tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
+            }`}
+          >
+            <CountryFlag
+              country={activePin.isOrigin ? 'India' : activePin.country}
+              className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
+              width={28}
+              height={20}
+              loading="eager"
+              fadeIn
+            />
+            <div className="flex flex-col justify-center">
+              <span
+                className={`block text-[10px] uppercase tracking-wider font-medium leading-tight ${
+                  tone === 'dark' ? 'text-[#D1A95F]' : 'text-[#57514A]'
+                }`}
+              >
+                {activePin.isOrigin ? 'Headquarters' : activePin.country}
+              </span>
+              <span
+                className={`block text-xs font-semibold leading-tight ${
+                  tone === 'dark' ? 'text-white' : 'text-black'
+                }`}
+              >
+                {activePin.name}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
