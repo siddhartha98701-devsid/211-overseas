@@ -8,6 +8,7 @@ import * as THREE from 'three';
 export { GLOBE_PINS, type GlobePin } from './pins';
 import { GLOBE_PINS, type GlobePin } from './pins';
 import { isLand } from './landMask';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 
 const GLOBE_RADIUS = 2.2;
 const ACCENT_COLOR = '#B88740';
@@ -202,22 +203,34 @@ function PinMarker({
 
       {/* Label on hover or selection. The <Html> stays mounted (unmounting it throws a
           removeChild error in drei) and only its content toggles. */}
-      <Html position={[0, 0.2, 0]} center distanceFactor={4.2} className="pointer-events-none select-none">
+      <Html position={[0, 0.22, 0]} center distanceFactor={4.2} className="pointer-events-none select-none z-20">
         {(isHovered || isSelected) && (
-          <span
-            className={`block whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.25)] ${
-              dark ? 'bg-black border-[#B88740] text-white' : 'bg-white border-[#E6DDCC] text-black'
+          <div
+            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.35)] backdrop-blur-sm ${
+              dark ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
             }`}
           >
-            <span
-              className={`block text-[10px] uppercase tracking-wider font-medium ${
-                dark ? 'text-[#D1A95F]' : 'text-[#57514A]'
-              }`}
-            >
-              {pin.isOrigin ? 'Headquarters' : pin.country}
-            </span>
-            <span className="block text-xs font-medium">{pin.name}</span>
-          </span>
+            <CountryFlag
+              country={pin.isOrigin ? 'India' : pin.country}
+              className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
+              width={28}
+              height={20}
+              loading="eager"
+              fadeIn
+            />
+            <div className="flex flex-col justify-center">
+              <span
+                className={`block text-[10px] uppercase tracking-wider font-medium leading-tight ${
+                  dark ? 'text-[#D1A95F]' : 'text-[#57514A]'
+                }`}
+              >
+                {pin.isOrigin ? 'Headquarters' : pin.country}
+              </span>
+              <span className={`block text-xs font-semibold leading-tight ${dark ? 'text-white' : 'text-black'}`}>
+                {pin.name}
+              </span>
+            </div>
+          </div>
         )}
       </Html>
     </group>

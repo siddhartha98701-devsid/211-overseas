@@ -11,6 +11,7 @@ import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { siteContent } from '@/content/site';
 import { countryHref } from '@/content/subpages';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 
 interface Destination {
   /** Matches a pin name in GLOBE_PINS */
@@ -141,13 +142,13 @@ export function GlobeExplorerSection() {
                 Drag to rotate · tap a pin to select
               </p>
 
-              {/* Slider */}
-              <div className="mt-8 flex items-center gap-3">
+              {/* Slider with isolated navigation arrows and spacious cards */}
+              <div className="mt-8 flex items-center gap-2 sm:gap-3">
                 <button
                   type="button"
                   onClick={() => step(-1)}
                   aria-label="Previous destination"
-                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center"
+                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center active:scale-95 shadow-md"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -157,7 +158,7 @@ export function GlobeExplorerSection() {
                   role="radiogroup"
                   aria-label="Destinations"
                   onKeyDown={onKeyDown}
-                  className="flex-1 min-w-0 flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth py-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="flex-1 min-w-0 flex gap-2.5 sm:gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth py-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 >
                   {destinations.map((d) => {
                     const active = d.pin === selected;
@@ -170,20 +171,31 @@ export function GlobeExplorerSection() {
                         tabIndex={active ? 0 : -1}
                         data-pin={d.pin}
                         onClick={() => setSelected(d.pin)}
-                        className={`snap-center shrink-0 w-40 text-left px-4 py-3 border transition-colors ${
+                        className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none ${
                           active
-                            ? 'bg-[#94682B] border-[#B88740] text-white'
-                            : 'bg-transparent border-white/20 text-white hover:border-[#B88740]'
+                            ? 'bg-[#94682B] border-[#B88740] text-white shadow-[0_4px_16px_rgba(184,135,64,0.35)]'
+                            : 'bg-black/50 border-white/20 text-white hover:border-[#B88740] hover:bg-black/70'
                         }`}
                       >
                         <span
-                          className={`block text-[10px] uppercase tracking-widest ${
-                            active ? 'text-black/70' : 'text-white/55'
+                          className={`block text-[10px] uppercase tracking-widest leading-none ${
+                            active ? 'text-black/80 font-medium' : 'text-white/55'
                           }`}
                         >
                           {d.label}
                         </span>
-                        <span className="block font-serif text-base font-bold leading-tight mt-1">{d.country}</span>
+                        <div className="flex items-center gap-2.5 mt-2 min-w-0">
+                          <CountryFlag
+                            country={d.country}
+                            width={26}
+                            height={18}
+                            className="w-[24px] h-[16px] sm:w-[26px] sm:h-[18px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
+                            loading="lazy"
+                          />
+                          <span className="font-serif text-sm sm:text-base font-bold leading-tight truncate">
+                            {d.country}
+                          </span>
+                        </div>
                       </button>
                     );
                   })}
@@ -193,7 +205,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(1)}
                   aria-label="Next destination"
-                  className="shrink-0 h-10 w-10 border border-white/25 text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center"
+                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center active:scale-95 shadow-md"
                 >
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -214,8 +226,15 @@ export function GlobeExplorerSection() {
                     {current.featured ? 'Featured pathway' : 'Other destination'}
                     {pinMeta ? ` · ${pinMeta.name}` : ''}
                   </span>
-                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6">
-                    {current.country}
+                  <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight leading-[1.1] mt-3 mb-6 flex items-center gap-3">
+                    <CountryFlag
+                      country={current.country}
+                      width={38}
+                      height={26}
+                      className="w-[32px] h-[22px] sm:w-[38px] sm:h-[26px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-md"
+                      loading="lazy"
+                    />
+                    <span>{current.country}</span>
                   </h3>
                   <p className="text-sm sm:text-base text-white/70 leading-relaxed mb-8">{current.description}</p>
 

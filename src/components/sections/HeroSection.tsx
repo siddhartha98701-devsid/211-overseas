@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useRef, useState, type PointerEvent as ReactPointerEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { motion, type Variants } from 'framer-motion';
@@ -28,27 +29,110 @@ const fadeUp: Variants = {
 
 export function HeroSection() {
   const reduce = usePrefersReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const bgImageRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  const targetPos = useRef({ x: 0, y: 0, scale: 1.0 });
+  const currentPos = useRef({ x: 0, y: 0, scale: 1.0 });
+  const rafId = useRef<number | null>(null);
+
+  useEffect(() => {
+    const isFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    setIsTouchDevice(!isFinePointer);
+  }, []);
+
+  // Desktop hover scale + parallax shift smoothed with lerp in rAF
+  useEffect(() => {
+    if (reduce || isTouchDevice) return;
+
+    let isRunning = true;
+    const animate = () => {
+      if (!isRunning) return;
+      // Smooth lerp: scale over ~1.2s ease-out (~0.035 factor) and subtle parallax
+      currentPos.current.scale += (targetPos.current.scale - currentPos.current.scale) * 0.038;
+      currentPos.current.x += (targetPos.current.x - currentPos.current.x) * 0.06;
+      currentPos.current.y += (targetPos.current.y - currentPos.current.y) * 0.06;
+
+      if (bgImageRef.current) {
+        bgImageRef.current.style.transform = `translate3d(${currentPos.current.x.toFixed(2)}px, ${currentPos.current.y.toFixed(2)}px, 0) scale(${currentPos.current.scale.toFixed(4)})`;
+      }
+
+      rafId.current = requestAnimationFrame(animate);
+    };
+
+    rafId.current = requestAnimationFrame(animate);
+    return () => {
+      isRunning = false;
+      if (rafId.current) cancelAnimationFrame(rafId.current);
+    };
+  }, [reduce, isTouchDevice]);
+
+  const handlePointerEnter = () => {
+    if (!reduce && !isTouchDevice) {
+      setIsHovered(true);
+      targetPos.current.scale = 1.06;
+    }
+  };
+
+  const handlePointerLeave = () => {
+    if (!reduce && !isTouchDevice) {
+      setIsHovered(false);
+      targetPos.current.scale = 1.0;
+      targetPos.current.x = 0;
+      targetPos.current.y = 0;
+    }
+  };
+
+  const handlePointerMove = (e: ReactPointerEvent<HTMLElement>) => {
+    if (reduce || isTouchDevice || !sectionRef.current) return;
+    const rect = sectionRef.current.getBoundingClientRect();
+    const nx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2);
+    const ny = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2);
+    // Smooth parallax shift max ~10-15px
+    targetPos.current.x = Math.max(-13, Math.min(13, nx * 12));
+    targetPos.current.y = Math.max(-13, Math.min(13, ny * 12));
+  };
 
   return (
-    <section className="bgl bgl-black min-h-[92vh] md:min-h-screen flex items-end overflow-hidden" aria-label="Hero">
-      {/* Hero photo with a slow settle-in zoom */}
-      <motion.div
-        className="absolute inset-0 z-[-2]"
-        initial={reduce ? false : { scale: 1.12 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2.4, ease: EASE }}
-      >
-        <Image
-          src="/images/hero.jpg"
-          alt="Seoul skyline and historic architecture at golden hour"
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-center"
-        />
+    <section
+      ref={sectionRef}
+      onPointerEnter={handlePointerEnter}
+      onPointerLeave={handlePointerLeave}
+      onPointerMove={handlePointerMove}
+      className="bgl bgl-black min-h-[92vh] md:min-h-screen flex items-end overflow-hidden"
+      aria-label="Hero"
+    >
+      {/* Hero photo container with overflow:hidden and GPU-accelerated layer */}
+      <div className="absolute inset-0 z-[-2] overflow-hidden pointer-events-none select-none" aria-hidden="true">
+        <div
+          ref={bgImageRef}
+          className={`absolute inset-0 will-change-transform ${
+            isTouchDevice && !reduce ? 'animate-ken-burns' : ''
+          }`}
+          style={{
+            transform: reduce ? 'scale(1)' : undefined,
+          }}
+        >
+          <Image
+            src="/images/hero.jpg"
+            alt="Seoul skyline and historic architecture at golden hour"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-center"
+          />
+        </div>
+        {/* Base dark gradients for text contrast */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/35" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
-      </motion.div>
+        {/* Soft gold-tinted overlay/vignette that slightly brightens on hover */}
+        <div
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(209,169,95,0.18)_0%,rgba(148,104,43,0.07)_55%,transparent_80%)] transition-opacity duration-1000 ease-out"
+          style={{ opacity: isHovered && !reduce ? 1 : 0 }}
+        />
+      </div>
 
       {/* Brand flight arc: draws itself, then the plane rides it */}
       <svg
