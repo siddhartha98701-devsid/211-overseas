@@ -25,9 +25,8 @@ export const siteContent = {
   nav: {
     links: [
       { label: 'Home', href: '/' },
-      { label: 'Study in South Korea', href: '/study-in-south-korea' },
-      { label: 'Work in Germany', href: '/work-in-germany' },
-      { label: 'Work in UAE', href: '/work-in-uae' },
+      { label: 'Study', href: '/study-in-south-korea' },
+      { label: 'Work', href: '/work-and-study' },
       { label: 'Other Destinations', href: '/other-destinations' },
       { label: 'About Us', href: '/about' },
       { label: 'Contact', href: '/contact' },

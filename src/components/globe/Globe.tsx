@@ -606,8 +606,6 @@ export default function Globe({
               tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
             }`}
           >
-            }`}
-          >
             <CountryFlag
               country={activePin.isOrigin ? 'India' : activePin.country}
               className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"

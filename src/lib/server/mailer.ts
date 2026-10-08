@@ -1,3 +1,6 @@
+import 'server-only';
+import nodemailer from 'nodemailer';
+import type { StoredLead } from './leads';
 import { siteContent } from '@/content/site';
 
 /** Recipients come from EMAIL_1..EMAIL_3 and ADMIN_EMAIL, falling back to siteContent.brand.emails.admin. */

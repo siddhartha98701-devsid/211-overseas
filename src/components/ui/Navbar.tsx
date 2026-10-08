@@ -9,11 +9,18 @@ import { Logo } from './Logo';
 import { SUBPAGES, subpageHref } from '@/content/subpages';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
-const workStudyLinks = [
-  { label: 'Work & Study overview', href: '/work-and-study' },
+const studyLinks = [
+  { label: 'Study in South Korea', href: '/study-in-south-korea' },
+  { label: "Bachelor's Programs", href: '/study-in-south-korea/bachelors' },
+  { label: "Master's Programs", href: '/study-in-south-korea/masters' },
+  { label: 'Korean Language Programs', href: '/study-in-south-korea/korean-language' },
+  { label: 'Other Destinations', href: '/other-destinations' },
+];
+
+const workLinks = [
+  { label: 'Work & Study Overview', href: '/work-and-study' },
   { label: 'Work in Germany', href: '/work-in-germany' },
   { label: 'Work in UAE', href: '/work-in-uae' },
-  { label: 'Study in South Korea', href: '/study-in-south-korea' },
 ];
 
 const otherLinks = [
@@ -23,8 +30,8 @@ const otherLinks = [
 
 type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
 const navLinks: NavLink[] = [
-  { label: 'Study in South Korea', href: '/study-in-south-korea' },
-  { label: 'Work & Study', href: '/work-and-study', children: workStudyLinks },
+  { label: 'Study', href: '/study-in-south-korea', children: studyLinks },
+  { label: 'Work', href: '/work-and-study', children: workLinks },
   { label: 'Other Destinations', href: '/other-destinations', children: otherLinks },
   { label: 'About Us', href: '/about' },
 ];

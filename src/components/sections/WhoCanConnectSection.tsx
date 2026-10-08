@@ -61,10 +61,10 @@ export function WhoCanConnectSection() {
                   type="button"
                   onClick={() => setActive(s.id)}
                   className={`flex items-center gap-3 px-4 py-3 text-left border transition-colors cursor-pointer lg:w-full ${
-                    on ? 'bg-[#94682B] border-[#B88740] text-white' : 'border-[#E6DDCC] text-white hover:border-black'
+                    on ? 'bg-[#94682B] border-[#94682B] text-white shadow-sm' : 'bg-white border-[#E6DDCC] text-[#2A2A2A] hover:border-[#94682B] hover:text-[#94682B]'
                   }`}
                 >
-                  <SIcon size={18} aria-hidden="true" className={on ? 'text-black' : 'text-[#8A6020]'} />
+                  <SIcon size={18} aria-hidden="true" className={on ? 'text-white' : 'text-[#8A6020]'} />
                   <span className="font-medium text-sm sm:text-base">{s.label}</span>
                   <ArrowRight size={16} aria-hidden="true" className={`ml-auto hidden lg:block transition-transform ${on ? 'translate-x-0' : '-translate-x-2 opacity-0'}`} />
                 </button>
