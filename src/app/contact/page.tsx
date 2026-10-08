@@ -33,96 +33,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Direct Contact Channels Strip */}
-      <section className="py-12 md:py-16 border-b border-[#E6DDCC] bg-white" aria-label="Direct contact channels">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Phone */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
-                    <Phone size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Telephone</span>
-                  </div>
-                  <a
-                    href={`tel:${brand.phone.replace(/\s/g, '')}`}
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
-                  >
-                    {brand.phone}
-                  </a>
-                  <p className="text-xs text-[#57514A]">Direct phone assistance (IST)</p>
-                </div>
-              </div>
-
-              {/* WhatsApp */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
-                    <MessageSquare size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">WhatsApp Support</span>
-                  </div>
-                  <a
-                    href={brand.whatsapp}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
-                  >
-                    Chat on WhatsApp →
-                  </a>
-                  <p className="text-xs text-[#57514A]">Quick queries &amp; document assessment</p>
-                </div>
-              </div>
-
-              {/* Email Enquiries (3 emails) */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
-                    <Mail size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Email Advisory</span>
-                  </div>
-                  <div className="space-y-2 mt-2">
-                    <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
-                        {brand.emails.general.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.general.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
-                      >
-                        {brand.emails.general.address}
-                      </a>
-                    </div>
-                    <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
-                        {brand.emails.admissions.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.admissions.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
-                      >
-                        {brand.emails.admissions.address}
-                      </a>
-                    </div>
-                    <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
-                        {brand.emails.support.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.support.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
-                      >
-                        {brand.emails.support.address}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
       {/* Main Section: Form & Office Location side-by-side on desktop, stacked on mobile */}
       <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Enquiry and location">
         <div className="max-w-[1280px] mx-auto px-6">
@@ -210,6 +120,96 @@ export default function ContactPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Direct Contact Channels Strip */}
+      <section className="py-12 md:py-16 border-b border-[#E6DDCC] bg-white" aria-label="Direct contact channels">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <ScrollReveal>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {/* Phone */}
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                    <Phone size={18} />
+                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Telephone</span>
+                  </div>
+                  <a
+                    href={`tel:${brand.phone.replace(/\s/g, '')}`}
+                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
+                  >
+                    {brand.phone}
+                  </a>
+                  <p className="text-xs text-[#57514A]">Direct phone assistance (IST)</p>
+                </div>
+              </div>
+
+              {/* WhatsApp */}
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                    <MessageSquare size={18} />
+                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">WhatsApp Support</span>
+                  </div>
+                  <a
+                    href={brand.whatsapp}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
+                  >
+                    Chat on WhatsApp →
+                  </a>
+                  <p className="text-xs text-[#57514A]">Quick queries &amp; document assessment</p>
+                </div>
+              </div>
+
+              {/* Email Enquiries (3 emails) */}
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                    <Mail size={18} />
+                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Email Advisory</span>
+                  </div>
+                  <div className="space-y-2 mt-2">
+                    <div>
+                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                        {brand.emails.general.label}
+                      </span>
+                      <a
+                        href={`mailto:${brand.emails.general.address}`}
+                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                      >
+                        {brand.emails.general.address}
+                      </a>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                        {brand.emails.admissions.label}
+                      </span>
+                      <a
+                        href={`mailto:${brand.emails.admissions.address}`}
+                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                      >
+                        {brand.emails.admissions.address}
+                      </a>
+                    </div>
+                    <div>
+                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                        {brand.emails.support.label}
+                      </span>
+                      <a
+                        href={`mailto:${brand.emails.support.address}`}
+                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                      >
+                        {brand.emails.support.address}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
     </>
