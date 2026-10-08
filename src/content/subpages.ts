@@ -507,7 +507,7 @@ export const SUBPAGES: SubpageContent[] = [
   /* ============================== UAE ============================== */
   {
     group: 'work-in-uae', slug: 'healthcare', name: 'Healthcare', kind: 'work',
-    eyebrow: 'Work in UAE · Healthcare', headline: 'Healthcare careers in Dubai and the UAE', highlight: 'Dubai and the UAE',
+    eyebrow: 'Work in UAE · Healthcare', headline: 'Healthcare careers in the UAE', highlight: 'the UAE',
     intro: 'The UAE’s growing healthcare sector offers opportunities for qualified nurses, allied-health professionals and support staff. We guide you through licensing requirements, documents and the move.',
     facts: [
       { label: 'Working language', value: 'English widely used in healthcare' },
@@ -535,13 +535,13 @@ export const SUBPAGES: SubpageContent[] = [
       { q: 'Do you help with documents?', a: 'Yes. We guide you through the document preparation and attestation steps typically required.' },
       NO_GUARANTEE,
     ],
-    interest: 'Work in UAE / Dubai', destination: 'UAE / Dubai',
-    metaTitle: 'Healthcare Jobs in Dubai & UAE', metaDescription: 'Healthcare careers in the UAE: licensing, documents and guidance from 211 OVERSEAS.',
+    interest: 'Work in UAE', destination: 'UAE',
+    metaTitle: 'Healthcare Jobs in UAE', metaDescription: 'Healthcare careers in the UAE: licensing, documents and guidance from 211 OVERSEAS.',
     blurb: 'Nursing and allied-health careers across the UAE.',
   },
   {
     group: 'work-in-uae', slug: 'hospitality', name: 'Hospitality & hotels', kind: 'work',
-    eyebrow: 'Work in UAE · Hospitality', headline: 'Hospitality and hotel careers in Dubai and the UAE', highlight: 'Dubai and the UAE',
+    eyebrow: 'Work in UAE · Hospitality', headline: 'Hospitality and hotel careers in the UAE', highlight: 'the UAE',
     intro: 'Dubai and the wider UAE are global tourism and hospitality destinations. We guide candidates with hospitality skills towards hotels, resorts, restaurants and related roles.',
     facts: [
       { label: 'Working language', value: 'English' },
@@ -569,13 +569,13 @@ export const SUBPAGES: SubpageContent[] = [
       { q: 'How do I find employers?', a: 'We help prepare your profile and assist with employer connections where applicable.' },
       NO_GUARANTEE,
     ],
-    interest: 'Work in UAE / Dubai', destination: 'UAE / Dubai',
-    metaTitle: 'Hospitality Jobs in Dubai & UAE', metaDescription: 'Hotel and hospitality careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
+    interest: 'Work in UAE', destination: 'UAE',
+    metaTitle: 'Hospitality Jobs in UAE', metaDescription: 'Hotel and hospitality careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
     blurb: 'Hotels, resorts, restaurants and events.',
   },
   {
     group: 'work-in-uae', slug: 'engineering-construction', name: 'Engineering & construction', kind: 'work',
-    eyebrow: 'Work in UAE · Engineering & Construction', headline: 'Engineering and construction careers in Dubai and the UAE', highlight: 'Dubai and the UAE',
+    eyebrow: 'Work in UAE · Engineering & Construction', headline: 'Engineering and construction careers in the UAE', highlight: 'the UAE',
     intro: 'Major infrastructure, real estate and industrial projects keep the UAE’s engineering and construction sectors active. We guide qualified engineers, technicians and skilled professionals towards suitable roles.',
     facts: [
       { label: 'Working language', value: 'English' },
@@ -603,8 +603,8 @@ export const SUBPAGES: SubpageContent[] = [
       { q: 'Do you help with employers and visas?', a: 'We assist with profile preparation and employer connections where applicable, and guide you through the visa documentation.' },
       NO_GUARANTEE,
     ],
-    interest: 'Work in UAE / Dubai', destination: 'UAE / Dubai',
-    metaTitle: 'Engineering & Construction Jobs in Dubai & UAE', metaDescription: 'Engineering and construction careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
+    interest: 'Work in UAE', destination: 'UAE',
+    metaTitle: 'Engineering & Construction Jobs in UAE', metaDescription: 'Engineering and construction careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
     blurb: 'Civil, mechanical, electrical and project roles.',
   },
 ];

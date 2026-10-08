@@ -136,7 +136,7 @@ export function PathGatewaySection() {
             >
               {[
                 { key: 'germany', p: germany, label: 'Healthcare careers', roles: ['Nurses', 'Physiotherapists'], interest: 'Work in Germany – Nursing', title: 'Germany', wa: 'Hi 211 OVERSEAS, I want to work in Germany (healthcare).' },
-                { key: 'uae', p: uae, label: 'Multi-industry careers', roles: uae.bullets, interest: 'Work in UAE / Dubai', title: 'Dubai & UAE', wa: 'Hi 211 OVERSEAS, I want to work in Dubai / UAE.' },
+                { key: 'uae', p: uae, label: 'Multi-industry careers', roles: uae.bullets, interest: 'Work in UAE', title: 'UAE', wa: 'Hi 211 OVERSEAS, I want to work in Dubai / UAE.' },
               ].map(({ key, p, label, roles, interest, title, wa }, i) => (
                 <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
                   <p className={`text-xs uppercase tracking-[0.25em] font-medium ${i === 0 ? 'text-[#D1A95F]' : 'text-[#8A6020]'}`}>{label}</p>

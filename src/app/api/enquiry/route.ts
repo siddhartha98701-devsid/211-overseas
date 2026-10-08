@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { siteContent } from '@/content/site';
+import { emailLead } from '@/lib/server/mailer';
+import { saveLead, type StoredLead } from '@/lib/server/leads';
 
 export async function POST(req: NextRequest) {
   try {
@@ -28,34 +30,53 @@ export async function POST(req: NextRequest) {
 
     const adminEmail = siteContent.brand.emails.admin;
 
-    // Server-side logging of candidate profile
-    const timestamp = new Date().toISOString();
+    const known = new Set(['fullName', 'mobile', 'email', 'interests', 'destination', 'source', 'consent', 'faxNumber']);
+    const details: Record<string, string> = {};
+    for (const [k, v] of Object.entries(body)) {
+      if (!known.has(k) && v !== undefined && v !== null && v !== '') details[k] = String(v).slice(0, 500);
+    }
+
+    const lead: StoredLead = {
+      id: `211-${Date.now().toString(36).toUpperCase()}`,
+      createdAt: new Date().toISOString(),
+      fullName: String(body.fullName).slice(0, 120),
+      mobile: String(body.mobile).slice(0, 20),
+      email: body.email ? String(body.email).slice(0, 160) : undefined,
+      interests: Array.isArray(body.interests) ? body.interests.map((i: unknown) => String(i).slice(0, 120)) : [],
+      destination: body.destination ? String(body.destination).slice(0, 120) : undefined,
+      source: String(body.source || 'enquiry-form').slice(0, 160),
+      details,
+      emailed: false,
+    };
+
+    // Server-side logging of candidate profile including admin BCC
     console.log(`\n======================================================`);
     console.log(`[211 OVERSEAS CRM - NEW CANDIDATE PROFILE ENQUIRY]`);
-    console.log(`Time: ${timestamp}`);
-    console.log(`Recipient / BCC: ${adminEmail}`);
-    console.log(`Candidate Name: ${body.fullName}`);
-    console.log(`Mobile: ${body.mobile}`);
-    console.log(`Email: ${body.email || 'Not specified'}`);
-    console.log(`Source: ${body.source || 'enquiry-form'}`);
-    console.log(`Age: ${body.age || 'Not specified'}`);
-    console.log(`City: ${body.city || 'Not specified'}`);
-    console.log(`Qualification: ${body.qualification || 'Not specified'}`);
-    console.log(`Occupation: ${body.occupation || 'Not specified'}`);
-    console.log(`Destination: ${body.destination || 'Not specified'}`);
-    console.log(`Course/Career: ${body.courseOrCareer || 'Not specified'}`);
-    console.log(`Approx Budget: ${body.budget || 'Not specified'}`);
-    console.log(`Timeline: ${body.intakeTimeline || 'Not specified'}`);
-    console.log(`Interests: ${(body.interests || []).join(', ') || 'None selected'}`);
+    console.log(`Time: ${lead.createdAt}`);
+    console.log(`Admin BCC / Recipient: ${adminEmail}`);
+    console.log(`Candidate Name: ${lead.fullName}`);
+    console.log(`Mobile: ${lead.mobile}`);
+    console.log(`Email: ${lead.email || 'Not specified'}`);
+    console.log(`Source: ${lead.source}`);
+    console.log(`Interests: ${lead.interests.join(', ') || 'None selected'}`);
+    console.log(`Destination: ${lead.destination || 'Not specified'}`);
+    console.log(`Additional Details:`, JSON.stringify(details, null, 2));
     console.log(`======================================================\n`);
 
-    // In a production setup with credentials:
-    // e.g. await sendCrmWebhook(body); or await sendNotificationEmail(body);
+    // Email to configured recipients (including admin@211overseas.com)
+    lead.emailed = await emailLead(lead);
+    try {
+      await saveLead(lead);
+    } catch (err) {
+      console.error('[lead] Could not store lead', err);
+      if (!lead.emailed) throw err;
+    }
+    console.log(`[211 OVERSEAS] New lead ${lead.id} from ${lead.source} (emailed: ${lead.emailed})`);
 
     return NextResponse.json({
       success: true,
       message: 'Profile submitted successfully. Our team will connect with you.',
-      submissionId: `211-${Date.now().toString(36).toUpperCase()}`,
+      submissionId: lead.id,
     });
   } catch (error) {
     console.error('Error processing enquiry form:', error);

@@ -132,7 +132,7 @@ export function PathwaysSection() {
         </div>
       </section>
 
-      {/* Destination 3: Work in Dubai & UAE (7 cols image, 5 cols text) */}
+      {/* Destination 3: Work in UAE (7 cols image, 5 cols text) */}
       <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Work in UAE">
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
@@ -154,7 +154,7 @@ export function PathwaysSection() {
                   Professional opportunities
                 </span>
                 <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                  Work in Dubai & UAE
+                  Work in UAE
                 </h2>
                 <p className="text-sm sm:text-base text-[#57514A] leading-relaxed mb-8">
                   {siteContent.pathways[2].description}

@@ -143,7 +143,7 @@ export function Footer() {
               </li>
               <li>
                 <Link href="/work-in-uae" className="hover:text-[#D1A95F] transition-colors">
-                  UAE / Dubai
+                  Work in UAE
                 </Link>
               </li>
               <li>

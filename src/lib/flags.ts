@@ -58,7 +58,7 @@ export function getCountryCode(countryName?: string | null): string | null {
     if (normalized === key) return code;
   }
 
-  // Substring match fallback (e.g. "India (HQ)" or "UAE / Dubai")
+  // Substring match fallback (e.g. "India (HQ)" or "UAE")
   for (const [key, code] of Object.entries(COUNTRY_ISO_MAP)) {
     if (normalized.includes(key)) {
       return code;

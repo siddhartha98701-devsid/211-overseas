@@ -55,7 +55,7 @@ const QUALIFICATION_OPTIONS = [
 const DESTINATION_OPTIONS = [
   'South Korea',
   'Germany',
-  'UAE / Dubai',
+  'UAE',
   'Japan',
   'Taiwan',
   'Singapore',
