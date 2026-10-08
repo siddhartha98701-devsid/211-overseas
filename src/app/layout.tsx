@@ -5,6 +5,7 @@ import { Navbar } from '@/components/ui/Navbar';
 import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
 import { CallbackProvider } from '@/components/lead/CallbackProvider';
+import { NotSureModal } from '@/components/lead/NotSureModal';
 import { MotionProvider } from '@/components/ui/MotionProvider';
 import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
@@ -123,6 +124,7 @@ export default function RootLayout({
           }}
         />
         <ContactFloatingButtons />
+        <NotSureModal />
         </CallbackProvider>
         </MotionProvider>
       </body>

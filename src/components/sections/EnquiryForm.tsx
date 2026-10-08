@@ -516,7 +516,11 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
                 {...register('consent')}
               />
               <span className="text-sm text-[#57514A] leading-relaxed group-hover:text-black transition-colors">
-                I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.
+                I consent to 211 OVERSEAS contacting me regarding study and work abroad programs, and I agree to the{' '}
+                <Link href="/privacy-policy" target="_blank" className="underline underline-offset-2 text-[#94682B] hover:text-[#7A5622]">
+                  Privacy Policy
+                </Link>
+                .
               </span>
             </label>
             {errors.consent && (

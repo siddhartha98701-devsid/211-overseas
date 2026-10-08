@@ -15,16 +15,6 @@ const HIGHLIGHTS = [
   { icon: MapPin, title: 'Seoul · Busan', text: 'Dynamic student cities at the heart of South Korea.' },
 ];
 
-const DISCIPLINES = [
-  'Game Development',
-  'Animation',
-  'Film & Visual Effects',
-  'Digital Design',
-  'Korean Language & Business',
-  'Global Business Administration',
-  'Computer Science',
-];
-
 export function KoreaHighlights() {
   const reduce = usePrefersReducedMotion();
 
@@ -75,30 +65,10 @@ export function KoreaHighlights() {
           ))}
         </motion.ul>
 
-        <div className="mt-14">
-          <p className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-4">Key academic disciplines</p>
-          <motion.ul
-            variants={container}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: '-60px' }}
-            className="flex flex-wrap gap-3"
-          >
-            {DISCIPLINES.map((d) => (
-              <motion.li
-                key={d}
-                variants={item}
-                whileHover={reduce ? undefined : { scale: 1.05 }}
-                className="border border-black px-4 py-2 text-sm text-black transition-colors hover:bg-[#94682B] hover:border-[#B88740] cursor-default"
-              >
-                {d}
-              </motion.li>
-            ))}
-          </motion.ul>
-
+        <div className="mt-10 flex justify-start">
           <Link
             href="/study-in-south-korea"
-            className="group mt-10 inline-flex items-center text-xs uppercase tracking-widest text-black font-medium"
+            className="group inline-flex items-center text-xs uppercase tracking-widest text-black font-semibold hover:text-[#94682B] transition-colors"
           >
             <span className="link-draw pb-1">Explore study in South Korea</span>
             <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>

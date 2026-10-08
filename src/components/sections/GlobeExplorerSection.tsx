@@ -170,8 +170,15 @@ export function GlobeExplorerSection() {
                         aria-checked={active}
                         tabIndex={active ? 0 : -1}
                         data-pin={d.pin}
-                        onClick={() => setSelected(d.pin)}
-                        className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none ${
+                        onClick={() => {
+                          if (d.pin === 'Seoul' && active) {
+                            window.location.href = d.href;
+                          } else {
+                            setSelected(d.pin);
+                          }
+                        }}
+                        title={d.pin === 'Seoul' ? (active ? 'Click to open Study in South Korea' : 'Select South Korea') : undefined}
+                        className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none cursor-pointer ${
                           active
                             ? 'bg-[#94682B] border-[#B88740] text-white shadow-[0_4px_16px_rgba(184,135,64,0.35)]'
                             : 'bg-black/50 border-white/20 text-white hover:border-[#B88740] hover:bg-black/70'
@@ -195,6 +202,11 @@ export function GlobeExplorerSection() {
                           <span className="font-serif text-sm sm:text-base font-bold leading-tight truncate">
                             {d.country}
                           </span>
+                          {d.pin === 'Seoul' && active && (
+                            <span className="ml-auto text-[10px] text-white/90 underline font-sans shrink-0">
+                              View →
+                            </span>
+                          )}
                         </div>
                       </button>
                     );

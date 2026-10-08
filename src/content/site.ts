@@ -15,6 +15,12 @@ export const siteContent = {
     whatsapp: 'https://wa.me/919998585211',
     address: 'B-1405, The Capital, Science City Road, Sola, Ahmedabad 380060',
     city: 'Ahmedabad, Gujarat, India',
+    emails: {
+      general: { label: 'General Enquiries', address: 'info@211overseas.com' },
+      admissions: { label: 'Admissions', address: 'admissions@211overseas.com' },
+      support: { label: 'Support', address: 'support@211overseas.com' },
+      admin: 'admin@211overseas.com',
+    },
   },
   nav: {
     links: [
@@ -185,16 +191,16 @@ export const siteContent = {
       ],
     },
     universities: [
-      { name: 'Seoul National University', abbr: 'SNU', description: 'Sciences, engineering, business, humanities, social sciences and more.' },
-      { name: 'KAIST', abbr: 'KAIST', fullName: 'Korea Advanced Institute of Science & Technology', description: 'Science, engineering, technology, CS, AI and research-driven education.' },
-      { name: 'Yonsei University', abbr: 'Yonsei', description: 'Business, engineering, sciences, economics, international studies.' },
-      { name: 'Korea University', abbr: 'KU', description: 'Business, economics, engineering, technology, international studies.' },
-      { name: 'POSTECH', abbr: 'POSTECH', fullName: 'Pohang University of Science and Technology', description: 'Specialised science and technology with strong engineering focus.' },
-      { name: 'SKKU', abbr: 'SKKU', fullName: 'Sungkyunkwan University', description: 'Engineering, technology, business, science, humanities.' },
-      { name: 'Hanyang University', abbr: 'Hanyang', description: 'Engineering, technology, business, architecture and related areas.' },
-      { name: 'UNIST', abbr: 'UNIST', fullName: 'Ulsan National Institute of Science & Technology', description: 'Engineering, AI, computer science, biotechnology, energy.' },
-      { name: 'Kyung Hee University', abbr: 'KHU', description: 'Business, hospitality, international studies, sciences.' },
-      { name: 'GIST', abbr: 'GIST', fullName: 'Gwangju Institute of Science and Technology', description: 'Science, engineering, technology and research-based education.' },
+      { name: 'Seoul National University', abbr: 'SNU', image: '/images/universities/snu.jpg', description: 'Sciences, engineering, business, humanities, social sciences and more.' },
+      { name: 'KAIST', abbr: 'KAIST', fullName: 'Korea Advanced Institute of Science & Technology', image: '/images/universities/kaist.jpg', description: 'Science, engineering, technology, CS, AI and research-driven education.' },
+      { name: 'Yonsei University', abbr: 'Yonsei', image: '/images/universities/yonsei.jpg', description: 'Business, engineering, sciences, economics, international studies.' },
+      { name: 'Korea University', abbr: 'KU', image: '/images/universities/ku.jpg', description: 'Business, economics, engineering, technology, international studies.' },
+      { name: 'POSTECH', abbr: 'POSTECH', fullName: 'Pohang University of Science and Technology', image: '/images/universities/postech.jpg', description: 'Specialised science and technology with strong engineering focus.' },
+      { name: 'SKKU', abbr: 'SKKU', fullName: 'Sungkyunkwan University', image: '/images/universities/skku.jpg', description: 'Engineering, technology, business, science, humanities.' },
+      { name: 'Hanyang University', abbr: 'Hanyang', image: '/images/universities/hanyang.jpg', description: 'Engineering, technology, business, architecture and related areas.' },
+      { name: 'UNIST', abbr: 'UNIST', fullName: 'Ulsan National Institute of Science & Technology', image: '/images/universities/unist.jpg', description: 'Engineering, AI, computer science, biotechnology, energy.' },
+      { name: 'Kyung Hee University', abbr: 'KHU', image: '/images/universities/khu.jpg', description: 'Business, hospitality, international studies, sciences.' },
+      { name: 'GIST', abbr: 'GIST', fullName: 'Gwangju Institute of Science and Technology', image: '/images/universities/gist.jpg', description: 'Science, engineering, technology and research-based education.' },
     ],
     courseCategories: [
       {

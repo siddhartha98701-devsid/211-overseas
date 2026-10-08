@@ -250,6 +250,17 @@ export function HeroSection() {
             >
               Book free consultation
             </Link>
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-not-sure-modal'));
+                }
+              }}
+              className="w-full sm:w-auto text-xs text-[#D1A95F] hover:text-white underline underline-offset-4 tracking-wider transition-colors font-medium cursor-pointer py-1"
+            >
+              Not sure where to start? Free Counselling →
+            </button>
           </motion.div>
         </div>
 

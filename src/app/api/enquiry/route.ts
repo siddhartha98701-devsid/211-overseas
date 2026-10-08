@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { siteContent } from '@/content/site';
 
 export async function POST(req: NextRequest) {
   try {
@@ -25,11 +26,14 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const adminEmail = siteContent.brand.emails.admin;
+
     // Server-side logging of candidate profile
     const timestamp = new Date().toISOString();
     console.log(`\n======================================================`);
     console.log(`[211 OVERSEAS CRM - NEW CANDIDATE PROFILE ENQUIRY]`);
     console.log(`Time: ${timestamp}`);
+    console.log(`Recipient / BCC: ${adminEmail}`);
     console.log(`Candidate Name: ${body.fullName}`);
     console.log(`Mobile: ${body.mobile}`);
     console.log(`Email: ${body.email || 'Not specified'}`);

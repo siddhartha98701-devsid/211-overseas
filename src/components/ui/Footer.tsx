@@ -33,6 +33,42 @@ export function Footer() {
                 </a>
               </p>
             </div>
+            {/* Contact Emails */}
+            <div className="pt-3 border-t border-white/10 space-y-2 text-xs text-white/75">
+              <div>
+                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                  {siteContent.brand.emails.general.label}
+                </span>
+                <a
+                  href={`mailto:${siteContent.brand.emails.general.address}`}
+                  className="text-white hover:text-[#D1A95F] transition-colors"
+                >
+                  {siteContent.brand.emails.general.address}
+                </a>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                  {siteContent.brand.emails.admissions.label}
+                </span>
+                <a
+                  href={`mailto:${siteContent.brand.emails.admissions.address}`}
+                  className="text-white hover:text-[#D1A95F] transition-colors"
+                >
+                  {siteContent.brand.emails.admissions.address}
+                </a>
+              </div>
+              <div>
+                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                  {siteContent.brand.emails.support.label}
+                </span>
+                <a
+                  href={`mailto:${siteContent.brand.emails.support.address}`}
+                  className="text-white hover:text-[#D1A95F] transition-colors"
+                >
+                  {siteContent.brand.emails.support.address}
+                </a>
+              </div>
+            </div>
           </div>
 
           {/* Column 2: Study Abroad */}

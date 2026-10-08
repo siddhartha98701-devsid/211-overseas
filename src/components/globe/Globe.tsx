@@ -172,12 +172,21 @@ function PinMarker({
       <mesh
         onPointerOver={(e) => {
           e.stopPropagation();
+          if (pin.name === 'Seoul') {
+            document.body.style.cursor = 'pointer';
+          }
           onHover();
         }}
-        onPointerOut={onUnhover}
+        onPointerOut={() => {
+          document.body.style.cursor = 'default';
+          onUnhover();
+        }}
         onClick={(e) => {
           e.stopPropagation();
           onSelect?.();
+          if (pin.name === 'Seoul') {
+            window.location.href = '/study-in-south-korea';
+          }
         }}
       >
         <sphereGeometry args={[0.1, 12, 12]} />
@@ -564,9 +573,13 @@ export default function Globe({
           className="pointer-events-none select-none absolute z-20 -translate-x-1/2 -translate-y-full transition-opacity duration-150"
           style={{ opacity: 0, left: '50%', top: '50%' }}
         >
-          <div
-            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm ${
-              tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
+          <a
+            href={activePin.href}
+            role="link"
+            tabIndex={0}
+            aria-label={`Explore ${activePin.country} – ${activePin.name}`}
+            className={`pointer-events-auto cursor-pointer group flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all hover:scale-105 hover:border-[#D1A95F] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#B88740] ${
+              tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white hover:bg-black' : 'bg-white/95 border-[#E6DDCC] text-black hover:bg-white'
             }`}
           >
             <CountryFlag
@@ -586,14 +599,19 @@ export default function Globe({
                 {activePin.isOrigin ? 'Headquarters' : activePin.country}
               </span>
               <span
-                className={`block text-xs font-semibold leading-tight ${
+                className={`block text-xs font-semibold leading-tight flex items-center gap-1 ${
                   tone === 'dark' ? 'text-white' : 'text-black'
                 }`}
               >
-                {activePin.name}
+                <span>{activePin.name}</span>
+                {activePin.name === 'Seoul' && (
+                  <span className="text-[10px] text-[#D1A95F] opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                    →
+                  </span>
+                )}
               </span>
             </div>
-          </div>
+          </a>
         </div>
       )}
     </div>

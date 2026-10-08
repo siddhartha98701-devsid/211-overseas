@@ -91,7 +91,20 @@ export function Navbar() {
             })}
           </nav>
 
-          <div className="hidden lg:flex items-center">
+          <div className="hidden lg:flex items-center gap-4">
+            <button
+              type="button"
+              onClick={() => {
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(new CustomEvent('open-not-sure-modal'));
+                }
+              }}
+              className={`text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer hover:underline underline-offset-4 ${
+                isSolid ? 'text-[#8A6020]' : 'text-[#D1A95F] hover:text-white'
+              }`}
+            >
+              Not sure?
+            </button>
             <button
               type="button"
               onClick={() => openCallback({ source: 'navbar' })}
@@ -169,7 +182,19 @@ export function Navbar() {
               ))}
             </nav>
 
-            <div className="pt-8 border-t border-white/15">
+            <div className="pt-8 border-t border-white/15 space-y-3">
+              <button
+                type="button"
+                className="block w-full text-center py-3 border border-[#D1A95F] text-[#D1A95F] hover:bg-[#D1A95F]/10 text-xs uppercase tracking-widest font-semibold cursor-pointer transition-colors"
+                onClick={() => {
+                  setIsOpen(false);
+                  if (typeof window !== 'undefined') {
+                    window.dispatchEvent(new CustomEvent('open-not-sure-modal'));
+                  }
+                }}
+              >
+                Not sure where to start? Free Counselling
+              </button>
               <button
                 type="button"
                 className="btn-shine block w-full text-center py-4 bg-[#94682B] text-white text-sm uppercase tracking-wider font-medium cursor-pointer"
