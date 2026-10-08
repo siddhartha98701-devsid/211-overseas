@@ -44,7 +44,9 @@ export function CallbackProvider({ children }: { children: ReactNode }) {
   const isOpen = opts !== null;
   const pathname = usePathname();
   const isOpenRef = useRef(false);
-  isOpenRef.current = isOpen;
+  useEffect(() => {
+    isOpenRef.current = isOpen;
+  }, [isOpen]);
 
   // Automatic lead popup: once per session, after ~8s or when the cursor leaves through the top of the window.
   useEffect(() => {
