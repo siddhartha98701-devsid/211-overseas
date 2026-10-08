@@ -403,16 +403,16 @@ function GlobeScene({
       const k = reducedMotion ? 1 : Math.min(1, delta * 4);
       group.rotation.y += wrapAngle(target.y - group.rotation.y) * k;
       group.rotation.x += (target.x - group.rotation.x) * k;
-      return;
     }
+    const easing = !!target && !isDragging.current;
 
     // Auto-rotation only while nothing is selected
-    if (!reducedMotion && !selectedName && !isAutoRotatePaused.current && !isDragging.current) {
+    if (!easing && !reducedMotion && !selectedName && !isAutoRotatePaused.current && !isDragging.current) {
       group.rotation.y += 0.04 * delta;
     }
 
     // Inertia decay
-    if (!isDragging.current) {
+    if (!easing && !isDragging.current) {
       velocity.current.x *= 0.94;
       velocity.current.y *= 0.94;
       if (Math.abs(velocity.current.x) > 0.0001) {

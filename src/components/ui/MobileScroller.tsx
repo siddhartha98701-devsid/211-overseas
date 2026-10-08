@@ -61,7 +61,7 @@ export function MobileScroller({
         className={`flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-2 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden md:grid md:snap-none md:overflow-visible md:pb-0 md:gap-6 ${desktopClassName}`}
       >
         {items.map((child, i) => (
-          <li key={i} className="flex min-w-0 shrink-0 basis-[85%] snap-start md:basis-auto md:shrink [&>*]:w-full">
+          <li key={i} className="relative flex min-w-0 shrink-0 basis-[85%] snap-start md:basis-auto md:shrink [&>*]:w-full">
             {child}
           </li>
         ))}
