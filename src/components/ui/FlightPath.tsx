@@ -127,8 +127,9 @@ export function FlightPath() {
         <motion.div
           style={{
             width: size,
+            height: size,
             marginLeft: -size / 2,
-            marginTop: -(size * 140) / 240 / 2,
+            marginTop: -size / 2,
             rotate,
           }}
         >
