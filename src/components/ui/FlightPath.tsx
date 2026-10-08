@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 import { FlightPlane, type PlaneVariant } from './FlightPlane';
 
@@ -10,8 +10,6 @@ import { FlightPlane, type PlaneVariant } from './FlightPlane';
 const PLANE_VARIANT: PlaneVariant = 'jet';
 
 const SAMPLES = 60;
-const TRAIL_SEGMENTS = 28;
-const TRAIL_STEP = 0.0105; // path fraction covered by one trail segment (about 29% of the route in total)
 
 /** Position on the flight path in viewport percentages (0–100). Enters and leaves off-screen. */
 function pointAt(t: number) {
@@ -21,30 +19,8 @@ function pointAt(t: number) {
   };
 }
 
-const f = (n: number) => n.toFixed(2);
-
-/** One piece of the contrail: thinner and more transparent the further it is behind the plane. */
-function TrailSegment({ index, progress }: { index: number; progress: MotionValue<number> }) {
-  const d = useTransform(progress, (v) => {
-    const a = pointAt(Math.max(0, v - (index + 1) * TRAIL_STEP));
-    const b = pointAt(Math.max(0, v - index * TRAIL_STEP));
-    return `M${f(a.x)} ${f(a.y)} L${f(b.x)} ${f(b.y)}`;
-  });
-  const k = index / (TRAIL_SEGMENTS - 1); // 0 at the plane, 1 at the tail
-  return (
-    <motion.path
-      d={d}
-      stroke="#B88740"
-      strokeOpacity={0.85 * (1 - k) ** 1.4}
-      strokeWidth={5.5 * (1 - k) + 0.8}
-      strokeLinecap="butt"
-      vectorEffect="non-scaling-stroke"
-    />
-  );
-}
-
 /**
- * Background flight path: a realistic airliner with a tapered mustard contrail that flies across the page
+ * Background flight path: 2D brand logo airplane that flies across the page
  * as you scroll. It sits behind all content but above section backgrounds (see .bgl in globals.css), so
  * it stays visible over dark sections and is only hidden by real content. It starts once the visitor has
  * scrolled past the globe section (from the top on pages without a globe); before that it waits
@@ -113,12 +89,6 @@ export function FlightPath() {
       className="pointer-events-none fixed inset-0 -z-[1] overflow-hidden"
       style={{ contain: 'strict' }}
     >
-      <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none" fill="none">
-        {Array.from({ length: TRAIL_SEGMENTS }, (_, i) => (
-          <TrailSegment key={i} index={i} progress={progress} />
-        ))}
-      </svg>
-
       {/* The shadow lives on this non-rotating wrapper so it keeps one direction while the plane turns */}
       <motion.div
         className="absolute left-0 top-0 will-change-transform"
