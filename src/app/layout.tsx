@@ -6,7 +6,6 @@ import { Footer } from '@/components/ui/Footer';
 import { siteContent } from '@/content/site';
 import { CallbackProvider } from '@/components/lead/CallbackProvider';
 import { MotionProvider } from '@/components/ui/MotionProvider';
-import { FlightPath } from '@/components/ui/FlightPath';
 import { ContactFloatingButtons } from '@/components/ContactFloatingButtons';
 
 // Fonts matched to the owner's poster: Source Serif 4 headings, Figtree body. (Boston Angel / Gordita remain
@@ -94,7 +93,6 @@ export default function RootLayout({
       <body className="font-sans antialiased text-[#2A2A2A]">
         <MotionProvider>
         <CallbackProvider>
-        <FlightPath />
         <Navbar />
         <main className="min-h-screen">{children}</main>
         <Footer />

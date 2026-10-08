@@ -39,92 +39,68 @@ export function ProgramFinderSection() {
   const [field, setField] = useState<string>('all');
 
   const fields = field === 'all' ? FIELDS : FIELDS.filter((f) => f.id === field);
-  const levels: Level[] = level === 'Any' ? LEVELS : [level];
-  const cards = fields.flatMap((f) => levels.map((l) => ({ f, l })));
-  const filtered = level !== 'Any' || field !== 'all';
+  const levelLabel = level === 'Any' ? 'Undergraduate & Graduate' : level;
 
   return (
-    <section id="programs" className="bgl bgl-gray py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Find your program">
+    <section id="programs" className="bgl bgl-gray py-10 md:py-14 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Find your program">
       <div className="max-w-[1280px] mx-auto px-6">
-        <SectionHeader
-          eyebrow="Program finder"
-          headline="Find the program that fits you"
-          description="Pick a level and a field. Every program we guide on is English-taught, with IELTS 5.5+ or Duolingo accepted."
-          compact
-        />
+        <div className="mb-5 flex flex-wrap items-end justify-between gap-3">
+          <div>
+            <p className="text-xs uppercase tracking-widest font-medium text-[#57514A]">Program finder</p>
+            <h2 className="mt-1 font-serif text-xl sm:text-2xl font-bold text-black">Find the program that fits you</h2>
+          </div>
+          <p className="text-xs text-[#57514A]">English-taught · IELTS 5.5+ or Duolingo accepted</p>
+        </div>
 
-        {/* Filters */}
-        <div className="mb-6 border border-[#E6DDCC] bg-white p-4 sm:p-5 space-y-4">
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-[#57514A] font-medium">1. Level</p>
-            <div role="group" aria-label="Level" className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-              {(['Any', ...LEVELS] as const).map((l) => (
-                <button key={l} type="button" aria-pressed={level === l} onClick={() => setLevel(l)} className={chip(level === l)}>
-                  {l === 'Any' ? 'All levels' : l}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div>
-            <p className="mb-2 text-xs uppercase tracking-wider text-[#57514A] font-medium">2. Field of study</p>
-            <div role="group" aria-label="Field of study" className="flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:flex-wrap sm:overflow-visible">
-              <button type="button" aria-pressed={field === 'all'} onClick={() => setField('all')} className={chip(field === 'all')}>
-                All fields
+        <div className="mb-4 flex flex-col gap-2 lg:flex-row lg:items-center">
+          <div role="group" aria-label="Level" className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {(['Any', ...LEVELS] as const).map((l) => (
+              <button key={l} type="button" aria-pressed={level === l} onClick={() => setLevel(l)} className={chip(level === l)}>
+                {l === 'Any' ? 'All levels' : l}
               </button>
-              {FIELDS.map((f) => (
-                <button key={f.id} type="button" aria-pressed={field === f.id} onClick={() => setField(f.id)} className={chip(field === f.id)}>
-                  {f.label}
-                </button>
-              ))}
-            </div>
+            ))}
           </div>
-          <div className="flex items-center justify-between border-t border-[#E6DDCC] pt-3 text-sm text-[#57514A]">
-            <p aria-live="polite">
-              <strong className="text-[#2A2A2A]">{cards.length}</strong> program {cards.length === 1 ? 'pathway' : 'pathways'}
-            </p>
-            {filtered && (
-              <button type="button" onClick={() => { setLevel('Any'); setField('all'); }} className="min-h-11 px-2 text-xs uppercase tracking-widest font-medium text-[#8A6020] cursor-pointer">
-                Reset filters
+          <span aria-hidden="true" className="hidden h-6 w-px bg-[#D8CCB5] lg:block" />
+          <div role="group" aria-label="Field of study" className="flex gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <button type="button" aria-pressed={field === 'all'} onClick={() => setField('all')} className={chip(field === 'all')}>
+              All fields
+            </button>
+            {FIELDS.map((f) => (
+              <button key={f.id} type="button" aria-pressed={field === f.id} onClick={() => setField(f.id)} className={chip(field === f.id)}>
+                {f.label}
               </button>
-            )}
+            ))}
           </div>
         </div>
 
-        <motion.ul layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <motion.ul layout className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" aria-live="polite">
           <AnimatePresence mode="popLayout">
-            {cards.map(({ f, l }) => {
+            {fields.map((f) => {
               const Icon = f.icon;
               return (
                 <motion.li
-                  key={`${f.id}-${l}`}
+                  key={f.id}
                   layout
-                  initial={{ opacity: 0, scale: 0.96 }}
+                  initial={{ opacity: 0, scale: 0.97 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.25 }}
-                  className="group flex flex-col bg-white border border-[#E6DDCC] p-5 sm:p-6 transition-shadow hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)]"
+                  exit={{ opacity: 0, scale: 0.97 }}
+                  transition={{ duration: 0.2 }}
+                  className="bg-white border border-[#E6DDCC]"
                 >
-                  <div className="flex items-center justify-between">
-                    <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors group-hover:bg-[#94682B] group-hover:text-white">
-                      <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
-                    </span>
-                    <span className="text-[10px] uppercase tracking-widest font-medium px-2 py-1 bg-[#94682B]/15 text-[#8A6020]">{l}</span>
-                  </div>
-                  <h3 className="mt-4 font-serif text-lg font-bold text-black">{f.label}</h3>
-                  <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{f.blurb}</p>
-                  <ul className="mt-3 flex flex-wrap gap-2">
-                    {f.topics.map((t) => (
-                      <li key={t} className="text-xs border border-[#E6DDCC] px-2 py-1 text-[#57514A]">{t}</li>
-                    ))}
-                  </ul>
-                  <p className="mt-3 text-xs text-[#57514A]">English-taught · Seoul · Busan</p>
                   <button
                     type="button"
-                    onClick={() => openCallback({ interest: 'Study in South Korea', source: `program-finder:${f.label} (${l})` })}
-                    className="mt-5 inline-flex min-h-11 items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] px-5 text-xs uppercase tracking-widest font-medium text-white transition-colors cursor-pointer"
+                    onClick={() => openCallback({ interest: 'Study in South Korea', source: `program-finder:${f.label} (${levelLabel})` })}
+                    className="group flex min-h-[72px] w-full items-center gap-3 p-3 text-left transition-colors hover:bg-[#F3EBDD] cursor-pointer"
                   >
-                    Get details &amp; eligibility
-                    <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center bg-black text-[#D1A95F] transition-colors group-hover:bg-[#94682B] group-hover:text-white">
+                      <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block font-serif text-base font-bold text-black leading-tight">{f.label}</span>
+                      <span className="block truncate text-xs text-[#57514A]">{f.topics.join(' · ')}</span>
+                      <span className="mt-0.5 block text-[10px] uppercase tracking-widest text-[#8A6020]">{levelLabel}</span>
+                    </span>
+                    <ArrowRight size={16} className="shrink-0 text-[#8A6020] transition-transform group-hover:translate-x-1" aria-hidden="true" />
                   </button>
                 </motion.li>
               );
@@ -132,9 +108,8 @@ export function ProgramFinderSection() {
           </AnimatePresence>
         </motion.ul>
 
-        <p className="mt-8 text-xs text-[#57514A] max-w-2xl">
-          Course availability, universities and entry requirements vary by intake. Your counsellor will share the options that match
-          your profile — admissions are decided by the universities.
+        <p className="mt-4 text-xs text-[#57514A]">
+          Tap a program for details and eligibility. Availability and entry requirements vary by intake; admissions are decided by the universities.
         </p>
       </div>
     </section>
