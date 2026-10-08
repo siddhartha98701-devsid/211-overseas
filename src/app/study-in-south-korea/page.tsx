@@ -2,14 +2,13 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteContent } from '@/content/site';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { MobileScroller } from '@/components/ui/MobileScroller';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
-import { SubpageCards } from '@/components/pages/SubpageCards';
 import { KoreaHighlights } from '@/components/sections/KoreaHighlights';
 import { ProgramFinderSection } from '@/components/sections/ProgramFinderSection';
 import { EligibilitySection } from '@/components/sections/EligibilitySection';
-import { CourseTabs } from './CourseTabs';
 
 export const metadata: Metadata = {
   title: 'Study in South Korea',
@@ -44,299 +43,177 @@ const UNIVERSITY_FACTORS = [
   },
 ];
 
+const CARD = 'flex h-full w-full flex-col border border-[#E6DDCC] bg-white';
+
+const LEVEL_LINKS = [
+  { key: 'korean', href: '/study-in-south-korea/korean-language', cta: 'Language program details' },
+  { key: 'bachelors', href: '/study-in-south-korea/bachelors', cta: 'Bachelor’s program details' },
+  { key: 'masters', href: '/study-in-south-korea/masters', cta: 'Master’s program details' },
+] as const;
+
 export default function SouthKoreaPage() {
   const { southKorea } = siteContent;
 
   return (
     <>
       {/* Hero */}
-      <section className="pt-36 pb-20 md:pt-44 md:pb-28 border-b border-[#E6DDCC]" aria-label="South Korea hero">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
+      <section className="pt-32 pb-10 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="South Korea hero">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="lg:col-span-7">
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
+              <span className="h-px w-10 bg-[#B88740]" />
               Featured study destination
-            </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
-              Study in South Korea
-            </h1>
-            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
-              {southKorea.hero.description}
             </p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
+              Study in <span className="text-[#8A6020]">South Korea</span>
+            </h1>
+            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{southKorea.hero.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#eligibility" className="btn-shine inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                Check my eligibility
+              </a>
+              <a href="#programs" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                Find a program
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[16/10] lg:aspect-[4/5] w-full overflow-hidden bg-[#2A2A2A]">
+              <Image
+                src="/images/web/seoul-tower.webp"
+                alt="Seoul skyline and N Seoul Tower at dusk"
+                fill
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section className="border-b border-[#E6DDCC]" aria-label="Campus photography">
-        <div className="max-w-[1280px] mx-auto px-6 py-12">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#E6DDCC]/20">
-            <Image
-              src="/images/korea.jpg"
-              alt="South Korean university campus in spring"
-              fill
-              sizes="(max-width: 1280px) 100vw, 1280px)"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Why Study in South Korea - 7 Points */}
-      <KoreaHighlights />
-
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Why study in South Korea">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Why study in South Korea?
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                South Korea combines world-class technological infrastructure with globally recognized academic rigor.
-              </p>
-            </div>
-
-            <div className="border-t border-[#E6DDCC]">
-              {southKorea.whyStudy.points.map((point, i) => (
-                <div
-                  key={i}
-                  className="py-8 sm:py-10 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
-                >
-                  <div className="md:col-span-2">
-                    <span className="font-serif text-xl sm:text-2xl font-bold text-[#57514A]">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                  </div>
-                  <div className="md:col-span-4">
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
-                      {point.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-6">
-                    <p className="text-sm sm:text-base text-[#57514A] leading-relaxed">
-                      {point.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Leading South Korean Universities - Clean Typographic Grid with NO logos/crests */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Universities">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Leading South Korean universities to explore
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Renowned public and private research universities known for engineering, business, sciences, and innovation.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {southKorea.universities.map((uni) => (
-                <div key={uni.name} className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                  <div>
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
-                      {uni.abbr}
-                    </span>
-                    <h3 className="font-serif text-xl font-bold text-[#2A2A2A] tracking-tight mb-3">
-                      {uni.name}
-                    </h3>
-                    <p className="text-sm text-[#57514A] leading-relaxed">
-                      {uni.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-              <div className="border-t border-[#E6DDCC] pt-6">
-                <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
-                  Additional
-                </span>
-                <h3 className="font-serif text-xl font-bold text-[#2A2A2A] tracking-tight mb-3">
-                  And many more
-                </h3>
-                <p className="text-sm text-[#57514A] leading-relaxed">
-                  We guide students across additional specialized institutions and private universities tailored to individual academic profiles.
-                </p>
-              </div>
-            </div>
-
-            {/* University Selection Factors */}
-            <div className="mt-20 pt-16 border-t border-[#E6DDCC]">
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] mb-8">
-                Key factors when selecting your university
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-                {UNIVERSITY_FACTORS.map((item, idx) => (
-                  <div key={idx} className="border-t border-[#E6DDCC]/60 pt-4">
-                    <h4 className="font-medium text-sm text-[#2A2A2A] mb-1">
-                      {item.factor}
-                    </h4>
-                    <p className="text-sm text-[#57514A] leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="mt-12">
-                <Link
-                  href="/contact?interest=Study+in+South+Korea#enquiry-form"
-                  className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-                >
-                  Find universities for my profile
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Course Categories */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Course categories">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-12">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Course categories to explore
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Switch between disciplines to view high-demand specialization areas in South Korean universities.
-              </p>
-            </div>
-
-            <CourseTabs />
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Program Types */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Program types">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Program levels
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Whether starting undergraduate studies, pursuing research, or mastering Korean language proficiency.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
-                    {southKorea.programs.korean.title}
-                  </h3>
-                  <p className="text-sm text-[#57514A] leading-relaxed mb-6">
-                    {southKorea.programs.korean.description}
-                  </p>
-                </div>
-                <Link
-                  href="/contact?interest=Korean+Language+Program#enquiry-form"
-                  className="text-xs uppercase tracking-wider text-[#2A2A2A] hover:text-[#8A6020] font-medium"
-                >
-                  Explore language programs →
-                </Link>
-              </div>
-
-              <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
-                    {southKorea.programs.bachelors.title}
-                  </h3>
-                  <p className="text-sm text-[#57514A] leading-relaxed mb-6">
-                    {southKorea.programs.bachelors.description}
-                  </p>
-                </div>
-                <Link
-                  href="/contact?interest=Bachelor's+in+South+Korea#enquiry-form"
-                  className="text-xs uppercase tracking-wider text-[#2A2A2A] hover:text-[#8A6020] font-medium"
-                >
-                  Explore Bachelor&apos;s programs →
-                </Link>
-              </div>
-
-              <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                <div>
-                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-4">
-                    {southKorea.programs.masters.title}
-                  </h3>
-                  <p className="text-sm text-[#57514A] leading-relaxed mb-6">
-                    {southKorea.programs.masters.description}
-                  </p>
-                </div>
-                <Link
-                  href="/contact?interest=Master's+in+South+Korea#enquiry-form"
-                  className="text-xs uppercase tracking-wider text-[#2A2A2A] hover:text-[#8A6020] font-medium"
-                >
-                  Explore Master&apos;s programs →
-                </Link>
-              </div>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* 8-Step Process */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="South Korea process">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Our South Korea process
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Our structured 8-stage roadmap to successfully gaining admissions and visa issuance in South Korea.
-              </p>
-            </div>
-
-            <div className="border-t border-[#E6DDCC]">
-              {southKorea.process.map((step) => (
-                <div
-                  key={step.number}
-                  className="py-8 sm:py-10 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-4 md:gap-8 items-baseline"
-                >
-                  <div className="md:col-span-2">
-                    <span className="font-serif text-xl sm:text-2xl font-bold text-[#57514A]">
-                      {step.number}
-                    </span>
-                  </div>
-                  <div className="md:col-span-4">
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight">
-                      {step.title}
-                    </h3>
-                  </div>
-                  <div className="md:col-span-6">
-                    <p className="text-sm sm:text-base text-[#57514A] leading-relaxed">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mt-12">
-              <Link
-                href="/contact?interest=Study+in+South+Korea#enquiry-form"
-                className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-              >
-                Check my South Korea eligibility
-              </Link>
-            </div>
-          </ScrollReveal>
-        </div>
-      </section>
-
-      {/* Form Section */}
-      <SubpageCards group="study-in-south-korea" heading="Choose your study route" intro="Bachelor’s, master’s or a Korean language program: see requirements and next steps for each." />
-      <ProgramFinderSection />
+      {/* 3 quick eligibility questions, straight after the intro */}
       <EligibilitySection />
+
+      <KoreaHighlights showDisciplines={false} />
+
+      {/* Why study in South Korea */}
+      <section className="py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="Why study in South Korea">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader
+            eyebrow="Why South Korea"
+            headline="Why study in South Korea?"
+            description="World-class technology infrastructure combined with globally recognised academic rigour."
+            compact
+          />
+          <MobileScroller label="Reasons to study in South Korea" desktopClassName="md:grid-cols-2 lg:grid-cols-3">
+            {southKorea.whyStudy.points.map((point, i) => (
+              <div key={point.title} className={`${CARD} p-6`}>
+                <span className="font-serif text-sm text-[#A47434]">{String(i + 1).padStart(2, '0')}</span>
+                <h3 className="mt-2 font-serif text-lg font-bold text-[#2A2A2A] leading-snug">{point.title}</h3>
+                <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{point.description}</p>
+              </div>
+            ))}
+          </MobileScroller>
+        </div>
+      </section>
+
+      {/* Leading universities */}
+      <section className="bgl bgl-gray py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="Universities">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader
+            eyebrow="Universities"
+            headline="Leading South Korean universities to explore"
+            description="Renowned public and private research universities known for engineering, business, sciences and innovation."
+            compact
+          />
+          <MobileScroller label="Universities" desktopClassName="md:grid-cols-2 lg:grid-cols-3">
+            {[
+              ...southKorea.universities.map((u) => ({ name: u.name, abbr: u.abbr, full: 'fullName' in u ? (u.fullName as string) : undefined, description: u.description })),
+              { name: 'And many more', abbr: '+', full: undefined, description: 'We guide students across additional specialised and private universities tailored to individual academic profiles.' },
+            ].map((u) => (
+              <article key={u.name} className={`${CARD} overflow-hidden`}>
+                <div className="relative flex h-24 items-center justify-center overflow-hidden bg-[#2A2A2A]">
+                  <Image src="/images/web/seoul-city.webp" alt="" fill sizes="(min-width: 1024px) 400px, 85vw" className="object-cover opacity-25" />
+                  <span aria-hidden="true" className="relative z-10 flex h-14 min-w-14 items-center justify-center rounded-full border border-[#D1A95F] bg-black/60 px-3 font-serif text-sm font-bold text-[#D1A95F]">
+                    {u.abbr}
+                  </span>
+                </div>
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="font-serif text-lg font-bold text-[#2A2A2A] leading-snug">{u.name}</h3>
+                  {u.full && <p className="text-xs text-[#57514A]">{u.full}</p>}
+                  <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{u.description}</p>
+                </div>
+              </article>
+            ))}
+          </MobileScroller>
+
+          <div className="mt-10 border-t border-[#D8CCB5] pt-8">
+            <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-5">Key factors when selecting your university</h3>
+            <MobileScroller label="University selection factors" desktopClassName="md:grid-cols-2 lg:grid-cols-3">
+              {UNIVERSITY_FACTORS.map((item) => (
+                <div key={item.factor} className={`${CARD} p-5`}>
+                  <h4 className="font-medium text-sm text-[#2A2A2A] mb-1">{item.factor}</h4>
+                  <p className="text-sm text-[#57514A] leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </MobileScroller>
+            <Link
+              href="/contact?interest=Study+in+South+Korea#enquiry-form"
+              className="mt-8 inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-8 text-xs uppercase tracking-widest font-medium transition-colors"
+            >
+              Find universities for my profile
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Programme levels (the single "choose your route" section) */}
+      <section id="routes" className="py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Choose your study route">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader
+            eyebrow="Programme levels"
+            headline="Choose your study route"
+            description="Start with Korean language, an undergraduate degree or a master’s. See requirements and next steps for each."
+            compact
+          />
+          <MobileScroller label="Programme levels" desktopClassName="md:grid-cols-3">
+            {LEVEL_LINKS.map(({ key, href, cta }) => (
+              <div key={key} className={`${CARD} p-6`}>
+                <h3 className="font-serif text-xl font-bold text-[#2A2A2A] mb-3">{southKorea.programs[key].title}</h3>
+                <p className="flex-1 text-sm text-[#57514A] leading-relaxed mb-6">{southKorea.programs[key].description}</p>
+                <Link href={href} className="inline-flex min-h-11 items-center text-xs uppercase tracking-widest text-[#8A6020] hover:text-[#2A2A2A] font-medium">
+                  {cta} →
+                </Link>
+              </div>
+            ))}
+          </MobileScroller>
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="bgl bgl-black py-14 md:py-24 text-white" aria-label="South Korea process">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader dark eyebrow="How it works" headline="Our South Korea process" description="A structured 8-stage roadmap to admission and visa issuance." compact />
+          <MobileScroller dark label="South Korea process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
+            {southKorea.process.map((step) => (
+              <div key={step.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-xs font-bold text-white">{step.number}</span>
+                <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{step.title}</h3>
+                <p className="mt-2 text-sm text-white/65 leading-relaxed">{step.description}</p>
+              </div>
+            ))}
+          </MobileScroller>
+          <Link
+            href="/contact?interest=Study+in+South+Korea#enquiry-form"
+            className="mt-8 inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-8 text-xs uppercase tracking-widest font-medium transition-colors"
+          >
+            Check my South Korea eligibility
+          </Link>
+        </div>
+      </section>
+
+      <ProgramFinderSection />
       <CtaStrip interest="Study in South Korea" source="study-in-south-korea" />
       <FormSection />
     </>

@@ -55,7 +55,7 @@ const QUALIFICATION_OPTIONS = [
 const DESTINATION_OPTIONS = [
   'South Korea',
   'Germany',
-  'UAE / Dubai',
+  'UAE',
   'Japan',
   'Taiwan',
   'Singapore',
@@ -516,7 +516,8 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
                 {...register('consent')}
               />
               <span className="text-sm text-[#57514A] leading-relaxed group-hover:text-black transition-colors">
-                I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.
+                I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email. See our{' '}
+                <Link href="/privacy-policy" className="underline decoration-[#B88740] underline-offset-2 hover:text-black">Privacy Policy</Link>.
               </span>
             </label>
             {errors.consent && (

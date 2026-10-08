@@ -46,7 +46,7 @@ export function EligibilitySection() {
     }`;
 
   return (
-    <section id="eligibility" className="bgl bgl-black py-24 md:py-32 text-white scroll-mt-24" aria-label="Check your eligibility">
+    <section id="eligibility" className="bgl bgl-black py-14 md:py-24 text-white scroll-mt-24" aria-label="Check your eligibility">
       <div className="max-w-[1280px] mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="lg:col-span-5">

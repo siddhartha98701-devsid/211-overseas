@@ -9,6 +9,10 @@ export const metadata: Metadata = {
     'Connect with 211 OVERSEAS counsellors. Call or WhatsApp +91 99985 85211. Ahmedabad, Gujarat, India.',
 };
 
+const address = process.env.NEXT_PUBLIC_OFFICE_ADDRESS && process.env.NEXT_PUBLIC_OFFICE_ADDRESS !== 'ADDRESS'
+  ? process.env.NEXT_PUBLIC_OFFICE_ADDRESS
+  : siteContent.brand.address;
+
 export default function ContactPage() {
   return (
     <>
@@ -41,7 +45,7 @@ export default function ContactPage() {
                   Office location
                 </span>
                 <p className="font-serif text-xl font-bold text-[#2A2A2A] mb-1">
-                  {siteContent.brand.address}
+                  {address}
                 </p>
                 <p className="text-xs text-[#57514A]">
                   In-person advisory by appointment
@@ -86,12 +90,34 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Main Enquiry Form Section */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Enquiry Form">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
+      {/* Enquiry form + map */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC]" aria-label="Enquiry form and map">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-14 items-start">
+          <div className="lg:col-span-7">
             <EnquiryForm />
           </div>
+          <aside className="lg:col-span-5 lg:sticky lg:top-28" aria-label="Office map">
+            <h2 className="font-serif text-2xl font-bold text-[#2A2A2A]">Visit our office</h2>
+            <p className="mt-2 text-sm text-[#57514A]">{address}</p>
+            <div className="mt-5 aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-[#F3EBDD]">
+              <iframe
+                title="211 OVERSEAS office location on Google Maps"
+                src={`https://www.google.com/maps?q=${encodeURIComponent(address)}&output=embed`}
+                className="h-full w-full border-0"
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                allowFullScreen
+              />
+            </div>
+            <a
+              href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex min-h-11 items-center text-xs uppercase tracking-widest font-medium text-[#8A6020] link-draw"
+            >
+              Open in Google Maps →
+            </a>
+          </aside>
         </div>
       </section>
     </>

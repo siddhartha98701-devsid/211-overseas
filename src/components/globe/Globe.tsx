@@ -7,7 +7,24 @@ import * as THREE from 'three';
 export { GLOBE_PINS, type GlobePin } from './pins';
 import { GLOBE_PINS, type GlobePin } from './pins';
 import { isLand } from './landMask';
+import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { CountryFlag } from '@/components/ui/CountryFlag';
+
+function LabelWrap({ href, onEnter, onLeave, children }: { href?: string; onEnter: () => void; onLeave: () => void; children: React.ReactNode }) {
+  if (!href) return <>{children}</>;
+  return (
+    <Link
+      href={href}
+      aria-label="Study in South Korea"
+      onPointerEnter={onEnter}
+      onPointerLeave={onLeave}
+      className="block cursor-pointer [&>div]:transition-colors hover:[&>div]:bg-[#94682B] hover:[&>div]:border-[#D1A95F] focus-visible:outline-2 focus-visible:outline-[#D1A95F]"
+    >
+      {children}
+    </Link>
+  );
+}
 
 const GLOBE_RADIUS = 2.2;
 const ACCENT_COLOR = '#B88740';
@@ -386,16 +403,16 @@ function GlobeScene({
       const k = reducedMotion ? 1 : Math.min(1, delta * 4);
       group.rotation.y += wrapAngle(target.y - group.rotation.y) * k;
       group.rotation.x += (target.x - group.rotation.x) * k;
-      return;
     }
+    const easing = !!target && !isDragging.current;
 
     // Auto-rotation only while nothing is selected
-    if (!reducedMotion && !selectedName && !isAutoRotatePaused.current && !isDragging.current) {
+    if (!easing && !reducedMotion && !selectedName && !isAutoRotatePaused.current && !isDragging.current) {
       group.rotation.y += 0.04 * delta;
     }
 
     // Inertia decay
-    if (!isDragging.current) {
+    if (!easing && !isDragging.current) {
       velocity.current.x *= 0.94;
       velocity.current.y *= 0.94;
       if (Math.abs(velocity.current.x) > 0.0001) {
@@ -508,11 +525,19 @@ export default function Globe({
 }) {
   const [reducedMotion, setReducedMotion] = useState(false);
   const [hasWebGL, setHasWebGL] = useState(true);
-  const [hoveredPin, setHoveredPin] = useState<GlobePin | null>(null);
+  const [hoveredPin, setHoveredPinNow] = useState<GlobePin | null>(null);
+  const clearTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  // Short grace period on un-hover so the pointer can travel from the pin onto its (clickable) label.
+  const setHoveredPin = useCallback((pin: GlobePin | null) => {
+    if (clearTimer.current) clearTimeout(clearTimer.current);
+    if (pin) setHoveredPinNow(pin);
+    else clearTimer.current = setTimeout(() => setHoveredPinNow(null), 350);
+  }, []);
   const labelRef = useRef<HTMLDivElement>(null);
 
   const selectedPin = GLOBE_PINS.find((p) => p.name === selectedName) || GLOBE_PINS[1];
   const activePin = hoveredPin || selectedPin;
+  const isKorea = activePin.country === 'South Korea';
 
   useEffect(() => {
     // Check reduced motion preference
@@ -561,9 +586,12 @@ export default function Globe({
       {activePin && (
         <div
           ref={labelRef}
-          className="pointer-events-none select-none absolute z-20 -translate-x-1/2 -translate-y-full transition-opacity duration-150"
+          className={`select-none absolute z-20 -translate-x-1/2 -translate-y-full transition-opacity duration-150 ${
+            isKorea ? 'pointer-events-auto' : 'pointer-events-none'
+          }`}
           style={{ opacity: 0, left: '50%', top: '50%' }}
         >
+          <LabelWrap href={isKorea ? '/study-in-south-korea' : undefined} onEnter={() => setHoveredPin(activePin)} onLeave={() => setHoveredPin(null)}>
           <div
             className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm ${
               tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
@@ -593,7 +621,9 @@ export default function Globe({
                 {activePin.name}
               </span>
             </div>
+            {isKorea && <ArrowUpRight size={14} className="text-[#D1A95F] shrink-0" aria-hidden="true" />}
           </div>
+          </LabelWrap>
         </div>
       )}
     </div>

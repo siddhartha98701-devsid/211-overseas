@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteContent } from '@/content/site';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { MobileScroller } from '@/components/ui/MobileScroller';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
-import { SubpageCards } from '@/components/pages/SubpageCards';
 
 export const metadata: Metadata = {
   title: 'Work in Germany',
@@ -15,131 +15,78 @@ export const metadata: Metadata = {
 
 export default function GermanyPage() {
   const { germany } = siteContent;
+  const pathways = [
+    { ...germany.nurses, href: '/work-in-germany/nurses', cta: 'Check nursing eligibility' },
+    { ...germany.physio, href: '/work-in-germany/physiotherapists', cta: 'Check physiotherapy eligibility' },
+  ];
 
   return (
     <>
       {/* Hero */}
-      <section className="pt-36 pb-20 md:pt-44 md:pb-28 border-b border-[#E6DDCC]" aria-label="Germany hero">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
-              Healthcare careers
-            </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
-              Work in Germany
-            </h1>
-            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
-              {germany.hero.description}
+      <section className="pt-32 pb-10 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="Germany hero">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="lg:col-span-7">
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
+              <span className="h-px w-10 bg-[#B88740]" />
+              Work &amp; Study · Healthcare careers
             </p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
+              Work in <span className="text-[#8A6020]">Germany</span>
+            </h1>
+            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{germany.hero.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                Apply for free counselling
+              </a>
+              <a href="#pathways" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                See pathways
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
+              <Image src="/images/web/germany-wide.webp" alt="Historic German town in soft natural light" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Hero Image */}
-      <section className="border-b border-[#E6DDCC]" aria-label="German architecture">
-        <div className="max-w-[1280px] mx-auto px-6 py-12">
-          <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#E6DDCC]/20">
-            <Image
-              src="/images/germany.jpg"
-              alt="Historic German architecture and street in soft natural light"
-              fill
-              sizes="(max-width: 1280px) 100vw, 1280px)"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Nurses & Physiotherapists Pathways */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Healthcare Pathways">
+      {/* Nurses & physiotherapists */}
+      <section id="pathways" className="py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Healthcare pathways">
         <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Structured pathways for healthcare professionals
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Germany offers regulated, highly supportive career transitions for international nurses and physiotherapists.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-16">
-              {/* Column 1: Nurses in Germany */}
-              <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
-                    {germany.nurses.tag}
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-4">
-                    {germany.nurses.title}
-                  </h3>
-                  <p className="text-sm text-[#57514A] leading-relaxed mb-8">
-                    {germany.nurses.description}
-                  </p>
-
-                  <div className="border-t border-[#E6DDCC] divide-y divide-[#E6DDCC]/60 mb-8">
-                    {germany.nurses.steps.map((step, i) => (
-                      <div key={step} className="py-3 flex items-center justify-between">
-                        <span className="text-sm text-[#2A2A2A] font-normal">{step}</span>
-                        <span className="font-serif text-xs text-[#57514A]">
-                          Stage {String(i + 1).padStart(2, '0')}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <Link
-                    href="/work-in-germany/nurses"
-                    className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-                  >
-                    Check nursing eligibility
-                  </Link>
-                </div>
-              </div>
-
-              {/* Column 2: Physiotherapists in Germany */}
-              <div className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                <div>
-                  <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium block mb-2">
-                    {germany.physio.tag}
-                  </span>
-                  <h3 className="font-serif text-2xl font-bold text-[#2A2A2A] tracking-tight mb-4">
-                    {germany.physio.title}
-                  </h3>
-                  <p className="text-sm text-[#57514A] leading-relaxed mb-8">
-                    {germany.physio.description}
-                  </p>
-
-                  <div className="border-t border-[#E6DDCC] divide-y divide-[#E6DDCC]/60 mb-8">
-                    {germany.physio.steps.map((step, i) => (
-                      <div key={step} className="py-3 flex items-center justify-between">
-                        <span className="text-sm text-[#2A2A2A] font-normal">{step}</span>
-                        <span className="font-serif text-xs text-[#57514A]">
-                          Stage {String(i + 1).padStart(2, '0')}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <Link
-                    href="/work-in-germany/physiotherapists"
-                    className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-                  >
-                    Check physiotherapy eligibility
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </ScrollReveal>
+          <SectionHeader
+            eyebrow="Healthcare pathways"
+            headline="Structured pathways for healthcare professionals"
+            description="Germany offers regulated, supportive career transitions for international nurses and physiotherapists."
+            compact
+          />
+          <MobileScroller label="Healthcare pathways" desktopClassName="md:grid-cols-2">
+            {pathways.map((p) => (
+              <article key={p.title} className="flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 sm:p-8">
+                <p className="text-xs uppercase tracking-widest text-[#8A6020] font-medium">{p.tag}</p>
+                <h3 className="mt-2 font-serif text-2xl font-bold text-[#2A2A2A]">{p.title}</h3>
+                <p className="mt-3 text-sm text-[#57514A] leading-relaxed">{p.description}</p>
+                <ol className="mt-5 flex-1 divide-y divide-[#E6DDCC]/70 border-t border-[#E6DDCC]">
+                  {p.steps.map((step, i) => (
+                    <li key={step} className="flex items-center justify-between py-2.5">
+                      <span className="text-sm text-[#2A2A2A]">{step}</span>
+                      <span className="font-serif text-xs text-[#A47434]">{String(i + 1).padStart(2, '0')}</span>
+                    </li>
+                  ))}
+                </ol>
+                <Link href={p.href} className="btn-shine mt-6 inline-flex min-h-11 items-center justify-center bg-[#94682B] hover:bg-[#7A5622] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
+                  {p.cta}
+                </Link>
+              </article>
+            ))}
+          </MobileScroller>
+          <p className="mt-8 text-sm text-[#57514A]">
+            Prefer to study abroad instead?{' '}
+            <Link href="/work-and-study#study" className="text-[#8A6020] underline underline-offset-2">See study pathways</Link>
+          </p>
         </div>
       </section>
 
-      {/* Form Section */}
-      <SubpageCards group="work-in-germany" heading="Choose your healthcare pathway" intro="Detailed guidance for each profession: language, recognition, interviews and visa." />
       <CtaStrip interest="Work in Germany – Nursing" source="work-in-germany" />
       <FormSection />
     </>

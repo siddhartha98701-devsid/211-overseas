@@ -3,7 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { siteContent } from '@/content/site';
 import { countryHref } from '@/content/subpages';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { SectionHeader } from '@/components/ui/SectionHeader';
+import { MobileScroller } from '@/components/ui/MobileScroller';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 
@@ -18,84 +20,64 @@ export default function OtherDestinationsPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-36 pb-20 md:pt-44 md:pb-28 border-b border-[#E6DDCC]" aria-label="Other destinations hero">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
+      <section className="pt-32 pb-10 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="Other destinations hero">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="lg:col-span-7">
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
+              <span className="h-px w-10 bg-[#B88740]" />
               Global pathways
-            </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            </p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
               Your future doesn&apos;t have to be limited to one country.
             </h1>
-            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
-              {otherDestinations.description}
-            </p>
+            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{otherDestinations.description}</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href="#destinations" className="inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                Browse destinations
+              </a>
+              <a href="#enquiry-form" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+                Free counselling
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="relative aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
+              <Image src="/images/web/graduates-wide.webp" alt="Graduates celebrating by throwing caps in the air" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Photography Hero Banner */}
-      <section className="border-b border-[#E6DDCC]" aria-label="Campus atmosphere photography">
-        <div className="max-w-[1280px] mx-auto px-6 py-12">
-          <div className="relative aspect-[16/8] sm:aspect-[21/9] w-full overflow-hidden bg-[#E6DDCC]/20">
-            <Image
-              src="/images/guidance.jpg"
-              alt="Students walking across an international university campus quad"
-              fill
-              sizes="(max-width: 1280px) 100vw, 1280px)"
-              className="object-cover"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* Destinations Directory */}
-      <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Destination options">
+      <section id="destinations" className="py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Destination options">
         <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="max-w-3xl mb-16">
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Explore worldwide destinations
-              </h2>
-              <p className="text-base sm:text-base text-[#57514A] leading-relaxed font-light">
-                Tailored education and professional pathways across prominent study-abroad and immigration destinations.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
-              {otherDestinations.countries.map((country, idx) => (
-                <div key={country.name} className="border-t border-[#E6DDCC] pt-8 flex flex-col justify-between">
-                  <div>
-                    <div className="flex items-baseline justify-between mb-3">
-                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] tracking-tight">
-                        {country.name}
-                      </h3>
-                      <span className="font-serif text-xs text-[#57514A]">
-                        {String(idx + 1).padStart(2, '0')}
-                      </span>
-                    </div>
-                    <p className="text-sm text-[#57514A] leading-relaxed mb-6">
-                      {country.bullets.join(', ')}.
-                    </p>
-                  </div>
-                  <div>
-                    <Link
-                      href={countryHref(country.name)}
-                      className="inline-flex items-center text-xs uppercase tracking-widest text-[#2A2A2A] hover:text-[#8A6020] font-medium transition-colors group"
-                    >
-                      <span>Explore {country.name}</span>
-                      <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>
-                    </Link>
-                  </div>
+          <SectionHeader
+            eyebrow="Destinations"
+            headline="Explore worldwide destinations"
+            description="Tailored education and professional pathways across prominent study-abroad destinations."
+            compact
+          />
+          <MobileScroller label="Destinations" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
+            {otherDestinations.countries.map((country, idx) => (
+              <Link
+                key={country.name}
+                href={countryHref(country.name)}
+                className="group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
+              >
+                <div className="flex items-center justify-between">
+                  <CountryFlag country={country.name} className="h-[18px] w-[26px] rounded-[2px] border border-[#E6DDCC] object-cover" width={26} height={18} />
+                  <span className="font-serif text-xs text-[#A47434]">{String(idx + 1).padStart(2, '0')}</span>
                 </div>
-              ))}
-            </div>
-          </ScrollReveal>
+                <h3 className="mt-4 font-serif text-xl font-bold text-[#2A2A2A]">{country.name}</h3>
+                <p className="mt-2 flex-1 text-sm text-[#57514A] leading-relaxed">{country.bullets.join(', ')}.</p>
+                <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">
+                  Explore {country.name} <span className="transition-transform group-hover:translate-x-1">→</span>
+                </span>
+              </Link>
+            ))}
+          </MobileScroller>
         </div>
       </section>
 
-      {/* Form Section */}
       <CtaStrip interest="Study in Other Countries" source="other-destinations" />
       <FormSection />
     </>

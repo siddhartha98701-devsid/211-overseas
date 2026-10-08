@@ -4,7 +4,10 @@ import { useEffect, useMemo, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, useMotionValue, useSpring, useTransform, type MotionValue } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
-import { AirlinerTopDown } from './AirlinerTopDown';
+import { FlightPlane, type PlaneVariant } from './FlightPlane';
+
+/** Swap to 'paper' or 'line' for the other two styles. */
+const PLANE_VARIANT: PlaneVariant = 'jet';
 
 const SAMPLES = 60;
 const TRAIL_SEGMENTS = 28;
@@ -129,7 +132,7 @@ export function FlightPath() {
             rotate,
           }}
         >
-          <AirlinerTopDown size={size} />
+          <FlightPlane size={size} variant={PLANE_VARIANT} />
         </motion.div>
       </motion.div>
     </div>
