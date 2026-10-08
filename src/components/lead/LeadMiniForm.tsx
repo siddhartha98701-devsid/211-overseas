@@ -16,6 +16,7 @@ const schema = z.object({
     .string()
     .transform((v) => v.replace(/[\s-]/g, ''))
     .refine((v) => MOBILE_PATTERN.test(v), 'Enter a valid 10-digit mobile number'),
+  email: z.string().trim().email('Enter a valid email').optional().or(z.literal('')),
   interest: z.string().optional(),
   consent: z.boolean().refine((v) => v === true, 'Please tick the consent box'),
   faxNumber: z.string().max(0).optional(), // honeypot
@@ -29,15 +30,17 @@ interface LeadMiniFormProps {
   /** Tag shown in the CRM log so you can see which widget produced the lead. */
   source: string;
   submitLabel?: string;
+  /** Show an optional email field (used by the lead popup and contact page). */
+  showEmail?: boolean;
   onSuccess?: () => void;
 }
 
 const INPUT =
-  'w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] focus:ring-1 focus:ring-[#B88740] transition-colors';
+  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] focus:ring-1 focus:ring-[#B88740] transition-colors';
 const LABEL = 'block text-xs uppercase tracking-wider text-black font-medium mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
-export function LeadMiniForm({ interest, source, submitLabel = 'Get free counselling', onSuccess }: LeadMiniFormProps) {
+export function LeadMiniForm({ interest, source, submitLabel = 'Get free counselling', showEmail = false, onSuccess }: LeadMiniFormProps) {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -48,7 +51,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
     formState: { errors },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { fullName: '', mobile: '', interest: interest ?? '', consent: false, faxNumber: '' },
+    defaultValues: { fullName: '', mobile: '', email: '', interest: interest ?? '', consent: false, faxNumber: '' },
   });
 
   const onSubmit = async (v: Values) => {
@@ -58,6 +61,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
     const res = await submitLead({
       fullName: v.fullName,
       mobile: v.mobile.replace(/[\s-]/g, ''),
+      email: v.email || undefined,
       interests: v.interest ? [v.interest] : [],
       consent: v.consent,
       source,
@@ -122,6 +126,16 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
         />
         {errors.mobile && <p className="mt-1 text-xs text-red-600">{errors.mobile.message as string}</p>}
       </div>
+
+      {showEmail && (
+        <div>
+          <label htmlFor={`${source}-email`} className={LABEL}>
+            Email <span className="normal-case tracking-normal text-[#57514A]">(optional)</span>
+          </label>
+          <input id={`${source}-email`} type="email" inputMode="email" autoComplete="email" placeholder="you@example.com" className={INPUT} {...register('email')} />
+          {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email.message as string}</p>}
+        </div>
+      )}
 
       <div>
         <label htmlFor={`${source}-interest`} className={LABEL}>

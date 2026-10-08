@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { MobileScroller } from '@/components/ui/MobileScroller';
 import { siteContent } from '@/content/site';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -25,24 +26,24 @@ export function ProcessStrip() {
             viewport={{ once: true, margin: '-80px' }}
             transition={{ duration: 1.4, ease: EASE }}
           />
-          <ol className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-7 gap-x-4 gap-y-8">
+          <MobileScroller dark label="Your journey in 7 steps" desktopClassName="md:grid-cols-4 lg:grid-cols-7 md:gap-x-4 md:gap-y-8">
             {steps.map((s, i) => (
-              <motion.li
+              <motion.div
                 key={s.number}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-60px' }}
-                transition={{ duration: 0.6, delay: i * 0.07, ease: EASE }}
-                className="relative"
+                transition={{ duration: 0.6, delay: i * 0.04, ease: EASE }}
+                className="relative w-full border border-white/15 bg-white/[0.04] p-5 md:border-0 md:bg-transparent md:p-0"
               >
                 <span className="relative z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-white text-xs font-bold">
                   {s.number}
                 </span>
-                <h3 className="mt-3 font-serif text-base sm:text-base font-bold leading-snug">{s.title}</h3>
-                <p className="mt-1 text-xs text-white/60 leading-relaxed">{s.description}</p>
-              </motion.li>
+                <h3 className="mt-3 font-serif text-base font-bold leading-snug">{s.title}</h3>
+                <p className="mt-1 text-sm md:text-xs text-white/60 leading-relaxed">{s.description}</p>
+              </motion.div>
             ))}
-          </ol>
+          </MobileScroller>
         </div>
       </div>
     </section>
