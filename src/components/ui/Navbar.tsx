@@ -8,11 +8,17 @@ import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
-const navLinks = [
-  { label: 'Study in South Korea', href: '/study-in-south-korea' },
+const workStudyLinks = [
   { label: 'Work in Germany', href: '/work-in-germany' },
   { label: 'Work in UAE', href: '/work-in-uae' },
+  { label: 'Study in South Korea', href: '/study-in-south-korea' },
   { label: 'Other Destinations', href: '/other-destinations' },
+];
+
+type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
+const navLinks: NavLink[] = [
+  { label: 'Study in South Korea', href: '/study-in-south-korea' },
+  { label: 'Work & Study', href: '/work-and-study', children: workStudyLinks },
   { label: 'About Us', href: '/about' },
 ];
 
@@ -70,6 +76,30 @@ export function Navbar() {
           <nav className="hidden lg:flex items-center space-x-8" aria-label="Main Navigation">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
+              if (link.children) {
+                const groupActive = pathname === link.href || link.children!.some((c) => pathname.startsWith(c.href));
+                return (
+                  <div key={link.href} className="relative group">
+                    <Link
+                      href={link.href}
+                      className={`link-draw text-sm tracking-normal transition-colors py-1 ${
+                        isSolid ? (groupActive ? 'text-black font-medium' : 'text-[#57514A] hover:text-black') : groupActive ? 'text-white font-medium' : 'text-white/80 hover:text-white'
+                      }`}
+                    >
+                      {link.label} <span aria-hidden="true" className="text-[10px]">▾</span>
+                    </Link>
+                    <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                      <div className="border border-[#E6DDCC] bg-white py-2 shadow-[0_16px_40px_rgba(42,42,42,0.15)]">
+                        {link.children!.map((c) => (
+                          <Link key={c.href} href={c.href} className="block px-5 py-2.5 text-sm text-[#2A2A2A] hover:bg-[#F3EBDD] hover:text-[#8A6020]">
+                            {c.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
               return (
                 <Link
                   key={link.href}
@@ -149,7 +179,7 @@ export function Navbar() {
             </div>
 
             <nav className="flex flex-col space-y-5 my-auto" aria-label="Mobile Navigation Links">
-              {[{ label: 'Home', href: '/' }, ...navLinks, { label: 'Contact', href: '/contact' }].map((link, i) => (
+              {[{ label: 'Home', href: '/' }, ...navLinks.flatMap((l) => (l.children ? [{ label: l.label, href: l.href }, ...l.children!.filter((c) => c.href !== '/study-in-south-korea' && c.href !== '/other-destinations').map((c) => ({ label: `— ${c.label}`, href: c.href }))] : [l])), { label: 'Other Destinations', href: '/other-destinations' }, { label: 'Contact', href: '/contact' }].map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -24 }}

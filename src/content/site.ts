@@ -80,7 +80,7 @@ export const siteContent = {
     },
     {
       id: 'uae',
-      title: 'Work in Dubai & UAE',
+      title: 'Work in UAE',
       tag: 'Career Opportunities',
       description: 'Dubai, Abu Dhabi and the wider UAE continue to attract professionals from around the world across multiple industries.',
       bullets: [
@@ -159,7 +159,7 @@ export const siteContent = {
       'Korean Language Program',
       'Work in Germany – Nursing',
       'Work in Germany – Physiotherapy',
-      'Work in UAE / Dubai',
+      'Work in UAE',
       'Study in Other Countries',
       'Work in Other Countries',
       'Not Sure – Need Counselling',
@@ -254,7 +254,7 @@ export const siteContent = {
   uae: {
     hero: {
       eyebrow: 'Career Opportunities',
-      headline: 'Work in Dubai & UAE',
+      headline: 'Work in UAE',
       description: 'The UAE attracts professionals from around the world across healthcare, hospitality, engineering, retail, construction and service industries.',
     },
     sectors: [
