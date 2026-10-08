@@ -11,12 +11,12 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { CountryFlag } from '@/components/ui/CountryFlag';
 
-function LabelWrap({ href, onEnter, onLeave, children }: { href?: string; onEnter: () => void; onLeave: () => void; children: React.ReactNode }) {
+function LabelWrap({ href, label, onEnter, onLeave, children }: { href?: string; label?: string; onEnter: () => void; onLeave: () => void; children: React.ReactNode }) {
   if (!href) return <>{children}</>;
   return (
     <Link
       href={href}
-      aria-label="Study in South Korea"
+      aria-label={label}
       onPointerEnter={onEnter}
       onPointerLeave={onLeave}
       className="block cursor-pointer [&>div]:transition-colors hover:[&>div]:bg-[#94682B] hover:[&>div]:border-[#D1A95F] focus-visible:outline-2 focus-visible:outline-[#D1A95F]"
@@ -537,7 +537,7 @@ export default function Globe({
 
   const selectedPin = GLOBE_PINS.find((p) => p.name === selectedName) || GLOBE_PINS[1];
   const activePin = hoveredPin || selectedPin;
-  const isKorea = activePin.country === 'South Korea';
+  const labelHref = activePin.isOrigin ? undefined : activePin.href;
 
   useEffect(() => {
     // Check reduced motion preference
@@ -587,11 +587,11 @@ export default function Globe({
         <div
           ref={labelRef}
           className={`select-none absolute z-20 -translate-x-1/2 -translate-y-full transition-opacity duration-150 ${
-            isKorea ? 'pointer-events-auto' : 'pointer-events-none'
+            labelHref ? 'pointer-events-auto' : 'pointer-events-none'
           }`}
           style={{ opacity: 0, left: '50%', top: '50%' }}
         >
-          <LabelWrap href={isKorea ? '/study-in-south-korea' : undefined} onEnter={() => setHoveredPin(activePin)} onLeave={() => setHoveredPin(null)}>
+          <LabelWrap href={labelHref} label={`Explore ${activePin.country}`} onEnter={() => setHoveredPin(activePin)} onLeave={() => setHoveredPin(null)}>
           <div
             className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm ${
               tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
@@ -621,7 +621,7 @@ export default function Globe({
                 {activePin.name}
               </span>
             </div>
-            {isKorea && <ArrowUpRight size={14} className="text-[#D1A95F] shrink-0" aria-hidden="true" />}
+            {labelHref && <ArrowUpRight size={14} className="text-[#D1A95F] shrink-0" aria-hidden="true" />}
           </div>
           </LabelWrap>
         </div>

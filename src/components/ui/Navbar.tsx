@@ -4,27 +4,35 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
+import { ChevronDown, Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
+import { SUBPAGES, subpageHref } from '@/content/subpages';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
 const workStudyLinks = [
+  { label: 'Work & Study overview', href: '/work-and-study' },
   { label: 'Work in Germany', href: '/work-in-germany' },
   { label: 'Work in UAE', href: '/work-in-uae' },
   { label: 'Study in South Korea', href: '/study-in-south-korea' },
-  { label: 'Other Destinations', href: '/other-destinations' },
+];
+
+const otherLinks = [
+  ...SUBPAGES.filter((p) => p.group === 'other-destinations').map((p) => ({ label: p.name, href: subpageHref(p) })),
+  { label: 'All destinations', href: '/other-destinations' },
 ];
 
 type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
 const navLinks: NavLink[] = [
   { label: 'Study in South Korea', href: '/study-in-south-korea' },
   { label: 'Work & Study', href: '/work-and-study', children: workStudyLinks },
+  { label: 'Other Destinations', href: '/other-destinations', children: otherLinks },
   { label: 'About Us', href: '/about' },
 ];
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [expanded, setExpanded] = useState<string | null>(null);
   const pathname = usePathname();
   const { openCallback } = useCallbackModal();
   const isHomePage = pathname === '/';
@@ -88,7 +96,7 @@ export function Navbar() {
                     >
                       {link.label} <span aria-hidden="true" className="text-[10px]">▾</span>
                     </Link>
-                    <div className="invisible absolute left-1/2 top-full z-50 w-56 -translate-x-1/2 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                    <div className="invisible absolute left-1/2 top-full z-50 w-60 -translate-x-1/2 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
                       <div className="border border-[#E6DDCC] bg-white py-2 shadow-[0_16px_40px_rgba(42,42,42,0.15)]">
                         {link.children!.map((c) => (
                           <Link key={c.href} href={c.href} className="block px-5 py-2.5 text-sm text-[#2A2A2A] hover:bg-[#F3EBDD] hover:text-[#8A6020]">
@@ -159,7 +167,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-black text-white flex flex-col justify-between px-6 py-8 lg:hidden"
+            className="fixed inset-0 z-50 bg-black text-white flex flex-col justify-between overflow-y-auto px-6 py-8 lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation"
@@ -178,23 +186,59 @@ export function Navbar() {
               </button>
             </div>
 
-            <nav className="flex flex-col space-y-5 my-auto" aria-label="Mobile Navigation Links">
-              {[{ label: 'Home', href: '/' }, ...navLinks.flatMap((l) => (l.children ? [{ label: l.label, href: l.href }, ...l.children!.filter((c) => c.href !== '/study-in-south-korea' && c.href !== '/other-destinations').map((c) => ({ label: `— ${c.label}`, href: c.href }))] : [l])), { label: 'Other Destinations', href: '/other-destinations' }, { label: 'Contact', href: '/contact' }].map((link, i) => (
+            <nav className="flex flex-col space-y-4 my-6" aria-label="Mobile Navigation Links">
+              {[{ label: 'Home', href: '/' } as NavLink, ...navLinks, { label: 'Contact', href: '/contact' } as NavLink].map((link, i) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, x: -24 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.06 * i + 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ delay: 0.05 * i + 0.1, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                 >
-                  <Link
-                    href={link.href}
-                    className={`font-serif text-2xl transition-colors ${
-                      pathname === link.href ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'
-                    }`}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
+                  {link.children ? (
+                    <div>
+                      <div className="flex items-center justify-between">
+                        <Link
+                          href={link.href}
+                          className={`font-serif text-2xl transition-colors ${pathname.startsWith(link.href) ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'}`}
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                        <button
+                          type="button"
+                          aria-label={`${expanded === link.href ? 'Collapse' : 'Expand'} ${link.label}`}
+                          aria-expanded={expanded === link.href}
+                          onClick={() => setExpanded(expanded === link.href ? null : link.href)}
+                          className="flex h-11 w-11 items-center justify-center text-white"
+                        >
+                          <ChevronDown size={22} className={`transition-transform ${expanded === link.href ? 'rotate-180' : ''}`} />
+                        </button>
+                      </div>
+                      {expanded === link.href && (
+                        <ul className="mt-1 mb-2 ml-1 space-y-1 border-l border-[#94682B] pl-4">
+                          {link.children.map((c) => (
+                            <li key={c.href}>
+                              <Link
+                                href={c.href}
+                                onClick={() => setIsOpen(false)}
+                                className={`flex min-h-11 items-center text-base ${pathname === c.href ? 'text-[#D1A95F]' : 'text-white/80 hover:text-[#D1A95F]'}`}
+                              >
+                                {c.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  ) : (
+                    <Link
+                      href={link.href}
+                      className={`font-serif text-2xl transition-colors ${pathname === link.href ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'}`}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  )}
                 </motion.div>
               ))}
             </nav>
