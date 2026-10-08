@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { motion, type Variants } from 'framer-motion';
 import { usePrefersReducedMotion } from '@/lib/usePrefersReducedMotion';
 import { GraduationCap, Languages, MapPin, Award } from 'lucide-react';
+import { MobileScroller } from '@/components/ui/MobileScroller';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 
 const EASE = [0.16, 1, 0.3, 1] as const;
@@ -25,7 +26,7 @@ const DISCIPLINES = [
   'Computer Science',
 ];
 
-export function KoreaHighlights() {
+export function KoreaHighlights({ showDisciplines = true }: { showDisciplines?: boolean }) {
   const reduce = usePrefersReducedMotion();
 
   const container: Variants = {
@@ -38,7 +39,7 @@ export function KoreaHighlights() {
   };
 
   return (
-    <section className="py-24 md:py-32 border-b border-[#E6DDCC]" aria-label="Study in South Korea at a glance">
+    <section className="py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="Study in South Korea at a glance">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           eyebrow="Study in South Korea"
@@ -46,35 +47,20 @@ export function KoreaHighlights() {
           description="Expert guidance for English-taught undergraduate and graduate programs in Seoul, Busan and beyond."
         />
 
-        <motion.ul
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, margin: '-80px' }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4"
-        >
+        <MobileScroller label="South Korea highlights" desktopClassName="md:grid-cols-2 lg:grid-cols-4 md:gap-4">
           {HIGHLIGHTS.map(({ icon: Icon, title, text }) => (
-            <motion.li
-              key={title}
-              variants={item}
-              whileHover={reduce ? undefined : { y: -6 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              className="group relative border border-[#E6DDCC] bg-white p-6 overflow-hidden"
-            >
-              {/* Mustard fill that rises on hover */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1 bg-[#94682B] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
-              />
+            <div key={title} className="group relative h-full border border-[#E6DDCC] bg-white p-6 overflow-hidden">
+              <span aria-hidden="true" className="absolute inset-x-0 bottom-0 h-1 bg-[#94682B] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100" />
               <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors duration-300 group-hover:bg-[#94682B] group-hover:text-white">
                 <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
               </span>
               <h3 className="mt-5 font-serif text-lg font-bold text-black leading-snug">{title}</h3>
               <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
-            </motion.li>
+            </div>
           ))}
-        </motion.ul>
+        </MobileScroller>
 
+        {showDisciplines && (
         <div className="mt-14">
           <p className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-4">Key academic disciplines</p>
           <motion.ul
@@ -104,6 +90,7 @@ export function KoreaHighlights() {
             <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>
           </Link>
         </div>
+        )}
       </div>
     </section>
   );

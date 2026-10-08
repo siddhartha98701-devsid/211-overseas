@@ -69,6 +69,11 @@ export function MobileScroller({
 
       {items.length > 1 && (
         <div className="mt-4 flex items-center justify-between md:hidden">
+          {items.length > 7 ? (
+            <p className={`text-sm font-medium tabular-nums ${dark ? 'text-white/70' : 'text-[#57514A]'}`} aria-live="polite">
+              {active + 1} / {items.length}
+            </p>
+          ) : (
           <div className="flex items-center" role="tablist" aria-label="Slides">
             {items.map((_, i) => (
               <button
@@ -88,6 +93,7 @@ export function MobileScroller({
               </button>
             ))}
           </div>
+          )}
           <div className="flex gap-2">
             <button type="button" aria-label="Previous" onClick={() => go(active - 1)} disabled={active === 0} className={`flex h-11 w-11 items-center justify-center border disabled:opacity-30 ${tone}`}>
               <ChevronLeft size={18} aria-hidden="true" />
