@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { GraduationCap, Briefcase, ArrowRight } from 'lucide-react';
@@ -78,7 +79,16 @@ export function PathGatewaySection() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-4"
             >
-              <div className="lg:col-span-7 bg-black text-white p-7 sm:p-10">
+              <div className="lg:col-span-7 bg-black text-white p-7 sm:p-10 flex flex-col">
+                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
+                  <Image
+                    src="/images/generated/korea-gateway.jpg"
+                    alt="International students collaborating on modern university campus in Seoul"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
                 <p className="text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">Featured destination</p>
                 <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold">South Korea</h3>
                 <p className="mt-3 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{siteContent.pathways[0].description}</p>
@@ -101,6 +111,15 @@ export function PathGatewaySection() {
               </div>
 
               <div className="lg:col-span-5 border border-[#E6DDCC] p-7 sm:p-10 flex flex-col">
+                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
+                  <Image
+                    src="/images/generated/global-campus.jpg"
+                    alt="Diverse international students on global university campus"
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
                 <p className="text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium">Also explore</p>
                 <h3 className="mt-2 font-serif text-xl sm:text-2xl font-bold text-black">Other study destinations</h3>
                 <ul className="mt-5 flex flex-wrap gap-2">
@@ -135,10 +154,39 @@ export function PathGatewaySection() {
               className="grid grid-cols-1 lg:grid-cols-2 gap-4"
             >
               {[
-                { key: 'germany', p: germany, label: 'Healthcare careers', roles: ['Nurses', 'Physiotherapists'], interest: 'Work in Germany – Nursing', title: 'Germany', wa: 'Hi 211 OVERSEAS, I want to work in Germany (healthcare).' },
-                { key: 'uae', p: uae, label: 'Multi-industry careers', roles: uae.bullets, interest: 'Work in UAE', title: 'UAE', wa: 'Hi 211 OVERSEAS, I want to work in Dubai / UAE.' },
-              ].map(({ key, p, label, roles, interest, title, wa }, i) => (
+                {
+                  key: 'germany',
+                  p: germany,
+                  label: 'Healthcare careers',
+                  roles: ['Nurses', 'Physiotherapists'],
+                  interest: 'Work in Germany – Nursing',
+                  title: 'Germany',
+                  wa: 'Hi 211 OVERSEAS, I want to work in Germany (healthcare).',
+                  image: '/images/generated/germany-healthcare.jpg',
+                  alt: 'Healthcare professionals collaborating in a modern German hospital',
+                },
+                {
+                  key: 'uae',
+                  p: uae,
+                  label: 'Multi-industry careers',
+                  roles: uae.bullets,
+                  interest: 'Work in UAE',
+                  title: 'UAE',
+                  wa: 'Hi 211 OVERSEAS, I want to work in Dubai / UAE.',
+                  image: '/images/generated/uae-careers.jpg',
+                  alt: 'International professionals in Dubai overlooking cityscape',
+                },
+              ].map(({ key, p, label, roles, interest, title, wa, image, alt }, i) => (
                 <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
+                  <div className={`relative aspect-[16/9] w-full overflow-hidden mb-6 border ${i === 0 ? 'border-[#B88740]/40 bg-[#1E1E1E]' : 'border-[#E6DDCC] bg-[#FAF8F5]'}`}>
+                    <Image
+                      src={image}
+                      alt={alt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-700 hover:scale-105"
+                    />
+                  </div>
                   <p className={`text-xs uppercase tracking-[0.25em] font-medium ${i === 0 ? 'text-[#D1A95F]' : 'text-[#8A6020]'}`}>{label}</p>
                   <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold">{title}</h3>
                   <p className={`mt-3 text-sm sm:text-base leading-relaxed ${i === 0 ? 'text-white/70' : 'text-[#57514A]'}`}>{p.description}</p>

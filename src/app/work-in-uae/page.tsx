@@ -14,11 +14,30 @@ export const metadata: Metadata = {
     'Career opportunities in the UAE across Healthcare, Hospitality, Engineering and Sales sectors. Professional placement support from 211 OVERSEAS Ahmedabad.',
 };
 
-const SECTOR_META: Record<string, { icon: LucideIcon; href?: string }> = {
-  Healthcare: { icon: Stethoscope, href: '/work-in-uae/healthcare' },
-  Hospitality: { icon: ConciergeBell, href: '/work-in-uae/hospitality' },
-  'Engineering & Technical': { icon: HardHat, href: '/work-in-uae/engineering-construction' },
-  'Sales & Business': { icon: Briefcase },
+const SECTOR_META: Record<string, { icon: LucideIcon; href?: string; image: string; alt: string }> = {
+  Healthcare: {
+    icon: Stethoscope,
+    href: '/work-in-uae/healthcare',
+    image: '/images/generated/uae-sector-healthcare.jpg',
+    alt: 'Healthcare professionals in modern hospital atrium in Dubai',
+  },
+  Hospitality: {
+    icon: ConciergeBell,
+    href: '/work-in-uae/hospitality',
+    image: '/images/generated/uae-sector-hospitality.jpg',
+    alt: 'Hospitality and hotel operations staff in luxury Dubai resort',
+  },
+  'Engineering & Technical': {
+    icon: HardHat,
+    href: '/work-in-uae/engineering-construction',
+    image: '/images/generated/uae-sector-engineering.jpg',
+    alt: 'Civil and mechanical engineers on site in Dubai',
+  },
+  'Sales & Business': {
+    icon: Briefcase,
+    image: '/images/generated/uae-sector-sales.jpg',
+    alt: 'Corporate and business development executives in DIFC conference room',
+  },
 };
 
 export default function UAEPage() {
@@ -70,10 +89,21 @@ export default function UAEPage() {
               const Icon = meta?.icon ?? Briefcase;
               const inner = (
                 <>
-                  <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors group-hover:bg-[#94682B] group-hover:text-white">
-                    <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
-                  </span>
-                  <h3 className="mt-4 font-serif text-lg font-bold text-[#2A2A2A]">{sector.name}</h3>
+                  <div className="relative aspect-[16/9] w-full overflow-hidden mb-4 border border-[#E6DDCC] bg-[#FAF8F5]">
+                    <Image
+                      src={meta?.image ?? '/images/generated/uae-careers.jpg'}
+                      alt={meta?.alt ?? sector.name}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 25vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="flex h-9 w-9 items-center justify-center bg-black text-[#D1A95F] transition-colors group-hover:bg-[#94682B] group-hover:text-white">
+                      <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+                    <h3 className="font-serif text-lg font-bold text-[#2A2A2A]">{sector.name}</h3>
+                  </div>
                   <ul className="mt-3 flex flex-1 flex-wrap content-start gap-2">
                     {sector.roles.map((r) => (
                       <li key={r} className="border border-[#E6DDCC] px-2 py-1 text-xs text-[#57514A]">{r}</li>

@@ -24,13 +24,13 @@ interface Pathway {
 }
 
 const WORK: Pathway[] = [
-  { title: 'Work in Germany', tag: 'Healthcare careers', text: 'Language preparation, qualification recognition, interviews and visa guidance for nurses and physiotherapists.', href: '/work-in-germany', image: '/images/web/germany-wide.webp', alt: 'Historic German town centre' },
-  { title: 'Work in UAE', tag: 'Multi-industry careers', text: 'Healthcare, hospitality, engineering and construction roles, with guidance on licensing and documents.', href: '/work-in-uae', image: '/images/web/uae-wide.webp', alt: 'Dubai coastline and skyline' },
+  { title: 'Work in Germany', tag: 'Healthcare careers', text: 'Language preparation, qualification recognition, interviews and visa guidance for nurses and physiotherapists.', href: '/work-in-germany', image: '/images/generated/germany-healthcare.jpg', alt: 'Healthcare team in modern German clinical setting' },
+  { title: 'Work in UAE', tag: 'Multi-industry careers', text: 'Healthcare, hospitality, engineering and construction roles, with guidance on licensing and documents.', href: '/work-in-uae', image: '/images/generated/uae-careers.jpg', alt: 'Dubai skyline and ambitious career opportunities' },
 ];
 
 const STUDY: Pathway[] = [
-  { title: 'Study in South Korea', tag: 'English-taught programs', text: 'Bachelor’s, master’s and Korean language programs at leading universities in Seoul, Busan and beyond.', href: '/study-in-south-korea', image: '/images/web/seoul-wide.webp', alt: 'Seoul skyline at dusk' },
-  { title: 'Other study destinations', tag: 'Japan · UK · USA · Canada · more', text: 'Selected study pathways across Asia, Europe, North America and Australia matched to your profile.', href: '/other-destinations', image: '/images/web/graduates-wide.webp', alt: 'Graduates throwing caps in the air' },
+  { title: 'Study in South Korea', tag: 'English-taught programs', text: 'Bachelor’s, master’s and Korean language programs at leading universities in Seoul, Busan and beyond.', href: '/study-in-south-korea', image: '/images/generated/korea-gateway.jpg', alt: 'Students on modern Seoul university campus' },
+  { title: 'Other study destinations', tag: 'Japan · UK · USA · Canada · more', text: 'Selected study pathways across Asia, Europe, North America and Australia matched to your profile.', href: '/other-destinations', image: '/images/generated/global-campus.jpg', alt: 'Diverse students on historic university quad' },
 ];
 
 function PathwayCard({ p }: { p: Pathway }) {

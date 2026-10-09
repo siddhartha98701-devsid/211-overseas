@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
@@ -28,6 +29,15 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
             >
               Ask a counsellor
             </button>
+            <div className="mt-8 relative aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5]">
+              <Image
+                src="/images/generated/counselling-advisory.jpg"
+                alt="Personalized overseas education counselling session in Ahmedabad"
+                fill
+                sizes="(max-width: 1024px) 100vw, 30vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
 

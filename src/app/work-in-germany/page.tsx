@@ -61,8 +61,17 @@ export default function GermanyPage() {
             compact
           />
           <MobileScroller label="Healthcare pathways" desktopClassName="md:grid-cols-2">
-            {pathways.map((p) => (
+            {pathways.map((p, idx) => (
               <article key={p.title} className="flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 sm:p-8">
+                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
+                  <Image
+                    src={idx === 0 ? '/images/generated/germany-healthcare.jpg' : '/images/generated/germany-physio.jpg'}
+                    alt={idx === 0 ? 'Nurses collaborating in a modern German hospital' : 'Physiotherapy rehabilitation practice in Germany'}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 50vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
                 <p className="text-xs uppercase tracking-widest text-[#8A6020] font-medium">{p.tag}</p>
                 <h3 className="mt-2 font-serif text-2xl font-bold text-[#2A2A2A]">{p.title}</h3>
                 <p className="mt-3 text-sm text-[#57514A] leading-relaxed">{p.description}</p>

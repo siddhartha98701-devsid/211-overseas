@@ -61,7 +61,7 @@ export default function OtherDestinationsPage() {
           </div>
           <div className="lg:col-span-5">
             <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
-              <Image src="/images/web/graduates-wide.webp" alt="Graduates celebrating by throwing caps in the air" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
+              <Image src="/images/generated/global-campus.jpg" alt="Diverse students on global historic university quad" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
             </div>
           </div>
         </div>

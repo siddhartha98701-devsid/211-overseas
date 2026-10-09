@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
 import { ArrowRight, GraduationCap, BookOpen, Stethoscope, Activity, ConciergeBell, Wrench, Users, type LucideIcon } from 'lucide-react';
@@ -18,17 +19,18 @@ interface Segment {
   interest: string;
   href: string;
   cta: string;
+  image: string;
 }
 
 // Interests must match siteContent.form.interests so the popup pre-selects them.
 const SEGMENTS: Segment[] = [
-  { id: 'students', label: 'Students', icon: GraduationCap, headline: 'Planning your first degree abroad?', text: 'Explore English-taught undergraduate programs in South Korea, with guidance from application to visa.', interest: "Bachelor's in South Korea", href: '/study-in-south-korea', cta: 'Explore study in South Korea' },
-  { id: 'graduates', label: 'Graduates', icon: BookOpen, headline: 'Ready for a master’s or a global career start?', text: 'See graduate programs in fields like AI, engineering, business and design — matched to your profile.', interest: "Master's in South Korea", href: '/study-in-south-korea', cta: 'See graduate pathways' },
-  { id: 'nurses', label: 'Nurses', icon: Stethoscope, headline: 'A structured healthcare career in Germany', text: 'Eligibility assessment, German language preparation, qualification recognition and documentation support.', interest: 'Work in Germany – Nursing', href: '/work-in-germany', cta: 'Explore Germany for nurses' },
-  { id: 'physios', label: 'Physiotherapists', icon: Activity, headline: 'Take your physiotherapy career to Germany', text: 'We guide eligible physiotherapists through recognition, interviews, visa documentation and pre-departure.', interest: 'Work in Germany – Physiotherapy', href: '/work-in-germany', cta: 'Explore Germany for physios' },
-  { id: 'hospitality', label: 'Hospitality Professionals', icon: ConciergeBell, headline: 'Hotels & hospitality in the UAE', text: 'Explore career opportunities across the UAE’s hotels, resorts and hospitality industry.', interest: 'Work in UAE', href: '/work-in-uae', cta: 'Explore UAE careers' },
-  { id: 'skilled', label: 'Skilled Professionals', icon: Wrench, headline: 'Engineering, construction & technical roles', text: 'The UAE and other countries offer opportunities across skilled trades and technical professions.', interest: 'Work in UAE', href: '/work-in-uae', cta: 'See sectors hiring' },
-  { id: 'parents', label: 'Parents', icon: Users, headline: 'Deciding for your child’s future?', text: 'Get clear, transparent answers on process, documentation, timelines and costs — and speak to us as a family.', interest: 'Not Sure – Need Counselling', href: '/about', cta: 'How we work with families' },
+  { id: 'students', label: 'Students', icon: GraduationCap, headline: 'Planning your first degree abroad?', text: 'Explore English-taught undergraduate programs in South Korea, with guidance from application to visa.', interest: "Bachelor's in South Korea", href: '/study-in-south-korea', cta: 'Explore study in South Korea', image: '/images/generated/korea-gateway.jpg' },
+  { id: 'graduates', label: 'Graduates', icon: BookOpen, headline: 'Ready for a master’s or a global career start?', text: 'See graduate programs in fields like AI, engineering, business and design — matched to your profile.', interest: "Master's in South Korea", href: '/study-in-south-korea', cta: 'See graduate pathways', image: '/images/generated/global-campus.jpg' },
+  { id: 'nurses', label: 'Nurses', icon: Stethoscope, headline: 'A structured healthcare career in Germany', text: 'Eligibility assessment, German language preparation, qualification recognition and documentation support.', interest: 'Work in Germany – Nursing', href: '/work-in-germany', cta: 'Explore Germany for nurses', image: '/images/generated/germany-healthcare.jpg' },
+  { id: 'physios', label: 'Physiotherapists', icon: Activity, headline: 'Take your physiotherapy career to Germany', text: 'We guide eligible physiotherapists through recognition, interviews, visa documentation and pre-departure.', interest: 'Work in Germany – Physiotherapy', href: '/work-in-germany', cta: 'Explore Germany for physios', image: '/images/generated/germany-physio.jpg' },
+  { id: 'hospitality', label: 'Hospitality Professionals', icon: ConciergeBell, headline: 'Hotels & hospitality in the UAE', text: 'Explore career opportunities across the UAE’s hotels, resorts and hospitality industry.', interest: 'Work in UAE', href: '/work-in-uae', cta: 'Explore UAE careers', image: '/images/generated/uae-sector-hospitality.jpg' },
+  { id: 'skilled', label: 'Skilled Professionals', icon: Wrench, headline: 'Engineering, construction & technical roles', text: 'The UAE and other countries offer opportunities across skilled trades and technical professions.', interest: 'Work in UAE', href: '/work-in-uae', cta: 'See sectors hiring', image: '/images/generated/uae-sector-engineering.jpg' },
+  { id: 'parents', label: 'Parents', icon: Users, headline: 'Deciding for your child’s future?', text: 'Get clear, transparent answers on process, documentation, timelines and costs — and speak to us as a family.', interest: 'Not Sure – Need Counselling', href: '/about', cta: 'How we work with families', image: '/images/generated/counselling-advisory.jpg' },
 ];
 
 export function WhoCanConnectSection() {
@@ -82,11 +84,22 @@ export function WhoCanConnectSection() {
                 transition={{ duration: 0.25 }}
                 className="bg-black text-white p-7 sm:p-10 min-h-[22rem] flex flex-col"
               >
-                <span className="flex h-12 w-12 items-center justify-center bg-[#94682B] text-white">
-                  <Icon size={24} aria-hidden="true" />
-                </span>
-                <p className="mt-5 text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">{seg.label}</p>
-                <h3 className="mt-2 font-serif text-2xl sm:text-3xl font-bold leading-tight">{seg.headline}</h3>
+                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
+                  <Image
+                    src={seg.image}
+                    alt={seg.headline}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 55vw"
+                    className="object-cover transition-transform duration-700 hover:scale-105"
+                  />
+                </div>
+                <div className="flex items-center gap-3">
+                  <span className="flex h-10 w-10 items-center justify-center bg-[#94682B] text-white">
+                    <Icon size={20} aria-hidden="true" />
+                  </span>
+                  <p className="text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">{seg.label}</p>
+                </div>
+                <h3 className="mt-4 font-serif text-2xl sm:text-3xl font-bold leading-tight">{seg.headline}</h3>
                 <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{seg.text}</p>
                 <div className="mt-auto pt-8 flex flex-wrap items-center gap-3">
                   <button
