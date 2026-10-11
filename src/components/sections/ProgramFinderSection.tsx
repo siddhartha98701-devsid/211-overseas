@@ -11,6 +11,10 @@ import {
   Building2,
   ArrowRight,
   Filter,
+  SlidersHorizontal,
+  ChevronDown,
+  ChevronUp,
+  X,
 } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
@@ -201,6 +205,16 @@ export function ProgramFinderSection() {
   const [selectedField, setSelectedField] = useState<string>('All');
   const [selectedBudget, setSelectedBudget] = useState<string>('All');
   const [selectedIntake, setSelectedIntake] = useState<string>('All');
+  const [isMobileFiltersOpen, setIsMobileFiltersOpen] = useState<boolean>(false);
+
+  const activeFilterCount = useMemo(() => {
+    let count = 0;
+    if (selectedLevel !== 'All') count++;
+    if (selectedField !== 'All') count++;
+    if (selectedBudget !== 'All') count++;
+    if (selectedIntake !== 'All') count++;
+    return count;
+  }, [selectedLevel, selectedField, selectedBudget, selectedIntake]);
 
   const isFiltered =
     selectedLevel !== 'All' ||
@@ -242,8 +256,179 @@ export function ProgramFinderSection() {
           description="Filter by study level, academic discipline, tuition budget, and intake timing. All programs we guide on offer English tracks or dedicated language immersion."
         />
 
-        {/* Sticky filter bar on mobile, structured filter board on desktop */}
-        <div className="sticky top-[72px] z-30 -mx-6 px-6 py-4 bg-[#FAF8F5]/95 backdrop-blur border-y border-[#E6DDCC] shadow-sm mb-8 sm:static sm:bg-transparent sm:border-0 sm:shadow-none sm:p-0">
+        {/* Compact Filter Button Bar on Mobile (sm:hidden) */}
+        <div className="block sm:hidden sticky top-[72px] z-30 -mx-6 px-4 py-2.5 bg-[#FAF8F5]/95 backdrop-blur border-y border-[#E6DDCC] shadow-sm mb-6">
+          <div className="flex items-center justify-between gap-3">
+            <button
+              type="button"
+              onClick={() => setIsMobileFiltersOpen((prev) => !prev)}
+              aria-expanded={isMobileFiltersOpen}
+              className="inline-flex items-center gap-2 bg-white border border-[#E6DDCC] px-3.5 py-2 text-xs font-semibold text-[#2A2A2A] shadow-sm hover:border-[#94682B] active:bg-[#F3EBDD] transition-colors cursor-pointer"
+            >
+              <SlidersHorizontal size={14} className="text-[#94682B]" />
+              <span>Filter Options</span>
+              {activeFilterCount > 0 && (
+                <span className="inline-flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-[#94682B] text-white text-[10px] font-bold">
+                  {activeFilterCount}
+                </span>
+              )}
+              {isMobileFiltersOpen ? (
+                <ChevronUp size={14} className="text-[#57514A]" />
+              ) : (
+                <ChevronDown size={14} className="text-[#57514A]" />
+              )}
+            </button>
+
+            <div className="flex items-center gap-2 text-xs">
+              <span className="text-[#57514A]">
+                <strong className="text-black font-semibold">{filteredPrograms.length}</strong> {filteredPrograms.length === 1 ? 'programme' : 'programmes'}
+              </span>
+              {isFiltered && (
+                <button
+                  type="button"
+                  onClick={resetFilters}
+                  className="text-[#94682B] hover:text-[#7A5622] font-semibold underline underline-offset-2 ml-1 cursor-pointer"
+                >
+                  Reset
+                </button>
+              )}
+            </div>
+          </div>
+
+          {/* Active Filter Badges on Mobile (when collapsed) */}
+          {isFiltered && !isMobileFiltersOpen && (
+            <div className="flex flex-wrap gap-1.5 pt-2 mt-2 border-t border-[#E6DDCC]/60">
+              {selectedLevel !== 'All' && (
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                  {selectedLevel}
+                  <button type="button" onClick={() => setSelectedLevel('All')} aria-label={`Clear ${selectedLevel}`} className="cursor-pointer">
+                    <X size={11} className="text-[#94682B]" />
+                  </button>
+                </span>
+              )}
+              {selectedField !== 'All' && (
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                  {selectedField}
+                  <button type="button" onClick={() => setSelectedField('All')} aria-label={`Clear ${selectedField}`} className="cursor-pointer">
+                    <X size={11} className="text-[#94682B]" />
+                  </button>
+                </span>
+              )}
+              {selectedBudget !== 'All' && (
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                  {selectedBudget}
+                  <button type="button" onClick={() => setSelectedBudget('All')} aria-label={`Clear ${selectedBudget}`} className="cursor-pointer">
+                    <X size={11} className="text-[#94682B]" />
+                  </button>
+                </span>
+              )}
+              {selectedIntake !== 'All' && (
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                  {selectedIntake}
+                  <button type="button" onClick={() => setSelectedIntake('All')} aria-label={`Clear ${selectedIntake}`} className="cursor-pointer">
+                    <X size={11} className="text-[#94682B]" />
+                  </button>
+                </span>
+              )}
+            </div>
+          )}
+
+          {/* Collapsible Filter Panel on Mobile (when open) */}
+          {isMobileFiltersOpen && (
+            <div className="mt-3 pt-3 border-t border-[#E6DDCC] space-y-3.5 max-h-[65vh] overflow-y-auto">
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                  1. Study Level
+                </label>
+                <select
+                  value={selectedLevel}
+                  onChange={(e) => setSelectedLevel(e.target.value)}
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                >
+                  {LEVELS.map((l) => (
+                    <option key={l} value={l}>
+                      {l === 'All' ? 'All Study Levels' : l}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                  2. Field of Study
+                </label>
+                <select
+                  value={selectedField}
+                  onChange={(e) => setSelectedField(e.target.value)}
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                >
+                  {FIELD_OPTIONS.map((f) => (
+                    <option key={f} value={f}>
+                      {f === 'All' ? 'All Disciplines' : f}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                  3. Tuition Budget
+                </label>
+                <select
+                  value={selectedBudget}
+                  onChange={(e) => setSelectedBudget(e.target.value)}
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                >
+                  {BUDGETS.map((b) => (
+                    <option key={b} value={b}>
+                      {b === 'All' ? 'All Budgets' : b}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                  4. Preferred Intake
+                </label>
+                <select
+                  value={selectedIntake}
+                  onChange={(e) => setSelectedIntake(e.target.value)}
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                >
+                  {INTAKES.map((i) => (
+                    <option key={i} value={i}>
+                      {i === 'All' ? 'All Intakes' : i}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Action button to apply and collapse */}
+              <div className="pt-2 flex items-center gap-2">
+                <button
+                  type="button"
+                  onClick={() => setIsMobileFiltersOpen(false)}
+                  className="flex-1 py-2.5 bg-[#94682B] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#7A5622] transition-colors text-center cursor-pointer"
+                >
+                  Show {filteredPrograms.length} {filteredPrograms.length === 1 ? 'Program' : 'Programs'}
+                </button>
+                {isFiltered && (
+                  <button
+                    type="button"
+                    onClick={resetFilters}
+                    className="px-3.5 py-2.5 border border-[#E6DDCC] bg-white text-xs text-[#57514A] hover:text-[#2A2A2A] font-semibold transition-colors cursor-pointer"
+                  >
+                    Reset
+                  </button>
+                )}
+              </div>
+            </div>
+          )}
+        </div>
+
+        {/* Structured Filter Board on Desktop (hidden sm:block) */}
+        <div className="hidden sm:block mb-8">
           <div className="bg-white border border-[#E6DDCC] p-4 sm:p-6 shadow-sm space-y-5">
             <div className="flex items-center justify-between border-b border-[#E6DDCC] pb-3">
               <div className="flex items-center gap-2 text-[#2A2A2A]">
@@ -262,7 +447,7 @@ export function ProgramFinderSection() {
               )}
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Filter 1: Level */}
               <div>
                 <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1.5">
@@ -337,7 +522,7 @@ export function ProgramFinderSection() {
             </div>
 
             {/* Quick Pills for Field */}
-            <div className="hidden sm:flex flex-wrap gap-2 pt-2 border-t border-[#E6DDCC]/60">
+            <div className="flex flex-wrap gap-2 pt-2 border-t border-[#E6DDCC]/60">
               <span className="text-[11px] uppercase tracking-wider text-[#57514A] font-medium self-center mr-1">
                 Popular:
               </span>
@@ -362,8 +547,8 @@ export function ProgramFinderSection() {
           </div>
         </div>
 
-        {/* Results Count & Status */}
-        <div className="flex items-center justify-between mb-6">
+        {/* Results Count & Status (Desktop) */}
+        <div className="hidden sm:flex items-center justify-between mb-6">
           <p className="text-xs sm:text-sm text-[#57514A]" aria-live="polite">
             Showing <strong className="text-black font-semibold">{filteredPrograms.length}</strong> matching{' '}
             {filteredPrograms.length === 1 ? 'programme' : 'programmes'}
@@ -372,7 +557,7 @@ export function ProgramFinderSection() {
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs text-[#94682B] hover:text-[#7A5622] font-semibold sm:hidden"
+              className="text-xs text-[#94682B] hover:text-[#7A5622] font-semibold cursor-pointer"
             >
               Reset Filters
             </button>
