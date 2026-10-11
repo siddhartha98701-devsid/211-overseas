@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight } from 'lucide-react';
 import { subpageHref, subpagesFor, type SubpageGroup } from '@/content/subpages';
 
@@ -17,6 +18,17 @@ export function SubpageCards({ group, heading, intro }: { group: SubpageGroup; h
                 href={subpageHref(p)}
                 className="group flex h-full flex-col border border-[#E6DDCC] bg-white p-5 transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
               >
+                {p.heroImage && (
+                  <div className="relative aspect-[16/10] w-full overflow-hidden mb-4 border border-[#E6DDCC] bg-[#FAF8F5]">
+                    <Image
+                      src={p.heroImage.src}
+                      alt={p.heroImage.alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <h3 className="font-serif text-lg font-bold text-[#2A2A2A]">{p.name}</h3>
                 <p className="mt-2 flex-1 text-sm text-[#57514A] leading-relaxed">{p.blurb}</p>
                 <span className="mt-4 inline-flex items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">

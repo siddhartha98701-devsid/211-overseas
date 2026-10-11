@@ -34,6 +34,17 @@ export interface SubpageContent {
   metaDescription: string;
   /** Short line for the cards on the parent page. */
   blurb: string;
+  heroImage?: {
+    src: string;
+    alt: string;
+    caption?: string;
+  };
+  gallery?: {
+    src: string;
+    alt: string;
+    title: string;
+    caption: string;
+  }[];
 }
 
 const STUDY_STEPS = [
@@ -90,6 +101,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Japan',
     metaTitle: 'Study in Japan', metaDescription: 'Study in Japan: English and Japanese programs, intakes, requirements and how 211 OVERSEAS guides you from application to visa.',
     blurb: 'Technology, research and creative industries in a safe, efficient country.',
+    heroImage: {
+      src: '/images/destinations/japan-campus.jpg',
+      alt: 'International students at Tokyo Global Innovation Center university campus under cherry blossoms',
+      caption: 'Tokyo Global Innovation Center · Research & Technology',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/japan-campus.jpg',
+        alt: 'Modern Japanese university campus with sakura cherry blossoms',
+        title: 'World-Class Campuses',
+        caption: 'Global innovation centres & laboratories in Tokyo',
+      },
+      {
+        src: '/images/destinations/japan-tech-lab.jpg',
+        alt: 'High-tech robotics and AI research laboratory in Tokyo',
+        title: 'Robotics & AI Innovation',
+        caption: 'Cutting-edge engineering and automated tech labs',
+      },
+      {
+        src: '/images/destinations/japan-culture.jpg',
+        alt: 'International students visiting historic Kyoto temple torii gates',
+        title: 'Cultural Heritage',
+        caption: 'Centuries of tradition alongside modern study',
+      },
+      {
+        src: '/images/destinations/japan-tokyo-city.jpg',
+        alt: 'International students exploring vibrant Shibuya in Tokyo',
+        title: 'Vibrant Metropolis Life',
+        caption: 'Safe, ultra-connected urban student living',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'taiwan', name: 'Taiwan', kind: 'study',
@@ -124,6 +166,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Taiwan',
     metaTitle: 'Study in Taiwan', metaDescription: 'Study in Taiwan: English-taught degrees in technology, engineering and business. Intakes, requirements and guidance from 211 OVERSEAS.',
     blurb: 'English-taught tech and engineering degrees in a welcoming, good-value hub.',
+    heroImage: {
+      src: '/images/destinations/taiwan-campus.jpg',
+      alt: 'International students at National Taiwan University engineering complex with Taipei 101 skyline',
+      caption: 'Taipei, Taiwan · International Science & Tech Complex',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/taiwan-campus.jpg',
+        alt: 'Modern engineering campus in Taipei with palms and Taipei 101 in background',
+        title: 'Premier Tech Campuses',
+        caption: 'English-taught engineering and science programs',
+      },
+      {
+        src: '/images/destinations/taiwan-semiconductor-lab.jpg',
+        alt: 'Semiconductor microelectronics cleanroom research laboratory in Taiwan',
+        title: 'Silicon & Semiconductor Hub',
+        caption: 'World-leading chip design and lithography research',
+      },
+      {
+        src: '/images/destinations/taiwan-taipei-skyline.jpg',
+        alt: 'Taipei metropolis skyline with Taipei 101 and tech innovation districts',
+        title: 'Taipei Metropolis',
+        caption: 'Vibrant capital with Taipei 101 and tech industry clusters',
+      },
+      {
+        src: '/images/destinations/taiwan-culture.jpg',
+        alt: 'Traditional Taiwanese cultural architecture and vibrant night markets',
+        title: 'Culture & Student Life',
+        caption: 'Warm community, night markets and immersive Mandarin learning',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'singapore', name: 'Singapore', kind: 'study',
@@ -158,6 +231,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Singapore',
     metaTitle: 'Study in Singapore', metaDescription: 'Study in Singapore: English-medium education, intakes, requirements and visa guidance with 211 OVERSEAS.',
     blurb: 'English-medium study in Asia’s business, finance and tech hub.',
+    heroImage: {
+      src: '/images/destinations/singapore-campus.jpg',
+      alt: 'International students collaborating outdoors at biophilic Singapore university campus with Marina Bay views',
+      caption: 'Singapore · Biophilic Campus & Marina Bay Gateway',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/singapore-campus.jpg',
+        alt: 'Biophilic modern campus with vertical green gardens overlooking Marina Bay',
+        title: 'Smart Green Campuses',
+        caption: 'Cutting-edge biophilic design and study spaces',
+      },
+      {
+        src: '/images/destinations/singapore-fintech-hub.jpg',
+        alt: 'International business and finance students in Singapore innovation boardroom overlooking CBD skyline',
+        title: 'Global Finance & Tech Gateway',
+        caption: 'Direct links with multinational corporate headquarters',
+      },
+      {
+        src: '/images/destinations/singapore-marina-bay.jpg',
+        alt: 'Iconic Marina Bay waterfront skyline and downtown financial district in Singapore',
+        title: 'Marina Bay Metropolis',
+        caption: 'Iconic waterfront city and leading regional commerce hub',
+      },
+      {
+        src: '/images/destinations/singapore-gardens.jpg',
+        alt: 'Lush Gardens by the Bay supertrees and futuristic architecture in Singapore',
+        title: 'Urban Innovation & Living',
+        caption: 'Safe, lush garden city with world-class public transport',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'europe', name: 'Europe', kind: 'study',
@@ -192,6 +296,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Europe',
     metaTitle: 'Study in Europe', metaDescription: 'Study in Europe: compare countries, English-taught programs and visa requirements with expert guidance from 211 OVERSEAS.',
     blurb: 'Compare countries and English-taught programs across the continent.',
+    heroImage: {
+      src: '/images/destinations/europe-campus.jpg',
+      alt: 'International students studying at historic continental European university plaza beside a canal',
+      caption: 'Continental Europe · Renaissance Heritage & Modern Science',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/europe-campus.jpg',
+        alt: 'Historic Renaissance university plaza beside scenic canal with bicycles and students',
+        title: 'Historic University Cities',
+        caption: 'Schengen-wide education across Germany, Netherlands & France',
+      },
+      {
+        src: '/images/destinations/europe-library.jpg',
+        alt: 'Grand historic European university library with classical architecture and student study areas',
+        title: 'Centuries of Scholarship',
+        caption: 'Iconic historic libraries and long-standing academic traditions',
+      },
+      {
+        src: '/images/destinations/europe-research.jpg',
+        alt: 'Modern European scientific research and biomedical laboratory with advanced equipment',
+        title: 'Leading Science & Innovation',
+        caption: 'World-renowned laboratories and multi-nation research projects',
+      },
+      {
+        src: '/images/destinations/europe-city-life.jpg',
+        alt: 'Vibrant European city street life with cafes, historic architecture and students',
+        title: 'Cultural & Student Lifestyle',
+        caption: 'Rich arts, architecture, and seamless cross-border travel',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'united-kingdom', name: 'United Kingdom', kind: 'study',
@@ -226,6 +361,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'United Kingdom',
     metaTitle: 'Study in the United Kingdom', metaDescription: 'Study in the UK: one-year master’s, UCAS, intakes and requirements with step-by-step guidance from 211 OVERSEAS.',
     blurb: 'Recognised degrees and one-year master’s programs.',
+    heroImage: {
+      src: '/images/destinations/uk-campus.jpg',
+      alt: 'International students walking along sandstone cloister and modern institute at University of Oxford UK',
+      caption: 'United Kingdom · World-Ranked Collegiate Excellence',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/uk-campus.jpg',
+        alt: 'Historic sandstone cloister and modern research institute in the UK',
+        title: 'Russell Group Excellence',
+        caption: 'Centuries of academic tradition with modern innovation',
+      },
+      {
+        src: '/images/destinations/uk-oxford-library.jpg',
+        alt: 'Radcliffe Camera and historic collegiate library architecture in Oxford UK',
+        title: 'Radcliffe Camera & Libraries',
+        caption: 'World-leading research collections and collegiate libraries',
+      },
+      {
+        src: '/images/destinations/uk-london-city.jpg',
+        alt: 'London city landmark and financial district along the River Thames',
+        title: 'London Global Hub',
+        caption: 'Access to finance, tech, law and media industries',
+      },
+      {
+        src: '/images/destinations/uk-cambridge.jpg',
+        alt: 'Historic Cambridge college chapels, green quads and students punting along the Cam',
+        title: 'Collegiate Student Life',
+        caption: 'Historic colleges, green quads and vibrant campus societies',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'united-states', name: 'United States', kind: 'study',
@@ -260,6 +426,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'United States',
     metaTitle: 'Study in the United States', metaDescription: 'Study in the USA: intakes, tests, F-1 visa and how 211 OVERSEAS helps you build a strong application.',
     blurb: 'The widest choice of programs, with flexible degrees and research.',
+    heroImage: {
+      src: '/images/destinations/usa-campus.jpg',
+      alt: 'International students walking across collegiate quad in front of iconic neoclassical dome library in the USA',
+      caption: 'United States · World-Leading Research & Campus Quad',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/usa-campus.jpg',
+        alt: 'American collegiate brick library dome quad with autumn foliage and students',
+        title: 'Ivy League & Tier 1 Research',
+        caption: 'Unmatched research funding and vibrant campus life',
+      },
+      {
+        src: '/images/destinations/usa-tech-hub.jpg',
+        alt: 'High-tech Silicon Valley innovation lab and modern engineering workspace in the USA',
+        title: 'Silicon Valley & Innovation Hubs',
+        caption: 'Proximity to leading technology incubators and research parks',
+      },
+      {
+        src: '/images/destinations/usa-nyc-campus.jpg',
+        alt: 'Metropolitan university campus in New York City with dynamic urban backdrop',
+        title: 'Metropolitan University Life',
+        caption: 'Campuses integrated into dynamic global commercial centres',
+      },
+      {
+        src: '/images/destinations/usa-harvard-yard.jpg',
+        alt: 'Historic red-brick Harvard Yard quad with tree-lined pathways and collegiate libraries',
+        title: 'Historic Collegiate Quads',
+        caption: 'Iconic brick quads, student societies and global alumni networks',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'canada', name: 'Canada', kind: 'study',
@@ -294,6 +491,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Canada',
     metaTitle: 'Study in Canada', metaDescription: 'Study in Canada: universities, colleges, co-op programs, study permits and guidance from 211 OVERSEAS.',
     blurb: 'Co-op programs and a welcoming, multicultural student experience.',
+    heroImage: {
+      src: '/images/destinations/canada-campus.jpg',
+      alt: 'International students walking past modern glass academic hall with autumn maple foliage and mountains in Canada',
+      caption: 'Canada · Glass Academics & Majestic Nature',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/canada-campus.jpg',
+        alt: 'Canadian university campus with modern glass architecture and snow-capped mountain backdrop',
+        title: 'Inclusive, World-Class Campuses',
+        caption: 'High quality of life, co-op work options and scenic campuses',
+      },
+      {
+        src: '/images/destinations/canada-toronto-skyline.jpg',
+        alt: 'Toronto downtown skyline and financial hub with CN Tower in Canada',
+        title: 'Toronto Commercial Metropolis',
+        caption: 'Canada’s financial and tech capital with rich multicultural life',
+      },
+      {
+        src: '/images/destinations/canada-ubc-campus.jpg',
+        alt: 'University of British Columbia campus framed by the Pacific Ocean and Coastal Mountains',
+        title: 'Pacific Coast Academic Hubs',
+        caption: 'Modern learning centres framed by mountains and coastal scenery',
+      },
+      {
+        src: '/images/destinations/canada-montreal.jpg',
+        alt: 'Historic university district and Old Port in Montreal with bilingual European charm',
+        title: 'Historic Bilingual Culture',
+        caption: 'World-ranked universities with European charm and vibrant student quarters',
+      },
+    ],
   },
   {
     group: 'other-destinations', slug: 'australia', name: 'Australia', kind: 'study',
@@ -328,6 +556,37 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Study in Other Countries', destination: 'Australia',
     metaTitle: 'Study in Australia', metaDescription: 'Study in Australia: intakes, student visa, requirements and course guidance from 211 OVERSEAS.',
     blurb: 'Industry-linked courses and student-friendly cities.',
+    heroImage: {
+      src: '/images/destinations/australia-campus.jpg',
+      alt: 'International students walking past sandstone cloister and modern glass hub under blooming jacarandas in Australia',
+      caption: 'Australia · Group of Eight Heritage & Sunlit Campuses',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/australia-campus.jpg',
+        alt: 'Sunlit Australian university campus with sandstone arches, glass study hub and jacarandas',
+        title: 'Group of Eight (Go8) Campuses',
+        caption: 'Globally ranked degrees in Sydney, Melbourne & beyond',
+      },
+      {
+        src: '/images/destinations/australia-sydney-harbour.jpg',
+        alt: 'Sydney Harbour with Opera House and Harbour Bridge under sunny blue skies',
+        title: 'Sydney Global Gateway',
+        caption: 'Iconic harbour lifestyle paired with major financial and trade links',
+      },
+      {
+        src: '/images/destinations/australia-melbourne-quad.jpg',
+        alt: 'Historic sandstone courtyard and collegiate lawns at University of Melbourne',
+        title: 'Melbourne Arts & Research',
+        caption: 'Australia’s cultural capital with leading universities and cafes',
+      },
+      {
+        src: '/images/destinations/australia-student-life.jpg',
+        alt: 'Students relaxing outdoors under purple jacaranda trees on Australian university campus',
+        title: 'Sunlit Student Living',
+        caption: 'Jacaranda-lined sandstone quads and relaxed outdoor student lifestyle',
+      },
+    ],
   },
 
   /* ============================== SOUTH KOREA ============================== */
@@ -364,6 +623,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Bachelor\'s in South Korea', destination: 'South Korea',
     metaTitle: 'Bachelor’s in South Korea', metaDescription: 'English-taught bachelor’s programs in South Korea (Seoul, Busan): requirements, intakes and guidance from 211 OVERSEAS.',
     blurb: 'English-taught undergraduate degrees in Seoul, Busan and more.',
+    heroImage: {
+      src: '/images/korea/korea-campus.jpg',
+      alt: 'Modern South Korean university campus grounds in Seoul',
+      caption: 'South Korea · Undergraduate Degrees & Campuses',
+    },
   },
   {
     group: 'study-in-south-korea', slug: 'masters', name: 'Master’s programs', kind: 'study',
@@ -398,6 +662,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Master\'s in South Korea', destination: 'South Korea',
     metaTitle: 'Master’s in South Korea', metaDescription: 'English-taught master’s programs in South Korea: AI, engineering, business and design. Requirements and guidance from 211 OVERSEAS.',
     blurb: 'English-taught graduate degrees in AI, engineering, business and design.',
+    heroImage: {
+      src: '/images/generated/korea-gateway.jpg',
+      alt: 'International graduate students collaborating on modern university campus in Seoul',
+      caption: 'South Korea · Advanced Research & Master’s Degrees',
+    },
   },
   {
     group: 'study-in-south-korea', slug: 'korean-language', name: 'Korean language program', kind: 'study',
@@ -432,6 +701,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Korean Language Program', destination: 'South Korea',
     metaTitle: 'Korean Language Program in South Korea', metaDescription: 'Learn Korean at a university language institute in South Korea. Terms, TOPIK, visa guidance and support from 211 OVERSEAS.',
     blurb: 'Immersive Korean courses and a pathway into a degree.',
+    heroImage: {
+      src: '/images/korea/korea-student.jpg',
+      alt: 'International students studying Korean language in South Korea',
+      caption: 'South Korea · Language Immersive Programs',
+    },
   },
 
   /* ============================== GERMANY ============================== */
@@ -468,6 +742,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Work in Germany – Nursing', destination: 'Germany',
     metaTitle: 'Work as a Nurse in Germany', metaDescription: 'Nursing careers in Germany: language, qualification recognition, interviews and visa guidance from 211 OVERSEAS.',
     blurb: 'Language prep, recognition, interviews and visa guidance for nurses.',
+    heroImage: {
+      src: '/images/generated/germany-healthcare.jpg',
+      alt: 'Nurses collaborating in a modern German hospital',
+      caption: 'Germany · Regulated Healthcare Careers for Nurses',
+    },
   },
   {
     group: 'work-in-germany', slug: 'physiotherapists', name: 'Physiotherapists', kind: 'work',
@@ -502,6 +781,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Work in Germany – Physiotherapy', destination: 'Germany',
     metaTitle: 'Work as a Physiotherapist in Germany', metaDescription: 'Physiotherapy careers in Germany: language, recognition, interviews and visa guidance from 211 OVERSEAS.',
     blurb: 'Eligibility, German language, recognition and employer support.',
+    heroImage: {
+      src: '/images/generated/germany-physio.jpg',
+      alt: 'Physiotherapist assisting patient in modern German clinic',
+      caption: 'Germany · Clinical Practice for Physiotherapists',
+    },
   },
 
   /* ============================== UAE ============================== */
@@ -538,6 +822,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Work in UAE', destination: 'UAE',
     metaTitle: 'Healthcare Jobs in UAE', metaDescription: 'Healthcare careers in the UAE: licensing, documents and guidance from 211 OVERSEAS.',
     blurb: 'Nursing and allied-health careers across the UAE.',
+    heroImage: {
+      src: '/images/generated/uae-sector-healthcare.jpg',
+      alt: 'Healthcare professionals in modern hospital atrium in Dubai',
+      caption: 'UAE · Modern Hospital & Medical Center Careers',
+    },
   },
   {
     group: 'work-in-uae', slug: 'hospitality', name: 'Hospitality & hotels', kind: 'work',
@@ -572,6 +861,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Work in UAE', destination: 'UAE',
     metaTitle: 'Hospitality Jobs in UAE', metaDescription: 'Hotel and hospitality careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
     blurb: 'Hotels, resorts, restaurants and events.',
+    heroImage: {
+      src: '/images/generated/uae-sector-hospitality.jpg',
+      alt: 'Hospitality and hotel operations staff in luxury Dubai resort',
+      caption: 'UAE · Luxury Hotels & Tourism Industry',
+    },
   },
   {
     group: 'work-in-uae', slug: 'engineering-construction', name: 'Engineering & construction', kind: 'work',
@@ -606,6 +900,11 @@ export const SUBPAGES: SubpageContent[] = [
     interest: 'Work in UAE', destination: 'UAE',
     metaTitle: 'Engineering & Construction Jobs in UAE', metaDescription: 'Engineering and construction careers in the UAE: roles, requirements and guidance from 211 OVERSEAS.',
     blurb: 'Civil, mechanical, electrical and project roles.',
+    heroImage: {
+      src: '/images/generated/uae-sector-engineering.jpg',
+      alt: 'Civil and mechanical engineers on site in Dubai',
+      caption: 'UAE · Major Infrastructure & Engineering Projects',
+    },
   },
 ];
 

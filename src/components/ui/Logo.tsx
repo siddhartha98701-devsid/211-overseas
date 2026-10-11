@@ -3,12 +3,12 @@ import Image from 'next/image';
 type LogoVariant = 'primary' | 'primary-white' | 'primary-black' | 'secondary' | 'secondary-white' | 'mark';
 
 const SOURCES: Record<LogoVariant, { src: string; width: number; height: number }> = {
-  primary: { src: '/brand/logo-primary.png', width: 932, height: 875 },
-  'primary-white': { src: '/brand/logo-primary-white.png', width: 932, height: 875 },
-  'primary-black': { src: '/brand/logo-primary-black.png', width: 932, height: 875 },
-  secondary: { src: '/brand/logo-secondary.png', width: 932, height: 875 },
-  'secondary-white': { src: '/brand/logo-secondary-white.png', width: 932, height: 875 },
-  mark: { src: '/brand/logomark.png', width: 932, height: 689 },
+  primary: { src: '/brand/logo-primary.png', width: 1864, height: 1750 },
+  'primary-white': { src: '/brand/logo-primary-white.png', width: 1864, height: 1750 },
+  'primary-black': { src: '/brand/logo-primary-black.png', width: 1864, height: 1750 },
+  secondary: { src: '/brand/logo-secondary.png', width: 1864, height: 1750 },
+  'secondary-white': { src: '/brand/logo-secondary-white.png', width: 1864, height: 1750 },
+  mark: { src: '/brand/logomark.png', width: 1864, height: 1378 },
 };
 
 interface LogoProps {
@@ -20,7 +20,7 @@ interface LogoProps {
   priority?: boolean;
 }
 
-/** Official 211 OVERSEAS study abroad logo artwork (transparent PNGs from the brand guidelines). */
+/** Official 211 OVERSEAS study abroad logo artwork (lossless high-resolution assets from brand identity). */
 export function Logo({ variant = 'primary', height = 48, className = '', priority = false }: LogoProps) {
   const { src, width, height: h } = SOURCES[variant];
   return (
@@ -30,6 +30,7 @@ export function Logo({ variant = 'primary', height = 48, className = '', priorit
       width={Math.round((width / h) * height)}
       height={height}
       priority={priority}
+      unoptimized
       className={`w-auto select-none ${className}`}
       style={{ height }}
     />

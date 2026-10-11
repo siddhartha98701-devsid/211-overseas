@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   CalendarDays,
@@ -100,6 +101,26 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
                   <Phone size={18} aria-hidden="true" /> {siteContent.brand.phone}
                 </a>
               </div>
+
+              {page.heroImage && (
+                <div className="mt-8 relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5] shadow-sm group">
+                  <Image
+                    src={page.heroImage.src}
+                    alt={page.heroImage.alt}
+                    fill
+                    priority
+                    sizes="(max-width: 1024px) 100vw, 58vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  />
+                  {page.heroImage.caption && (
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-3.5 sm:p-4 text-white">
+                      <p className="font-serif text-xs sm:text-sm font-semibold tracking-wide drop-shadow-sm">
+                        {page.heroImage.caption}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             <aside
@@ -128,6 +149,63 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
           </ul>
         </div>
       </section>
+
+      {/* ---------- Visual Showcase ---------- */}
+      {page.gallery && page.gallery.length > 0 && (
+        <section className="border-b border-[#E6DDCC] py-10 md:py-14 bg-white" aria-label={`Life and study in ${page.name}`}>
+          <div className="max-w-[1280px] mx-auto px-6">
+            <ScrollReveal>
+              <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6 md:mb-8">
+                <div>
+                  <span className="text-xs uppercase tracking-widest text-[#8A6020] font-medium block mb-1">
+                    Visual Showcase
+                  </span>
+                  <h2 className="font-serif text-2xl sm:text-3xl font-semibold text-[#2A2A2A]">
+                    Life &amp; {page.kind === 'study' ? 'study' : 'career'} in {page.name}
+                  </h2>
+                </div>
+                <p className="text-xs sm:text-sm text-[#57514A] max-w-md">
+                  Experience world-class academic campuses, cutting-edge facilities and welcoming international communities.
+                </p>
+              </div>
+
+              <div
+                className={`grid gap-3 sm:gap-4 ${
+                  page.gallery.length === 4
+                    ? 'grid-cols-2 lg:grid-cols-4'
+                    : page.gallery.length === 3
+                    ? 'grid-cols-1 sm:grid-cols-3'
+                    : 'grid-cols-1 sm:grid-cols-2'
+                }`}
+              >
+                {page.gallery.map((item) => (
+                  <div
+                    key={item.title}
+                    className="group relative aspect-[4/3] w-full overflow-hidden rounded-[2px] border border-[#E6DDCC] bg-[#FAF8F5] shadow-sm"
+                  >
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes={`(max-width: 640px) 100vw, (max-width: 1024px) 50vw, ${Math.round(100 / page.gallery!.length)}vw`}
+                      loading="lazy"
+                      className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent flex flex-col justify-end p-3 sm:p-4 text-white">
+                      <span className="font-serif text-xs sm:text-sm font-bold leading-tight drop-shadow-sm">
+                        {item.title}
+                      </span>
+                      <span className="text-[11px] text-white/80 hidden sm:block truncate mt-0.5">
+                        {item.caption}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
 
       {/* ---------- Eligibility + fields ---------- */}
       <section className="py-14 md:py-20 border-b border-[#E6DDCC]" aria-label="Eligibility and fields">
@@ -225,6 +303,17 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
                   href={subpageHref(s)}
                   className="group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-5 transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
                 >
+                  {s.heroImage && (
+                    <div className="relative aspect-[16/10] w-full overflow-hidden mb-3 border border-[#E6DDCC] bg-[#FAF8F5]">
+                      <Image
+                        src={s.heroImage.src}
+                        alt={s.heroImage.alt}
+                        fill
+                        sizes="(max-width: 1024px) 50vw, 25vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
                   <h3 className="font-serif text-lg font-bold text-[#2A2A2A]">{s.name}</h3>
                   <p className="mt-2 flex-1 text-sm text-[#57514A] leading-relaxed">{s.blurb}</p>
                   <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">

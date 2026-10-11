@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, Check } from 'lucide-react';
 import { CountryFlag } from '@/components/ui/CountryFlag';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
@@ -11,6 +12,17 @@ export function DestinationCard({ page }: { page: SubpageContent }) {
   const { openCallback } = useCallbackModal();
   return (
     <article className="flex h-full flex-col border border-[#E6DDCC] bg-white">
+      {page.heroImage && (
+        <div className="relative aspect-[16/9] w-full overflow-hidden border-b border-[#E6DDCC] bg-[#FAF8F5] group">
+          <Image
+            src={page.heroImage.src}
+            alt={page.heroImage.alt}
+            fill
+            sizes="(max-width: 1024px) 100vw, 33vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          />
+        </div>
+      )}
       <div className="flex items-center gap-4 bg-[#2A2A2A] px-6 py-5 text-white">
         <CountryFlag country={page.name} className="h-[26px] w-[38px] rounded-[2px] border border-[#B88740] object-cover" width={38} height={26} />
         <div>
