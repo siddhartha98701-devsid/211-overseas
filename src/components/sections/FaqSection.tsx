@@ -29,7 +29,7 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
             >
               Ask a counsellor
             </button>
-            <div className="mt-8 relative aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5]">
+            <div className="mt-8 relative shrink-0 aspect-[16/10] sm:aspect-[4/3] max-h-56 sm:max-h-72 lg:max-h-none w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5]">
               <Image
                 src="/images/generated/counselling-advisory.jpg"
                 alt="Personalized overseas education counselling session in Ahmedabad"

@@ -82,9 +82,9 @@ export function WhoCanConnectSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.25 }}
-                className="bg-black text-white p-7 sm:p-10 min-h-[22rem] flex flex-col"
+                className="bg-black text-white p-5 sm:p-8 lg:p-10 min-h-[22rem] flex flex-col"
               >
-                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
+                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
                   <Image
                     src={seg.image}
                     alt={seg.headline}

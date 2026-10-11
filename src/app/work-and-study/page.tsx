@@ -39,7 +39,7 @@ function PathwayCard({ p }: { p: Pathway }) {
       href={p.href}
       className="group flex h-full w-full flex-col overflow-hidden border border-[#E6DDCC] bg-white transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
     >
-      <div className="relative aspect-[2/1] w-full overflow-hidden bg-[#2A2A2A]">
+      <div className="relative shrink-0 aspect-[16/10] sm:aspect-[2/1] w-full overflow-hidden bg-[#2A2A2A]">
         <Image src={p.image} alt={p.alt} fill loading="lazy" sizes="(min-width: 768px) 600px, 85vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
       </div>
       <div className="flex flex-1 flex-col p-6">

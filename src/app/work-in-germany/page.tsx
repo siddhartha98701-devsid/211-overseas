@@ -44,7 +44,7 @@ export default function GermanyPage() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="relative aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
+            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
               <Image src="/images/web/germany-wide.webp" alt="Historic German town in soft natural light" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function GermanyPage() {
           <MobileScroller label="Healthcare pathways" desktopClassName="md:grid-cols-2">
             {pathways.map((p, idx) => (
               <article key={p.title} className="flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 sm:p-8">
-                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
+                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
                   <Image
                     src={idx === 0 ? '/images/generated/germany-healthcare.jpg' : '/images/generated/germany-physio.jpg'}
                     alt={idx === 0 ? 'Nurses collaborating in a modern German hospital' : 'Physiotherapy rehabilitation practice in Germany'}

@@ -217,7 +217,7 @@ export function HeroSection() {
             animate="show"
             className="text-base sm:text-lg text-white/90 font-light mb-4"
           >
-            Study abroad. Work abroad. Build your global future.
+            Clear choices. Confident next steps.
           </motion.p>
 
           <motion.p
@@ -227,8 +227,7 @@ export function HeroSection() {
             animate="show"
             className="text-sm sm:text-base text-white/75 leading-relaxed max-w-2xl mb-10"
           >
-            From selecting the right destination to documentation, applications, visa guidance and
-            pre-departure support — we make your overseas journey easier.
+            Explore international study and work pathways with organised guidance and transparent next steps. From course selection to documentation, applications, visa guidance and pre-departure support — we make your overseas journey easier.
           </motion.p>
 
           <motion.div

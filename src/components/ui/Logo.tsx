@@ -3,12 +3,12 @@ import Image from 'next/image';
 type LogoVariant = 'primary' | 'primary-white' | 'primary-black' | 'secondary' | 'secondary-white' | 'mark';
 
 const SOURCES: Record<LogoVariant, { src: string; width: number; height: number }> = {
-  primary: { src: '/brand/logo-primary.png', width: 900, height: 353 },
-  'primary-white': { src: '/brand/logo-primary-white.png', width: 900, height: 346 },
-  'primary-black': { src: '/brand/logo-primary-black.png', width: 900, height: 353 },
-  secondary: { src: '/brand/logo-secondary.png', width: 900, height: 350 },
-  'secondary-white': { src: '/brand/logo-secondary-white.png', width: 900, height: 350 },
-  mark: { src: '/brand/logomark.png', width: 700, height: 274 },
+  primary: { src: '/brand/logo-primary.png', width: 932, height: 875 },
+  'primary-white': { src: '/brand/logo-primary-white.png', width: 932, height: 875 },
+  'primary-black': { src: '/brand/logo-primary-black.png', width: 932, height: 875 },
+  secondary: { src: '/brand/logo-secondary.png', width: 932, height: 875 },
+  'secondary-white': { src: '/brand/logo-secondary-white.png', width: 932, height: 875 },
+  mark: { src: '/brand/logomark.png', width: 932, height: 689 },
 };
 
 interface LogoProps {

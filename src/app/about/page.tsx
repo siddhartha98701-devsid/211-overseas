@@ -100,7 +100,7 @@ export default function AboutPage() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="relative aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
+            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
               <Image src="/images/web/graduates-square.webp" alt="Graduates celebrating together" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
             </div>
           </div>

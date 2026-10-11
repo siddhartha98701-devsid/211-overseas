@@ -32,12 +32,12 @@ export function PathwaysSection() {
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Image 7 columns */}
-              <div className="lg:col-span-7 relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
+              <div className="lg:col-span-7 relative shrink-0 aspect-[16/10] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
                 <Image
                   src="/images/korea.jpg"
                   alt="South Korean university campus with cherry blossoms in spring"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 58vw)"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover"
                 />
               </div>
@@ -118,12 +118,12 @@ export function PathwaysSection() {
               </div>
 
               {/* Image 7 columns (comes second on desktop) */}
-              <div className="lg:col-span-7 order-1 lg:order-2 relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
+              <div className="lg:col-span-7 order-1 lg:order-2 relative shrink-0 aspect-[16/10] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
                 <Image
                   src="/images/germany.jpg"
                   alt="Historic German street and architecture in soft light"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 58vw)"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover"
                 />
               </div>
@@ -138,12 +138,12 @@ export function PathwaysSection() {
           <ScrollReveal>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
               {/* Image 7 columns */}
-              <div className="lg:col-span-7 relative aspect-[4/5] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
+              <div className="lg:col-span-7 relative shrink-0 aspect-[16/10] sm:aspect-[16/11] lg:aspect-[4/5] w-full overflow-hidden bg-[#E6DDCC]/30">
                 <Image
                   src="/images/uae.jpg"
                   alt="Dubai Marina architecture and skyline at dusk"
                   fill
-                  sizes="(max-width: 1024px) 100vw, 58vw)"
+                  sizes="(max-width: 1024px) 100vw, 58vw"
                   className="object-cover"
                 />
               </div>

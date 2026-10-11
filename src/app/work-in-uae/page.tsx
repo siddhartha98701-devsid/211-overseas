@@ -67,7 +67,7 @@ export default function UAEPage() {
             </div>
           </div>
           <div className="lg:col-span-5">
-            <div className="relative aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
+            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[2/1] lg:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
               <Image src="/images/web/uae-wide.webp" alt="Dubai coastline and Burj Al Arab" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
             </div>
           </div>
@@ -89,7 +89,7 @@ export default function UAEPage() {
               const Icon = meta?.icon ?? Briefcase;
               const inner = (
                 <>
-                  <div className="relative aspect-[16/9] w-full overflow-hidden mb-4 border border-[#E6DDCC] bg-[#FAF8F5]">
+                  <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-4 border border-[#E6DDCC] bg-[#FAF8F5]">
                     <Image
                       src={meta?.image ?? '/images/generated/uae-careers.jpg'}
                       alt={meta?.alt ?? sector.name}

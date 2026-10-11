@@ -182,7 +182,7 @@ export function UniversitySection({
               >
                 <div>
                   {/* 16:10 Campus Photo with desktop hover zoom */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#FAF8F5]">
+                  <div className="relative shrink-0 aspect-[16/10] w-full overflow-hidden bg-[#FAF8F5]">
                     {uni.image ? (
                       <Image
                         src={uni.image}

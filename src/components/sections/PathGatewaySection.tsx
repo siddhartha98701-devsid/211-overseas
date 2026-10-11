@@ -79,8 +79,8 @@ export function PathGatewaySection() {
               transition={{ duration: 0.3 }}
               className="grid grid-cols-1 lg:grid-cols-12 gap-4"
             >
-              <div className="lg:col-span-7 bg-black text-white p-7 sm:p-10 flex flex-col">
-                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
+              <div className="lg:col-span-7 bg-black text-white p-5 sm:p-8 lg:p-10 flex flex-col">
+                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
                   <Image
                     src="/images/generated/korea-gateway.jpg"
                     alt="International students collaborating on modern university campus in Seoul"
@@ -110,8 +110,8 @@ export function PathGatewaySection() {
                 </div>
               </div>
 
-              <div className="lg:col-span-5 border border-[#E6DDCC] p-7 sm:p-10 flex flex-col">
-                <div className="relative aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
+              <div className="lg:col-span-5 border border-[#E6DDCC] p-5 sm:p-8 lg:p-10 flex flex-col">
+                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#E6DDCC] bg-[#FAF8F5]">
                   <Image
                     src="/images/generated/global-campus.jpg"
                     alt="Diverse international students on global university campus"
@@ -177,8 +177,8 @@ export function PathGatewaySection() {
                   alt: 'International professionals in Dubai overlooking cityscape',
                 },
               ].map(({ key, p, label, roles, interest, title, wa, image, alt }, i) => (
-                <div key={key} className={`p-7 sm:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
-                  <div className={`relative aspect-[16/9] w-full overflow-hidden mb-6 border ${i === 0 ? 'border-[#B88740]/40 bg-[#1E1E1E]' : 'border-[#E6DDCC] bg-[#FAF8F5]'}`}>
+                <div key={key} className={`p-5 sm:p-8 lg:p-10 flex flex-col ${i === 0 ? 'bg-black text-white' : 'border border-[#E6DDCC] bg-white text-black'}`}>
+                  <div className={`relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border ${i === 0 ? 'border-[#B88740]/40 bg-[#1E1E1E]' : 'border-[#E6DDCC] bg-[#FAF8F5]'}`}>
                     <Image
                       src={image}
                       alt={alt}
