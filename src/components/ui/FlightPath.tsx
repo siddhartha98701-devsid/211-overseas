@@ -14,7 +14,7 @@ const SAMPLES = 60;
 /** Position on the flight path in viewport percentages (0–100). Enters and leaves off-screen. */
 function pointAt(t: number) {
   return {
-    x: -14 + 128 * t,
+    x: -35 + 155 * t,
     y: 14 + 72 * t + 5 * Math.sin(t * Math.PI * 2),
   };
 }
@@ -78,6 +78,7 @@ export function FlightPath() {
   const x = useTransform(progress, ts, xs);
   const y = useTransform(progress, ts, ys);
   const rotate = useTransform(progress, ts, angles);
+  const opacity = useTransform(progress, [0, 0.015, 0.04, 1], [0, 0, 0.4, 0.4]);
 
   const size = viewport.w < 640 ? 118 : viewport.w < 1024 ? 160 : 210;
 
@@ -92,7 +93,7 @@ export function FlightPath() {
       {/* The shadow lives on this non-rotating wrapper so it keeps one direction while the plane turns */}
       <motion.div
         className="absolute left-0 top-0 will-change-transform"
-        style={{ x, y, opacity: 0.4, filter: 'drop-shadow(10px 16px 9px rgba(42,42,42,0.22))' }}
+        style={{ x, y, opacity, filter: 'drop-shadow(10px 16px 9px rgba(42,42,42,0.22))' }}
       >
         <motion.div
           style={{

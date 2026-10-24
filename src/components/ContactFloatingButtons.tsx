@@ -1,15 +1,37 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 const PHONE = '919998585211';
 
 export function ContactFloatingButtons() {
+  const [hidden, setHidden] = useState(false);
   const whatsappUrl = `https://wa.me/${PHONE}?text=Hi%20211%20Overseas%2C%20I%20would%20like%20to%20know%20more%20about%20studying%20or%20working%20abroad.`;
   const telUrl = `tel:+${PHONE}`;
 
+  useEffect(() => {
+    let lastY = window.scrollY;
+    const onScroll = () => {
+      const currentY = window.scrollY;
+      if (currentY > lastY + 20 && currentY > 250) {
+        setHidden(true); // hide when scrolling down on long pages
+      } else if (currentY < lastY - 15 || currentY < 150) {
+        setHidden(false); // reveal when scrolling up or at top
+      }
+      lastY = currentY;
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
     <>
-      {/* FEATURE 2: Call Now Floating Button (Bottom-Left) */}
+      {/* FEATURE 2: Call Now Floating Button (Bottom-Left: compact 48px on mobile, hides on scroll down) */}
       <div
-        className="fixed left-5 z-40"
-        style={{ bottom: 'calc(20px + env(safe-area-inset-bottom, 0px))' }}
+        className={`fixed left-4 sm:left-5 z-40 transition-all duration-300 ${
+          hidden ? 'translate-y-24 opacity-0 pointer-events-none' : 'translate-y-0 opacity-100'
+        }`}
+        style={{ bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}
       >
         <a
           href={telUrl}
@@ -39,10 +61,10 @@ export function ContactFloatingButtons() {
         </a>
       </div>
 
-      {/* FEATURE 1: Floating WhatsApp Chat Button (Bottom-Right) */}
+      {/* FEATURE 1: Floating WhatsApp Chat Button (Bottom-Right: compact 48-52px, safe-area aware) */}
       <div
-        className="fixed right-5 z-40 flex items-center"
-        style={{ bottom: 'calc(20px + env(safe-area-inset-bottom, 0px))' }}
+        className="fixed right-4 sm:right-5 z-40 flex items-center"
+        style={{ bottom: 'calc(16px + env(safe-area-inset-bottom, 0px))' }}
       >
         {/* Desktop-only Hover Tooltip */}
         <span
@@ -57,7 +79,7 @@ export function ContactFloatingButtons() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"
-          className="group relative flex items-center justify-center w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] transition-all duration-200 hover:scale-105 active:scale-95"
+          className="group relative flex items-center justify-center w-12 h-12 sm:w-[52px] sm:h-[52px] rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white shadow-[0_4px_16px_rgba(37,211,102,0.35)] transition-all duration-200 hover:scale-105 active:scale-95"
         >
           {/* Tooltip embedded for clean hover trigger */}
           <span
@@ -71,8 +93,8 @@ export function ContactFloatingButtons() {
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
-            width="26"
-            height="26"
+            width="24"
+            height="24"
             fill="currentColor"
             className="flex-shrink-0"
             aria-hidden="true"

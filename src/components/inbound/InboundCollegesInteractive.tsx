@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import Image from 'next/image';
 import {
   MapPin,
   GraduationCap,
   Award,
-  Globe2,
   Calendar,
   Compass,
   CheckCircle2,
@@ -15,12 +14,13 @@ import {
   Building2,
   BookOpen,
   DollarSign,
+  ChevronLeft,
   ChevronRight,
   ShieldCheck,
   Map as MapIcon,
   Layers,
 } from 'lucide-react';
-import { INBOUND_COLLEGES, InboundCollege } from '@/content/inboundColleges';
+import { INBOUND_COLLEGES } from '@/content/inboundColleges';
 
 const CATEGORIES = [
   'All Disciplines',
@@ -63,11 +63,51 @@ export function InboundCollegesInteractive() {
     return found || filteredColleges[0] || INBOUND_COLLEGES[0];
   }, [filteredColleges, selectedId]);
 
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const scrollStartLeft = useRef(0);
+
   const handleSelectCollege = (id: string) => {
     setSelectedId(id);
+    if (typeof window !== 'undefined') {
+      const el = document.querySelector(`[data-college-id="${id}"]`) as HTMLElement;
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+    }
   };
 
-  const handleApplyClick = (collegeName: string) => {
+  const handleScrollRow = (direction: 'left' | 'right') => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const scrollAmount = (el.firstElementChild as HTMLElement)?.offsetWidth || 300;
+    el.scrollBy({ left: direction === 'left' ? -scrollAmount - 16 : scrollAmount + 16, behavior: 'smooth' });
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    const el = carouselRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    startX.current = e.pageX - el.offsetLeft;
+    scrollStartLeft.current = el.scrollLeft;
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    const el = carouselRef.current;
+    if (!el) return;
+    e.preventDefault();
+    const x = e.pageX - el.offsetLeft;
+    const walk = (x - startX.current) * 1.5;
+    el.scrollLeft = scrollStartLeft.current - walk;
+  };
+
+  const handleMouseUpOrLeave = () => {
+    isDragging.current = false;
+  };
+
+  const handleApplyClick = (_collegeName: string) => {
     const formSection = document.getElementById('inbound-form');
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth' });
@@ -145,6 +185,93 @@ export function InboundCollegesInteractive() {
           <span className="text-xs text-[#41484B] font-medium ml-auto hidden lg:inline shrink-0">
             Showing <strong className="text-[#1B1C1A]">{filteredColleges.length}</strong> premier institutions
           </span>
+        </div>
+      </div>
+
+      {/* Institution Selection Horizontal Scroll-Snap Carousel */}
+      <div className="space-y-3 pt-2">
+        <div className="flex items-center justify-between gap-4">
+          <div>
+            <p className="text-xs uppercase tracking-wider text-[#1B1C1A] font-bold">
+              Select an Institution to Inspect Campus Map &amp; Admissions
+            </p>
+            <p className="text-xs text-[#41484B] mt-0.5">
+              Swipe or click any institution to update the live campus dossier below
+            </p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
+            <button
+              type="button"
+              onClick={() => handleScrollRow('left')}
+              className="h-10 w-10 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+              aria-label="Previous institutions"
+            >
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleScrollRow('right')}
+              className="h-10 w-10 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+              aria-label="Next institutions"
+            >
+              <ChevronRight size={18} />
+            </button>
+          </div>
+        </div>
+
+        <div
+          ref={carouselRef}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUpOrLeave}
+          onMouseLeave={handleMouseUpOrLeave}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-2 -mx-6 px-6 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing"
+          style={{ scrollSnapType: 'x mandatory' }}
+          role="region"
+          aria-label="Institutions carousel"
+        >
+          {filteredColleges.map((col) => {
+            const isSelected = activeCollege?.id === col.id;
+            return (
+              <button
+                key={col.id}
+                type="button"
+                data-college-id={col.id}
+                onClick={() => handleSelectCollege(col.id)}
+                className={`w-[80vw] sm:w-[280px] md:w-[300px] xl:w-[320px] shrink-0 snap-start text-left p-4 sm:p-5 border transition-all duration-200 flex flex-col justify-between rounded-2xl cursor-pointer ${
+                  isSelected
+                    ? 'border-[#A33E11] bg-[#A33E11]/10 shadow-sm ring-1 ring-[#A33E11]'
+                    : 'border-[#E6DDCC] bg-white hover:border-[#A33E11] hover:bg-[#FAF8F5]'
+                }`}
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2.5">
+                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-[2px] bg-white border border-[#E6DDCC] text-[#0C3844]">
+                      {col.shortName.split(' ')[0]}
+                    </span>
+                    <span className="text-[11px] text-[#A33E11] font-semibold">
+                      {col.city}
+                    </span>
+                  </div>
+
+                  <h4 className="font-serif text-sm sm:text-base font-bold text-[#1B1C1A] leading-snug line-clamp-3 min-h-[2.5rem]">
+                    {col.name}
+                  </h4>
+
+                  <p className="mt-2 text-xs text-[#41484B] leading-relaxed line-clamp-2">
+                    {col.nirfRank}
+                  </p>
+                </div>
+
+                <div className="mt-4 pt-2.5 border-t border-[#E6DDCC]/60 flex items-center justify-between text-xs">
+                  <span className={`font-semibold ${isSelected ? 'text-[#A33E11]' : 'text-[#41484B]'}`}>
+                    {isSelected ? '● Active Selection' : 'Inspect Dossier'}
+                  </span>
+                  <ChevronRight size={14} className={isSelected ? 'text-[#A33E11]' : 'text-[#41484B]'} />
+                </div>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -523,62 +650,6 @@ export function InboundCollegesInteractive() {
               <ExternalLink size={13} />
             </a>
           </div>
-        </div>
-      </div>
-
-      {/* College Horizontal Quick-Select Cards Carousel */}
-      <div className="space-y-3 pt-4">
-        <div className="flex items-center justify-between">
-          <p className="text-xs uppercase tracking-wider text-[#1B1C1A] font-bold">
-            Select an Institution to Inspect Campus Map &amp; Admissions
-          </p>
-          <span className="text-xs text-[#41484B] hidden sm:inline">
-            Click any card to update map view
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
-          {filteredColleges.map((col) => {
-            const isSelected = activeCollege?.id === col.id;
-            return (
-              <button
-                key={col.id}
-                type="button"
-                onClick={() => handleSelectCollege(col.id)}
-                className={`text-left p-4 border transition-all duration-200 flex flex-col justify-between rounded-[2px] cursor-pointer ${
-                  isSelected
-                    ? 'border-[#A33E11] bg-[#A33E11]/10 shadow-xs ring-1 ring-[#A33E11]'
-                    : 'border-[#E6DDCC] bg-white hover:border-[#A33E11] hover:bg-[#FAF8F5]'
-                }`}
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-[2px] bg-white border border-[#E6DDCC] text-[#0C3844]">
-                      {col.shortName.split(' ')[0]}
-                    </span>
-                    <span className="text-[10px] text-[#A33E11] font-semibold">
-                      {col.city}
-                    </span>
-                  </div>
-
-                  <h4 className="font-serif text-sm font-bold text-[#1B1C1A] line-clamp-1 leading-snug">
-                    {col.name}
-                  </h4>
-
-                  <p className="mt-1 text-[11px] text-[#41484B] line-clamp-1">
-                    {col.nirfRank.split('in')[0]}
-                  </p>
-                </div>
-
-                <div className="mt-3 pt-2 border-t border-[#E6DDCC]/60 flex items-center justify-between text-[11px]">
-                  <span className={`font-semibold ${isSelected ? 'text-[#A33E11]' : 'text-[#41484B]'}`}>
-                    {isSelected ? '● Active Selection' : 'Inspect Dossier'}
-                  </span>
-                  <ChevronRight size={13} className={isSelected ? 'text-[#A33E11]' : 'text-[#41484B]'} />
-                </div>
-              </button>
-            );
-          })}
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -22,6 +22,7 @@ interface FloatingProgram {
   tag: string;
   degree: string;
   duration: string;
+  description: string;
 }
 
 interface CountryStat {
@@ -57,6 +58,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#1 for Co-op (USNWR 2025)',
         degree: 'Master’s Degree',
         duration: '23 Months',
+        description: 'Industry-embedded curriculum with paid corporate co-ops at leading US tech hubs and career pathways.',
       },
       {
         university: 'Northeastern University',
@@ -66,6 +68,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#46 in USA (USNWR 2026)',
         degree: 'Bachelor’s Degree',
         duration: '48 Months',
+        description: 'Comprehensive undergraduate program integrating foundation computer science with two semesters of corporate co-op.',
       },
     ],
     stats: [
@@ -91,6 +94,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Russell Group Global Top 100',
         degree: 'Master’s Degree',
         duration: '12 Months',
+        description: 'Russell Group accredited graduate degree providing high-level computing labs and fast-track employment options.',
       },
       {
         university: 'Queen Mary University of London',
@@ -100,6 +104,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top 20 UK Research Leader',
         degree: 'Bachelor’s Degree',
         duration: '36 Months',
+        description: 'London-based technical track offering direct exposure to the Tech City digital corridor and industry projects.',
       },
     ],
     stats: [
@@ -125,6 +130,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'English Track · Fast Placement',
         degree: 'Master’s Degree',
         duration: '18 Months',
+        description: 'Study healthcare informatics and medical tech in Berlin with 100% English coursework and hospital network placement.',
       },
       {
         university: 'Technical University Munich Partner',
@@ -134,6 +140,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#1 Ranked University in Germany',
         degree: 'Bachelor’s Degree',
         duration: '36 Months',
+        description: 'Pioneering automotive and robotics engineering education with industrial lab access and zero public tuition fees.',
       },
     ],
     stats: [
@@ -159,6 +166,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#1 in South Korea · Top 40 QS',
         degree: 'Bachelor’s Degree',
         duration: '48 Months',
+        description: 'South Korea’s premier computer science faculty offering intensive hands-on lab projects and industry sponsorships.',
       },
       {
         university: 'KAIST (Korea Advanced Institute of ST)',
@@ -168,6 +176,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Full Tuition + Monthly Stipend',
         degree: 'Master’s Degree',
         duration: '24 Months',
+        description: 'World-renowned research institute with 100% scholarship coverage, monthly living stipend, and top corporate ties.',
       },
     ],
     stats: [
@@ -193,6 +202,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top Private Tech Hub in Japan',
         degree: 'Bachelor’s Degree',
         duration: '48 Months',
+        description: 'English-medium computing program located in central Tokyo with direct recruitment pathways to Japanese tech leaders.',
       },
       {
         university: 'Kyoto University Global Track',
@@ -202,6 +212,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top 35 QS · 19 Nobel Laureates',
         degree: 'Master’s Degree',
         duration: '24 Months',
+        description: 'Elite robotics research center combining traditional Japanese academic rigor with advanced robotic automation facilities.',
       },
     ],
     stats: [
@@ -227,6 +238,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#8 in the World (QS 2025)',
         degree: 'Master’s Degree',
         duration: '18 Months',
+        description: 'Asia’s highest-ranked computing faculty providing cutting-edge machine learning coursework and regional placement.',
       },
       {
         university: 'Singapore Management University (SMU)',
@@ -236,6 +248,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Triple Accredited Business School',
         degree: 'Bachelor’s Degree',
         duration: '36 Months',
+        description: 'Strategic fintech curriculum situated in Singapore’s commercial hub with strong venture capital and bank linkages.',
       },
     ],
     stats: [
@@ -261,6 +274,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top 35 Global · Tech Corridor',
         degree: 'Master’s Degree',
         duration: '12 Months',
+        description: 'Intensive computational analytics degree with direct access to Vancouver’s thriving North American tech corridor.',
       },
       {
         university: 'York University (Toronto)',
@@ -270,6 +284,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '#1 Business Program in Canada',
         degree: 'Bachelor’s Degree',
         duration: '48 Months',
+        description: 'Premier Canadian commerce qualification with comprehensive post-graduation work permit (PGWP) eligibility.',
       },
     ],
     stats: [
@@ -295,6 +310,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Group of Eight (Go8) #1 in Aus',
         degree: 'Master’s Degree',
         duration: '24 Months',
+        description: 'Australia’s top technology faculty offering flexible specializations in cybersecurity, cloud architectures, and AI.',
       },
       {
         university: 'University of Sydney',
@@ -304,6 +320,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top 20 Global University (QS)',
         degree: 'Bachelor’s Degree',
         duration: '48 Months',
+        description: 'Four-year professional engineering degree with integrated industry internships and international accreditation.',
       },
     ],
     stats: [
@@ -329,6 +346,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: 'Top 100 World Campus in Dubai',
         degree: 'Master’s Degree',
         duration: '12 Months',
+        description: 'Earn a prestigious UK Russell Group degree at a state-of-the-art campus in Dubai International Academic City.',
       },
       {
         university: 'Middlesex University Dubai',
@@ -338,6 +356,7 @@ const COUNTRIES: CountryShowcase[] = [
         tag: '5-Star KHDA Rated University',
         degree: 'Bachelor’s Degree',
         duration: '36 Months',
+        description: 'Industry-partnered IT degree with direct access to multinational corporate recruitment across the UAE.',
       },
     ],
     stats: [
@@ -351,6 +370,7 @@ const COUNTRIES: CountryShowcase[] = [
 
 export function PathGatewaySection() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const touchStartX = useRef<number | null>(null);
   const { openCallback } = useCallbackModal();
   const activeCountry = COUNTRIES[currentIndex];
 
@@ -360,6 +380,20 @@ export function PathGatewaySection() {
 
   const handleNext = () => {
     setCurrentIndex((prev) => (prev + 1) % COUNTRIES.length);
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diffX = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diffX) > 45) {
+      if (diffX > 0) handleNext();
+      else handlePrev();
+    }
+    touchStartX.current = null;
   };
 
   return (
@@ -390,9 +424,9 @@ export function PathGatewaySection() {
         </div>
 
         {/* Desktop View (>= lg): Left Vertical Tall Strips + Center/Right Active Hero Card (UpGrad Reference Pattern d) */}
-        <div className="hidden lg:flex gap-3.5 items-stretch h-[540px]">
+        <div className="hidden lg:flex gap-3.5 items-stretch h-[620px] xl:h-[640px]">
           {/* Left Inactive Country Strips (Accordion Style) */}
-          <div className="flex gap-2.5 shrink-0 items-stretch max-w-[340px] xl:max-w-[400px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-0.5">
+          <div className="flex gap-2.5 shrink-0 items-stretch max-w-[320px] xl:max-w-[360px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-0.5">
             {COUNTRIES.map((c, idx) => {
               if (idx === currentIndex) return null;
               return (
@@ -442,7 +476,7 @@ export function PathGatewaySection() {
                   className="object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-black/40" />
               </motion.div>
             </AnimatePresence>
 
@@ -477,8 +511,8 @@ export function PathGatewaySection() {
               </div>
             </div>
 
-            {/* Overlaid Floating Program Cards (Right Half) */}
-            <div className="absolute right-6 top-6 bottom-6 z-20 flex gap-4 items-stretch">
+            {/* Overlaid Floating Program Cards (Right Half: horizontal scroll-snap carousel) */}
+            <div className="absolute right-6 top-6 bottom-6 z-20 flex gap-4 items-stretch max-w-[calc(100%-200px)] overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`programs-${activeCountry.id}`}
@@ -491,51 +525,63 @@ export function PathGatewaySection() {
                   {activeCountry.floatingPrograms.map((prog) => (
                     <div
                       key={prog.programTitle}
-                      className="w-[260px] xl:w-[280px] bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col justify-between border border-black/5 transition-transform duration-300 hover:-translate-y-1"
+                      className="w-[340px] xl:w-[370px] shrink-0 snap-start bg-white rounded-2xl shadow-2xl overflow-hidden flex flex-col justify-between border border-black/5 transition-transform duration-300 hover:-translate-y-1 h-full"
                     >
-                      {/* University Campus Image + Floating Monogram Badge */}
-                      <div className="h-32 xl:h-36 relative overflow-hidden bg-gray-100 shrink-0">
+                      {/* University Campus Image (16:10 aspect, full width, rounded top) */}
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 shrink-0">
                         <Image
                           src={prog.universityImage}
                           alt={prog.university}
                           fill
-                          sizes="300px"
+                          sizes="380px"
                           className="object-cover"
                         />
-                        <div className="absolute right-3 -bottom-4 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
+                        {/* Monogram Badge placed safely inside top-right corner of image */}
+                        <div className="absolute top-3 right-3 w-10 h-10 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
                           {prog.logoMonogram}
                         </div>
                       </div>
 
-                      {/* Card Body */}
-                      <div className="p-4 pt-3 flex-1 flex flex-col justify-between">
+                      {/* Card Body - Text strictly below image in required order */}
+                      <div className="p-5 flex-1 flex flex-col justify-between gap-3">
                         <div>
-                          <div className="flex items-center gap-1.5 text-xs font-semibold text-[#1B1C1A] truncate pr-8">
-                            <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs object-cover" />
-                            <span className="truncate">{prog.university}</span>
+                          {/* 1. Country flag + University name (wraps onto multiple lines) */}
+                          <div className="flex items-start gap-2 min-w-0">
+                            <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs object-cover mt-0.5 shrink-0" />
+                            <span className="text-xs font-semibold text-[#1B1C1A] leading-snug">{prog.university}</span>
                           </div>
 
-                          <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug line-clamp-1 mt-1.5">
+                          {/* 2. Program title (wraps onto multiple lines) */}
+                          <h4 className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] leading-snug mt-1.5">
                             {prog.programTitle}
                           </h4>
 
-                          <span className="inline-block mt-2 text-[10px] xl:text-[11px] font-semibold bg-[#FC7F4E]/10 text-[#A33E11] px-2.5 py-0.5 rounded-full border border-[#FC7F4E]/30">
-                            {prog.tag}
-                          </span>
+                          {/* 3. Tag pill */}
+                          <div className="mt-2">
+                            <span className="inline-block text-[10px] xl:text-[11px] font-semibold bg-[#FC7F4E]/10 text-[#A33E11] px-2.5 py-0.5 rounded-full border border-[#FC7F4E]/30">
+                              {prog.tag}
+                            </span>
+                          </div>
 
-                          <div className="mt-3 space-y-1 text-xs text-[#41484B]">
+                          {/* 4. Short summary/description (2-3 lines, line-clamp-3) */}
+                          <p className="mt-2.5 text-xs text-[#41484B] leading-relaxed line-clamp-3">
+                            {prog.description}
+                          </p>
+
+                          {/* 5. Degree and duration rows */}
+                          <div className="mt-3 pt-3 border-t border-[#E6DDCC]/60 space-y-1.5 text-xs text-[#41484B]">
                             <div className="flex items-center gap-1.5">
-                              <GraduationCap size={14} className="text-[#0C3844]" />
+                              <GraduationCap size={14} className="text-[#0C3844] shrink-0" />
                               <span>{prog.degree}</span>
                             </div>
                             <div className="flex items-center gap-1.5">
-                              <Calendar size={14} className="text-[#41484B]" />
+                              <Calendar size={14} className="text-[#41484B] shrink-0" />
                               <span>{prog.duration}</span>
                             </div>
                           </div>
                         </div>
 
-                        {/* View Program CTA Button */}
+                        {/* 6. VIEW PROGRAM CTA Button pinned to bottom */}
                         <button
                           type="button"
                           onClick={() =>
@@ -544,7 +590,7 @@ export function PathGatewaySection() {
                               source: `gateway:${activeCountry.id}`,
                             })
                           }
-                          className="mt-3 w-full bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98"
+                          className="mt-4 w-full bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-bold uppercase tracking-wider py-3 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98"
                         >
                           View Program
                         </button>
@@ -558,7 +604,7 @@ export function PathGatewaySection() {
         </div>
 
         {/* Mobile View (< lg) */}
-        <div className="lg:hidden space-y-4">
+        <div className="lg:hidden space-y-5">
           {/* Horizontal Pill Tabs Switcher */}
           <div className="-mx-6 px-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             <div className="flex gap-2 pb-1 min-w-max">
@@ -583,8 +629,12 @@ export function PathGatewaySection() {
             </div>
           </div>
 
-          {/* Hero Banner with Counter and Arrows */}
-          <div className="relative aspect-[16/10] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-md bg-[#00222B]">
+          {/* Hero Banner with Counter and Arrows (supports touch swipe) */}
+          <div
+            className="relative aspect-[16/10] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-md bg-[#00222B] touch-pan-y"
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+          >
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCountry.id}
@@ -602,7 +652,7 @@ export function PathGatewaySection() {
                   sizes="95vw"
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-black/10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10" />
               </motion.div>
             </AnimatePresence>
 
@@ -616,66 +666,86 @@ export function PathGatewaySection() {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="w-8 h-8 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95"
                   aria-label="Previous country"
                 >
-                  <ChevronLeft size={16} />
+                  <ChevronLeft size={18} />
                 </button>
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="w-8 h-8 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer"
+                  className="w-9 h-9 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95"
                   aria-label="Next country"
                 >
-                  <ChevronRight size={16} />
+                  <ChevronRight size={18} />
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Floating Program Cards (Swipeable) */}
-          <div className="-mx-6 px-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden snap-x">
-            <div className="flex gap-3 pb-2 min-w-max">
+          {/* Floating Program Cards (Horizontal Scroll-Snap Carousel with Next Card Peeking) */}
+          <div className="-mx-6 px-6 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-3">
+            <div className="flex gap-4 min-w-max">
               {activeCountry.floatingPrograms.map((prog) => (
                 <div
                   key={prog.programTitle}
-                  className="w-[280px] bg-white rounded-2xl shadow-md overflow-hidden border border-[#E6DDCC] snap-start flex flex-col justify-between"
+                  className="w-[85vw] max-w-[360px] bg-white rounded-2xl shadow-md overflow-hidden border border-[#E6DDCC] snap-start shrink-0 flex flex-col justify-between"
                 >
-                  <div className="h-32 relative overflow-hidden bg-gray-100">
+                  {/* University Campus Image (16:10 aspect, full width, rounded top) */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 shrink-0">
                     <Image
                       src={prog.universityImage}
                       alt={prog.university}
                       fill
-                      sizes="280px"
+                      sizes="(max-width: 768px) 85vw, 360px"
                       className="object-cover"
                     />
-                    <div className="absolute right-3 -bottom-4 w-9 h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
+                    {/* Monogram Badge inside top-right corner of image */}
+                    <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
                       {prog.logoMonogram}
                     </div>
                   </div>
-                  <div className="p-4 pt-3 flex-1 flex flex-col justify-between">
+
+                  {/* Card Body - Content strictly below image in required order */}
+                  <div className="p-4 pt-3.5 flex-1 flex flex-col justify-between gap-3">
                     <div>
-                      <div className="flex items-center gap-1.5 text-xs font-semibold text-[#1B1C1A] truncate pr-8">
-                        <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs object-cover" />
-                        <span className="truncate">{prog.university}</span>
+                      {/* 1. Country flag + University name (wraps onto multiple lines) */}
+                      <div className="flex items-start gap-2 min-w-0">
+                        <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs object-cover mt-0.5 shrink-0" />
+                        <span className="text-xs font-semibold text-[#1B1C1A] leading-snug">{prog.university}</span>
                       </div>
-                      <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug line-clamp-1 mt-1">
+
+                      {/* 2. Program title (wraps onto multiple lines) */}
+                      <h4 className="font-serif text-base font-bold text-[#1B1C1A] leading-snug mt-1.5">
                         {prog.programTitle}
                       </h4>
-                      <span className="inline-block mt-2 text-[10px] font-semibold bg-[#FC7F4E]/10 text-[#A33E11] px-2.5 py-0.5 rounded-full border border-[#FC7F4E]/30">
-                        {prog.tag}
-                      </span>
-                      <div className="mt-3 space-y-1 text-xs text-[#41484B]">
+
+                      {/* 3. Tag pill */}
+                      <div className="mt-2">
+                        <span className="inline-block text-[10px] font-semibold bg-[#FC7F4E]/10 text-[#A33E11] px-2.5 py-0.5 rounded-full border border-[#FC7F4E]/30">
+                          {prog.tag}
+                        </span>
+                      </div>
+
+                      {/* 4. Short summary/description (2-3 lines, line-clamp-3) */}
+                      <p className="mt-2 text-xs text-[#41484B] leading-relaxed line-clamp-3">
+                        {prog.description}
+                      </p>
+
+                      {/* 5. Degree and duration rows */}
+                      <div className="mt-3 pt-2.5 border-t border-[#E6DDCC]/60 space-y-1.5 text-xs text-[#41484B]">
                         <div className="flex items-center gap-1.5">
-                          <GraduationCap size={14} className="text-[#0C3844]" />
+                          <GraduationCap size={14} className="text-[#0C3844] shrink-0" />
                           <span>{prog.degree}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
-                          <Calendar size={14} className="text-[#41484B]" />
+                          <Calendar size={14} className="text-[#41484B] shrink-0" />
                           <span>{prog.duration}</span>
                         </div>
                       </div>
                     </div>
+
+                    {/* 6. VIEW PROGRAM CTA Button pinned to bottom */}
                     <button
                       type="button"
                       onClick={() =>
@@ -684,7 +754,7 @@ export function PathGatewaySection() {
                           source: `gateway:${activeCountry.id}`,
                         })
                       }
-                      className="mt-3 w-full bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer"
+                      className="mt-3 w-full bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-bold uppercase tracking-wider py-3 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98"
                     >
                       View Program
                     </button>
@@ -695,19 +765,19 @@ export function PathGatewaySection() {
           </div>
         </div>
 
-        {/* 4-Metric Stats Strip Underneath (UpGrad Pattern d / Screenshot 2) */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 bg-white border border-[#E6DDCC] rounded-2xl p-6 shadow-xs mt-6">
+        {/* 4-Metric Stats Strip Underneath (Clean 2x2 grid on mobile/tablet, fluid typography) */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 bg-white border border-[#E6DDCC] rounded-2xl p-5 sm:p-6 shadow-xs mt-6">
           {activeCountry.stats.map((st, i) => (
             <div
               key={st.label}
-              className={`text-center space-y-1 ${
+              className={`text-center space-y-1 flex flex-col justify-center ${
                 i < activeCountry.stats.length - 1 ? 'lg:border-r border-[#E6DDCC]' : ''
               }`}
             >
-              <p className="font-serif text-2xl lg:text-3xl font-bold text-[#0C3844] leading-none">
+              <p className="font-serif text-[clamp(1.5rem,4vw,2.25rem)] font-bold text-[#0C3844] leading-none">
                 {st.value}
               </p>
-              <p className="text-xs lg:text-sm text-[#41484B] font-medium leading-tight">
+              <p className="text-[clamp(0.75rem,2.2vw,0.875rem)] text-[#41484B] font-medium leading-tight text-balance text-center mt-1.5">
                 {st.label}
               </p>
             </div>
