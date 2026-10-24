@@ -628,6 +628,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Modern South Korean university campus grounds in Seoul',
       caption: 'South Korea · 4-Year Undergraduate Degrees & World-Class Campuses',
     },
+    gallery: [
+      {
+        src: '/images/universities/snu.jpg',
+        alt: 'Seoul National University main campus grounds and academic halls',
+        title: 'Seoul National University',
+        caption: 'QS World Top-40 Ranked Campus in Seoul',
+      },
+      {
+        src: '/images/universities/yonsei.jpg',
+        alt: 'Yonsei University ivy-covered historic campus in Sinchon',
+        title: 'Yonsei University (SKY)',
+        caption: 'English-taught undergraduate degrees & international college',
+      },
+      {
+        src: '/images/korea/korea-campus.jpg',
+        alt: 'Modern university lecture halls and tech laboratories in Seoul',
+        title: 'Advanced Campus Tech',
+        caption: 'High-speed nationwide academic R&D facilities',
+      },
+      {
+        src: '/images/korea/korea-student.jpg',
+        alt: 'International undergraduate students collaborating on campus in Korea',
+        title: 'Vibrant Student Community',
+        caption: 'Welcoming multicultural student life in Seoul',
+      },
+    ],
   },
   {
     group: 'study-in-south-korea', slug: 'masters', name: 'Master’s programs', kind: 'study',
@@ -667,6 +693,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'International graduate students collaborating on modern university campus in Seoul',
       caption: 'South Korea · Advanced Graduate Research & Master’s Degrees',
     },
+    gallery: [
+      {
+        src: '/images/universities/kaist.jpg',
+        alt: 'KAIST Advanced Institute of Science and Technology research facility in Daejeon',
+        title: 'KAIST STEM Labs',
+        caption: 'Fully funded research assistantships & robotics labs',
+      },
+      {
+        src: '/images/universities/snu.jpg',
+        alt: 'Seoul National University graduate research institute in Seoul',
+        title: 'SNU Graduate School',
+        caption: '#1 University in South Korea with global corporate ties',
+      },
+      {
+        src: '/images/universities/ku.jpg',
+        alt: 'Korea University campus quad and libraries',
+        title: 'Korea University (SKY)',
+        caption: 'Postgraduate AI, data science and MBA tracks',
+      },
+      {
+        src: '/images/korea/seoul-skyline.jpg',
+        alt: 'Seoul metropolis innovation district and tech headquarters',
+        title: 'Direct Industry R&D',
+        caption: 'Fast-track transition to D-10 and E-7 professional visas',
+      },
+    ],
   },
   {
     group: 'study-in-south-korea', slug: 'korean-language', name: 'Korean language program', kind: 'study',
@@ -706,6 +758,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'International students studying Korean language in South Korea',
       caption: 'South Korea · University Language Immersion & TOPIK Preparation',
     },
+    gallery: [
+      {
+        src: '/images/korea/korea-student.jpg',
+        alt: 'International students practicing Korean language in modern university classroom',
+        title: 'Language Institutes',
+        caption: 'Intensive 10-week immersion courses at top universities',
+      },
+      {
+        src: '/images/korea/gyeongbokgung.jpg',
+        alt: 'Gyeongbokgung palace cultural excursion in Seoul',
+        title: 'Cultural Immersion',
+        caption: 'Explore historic palaces, markets, and cultural landmarks',
+      },
+      {
+        src: '/images/universities/yonsei.jpg',
+        alt: 'Yonsei Korean Language Institute campus building in Seoul',
+        title: 'TOPIK Certification',
+        caption: 'Pathways from beginner to Level 4+ degree eligibility',
+      },
+      {
+        src: '/images/web/seoul-city.webp',
+        alt: 'Vibrant Seoul street and university district',
+        title: 'Daily Life in Seoul',
+        caption: 'Safe, ultra-modern transit and student lifestyle',
+      },
+    ],
   },
   {
     group: 'study-in-south-korea', slug: 'english-taught', name: '100% English-taught programs', kind: 'study',
@@ -745,6 +823,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'International students in English-taught lecture theater in South Korea',
       caption: 'South Korea · 100% English-Taught Undergraduate & Postgraduate Degrees',
     },
+    gallery: [
+      {
+        src: '/images/universities/snu.jpg',
+        alt: 'International students attending English-taught lecture at SNU',
+        title: '100% English Curriculum',
+        caption: 'Accredited global degrees with zero Korean language prerequisite',
+      },
+      {
+        src: '/images/universities/kaist.jpg',
+        alt: 'KAIST international graduate laboratories',
+        title: 'Global STEM Hub',
+        caption: 'World-leading AI, robotics, and semiconductor engineering',
+      },
+      {
+        src: '/images/korea/korea-campus.jpg',
+        alt: 'Modern university campus grounds in Seoul',
+        title: 'International Colleges',
+        caption: 'English-medium faculty with prestigious international credentials',
+      },
+      {
+        src: '/images/korea/seoul-skyline.jpg',
+        alt: 'Seoul skyline and tech corridors',
+        title: 'Global Career Corridors',
+        caption: 'Access Samsung, LG, Hyundai and tech startups upon graduation',
+      },
+    ],
   },
 
   /* ============================== GERMANY ============================== */
@@ -786,6 +890,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Nurses collaborating in a modern German hospital',
       caption: 'Germany · Regulated Healthcare Careers for Nurses',
     },
+    gallery: [
+      {
+        src: '/images/generated/germany-healthcare.jpg',
+        alt: 'Registered nurses collaborating in modern German hospital intensive care ward',
+        title: 'German Clinical Care',
+        caption: 'State-of-the-art hospitals and surgical clinics across Germany',
+      },
+      {
+        src: '/images/web/germany-wide.webp',
+        alt: 'Historic German university town with clinical research centers',
+        title: 'Fast-Track PR & Blue Card',
+        caption: 'Permanent residency pathway after 21 months of clinical practice',
+      },
+      {
+        src: '/images/generated/germany-physio.jpg',
+        alt: 'Modern medical rehabilitation equipment and therapy ward in Germany',
+        title: 'Full Licensing Support',
+        caption: 'Defizitbescheid document recognition and funded German training',
+      },
+      {
+        src: '/images/germany.jpg',
+        alt: 'German medical university and research campus',
+        title: 'Funded Language Coaching',
+        caption: 'Medical German B1–B2 language preparation included',
+      },
+    ],
   },
   {
     group: 'work-in-germany', slug: 'physiotherapists', name: 'Physiotherapists', kind: 'work',
@@ -825,6 +955,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Physiotherapist assisting patient in modern German clinic',
       caption: 'Germany · Clinical Practice for Physiotherapists',
     },
+    gallery: [
+      {
+        src: '/images/generated/germany-physio.jpg',
+        alt: 'Physiotherapist assisting patient in modern German orthopedic rehabilitation clinic',
+        title: 'Rehabilitation Centers',
+        caption: 'Top-tier clinics and private physiotherapy practices in Germany',
+      },
+      {
+        src: '/images/generated/germany-healthcare.jpg',
+        alt: 'Clinical multidisciplinary team in German university hospital',
+        title: 'Direct Employment',
+        caption: 'Guaranteed employer contracts with starting salaries up to €45,000',
+      },
+      {
+        src: '/images/web/germany-wide.webp',
+        alt: 'German city architecture and medical districts',
+        title: 'European Settlement',
+        caption: 'Structured settlement and family relocation benefits',
+      },
+      {
+        src: '/images/germany.jpg',
+        alt: 'Medical training campus in Germany',
+        title: 'Professional Recognition',
+        caption: 'Complete translation, equivalence filing, and adaptation courses',
+      },
+    ],
   },
 
   /* ============================== UAE ============================== */
@@ -866,6 +1022,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Healthcare professionals in modern hospital atrium in Dubai',
       caption: 'UAE · Modern Hospital & Medical Center Careers',
     },
+    gallery: [
+      {
+        src: '/images/generated/uae-sector-healthcare.jpg',
+        alt: 'Healthcare professionals in luxury hospital atrium in Dubai',
+        title: 'DHA / MOH Hospitals',
+        caption: 'World-class healthcare networks in Dubai and Abu Dhabi',
+      },
+      {
+        src: '/images/web/uae-wide.webp',
+        alt: 'Dubai coastline and modern cityscape',
+        title: 'Tax-Free Earnings',
+        caption: '100% tax-free income with comprehensive healthcare allowances',
+      },
+      {
+        src: '/images/generated/uae-careers.jpg',
+        alt: 'Medical specialists reviewing diagnostic data in Dubai medical center',
+        title: 'DataFlow & Licensing',
+        caption: 'Primary source verification and Prometric exam coaching',
+      },
+      {
+        src: '/images/uae.jpg',
+        alt: 'Modern architecture and healthcare complexes in UAE',
+        title: 'Fast Relocation',
+        caption: 'Employment visa issued within 10 to 14 working days',
+      },
+    ],
   },
   {
     group: 'work-in-uae', slug: 'hospitality', name: 'Hospitality & hotels', kind: 'work',
@@ -905,6 +1087,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Hospitality and hotel operations staff in luxury Dubai resort',
       caption: 'UAE · Luxury Hotels & Tourism Industry',
     },
+    gallery: [
+      {
+        src: '/images/generated/uae-sector-hospitality.jpg',
+        alt: 'Luxury 5-star hotel concierge and guest relations staff in Dubai',
+        title: '5-Star Resort Operations',
+        caption: 'Front office, F&B, and resort management careers in Dubai',
+      },
+      {
+        src: '/images/web/uae-wide.webp',
+        alt: 'Dubai coastal resorts and Burj Al Arab',
+        title: 'World Hospitality Capital',
+        caption: 'Premier luxury hotel brands and international event venues',
+      },
+      {
+        src: '/images/generated/uae-careers.jpg',
+        alt: 'Hospitality management team in executive conference in Dubai',
+        title: 'Executive Career Growth',
+        caption: 'Rapid promotion pathways across multinational hotel chains',
+      },
+      {
+        src: '/images/uae.jpg',
+        alt: 'Dubai landmark towers and hospitality corridors',
+        title: 'Duty Meals & Housing',
+        caption: 'Full accommodation, flight allowance, and medical coverage included',
+      },
+    ],
   },
   {
     group: 'work-in-uae', slug: 'engineering-construction', name: 'Engineering & construction', kind: 'work',
@@ -944,6 +1152,32 @@ export const SUBPAGES: SubpageContent[] = [
       alt: 'Civil and mechanical engineers on site in Dubai',
       caption: 'UAE · Major Infrastructure & Engineering Projects',
     },
+    gallery: [
+      {
+        src: '/images/generated/uae-sector-engineering.jpg',
+        alt: 'Civil and structural engineers reviewing blueprints on mega infrastructure site in Dubai',
+        title: 'Mega Infrastructure Projects',
+        caption: 'Landmark construction, transportation, and green energy initiatives',
+      },
+      {
+        src: '/images/generated/uae-sector-sales.jpg',
+        alt: 'Technical project managers in modern Dubai office tower',
+        title: 'Corporate Engineering Roles',
+        caption: 'High-level project management, MEP, and systems engineering',
+      },
+      {
+        src: '/images/web/uae-wide.webp',
+        alt: 'Dubai architectural skyline with Burj Khalifa',
+        title: 'Global Innovation Hub',
+        caption: 'Pioneering smart city and sustainable architecture developments',
+      },
+      {
+        src: '/images/uae.jpg',
+        alt: 'High-tech corporate centers in Dubai',
+        title: 'Residency & Golden Visa',
+        caption: 'Multi-year residency visas with attractive tax-free compensation',
+      },
+    ],
   },
 ];
 

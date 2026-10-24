@@ -78,10 +78,10 @@ export default function SouthKoreaPage() {
 
   return (
     <>
-      {/* Hero: Compact on mobile */}
-      <section className="pt-28 pb-12 md:pt-44 md:pb-24 border-b border-[#E6DDCC]" aria-label="South Korea hero">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
+      {/* Hero with South Korea Scenic Image */}
+      <section className="pt-24 pb-10 md:pt-36 md:pb-16 border-b border-[#E6DDCC]" aria-label="South Korea hero">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+          <div className="lg:col-span-7">
             <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium mb-3 block">
               Featured study destination
             </span>
@@ -91,6 +91,32 @@ export default function SouthKoreaPage() {
             <p className="text-sm sm:text-lg text-[#57514A] leading-relaxed font-light">
               {southKorea.hero.description}
             </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#enquiry-form"
+                className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-7 min-h-11 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+              >
+                Apply for free counselling
+              </a>
+              <a
+                href="#programs"
+                className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+              >
+                Explore degree tracks
+              </a>
+            </div>
+          </div>
+          <div className="lg:col-span-5">
+            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5] rounded-[3px] shadow-sm">
+              <Image
+                src="/images/korea/seoul-skyline.jpg"
+                alt="Seoul skyline and prestigious university research campuses in South Korea"
+                fill
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>

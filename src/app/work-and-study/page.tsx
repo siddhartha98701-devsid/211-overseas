@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import Link from 'next/link';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
@@ -62,10 +63,11 @@ const WORK_ADVANTAGES = [
 export default function WorkAndStudyPage() {
   return (
     <>
-      {/* Work Abroad Hero Section */}
-      <section className="pt-32 pb-14 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Work abroad hero">
+      {/* Work Abroad Hero Section with Scenic Image */}
+      <section className="pt-24 pb-12 md:pt-36 md:pb-16 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Work abroad hero">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
             <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-4">
               <span className="h-px w-10 bg-[#1D3FFF]" />
               Work Abroad · Professional International Careers
@@ -91,6 +93,19 @@ export default function WorkAndStudyPage() {
               </Link>
             </div>
           </div>
+          <div className="lg:col-span-5">
+            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-white rounded-[2px] shadow-sm">
+              <Image
+                src="/images/generated/global-campus.jpg"
+                alt="International professionals and graduates collaborating globally"
+                fill
+                priority
+                sizes="(min-width: 1024px) 480px, 100vw"
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
 
           {/* Quick Value Metrics Strip */}
           <div className="mt-14 pt-8 border-t border-[#E6DDCC] grid grid-cols-2 md:grid-cols-4 gap-6">

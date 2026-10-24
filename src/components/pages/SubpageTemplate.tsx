@@ -55,9 +55,9 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
   return (
     <>
       {/* ---------- Hero ---------- */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-20 border-b border-[#E6DDCC]" aria-label={`${page.name} overview`}>
+      <section className="pt-24 pb-12 md:pt-32 md:pb-16 border-b border-[#E6DDCC]" aria-label={`${page.name} overview`}>
         <div className="max-w-[1280px] mx-auto px-6">
-          <nav aria-label="Breadcrumb" className="mb-8 text-xs text-[#57514A]">
+          <nav aria-label="Breadcrumb" className="mb-6 text-xs text-[#57514A]">
             <ol className="flex flex-wrap items-center gap-2">
               <li><Link href="/" className="hover:text-[#8A6020]">Home</Link></li>
               <li aria-hidden="true">/</li>
@@ -67,9 +67,9 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
             </ol>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <div className="lg:col-span-7">
-              <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-5">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+            <div className="lg:col-span-7 flex flex-col">
+              <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-3">
                 <span className="h-px w-10 bg-[#B88740]" />
                 {page.eyebrow}
               </p>
@@ -78,32 +78,10 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
                 <span className="text-[#8A6020]">{page.highlight}</span>
                 {after}
               </h1>
-              <p className="mt-6 text-base md:text-lg text-[#57514A] leading-relaxed max-w-2xl">{page.intro}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a
-                  href="#enquiry-form"
-                  className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-7 min-h-11 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
-                >
-                  Apply for free counselling
-                </a>
-                <a
-                  href="#why"
-                  className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-                >
-                  Why {page.name}?
-                </a>
-              </div>
-              <div className="mt-4 flex flex-wrap gap-5 text-sm">
-                <a href={whatsappLink(`Hi 211 OVERSEAS, I am interested in: ${page.interest}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-[#2A2A2A] hover:text-[#8A6020]">
-                  <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
-                </a>
-                <a href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`} className="inline-flex min-h-11 items-center gap-2 text-[#2A2A2A] hover:text-[#8A6020]">
-                  <Phone size={18} aria-hidden="true" /> {siteContent.brand.phone}
-                </a>
-              </div>
+              <p className="mt-4 text-base md:text-lg text-[#57514A] leading-relaxed max-w-2xl">{page.intro}</p>
 
               {page.heroImage && (
-                <div className="mt-8 relative aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5] shadow-sm group">
+                <div className="mt-6 relative aspect-[16/9] sm:aspect-[21/9] w-full overflow-hidden border border-[#E6DDCC] bg-[#FAF8F5] shadow-xs rounded-[3px] group">
                   <Image
                     src={page.heroImage.src}
                     alt={page.heroImage.alt}
@@ -113,7 +91,7 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
                     className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                   />
                   {page.heroImage.caption && (
-                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-3.5 sm:p-4 text-white">
+                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent p-3 sm:p-3.5 text-white">
                       <p className="font-serif text-xs sm:text-sm font-semibold tracking-wide drop-shadow-sm">
                         {page.heroImage.caption}
                       </p>
@@ -121,6 +99,29 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
                   )}
                 </div>
               )}
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href="#enquiry-form"
+                  className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-7 min-h-11 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+                >
+                  Apply for free counselling
+                </a>
+                <a
+                  href="#why"
+                  className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+                >
+                  Why {page.name}?
+                </a>
+              </div>
+              <div className="mt-3.5 flex flex-wrap gap-5 text-sm">
+                <a href={whatsappLink(`Hi 211 OVERSEAS, I am interested in: ${page.interest}.`)} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 text-[#2A2A2A] hover:text-[#8A6020]">
+                  <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
+                </a>
+                <a href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`} className="inline-flex min-h-11 items-center gap-2 text-[#2A2A2A] hover:text-[#8A6020]">
+                  <Phone size={18} aria-hidden="true" /> {siteContent.brand.phone}
+                </a>
+              </div>
             </div>
 
             <aside
