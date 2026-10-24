@@ -2,26 +2,30 @@
 
 import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ArrowLeft, CheckCircle2, Info } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, Info, ArrowRight, RotateCcw, Sparkles } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 import { FIELDS } from './ProgramFinderSection';
 
 const EDUCATION = [
-  { id: 'hsc', label: '12th / HSC (completed or appearing)', level: 'Undergraduate' },
-  { id: 'diploma', label: 'Diploma', level: 'Undergraduate' },
-  { id: 'bachelor', label: "Bachelor's degree", level: 'Graduate' },
-  { id: 'master', label: "Master's degree or higher", level: 'Graduate' },
+  { id: 'hsc', label: '12th / HSC (Completed or Appearing)', level: 'Undergraduate', badge: 'High School' },
+  { id: 'diploma', label: '3-Year Polytechnic / Technical Diploma', level: 'Undergraduate', badge: 'Diploma' },
+  { id: 'bachelor', label: "Bachelor's Degree (Any Stream)", level: 'Graduate', badge: 'Graduate' },
+  { id: 'master', label: "Master's Degree or Higher", level: 'Graduate', badge: 'Postgraduate' },
 ] as const;
 
 const ENGLISH = [
-  { id: 'ielts55', label: 'IELTS 5.5 or above', ok: true },
-  { id: 'duolingo', label: 'Duolingo English Test score', ok: true },
-  { id: 'ieltslow', label: 'IELTS below 5.5', ok: false },
-  { id: 'none', label: "I haven't taken a test yet", ok: false },
+  { id: 'ielts55', label: 'IELTS 5.5 or Above', ok: true, badge: 'Direct Entry' },
+  { id: 'duolingo', label: 'Duolingo English Test (95+)', ok: true, badge: 'Online Accepted' },
+  { id: 'ieltslow', label: 'IELTS Below 5.5 (or planning to appear)', ok: false, badge: 'Pre-Sessional' },
+  { id: 'none', label: "I haven't taken any English test yet", ok: false, badge: 'Waiver / Track' },
 ] as const;
 
-const STEPS = ['Education', 'English', 'Field'] as const;
+const STEPS = [
+  { label: 'Education', title: 'What is your current education level?' },
+  { label: 'English', title: 'What is your English proficiency score?' },
+  { label: 'Field', title: 'Which academic field interests you most?' },
+] as const;
 
 export function EligibilitySection() {
   const { openCallback } = useCallbackModal();
@@ -40,141 +44,247 @@ export function EligibilitySection() {
     setField(null);
   };
 
-  const option = (selected: boolean) =>
-    `w-full text-left px-5 py-4 border transition-colors cursor-pointer ${
-      selected ? 'border-[#B88740] bg-[#94682B]/10 text-white' : 'border-white/20 text-white hover:border-[#B88740]'
-    }`;
-
   return (
-    <section id="eligibility" className="bgl bgl-black py-14 md:py-24 text-white scroll-mt-24" aria-label="Check your eligibility">
+    <section id="eligibility" className="bgl bgl-black py-16 md:py-24 text-white scroll-mt-24" aria-label="Check your eligibility">
       <div className="max-w-[1280px] mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          <div className="lg:col-span-5">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          {/* Left information column */}
+          <div className="lg:col-span-5 space-y-6">
             <SectionHeader
               dark
-              eyebrow="Eligibility check"
+              eyebrow="Profile Assessment Tool"
               headline="Am I eligible to study in South Korea?"
-              description="Answer three quick questions to see where you stand — and which route to explore first."
+              description="Complete three quick criteria checks to evaluate your admission probability, scholarship eligibility, and program compatibility in under 60 seconds."
+              compact
             />
-            <ul className="space-y-3 text-sm text-white/70">
-              {['Takes under a minute', 'No documents needed', 'Free expert guidance on your next step'].map((t) => (
-                <li key={t} className="flex items-center gap-3">
-                  <CheckCircle2 size={18} className="text-[#D1A95F] shrink-0" aria-hidden="true" /> {t}
-                </li>
-              ))}
-            </ul>
+            <div className="p-5 border border-white/10 bg-white/[0.03] space-y-3.5">
+              <span className="text-xs uppercase tracking-widest text-[#1D3FFF] font-semibold block">
+                Assessment Guarantee
+              </span>
+              <ul className="space-y-3 text-sm text-white/75">
+                {[
+                  'Instant preliminary eligibility score',
+                  'No document uploads or upfront fees required',
+                  'Direct consultation with an accredited regional advisor',
+                ].map((t) => (
+                  <li key={t} className="flex items-center gap-3">
+                    <CheckCircle2 size={16} className="text-[#1D3FFF] shrink-0" aria-hidden="true" />
+                    <span>{t}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
+          {/* Right interactive stepper box */}
           <div className="lg:col-span-7">
-            <div className="border border-white/15 bg-white/[0.03] p-6 sm:p-8 min-h-[26rem]">
-              {/* Progress */}
-              <div className="mb-8" aria-hidden="true">
-                <div className="flex justify-between text-[10px] uppercase tracking-widest text-white/50 mb-2">
-                  {STEPS.map((s, i) => (
-                    <span key={s} className={i <= Math.min(step, 2) ? 'text-[#D1A95F]' : ''}>{i + 1}. {s}</span>
-                  ))}
+            <div className="border border-white/15 bg-white/[0.03] p-6 sm:p-9 min-h-[28rem] flex flex-col justify-between shadow-2xl">
+              <div>
+                {/* Clean Progress Stepper Header */}
+                <div className="mb-8" aria-hidden="true">
+                  <div className="flex items-center justify-between text-xs mb-2.5">
+                    <span className="text-white/60 uppercase tracking-widest font-semibold">
+                      {done ? 'Evaluation Complete' : `Step ${step + 1} of 3: ${STEPS[step]?.label}`}
+                    </span>
+                    <span className="text-[#1D3FFF] font-bold tabular-nums">
+                      {done ? '100%' : `${Math.round(((step) / 3) * 100)}%`}
+                    </span>
+                  </div>
+                  <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
+                    <motion.div
+                      className="h-full bg-[#1D3FFF]"
+                      animate={{ width: `${(Math.min(step, 3) / 3) * 100}%` }}
+                      transition={{ duration: 0.35, ease: 'easeOut' }}
+                    />
+                  </div>
                 </div>
-                <div className="h-1 bg-white/15">
-                  <motion.div className="h-full bg-[#94682B]" animate={{ width: `${(Math.min(step, 3) / 3) * 100}%` }} transition={{ duration: 0.4 }} />
-                </div>
+
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={step}
+                    initial={{ opacity: 0, y: 12 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -12 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    {step === 0 && (
+                      <fieldset>
+                        <legend className="font-serif text-xl sm:text-2xl font-bold mb-5 leading-snug">
+                          {STEPS[0].title}
+                        </legend>
+                        <div className="space-y-3">
+                          {EDUCATION.map((e) => {
+                            const isSelected = edu?.id === e.id;
+                            return (
+                              <button
+                                key={e.id}
+                                type="button"
+                                onClick={() => {
+                                  setEdu(e);
+                                  setStep(1);
+                                }}
+                                className={`w-full text-left px-5 py-4 border transition-all cursor-pointer flex items-center justify-between min-h-[52px] ${
+                                  isSelected
+                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                }`}
+                              >
+                                <span className="font-medium text-sm sm:text-base">{e.label}</span>
+                                <span className="text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-white/10 text-white/70">
+                                  {e.badge}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </fieldset>
+                    )}
+
+                    {step === 1 && (
+                      <fieldset>
+                        <legend className="font-serif text-xl sm:text-2xl font-bold mb-5 leading-snug">
+                          {STEPS[1].title}
+                        </legend>
+                        <div className="space-y-3">
+                          {ENGLISH.map((e) => {
+                            const isSelected = eng?.id === e.id;
+                            return (
+                              <button
+                                key={e.id}
+                                type="button"
+                                onClick={() => {
+                                  setEng(e);
+                                  setStep(2);
+                                }}
+                                className={`w-full text-left px-5 py-4 border transition-all cursor-pointer flex items-center justify-between min-h-[52px] ${
+                                  isSelected
+                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                }`}
+                              >
+                                <span className="font-medium text-sm sm:text-base">{e.label}</span>
+                                <span className="text-[11px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded bg-white/10 text-white/70">
+                                  {e.badge}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </fieldset>
+                    )}
+
+                    {step === 2 && (
+                      <fieldset>
+                        <legend className="font-serif text-xl sm:text-2xl font-bold mb-5 leading-snug">
+                          {STEPS[2].title}
+                        </legend>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                          {[...FIELDS, { id: 'notsure', label: "I'm not sure yet (Need guidance)" }].map((f) => {
+                            const isSelected = field === f.id;
+                            return (
+                              <button
+                                key={f.id}
+                                type="button"
+                                onClick={() => {
+                                  setField(f.id);
+                                  setStep(3);
+                                }}
+                                className={`text-left px-4 py-3.5 border transition-all cursor-pointer flex items-center justify-between min-h-[50px] ${
+                                  isSelected
+                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                }`}
+                              >
+                                <span className="font-medium text-xs sm:text-sm">{f.label}</span>
+                                <ArrowRight size={14} className="text-[#1D3FFF] shrink-0" />
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </fieldset>
+                    )}
+
+                    {done && edu && eng && (
+                      <div role="status" aria-live="polite" className="space-y-6">
+                        <div className="p-4 border border-[#1D3FFF]/50 bg-[#1D3FFF]/10 rounded-[2px] flex items-center gap-3">
+                          <Sparkles size={22} className="text-[#1D3FFF] shrink-0" />
+                          <div>
+                            <p className="text-xs uppercase tracking-wider text-[#1D3FFF] font-bold">
+                              Preliminary Match Found
+                            </p>
+                            <h3 className="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">
+                              {eng.ok ? 'High Probability for Direct Enrolment' : 'Foundation & Language Pathway Eligible'}
+                            </h3>
+                          </div>
+                        </div>
+
+                        <div className="space-y-3">
+                          <div className="p-4 border border-white/10 bg-white/[0.02]">
+                            <span className="text-[11px] uppercase tracking-wider font-semibold text-white/50 block mb-1">
+                              Target Degree Level &amp; Track:
+                            </span>
+                            <p className="text-sm font-semibold text-white">
+                              {edu.level} Programs in {fieldLabel}
+                            </p>
+                          </div>
+
+                          <div className="p-4 border border-white/10 bg-white/[0.02]">
+                            <span className="text-[11px] uppercase tracking-wider font-semibold text-white/50 block mb-1">
+                              Language Requirement Status:
+                            </span>
+                            <p className="text-sm text-white/80">
+                              {eng.ok
+                                ? 'Your test credentials qualify for 100% English-taught university programs in Seoul & Busan.'
+                                : 'English waivers or Korean language prep tracks (D-4 to D-2) allow entry without initial IELTS.'}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="pt-2 flex flex-wrap items-center gap-3">
+                          <button
+                            type="button"
+                            onClick={() =>
+                              openCallback({
+                                interest: 'Study in South Korea',
+                                source: `eligibility:${edu.label} | ${eng.label} | ${fieldLabel}`,
+                              })
+                            }
+                            className="btn-shine bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                          >
+                            Get Custom University Shortlist
+                          </button>
+                          <button
+                            type="button"
+                            onClick={reset}
+                            className="inline-flex items-center gap-1.5 px-4 py-3.5 text-xs uppercase tracking-widest font-medium text-white/70 hover:text-white transition-colors cursor-pointer"
+                          >
+                            <RotateCcw size={13} />
+                            <span>Check Another Profile</span>
+                          </button>
+                        </div>
+
+                        <p className="flex gap-2 text-[11px] text-white/50 leading-relaxed border-t border-white/10 pt-4">
+                          <Info size={14} className="shrink-0 mt-0.5" aria-hidden="true" />
+                          Indicative evaluation based on standard Korean university entrance criteria. Final acceptance and scholarships depend on complete documentation and university review.
+                        </p>
+                      </div>
+                    )}
+                  </motion.div>
+                </AnimatePresence>
               </div>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={step}
-                  initial={{ opacity: 0, x: 24 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -24 }}
-                  transition={{ duration: 0.25 }}
-                >
-                  {step === 0 && (
-                    <fieldset>
-                      <legend className="font-serif text-xl font-bold mb-5">What is your current education level?</legend>
-                      <div className="space-y-3">
-                        {EDUCATION.map((e) => (
-                          <button key={e.id} type="button" className={option(edu?.id === e.id)} onClick={() => { setEdu(e); setStep(1); }}>
-                            {e.label}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
-                  )}
-
-                  {step === 1 && (
-                    <fieldset>
-                      <legend className="font-serif text-xl font-bold mb-5">Your English proficiency?</legend>
-                      <div className="space-y-3">
-                        {ENGLISH.map((e) => (
-                          <button key={e.id} type="button" className={option(eng?.id === e.id)} onClick={() => { setEng(e); setStep(2); }}>
-                            {e.label}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
-                  )}
-
-                  {step === 2 && (
-                    <fieldset>
-                      <legend className="font-serif text-xl font-bold mb-5">Which field interests you most?</legend>
-                      <div className="grid sm:grid-cols-2 gap-3">
-                        {[...FIELDS, { id: 'notsure', label: "I'm not sure yet" }].map((f) => (
-                          <button key={f.id} type="button" className={option(field === f.id)} onClick={() => { setField(f.id); setStep(3); }}>
-                            {f.label}
-                          </button>
-                        ))}
-                      </div>
-                    </fieldset>
-                  )}
-
-                  {done && edu && eng && (
-                    <div role="status" aria-live="polite">
-                      <p className="text-xs uppercase tracking-widest text-[#D1A95F] font-medium">Your indicative result</p>
-                      <h3 className="mt-2 font-serif text-2xl font-bold">
-                        {eng.ok ? 'Good news — you look ready to explore.' : 'You can still get started.'}
-                      </h3>
-                      <ul className="mt-5 space-y-3 text-sm text-white/80 leading-relaxed">
-                        <li className="flex gap-3"><CheckCircle2 size={18} className="mt-0.5 text-[#D1A95F] shrink-0" />
-                          <span>
-                            Recommended route: <strong className="text-white">{edu.level} programs</strong>, in{' '}
-                            <strong className="text-white">{fieldLabel}</strong>.
-                          </span>
-                        </li>
-                        <li className="flex gap-3"><CheckCircle2 size={18} className="mt-0.5 text-[#D1A95F] shrink-0" />
-                          <span>
-                            {eng.ok
-                            ? 'Your English score fits the typical requirement (IELTS 5.5+, Duolingo accepted).'
-                            : 'Many programs ask for IELTS 5.5+ (Duolingo accepted). We will guide you on the right test and timeline.'}
-                          </span>
-                        </li>
-                        <li className="flex gap-3"><CheckCircle2 size={18} className="mt-0.5 text-[#D1A95F] shrink-0" />
-                          <span>A counsellor will shortlist English-taught options in Seoul and Busan for your profile.</span>
-                        </li>
-                      </ul>
-                      <div className="mt-7 flex flex-wrap items-center gap-4">
-                        <button
-                          type="button"
-                          onClick={() => openCallback({ interest: 'Study in South Korea', source: `eligibility:${edu.label} | ${eng.label} | ${fieldLabel}` })}
-                          className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
-                        >
-                          Talk to a counsellor
-                        </button>
-                        <button type="button" onClick={reset} className="text-xs uppercase tracking-widest text-white/70 hover:text-[#D1A95F] cursor-pointer">
-                          Start over
-                        </button>
-                      </div>
-                      <p className="mt-6 flex gap-2 text-xs text-white/50 leading-relaxed">
-                        <Info size={14} className="shrink-0 mt-0.5" aria-hidden="true" />
-                        Indicative guidance only. 211 OVERSEAS does not guarantee admission or visa approval — final decisions rest with the universities and embassies.
-                      </p>
-                    </div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-
+              {/* Navigation Back button */}
               {step > 0 && !done && (
-                <button type="button" onClick={() => setStep(step - 1)} className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-white/60 hover:text-[#D1A95F] cursor-pointer">
-                  <ArrowLeft size={14} /> Back
-                </button>
+                <div className="pt-6 border-t border-white/10 mt-6 flex justify-between items-center">
+                  <button
+                    type="button"
+                    onClick={() => setStep(step - 1)}
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-white/70 hover:text-[#1D3FFF] transition-colors cursor-pointer"
+                  >
+                    <ArrowLeft size={14} /> Back
+                  </button>
+                  <span className="text-[11px] text-white/40">Step {step + 1} of 3</span>
+                </div>
               )}
             </div>
           </div>

@@ -1,53 +1,76 @@
+'use client';
+
 import Link from 'next/link';
+import { ArrowRight, HelpCircle, CheckCircle2 } from 'lucide-react';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { useCallbackModal } from '@/components/lead/CallbackProvider';
 import { siteContent } from '@/content/site';
 
 export function NotSureSection() {
   const { notSure } = siteContent;
+  const { openCallback } = useCallbackModal();
 
   return (
-    <section className="py-24 md:py-36 border-b border-[#E6DDCC]" aria-label="Profile assessment checklist">
+    <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Profile assessment checklist">
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left Column (5 cols) */}
-            <div className="lg:col-span-5">
-              <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
-                Profile-first guidance
+            <div className="lg:col-span-5 space-y-5">
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold">
+                <HelpCircle size={14} />
+                Profile-First Advisory
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-6">
-                Not sure which country?
+              <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
+                Not sure which <span className="text-[#1D3FFF]">country</span> fits you?
               </h2>
-              <p className="text-base text-[#57514A] leading-relaxed mb-8">
-                {notSure.description}
+              <p className="text-sm sm:text-base text-[#57514A] leading-relaxed">
+                {notSure.description} Our advisors assess your academic transcripts, budget, language capabilities, and career goals to find the right destination.
               </p>
-              <Link
-                href="/contact?interest=Not+Sure+%E2%80%93+Need+Counselling#enquiry-form"
-                className="inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
-              >
-                Book free consultation
-              </Link>
+              <div className="pt-2 flex flex-wrap gap-3">
+                <button
+                  type="button"
+                  onClick={() => openCallback({ interest: 'Not Sure – Need Counselling', source: 'not-sure-section' })}
+                  className="btn-shine inline-flex items-center gap-2 bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                >
+                  <span>Book Free Consultation</span>
+                  <ArrowRight size={14} />
+                </button>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-6 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
 
-            {/* Right Column (7 cols): 7 questions as a simple two-column list with hairline dividers */}
+            {/* Right Column (7 cols): Checklist Cards */}
             <div className="lg:col-span-7">
-              <p className="text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-6">
-                Questions to consider before selecting a destination
-              </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-0 border-t border-[#E6DDCC]">
-                {notSure.checklist.map((question, i) => (
-                  <div
-                    key={i}
-                    className="py-5 border-b border-[#E6DDCC] flex items-start gap-4"
-                  >
-                    <span className="font-serif text-base text-[#57514A] font-bold flex-shrink-0">
-                      {String(i + 1).padStart(2, '0')}
-                    </span>
-                    <span className="text-sm text-[#2A2A2A] leading-snug font-normal">
-                      {question}
-                    </span>
-                  </div>
-                ))}
+              <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6 sm:p-8 shadow-sm">
+                <p className="text-xs uppercase tracking-wider text-[#2A2A2A] font-bold mb-5 flex items-center justify-between">
+                  <span>Questions We Help You Answer</span>
+                  <span className="text-[11px] text-[#1D3FFF] font-semibold">7 Key Criteria</span>
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  {notSure.checklist.map((question, i) => (
+                    <div
+                      key={i}
+                      className="p-4 bg-white border border-[#E6DDCC] flex items-start gap-3 hover:border-[#1D3FFF] transition-colors"
+                    >
+                      <span className="font-serif text-sm font-bold text-[#1D3FFF] shrink-0 pt-0.5">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="text-xs sm:text-sm text-[#2A2A2A] leading-snug font-medium">
+                        {question}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 pt-4 border-t border-[#E6DDCC]/70 flex items-center gap-2 text-xs text-[#57514A]">
+                  <CheckCircle2 size={15} className="text-[#1D3FFF] shrink-0" />
+                  <span>Counselling is 100% confidential and personalised to your profile.</span>
+                </div>
               </div>
             </div>
           </div>

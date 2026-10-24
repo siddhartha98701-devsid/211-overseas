@@ -18,7 +18,7 @@ const studyLinks = [
 ];
 
 const workLinks = [
-  { label: 'Work & Study Overview', href: '/work-and-study' },
+  { label: 'Work Pathways Overview', href: '/work-and-study' },
   { label: 'Work in Germany', href: '/work-in-germany' },
   { label: 'Work in UAE', href: '/work-in-uae' },
 ];
@@ -32,6 +32,7 @@ type NavLink = { label: string; href: string; children?: { label: string; href: 
 const navLinks: NavLink[] = [
   { label: 'Study', href: '/study-in-south-korea', children: studyLinks },
   { label: 'Work', href: '/work-and-study', children: workLinks },
+  { label: 'Inbound', href: '/inbound' },
   { label: 'Other Destinations', href: '/other-destinations', children: otherLinks },
   { label: 'About Us', href: '/about' },
 ];

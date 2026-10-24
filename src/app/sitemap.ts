@@ -8,6 +8,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...SUBPAGES.map(subpageHref),
     '',
     '/work-and-study',
+    '/inbound',
     '/study-in-south-korea',
     '/work-in-germany',
     '/work-in-uae',

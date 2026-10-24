@@ -22,7 +22,6 @@ import { siteContent } from '@/content/site';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 import { FaqSection } from '@/components/sections/FaqSection';
-import { WhoCanConnectSection } from '@/components/sections/WhoCanConnectSection';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { MobileScroller } from '@/components/ui/MobileScroller';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
@@ -125,52 +124,36 @@ export default function AboutPage() {
         </ul>
       </section>
 
-      {/* What we promise */}
-      <section className="py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="Our principles">
+      {/* What we promise (How we work) */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Our principles">
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader eyebrow="How we work" headline="Four promises we make to every candidate" compact />
+          <SectionHeader
+            eyebrow="How we work"
+            headline="Four promises we make to every candidate"
+            description="Our structured advisory principles ensure honest guidance, profile-first recommendations, and verified processes."
+            compact
+          />
           <MobileScroller label="Our principles" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {PRINCIPLES.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-white p-6">
-                <span className="flex h-12 w-12 items-center justify-center bg-black text-[#D1A95F]">
-                  <Icon size={22} strokeWidth={1.5} aria-hidden="true" />
-                </span>
-                <h3 className="mt-4 font-serif text-lg font-bold text-[#2A2A2A] leading-snug">{title}</h3>
-                <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
+            {PRINCIPLES.map(({ icon: Icon, title, text }, i) => (
+              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#1D3FFF] transition-all flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center justify-between mb-4">
+                    <span className="flex h-11 w-11 items-center justify-center bg-[#2A2A2A] text-white">
+                      <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
+                    </span>
+                    <span className="font-serif text-xs font-bold text-[#1D3FFF] uppercase tracking-wider">
+                      Promise 0{i + 1}
+                    </span>
+                  </div>
+                  <h3 className="font-serif text-lg font-bold text-[#2A2A2A] leading-snug">{title}</h3>
+                  <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
+                </div>
+                <div className="mt-4 pt-3 border-t border-[#E6DDCC]/60 text-[11px] text-[#8A6020] font-medium uppercase tracking-wider">
+                  Guaranteed standard
+                </div>
               </div>
             ))}
           </MobileScroller>
-        </div>
-      </section>
-
-      {/* What we do / never do */}
-      <section className="bgl bgl-gray py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="What we do and never do">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader eyebrow="Transparency" headline="What you can expect, and what we will never do" description="Study and work abroad decisions are big. Here is exactly where we stand." compact />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="border border-[#E6DDCC] bg-white p-6 sm:p-8">
-              <h3 className="font-serif text-xl font-bold text-[#2A2A2A]">We will</h3>
-              <ul className="mt-4 space-y-3">
-                {WE_DO.map((t) => (
-                  <li key={t} className="flex items-start gap-3 text-sm text-[#2A2A2A]">
-                    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#94682B] text-white text-xs font-bold" aria-hidden="true">✓</span>
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="border border-[#2A2A2A] bg-[#2A2A2A] p-6 sm:p-8 text-white">
-              <h3 className="font-serif text-xl font-bold">We will never</h3>
-              <ul className="mt-4 space-y-3">
-                {WE_NEVER.map((t) => (
-                  <li key={t} className="flex items-start gap-3 text-sm text-white/85">
-                    <Ban size={18} className="mt-0.5 shrink-0 text-[#D1A95F]" aria-hidden="true" />
-                    {t}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -207,7 +190,7 @@ export default function AboutPage() {
           <MobileScroller dark label="Our process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {howItWorks.steps.map((s) => (
               <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-xs font-bold">{s.number}</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-white text-xs font-bold">{s.number}</span>
                 <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{s.title}</h3>
                 <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
               </div>
@@ -215,8 +198,6 @@ export default function AboutPage() {
           </MobileScroller>
         </div>
       </section>
-
-      <WhoCanConnectSection />
 
       {/* Visit us */}
       <section id="visit" className="bgl bgl-gray py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Visit our office">

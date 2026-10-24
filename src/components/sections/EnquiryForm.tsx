@@ -19,6 +19,7 @@ const enquirySchema = z.object({
   occupation: z.string().optional(),
   interests: z.array(z.string()).optional(),
   destination: z.string().optional(),
+  otherDestination: z.string().optional(),
   courseOrCareer: z.string().optional(),
   budget: z.string().optional(),
   intakeTimeline: z.string().optional(),
@@ -64,6 +65,7 @@ const DESTINATION_OPTIONS = [
   'Canada',
   'Australia',
   'Europe',
+  'Other Countries',
   'Not Sure – Need Advice',
 ];
 
@@ -153,11 +155,18 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
     setIsSubmitting(true);
     setErrorMessage(null);
 
+    const payload = {
+      ...data,
+      destination: data.otherDestination
+        ? `${data.destination || 'Other Countries'}: ${data.otherDestination}`
+        : data.destination,
+    };
+
     try {
       const response = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       const resData = await response.json();
@@ -183,28 +192,31 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
   return (
     <div id="enquiry-form" className="relative scroll-mt-28">
       {/* Editorial Form Container */}
-      <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-8 sm:p-12 md:p-16">
-        <div className="mb-10 max-w-xl">
-          <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight">
+      <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-6 sm:p-10 md:p-14 shadow-sm">
+        <div className="mb-8 max-w-xl">
+          <span className="text-xs uppercase tracking-widest text-[#1D3FFF] font-semibold block mb-2">
+            Admissions &amp; Career Evaluation
+          </span>
+          <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-tight">
             Submit your profile
           </h3>
-          <p className="text-sm text-[#57514A] mt-3 leading-relaxed">
+          <p className="text-sm sm:text-base text-[#57514A] mt-2.5 leading-relaxed">
             Fill in your details below. We review every profile carefully before recommending
             universities or career pathways.
           </p>
         </div>
 
         {/* Step progress */}
-        <ol className="mb-10 grid grid-cols-3 gap-2" aria-label="Form progress">
+        <ol className="mb-8 grid grid-cols-3 gap-3" aria-label="Form progress">
           {STEPS.map((st, i) => (
             <li key={st.title} aria-current={i === step ? 'step' : undefined}>
-              <div className="h-1 bg-[#E6DDCC] overflow-hidden">
-                <div className={`h-full bg-[#94682B] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
+              <div className="h-1 bg-[#E6DDCC] overflow-hidden rounded-full">
+                <div className={`h-full bg-[#1D3FFF] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
               </div>
-              <p className={`mt-2 text-[11px] uppercase tracking-wider font-medium ${i <= step ? 'text-black' : 'text-[#57514A]/60'}`}>
-                <span className="text-[#8A6020]">{i + 1}.</span> {st.title}
+              <p className={`mt-2 text-[11px] sm:text-xs uppercase tracking-wider font-semibold ${i <= step ? 'text-[#2A2A2A]' : 'text-[#57514A]/60'}`}>
+                <span className="text-[#1D3FFF] mr-1">{i + 1}.</span> {st.title}
               </p>
-              <p className="hidden sm:block text-xs text-[#57514A]">{st.hint}</p>
+              <p className="hidden sm:block text-xs text-[#57514A] mt-0.5">{st.hint}</p>
             </li>
           ))}
         </ol>
@@ -400,13 +412,13 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
             <div>
               <label
                 htmlFor="destination"
-                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-medium mb-2"
+                className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-2"
               >
                 Preferred Destination
               </label>
               <select
                 id="destination"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#B88740] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors"
                 {...register('destination')}
               >
                 <option value="">Select destination...</option>
@@ -417,6 +429,24 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
                 ))}
               </select>
             </div>
+
+            {watch('destination') === 'Other Countries' && (
+              <div className="md:col-span-2">
+                <label
+                  htmlFor="otherDestination"
+                  className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-2"
+                >
+                  Specify Target Country <span className="text-[#1D3FFF]">*</span>
+                </label>
+                <input
+                  id="otherDestination"
+                  type="text"
+                  placeholder="e.g. Ireland, France, New Zealand, Italy"
+                  className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors"
+                  {...register('otherDestination')}
+                />
+              </div>
+            )}
 
             {/* Preferred Course / Career */}
             <div>
@@ -574,9 +604,13 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
               )}
             </div>
             <p className="text-center text-xs text-[#57514A] mt-3">
-              Your data is handled as described in our{' '}
-              <Link href="/privacy-policy" className="underline decoration-[#B88740] underline-offset-2 hover:text-black">
+              Your data is handled securely as described in our{' '}
+              <Link href="/privacy-policy" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
                 Privacy Policy
+              </Link>{' '}
+              and{' '}
+              <Link href="/disclaimer" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+                Legal Disclaimer
               </Link>
               .
             </p>

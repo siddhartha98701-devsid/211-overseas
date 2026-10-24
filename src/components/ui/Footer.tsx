@@ -147,13 +147,13 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
-                  Europe Careers
+                <Link href="/work-and-study" className="hover:text-[#D1A95F] transition-colors">
+                  Work Pathways Overview
                 </Link>
               </li>
               <li>
-                <Link href="/other-destinations" className="hover:text-[#D1A95F] transition-colors">
-                  Other Global Opportunities
+                <Link href="/work-and-study#pathways" className="hover:text-[#D1A95F] transition-colors">
+                  UK, Japan & Singapore Work
                 </Link>
               </li>
             </ul>
@@ -168,6 +168,11 @@ export function Footer() {
               <li>
                 <Link href="/about" className="hover:text-[#D1A95F] transition-colors">
                   About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/inbound" className="hover:text-[#D1A95F] transition-colors">
+                  Inbound Education
                 </Link>
               </li>
               <li>

@@ -68,38 +68,50 @@ export function MobileScroller({
       </ul>
 
       {items.length > 1 && (
-        <div className="mt-4 flex items-center justify-between md:hidden">
+        <div className="mt-4 flex items-center justify-between">
           {items.length > 7 ? (
-            <p className={`text-sm font-medium tabular-nums ${dark ? 'text-white/70' : 'text-[#57514A]'}`} aria-live="polite">
+            <p className={`text-xs sm:text-sm font-medium tabular-nums ${dark ? 'text-white/70' : 'text-[#57514A]'}`} aria-live="polite">
               {active + 1} / {items.length}
             </p>
           ) : (
-          <div className="flex items-center" role="tablist" aria-label="Slides">
-            {items.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                role="tab"
-                aria-selected={i === active}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => go(i)}
-                className="flex h-6 w-6 items-center justify-center"
-              >
-                <span
-                  className={`block h-2 rounded-full transition-all ${
-                    i === active ? `w-5 ${dark ? 'bg-[#D1A95F]' : 'bg-[#94682B]'}` : `w-2 ${dark ? 'bg-white/30' : 'bg-[#D8CCB5]'}`
-                  }`}
-                />
-              </button>
-            ))}
-          </div>
+            <div className="flex items-center gap-1" role="tablist" aria-label="Slides">
+              {items.map((_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  role="tab"
+                  aria-selected={i === active}
+                  aria-label={`Go to slide ${i + 1}`}
+                  onClick={() => go(i)}
+                  className="flex h-6 w-6 items-center justify-center cursor-pointer"
+                >
+                  <span
+                    className={`block h-1.5 rounded-full transition-all ${
+                      i === active ? `w-5 ${dark ? 'bg-[#D1A95F]' : 'bg-[#1D3FFF]'}` : `w-1.5 ${dark ? 'bg-white/30' : 'bg-[#D8CCB5]'}`
+                    }`}
+                  />
+                </button>
+              ))}
+            </div>
           )}
           <div className="flex gap-2">
-            <button type="button" aria-label="Previous" onClick={() => go(active - 1)} disabled={active === 0} className={`flex h-11 w-11 items-center justify-center border disabled:opacity-30 ${tone}`}>
-              <ChevronLeft size={18} aria-hidden="true" />
+            <button
+              type="button"
+              aria-label="Previous slide"
+              onClick={() => go(active - 1)}
+              disabled={active === 0}
+              className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border transition-colors cursor-pointer disabled:opacity-25 ${tone} hover:border-[#1D3FFF] hover:text-[#1D3FFF]`}
+            >
+              <ChevronLeft size={16} aria-hidden="true" />
             </button>
-            <button type="button" aria-label="Next" onClick={() => go(active + 1)} disabled={active === items.length - 1} className={`flex h-11 w-11 items-center justify-center border disabled:opacity-30 ${tone}`}>
-              <ChevronRight size={18} aria-hidden="true" />
+            <button
+              type="button"
+              aria-label="Next slide"
+              onClick={() => go(active + 1)}
+              disabled={active === items.length - 1}
+              className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border transition-colors cursor-pointer disabled:opacity-25 ${tone} hover:border-[#1D3FFF] hover:text-[#1D3FFF]`}
+            >
+              <ChevronRight size={16} aria-hidden="true" />
             </button>
           </div>
         </div>

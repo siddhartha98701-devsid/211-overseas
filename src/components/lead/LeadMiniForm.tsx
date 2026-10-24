@@ -18,6 +18,7 @@ const schema = z.object({
     .refine((v) => MOBILE_PATTERN.test(v), 'Enter a valid 10-digit mobile number'),
   email: z.string().trim().email('Enter a valid email').optional().or(z.literal('')),
   interest: z.string().optional(),
+  otherCountry: z.string().trim().optional(),
   consent: z.boolean().refine((v) => v === true, 'Please tick the consent box'),
   faxNumber: z.string().max(0).optional(), // honeypot
 });
@@ -36,8 +37,8 @@ interface LeadMiniFormProps {
 }
 
 const INPUT =
-  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#B88740] focus:ring-1 focus:ring-[#B88740] transition-colors';
-const LABEL = 'block text-xs uppercase tracking-wider text-black font-medium mb-1.5';
+  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors';
+const LABEL = 'block text-xs uppercase tracking-wider text-black font-semibold mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
 export function LeadMiniForm({ interest, source, submitLabel = 'Get free counselling', showEmail = false, onSuccess }: LeadMiniFormProps) {
@@ -48,21 +49,35 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm<Values>({
     resolver: zodResolver(schema),
-    defaultValues: { fullName: '', mobile: '', email: '', interest: interest ?? '', consent: false, faxNumber: '' },
+    defaultValues: { fullName: '', mobile: '', email: '', interest: interest ?? '', otherCountry: '', consent: false, faxNumber: '' },
   });
+
+  const selectedInterest = watch('interest');
+  const isOtherCountry =
+    selectedInterest?.toLowerCase().includes('other') ||
+    selectedInterest === 'Other countries' ||
+    selectedInterest === 'Other';
 
   const onSubmit = async (v: Values) => {
     if (v.faxNumber) return;
     setBusy(true);
     setError(null);
+    const resolvedInterest = v.interest
+      ? v.otherCountry
+        ? `${v.interest}: ${v.otherCountry}`
+        : v.interest
+      : undefined;
+
     const res = await submitLead({
       fullName: v.fullName,
       mobile: v.mobile.replace(/[\s-]/g, ''),
       email: v.email || undefined,
-      interests: v.interest ? [v.interest] : [],
+      interests: resolvedInterest ? [resolvedInterest] : [],
+      destination: v.otherCountry || undefined,
       consent: v.consent,
       source,
     });
@@ -139,10 +154,10 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
 
       <div>
         <label htmlFor={`${source}-interest`} className={LABEL}>
-          I am interested in
+          Target Destination / Track
         </label>
         <select id={`${source}-interest`} className={INPUT} {...register('interest')}>
-          <option value="">Select…</option>
+          <option value="">Select country or program…</option>
           {siteContent.form.interests.map((i) => (
             <option key={i} value={i}>
               {i}
@@ -151,14 +166,39 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
         </select>
       </div>
 
+      {isOtherCountry && (
+        <motion.div
+          initial={{ opacity: 0, y: -6 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.2 }}
+          className="space-y-1"
+        >
+          <label htmlFor={`${source}-otherCountry`} className={LABEL}>
+            Specify Country of Interest <span className="text-[#1D3FFF]">*</span>
+          </label>
+          <input
+            id={`${source}-otherCountry`}
+            type="text"
+            placeholder="e.g. Ireland, France, New Zealand, Italy"
+            className={INPUT}
+            {...register('otherCountry')}
+          />
+        </motion.div>
+      )}
+
       <div>
         <label className="flex items-start gap-3 cursor-pointer">
           <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 filter-checkbox" {...register('consent')} />
           <span className="text-xs text-[#57514A] leading-relaxed">
-            I consent to 211 OVERSEAS contacting me regarding study abroad programs via phone/WhatsApp/Email.{' '}
-            <Link href="/privacy-policy" className="underline decoration-[#B88740] underline-offset-2 hover:text-black">
+            I consent to 211 OVERSEAS contacting me regarding overseas study and career pathways.{' '}
+            <Link href="/privacy-policy" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
               Privacy Policy
+            </Link>{' '}
+            &amp;{' '}
+            <Link href="/disclaimer" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+              Disclaimer
             </Link>
+            .
           </span>
         </label>
         {errors.consent && (

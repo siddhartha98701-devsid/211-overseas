@@ -1,116 +1,163 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
-import { siteContent } from '@/content/site';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 import { SectionHeader } from '@/components/ui/SectionHeader';
 import { MobileScroller } from '@/components/ui/MobileScroller';
+import { WorkPathwaysInteractive } from './WorkPathwaysInteractive';
+import { ShieldCheck, UserCheck, Briefcase, PlaneTakeoff, Award, Globe2 } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Work & Study Abroad',
+  title: 'Work Abroad | International Careers & Work Visas',
   description:
-    'Work and study pathways with 211 OVERSEAS: healthcare careers in Germany, careers in the UAE, English-taught degrees in South Korea and more destinations.',
+    'Structured international career pathways: healthcare licensing in Germany, multi-sector careers in the UAE, skilled worker visas in the UK, Japan, Singapore, and Australia. 211 OVERSEAS.',
 };
 
-interface Pathway {
-  title: string;
-  tag: string;
-  text: string;
-  href: string;
-  image: string;
-  alt: string;
-}
-
-const WORK: Pathway[] = [
-  { title: 'Work in Germany', tag: 'Healthcare careers', text: 'Language preparation, qualification recognition, interviews and visa guidance for nurses and physiotherapists.', href: '/work-in-germany', image: '/images/generated/germany-healthcare.jpg', alt: 'Healthcare team in modern German clinical setting' },
-  { title: 'Work in UAE', tag: 'Multi-industry careers', text: 'Healthcare, hospitality, engineering and construction roles, with guidance on licensing and documents.', href: '/work-in-uae', image: '/images/generated/uae-careers.jpg', alt: 'Dubai skyline and ambitious career opportunities' },
+const WORK_PROCESS_STEPS = [
+  {
+    number: '01',
+    title: 'Eligibility & Profile Assessment',
+    description: 'We evaluate your degree, clinical or technical work history, licensing prerequisites, and required language proficiency for target jurisdictions.',
+    icon: UserCheck,
+  },
+  {
+    number: '02',
+    title: 'Credential Recognition & Licensing',
+    description: 'Full assistance with Defizitbescheid, DHA/MOH DataFlow, NMC, or VETASSESS primary source document verification and translations.',
+    icon: Award,
+  },
+  {
+    number: '03',
+    title: 'Employer Interviews & Selection',
+    description: 'Technical CV optimization, targeted interview coaching, and scheduling interviews with accredited international healthcare and corporate employers.',
+    icon: Briefcase,
+  },
+  {
+    number: '04',
+    title: 'Work Visa & Pre-Departure',
+    description: 'Work permit filing, embassy document compliance, biometric booking, and pre-departure briefings for a seamless relocation.',
+    icon: PlaneTakeoff,
+  },
 ];
 
-const STUDY: Pathway[] = [
-  { title: 'Study in South Korea', tag: 'English-taught programs', text: 'Bachelor’s, master’s and Korean language programs at leading universities in Seoul, Busan and beyond.', href: '/study-in-south-korea', image: '/images/generated/korea-gateway.jpg', alt: 'Students on modern Seoul university campus' },
-  { title: 'Other study destinations', tag: 'Japan · UK · USA · Canada · more', text: 'Selected study pathways across Asia, Europe, North America and Australia matched to your profile.', href: '/other-destinations', image: '/images/generated/global-campus.jpg', alt: 'Diverse students on historic university quad' },
+const WORK_ADVANTAGES = [
+  {
+    title: 'Accredited Healthcare & Skill Tracks',
+    desc: 'Direct tie-ins with certified employers and licensing bodies in Germany, UAE, and the UK.',
+  },
+  {
+    title: 'Structured Language & Interview Prep',
+    desc: 'Goethe B1/B2 training, technical vocabulary, and mock interviews tailored to international standards.',
+  },
+  {
+    title: 'Legal Work Sponsorships',
+    desc: 'Direct employer contracts, registered certificates of sponsorship, and long-term residency pathways.',
+  },
+  {
+    title: '100% Transparent Timelines',
+    desc: 'Clear breakdown of verification fees, translation requirements, and verified embassy timelines.',
+  },
 ];
-
-function PathwayCard({ p }: { p: Pathway }) {
-  return (
-    <Link
-      href={p.href}
-      className="group flex h-full w-full flex-col overflow-hidden border border-[#E6DDCC] bg-white transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
-    >
-      <div className="relative shrink-0 aspect-[16/10] sm:aspect-[2/1] w-full overflow-hidden bg-[#2A2A2A]">
-        <Image src={p.image} alt={p.alt} fill loading="lazy" sizes="(min-width: 768px) 600px, 85vw" className="object-cover transition-transform duration-500 group-hover:scale-105" />
-      </div>
-      <div className="flex flex-1 flex-col p-6">
-        <p className="text-xs uppercase tracking-widest text-[#8A6020] font-medium">{p.tag}</p>
-        <h3 className="mt-2 font-serif text-xl font-bold text-[#2A2A2A]">{p.title}</h3>
-        <p className="mt-2 flex-1 text-sm text-[#57514A] leading-relaxed">{p.text}</p>
-        <span className="mt-5 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">
-          Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-        </span>
-      </div>
-    </Link>
-  );
-}
 
 export default function WorkAndStudyPage() {
-  const steps = siteContent.howItWorks.steps.slice(0, 4);
   return (
     <>
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="Work and study hero">
+      {/* Work Abroad Hero Section */}
+      <section className="pt-32 pb-14 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Work abroad hero">
         <div className="max-w-[1280px] mx-auto px-6">
-          <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
-            <span className="h-px w-10 bg-[#B88740]" />
-            Work &amp; Study
-          </p>
-          <h1 className="max-w-3xl font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
-            Two ways to build your future abroad: <span className="text-[#8A6020]">work</span> or <span className="text-[#8A6020]">study</span>
-          </h1>
-          <p className="mt-5 max-w-2xl text-base md:text-lg text-[#57514A] leading-relaxed">
-            Start with your profile, not a country. Pick the pathway that fits where you are today and we will guide you from eligibility to departure.
-          </p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href="#work" className="inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">Work pathways</a>
-            <a href="#study" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">Study pathways</a>
+          <div className="max-w-3xl">
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-4">
+              <span className="h-px w-10 bg-[#1D3FFF]" />
+              Work Abroad · Professional International Careers
+            </p>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
+              Build your international career: <span className="text-[#1D3FFF]">work visas</span> &amp; professional placements
+            </h1>
+            <p className="mt-5 text-base md:text-lg text-[#57514A] leading-relaxed">
+              Direct career routes for qualified professionals. We handle your eligibility evaluation, credential equivalence, language preparation, employer interviews, and embassy work visa filings across Europe, the Middle East, and Asia-Pacific.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4 items-center">
+              <a
+                href="#pathways"
+                className="btn-shine inline-flex min-h-11 items-center bg-[#1D3FFF] hover:bg-[#1532CC] text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
+              >
+                Explore Work Pathways
+              </a>
+              <Link
+                href="/contact?interest=Work+in+Other+Countries#enquiry-form"
+                className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
+              >
+                Book Free Assessment
+              </Link>
+            </div>
+          </div>
+
+          {/* Quick Value Metrics Strip */}
+          <div className="mt-14 pt-8 border-t border-[#E6DDCC] grid grid-cols-2 md:grid-cols-4 gap-6">
+            {WORK_ADVANTAGES.map((adv) => (
+              <div key={adv.title} className="flex flex-col">
+                <span className="font-serif text-sm md:text-base font-bold text-[#2A2A2A]">{adv.title}</span>
+                <span className="mt-1 text-xs text-[#57514A] leading-relaxed">{adv.desc}</span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      <section id="work" className="py-14 md:py-20 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Work pathways">
+      {/* Interactive Work Pathways with Sticky Country Tabs & Staggered Scroll Cards */}
+      <section id="pathways" className="py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="International work pathways">
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader eyebrow="Work abroad" headline="Work pathways" description="For qualified professionals looking at structured careers overseas." compact />
-          <MobileScroller label="Work pathways" desktopClassName="md:grid-cols-2">
-            {WORK.map((p) => <PathwayCard key={p.href} p={p} />)}
+          <SectionHeader
+            eyebrow="Global Work Pathways"
+            headline="Accredited International Job Opportunities"
+            description="Explore verified employment and visa categories across Germany, the UAE, United Kingdom, Japan, Singapore, and Australia."
+            image={{
+              src: '/images/web/germany-wide.webp',
+              alt: 'Professional global business and healthcare centers',
+              caption: '211 OVERSEAS · Professional Global Relocation',
+            }}
+          />
+
+          <WorkPathwaysInteractive />
+        </div>
+      </section>
+
+      {/* 4-Step Professional Work Relocation Process */}
+      <section className="bgl bgl-black py-16 md:py-24 text-white" aria-label="How our work pathway operates">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader
+            dark
+            eyebrow="Step-by-step roadmap"
+            headline="How our professional work pathway operates"
+            description="Every candidate is guided through a transparent four-stage process from credential verification to overseas arrival."
+            compact
+          />
+          <MobileScroller dark label="Work transition process" desktopClassName="md:grid-cols-4">
+            {WORK_PROCESS_STEPS.map((s) => {
+              const Icon = s.icon;
+              return (
+                <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-xs font-bold text-white">
+                        {s.number}
+                      </span>
+                      <Icon size={20} className="text-[#1D3FFF]" />
+                    </div>
+                    <h3 className="font-serif text-lg font-bold text-white">{s.title}</h3>
+                    <p className="mt-2.5 text-sm text-white/70 leading-relaxed">{s.description}</p>
+                  </div>
+                  <div className="mt-5 pt-3 border-t border-white/10 text-[11px] uppercase tracking-wider text-white/50">
+                    Phase {s.number} Verified
+                  </div>
+                </div>
+              );
+            })}
           </MobileScroller>
         </div>
       </section>
 
-      <section id="study" className="bgl bgl-gray py-14 md:py-20 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Study pathways">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader eyebrow="Study abroad" headline="Study pathways" description="For students planning an undergraduate, graduate or language program overseas." compact />
-          <MobileScroller label="Study pathways" desktopClassName="md:grid-cols-2">
-            {STUDY.map((p) => <PathwayCard key={p.href} p={p} />)}
-          </MobileScroller>
-        </div>
-      </section>
-
-      <section className="bgl bgl-black py-14 md:py-20 text-white" aria-label="How it works">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader dark eyebrow="Same process, either pathway" headline="How we guide you" compact />
-          <MobileScroller dark label="How we guide you" desktopClassName="md:grid-cols-4">
-            {steps.map((s) => (
-              <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-xs font-bold">{s.number}</span>
-                <h3 className="mt-3 font-serif text-lg font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
-              </div>
-            ))}
-          </MobileScroller>
-        </div>
-      </section>
-
-      <CtaStrip source="work-and-study" />
+      <CtaStrip interest="Work in Other Countries" source="work-and-study" />
       <FormSection />
     </>
   );

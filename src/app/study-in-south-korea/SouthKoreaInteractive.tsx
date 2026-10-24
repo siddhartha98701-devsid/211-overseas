@@ -75,15 +75,15 @@ export function ProgramLevelsCarousel() {
   };
 
   return (
-    <section className="py-12 md:py-24 border-b border-[#E6DDCC]" aria-label="Program levels">
+    <section id="program-levels" className="py-12 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Program levels">
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
           <div className="max-w-3xl mb-10 md:mb-14">
-            <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium block mb-2">
+            <span className="text-xs uppercase tracking-widest text-[#1D3FFF] font-semibold block mb-2">
               Choose Your Degree Level
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
-              Program levels
+              Academic Program Levels
             </h2>
             <p className="text-sm sm:text-base text-[#57514A] leading-relaxed font-light">
               Whether starting undergraduate studies, pursuing advanced postgraduate research, or mastering Korean language proficiency.
@@ -99,10 +99,10 @@ export function ProgramLevelsCarousel() {
             {programs.map((p) => (
               <div
                 key={p.title}
-                className="snap-start shrink-0 w-[82vw] max-w-[310px] md:w-auto border border-[#E6DDCC] bg-white p-6 flex flex-col justify-between transition-all hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
+                className="snap-start shrink-0 w-[82vw] max-w-[310px] md:w-auto border border-[#E6DDCC] bg-white p-6 flex flex-col justify-between transition-all hover:border-[#1D3FFF] hover:shadow-[0_12px_30px_rgba(29,63,255,0.08)]"
               >
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-[#94682B]/10 text-[#94682B] inline-block mb-3 border border-[#94682B]/20">
+                  <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-[#1D3FFF]/10 text-[#1D3FFF] inline-block mb-3 border border-[#1D3FFF]/20 rounded-[2px]">
                     {p.level}
                   </span>
                   <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] mb-3 leading-snug">
@@ -114,7 +114,7 @@ export function ProgramLevelsCarousel() {
                   <ul className="space-y-2 mb-6 border-t border-[#E6DDCC]/60 pt-4">
                     {p.features.map((feat) => (
                       <li key={feat} className="flex items-center gap-2 text-xs text-[#57514A]">
-                        <CheckCircle2 size={13} className="text-[#94682B] shrink-0" />
+                        <CheckCircle2 size={13} className="text-[#1D3FFF] shrink-0" />
                         <span>{feat}</span>
                       </li>
                     ))}
@@ -122,7 +122,7 @@ export function ProgramLevelsCarousel() {
                 </div>
                 <Link
                   href={p.href}
-                  className="inline-flex items-center gap-1.5 text-xs uppercase tracking-wider font-semibold text-[#94682B] hover:text-[#7A5622] pt-2 border-t border-[#E6DDCC]/40 transition-colors"
+                  className="mt-2 inline-flex w-full min-h-11 items-center justify-center gap-1.5 border border-[#1D3FFF] bg-[#1D3FFF]/5 hover:bg-[#1D3FFF] text-[#1D3FFF] hover:text-white px-4 text-xs uppercase tracking-wider font-semibold transition-all rounded-[2px]"
                 >
                   <span>{p.cta}</span>
                 </Link>
