@@ -5,7 +5,7 @@ import { countryHref } from '@/content/subpages';
 
 export function Footer() {
   return (
-    <footer className="bgl bgl-black text-white border-t-4 border-[#B88740] overflow-hidden" aria-label="Footer">
+    <footer className="bgl bgl-black text-white border-t-4 border-[#A33E11] overflow-hidden" aria-label="Footer">
       <div className="max-w-[1280px] mx-auto px-6 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
           {/* Column 1: Brand */}
@@ -14,7 +14,7 @@ export function Footer() {
               <Link href="/" aria-label="211 OVERSEAS study abroad - home" className="inline-block">
                 <Logo variant="primary-white" height={56} />
               </Link>
-              <p className="mt-3 font-serif italic text-base text-[#D1A95F]">
+              <p className="mt-3 font-serif italic text-base text-[#FC7F4E]">
                 {siteContent.brand.tagline}
               </p>
             </div>
@@ -27,7 +27,7 @@ export function Footer() {
                 Call / WhatsApp:{' '}
                 <a
                   href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`}
-                  className="text-white underline decoration-[#B88740] underline-offset-4 hover:text-[#D1A95F]"
+                  className="text-white underline decoration-[#A33E11] underline-offset-4 hover:text-[#FC7F4E]"
                 >
                   {siteContent.brand.phone}
                 </a>
@@ -36,34 +36,34 @@ export function Footer() {
             {/* Contact Emails */}
             <div className="pt-3 border-t border-white/10 space-y-2 text-xs text-white/75">
               <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
                   {siteContent.brand.emails.general.label}
                 </span>
                 <a
                   href={`mailto:${siteContent.brand.emails.general.address}`}
-                  className="text-white hover:text-[#D1A95F] transition-colors"
+                  className="text-white hover:text-[#FC7F4E] transition-colors"
                 >
                   {siteContent.brand.emails.general.address}
                 </a>
               </div>
               <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
                   {siteContent.brand.emails.admissions.label}
                 </span>
                 <a
                   href={`mailto:${siteContent.brand.emails.admissions.address}`}
-                  className="text-white hover:text-[#D1A95F] transition-colors"
+                  className="text-white hover:text-[#FC7F4E] transition-colors"
                 >
                   {siteContent.brand.emails.admissions.address}
                 </a>
               </div>
               <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#D1A95F] font-medium">
+                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
                   {siteContent.brand.emails.support.label}
                 </span>
                 <a
                   href={`mailto:${siteContent.brand.emails.support.address}`}
-                  className="text-white hover:text-[#D1A95F] transition-colors"
+                  className="text-white hover:text-[#FC7F4E] transition-colors"
                 >
                   {siteContent.brand.emails.support.address}
                 </a>
@@ -78,47 +78,47 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-white/65" aria-label="Study abroad destinations">
               <li>
-                <Link href="/study-in-south-korea" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/study-in-south-korea" className="hover:text-[#FC7F4E] transition-colors">
                   South Korea
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Japan")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Japan")} className="hover:text-[#FC7F4E] transition-colors">
                   Japan
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Taiwan")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Taiwan")} className="hover:text-[#FC7F4E] transition-colors">
                   Taiwan
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Singapore")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Singapore")} className="hover:text-[#FC7F4E] transition-colors">
                   Singapore
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Europe")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Europe")} className="hover:text-[#FC7F4E] transition-colors">
                   Europe
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("United Kingdom")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("United Kingdom")} className="hover:text-[#FC7F4E] transition-colors">
                   United Kingdom
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("United States")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("United States")} className="hover:text-[#FC7F4E] transition-colors">
                   United States
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Canada")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Canada")} className="hover:text-[#FC7F4E] transition-colors">
                   Canada
                 </Link>
               </li>
               <li>
-                <Link href={countryHref("Australia")} className="hover:text-[#D1A95F] transition-colors">
+                <Link href={countryHref("Australia")} className="hover:text-[#FC7F4E] transition-colors">
                   Australia
                 </Link>
               </li>
@@ -132,27 +132,27 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-white/65" aria-label="Work abroad destinations">
               <li>
-                <Link href="/work-in-germany/nurses" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-in-germany/nurses" className="hover:text-[#FC7F4E] transition-colors">
                   Germany – Nurses
                 </Link>
               </li>
               <li>
-                <Link href="/work-in-germany/physiotherapists" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-in-germany/physiotherapists" className="hover:text-[#FC7F4E] transition-colors">
                   Germany – Physiotherapists
                 </Link>
               </li>
               <li>
-                <Link href="/work-in-uae" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-in-uae" className="hover:text-[#FC7F4E] transition-colors">
                   Work in UAE
                 </Link>
               </li>
               <li>
-                <Link href="/work-and-study" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-and-study" className="hover:text-[#FC7F4E] transition-colors">
                   Work Pathways Overview
                 </Link>
               </li>
               <li>
-                <Link href="/work-and-study#pathways" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/work-and-study#pathways" className="hover:text-[#FC7F4E] transition-colors">
                   UK, Japan & Singapore Work
                 </Link>
               </li>
@@ -166,22 +166,22 @@ export function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-white/65" aria-label="Quick links">
               <li>
-                <Link href="/about" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/about" className="hover:text-[#FC7F4E] transition-colors">
                   About Us
                 </Link>
               </li>
               <li>
-                <Link href="/inbound" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/inbound" className="hover:text-[#FC7F4E] transition-colors">
                   Inbound Education
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/contact" className="hover:text-[#FC7F4E] transition-colors">
                   Book Free Consultation
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-[#D1A95F] transition-colors">
+                <Link href="/contact" className="hover:text-[#FC7F4E] transition-colors">
                   Contact Information
                 </Link>
               </li>
@@ -190,28 +190,28 @@ export function Footer() {
                   href={siteContent.brand.whatsapp}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-[#D1A95F] transition-colors"
+                  className="hover:text-[#FC7F4E] transition-colors"
                 >
                   WhatsApp Support
                 </a>
               </li>
               <li className="pt-3 border-t border-white/15">
-                <Link href="/privacy-policy" className="text-xs hover:text-[#D1A95F] transition-colors">
+                <Link href="/privacy-policy" className="text-xs hover:text-[#FC7F4E] transition-colors">
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/terms-and-conditions" className="text-xs hover:text-[#D1A95F] transition-colors">
+                <Link href="/terms-and-conditions" className="text-xs hover:text-[#FC7F4E] transition-colors">
                   Terms & Conditions
                 </Link>
               </li>
               <li>
-                <Link href="/disclaimer" className="text-xs hover:text-[#D1A95F] transition-colors">
+                <Link href="/disclaimer" className="text-xs hover:text-[#FC7F4E] transition-colors">
                   Disclaimer
                 </Link>
               </li>
               <li>
-                <Link href="/refund-policy" className="text-xs hover:text-[#D1A95F] transition-colors">
+                <Link href="/refund-policy" className="text-xs hover:text-[#FC7F4E] transition-colors">
                   Refund & Cancellation Policy
                 </Link>
               </li>

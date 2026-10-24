@@ -79,13 +79,13 @@ export function ProgramLevelsCarousel() {
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
           <div className="max-w-3xl mb-10 md:mb-14">
-            <span className="text-xs uppercase tracking-widest text-[#0C3844] font-semibold block mb-2">
+            <span className="text-xs uppercase tracking-widest text-[#A33E11] font-semibold block mb-2">
               Choose Your Degree Level
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-4">
               Academic Program Levels
             </h2>
-            <p className="text-sm sm:text-base text-[#57514A] leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-[#41484B] leading-relaxed font-light">
               Whether starting undergraduate studies, pursuing advanced postgraduate research, or mastering Korean language proficiency.
             </p>
           </div>
@@ -99,21 +99,21 @@ export function ProgramLevelsCarousel() {
             {programs.map((p) => (
               <div
                 key={p.title}
-                className="snap-start shrink-0 w-[82vw] max-w-[310px] md:w-auto border border-[#E6DDCC] bg-white p-6 flex flex-col justify-between transition-all hover:border-[#0C3844] hover:shadow-[0_12px_30px_rgba(12,56,68,0.12)]"
+                className="snap-start shrink-0 w-[82vw] max-w-[310px] md:w-auto border border-[#E6DDCC] bg-white p-6 flex flex-col justify-between transition-all hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.12)]"
               >
                 <div>
-                  <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-[#0C3844]/10 text-[#0C3844] inline-block mb-3 border border-[#0C3844]/20 rounded-[2px]">
+                  <span className="text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 bg-[#FC7F4E]/10 text-[#A33E11] inline-block mb-3 border border-[#FC7F4E]/30 rounded-[2px]">
                     {p.level}
                   </span>
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] mb-3 leading-snug">
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B1C1A] mb-3 leading-snug">
                     {p.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#57514A] leading-relaxed mb-5">
+                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed mb-5">
                     {p.description}
                   </p>
                   <ul className="space-y-2 mb-6 border-t border-[#E6DDCC]/60 pt-4">
                     {p.features.map((feat) => (
-                      <li key={feat} className="flex items-center gap-2 text-xs text-[#57514A]">
+                      <li key={feat} className="flex items-center gap-2 text-xs text-[#41484B]">
                         <CheckCircle2 size={13} className="text-[#0C3844] shrink-0" />
                         <span>{feat}</span>
                       </li>
@@ -122,7 +122,7 @@ export function ProgramLevelsCarousel() {
                 </div>
                 <Link
                   href={p.href}
-                  className="mt-2 inline-flex w-full min-h-11 items-center justify-center gap-1.5 border border-[#0C3844] bg-[#0C3844]/5 hover:bg-[#0C3844] text-[#0C3844] hover:text-white px-4 text-xs uppercase tracking-wider font-semibold transition-all rounded-[2px]"
+                  className="mt-2 inline-flex w-full min-h-11 items-center justify-center gap-1.5 border border-[#A33E11] bg-[#A33E11]/5 hover:bg-[#A33E11] text-[#A33E11] hover:text-white px-4 text-xs uppercase tracking-wider font-semibold transition-all rounded-[2px]"
                 >
                   <span>{p.cta}</span>
                 </Link>
@@ -136,7 +136,7 @@ export function ProgramLevelsCarousel() {
               <span
                 key={i}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  activeIndex === i ? 'w-6 bg-[#94682B]' : 'w-1.5 bg-[#E6DDCC]'
+                  activeIndex === i ? 'w-6 bg-[#A33E11]' : 'w-1.5 bg-[#E6DDCC]'
                 }`}
               />
             ))}
@@ -162,13 +162,13 @@ export function UniversitySection({
       <div className="max-w-[1280px] mx-auto px-6">
         <ScrollReveal>
           <div className="max-w-3xl mb-12">
-            <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium block mb-2">
+            <span className="text-xs uppercase tracking-widest text-[#A33E11] font-semibold block mb-2">
               Academic Excellence
             </span>
-            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-4">
               Leading South Korean universities to explore
             </h2>
-            <p className="text-sm sm:text-base text-[#57514A] leading-relaxed font-light">
+            <p className="text-sm sm:text-base text-[#41484B] leading-relaxed font-light">
               Renowned public and private research universities known for engineering, business, sciences, and innovation.
             </p>
           </div>
@@ -178,7 +178,7 @@ export function UniversitySection({
             {universities.map((uni) => (
               <article
                 key={uni.name}
-                className="group border border-[#E6DDCC] bg-white flex flex-col justify-between overflow-hidden transition-all hover:border-[#94682B] hover:shadow-[0_12px_32px_rgba(42,42,42,0.08)]"
+                className="group border border-[#E6DDCC] bg-white flex flex-col justify-between overflow-hidden transition-all hover:border-[#A33E11] hover:shadow-[0_12px_32px_rgba(42,42,42,0.08)]"
               >
                 <div>
                   {/* 16:10 Campus Photo with desktop hover zoom */}
@@ -193,22 +193,22 @@ export function UniversitySection({
                         className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
                       />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center bg-[#E6DDCC]/30 text-[#57514A] text-xs">
+                      <div className="w-full h-full flex items-center justify-center bg-[#E6DDCC]/30 text-[#41484B] text-xs">
                         {uni.abbr} Campus
                       </div>
                     )}
 
                     {/* University Badge / Acronym */}
-                    <span className="absolute top-3 left-3 px-2 py-0.5 bg-black/85 backdrop-blur-sm text-white text-[10px] font-bold tracking-widest uppercase border border-[#B88740]/60 shadow-sm">
+                    <span className="absolute top-3 left-3 px-2 py-0.5 bg-black/85 backdrop-blur-sm text-white text-[10px] font-bold tracking-widest uppercase border border-[#A33E11]/60 shadow-sm">
                       {uni.abbr}
                     </span>
                   </div>
 
                   <div className="p-5 sm:p-6">
-                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] tracking-tight mb-2 group-hover:text-[#94682B] transition-colors leading-snug">
+                    <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B1C1A] tracking-tight mb-2 group-hover:text-[#A33E11] transition-colors leading-snug">
                       {uni.name}
                     </h3>
-                    <p className="text-xs sm:text-sm text-[#57514A] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                       {uni.description}
                     </p>
                   </div>
@@ -217,7 +217,7 @@ export function UniversitySection({
                 <div className="px-5 pb-5 sm:px-6 sm:pb-6 pt-2">
                   <Link
                     href={`/contact?interest=Study+in+South+Korea&uni=${encodeURIComponent(uni.name)}#enquiry-form`}
-                    className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider font-semibold text-[#94682B] hover:text-[#7A5622] transition-colors"
+                    className="inline-flex items-center gap-1 text-[11px] uppercase tracking-wider font-semibold text-[#A33E11] hover:text-[#85320D] transition-colors"
                   >
                     <span>Check Admission Criteria →</span>
                   </Link>
@@ -228,20 +228,20 @@ export function UniversitySection({
             {/* Additional Universities Card */}
             <div className="border border-dashed border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between">
               <div>
-                <span className="text-xs uppercase tracking-wider text-[#94682B] font-semibold block mb-2">
+                <span className="text-xs uppercase tracking-wider text-[#A33E11] font-semibold block mb-2">
                   Full Network
                 </span>
-                <h3 className="font-serif text-xl font-bold text-[#2A2A2A] tracking-tight mb-3">
+                <h3 className="font-serif text-xl font-bold text-[#1B1C1A] tracking-tight mb-3">
                   And many more institutions
                 </h3>
-                <p className="text-sm text-[#57514A] leading-relaxed">
+                <p className="text-sm text-[#41484B] leading-relaxed">
                   We guide students across additional specialized academies, national institutes, and private universities tailored to your specific GPA, budget, and major.
                 </p>
               </div>
               <div className="pt-6">
                 <Link
                   href="/contact?interest=Study+in+South+Korea#enquiry-form"
-                  className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-5 py-2.5 text-xs uppercase tracking-widest font-medium transition-colors"
+                  className="btn-shine inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-5 py-2.5 text-xs uppercase tracking-widest font-semibold transition-colors"
                 >
                   Request University Matching
                 </Link>
@@ -251,16 +251,16 @@ export function UniversitySection({
 
           {/* Selection Factors */}
           <div className="mt-16 pt-12 border-t border-[#E6DDCC]">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] mb-8">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-8">
               Key factors when selecting your university
             </h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
               {factors.map((item, idx) => (
                 <div key={idx} className="border-t border-[#E6DDCC]/60 pt-4">
-                  <h4 className="font-semibold text-sm text-[#2A2A2A] mb-1">
+                  <h4 className="font-semibold text-sm text-[#1B1C1A] mb-1">
                     {item.factor}
                   </h4>
-                  <p className="text-xs sm:text-sm text-[#57514A] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                     {item.desc}
                   </p>
                 </div>
@@ -269,7 +269,7 @@ export function UniversitySection({
             <div className="mt-10">
               <Link
                 href="/contact?interest=Study+in+South+Korea#enquiry-form"
-                className="btn-shine inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors shadow-sm"
+                className="btn-shine inline-block bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors shadow-sm"
               >
                 Find Universities For My Profile
               </Link>
@@ -311,13 +311,13 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
         <ScrollReveal>
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6 mb-10 md:mb-14">
             <div className="max-w-3xl">
-              <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium block mb-2">
+              <span className="text-xs uppercase tracking-widest text-[#A33E11] font-semibold block mb-2">
                 Structured Roadmap
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-3">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-3">
                 Our South Korea process
               </h2>
-              <p className="text-sm sm:text-base text-[#57514A] leading-relaxed font-light">
+              <p className="text-sm sm:text-base text-[#41484B] leading-relaxed font-light">
                 Our structured 8-stage roadmap to successfully securing admissions, scholarships, and your South Korean student visa.
               </p>
             </div>
@@ -328,7 +328,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
                 type="button"
                 onClick={() => scrollStep('prev')}
                 aria-label="Previous process step"
-                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#2A2A2A] hover:border-[#94682B] hover:text-[#94682B] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
+                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
               >
                 <ArrowLeft size={16} />
               </button>
@@ -336,7 +336,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
                 type="button"
                 onClick={() => scrollStep('next')}
                 aria-label="Next process step"
-                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#2A2A2A] hover:border-[#94682B] hover:text-[#94682B] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
+                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
               >
                 <ArrowRight size={16} />
               </button>
@@ -352,21 +352,21 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
             {steps.map((step) => (
               <div
                 key={step.number}
-                className="snap-start shrink-0 w-[80vw] sm:w-[320px] lg:w-[360px] border border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between transition-all hover:border-[#94682B] hover:bg-white hover:shadow-sm"
+                className="snap-start shrink-0 w-[80vw] sm:w-[320px] lg:w-[360px] border border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between transition-all hover:border-[#A33E11] hover:bg-white hover:shadow-sm"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-serif text-2xl font-bold text-[#94682B]">
+                    <span className="font-serif text-2xl font-bold text-[#A33E11]">
                       {step.number}
                     </span>
-                    <span className="text-[10px] uppercase tracking-wider text-[#57514A] font-semibold px-2 py-0.5 bg-white border border-[#E6DDCC]">
+                    <span className="text-[10px] uppercase tracking-wider text-[#41484B] font-semibold px-2 py-0.5 bg-white border border-[#E6DDCC]">
                       Stage {step.number}
                     </span>
                   </div>
-                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#2A2A2A] mb-2 leading-snug">
+                  <h3 className="font-serif text-lg sm:text-xl font-bold text-[#1B1C1A] mb-2 leading-snug">
                     {step.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-[#57514A] leading-relaxed">
+                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                     {step.description}
                   </p>
                 </div>
@@ -381,7 +381,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
                 <span
                   key={i}
                   className={`h-1.5 rounded-full transition-all duration-300 ${
-                    currentIdx === i ? 'w-6 bg-[#94682B]' : 'w-1.5 bg-[#E6DDCC]'
+                    currentIdx === i ? 'w-6 bg-[#A33E11]' : 'w-1.5 bg-[#E6DDCC]'
                   }`}
                 />
               ))}
@@ -389,7 +389,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
 
             <Link
               href="/contact?interest=Study+in+South+Korea#enquiry-form"
-              className="btn-shine inline-block bg-[#94682B] hover:bg-[#7A5622] text-white px-7 py-3 text-xs uppercase tracking-widest font-medium transition-colors shadow-sm"
+              className="btn-shine inline-block bg-[#A33E11] hover:bg-[#85320D] text-white px-7 py-3 text-xs uppercase tracking-widest font-semibold transition-colors shadow-sm"
             >
               Check My South Korea Eligibility
             </Link>

@@ -49,18 +49,18 @@ export function KoreaHighlights() {
               variants={item}
               whileHover={reduce ? undefined : { y: -4 }}
               transition={{ type: 'spring', stiffness: 300, damping: 22 }}
-              className="group relative border border-[#E6DDCC] bg-white p-6 overflow-hidden transition-all hover:border-[#0C3844] hover:shadow-[0_12px_28px_rgba(12,56,68,0.1)]"
+              className="group relative border border-[#E6DDCC] bg-white p-6 overflow-hidden transition-all hover:border-[#A33E11] hover:shadow-[0_12px_28px_rgba(163,62,17,0.1)]"
             >
-              {/* Blue accent indicator */}
+              {/* Accent indicator */}
               <span
                 aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 h-1 bg-[#0C3844] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
+                className="absolute inset-x-0 bottom-0 h-1 bg-[#A33E11] origin-left scale-x-0 transition-transform duration-500 group-hover:scale-x-100"
               />
-              <span className="flex h-11 w-11 items-center justify-center bg-black text-[#D1A95F] transition-colors duration-300 group-hover:bg-[#0C3844] group-hover:text-white">
+              <span className="flex h-11 w-11 items-center justify-center bg-[#00222B] text-[#FC7F4E] transition-colors duration-300 group-hover:bg-[#A33E11] group-hover:text-white">
                 <Icon size={20} strokeWidth={1.75} aria-hidden="true" />
               </span>
-              <h3 className="mt-5 font-serif text-lg font-bold text-black leading-snug">{title}</h3>
-              <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
+              <h3 className="mt-5 font-serif text-lg font-bold text-[#1B1C1A] leading-snug">{title}</h3>
+              <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
             </motion.li>
           ))}
         </motion.ul>
@@ -68,7 +68,7 @@ export function KoreaHighlights() {
         <div className="mt-8 flex justify-start">
           <a
             href="#program-levels"
-            className="group inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#0C3844] font-semibold hover:text-[#08262E] transition-colors"
+            className="group inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#A33E11] font-semibold hover:text-[#85320D] transition-colors"
           >
             <span>Explore Degree Levels &amp; Programs</span>
             <ArrowDown size={14} className="transition-transform duration-200 group-hover:translate-y-0.5" />

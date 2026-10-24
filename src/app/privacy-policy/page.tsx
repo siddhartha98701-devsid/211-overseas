@@ -143,17 +143,17 @@ export default function PrivacyPolicyPage() {
                 <p><strong className="text-black font-medium">Address:</strong> {brand.address}</p>
                 <p>
                   <strong className="text-black font-medium">Email:</strong>{' '}
-                  <a href={`mailto:${brand.emails.general.address}`} className="text-[#94682B] underline hover:text-[#7A5622]">
+                  <a href={`mailto:${brand.emails.general.address}`} className="text-[#A33E11] underline hover:text-[#85320D]">
                     {brand.emails.general.address}
                   </a>{' '}
                   / {' '}
-                  <a href={`mailto:${brand.emails.admin}`} className="text-[#94682B] underline hover:text-[#7A5622]">
+                  <a href={`mailto:${brand.emails.admin}`} className="text-[#A33E11] underline hover:text-[#85320D]">
                     {brand.emails.admin}
                   </a>
                 </p>
                 <p>
                   <strong className="text-black font-medium">Phone / WhatsApp:</strong>{' '}
-                  <a href={`tel:${brand.phone.replace(/\s/g, '')}`} className="text-[#94682B] underline hover:text-[#7A5622]">
+                  <a href={`tel:${brand.phone.replace(/\s/g, '')}`} className="text-[#A33E11] underline hover:text-[#85320D]">
                     {brand.phone}
                   </a>
                 </p>
@@ -163,7 +163,7 @@ export default function PrivacyPolicyPage() {
         },
       ]}
       footer={
-        <p className="text-xs text-[#57514A]">
+        <p className="text-xs text-[#41484B]">
           This Privacy Policy is effective as of October 2026 and governs all interactions with 211 OVERSEAS. We reserve the right to update this policy periodically to reflect evolving legal standards.
         </p>
       }

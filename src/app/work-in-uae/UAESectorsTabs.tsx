@@ -20,8 +20,8 @@ export function UAESectorsTabs() {
               onClick={() => setActiveSector(i)}
               className={`pb-4 px-6 text-sm whitespace-nowrap transition-colors relative cursor-pointer font-normal ${
                 isActive
-                  ? 'text-[#2A2A2A] font-medium border-b-2 border-[#2A2A2A] -mb-[1px]'
-                  : 'text-[#57514A] hover:text-[#2A2A2A]'
+                  ? 'text-[#1B1C1A] font-medium border-b-2 border-[#A33E11] -mb-[1px]'
+                  : 'text-[#41484B] hover:text-[#1B1C1A]'
               }`}
               aria-pressed={isActive}
             >
@@ -33,13 +33,13 @@ export function UAESectorsTabs() {
 
       {/* Sector Roles Panel */}
       <div className="border-t border-[#E6DDCC] pt-8">
-        <h4 className="font-serif text-xl font-bold text-[#2A2A2A] mb-6">
+        <h4 className="font-serif text-xl font-bold text-[#1B1C1A] mb-6">
           {sectors[activeSector].name} roles
         </h4>
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
           {sectors[activeSector].roles.map((role) => (
             <div key={role} className="py-3 border-b border-[#E6DDCC]/60">
-              <span className="text-sm text-[#2A2A2A]">{role}</span>
+              <span className="text-sm text-[#1B1C1A]">{role}</span>
             </div>
           ))}
         </div>

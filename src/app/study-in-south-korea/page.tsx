@@ -82,25 +82,25 @@ export default function SouthKoreaPage() {
       <section className="pt-24 pb-10 md:pt-36 md:pb-16 border-b border-[#E6DDCC]" aria-label="South Korea hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium mb-3 block">
+            <span className="text-xs uppercase tracking-widest text-[#A33E11] font-semibold mb-3 block">
               Featured study destination
             </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-4 md:mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#1B1C1A] tracking-tight leading-[1.05] mb-4 md:mb-6">
               Study in South Korea
             </h1>
-            <p className="text-sm sm:text-lg text-[#57514A] leading-relaxed font-light">
+            <p className="text-sm sm:text-lg text-[#41484B] leading-relaxed font-light">
               {southKorea.hero.description}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="#enquiry-form"
-                className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-7 min-h-11 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+                className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-7 min-h-11 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
               >
                 Apply for free counselling
               </a>
               <a
                 href="#programs"
-                className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
+                className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
               >
                 Explore degree tracks
               </a>
@@ -160,13 +160,13 @@ export default function SouthKoreaPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="max-w-3xl mb-10 md:mb-14">
-              <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium block mb-2">
+              <span className="text-xs uppercase tracking-widest text-[#A33E11] font-semibold block mb-2">
                 Why South Korea
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-3">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-3">
                 Why study in South Korea?
               </h2>
-              <p className="text-sm sm:text-base text-[#57514A] leading-relaxed font-light">
+              <p className="text-sm sm:text-base text-[#41484B] leading-relaxed font-light">
                 South Korea combines world-class technological infrastructure with globally recognized academic rigor.
               </p>
             </div>
@@ -178,17 +178,17 @@ export default function SouthKoreaPage() {
                   className="py-5 sm:py-7 border-b border-[#E6DDCC] grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-8 items-baseline"
                 >
                   <div className="md:col-span-2">
-                    <span className="font-serif text-lg sm:text-xl font-bold text-[#94682B]">
+                    <span className="font-serif text-lg sm:text-xl font-bold text-[#A33E11]">
                       {String(i + 1).padStart(2, '0')}
                     </span>
                   </div>
                   <div className="md:col-span-4">
-                    <h3 className="font-serif text-base sm:text-lg font-bold text-[#2A2A2A] tracking-tight">
+                    <h3 className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] tracking-tight">
                       {point.title}
                     </h3>
                   </div>
                   <div className="md:col-span-6">
-                    <p className="text-xs sm:text-sm text-[#57514A] leading-relaxed">
+                    <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                       {point.description}
                     </p>
                   </div>

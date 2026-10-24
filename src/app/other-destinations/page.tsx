@@ -31,14 +31,14 @@ export default function OtherDestinationsPage() {
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Other study destinations hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-5">
-              <span className="h-px w-10 bg-[#0C3844]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold mb-5">
+              <span className="h-px w-10 bg-[#A33E11]" />
               Global Study Abroad Pathways
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-5">
-              Your future doesn&apos;t have to be limited to <span className="text-[#0C3844]">one country</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-5">
+              Your future doesn&apos;t have to be limited to <span className="text-[#A33E11]">one country</span>
             </h1>
-            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">
+            <p className="text-base md:text-lg text-[#41484B] leading-relaxed">
               Explore leading international universities and academic degrees across Asia, Europe, North America, and Oceania. Filter destinations below or consult our admissions advisors to match your academic profile, budget, and career goals.
             </p>
             <ul className="mt-6 flex flex-wrap gap-2" aria-label="Jump to a study destination">
@@ -46,7 +46,7 @@ export default function OtherDestinationsPage() {
                 <li key={p.slug}>
                   <Link
                     href={subpageHref(p)}
-                    className="inline-flex min-h-11 items-center gap-2 border border-[#E6DDCC] bg-white px-3.5 text-sm text-[#2A2A2A] transition-all hover:border-[#0C3844] hover:text-[#0C3844] rounded-[2px]"
+                    className="inline-flex min-h-11 items-center gap-2 border border-[#E6DDCC] bg-white px-3.5 text-sm text-[#1B1C1A] transition-all hover:border-[#A33E11] hover:text-[#A33E11] rounded-[2px]"
                   >
                     <CountryFlag country={p.name} className="h-[14px] w-[20px] rounded-[2px] object-cover" width={20} height={14} />
                     {p.name}
@@ -81,7 +81,7 @@ export default function OtherDestinationsPage() {
           />
           <div className="overflow-x-auto border border-[#E6DDCC] bg-white rounded-[2px] shadow-sm">
             <table className="w-full min-w-[720px] text-left text-sm">
-              <thead className="bg-[#F3EBDD] text-xs uppercase tracking-wider text-[#57514A]">
+              <thead className="bg-[#F3EBDD] text-xs uppercase tracking-wider text-[#41484B]">
                 <tr>
                   {['Destination', 'Typical intakes', 'Language / tests', 'Key Academic Strengths', ''].map((h) => (
                     <th key={h} scope="col" className="px-4 py-3 font-semibold">{h}</th>
@@ -91,19 +91,19 @@ export default function OtherDestinationsPage() {
               <tbody>
                 {pages.map((p) => (
                   <tr key={p.slug} className="border-t border-[#E6DDCC] align-top hover:bg-[#FAF8F5]/50 transition-colors">
-                    <th scope="row" className="px-4 py-3.5 font-serif font-bold text-[#2A2A2A] whitespace-nowrap">
+                    <th scope="row" className="px-4 py-3.5 font-serif font-bold text-[#1B1C1A] whitespace-nowrap">
                       <span className="inline-flex items-center gap-2">
                         <CountryFlag country={p.name} className="h-[14px] w-[20px] rounded-[2px] object-cover" width={20} height={14} />
                         {p.name}
                       </span>
                     </th>
-                    <td className="px-4 py-3.5 text-[#2A2A2A]">{first(p.facts, ['Typical intakes'])}</td>
-                    <td className="px-4 py-3.5 text-[#2A2A2A]">{first(p.facts, ['Language tests', 'Teaching language'])}</td>
-                    <td className="px-4 py-3.5 text-[#57514A]">{first(p.facts, ['Visa', 'Key industries', 'Program styles', 'Strong areas', 'Master’s length', 'Working while studying', 'Also see'])}</td>
+                    <td className="px-4 py-3.5 text-[#1B1C1A]">{first(p.facts, ['Typical intakes'])}</td>
+                    <td className="px-4 py-3.5 text-[#1B1C1A]">{first(p.facts, ['Language tests', 'Teaching language'])}</td>
+                    <td className="px-4 py-3.5 text-[#41484B]">{first(p.facts, ['Visa', 'Key industries', 'Program styles', 'Strong areas', 'Master’s length', 'Working while studying', 'Also see'])}</td>
                     <td className="px-4 py-3.5 text-right">
                       <Link
                         href={subpageHref(p)}
-                        className="whitespace-nowrap text-xs uppercase tracking-widest font-semibold text-[#0C3844] hover:underline underline-offset-4"
+                        className="whitespace-nowrap text-xs uppercase tracking-widest font-semibold text-[#A33E11] hover:underline underline-offset-4"
                       >
                         Explore Guide →
                       </Link>
@@ -142,7 +142,7 @@ export default function OtherDestinationsPage() {
             {steps.map((s, i) => (
               <div key={s.title} className="h-full w-full border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between">
                 <div>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-xs font-bold text-white mb-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-xs font-bold text-white mb-4">
                     {i + 1}
                   </span>
                   <h3 className="font-serif text-lg font-bold text-white">{s.title}</h3>

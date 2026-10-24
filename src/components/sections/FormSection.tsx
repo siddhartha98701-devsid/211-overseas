@@ -22,7 +22,7 @@ export function FormSection({ defaultInterest, defaultDestination, heading }: Fo
           className="object-cover object-center"
         />
         {/* Scrim ensuring WCAG AA contrast for text */}
-        <div className="absolute inset-0 bg-[#2A2A2A]/80" />
+        <div className="absolute inset-0 bg-[#00222B]/80" />
       </div>
 
       <div className="max-w-[1280px] mx-auto px-6 relative z-10">

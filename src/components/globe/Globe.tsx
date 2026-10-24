@@ -19,7 +19,7 @@ function LabelWrap({ href, label, onEnter, onLeave, children }: { href?: string;
       aria-label={label}
       onPointerEnter={onEnter}
       onPointerLeave={onLeave}
-      className="block cursor-pointer [&>div]:transition-colors hover:[&>div]:bg-[#94682B] hover:[&>div]:border-[#D1A95F] focus-visible:outline-2 focus-visible:outline-[#D1A95F]"
+      className="block cursor-pointer [&>div]:transition-colors hover:[&>div]:bg-[#A33E11] hover:[&>div]:border-[#FC7F4E] focus-visible:outline-2 focus-visible:outline-[#FC7F4E]"
     >
       {children}
     </Link>
@@ -27,7 +27,7 @@ function LabelWrap({ href, label, onEnter, onLeave, children }: { href?: string;
 }
 
 const GLOBE_RADIUS = 2.2;
-const ACCENT_COLOR = '#B88740';
+const ACCENT_COLOR = '#A33E11';
 
 export function latLonToVector3(lat: number, lon: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -57,7 +57,7 @@ function DottedGlobe({ count = 28000, dark = false }: { count?: number; dark?: b
     const sizeList: number[] = [];
 
     const goldenRatio = (1 + Math.sqrt(5)) / 2;
-    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#2A2A2A');
+    const inkColor = new THREE.Color(dark ? '#FFFFFF' : '#1B1C1A');
     const faintColor = new THREE.Color(dark ? '#3A3A3A' : '#D9D9D9');
 
     for (let i = 0; i < count; i++) {
@@ -129,7 +129,7 @@ function AtmosphereRim({ dark = false }: { dark?: boolean }) {
     <mesh>
       <sphereGeometry args={[GLOBE_RADIUS * 1.04, 48, 48]} />
       <meshBasicMaterial
-        color="#B88740"
+        color={ACCENT_COLOR}
         transparent
         opacity={dark ? 0.1 : 0.04}
         side={THREE.BackSide}
@@ -162,7 +162,7 @@ function PinMarker({
 
   const isOrigin = pin.isOrigin;
   const isPrimary = pin.isPrimary;
-  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#2A2A2A') : dark ? '#9A9A9A' : '#57514A';
+  const color = isSelected || isOrigin ? ACCENT_COLOR : isPrimary ? (dark ? '#FFFFFF' : '#1B1C1A') : dark ? '#A5CDDC' : '#41484B';
   const scale = isSelected ? 1.5 : isOrigin ? 1.25 : isPrimary ? 1.0 : 0.65;
 
   useFrame(({ clock }) => {
@@ -222,7 +222,7 @@ function PinMarker({
       {isPrimary && !isSelected && (
         <mesh lookAt={new THREE.Vector3(0, 0, 0)}>
           <ringGeometry args={[0.045, 0.06, 24]} />
-          <meshBasicMaterial color={dark ? '#FFFFFF' : '#2A2A2A'} transparent opacity={0.3} side={THREE.DoubleSide} />
+          <meshBasicMaterial color={dark ? '#FFFFFF' : '#1B1C1A'} transparent opacity={0.3} side={THREE.DoubleSide} />
         </mesh>
       )}
     </group>
@@ -287,14 +287,14 @@ function FlightArc({
             args={[linePositions, 3]}
           />
         </bufferGeometry>
-        <lineBasicMaterial color="#B88740" transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
+        <lineBasicMaterial color={ACCENT_COLOR} transparent opacity={highlight ? 0.7 : 0.25} linewidth={1} />
       </line>
 
       {/* Traveling particle */}
       {!reducedMotion && (
         <mesh ref={particleRef}>
           <sphereGeometry args={[0.024, 8, 8]} />
-          <meshBasicMaterial color="#B88740" transparent opacity={0.8} />
+          <meshBasicMaterial color={ACCENT_COLOR} transparent opacity={0.8} />
         </mesh>
       )}
     </group>
@@ -506,11 +506,11 @@ export function GlobeStaticFallback({ className = '' }: { className?: string }) 
   return (
     <div className={`flex items-center justify-center ${className}`}>
       <div className="relative w-72 h-72 md:w-96 md:h-96 rounded-full border border-gray-200/80 bg-gradient-to-b from-gray-50 to-white shadow-inner flex items-center justify-center">
-        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#B88740]/20 flex items-center justify-center">
+        <div className="w-64 h-64 md:w-84 md:h-84 rounded-full border border-dashed border-[#A33E11]/20 flex items-center justify-center">
           <div className="text-center p-4">
-            <span className="inline-block w-3 h-3 rounded-full bg-[#94682B] mb-2 animate-ping" />
-            <p className="text-xs font-semibold text-[#2A2A2A] uppercase tracking-wider">Ahmedabad HQ</p>
-            <p className="text-[11px] text-[#57514A] mt-1">Connecting to Global Destinations</p>
+            <span className="inline-block w-3 h-3 rounded-full bg-[#A33E11] mb-2 animate-ping" />
+            <p className="text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider">Ahmedabad HQ</p>
+            <p className="text-[11px] text-[#41484B] mt-1">Connecting to Global Destinations</p>
           </div>
         </div>
       </div>
@@ -602,13 +602,13 @@ export default function Globe({
         >
           <LabelWrap href={labelHref} label={`Explore ${activePin.country}`} onEnter={() => setHoveredPin(activePin)} onLeave={() => setHoveredPin(null)}>
           <div
-            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all hover:scale-105 hover:border-[#D1A95F] ${
-              tone === 'dark' ? 'bg-black/95 border-[#B88740] text-white' : 'bg-white/95 border-[#E6DDCC] text-black'
+            className={`flex items-center gap-2.5 whitespace-nowrap border px-3 py-1.5 text-left shadow-[0_8px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm transition-all hover:scale-105 hover:border-[#FC7F4E] ${
+              tone === 'dark' ? 'bg-[#00222B]/95 border-[#A33E11] text-white' : 'bg-white/95 border-[#E6DDCC] text-[#1B1C1A]'
             }`}
           >
             <CountryFlag
               country={activePin.isOrigin ? 'India' : activePin.country}
-              className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
+              className="w-[22px] h-[16px] md:w-[28px] md:h-[20px] rounded-[2px] border border-[#A33E11] object-cover flex-shrink-0 shadow-sm"
               width={28}
               height={20}
               loading="eager"
@@ -617,25 +617,25 @@ export default function Globe({
             <div className="flex flex-col justify-center">
               <span
                 className={`block text-[10px] uppercase tracking-wider font-medium leading-tight ${
-                  tone === 'dark' ? 'text-[#D1A95F]' : 'text-[#57514A]'
+                  tone === 'dark' ? 'text-[#FC7F4E]' : 'text-[#41484B]'
                 }`}
               >
                 {activePin.isOrigin ? 'Headquarters' : activePin.country}
               </span>
               <span
                 className={`block text-xs font-semibold leading-tight flex items-center gap-1 ${
-                  tone === 'dark' ? 'text-white' : 'text-black'
+                  tone === 'dark' ? 'text-white' : 'text-[#1B1C1A]'
                 }`}
               >
                 <span>{activePin.name}</span>
                 {activePin.name === 'Seoul' && (
-                  <span className="text-[10px] text-[#D1A95F] opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
+                  <span className="text-[10px] text-[#FC7F4E] opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                     →
                   </span>
                 )}
               </span>
             </div>
-            {labelHref && <ArrowUpRight size={14} className="text-[#D1A95F] shrink-0" aria-hidden="true" />}
+            {labelHref && <ArrowUpRight size={14} className="text-[#FC7F4E] shrink-0" aria-hidden="true" />}
           </div>
           </LabelWrap>
         </div>

@@ -63,10 +63,10 @@ export function WhoCanConnectSection() {
                   type="button"
                   onClick={() => setActive(s.id)}
                   className={`flex items-center gap-3 px-4 py-3 text-left border transition-colors cursor-pointer lg:w-full ${
-                    on ? 'bg-[#94682B] border-[#94682B] text-white shadow-sm' : 'bg-white border-[#E6DDCC] text-[#2A2A2A] hover:border-[#94682B] hover:text-[#94682B]'
+                    on ? 'bg-[#A33E11] border-[#A33E11] text-white shadow-sm' : 'bg-white border-[#E6DDCC] text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11]'
                   }`}
                 >
-                  <SIcon size={18} aria-hidden="true" className={on ? 'text-white' : 'text-[#8A6020]'} />
+                  <SIcon size={18} aria-hidden="true" className={on ? 'text-white' : 'text-[#A33E11]'} />
                   <span className="font-medium text-sm sm:text-base">{s.label}</span>
                   <ArrowRight size={16} aria-hidden="true" className={`ml-auto hidden lg:block transition-transform ${on ? 'translate-x-0' : '-translate-x-2 opacity-0'}`} />
                 </button>
@@ -82,9 +82,9 @@ export function WhoCanConnectSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -24 }}
                 transition={{ duration: 0.25 }}
-                className="bg-black text-white p-5 sm:p-8 lg:p-10 min-h-[22rem] flex flex-col"
+                className="bg-[#00222B] text-white p-5 sm:p-8 lg:p-10 min-h-[22rem] flex flex-col"
               >
-                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#B88740]/40 bg-[#1E1E1E]">
+                <div className="relative shrink-0 aspect-[16/10] sm:aspect-[16/9] w-full overflow-hidden mb-6 border border-[#A33E11]/40 bg-[#1E1E1E]">
                   <Image
                     src={seg.image}
                     alt={seg.headline}
@@ -94,10 +94,10 @@ export function WhoCanConnectSection() {
                   />
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center bg-[#94682B] text-white">
+                  <span className="flex h-10 w-10 items-center justify-center bg-[#A33E11] text-white">
                     <Icon size={20} aria-hidden="true" />
                   </span>
-                  <p className="text-xs uppercase tracking-[0.25em] text-[#D1A95F] font-medium">{seg.label}</p>
+                  <p className="text-xs uppercase tracking-[0.25em] text-[#FC7F4E] font-medium">{seg.label}</p>
                 </div>
                 <h3 className="mt-4 font-serif text-2xl sm:text-3xl font-bold leading-tight">{seg.headline}</h3>
                 <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-xl">{seg.text}</p>
@@ -105,7 +105,7 @@ export function WhoCanConnectSection() {
                   <button
                     type="button"
                     onClick={() => openCallback({ interest: seg.interest, source: `audience:${seg.label}` })}
-                    className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
+                    className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
                   >
                     Book free counselling
                   </button>

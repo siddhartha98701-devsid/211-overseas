@@ -9,13 +9,13 @@ export function WhyUsSection() {
         <ScrollReveal>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center mb-12">
             <div className="lg:col-span-7">
-              <span className="text-xs uppercase tracking-widest text-[#8A6020] font-medium block mb-2">
+              <span className="text-xs uppercase tracking-widest text-[#A33E11] font-medium block mb-2">
                 Advisory Philosophy
               </span>
-              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
+              <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-4">
                 Why 211 OVERSEAS
               </h2>
-              <p className="text-base text-[#57514A] leading-relaxed font-light">
+              <p className="text-base text-[#41484B] leading-relaxed font-light">
                 We prioritize candidates over commissions. Here is how our consulting methodology sets you
                 up for long-term international success.
               </p>
@@ -35,14 +35,14 @@ export function WhyUsSection() {
           {/* 5 structured points */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-[#E6DDCC]/70">
             {siteContent.whyUs.points.map((point, i) => (
-              <div key={i} className="border border-[#E6DDCC] bg-white p-6 space-y-2.5 hover:border-[#0C3844] transition-colors">
-                <span className="text-xs font-bold text-[#0C3844] uppercase tracking-wider block">
+              <div key={i} className="border border-[#E6DDCC] bg-white p-6 space-y-2.5 hover:border-[#A33E11] transition-colors">
+                <span className="text-xs font-bold text-[#A33E11] uppercase tracking-wider block">
                   0{i + 1}
                 </span>
-                <h3 className="font-serif text-lg font-bold text-[#2A2A2A] tracking-tight">
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] tracking-tight">
                   {point.title}
                 </h3>
-                <p className="text-sm text-[#57514A] leading-relaxed">
+                <p className="text-sm text-[#41484B] leading-relaxed">
                   {point.description}
                 </p>
               </div>

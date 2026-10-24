@@ -37,8 +37,8 @@ interface LeadMiniFormProps {
 }
 
 const INPUT =
-  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#0C3844] focus:ring-1 focus:ring-[#0C3844] transition-colors';
-const LABEL = 'block text-xs uppercase tracking-wider text-black font-semibold mb-1.5';
+  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-[#1B1C1A] placeholder-[#41484B]/60 focus:outline-none focus:border-[#A33E11] focus:ring-1 focus:ring-[#A33E11] transition-colors';
+const LABEL = 'block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
 export function LeadMiniForm({ interest, source, submitLabel = 'Get free counselling', showEmail = false, onSuccess }: LeadMiniFormProps) {
@@ -95,11 +95,11 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
         className="py-6 text-center"
         role="status"
       >
-        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-[#94682B] text-white">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center bg-[#A33E11] text-white">
           <Check size={24} strokeWidth={2.5} />
         </div>
-        <h4 className="font-serif text-xl font-bold text-black">Thank you!</h4>
-        <p className="mt-2 text-sm text-[#57514A] leading-relaxed">
+        <h4 className="font-serif text-xl font-bold text-[#1B1C1A]">Thank you!</h4>
+        <p className="mt-2 text-sm text-[#41484B] leading-relaxed">
           A 211 OVERSEAS counsellor will call or WhatsApp you shortly on the number you shared.
         </p>
       </motion.div>
@@ -145,7 +145,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
       {showEmail && (
         <div>
           <label htmlFor={`${source}-email`} className={LABEL}>
-            Email <span className="normal-case tracking-normal text-[#57514A]">(optional)</span>
+            Email <span className="normal-case tracking-normal text-[#41484B]">(optional)</span>
           </label>
           <input id={`${source}-email`} type="email" inputMode="email" autoComplete="email" placeholder="you@example.com" className={INPUT} {...register('email')} />
           {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email.message as string}</p>}
@@ -174,7 +174,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
           className="space-y-1"
         >
           <label htmlFor={`${source}-otherCountry`} className={LABEL}>
-            Specify Country of Interest <span className="text-[#0C3844]">*</span>
+            Specify Country of Interest <span className="text-[#A33E11]">*</span>
           </label>
           <input
             id={`${source}-otherCountry`}
@@ -189,13 +189,13 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
       <div>
         <label className="flex items-start gap-3 cursor-pointer">
           <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 filter-checkbox" {...register('consent')} />
-          <span className="text-xs text-[#57514A] leading-relaxed">
+          <span className="text-xs text-[#41484B] leading-relaxed">
             I consent to 211 OVERSEAS contacting me regarding overseas study and career pathways.{' '}
-            <Link href="/privacy-policy" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
+            <Link href="/privacy-policy" className="underline decoration-[#A33E11] underline-offset-2 hover:text-[#A33E11]">
               Privacy Policy
             </Link>{' '}
             &amp;{' '}
-            <Link href="/disclaimer" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
+            <Link href="/disclaimer" className="underline decoration-[#A33E11] underline-offset-2 hover:text-[#A33E11]">
               Disclaimer
             </Link>
             .
@@ -211,7 +211,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
       <button
         type="submit"
         disabled={busy}
-        className="btn-shine w-full flex items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-medium py-3.5 transition-colors cursor-pointer"
+        className="btn-shine w-full flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-semibold py-3.5 transition-colors cursor-pointer"
       >
         {busy ? 'Submitting…' : submitLabel}
         {!busy && <ArrowRight size={16} />}

@@ -1,19 +1,20 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-black: #2A2A2A; /* warm charcoal from the poster, used for text and dark sections */
-  --color-bg: #FBF8F1;
-  --color-ink: #2A2A2A;
-  --color-muted: #57514A;
+  --color-black: #00222B; /* Figma Midnight Deep Teal for dark bands and strips */
+  --color-bg: #FBF8F1; /* Warm off-white page background */
+  --color-ink: #1B1C1A; /* Figma Deep Charcoal for primary headings & text */
+  --color-muted: #41484B; /* Figma Muted Slate for secondary/body text */
   --color-hairline: #E6DDCC;
-  --color-mustard: #B88740;
-  --color-mustard-hover: #7A5622;
-  --color-mustard-deep: #8A6020;
-  --color-brand-blue: #0C3844; /* Deep Ocean Teal accent token (#0C3844) */
-  --color-brand-blue-hover: #08262E;
-  --color-brand-blue-light: #E7F1F4;
-  --color-accent: #0C3844;
-  --color-accent-hover: #08262E;
+  --color-terracotta: #A33E11; /* Figma Terracotta Primary Accent & Buttons */
+  --color-terracotta-hover: #85320D;
+  --color-coral: #FC7F4E; /* Figma Coral Accent for badges & highlights */
+  --color-teal: #0C3844; /* Figma Deep Teal for active tabs & cards */
+  --color-teal-hover: #08262E;
+  --color-teal-light: #E7F1F4;
+  --color-ice: #A5CDDC; /* Figma Ice Teal for icons in dark bands */
+  --color-accent: #A33E11;
+  --color-accent-hover: #85320D;
   /* Brand fonts first (Boston Angel Bold / Gordita), free look-alikes as fallback */
   --font-serif: "Boston Angel", "Boston Angel Bold", var(--font-display), Georgia, serif;
   --font-sans: "Gordita", var(--font-body), system-ui, sans-serif;
@@ -21,13 +22,16 @@
 
 :root {
   --color-bg: #FBF8F1;
-  --color-ink: #2A2A2A;
-  --color-muted: #57514A;
+  --color-ink: #1B1C1A;
+  --color-muted: #41484B;
   --color-hairline: #E6DDCC;
-  --color-mustard: #B88740;
-  --color-brand-blue: #0C3844;
-  --color-accent: #0C3844;
-  --color-accent-hover: #08262E;
+  --color-accent: #A33E11;
+  --color-accent-hover: #85320D;
+  --color-terracotta: #A33E11;
+  --color-coral: #FC7F4E;
+  --color-teal: #0C3844;
+  --color-ice: #A5CDDC;
+  --color-black: #00222B;
 }
 
 html {
@@ -47,7 +51,7 @@ html {
 }
 
 body {
-  color: #2A2A2A;
+  color: #1B1C1A;
   /* No background here: html paints the page colour, so the layered section backgrounds below
      (z-index -2) and the flight path (z-index -1) can show between it and the content. */
   font-family: var(--font-sans);
@@ -88,13 +92,13 @@ body {
 
 /* Accessible focus ring */
 *:focus-visible {
-  outline: 2px solid var(--color-brand-blue, #0C3844);
+  outline: 2px solid var(--color-accent, #A33E11);
   outline-offset: 2px;
 }
 
 /* Form checkbox styles */
 .filter-checkbox {
-  accent-color: var(--color-brand-blue, #0C3844);
+  accent-color: var(--color-accent, #A33E11);
 }
 
 /* 600ms fade-up animation */
@@ -114,7 +118,7 @@ body {
 }
 
 ::selection {
-  background: #0C3844;
+  background: #A33E11;
   color: #FFFFFF;
 }
 
@@ -141,7 +145,7 @@ body {
 
 /* Underline that draws in from the left on hover */
 .link-draw {
-  background-image: linear-gradient(#B88740, #B88740);
+  background-image: linear-gradient(#A33E11, #A33E11);
   background-repeat: no-repeat;
   background-position: 0 100%;
   background-size: 0% 2px;
@@ -211,9 +215,9 @@ body {
   background: var(--bgl, transparent);
   pointer-events: none;
 }
-.bgl-black { --bgl: #2A2A2A; }
+.bgl-black { --bgl: #00222B; }
 .bgl-gray { --bgl: #F3EBDD; }
-.bgl-mustard { --bgl: #B88740; }
+.bgl-mustard { --bgl: #A33E11; }
 .bgl-cream { --bgl: #F3EBDD; }
 
 /* Poster-style headings: semibold serif (the utility font-bold would be heavier than the poster) */

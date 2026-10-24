@@ -83,7 +83,7 @@ export function MobileScroller({
     setActive(nextIdx);
   };
 
-  const tone = dark ? 'border-white/30 text-white' : 'border-[#D8CCB5] text-[#2A2A2A]';
+  const tone = dark ? 'border-white/30 text-white' : 'border-[#D8CCB5] text-[#1B1C1A]';
 
   return (
     <div className={`relative ${className}`} role="region" aria-roledescription="carousel" aria-label={label}>
@@ -104,7 +104,7 @@ export function MobileScroller({
       {items.length > 1 && canScroll && (
         <div className="mt-6 flex items-center justify-between">
           {items.length > 7 ? (
-            <p className={`text-xs sm:text-sm font-medium tabular-nums ${dark ? 'text-white/70' : 'text-[#57514A]'}`} aria-live="polite">
+            <p className={`text-xs sm:text-sm font-medium tabular-nums ${dark ? 'text-white/70' : 'text-[#41484B]'}`} aria-live="polite">
               {active + 1} / {items.length}
             </p>
           ) : (

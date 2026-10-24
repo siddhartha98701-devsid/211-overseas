@@ -21,11 +21,11 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-32">
             <SectionHeader compact eyebrow="FAQs" headline={headline} />
-            <p className="-mt-6 text-sm text-[#57514A] leading-relaxed">Can&apos;t find your answer? Our counsellors are happy to help.</p>
+            <p className="-mt-6 text-sm text-[#41484B] leading-relaxed">Can&apos;t find your answer? Our counsellors are happy to help.</p>
             <button
               type="button"
               onClick={() => openCallback({ source: 'faq' })}
-              className="btn-shine mt-5 bg-black hover:bg-[#94682B] hover:text-white text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
+              className="btn-shine mt-5 bg-[#00222B] hover:bg-[#A33E11] hover:text-white text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
             >
               Ask a counsellor
             </button>
@@ -54,8 +54,8 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
                     onClick={() => setOpen(isOpen ? null : i)}
                     className="flex w-full items-center justify-between gap-6 py-5 text-left cursor-pointer group"
                   >
-                    <span className="font-serif text-base sm:text-lg font-bold text-black group-hover:text-[#8A6020] transition-colors">{f.q}</span>
-                    <motion.span animate={{ rotate: isOpen ? 45 : 0 }} className="shrink-0 flex h-8 w-8 items-center justify-center bg-[#94682B] text-white">
+                    <span className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors">{f.q}</span>
+                    <motion.span animate={{ rotate: isOpen ? 45 : 0 }} className="shrink-0 flex h-8 w-8 items-center justify-center bg-[#A33E11] text-white">
                       <Plus size={18} aria-hidden="true" />
                     </motion.span>
                   </button>
@@ -71,10 +71,10 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
                       transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="pb-6 pr-12 text-sm sm:text-base text-[#57514A] leading-relaxed">
+                      <p className="pb-6 pr-12 text-sm sm:text-base text-[#41484B] leading-relaxed">
                         {f.a}{' '}
                         {f.link && (
-                          <Link href={f.link.href} className="underline decoration-[#B88740] underline-offset-2 hover:text-black">
+                          <Link href={f.link.href} className="underline decoration-[#A33E11] underline-offset-2 hover:text-[#1B1C1A]">
                             {f.link.label}
                           </Link>
                         )}
@@ -89,7 +89,7 @@ export function FaqSection({ limit, items = FAQS, headline = 'Questions students
             <button
               type="button"
               onClick={() => setShowAll((v) => !v)}
-              className="mt-5 text-xs uppercase tracking-widest font-medium text-black cursor-pointer"
+              className="mt-5 text-xs uppercase tracking-widest font-medium text-[#1B1C1A] cursor-pointer"
             >
               <span className="link-draw pb-1">{showAll ? 'Show fewer questions' : `Show all ${items.length} questions`}</span>
             </button>

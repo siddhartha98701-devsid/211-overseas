@@ -190,44 +190,44 @@ export function NotSureModal() {
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: '100%', opacity: 0 }}
             transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-            className="w-full sm:max-w-lg bg-white border-t-4 border-[#B88740] rounded-t-2xl sm:rounded-none p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative shadow-2xl"
+            className="w-full sm:max-w-lg bg-white border-t-4 border-[#A33E11] rounded-t-2xl sm:rounded-none p-6 sm:p-8 max-h-[90vh] overflow-y-auto relative shadow-2xl"
           >
             {/* Close Button */}
             <button
               type="button"
               onClick={closeModal}
               aria-label="Close dialog"
-              className="absolute right-4 top-4 p-2 text-[#57514A] hover:text-black transition-colors rounded-full hover:bg-black/5"
+              className="absolute right-4 top-4 p-2 text-[#41484B] hover:text-[#1B1C1A] transition-colors rounded-full hover:bg-black/5"
             >
               <X size={20} />
             </button>
 
             {submitted ? (
               <div className="py-8 text-center" role="status">
-                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#94682B] text-white">
+                <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#A33E11] text-white">
                   <Check size={28} strokeWidth={2.5} />
                 </div>
-                <h3 className="font-serif text-2xl font-bold text-black mb-2">You&apos;re All Set!</h3>
-                <p className="text-sm text-[#57514A] leading-relaxed max-w-sm mx-auto mb-6">
+                <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-2">You&apos;re All Set!</h3>
+                <p className="text-sm text-[#41484B] leading-relaxed max-w-sm mx-auto mb-6">
                   Thank you for reaching out. Our senior counselor will connect with you via Phone / WhatsApp within 24 hours to help map your ideal study abroad path.
                 </p>
                 <button
                   type="button"
                   onClick={closeModal}
-                  className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white text-xs uppercase tracking-widest font-medium px-6 py-3 transition-colors"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white text-xs uppercase tracking-widest font-semibold px-6 py-3 transition-colors"
                 >
                   Close
                 </button>
               </div>
             ) : (
               <div>
-                <span className="text-[11px] uppercase tracking-[0.2em] text-[#94682B] font-semibold block mb-1">
+                <span className="text-[11px] uppercase tracking-[0.2em] text-[#A33E11] font-semibold block mb-1">
                   Free Overseas Advisory
                 </span>
-                <h2 id="not-sure-title" className="font-serif text-2xl sm:text-3xl font-bold text-black leading-tight mb-2">
+                <h2 id="not-sure-title" className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] leading-tight mb-2">
                   Not sure where to start?
                 </h2>
-                <p className="text-sm text-[#57514A] leading-relaxed mb-6">
+                <p className="text-sm text-[#41484B] leading-relaxed mb-6">
                   Get personalized, profile-first guidance. Our advisors help you choose the right country, program, and scholarship opportunities.
                 </p>
 
@@ -246,14 +246,14 @@ export function NotSureModal() {
 
                   {/* Name */}
                   <div>
-                    <label htmlFor="ns-name" className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-1">
+                    <label htmlFor="ns-name" className="block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1">
                       Full Name *
                     </label>
                     <input
                       id="ns-name"
                       type="text"
                       placeholder="e.g. Rahul Sharma"
-                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-black placeholder:text-[#57514A]/40 focus:border-[#94682B] focus:outline-none"
+                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-[#1B1C1A] placeholder:text-[#41484B]/40 focus:border-[#A33E11] focus:outline-none"
                       {...register('fullName')}
                       ref={(e) => {
                         register('fullName').ref(e);
@@ -266,28 +266,28 @@ export function NotSureModal() {
                   {/* Phone & Email Grid */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                     <div>
-                      <label htmlFor="ns-phone" className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-1">
+                      <label htmlFor="ns-phone" className="block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1">
                         Phone / WhatsApp *
                       </label>
                       <input
                         id="ns-phone"
                         type="tel"
                         placeholder="+91 99985 85211"
-                        className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-black placeholder:text-[#57514A]/40 focus:border-[#94682B] focus:outline-none"
+                        className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-[#1B1C1A] placeholder:text-[#41484B]/40 focus:border-[#A33E11] focus:outline-none"
                         {...register('mobile')}
                       />
                       {errors.mobile && <p className="mt-1 text-xs text-red-600">{errors.mobile.message}</p>}
                     </div>
 
                     <div>
-                      <label htmlFor="ns-email" className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-1">
+                      <label htmlFor="ns-email" className="block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1">
                         Email Address *
                       </label>
                       <input
                         id="ns-email"
                         type="email"
                         placeholder="you@example.com"
-                        className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-black placeholder:text-[#57514A]/40 focus:border-[#94682B] focus:outline-none"
+                        className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-[#1B1C1A] placeholder:text-[#41484B]/40 focus:border-[#A33E11] focus:outline-none"
                         {...register('email')}
                       />
                       {errors.email && <p className="mt-1 text-xs text-red-600">{errors.email.message}</p>}
@@ -296,12 +296,12 @@ export function NotSureModal() {
 
                   {/* Preferred Country */}
                   <div>
-                    <label htmlFor="ns-country" className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-1">
+                    <label htmlFor="ns-country" className="block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1">
                       Preferred Destination
                     </label>
                     <select
                       id="ns-country"
-                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-black focus:border-[#94682B] focus:outline-none"
+                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2.5 text-sm text-[#1B1C1A] focus:border-[#A33E11] focus:outline-none"
                       {...register('preferredCountry')}
                     >
                       {COUNTRIES.map((c) => (
@@ -314,14 +314,14 @@ export function NotSureModal() {
 
                   {/* Optional Message */}
                   <div>
-                    <label htmlFor="ns-message" className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-1">
+                    <label htmlFor="ns-message" className="block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1">
                       Message / Questions (Optional)
                     </label>
                     <textarea
                       id="ns-message"
                       rows={2}
                       placeholder="e.g. Looking for English-taught bachelor degrees in Seoul with scholarship..."
-                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2 text-sm text-black placeholder:text-[#57514A]/40 focus:border-[#94682B] focus:outline-none resize-none"
+                      className="w-full border border-[#E6DDCC] bg-white px-3.5 py-2 text-sm text-[#1B1C1A] placeholder:text-[#41484B]/40 focus:border-[#A33E11] focus:outline-none resize-none"
                       {...register('message')}
                     />
                   </div>
@@ -334,9 +334,9 @@ export function NotSureModal() {
                         className="mt-1 h-4 w-4 shrink-0 filter-checkbox"
                         {...register('consent')}
                       />
-                      <span className="text-xs text-[#57514A] leading-relaxed">
+                      <span className="text-xs text-[#41484B] leading-relaxed">
                         I consent to being contacted and agree to the{' '}
-                        <Link href="/privacy-policy" target="_blank" className="text-[#94682B] underline hover:text-[#7A5622]">
+                        <Link href="/privacy-policy" target="_blank" className="text-[#A33E11] underline hover:text-[#85320D]">
                           Privacy Policy
                         </Link>
                         .
@@ -349,7 +349,7 @@ export function NotSureModal() {
                   <button
                     type="submit"
                     disabled={submitting}
-                    className="btn-shine w-full flex items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-semibold py-3.5 transition-colors cursor-pointer shadow-md"
+                    className="btn-shine w-full flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-semibold py-3.5 transition-colors cursor-pointer shadow-md"
                   >
                     {submitting ? 'Submitting…' : 'Get Free Counselling'}
                     {!submitting && <ArrowRight size={14} />}

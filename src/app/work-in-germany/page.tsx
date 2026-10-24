@@ -26,19 +26,19 @@ export default function GermanyPage() {
       <section className="pt-32 pb-10 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="Germany hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
-              <span className="h-px w-10 bg-[#B88740]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium mb-4">
+              <span className="h-px w-10 bg-[#A33E11]" />
               Work &amp; Study · Healthcare careers
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
-              Work in <span className="text-[#8A6020]">Germany</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-4">
+              Work in <span className="text-[#A33E11]">Germany</span>
             </h1>
-            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{germany.hero.description}</p>
+            <p className="text-base md:text-lg text-[#41484B] leading-relaxed">{germany.hero.description}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href="#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <a href="#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 Apply for free counselling
               </a>
-              <a href="#pathways" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <a href="#pathways" className="inline-flex min-h-11 items-center border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 See pathways
               </a>
             </div>
@@ -72,26 +72,26 @@ export default function GermanyPage() {
                     className="object-cover transition-transform duration-700 hover:scale-105"
                   />
                 </div>
-                <p className="text-xs uppercase tracking-widest text-[#8A6020] font-medium">{p.tag}</p>
-                <h3 className="mt-2 font-serif text-2xl font-bold text-[#2A2A2A]">{p.title}</h3>
-                <p className="mt-3 text-sm text-[#57514A] leading-relaxed">{p.description}</p>
+                <p className="text-xs uppercase tracking-widest text-[#A33E11] font-medium">{p.tag}</p>
+                <h3 className="mt-2 font-serif text-2xl font-bold text-[#1B1C1A]">{p.title}</h3>
+                <p className="mt-3 text-sm text-[#41484B] leading-relaxed">{p.description}</p>
                 <ol className="mt-5 flex-1 divide-y divide-[#E6DDCC]/70 border-t border-[#E6DDCC]">
                   {p.steps.map((step, i) => (
                     <li key={step} className="flex items-center justify-between py-2.5">
-                      <span className="text-sm text-[#2A2A2A]">{step}</span>
-                      <span className="font-serif text-xs text-[#A47434]">{String(i + 1).padStart(2, '0')}</span>
+                      <span className="text-sm text-[#1B1C1A]">{step}</span>
+                      <span className="font-serif text-xs text-[#A33E11]">{String(i + 1).padStart(2, '0')}</span>
                     </li>
                   ))}
                 </ol>
-                <Link href={p.href} className="btn-shine mt-6 inline-flex min-h-11 items-center justify-center bg-[#94682B] hover:bg-[#7A5622] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
+                <Link href={p.href} className="btn-shine mt-6 inline-flex min-h-11 items-center justify-center bg-[#A33E11] hover:bg-[#85320D] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
                   {p.cta}
                 </Link>
               </article>
             ))}
           </MobileScroller>
-          <p className="mt-8 text-sm text-[#57514A]">
+          <p className="mt-8 text-sm text-[#41484B]">
             Prefer to study abroad instead?{' '}
-            <Link href="/work-and-study#study" className="text-[#8A6020] underline underline-offset-2">See study pathways</Link>
+            <Link href="/work-and-study#study" className="text-[#A33E11] underline underline-offset-2">See study pathways</Link>
           </p>
         </div>
       </section>

@@ -53,18 +53,18 @@ export function OtherDestinationsTabs({ pages }: OtherDestinationsTabsProps) {
                   className={`inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold whitespace-nowrap transition-all rounded-[2px] cursor-pointer ${
                     isActive
                       ? 'bg-[#0C3844] text-white shadow-sm'
-                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#0C3844] hover:text-[#0C3844]'
+                      : 'bg-white text-[#1B1C1A] border border-[#E6DDCC] hover:border-[#A33E11] hover:text-[#A33E11]'
                   }`}
                   aria-pressed={isActive}
                 >
-                  <GraduationCap size={14} className={isActive ? 'text-white' : 'text-[#0C3844]'} />
+                  <GraduationCap size={14} className={isActive ? 'text-white' : 'text-[#A33E11]'} />
                   {r.label}
                 </button>
               );
             })}
           </div>
-          <span className="text-xs text-[#57514A] font-medium hidden sm:block shrink-0">
-            Showing <strong className="text-[#2A2A2A]">{displayedPages.length}</strong> study {displayedPages.length === 1 ? 'country' : 'countries'}
+          <span className="text-xs text-[#41484B] font-medium hidden sm:block shrink-0">
+            Showing <strong className="text-[#1B1C1A]">{displayedPages.length}</strong> study {displayedPages.length === 1 ? 'country' : 'countries'}
           </span>
         </div>
       </div>

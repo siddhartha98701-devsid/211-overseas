@@ -49,7 +49,7 @@ export async function emailLead(lead: StoredLead): Promise<boolean> {
       subject: `New lead: ${lead.fullName} (${lead.interests[0] || lead.source})`,
       text: rows.map(([k, v]) => `${k}: ${v}`).join('\n'),
       html: `<table style="font-family:Arial,sans-serif;font-size:14px;border-collapse:collapse">${rows
-        .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#57514A"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`)
+        .map(([k, v]) => `<tr><td style="padding:4px 12px 4px 0;color:#41484B"><b>${esc(k)}</b></td><td>${esc(v)}</td></tr>`)
         .join('')}</table>`,
     });
     return true;

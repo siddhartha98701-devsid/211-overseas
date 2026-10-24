@@ -49,19 +49,19 @@ export default function UAEPage() {
       <section className="pt-32 pb-10 md:pt-40 md:pb-16 border-b border-[#E6DDCC]" aria-label="UAE hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-4">
-              <span className="h-px w-10 bg-[#B88740]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium mb-4">
+              <span className="h-px w-10 bg-[#A33E11]" />
               Work &amp; Study · Career opportunities
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-4">
-              Work in <span className="text-[#8A6020]">UAE</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-4">
+              Work in <span className="text-[#A33E11]">UAE</span>
             </h1>
-            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{uae.hero.description}</p>
+            <p className="text-base md:text-lg text-[#41484B] leading-relaxed">{uae.hero.description}</p>
             <div className="mt-6 flex flex-wrap gap-3">
-              <Link href="/contact?interest=Work+in+UAE#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <Link href="/contact?interest=Work+in+UAE#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 Submit your profile
               </Link>
-              <a href="#sectors" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <a href="#sectors" className="inline-flex min-h-11 items-center border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 Explore sectors
               </a>
             </div>
@@ -99,18 +99,18 @@ export default function UAEPage() {
                     />
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="flex h-9 w-9 items-center justify-center bg-black text-[#D1A95F] transition-colors group-hover:bg-[#94682B] group-hover:text-white">
+                    <span className="flex h-9 w-9 items-center justify-center bg-[#00222B] text-[#FC7F4E] transition-colors group-hover:bg-[#A33E11] group-hover:text-white">
                       <Icon size={18} strokeWidth={1.75} aria-hidden="true" />
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#2A2A2A]">{sector.name}</h3>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A]">{sector.name}</h3>
                   </div>
                   <ul className="mt-3 flex flex-1 flex-wrap content-start gap-2">
                     {sector.roles.map((r) => (
-                      <li key={r} className="border border-[#E6DDCC] px-2 py-1 text-xs text-[#57514A]">{r}</li>
+                      <li key={r} className="border border-[#E6DDCC] px-2 py-1 text-xs text-[#41484B]">{r}</li>
                     ))}
                   </ul>
                   {meta?.href && (
-                    <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">
+                    <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#A33E11]">
                       Sector guide <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                     </span>
                   )}
@@ -118,7 +118,7 @@ export default function UAEPage() {
               );
               const cls = 'group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-5 transition-all';
               return meta?.href ? (
-                <Link key={sector.name} href={meta.href} className={`${cls} hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]`}>{inner}</Link>
+                <Link key={sector.name} href={meta.href} className={`${cls} hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.08)]`}>{inner}</Link>
               ) : (
                 <div key={sector.name} className={cls}>{inner}</div>
               );
@@ -134,13 +134,13 @@ export default function UAEPage() {
           <MobileScroller dark label="UAE process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {uae.process.map((step) => (
               <div key={step.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#94682B] text-xs font-bold">{step.number}</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-xs font-bold">{step.number}</span>
                 <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{step.title}</h3>
                 <p className="mt-2 text-sm text-white/65 leading-relaxed">{step.description}</p>
               </div>
             ))}
           </MobileScroller>
-          <Link href="/contact?interest=Work+in+UAE#enquiry-form" className="mt-8 inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-8 text-xs uppercase tracking-widest font-medium transition-colors">
+          <Link href="/contact?interest=Work+in+UAE#enquiry-form" className="mt-8 inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-8 text-xs uppercase tracking-widest font-medium transition-colors">
             Submit your profile
           </Link>
         </div>

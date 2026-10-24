@@ -263,31 +263,31 @@ export function ProgramFinderSection() {
               type="button"
               onClick={() => setIsMobileFiltersOpen((prev) => !prev)}
               aria-expanded={isMobileFiltersOpen}
-              className="inline-flex items-center gap-2 bg-white border border-[#E6DDCC] px-3.5 py-2 text-xs font-semibold text-[#2A2A2A] shadow-sm hover:border-[#94682B] active:bg-[#F3EBDD] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 bg-white border border-[#E6DDCC] px-3.5 py-2 text-xs font-semibold text-[#1B1C1A] shadow-sm hover:border-[#A33E11] active:bg-[#F3EBDD] transition-colors cursor-pointer"
             >
-              <SlidersHorizontal size={14} className="text-[#94682B]" />
+              <SlidersHorizontal size={14} className="text-[#A33E11]" />
               <span>Filter Options</span>
               {activeFilterCount > 0 && (
-                <span className="inline-flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-[#94682B] text-white text-[10px] font-bold">
+                <span className="inline-flex items-center justify-center h-4 min-w-4 px-1 rounded-full bg-[#A33E11] text-white text-[10px] font-bold">
                   {activeFilterCount}
                 </span>
               )}
               {isMobileFiltersOpen ? (
-                <ChevronUp size={14} className="text-[#57514A]" />
+                <ChevronUp size={14} className="text-[#41484B]" />
               ) : (
-                <ChevronDown size={14} className="text-[#57514A]" />
+                <ChevronDown size={14} className="text-[#41484B]" />
               )}
             </button>
 
             <div className="flex items-center gap-2 text-xs">
-              <span className="text-[#57514A]">
-                <strong className="text-black font-semibold">{filteredPrograms.length}</strong> {filteredPrograms.length === 1 ? 'programme' : 'programmes'}
+              <span className="text-[#41484B]">
+                <strong className="text-[#1B1C1A] font-semibold">{filteredPrograms.length}</strong> {filteredPrograms.length === 1 ? 'programme' : 'programmes'}
               </span>
               {isFiltered && (
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="text-[#94682B] hover:text-[#7A5622] font-semibold underline underline-offset-2 ml-1 cursor-pointer"
+                  className="text-[#A33E11] hover:text-[#85320D] font-semibold underline underline-offset-2 ml-1 cursor-pointer"
                 >
                   Reset
                 </button>
@@ -299,34 +299,34 @@ export function ProgramFinderSection() {
           {isFiltered && !isMobileFiltersOpen && (
             <div className="flex flex-wrap gap-1.5 pt-2 mt-2 border-t border-[#E6DDCC]/60">
               {selectedLevel !== 'All' && (
-                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#1B1C1A] font-medium">
                   {selectedLevel}
                   <button type="button" onClick={() => setSelectedLevel('All')} aria-label={`Clear ${selectedLevel}`} className="cursor-pointer">
-                    <X size={11} className="text-[#94682B]" />
+                    <X size={11} className="text-[#A33E11]" />
                   </button>
                 </span>
               )}
               {selectedField !== 'All' && (
-                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#1B1C1A] font-medium">
                   {selectedField}
                   <button type="button" onClick={() => setSelectedField('All')} aria-label={`Clear ${selectedField}`} className="cursor-pointer">
-                    <X size={11} className="text-[#94682B]" />
+                    <X size={11} className="text-[#A33E11]" />
                   </button>
                 </span>
               )}
               {selectedBudget !== 'All' && (
-                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#1B1C1A] font-medium">
                   {selectedBudget}
                   <button type="button" onClick={() => setSelectedBudget('All')} aria-label={`Clear ${selectedBudget}`} className="cursor-pointer">
-                    <X size={11} className="text-[#94682B]" />
+                    <X size={11} className="text-[#A33E11]" />
                   </button>
                 </span>
               )}
               {selectedIntake !== 'All' && (
-                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#2A2A2A] font-medium">
+                <span className="inline-flex items-center gap-1 bg-white border border-[#E6DDCC] px-2 py-0.5 text-[11px] text-[#1B1C1A] font-medium">
                   {selectedIntake}
                   <button type="button" onClick={() => setSelectedIntake('All')} aria-label={`Clear ${selectedIntake}`} className="cursor-pointer">
-                    <X size={11} className="text-[#94682B]" />
+                    <X size={11} className="text-[#A33E11]" />
                   </button>
                 </span>
               )}
@@ -337,13 +337,13 @@ export function ProgramFinderSection() {
           {isMobileFiltersOpen && (
             <div className="mt-3 pt-3 border-t border-[#E6DDCC] space-y-3.5 max-h-[65vh] overflow-y-auto">
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1">
                   1. Study Level
                 </label>
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {LEVELS.map((l) => (
                     <option key={l} value={l}>
@@ -354,13 +354,13 @@ export function ProgramFinderSection() {
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1">
                   2. Field of Study
                 </label>
                 <select
                   value={selectedField}
                   onChange={(e) => setSelectedField(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {FIELD_OPTIONS.map((f) => (
                     <option key={f} value={f}>
@@ -371,13 +371,13 @@ export function ProgramFinderSection() {
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1">
                   3. Tuition Budget
                 </label>
                 <select
                   value={selectedBudget}
                   onChange={(e) => setSelectedBudget(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {BUDGETS.map((b) => (
                     <option key={b} value={b}>
@@ -388,13 +388,13 @@ export function ProgramFinderSection() {
               </div>
 
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1">
                   4. Preferred Intake
                 </label>
                 <select
                   value={selectedIntake}
                   onChange={(e) => setSelectedIntake(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {INTAKES.map((i) => (
                     <option key={i} value={i}>
@@ -409,7 +409,7 @@ export function ProgramFinderSection() {
                 <button
                   type="button"
                   onClick={() => setIsMobileFiltersOpen(false)}
-                  className="flex-1 py-2.5 bg-[#94682B] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#7A5622] transition-colors text-center cursor-pointer"
+                  className="flex-1 py-2.5 bg-[#A33E11] text-white text-xs font-semibold uppercase tracking-wider hover:bg-[#85320D] transition-colors text-center cursor-pointer"
                 >
                   Show {filteredPrograms.length} {filteredPrograms.length === 1 ? 'Program' : 'Programs'}
                 </button>
@@ -417,7 +417,7 @@ export function ProgramFinderSection() {
                   <button
                     type="button"
                     onClick={resetFilters}
-                    className="px-3.5 py-2.5 border border-[#E6DDCC] bg-white text-xs text-[#57514A] hover:text-[#2A2A2A] font-semibold transition-colors cursor-pointer"
+                    className="px-3.5 py-2.5 border border-[#E6DDCC] bg-white text-xs text-[#41484B] hover:text-[#1B1C1A] font-semibold transition-colors cursor-pointer"
                   >
                     Reset
                   </button>
@@ -431,15 +431,15 @@ export function ProgramFinderSection() {
         <div className="hidden sm:block mb-8">
           <div className="bg-white border border-[#E6DDCC] p-4 sm:p-6 shadow-sm space-y-5">
             <div className="flex items-center justify-between border-b border-[#E6DDCC] pb-3">
-              <div className="flex items-center gap-2 text-[#2A2A2A]">
-                <Filter size={16} className="text-[#94682B]" />
+              <div className="flex items-center gap-2 text-[#1B1C1A]">
+                <Filter size={16} className="text-[#A33E11]" />
                 <span className="text-xs uppercase tracking-widest font-bold">Step-by-Step Filters</span>
               </div>
               {isFiltered && (
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="inline-flex items-center gap-1.5 text-xs text-[#94682B] hover:text-[#7A5622] font-semibold cursor-pointer transition-colors"
+                  className="inline-flex items-center gap-1.5 text-xs text-[#A33E11] hover:text-[#85320D] font-semibold cursor-pointer transition-colors"
                 >
                   <RotateCcw size={13} />
                   <span>Reset Filters</span>
@@ -450,13 +450,13 @@ export function ProgramFinderSection() {
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
               {/* Filter 1: Level */}
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1.5">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1.5">
                   1. Study Level
                 </label>
                 <select
                   value={selectedLevel}
                   onChange={(e) => setSelectedLevel(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {LEVELS.map((l) => (
                     <option key={l} value={l}>
@@ -468,13 +468,13 @@ export function ProgramFinderSection() {
 
               {/* Filter 2: Field */}
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1.5">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1.5">
                   2. Field of Study
                 </label>
                 <select
                   value={selectedField}
                   onChange={(e) => setSelectedField(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {FIELD_OPTIONS.map((f) => (
                     <option key={f} value={f}>
@@ -486,13 +486,13 @@ export function ProgramFinderSection() {
 
               {/* Filter 3: Budget */}
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1.5">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1.5">
                   3. Tuition Budget
                 </label>
                 <select
                   value={selectedBudget}
                   onChange={(e) => setSelectedBudget(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {BUDGETS.map((b) => (
                     <option key={b} value={b}>
@@ -504,13 +504,13 @@ export function ProgramFinderSection() {
 
               {/* Filter 4: Intake */}
               <div>
-                <label className="block text-[11px] uppercase tracking-wider text-[#57514A] font-semibold mb-1.5">
+                <label className="block text-[11px] uppercase tracking-wider text-[#41484B] font-semibold mb-1.5">
                   4. Preferred Intake
                 </label>
                 <select
                   value={selectedIntake}
                   onChange={(e) => setSelectedIntake(e.target.value)}
-                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#2A2A2A] font-medium focus:border-[#94682B] focus:outline-none"
+                  className="w-full border border-[#E6DDCC] bg-white px-3 py-2 text-xs sm:text-sm text-[#1B1C1A] font-medium focus:border-[#A33E11] focus:outline-none"
                 >
                   {INTAKES.map((i) => (
                     <option key={i} value={i}>
@@ -523,7 +523,7 @@ export function ProgramFinderSection() {
 
             {/* Quick Pills for Field */}
             <div className="flex flex-wrap gap-2 pt-2 border-t border-[#E6DDCC]/60">
-              <span className="text-[11px] uppercase tracking-wider text-[#57514A] font-medium self-center mr-1">
+              <span className="text-[11px] uppercase tracking-wider text-[#41484B] font-medium self-center mr-1">
                 Popular:
               </span>
               {FIELD_OPTIONS.slice(1).map((f) => {
@@ -535,8 +535,8 @@ export function ProgramFinderSection() {
                     onClick={() => setSelectedField(active ? 'All' : f)}
                     className={`px-2.5 py-1 text-xs border transition-colors cursor-pointer ${
                       active
-                        ? 'border-[#94682B] bg-[#94682B] text-white font-medium'
-                        : 'border-[#E6DDCC] bg-white text-[#57514A] hover:border-[#2A2A2A]'
+                        ? 'border-[#A33E11] bg-[#A33E11] text-white font-medium'
+                        : 'border-[#E6DDCC] bg-white text-[#41484B] hover:border-[#1B1C1A]'
                     }`}
                   >
                     {f}
@@ -549,15 +549,15 @@ export function ProgramFinderSection() {
 
         {/* Results Count & Status (Desktop) */}
         <div className="hidden sm:flex items-center justify-between mb-6">
-          <p className="text-xs sm:text-sm text-[#57514A]" aria-live="polite">
-            Showing <strong className="text-black font-semibold">{filteredPrograms.length}</strong> matching{' '}
+          <p className="text-xs sm:text-sm text-[#41484B]" aria-live="polite">
+            Showing <strong className="text-[#1B1C1A] font-semibold">{filteredPrograms.length}</strong> matching{' '}
             {filteredPrograms.length === 1 ? 'programme' : 'programmes'}
           </p>
           {isFiltered && (
             <button
               type="button"
               onClick={resetFilters}
-              className="text-xs text-[#94682B] hover:text-[#7A5622] font-semibold cursor-pointer"
+              className="text-xs text-[#A33E11] hover:text-[#85320D] font-semibold cursor-pointer"
             >
               Reset Filters
             </button>
@@ -574,20 +574,20 @@ export function ProgramFinderSection() {
               exit={{ opacity: 0 }}
               className="border border-[#E6DDCC] bg-white p-8 sm:p-12 text-center"
             >
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#FAF8F5] border border-[#E6DDCC] text-[#94682B]">
+              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-[#FAF8F5] border border-[#E6DDCC] text-[#A33E11]">
                 <Search size={24} />
               </div>
-              <h3 className="font-serif text-xl sm:text-2xl font-bold text-black mb-2">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
                 No exact matches for this combination
               </h3>
-              <p className="text-sm text-[#57514A] max-w-md mx-auto leading-relaxed mb-6">
+              <p className="text-sm text-[#41484B] max-w-md mx-auto leading-relaxed mb-6">
                 Korean universities offer dozens of additional tailored degree programs not listed in this preview. Our advisors can match your exact GPA, budget, and language background.
               </p>
               <div className="flex flex-wrap justify-center gap-3">
                 <button
                   type="button"
                   onClick={resetFilters}
-                  className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-2.5 text-xs uppercase tracking-widest font-medium transition-colors"
+                  className="btn-shine inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-2.5 text-xs uppercase tracking-widest font-medium transition-colors"
                 >
                   <RotateCcw size={13} />
                   <span>Reset All Filters</span>
@@ -595,7 +595,7 @@ export function ProgramFinderSection() {
                 <button
                   type="button"
                   onClick={() => openCallback({ interest: 'Study in South Korea', source: 'program-finder-empty-state' })}
-                  className="border border-black px-6 py-2.5 text-xs uppercase tracking-widest font-medium text-black hover:bg-black hover:text-white transition-colors"
+                  className="border border-[#1B1C1A] px-6 py-2.5 text-xs uppercase tracking-widest font-medium text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white transition-colors"
                 >
                   Speak to an Advisor
                 </button>
@@ -615,52 +615,52 @@ export function ProgramFinderSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, scale: 0.96 }}
                   transition={{ duration: 0.25 }}
-                  className="group flex flex-col justify-between border border-[#E6DDCC] bg-white p-6 transition-all hover:border-[#94682B] hover:shadow-[0_12px_32px_rgba(42,42,42,0.08)]"
+                  className="group flex flex-col justify-between border border-[#E6DDCC] bg-white p-6 transition-all hover:border-[#A33E11] hover:shadow-[0_12px_32px_rgba(163,62,17,0.08)]"
                 >
                   <div>
                     {/* Header tags */}
                     <div className="flex items-center justify-between gap-2 mb-3">
-                      <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 bg-[#94682B]/10 text-[#94682B] border border-[#94682B]/20">
+                      <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 bg-[#A33E11]/10 text-[#A33E11] border border-[#A33E11]/20">
                         {p.level}
                       </span>
-                      <span className="text-[10px] text-[#57514A] uppercase tracking-wider truncate">
+                      <span className="text-[10px] text-[#41484B] uppercase tracking-wider truncate">
                         {p.field}
                       </span>
                     </div>
 
                     {/* Program Title & University */}
-                    <h3 className="font-serif text-lg font-bold text-black leading-snug group-hover:text-[#94682B] transition-colors mb-2">
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] leading-snug group-hover:text-[#A33E11] transition-colors mb-2">
                       {p.title}
                     </h3>
-                    <p className="flex items-center gap-1.5 text-xs font-semibold text-[#57514A] mb-4">
-                      <Building2 size={13} className="text-[#94682B] shrink-0" />
+                    <p className="flex items-center gap-1.5 text-xs font-semibold text-[#41484B] mb-4">
+                      <Building2 size={13} className="text-[#A33E11] shrink-0" />
                       <span>{p.university}</span>
                     </p>
 
-                    <p className="text-xs text-[#57514A] leading-relaxed mb-4">
+                    <p className="text-xs text-[#41484B] leading-relaxed mb-4">
                       {p.description}
                     </p>
 
                     {/* Meta Specs */}
-                    <div className="grid grid-cols-2 gap-2 py-3 border-y border-[#E6DDCC]/70 text-xs text-[#57514A] mb-4">
+                    <div className="grid grid-cols-2 gap-2 py-3 border-y border-[#E6DDCC]/70 text-xs text-[#41484B] mb-4">
                       <div className="flex items-center gap-1.5">
-                        <Clock size={13} className="text-[#94682B] shrink-0" />
+                        <Clock size={13} className="text-[#A33E11] shrink-0" />
                         <span>{p.duration}</span>
                       </div>
                       <div className="flex items-center gap-1.5">
-                        <Calendar size={13} className="text-[#94682B] shrink-0" />
+                        <Calendar size={13} className="text-[#A33E11] shrink-0" />
                         <span className="truncate">{p.intake}</span>
                       </div>
                       <div className="col-span-2 flex items-center gap-1.5">
-                        <Coins size={13} className="text-[#94682B] shrink-0" />
-                        <span className="font-semibold text-black">{p.tuition}</span>
+                        <Coins size={13} className="text-[#A33E11] shrink-0" />
+                        <span className="font-semibold text-[#1B1C1A]">{p.tuition}</span>
                       </div>
                     </div>
 
                     {/* Tags */}
                     <div className="flex flex-wrap gap-1.5 mb-5">
                       {p.tags.map((t) => (
-                        <span key={t} className="text-[10px] bg-[#FAF8F5] border border-[#E6DDCC] px-2 py-0.5 text-[#57514A]">
+                        <span key={t} className="text-[10px] bg-[#FAF8F5] border border-[#E6DDCC] px-2 py-0.5 text-[#41484B]">
                           {t}
                         </span>
                       ))}
@@ -676,7 +676,7 @@ export function ProgramFinderSection() {
                         source: `program-finder:${p.university} – ${p.title}`,
                       })
                     }
-                    className="btn-shine w-full inline-flex items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-4 py-2.5 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
+                    className="btn-shine w-full inline-flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-4 py-2.5 text-xs uppercase tracking-widest font-medium transition-colors cursor-pointer"
                   >
                     <span>Enquire</span>
                     <ArrowRight size={13} />

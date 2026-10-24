@@ -29,7 +29,7 @@ const figtree = Figtree({
 });
 
 export const viewport: Viewport = {
-  themeColor: '#2A2A2A',
+  themeColor: '#00222B',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
@@ -92,7 +92,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${figtree.variable} ${sourceSerif.variable}`}>
-      <body className="font-sans antialiased text-[#2A2A2A]">
+      <body className="font-sans antialiased text-[#1B1C1A]">
         <MotionProvider>
         <CallbackProvider>
         <FlightPath />

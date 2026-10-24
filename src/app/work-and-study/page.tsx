@@ -68,26 +68,26 @@ export default function WorkAndStudyPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-4">
-              <span className="h-px w-10 bg-[#0C3844]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold mb-4">
+              <span className="h-px w-10 bg-[#A33E11]" />
               Work Abroad · Professional International Careers
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
-              Build your international career: <span className="text-[#0C3844]">work visas</span> &amp; professional placements
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1]">
+              Build your international career: <span className="text-[#A33E11]">work visas</span> &amp; professional placements
             </h1>
-            <p className="mt-5 text-base md:text-lg text-[#57514A] leading-relaxed">
+            <p className="mt-5 text-base md:text-lg text-[#41484B] leading-relaxed">
               Direct career routes for qualified professionals. We handle your eligibility evaluation, credential equivalence, language preparation, employer interviews, and embassy work visa filings across Europe, the Middle East, and Asia-Pacific.
             </p>
             <div className="mt-8 flex flex-wrap gap-4 items-center">
               <a
                 href="#pathways"
-                className="btn-shine inline-flex min-h-11 items-center bg-[#0C3844] hover:bg-[#08262E] text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
+                className="btn-shine inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
               >
                 Explore Work Pathways
               </a>
               <Link
                 href="/contact?interest=Work+in+Other+Countries#enquiry-form"
-                className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
+                className="inline-flex min-h-11 items-center border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
               >
                 Book Free Assessment
               </Link>
@@ -111,8 +111,8 @@ export default function WorkAndStudyPage() {
           <div className="mt-14 pt-8 border-t border-[#E6DDCC] grid grid-cols-2 md:grid-cols-4 gap-6">
             {WORK_ADVANTAGES.map((adv) => (
               <div key={adv.title} className="flex flex-col">
-                <span className="font-serif text-sm md:text-base font-bold text-[#2A2A2A]">{adv.title}</span>
-                <span className="mt-1 text-xs text-[#57514A] leading-relaxed">{adv.desc}</span>
+                <span className="font-serif text-sm md:text-base font-bold text-[#1B1C1A]">{adv.title}</span>
+                <span className="mt-1 text-xs text-[#41484B] leading-relaxed">{adv.desc}</span>
               </div>
             ))}
           </div>
@@ -154,10 +154,10 @@ export default function WorkAndStudyPage() {
                 <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-xs font-bold text-white">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-xs font-bold text-white">
                         {s.number}
                       </span>
-                      <Icon size={20} className="text-[#0C3844]" />
+                      <Icon size={20} className="text-[#FC7F4E]" />
                     </div>
                     <h3 className="font-serif text-lg font-bold text-white">{s.title}</h3>
                     <p className="mt-2.5 text-sm text-white/70 leading-relaxed">{s.description}</p>

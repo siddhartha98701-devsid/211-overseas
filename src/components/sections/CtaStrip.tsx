@@ -14,7 +14,7 @@ interface CtaStripProps {
 }
 
 const CARD =
-  'group relative flex min-h-[120px] w-full items-center gap-4 border border-white/15 bg-white/[0.04] p-5 text-left transition-all hover:-translate-y-1 hover:border-[#D1A95F] hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-[#D1A95F] cursor-pointer';
+  'group relative flex min-h-[120px] w-full items-center gap-4 border border-white/15 bg-white/[0.04] p-5 text-left transition-all hover:-translate-y-1 hover:border-[#FC7F4E] hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-[#FC7F4E] cursor-pointer';
 
 /** "Talk to a counsellor" band: three large, tappable ways to get in touch. */
 export function CtaStrip({
@@ -52,7 +52,7 @@ export function CtaStrip({
     <section className="bgl bgl-black text-white" aria-label="Talk to a counsellor">
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.25em] font-medium text-[#D1A95F]">Free counselling</p>
+          <p className="text-xs uppercase tracking-[0.25em] font-medium text-[#FC7F4E]">Free counselling</p>
           <h2 className="mt-2 font-serif text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">{heading}</h2>
           <p className="mt-3 text-white/70 leading-relaxed">
             Start with your profile, not a country. Pick the easiest way to reach us and a counsellor will help you decide.
@@ -65,7 +65,7 @@ export function CtaStrip({
               <>
                 <span
                   className={`flex h-14 w-14 shrink-0 items-center justify-center transition-colors ${
-                    o.primary ? 'bg-[#94682B] text-white' : 'bg-white/10 text-[#D1A95F] group-hover:bg-[#94682B] group-hover:text-white'
+                    o.primary ? 'bg-[#A33E11] text-white' : 'bg-white/10 text-[#FC7F4E] group-hover:bg-[#A33E11] group-hover:text-white'
                   }`}
                 >
                   {o.icon}
@@ -74,7 +74,7 @@ export function CtaStrip({
                   <span className="block font-serif text-lg font-bold leading-tight">{o.title}</span>
                   <span className="mt-1 block text-sm text-white/65">{o.text}</span>
                 </span>
-                <ArrowRight size={18} className="shrink-0 text-[#D1A95F] transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                <ArrowRight size={18} className="shrink-0 text-[#FC7F4E] transition-transform group-hover:translate-x-1" aria-hidden="true" />
               </>
             );
             return (

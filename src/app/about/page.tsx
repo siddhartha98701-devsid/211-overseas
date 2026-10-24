@@ -77,23 +77,23 @@ export default function AboutPage() {
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 border-b border-[#E6DDCC]" aria-label="About hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#8A6020] font-medium mb-5">
-              <span className="h-px w-10 bg-[#B88740]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium mb-5">
+              <span className="h-px w-10 bg-[#A33E11]" />
               About 211 OVERSEAS
             </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-5">
-              Honest guidance for students and professionals going <span className="text-[#8A6020]">abroad</span>
+            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-5">
+              Honest guidance for students and professionals going <span className="text-[#A33E11]">abroad</span>
             </h1>
-            <p className="text-base md:text-lg text-[#57514A] leading-relaxed">{about.description}</p>
-            <p className="mt-4 text-base text-[#57514A] leading-relaxed">
+            <p className="text-base md:text-lg text-[#41484B] leading-relaxed">{about.description}</p>
+            <p className="mt-4 text-base text-[#41484B] leading-relaxed">
               We are an independent consultancy, and mentioning a university or country never implies an affiliation or endorsement. Our focus is
               simple: understand the candidate first, recommend the pathway second.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/contact#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#94682B] hover:bg-[#7A5622] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <Link href="/contact#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 Talk to a counsellor
               </Link>
-              <a href="#visit" className="inline-flex min-h-11 items-center border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
+              <a href="#visit" className="inline-flex min-h-11 items-center border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
                 Visit our office
               </a>
             </div>
@@ -110,15 +110,15 @@ export default function AboutPage() {
       <section className="bgl bgl-black text-white" aria-label="Contact details">
         <ul className="max-w-[1280px] mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
           <li className="flex items-start gap-3">
-            <MapPin size={20} className="mt-0.5 shrink-0 text-[#D1A95F]" aria-hidden="true" />
+            <MapPin size={20} className="mt-0.5 shrink-0 text-[#FC7F4E]" aria-hidden="true" />
             <span className="text-sm text-white/80">{brand.address}</span>
           </li>
           <li className="flex items-center gap-3">
-            <Phone size={20} className="shrink-0 text-[#D1A95F]" aria-hidden="true" />
-            <a href={phoneHref} className="text-sm text-white/80 hover:text-[#D1A95F]">{brand.phone}</a>
+            <Phone size={20} className="shrink-0 text-[#FC7F4E]" aria-hidden="true" />
+            <a href={phoneHref} className="text-sm text-white/80 hover:text-[#FC7F4E]">{brand.phone}</a>
           </li>
           <li className="flex items-center gap-3">
-            <Clock size={20} className="shrink-0 text-[#D1A95F]" aria-hidden="true" />
+            <Clock size={20} className="shrink-0 text-[#FC7F4E]" aria-hidden="true" />
             <span className="text-sm text-white/80">Mon – Sat, 10:00 AM – 7:00 PM IST</span>
           </li>
         </ul>
@@ -135,20 +135,20 @@ export default function AboutPage() {
           />
           <MobileScroller label="Our principles" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {PRINCIPLES.map(({ icon: Icon, title, text }, i) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#0C3844] transition-all flex flex-col justify-between">
+              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#A33E11] transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="flex h-11 w-11 items-center justify-center bg-[#2A2A2A] text-white">
+                    <span className="flex h-11 w-11 items-center justify-center bg-[#00222B] text-white">
                       <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
                     </span>
-                    <span className="font-serif text-xs font-bold text-[#0C3844] uppercase tracking-wider">
+                    <span className="font-serif text-xs font-bold text-[#A33E11] uppercase tracking-wider">
                       Promise 0{i + 1}
                     </span>
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-[#2A2A2A] leading-snug">{title}</h3>
-                  <p className="mt-2 text-sm text-[#57514A] leading-relaxed">{text}</p>
+                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] leading-snug">{title}</h3>
+                  <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
                 </div>
-                <div className="mt-4 pt-3 border-t border-[#E6DDCC]/60 text-[11px] text-[#8A6020] font-medium uppercase tracking-wider">
+                <div className="mt-4 pt-3 border-t border-[#E6DDCC]/60 text-[11px] text-[#A33E11] font-medium uppercase tracking-wider">
                   Guaranteed standard
                 </div>
               </div>
@@ -166,15 +166,15 @@ export default function AboutPage() {
               <Link
                 key={title}
                 href={href}
-                className="group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#94682B] hover:shadow-[0_12px_30px_rgba(42,42,42,0.08)]"
+                className="group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.08)]"
               >
                 <span className="flex items-center justify-between">
-                  <Icon size={26} strokeWidth={1.5} className="text-[#A47434]" aria-hidden="true" />
-                  <span className="font-serif text-sm text-[#A47434]">0{i + 1}</span>
+                  <Icon size={26} strokeWidth={1.5} className="text-[#A33E11]" aria-hidden="true" />
+                  <span className="font-serif text-sm text-[#A33E11]">0{i + 1}</span>
                 </span>
-                <h3 className="mt-4 font-serif text-lg font-bold text-[#2A2A2A]">{title}</h3>
-                <p className="mt-2 flex-1 text-sm text-[#57514A] leading-relaxed">{text}</p>
-                <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#8A6020]">
+                <h3 className="mt-4 font-serif text-lg font-bold text-[#1B1C1A]">{title}</h3>
+                <p className="mt-2 flex-1 text-sm text-[#41484B] leading-relaxed">{text}</p>
+                <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#A33E11]">
                   Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </span>
               </Link>
@@ -190,7 +190,7 @@ export default function AboutPage() {
           <MobileScroller dark label="Our process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {howItWorks.steps.map((s) => (
               <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-white text-xs font-bold">{s.number}</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-white text-xs font-bold">{s.number}</span>
                 <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{s.title}</h3>
                 <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
               </div>
@@ -204,16 +204,16 @@ export default function AboutPage() {
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
           <div className="lg:col-span-5">
             <SectionHeader eyebrow="Visit us" headline="Meet the team in Ahmedabad" description="Prefer to talk in person? Book a visit and we will make time for you and your family." compact />
-            <ul className="space-y-4 text-[#2A2A2A]">
-              <li className="flex items-start gap-3"><MapPin size={20} className="mt-0.5 shrink-0 text-[#A47434]" aria-hidden="true" />{brand.address}</li>
-              <li className="flex items-center gap-3"><Phone size={20} className="shrink-0 text-[#A47434]" aria-hidden="true" /><a href={phoneHref} className="hover:text-[#8A6020]">{brand.phone}</a></li>
-              <li className="flex items-center gap-3"><Clock size={20} className="shrink-0 text-[#A47434]" aria-hidden="true" />Mon – Sat, 10:00 AM – 7:00 PM IST</li>
+            <ul className="space-y-4 text-[#1B1C1A]">
+              <li className="flex items-start gap-3"><MapPin size={20} className="mt-0.5 shrink-0 text-[#A33E11]" aria-hidden="true" />{brand.address}</li>
+              <li className="flex items-center gap-3"><Phone size={20} className="shrink-0 text-[#A33E11]" aria-hidden="true" /><a href={phoneHref} className="hover:text-[#A33E11]">{brand.phone}</a></li>
+              <li className="flex items-center gap-3"><Clock size={20} className="shrink-0 text-[#A33E11]" aria-hidden="true" />Mon – Sat, 10:00 AM – 7:00 PM IST</li>
             </ul>
             <div className="mt-6 flex flex-wrap gap-3">
-              <a href={whatsappLink('Hi 211 OVERSEAS, I would like to book an office visit.')} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
+              <a href={whatsappLink('Hi 211 OVERSEAS, I would like to book an office visit.')} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
                 <WhatsAppIcon size={16} /> Book a visit
               </a>
-              <Link href="/contact" className="inline-flex min-h-11 items-center border border-[#2A2A2A] px-6 text-xs uppercase tracking-widest font-medium text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white transition-colors">
+              <Link href="/contact" className="inline-flex min-h-11 items-center border border-[#1B1C1A] px-6 text-xs uppercase tracking-widest font-medium text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white transition-colors">
                 Contact page
               </Link>
             </div>
@@ -237,14 +237,14 @@ export default function AboutPage() {
       <section className="py-12 md:py-16 border-b border-[#E6DDCC]" aria-label="Policies and disclaimer">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="flex items-start gap-4">
-            <ScrollText size={26} strokeWidth={1.5} className="mt-1 shrink-0 text-[#A47434]" aria-hidden="true" />
+            <ScrollText size={26} strokeWidth={1.5} className="mt-1 shrink-0 text-[#A33E11]" aria-hidden="true" />
             <div>
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A]">Policies you can read before you decide</h2>
-              <p className="mt-3 max-w-3xl text-sm text-[#57514A] leading-relaxed">{siteContent.footer.disclaimer}</p>
+              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">Policies you can read before you decide</h2>
+              <p className="mt-3 max-w-3xl text-sm text-[#41484B] leading-relaxed">{siteContent.footer.disclaimer}</p>
               <ul className="mt-5 flex flex-wrap gap-3">
                 {POLICIES.map((p) => (
                   <li key={p.href}>
-                    <Link href={p.href} className="inline-flex min-h-11 items-center border border-[#E6DDCC] bg-white px-4 text-sm text-[#2A2A2A] hover:border-[#94682B] hover:text-[#8A6020] transition-colors">
+                    <Link href={p.href} className="inline-flex min-h-11 items-center border border-[#E6DDCC] bg-white px-4 text-sm text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors">
                       {p.label}
                     </Link>
                   </li>

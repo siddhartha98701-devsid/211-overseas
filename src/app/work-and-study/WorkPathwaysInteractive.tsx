@@ -223,7 +223,7 @@ export function WorkPathwaysInteractive() {
                   className={`inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold whitespace-nowrap transition-all rounded-[2px] cursor-pointer ${
                     active
                       ? 'bg-[#0C3844] text-white shadow-sm'
-                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#0C3844] hover:text-[#0C3844]'
+                      : 'bg-white text-[#1B1C1A] border border-[#E6DDCC] hover:border-[#A33E11] hover:text-[#A33E11]'
                   }`}
                   aria-pressed={active}
                 >
@@ -235,8 +235,8 @@ export function WorkPathwaysInteractive() {
               );
             })}
           </div>
-          <span className="text-xs text-[#57514A] font-medium hidden sm:block shrink-0">
-            Showing <strong className="text-[#2A2A2A]">{filteredPathways.length}</strong> {filteredPathways.length === 1 ? 'pathway' : 'pathways'}
+          <span className="text-xs text-[#41484B] font-medium hidden sm:block shrink-0">
+            Showing <strong className="text-[#1B1C1A]">{filteredPathways.length}</strong> {filteredPathways.length === 1 ? 'pathway' : 'pathways'}
           </span>
         </div>
       </div>
@@ -256,11 +256,11 @@ export function WorkPathwaysInteractive() {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               layout
-              className="group flex flex-col justify-between overflow-hidden border border-[#E6DDCC] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#0C3844] hover:shadow-[0_16px_36px_rgba(12,56,68,0.12)]"
+              className="group flex flex-col justify-between overflow-hidden border border-[#E6DDCC] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_16px_36px_rgba(163,62,17,0.12)]"
             >
               <div>
                 {/* Image Banner */}
-                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#2A2A2A]">
+                <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
                   <Image
                     src={p.image}
                     alt={p.alt}
@@ -290,23 +290,23 @@ export function WorkPathwaysInteractive() {
 
                 {/* Content Body */}
                 <div className="p-6">
-                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] leading-snug group-hover:text-[#0C3844] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] leading-snug group-hover:text-[#A33E11] transition-colors">
                     {p.title}
                   </h3>
-                  <p className="mt-2.5 text-sm text-[#57514A] leading-relaxed">
+                  <p className="mt-2.5 text-sm text-[#41484B] leading-relaxed">
                     {p.text}
                   </p>
 
                   {/* Requirements List */}
                   <div className="mt-5 pt-4 border-t border-[#E6DDCC]/70">
-                    <p className="text-[11px] uppercase tracking-wider font-semibold text-[#2A2A2A] mb-2.5 flex items-center gap-1.5">
-                      <FileCheck size={14} className="text-[#0C3844]" />
+                    <p className="text-[11px] uppercase tracking-wider font-semibold text-[#1B1C1A] mb-2.5 flex items-center gap-1.5">
+                      <FileCheck size={14} className="text-[#A33E11]" />
                       Core Requirements
                     </p>
                     <ul className="space-y-1.5">
                       {p.requirements.map((req) => (
-                        <li key={req} className="flex items-start gap-2 text-xs text-[#57514A]">
-                          <CheckCircle2 size={13} className="text-[#0C3844] shrink-0 mt-0.5" />
+                        <li key={req} className="flex items-start gap-2 text-xs text-[#41484B]">
+                          <CheckCircle2 size={13} className="text-[#A33E11] shrink-0 mt-0.5" />
                           <span>{req}</span>
                         </li>
                       ))}
@@ -315,10 +315,10 @@ export function WorkPathwaysInteractive() {
 
                   {/* Timeline / Intake */}
                   <div className="mt-4 pt-3 border-t border-dashed border-[#E6DDCC]/80 flex items-center justify-between text-xs">
-                    <span className="text-[#8A6020] font-medium flex items-center gap-1">
+                    <span className="text-[#A33E11] font-medium flex items-center gap-1">
                       <ShieldCheck size={13} /> Process Timeline:
                     </span>
-                    <span className="font-semibold text-[#2A2A2A]">{p.intakeOrTimeline}</span>
+                    <span className="font-semibold text-[#1B1C1A]">{p.intakeOrTimeline}</span>
                   </div>
                 </div>
               </div>
@@ -327,7 +327,7 @@ export function WorkPathwaysInteractive() {
               <div className="px-6 pb-6 pt-2">
                 <Link
                   href={p.href}
-                  className="inline-flex w-full min-h-11 items-center justify-center gap-2 border border-[#0C3844] bg-[#0C3844]/5 hover:bg-[#0C3844] text-[#0C3844] hover:text-white px-5 text-xs uppercase tracking-widest font-semibold transition-all rounded-[2px]"
+                  className="inline-flex w-full min-h-11 items-center justify-center gap-2 border border-[#A33E11] bg-[#A33E11]/5 hover:bg-[#A33E11] text-[#A33E11] hover:text-white px-5 text-xs uppercase tracking-widest font-semibold transition-all rounded-[2px]"
                 >
                   Explore Pathway <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </Link>

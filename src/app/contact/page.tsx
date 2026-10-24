@@ -19,13 +19,13 @@ export default function ContactPage() {
       <section className="pt-36 pb-16 md:pt-44 md:pb-24 border-b border-[#E6DDCC]" aria-label="Contact hero">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#57514A] font-medium mb-3 block">
+            <span className="text-xs uppercase tracking-widest text-[#41484B] font-medium mb-3 block">
               Contact 211 OVERSEAS
             </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#2A2A2A] tracking-tight leading-[1.05] mb-6">
+            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#1B1C1A] tracking-tight leading-[1.05] mb-6">
               Start a conversation with our advisors
             </h1>
-            <p className="text-base sm:text-lg text-[#57514A] leading-relaxed font-light">
+            <p className="text-base sm:text-lg text-[#41484B] leading-relaxed font-light">
               Confused about where to start? Start with your profile — not a country. Share your
               details or connect directly with our Ahmedabad advisory team.
             </p>
@@ -40,13 +40,13 @@ export default function ContactPage() {
             {/* Contact Form */}
             <div className="lg:col-span-7">
               <div className="mb-8">
-                <span className="text-xs uppercase tracking-widest text-[#94682B] font-medium block mb-2">
+                <span className="text-xs uppercase tracking-widest text-[#A33E11] font-medium block mb-2">
                   Send Your Profile
                 </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#2A2A2A] tracking-tight">
+                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] tracking-tight">
                   Free profile assessment
                 </h2>
-                <p className="mt-2 text-sm text-[#57514A] leading-relaxed">
+                <p className="mt-2 text-sm text-[#41484B] leading-relaxed">
                   Fill in your details below. Our senior counselor will review your qualifications and contact you within 24 hours.
                 </p>
               </div>
@@ -56,34 +56,34 @@ export default function ContactPage() {
             {/* Office Location Block + Embedded Google Map */}
             <div className="lg:col-span-5 space-y-8">
               <div className="bg-white border border-[#E6DDCC] p-6 sm:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-[#94682B]">
+                <div className="flex items-center gap-2 mb-4 text-[#A33E11]">
                   <MapPin size={20} />
                   <span className="text-xs uppercase tracking-widest font-semibold">Office Location</span>
                 </div>
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] mb-2">
+                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
                   Headquarters
                 </h3>
-                <p className="text-sm text-[#2A2A2A] font-medium leading-relaxed mb-1">
+                <p className="text-sm text-[#1B1C1A] font-medium leading-relaxed mb-1">
                   {brand.address}
                 </p>
-                <p className="text-xs text-[#57514A] mb-6">
+                <p className="text-xs text-[#41484B] mb-6">
                   {brand.city}
                 </p>
 
                 {/* Office Hours */}
                 <div className="border-t border-[#E6DDCC] pt-5 mb-6">
-                  <div className="flex items-center gap-2 mb-3 text-[#94682B]">
+                  <div className="flex items-center gap-2 mb-3 text-[#A33E11]">
                     <Clock size={16} />
                     <span className="text-xs uppercase tracking-wider font-semibold">Office Hours</span>
                   </div>
-                  <div className="space-y-1.5 text-xs text-[#57514A]">
+                  <div className="space-y-1.5 text-xs text-[#41484B]">
                     <div className="flex justify-between py-1 border-b border-[#E6DDCC]/60">
-                      <span className="font-medium text-[#2A2A2A]">Monday – Saturday</span>
+                      <span className="font-medium text-[#1B1C1A]">Monday – Saturday</span>
                       <span>10:00 AM – 7:00 PM IST</span>
                     </div>
                     <div className="flex justify-between py-1">
-                      <span className="font-medium text-[#2A2A2A]">Sunday</span>
-                      <span className="text-[#94682B]">Prior Appointment Only</span>
+                      <span className="font-medium text-[#1B1C1A]">Sunday</span>
+                      <span className="text-[#A33E11]">Prior Appointment Only</span>
                     </div>
                   </div>
                 </div>
@@ -108,13 +108,13 @@ export default function ContactPage() {
                   href="https://www.google.com/maps/search/?api=1&query=The+Capital+Science+City+Road+Sola+Ahmedabad+Gujarat+380060"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-shine w-full inline-flex items-center justify-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors shadow-sm"
+                  className="btn-shine w-full inline-flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors shadow-sm"
                 >
                   <span>Get Directions</span>
                   <ExternalLink size={14} />
                 </a>
 
-                <p className="mt-4 text-[11px] text-[#57514A] text-center leading-relaxed">
+                <p className="mt-4 text-[11px] text-[#41484B] text-center leading-relaxed">
                   In-person advisory available by appointment. Parking available on site.
                 </p>
               </div>
@@ -131,76 +131,76 @@ export default function ContactPage() {
               {/* Phone */}
               <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
                     <Phone size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Telephone</span>
+                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Telephone</span>
                   </div>
                   <a
                     href={`tel:${brand.phone.replace(/\s/g, '')}`}
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
+                    className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block mb-1"
                   >
                     {brand.phone}
                   </a>
-                  <p className="text-xs text-[#57514A]">Direct phone assistance (IST)</p>
+                  <p className="text-xs text-[#41484B]">Direct phone assistance (IST)</p>
                 </div>
               </div>
 
               {/* WhatsApp */}
               <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
                     <MessageSquare size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">WhatsApp Support</span>
+                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">WhatsApp Support</span>
                   </div>
                   <a
                     href={brand.whatsapp}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A] hover:text-[#94682B] transition-colors block mb-1"
+                    className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block mb-1"
                   >
                     Chat on WhatsApp →
                   </a>
-                  <p className="text-xs text-[#57514A]">Quick queries &amp; document assessment</p>
+                  <p className="text-xs text-[#41484B]">Quick queries &amp; document assessment</p>
                 </div>
               </div>
 
               {/* Email Enquiries (3 emails) */}
               <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
                 <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#94682B]">
+                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
                     <Mail size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#57514A] font-medium">Email Advisory</span>
+                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Email Advisory</span>
                   </div>
                   <div className="space-y-2 mt-2">
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
                         {brand.emails.general.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.general.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
                       >
                         {brand.emails.general.address}
                       </a>
                     </div>
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
                         {brand.emails.admissions.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.admissions.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
                       >
                         {brand.emails.admissions.address}
                       </a>
                     </div>
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#94682B] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
                         {brand.emails.support.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.support.address}`}
-                        className="text-sm font-semibold text-[#2A2A2A] hover:text-[#94682B] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
                       >
                         {brand.emails.support.address}
                       </a>

@@ -130,7 +130,7 @@ export function GlobeExplorerSection() {
             {/* Globe + slider */}
             <div className="lg:col-span-7 min-w-0">
               <div className="relative mx-auto aspect-square w-full max-w-[560px]">
-                <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(184,135,64,0.22)_0%,rgba(184,135,64,0)_70%)] blur-2xl" />
+                <div aria-hidden="true" className="absolute inset-[8%] rounded-full bg-[radial-gradient(circle,rgba(163,62,17,0.22)_0%,rgba(163,62,17,0)_70%)] blur-2xl" />
                 <GlobeWrapper
                   className="h-full w-full"
                   tone="dark"
@@ -148,7 +148,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(-1)}
                   aria-label="Previous destination"
-                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center active:scale-95 shadow-md"
+                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#A33E11] hover:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -180,8 +180,8 @@ export function GlobeExplorerSection() {
                         title={d.pin === 'Seoul' ? (active ? 'Click to open Study in South Korea' : 'Select South Korea') : undefined}
                         className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none cursor-pointer ${
                           active
-                            ? 'bg-[#94682B] border-[#B88740] text-white shadow-[0_4px_16px_rgba(184,135,64,0.35)]'
-                            : 'bg-black/50 border-white/20 text-white hover:border-[#B88740] hover:bg-black/70'
+                            ? 'bg-[#A33E11] border-[#A33E11] text-white shadow-[0_4px_16px_rgba(163,62,17,0.35)]'
+                            : 'bg-black/50 border-white/20 text-white hover:border-[#A33E11] hover:bg-black/70'
                         }`}
                       >
                         <span
@@ -196,7 +196,7 @@ export function GlobeExplorerSection() {
                             country={d.country}
                             width={26}
                             height={18}
-                            className="w-[24px] h-[16px] sm:w-[26px] sm:h-[18px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-sm"
+                            className="w-[24px] h-[16px] sm:w-[26px] sm:h-[18px] rounded-[2px] border border-[#A33E11] object-cover flex-shrink-0 shadow-sm"
                             loading="lazy"
                           />
                           <span className="font-serif text-sm sm:text-base font-bold leading-tight truncate">
@@ -217,7 +217,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(1)}
                   aria-label="Next destination"
-                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#B88740] hover:text-[#D1A95F] transition-colors flex items-center justify-center active:scale-95 shadow-md"
+                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#A33E11] hover:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md"
                 >
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -234,7 +234,7 @@ export function GlobeExplorerSection() {
                   exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -10 }}
                   transition={{ duration: 0.25 }}
                 >
-                  <span className="text-xs uppercase tracking-widest text-[#D1A95F] font-medium">
+                  <span className="text-xs uppercase tracking-widest text-[#FC7F4E] font-medium">
                     {current.featured ? 'Featured pathway' : 'Other destination'}
                     {pinMeta ? ` · ${pinMeta.name}` : ''}
                   </span>
@@ -243,7 +243,7 @@ export function GlobeExplorerSection() {
                       country={current.country}
                       width={38}
                       height={26}
-                      className="w-[32px] h-[22px] sm:w-[38px] sm:h-[26px] rounded-[2px] border border-[#B88740] object-cover flex-shrink-0 shadow-md"
+                      className="w-[32px] h-[22px] sm:w-[38px] sm:h-[26px] rounded-[2px] border border-[#A33E11] object-cover flex-shrink-0 shadow-md"
                       loading="lazy"
                     />
                     <span>{current.country}</span>
@@ -261,7 +261,7 @@ export function GlobeExplorerSection() {
 
                   <Link
                     href={current.href}
-                    className="btn-shine inline-flex items-center gap-2 bg-[#94682B] hover:bg-[#7A5622] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
+                    className="btn-shine inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
                   >
                     <span>{current.cta}</span>
                     <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>

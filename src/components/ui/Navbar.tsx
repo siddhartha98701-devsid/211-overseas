@@ -108,15 +108,15 @@ export function Navbar() {
                     <Link
                       href={link.href}
                       className={`link-draw text-sm tracking-normal transition-colors py-1 ${
-                        isSolid ? (groupActive ? 'text-black font-medium' : 'text-[#57514A] hover:text-black') : groupActive ? 'text-white font-medium' : 'text-white/80 hover:text-white'
+                        isSolid ? (groupActive ? 'text-[#1B1C1A] font-medium' : 'text-[#41484B] hover:text-[#1B1C1A]') : groupActive ? 'text-white font-medium' : 'text-white/80 hover:text-white'
                       }`}
                     >
                       {link.label} <span aria-hidden="true" className="text-[10px]">▾</span>
                     </Link>
                     <div className="invisible absolute left-1/2 top-full z-50 w-60 -translate-x-1/2 pt-3 opacity-0 transition-opacity group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-                      <div className="border border-[#E6DDCC] bg-white py-2 shadow-[0_16px_40px_rgba(42,42,42,0.15)]">
+                      <div className="border border-[#E6DDCC] bg-white py-2 shadow-[0_16px_40px_rgba(0,34,43,0.12)]">
                         {link.children!.map((c) => (
-                          <Link key={c.href} href={c.href} className="block px-5 py-2.5 text-sm text-[#2A2A2A] hover:bg-[#F3EBDD] hover:text-[#8A6020]">
+                          <Link key={c.href} href={c.href} className="block px-5 py-2.5 text-sm text-[#1B1C1A] hover:bg-[#F3EBDD] hover:text-[#A33E11]">
                             {c.label}
                           </Link>
                         ))}
@@ -132,8 +132,8 @@ export function Navbar() {
                   className={`link-draw text-sm tracking-normal transition-colors py-1 ${
                     isSolid
                       ? isActive
-                        ? 'text-black font-medium'
-                        : 'text-[#57514A] hover:text-black'
+                        ? 'text-[#1B1C1A] font-medium'
+                        : 'text-[#41484B] hover:text-[#1B1C1A]'
                       : isActive
                       ? 'text-white font-medium'
                       : 'text-white/80 hover:text-white'
@@ -155,7 +155,7 @@ export function Navbar() {
                 }
               }}
               className={`text-xs uppercase tracking-wider font-semibold transition-colors cursor-pointer hover:underline underline-offset-4 ${
-                isSolid ? 'text-[#8A6020]' : 'text-[#D1A95F] hover:text-white'
+                isSolid ? 'text-[#A33E11]' : 'text-[#FC7F4E] hover:text-white'
               }`}
             >
               Not sure?
@@ -163,7 +163,7 @@ export function Navbar() {
             <button
               type="button"
               onClick={() => openCallback({ source: 'navbar' })}
-              className="btn-shine bg-[#94682B] hover:bg-[#7A5622] text-white text-xs uppercase tracking-wider font-medium px-5 py-2.5 transition-colors cursor-pointer"
+              className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white text-xs uppercase tracking-wider font-semibold px-5 py-2.5 transition-colors cursor-pointer"
             >
               Free Counselling
             </button>
@@ -180,10 +180,10 @@ export function Navbar() {
           </button>
         </div>
 
-        {/* Mustard scroll-progress bar */}
+        {/* Scroll-progress bar */}
         <motion.div
           aria-hidden="true"
-          className="absolute bottom-[-1px] left-0 right-0 h-[3px] origin-left bg-[#94682B]"
+          className="absolute bottom-[-1px] left-0 right-0 h-[3px] origin-left bg-[#A33E11]"
           style={{ scaleX: progress }}
         />
       </header>
@@ -197,7 +197,7 @@ export function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-50 bg-black text-white flex flex-col justify-between overflow-y-auto px-6 py-8 lg:hidden"
+            className="fixed inset-0 z-50 bg-[#00222B] text-white flex flex-col justify-between overflow-y-auto px-6 py-8 lg:hidden"
             role="dialog"
             aria-modal="true"
             aria-label="Mobile Navigation"
@@ -229,7 +229,7 @@ export function Navbar() {
                       <div className="flex items-center justify-between">
                         <Link
                           href={link.href}
-                          className={`font-serif text-2xl transition-colors ${pathname.startsWith(link.href) ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'}`}
+                          className={`font-serif text-2xl transition-colors ${pathname.startsWith(link.href) ? 'text-[#FC7F4E]' : 'text-white hover:text-[#FC7F4E]'}`}
                           onClick={() => setIsOpen(false)}
                         >
                           {link.label}
@@ -245,13 +245,13 @@ export function Navbar() {
                         </button>
                       </div>
                       {expanded === link.href && (
-                        <ul className="mt-1 mb-2 ml-1 space-y-1 border-l border-[#94682B] pl-4">
+                        <ul className="mt-1 mb-2 ml-1 space-y-1 border-l border-[#A33E11] pl-4">
                           {link.children.map((c) => (
                             <li key={c.href}>
                               <Link
                                 href={c.href}
                                 onClick={() => setIsOpen(false)}
-                                className={`flex min-h-11 items-center text-base ${pathname === c.href ? 'text-[#D1A95F]' : 'text-white/80 hover:text-[#D1A95F]'}`}
+                                className={`flex min-h-11 items-center text-base ${pathname === c.href ? 'text-[#FC7F4E]' : 'text-white/80 hover:text-[#FC7F4E]'}`}
                               >
                                 {c.label}
                               </Link>
@@ -263,7 +263,7 @@ export function Navbar() {
                   ) : (
                     <Link
                       href={link.href}
-                      className={`font-serif text-2xl transition-colors ${pathname === link.href ? 'text-[#D1A95F]' : 'text-white hover:text-[#D1A95F]'}`}
+                      className={`font-serif text-2xl transition-colors ${pathname === link.href ? 'text-[#FC7F4E]' : 'text-white hover:text-[#FC7F4E]'}`}
                       onClick={() => setIsOpen(false)}
                     >
                       {link.label}
@@ -276,7 +276,7 @@ export function Navbar() {
             <div className="pt-8 border-t border-white/15 space-y-3">
               <button
                 type="button"
-                className="block w-full text-center py-3 border border-[#D1A95F] text-[#D1A95F] hover:bg-[#D1A95F]/10 text-xs uppercase tracking-widest font-semibold cursor-pointer transition-colors"
+                className="block w-full text-center py-3 border border-[#FC7F4E] text-[#FC7F4E] hover:bg-[#FC7F4E]/10 text-xs uppercase tracking-widest font-semibold cursor-pointer transition-colors"
                 onClick={() => {
                   setIsOpen(false);
                   if (typeof window !== 'undefined') {
@@ -288,7 +288,7 @@ export function Navbar() {
               </button>
               <button
                 type="button"
-                className="btn-shine block w-full text-center py-4 bg-[#94682B] text-white text-sm uppercase tracking-wider font-medium cursor-pointer"
+                className="btn-shine block w-full text-center py-4 bg-[#A33E11] text-white text-sm uppercase tracking-wider font-semibold cursor-pointer"
                 onClick={() => {
                   setIsOpen(false);
                   openCallback({ source: 'mobile-menu' });
@@ -298,7 +298,7 @@ export function Navbar() {
               </button>
               <div className="mt-6 flex justify-between text-xs text-white/70">
                 <span>Ahmedabad, Gujarat</span>
-                <a href="tel:+919998585211" className="hover:text-[#D1A95F]">
+                <a href="tel:+919998585211" className="hover:text-[#FC7F4E]">
                   +91 99985 85211
                 </a>
               </div>
