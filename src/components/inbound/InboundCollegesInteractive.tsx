@@ -37,7 +37,7 @@ export function InboundCollegesInteractive() {
   const [selectedCategory, setSelectedCategory] = useState<string>('All Disciplines');
   const [selectedRegion, setSelectedRegion] = useState<string>('All India');
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [mapMode, setMapMode] = useState<'svg' | 'satellite'>('svg');
+  const [mapMode, setMapMode] = useState<'standard' | 'satellite'>('standard');
 
   // Filtered colleges
   const filteredColleges = useMemo(() => {
@@ -278,28 +278,28 @@ export function InboundCollegesInteractive() {
       {/* Main Split Layout: Interactive Map (Left) + College Dossier (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Interactive Map Hub (5 cols) */}
-        <div className="lg:col-span-5 bg-white border border-[#E6DDCC] rounded-[2px] overflow-hidden shadow-xs">
+        <div className="lg:col-span-5 bg-white border border-[#E6DDCC] rounded-[2px] overflow-hidden shadow-xs flex flex-col">
           {/* Map View Header / Toggle Switch */}
           <div className="p-4 border-b border-[#E6DDCC] flex items-center justify-between bg-[#FAF8F5]">
             <div className="flex items-center gap-2">
               <Compass size={18} className="text-[#0C3844]" />
               <h3 className="font-serif text-sm font-bold text-[#1B1C1A]">
-                India Academic Map Hub
+                Google Maps Campus View
               </h3>
             </div>
 
             <div className="flex items-center bg-white p-0.5 border border-[#E6DDCC] rounded-[2px] text-xs">
               <button
                 type="button"
-                onClick={() => setMapMode('svg')}
+                onClick={() => setMapMode('standard')}
                 className={`flex items-center gap-1 px-2.5 py-1 font-semibold rounded-[2px] transition-colors cursor-pointer ${
-                  mapMode === 'svg'
+                  mapMode === 'standard'
                     ? 'bg-[#0C3844] text-white shadow-xs'
                     : 'text-[#41484B] hover:text-[#1B1C1A]'
                 }`}
               >
                 <Layers size={12} />
-                <span>Geo Map</span>
+                <span>Map</span>
               </button>
               <button
                 type="button"
@@ -311,155 +311,53 @@ export function InboundCollegesInteractive() {
                 }`}
               >
                 <MapIcon size={12} />
-                <span>Live Campus</span>
+                <span>Satellite</span>
               </button>
             </div>
           </div>
 
-          {/* Interactive Map Canvas Container */}
-          <div className="relative aspect-[4/3] sm:aspect-[1/1] w-full bg-[#FAF8F5] overflow-hidden">
-            {mapMode === 'svg' ? (
-              <div className="relative w-full h-full p-4 flex items-center justify-center select-none">
-                {/* Stylized Vector Map Graphic */}
-                <svg
-                  viewBox="0 0 400 480"
-                  className="w-full h-full max-h-[460px] opacity-90 drop-shadow-sm"
-                  aria-label="Map of India showing university hubs"
-                >
-                  <defs>
-                    <linearGradient id="mapGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#F5ECE0" />
-                      <stop offset="100%" stopColor="#E6DDCC" />
-                    </linearGradient>
-                    <filter id="glowPin" x="-20%" y="-20%" width="140%" height="140%">
-                      <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0C3844" floodOpacity="0.4" />
-                    </filter>
-                  </defs>
-
-                  {/* Representative India Geographic Silhouette */}
-                  <path
-                    d="M175 35 Q195 20 215 35 Q225 55 210 75 Q215 90 235 95 Q245 110 235 125 Q260 120 280 135 Q305 145 320 170 Q305 185 285 180 Q270 195 260 215 Q265 240 280 255 Q290 275 275 290 Q255 280 240 295 Q225 325 210 355 Q195 390 185 435 Q175 445 165 435 Q155 385 140 345 Q125 310 115 280 Q105 270 95 285 Q80 280 85 250 Q95 240 90 220 Q70 210 65 190 Q75 165 95 155 Q115 150 125 125 Q135 105 145 80 Z"
-                    fill="url(#mapGradient)"
-                    stroke="#D8CCB5"
-                    strokeWidth="1.5"
-                    strokeLinejoin="round"
-                  />
-
-                  {/* Regional Boundary Guidelines */}
-                  <path
-                    d="M140 220 Q200 230 260 215"
-                    fill="none"
-                    stroke="#D8CCB5"
-                    strokeWidth="1"
-                    strokeDasharray="3 3"
-                  />
-                  <path
-                    d="M115 280 Q190 290 240 295"
-                    fill="none"
-                    stroke="#D8CCB5"
-                    strokeWidth="1"
-                    strokeDasharray="3 3"
-                  />
-
-                  {/* Watermark Labels */}
-                  <text x="75" y="340" fill="#0C3844" opacity="0.3" fontSize="9" fontWeight="600" letterSpacing="1">
-                    ARABIAN SEA
-                  </text>
-                  <text x="270" y="340" fill="#0C3844" opacity="0.3" fontSize="9" fontWeight="600" letterSpacing="1">
-                    BAY OF BENGAL
-                  </text>
-                  <text x="145" y="465" fill="#0C3844" opacity="0.3" fontSize="9" fontWeight="600" letterSpacing="1">
-                    INDIAN OCEAN
-                  </text>
-                </svg>
-
-                {/* Interactive Dynamic Pins */}
-                {filteredColleges.map((col) => {
-                  const isSelected = activeCollege?.id === col.id;
-                  return (
-                    <button
-                      key={col.id}
-                      type="button"
-                      onClick={() => handleSelectCollege(col.id)}
-                      className="group absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10 transition-transform active:scale-90 focus:outline-none"
-                      style={{
-                        left: `${col.coordinates.mapX}%`,
-                        top: `${col.coordinates.mapY}%`,
-                      }}
-                      title={`${col.name} (${col.city})`}
-                      aria-label={`Select ${col.name} in ${col.city}`}
-                    >
-                      {/* Pulse Ripple on Active Pin */}
-                      {isSelected && (
-                        <span className="absolute -inset-2 rounded-full bg-[#0C3844]/25 animate-ping" />
-                      )}
-
-                      {/* Map Pin Badge */}
-                      <div
-                        className={`relative flex items-center gap-1 px-2 py-1 rounded-full text-[11px] font-bold shadow-md transition-all duration-300 border ${
-                          isSelected
-                            ? 'bg-[#0C3844] text-white border-white scale-110 z-20 shadow-[0_4px_16px_rgba(12,56,68,0.4)]'
-                            : 'bg-white text-[#1B1C1A] border-[#E6DDCC] hover:border-[#0C3844] hover:scale-105'
-                        }`}
-                      >
-                        <MapPin
-                          size={12}
-                          className={isSelected ? 'text-[#FC7F4E]' : 'text-[#0C3844]'}
-                        />
-                        <span className="tracking-tight whitespace-nowrap">
-                          {col.shortName.split(' ')[0]}
-                        </span>
-                      </div>
-
-                      {/* Hover Tooltip on Desktop */}
-                      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-1.5 hidden group-hover:flex flex-col items-center pointer-events-none z-30">
-                        <div className="bg-[#00222B] text-white text-[10px] px-2 py-1 rounded shadow-lg whitespace-nowrap">
-                          <p className="font-bold">{col.name}</p>
-                          <p className="text-white/70">{col.city}, {col.state}</p>
-                        </div>
-                        <div className="w-1.5 h-1.5 bg-[#00222B] rotate-45 -mt-0.5" />
-                      </div>
-                    </button>
-                  );
-                })}
+          {/* Interactive Google Maps Container */}
+          <div className="relative aspect-[4/3] sm:aspect-[1/1] w-full bg-[#FAF8F5] overflow-hidden flex-1 min-h-[380px]">
+            <iframe
+              key={`${activeCollege.id}-${mapMode}`}
+              title={`Google Map of ${activeCollege.name}`}
+              src={`https://www.google.com/maps?q=${encodeURIComponent(
+                activeCollege.name.replace(/\s*\([^)]*\)/g, '') + ', ' + activeCollege.city + ', India'
+              )}&t=${mapMode === 'satellite' ? 'k' : 'm'}&z=15&ie=UTF8&iwloc=&output=embed`}
+              className="w-full h-full border-0"
+              loading="lazy"
+              allowFullScreen
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+            {/* Campus Info Overlay Card at bottom of map */}
+            <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs p-2.5 border border-[#E6DDCC] text-xs flex items-center justify-between rounded-[2px] shadow-sm">
+              <div className="min-w-0 pr-2">
+                <span className="font-semibold text-[#1B1C1A] block truncate text-[12px]">
+                  {activeCollege.name} ({activeCollege.city})
+                </span>
+                <span className="text-[11px] text-[#41484B] block truncate">
+                  {activeCollege.address}
+                </span>
               </div>
-            ) : (
-              /* Live Google Maps Satellite / Campus Street View */
-              <div className="relative w-full h-full">
-                <iframe
-                  title={`Live Google Map of ${activeCollege.name}`}
-                  src={`https://maps.google.com/maps?q=${encodeURIComponent(
-                    activeCollege.name + ', ' + activeCollege.city
-                  )}&t=&z=15&ie=UTF8&iwloc=&output=embed`}
-                  className="w-full h-full border-0"
-                  loading="lazy"
-                  allowFullScreen
-                />
-                <div className="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-xs p-2.5 border border-[#E6DDCC] text-xs flex items-center justify-between rounded-[2px] shadow-sm">
-                  <span className="font-medium text-[#1B1C1A] truncate">
-                    {activeCollege.name} ({activeCollege.city})
-                  </span>
-                  <a
-                    href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                      activeCollege.name + ' ' + activeCollege.address
-                    )}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 font-semibold text-[#0C3844] hover:underline shrink-0 ml-2 text-[11px]"
-                  >
-                    <span>Full Map</span>
-                    <ExternalLink size={12} />
-                  </a>
-                </div>
-              </div>
-            )}
+              <a
+                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                  activeCollege.name + ' ' + activeCollege.address
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-semibold text-[#0C3844] hover:underline shrink-0 ml-2 text-[11px]"
+              >
+                <span>Full Map</span>
+                <ExternalLink size={12} />
+              </a>
+            </div>
           </div>
 
           {/* Quick Hub Navigation Strip below Map */}
           <div className="p-3 bg-[#FAF8F5] border-t border-[#E6DDCC] flex items-center justify-between text-xs text-[#41484B]">
             <span className="flex items-center gap-1.5 font-medium">
               <Building2 size={14} className="text-[#0C3844]" />
-              <span>Active Pin: <strong>{activeCollege.shortName}</strong></span>
+              <span>Campus: <strong>{activeCollege.shortName}</strong></span>
             </span>
             <span className="text-[11px] text-[#A33E11] font-semibold uppercase tracking-wider">
               {activeCollege.city}, {activeCollege.state}
@@ -630,11 +528,11 @@ export function InboundCollegesInteractive() {
 
               <button
                 type="button"
-                onClick={() => setMapMode(mapMode === 'svg' ? 'satellite' : 'svg')}
+                onClick={() => setMapMode(mapMode === 'standard' ? 'satellite' : 'standard')}
                 className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px] cursor-pointer inline-flex items-center gap-1.5"
               >
                 <Compass size={13} />
-                <span>{mapMode === 'svg' ? 'View Campus Live Map' : 'View Geo Map'}</span>
+                <span>{mapMode === 'standard' ? 'View Satellite Map' : 'View Street Map'}</span>
               </button>
             </div>
 
