@@ -35,8 +35,8 @@ export function WhyUsSection() {
           {/* 5 structured points */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-6 border-t border-[#E6DDCC]/70">
             {siteContent.whyUs.points.map((point, i) => (
-              <div key={i} className="border border-[#E6DDCC] bg-white p-6 space-y-2.5 hover:border-[#1D3FFF] transition-colors">
-                <span className="text-xs font-bold text-[#1D3FFF] uppercase tracking-wider block">
+              <div key={i} className="border border-[#E6DDCC] bg-white p-6 space-y-2.5 hover:border-[#0C3844] transition-colors">
+                <span className="text-xs font-bold text-[#0C3844] uppercase tracking-wider block">
                   0{i + 1}
                 </span>
                 <h3 className="font-serif text-lg font-bold text-[#2A2A2A] tracking-tight">

@@ -194,7 +194,7 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
       {/* Editorial Form Container */}
       <div className="bg-[#FFFFFF] border border-[#E6DDCC] p-6 sm:p-10 md:p-14 shadow-sm">
         <div className="mb-8 max-w-xl">
-          <span className="text-xs uppercase tracking-widest text-[#1D3FFF] font-semibold block mb-2">
+          <span className="text-xs uppercase tracking-widest text-[#0C3844] font-semibold block mb-2">
             Admissions &amp; Career Evaluation
           </span>
           <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#2A2A2A] tracking-tight leading-tight">
@@ -211,10 +211,10 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
           {STEPS.map((st, i) => (
             <li key={st.title} aria-current={i === step ? 'step' : undefined}>
               <div className="h-1 bg-[#E6DDCC] overflow-hidden rounded-full">
-                <div className={`h-full bg-[#1D3FFF] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
+                <div className={`h-full bg-[#0C3844] transition-all duration-500 ${i <= step ? 'w-full' : 'w-0'}`} />
               </div>
               <p className={`mt-2 text-[11px] sm:text-xs uppercase tracking-wider font-semibold ${i <= step ? 'text-[#2A2A2A]' : 'text-[#57514A]/60'}`}>
-                <span className="text-[#1D3FFF] mr-1">{i + 1}.</span> {st.title}
+                <span className="text-[#0C3844] mr-1">{i + 1}.</span> {st.title}
               </p>
               <p className="hidden sm:block text-xs text-[#57514A] mt-0.5">{st.hint}</p>
             </li>
@@ -418,7 +418,7 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
               </label>
               <select
                 id="destination"
-                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors"
+                className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] focus:outline-none focus:border-[#0C3844] focus:ring-1 focus:ring-[#0C3844] transition-colors"
                 {...register('destination')}
               >
                 <option value="">Select destination...</option>
@@ -436,13 +436,13 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
                   htmlFor="otherDestination"
                   className="block text-xs uppercase tracking-wider text-[#2A2A2A] font-semibold mb-2"
                 >
-                  Specify Target Country <span className="text-[#1D3FFF]">*</span>
+                  Specify Target Country <span className="text-[#0C3844]">*</span>
                 </label>
                 <input
                   id="otherDestination"
                   type="text"
                   placeholder="e.g. Ireland, France, New Zealand, Italy"
-                  className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors"
+                  className="w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] text-[#2A2A2A] placeholder-[#57514A]/60 focus:outline-none focus:border-[#0C3844] focus:ring-1 focus:ring-[#0C3844] transition-colors"
                   {...register('otherDestination')}
                 />
               </div>
@@ -605,11 +605,11 @@ function FormContent({ defaultInterest, defaultDestination }: EnquiryFormProps) 
             </div>
             <p className="text-center text-xs text-[#57514A] mt-3">
               Your data is handled securely as described in our{' '}
-              <Link href="/privacy-policy" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+              <Link href="/privacy-policy" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
                 Privacy Policy
               </Link>{' '}
               and{' '}
-              <Link href="/disclaimer" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+              <Link href="/disclaimer" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
                 Legal Disclaimer
               </Link>
               .

@@ -9,11 +9,11 @@
   --color-mustard: #B88740;
   --color-mustard-hover: #7A5622;
   --color-mustard-deep: #8A6020;
-  --color-brand-blue: #1D3FFF; /* Figma deep blue accent token (WCAG AA compliant 4.54:1 on white) */
-  --color-brand-blue-hover: #1532D4;
-  --color-brand-blue-light: #EEF2FF;
-  --color-accent: #1D3FFF;
-  --color-accent-hover: #1532D4;
+  --color-brand-blue: #0C3844; /* Deep Ocean Teal accent token (#0C3844) */
+  --color-brand-blue-hover: #08262E;
+  --color-brand-blue-light: #E7F1F4;
+  --color-accent: #0C3844;
+  --color-accent-hover: #08262E;
   /* Brand fonts first (Boston Angel Bold / Gordita), free look-alikes as fallback */
   --font-serif: "Boston Angel", "Boston Angel Bold", var(--font-display), Georgia, serif;
   --font-sans: "Gordita", var(--font-body), system-ui, sans-serif;
@@ -25,9 +25,9 @@
   --color-muted: #57514A;
   --color-hairline: #E6DDCC;
   --color-mustard: #B88740;
-  --color-brand-blue: #1D3FFF;
-  --color-accent: #1D3FFF;
-  --color-accent-hover: #1532D4;
+  --color-brand-blue: #0C3844;
+  --color-accent: #0C3844;
+  --color-accent-hover: #08262E;
 }
 
 html {
@@ -88,13 +88,13 @@ body {
 
 /* Accessible focus ring */
 *:focus-visible {
-  outline: 2px solid var(--color-brand-blue, #1D3FFF);
+  outline: 2px solid var(--color-brand-blue, #0C3844);
   outline-offset: 2px;
 }
 
 /* Form checkbox styles */
 .filter-checkbox {
-  accent-color: var(--color-brand-blue, #1D3FFF);
+  accent-color: var(--color-brand-blue, #0C3844);
 }
 
 /* 600ms fade-up animation */
@@ -114,7 +114,7 @@ body {
 }
 
 ::selection {
-  background: #1D3FFF;
+  background: #0C3844;
   color: #FFFFFF;
 }
 

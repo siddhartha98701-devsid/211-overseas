@@ -68,12 +68,12 @@ export default function WorkAndStudyPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
             <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-4">
-              <span className="h-px w-10 bg-[#1D3FFF]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-4">
+              <span className="h-px w-10 bg-[#0C3844]" />
               Work Abroad · Professional International Careers
             </p>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
-              Build your international career: <span className="text-[#1D3FFF]">work visas</span> &amp; professional placements
+              Build your international career: <span className="text-[#0C3844]">work visas</span> &amp; professional placements
             </h1>
             <p className="mt-5 text-base md:text-lg text-[#57514A] leading-relaxed">
               Direct career routes for qualified professionals. We handle your eligibility evaluation, credential equivalence, language preparation, employer interviews, and embassy work visa filings across Europe, the Middle East, and Asia-Pacific.
@@ -81,7 +81,7 @@ export default function WorkAndStudyPage() {
             <div className="mt-8 flex flex-wrap gap-4 items-center">
               <a
                 href="#pathways"
-                className="btn-shine inline-flex min-h-11 items-center bg-[#1D3FFF] hover:bg-[#1532CC] text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
+                className="btn-shine inline-flex min-h-11 items-center bg-[#0C3844] hover:bg-[#08262E] text-white px-7 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
               >
                 Explore Work Pathways
               </a>
@@ -154,10 +154,10 @@ export default function WorkAndStudyPage() {
                 <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between">
                   <div>
                     <div className="flex items-center justify-between mb-4">
-                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-xs font-bold text-white">
+                      <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-xs font-bold text-white">
                         {s.number}
                       </span>
-                      <Icon size={20} className="text-[#1D3FFF]" />
+                      <Icon size={20} className="text-[#0C3844]" />
                     </div>
                     <h3 className="font-serif text-lg font-bold text-white">{s.title}</h3>
                     <p className="mt-2.5 text-sm text-white/70 leading-relaxed">{s.description}</p>

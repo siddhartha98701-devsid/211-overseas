@@ -8,6 +8,7 @@ import { FaqSection } from '@/components/sections/FaqSection';
 import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 import { LeadMiniForm } from '@/components/lead/LeadMiniForm';
+import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
 
 export const metadata: Metadata = {
   title: 'Inbound International Education & Research in India',
@@ -90,12 +91,13 @@ const INBOUND_FAQS = [
 export default function InboundPage() {
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-14 md:pt-40 md:pb-20 border-b border-[#E6DDCC]" aria-label="Inbound education hero">
-        <div className="max-w-[1280px] mx-auto px-6">
+      {/* Hero with subtle handcrafted botanical leaf & blossom animation */}
+      <section className="relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Inbound education hero">
+        <BlossomLeafAnimation />
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6">
           <nav aria-label="Breadcrumb" className="mb-6 text-xs text-[#57514A]">
             <ol className="flex items-center gap-2">
-              <li><Link href="/" className="hover:text-[#1D3FFF]">Home</Link></li>
+              <li><Link href="/" className="hover:text-[#0C3844]">Home</Link></li>
               <li aria-hidden="true">/</li>
               <li aria-current="page" className="text-[#2A2A2A] font-medium">Inbound Education &amp; Research</li>
             </ol>
@@ -103,12 +105,12 @@ export default function InboundPage() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
             <div className="lg:col-span-7">
-              <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-4">
-                <span className="h-px w-8 bg-[#1D3FFF]" />
+              <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-4">
+                <span className="h-px w-8 bg-[#0C3844]" />
                 Inbound Global Programs
               </p>
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
-                Study &amp; Research in India: <span className="text-[#1D3FFF]">Inbound Pathways</span>
+                Study &amp; Research in India: <span className="text-[#0C3844]">Inbound Pathways</span>
               </h1>
               <p className="mt-5 text-base md:text-lg text-[#57514A] leading-relaxed max-w-2xl">
                 211 OVERSEAS bridges international students, visiting researchers, and global scholars with premier academic institutions and research ecosystems across India.
@@ -117,7 +119,7 @@ export default function InboundPage() {
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
                   href="#inbound-form"
-                  className="btn-shine bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
+                  className="btn-shine bg-[#0C3844] hover:bg-[#08262E] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
                 >
                   Apply for Inbound Guidance
                 </a>
@@ -143,8 +145,8 @@ export default function InboundPage() {
             </div>
 
             {/* Quick Callback Widget */}
-            <aside className="lg:col-span-5 bg-white border-t-4 border-[#1D3FFF] p-6 sm:p-7 shadow-[0_20px_50px_rgba(42,42,42,0.08)]">
-              <p className="text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold">Inbound Desk</p>
+            <aside className="lg:col-span-5 bg-white border-t-4 border-[#0C3844] p-6 sm:p-7 shadow-[0_20px_50px_rgba(42,42,42,0.08)]">
+              <p className="text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold">Inbound Desk</p>
               <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A]">Request Information</h2>
               <p className="mb-5 text-sm text-[#57514A]">Connect with our inbound advisory desk for international students.</p>
               <LeadMiniForm interest="Inbound Programs & Research" source="inbound-page" />
@@ -164,8 +166,8 @@ export default function InboundPage() {
           />
           <MobileScroller label="Inbound benefits" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {INBOUND_BENEFITS.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-white p-6 hover:border-[#1D3FFF] transition-colors">
-                <span className="flex h-11 w-11 items-center justify-center bg-[#1D3FFF] text-white">
+              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-white p-6 hover:border-[#0C3844] transition-colors">
+                <span className="flex h-11 w-11 items-center justify-center bg-[#0C3844] text-white">
                   <Icon size={20} aria-hidden="true" />
                 </span>
                 <h3 className="mt-4 font-serif text-lg font-bold text-[#2A2A2A]">{title}</h3>
@@ -188,7 +190,7 @@ export default function InboundPage() {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {WHO_ITS_FOR.map((item) => (
               <li key={item} className="flex items-start gap-3 bg-white p-5 border border-[#E6DDCC]">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#1D3FFF] text-white">
+                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#0C3844] text-white">
                   <Check size={14} strokeWidth={2.5} aria-hidden="true" />
                 </span>
                 <span className="text-sm text-[#2A2A2A] leading-relaxed font-medium">{item}</span>
@@ -211,7 +213,7 @@ export default function InboundPage() {
           <MobileScroller dark label="Inbound steps" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {INBOUND_STEPS.map((s) => (
               <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-white text-xs font-bold">
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-white text-xs font-bold">
                   {s.number}
                 </span>
                 <h3 className="mt-4 font-serif text-lg font-bold">{s.title}</h3>

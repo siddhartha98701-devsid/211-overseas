@@ -58,7 +58,7 @@ export function EligibilitySection() {
               compact
             />
             <div className="p-5 border border-white/10 bg-white/[0.03] space-y-3.5">
-              <span className="text-xs uppercase tracking-widest text-[#1D3FFF] font-semibold block">
+              <span className="text-xs uppercase tracking-widest text-[#0C3844] font-semibold block">
                 Assessment Guarantee
               </span>
               <ul className="space-y-3 text-sm text-white/75">
@@ -68,7 +68,7 @@ export function EligibilitySection() {
                   'Direct consultation with an accredited regional advisor',
                 ].map((t) => (
                   <li key={t} className="flex items-center gap-3">
-                    <CheckCircle2 size={16} className="text-[#1D3FFF] shrink-0" aria-hidden="true" />
+                    <CheckCircle2 size={16} className="text-[#0C3844] shrink-0" aria-hidden="true" />
                     <span>{t}</span>
                   </li>
                 ))}
@@ -86,13 +86,13 @@ export function EligibilitySection() {
                     <span className="text-white/60 uppercase tracking-widest font-semibold">
                       {done ? 'Evaluation Complete' : `Step ${step + 1} of 3: ${STEPS[step]?.label}`}
                     </span>
-                    <span className="text-[#1D3FFF] font-bold tabular-nums">
+                    <span className="text-[#0C3844] font-bold tabular-nums">
                       {done ? '100%' : `${Math.round(((step) / 3) * 100)}%`}
                     </span>
                   </div>
                   <div className="h-1.5 w-full bg-white/10 rounded-full overflow-hidden">
                     <motion.div
-                      className="h-full bg-[#1D3FFF]"
+                      className="h-full bg-[#0C3844]"
                       animate={{ width: `${(Math.min(step, 3) / 3) * 100}%` }}
                       transition={{ duration: 0.35, ease: 'easeOut' }}
                     />
@@ -125,8 +125,8 @@ export function EligibilitySection() {
                                 }}
                                 className={`w-full text-left px-5 py-4 border transition-all cursor-pointer flex items-center justify-between min-h-[52px] ${
                                   isSelected
-                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
-                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                    ? 'border-[#0C3844] bg-[#0C3844]/15 text-white ring-1 ring-[#0C3844]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#0C3844] hover:bg-white/[0.05]'
                                 }`}
                               >
                                 <span className="font-medium text-sm sm:text-base">{e.label}</span>
@@ -158,8 +158,8 @@ export function EligibilitySection() {
                                 }}
                                 className={`w-full text-left px-5 py-4 border transition-all cursor-pointer flex items-center justify-between min-h-[52px] ${
                                   isSelected
-                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
-                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                    ? 'border-[#0C3844] bg-[#0C3844]/15 text-white ring-1 ring-[#0C3844]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#0C3844] hover:bg-white/[0.05]'
                                 }`}
                               >
                                 <span className="font-medium text-sm sm:text-base">{e.label}</span>
@@ -191,12 +191,12 @@ export function EligibilitySection() {
                                 }}
                                 className={`text-left px-4 py-3.5 border transition-all cursor-pointer flex items-center justify-between min-h-[50px] ${
                                   isSelected
-                                    ? 'border-[#1D3FFF] bg-[#1D3FFF]/15 text-white ring-1 ring-[#1D3FFF]'
-                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#1D3FFF] hover:bg-white/[0.05]'
+                                    ? 'border-[#0C3844] bg-[#0C3844]/15 text-white ring-1 ring-[#0C3844]'
+                                    : 'border-white/15 bg-white/[0.02] text-white/90 hover:border-[#0C3844] hover:bg-white/[0.05]'
                                 }`}
                               >
                                 <span className="font-medium text-xs sm:text-sm">{f.label}</span>
-                                <ArrowRight size={14} className="text-[#1D3FFF] shrink-0" />
+                                <ArrowRight size={14} className="text-[#0C3844] shrink-0" />
                               </button>
                             );
                           })}
@@ -206,10 +206,10 @@ export function EligibilitySection() {
 
                     {done && edu && eng && (
                       <div role="status" aria-live="polite" className="space-y-6">
-                        <div className="p-4 border border-[#1D3FFF]/50 bg-[#1D3FFF]/10 rounded-[2px] flex items-center gap-3">
-                          <Sparkles size={22} className="text-[#1D3FFF] shrink-0" />
+                        <div className="p-4 border border-[#0C3844]/50 bg-[#0C3844]/10 rounded-[2px] flex items-center gap-3">
+                          <Sparkles size={22} className="text-[#0C3844] shrink-0" />
                           <div>
-                            <p className="text-xs uppercase tracking-wider text-[#1D3FFF] font-bold">
+                            <p className="text-xs uppercase tracking-wider text-[#0C3844] font-bold">
                               Preliminary Match Found
                             </p>
                             <h3 className="font-serif text-xl sm:text-2xl font-bold text-white leading-tight">
@@ -249,7 +249,7 @@ export function EligibilitySection() {
                                 source: `eligibility:${edu.label} | ${eng.label} | ${fieldLabel}`,
                               })
                             }
-                            className="btn-shine bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                            className="btn-shine bg-[#0C3844] hover:bg-[#08262E] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
                           >
                             Get Custom University Shortlist
                           </button>
@@ -279,7 +279,7 @@ export function EligibilitySection() {
                   <button
                     type="button"
                     onClick={() => setStep(step - 1)}
-                    className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-white/70 hover:text-[#1D3FFF] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-2 text-xs uppercase tracking-widest font-semibold text-white/70 hover:text-[#0C3844] transition-colors cursor-pointer"
                   >
                     <ArrowLeft size={14} /> Back
                   </button>

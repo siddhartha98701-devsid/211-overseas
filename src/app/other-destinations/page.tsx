@@ -31,12 +31,12 @@ export default function OtherDestinationsPage() {
       <section className="pt-32 pb-12 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Other study destinations hero">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
           <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-5">
-              <span className="h-px w-10 bg-[#1D3FFF]" />
+            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-5">
+              <span className="h-px w-10 bg-[#0C3844]" />
               Global Study Abroad Pathways
             </p>
             <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1] mb-5">
-              Your future doesn&apos;t have to be limited to <span className="text-[#1D3FFF]">one country</span>
+              Your future doesn&apos;t have to be limited to <span className="text-[#0C3844]">one country</span>
             </h1>
             <p className="text-base md:text-lg text-[#57514A] leading-relaxed">
               Explore leading international universities and academic degrees across Asia, Europe, North America, and Oceania. Filter destinations below or consult our admissions advisors to match your academic profile, budget, and career goals.
@@ -46,7 +46,7 @@ export default function OtherDestinationsPage() {
                 <li key={p.slug}>
                   <Link
                     href={subpageHref(p)}
-                    className="inline-flex min-h-11 items-center gap-2 border border-[#E6DDCC] bg-white px-3.5 text-sm text-[#2A2A2A] transition-all hover:border-[#1D3FFF] hover:text-[#1D3FFF] rounded-[2px]"
+                    className="inline-flex min-h-11 items-center gap-2 border border-[#E6DDCC] bg-white px-3.5 text-sm text-[#2A2A2A] transition-all hover:border-[#0C3844] hover:text-[#0C3844] rounded-[2px]"
                   >
                     <CountryFlag country={p.name} className="h-[14px] w-[20px] rounded-[2px] object-cover" width={20} height={14} />
                     {p.name}
@@ -103,7 +103,7 @@ export default function OtherDestinationsPage() {
                     <td className="px-4 py-3.5 text-right">
                       <Link
                         href={subpageHref(p)}
-                        className="whitespace-nowrap text-xs uppercase tracking-widest font-semibold text-[#1D3FFF] hover:underline underline-offset-4"
+                        className="whitespace-nowrap text-xs uppercase tracking-widest font-semibold text-[#0C3844] hover:underline underline-offset-4"
                       >
                         Explore Guide →
                       </Link>
@@ -142,7 +142,7 @@ export default function OtherDestinationsPage() {
             {steps.map((s, i) => (
               <div key={s.title} className="h-full w-full border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between">
                 <div>
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-xs font-bold text-white mb-4">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-xs font-bold text-white mb-4">
                     {i + 1}
                   </span>
                   <h3 className="font-serif text-lg font-bold text-white">{s.title}</h3>

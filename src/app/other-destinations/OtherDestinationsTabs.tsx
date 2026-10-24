@@ -52,12 +52,12 @@ export function OtherDestinationsTabs({ pages }: OtherDestinationsTabsProps) {
                   onClick={() => setActiveRegion(r.id)}
                   className={`inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold whitespace-nowrap transition-all rounded-[2px] cursor-pointer ${
                     isActive
-                      ? 'bg-[#1D3FFF] text-white shadow-sm'
-                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#1D3FFF] hover:text-[#1D3FFF]'
+                      ? 'bg-[#0C3844] text-white shadow-sm'
+                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#0C3844] hover:text-[#0C3844]'
                   }`}
                   aria-pressed={isActive}
                 >
-                  <GraduationCap size={14} className={isActive ? 'text-white' : 'text-[#1D3FFF]'} />
+                  <GraduationCap size={14} className={isActive ? 'text-white' : 'text-[#0C3844]'} />
                   {r.label}
                 </button>
               );

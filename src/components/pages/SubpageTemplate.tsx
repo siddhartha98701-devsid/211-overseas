@@ -128,7 +128,7 @@ export function SubpageTemplate({ page }: { page: SubpageContent }) {
               aria-label="Get a call back"
               className="lg:col-span-5 bg-white border-t-4 border-[#B88740] p-6 sm:p-7 shadow-[0_24px_60px_rgba(42,42,42,0.12)]"
             >
-              <p className="text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold">Free counselling</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold">Free counselling</p>
               <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-[#2A2A2A]">Talk to an expert</h2>
               <p className="mb-5 text-sm text-[#57514A]">Get personalized guidance regarding {page.name} in {page.destination}.</p>
               <LeadMiniForm interest={page.interest} source={`subpage:${page.group}/${page.slug}`} />

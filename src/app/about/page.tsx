@@ -135,13 +135,13 @@ export default function AboutPage() {
           />
           <MobileScroller label="Our principles" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {PRINCIPLES.map(({ icon: Icon, title, text }, i) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#1D3FFF] transition-all flex flex-col justify-between">
+              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#0C3844] transition-all flex flex-col justify-between">
                 <div>
                   <div className="flex items-center justify-between mb-4">
                     <span className="flex h-11 w-11 items-center justify-center bg-[#2A2A2A] text-white">
                       <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
                     </span>
-                    <span className="font-serif text-xs font-bold text-[#1D3FFF] uppercase tracking-wider">
+                    <span className="font-serif text-xs font-bold text-[#0C3844] uppercase tracking-wider">
                       Promise 0{i + 1}
                     </span>
                   </div>
@@ -190,7 +190,7 @@ export default function AboutPage() {
           <MobileScroller dark label="Our process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
             {howItWorks.steps.map((s) => (
               <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#1D3FFF] text-white text-xs font-bold">{s.number}</span>
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#0C3844] text-white text-xs font-bold">{s.number}</span>
                 <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{s.title}</h3>
                 <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
               </div>

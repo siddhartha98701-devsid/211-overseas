@@ -222,8 +222,8 @@ export function WorkPathwaysInteractive() {
                   onClick={() => setSelectedCountry(c)}
                   className={`inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-wider font-semibold whitespace-nowrap transition-all rounded-[2px] cursor-pointer ${
                     active
-                      ? 'bg-[#1D3FFF] text-white shadow-sm'
-                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#1D3FFF] hover:text-[#1D3FFF]'
+                      ? 'bg-[#0C3844] text-white shadow-sm'
+                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#0C3844] hover:text-[#0C3844]'
                   }`}
                   aria-pressed={active}
                 >
@@ -256,7 +256,7 @@ export function WorkPathwaysInteractive() {
               whileInView="visible"
               viewport={{ once: true, margin: '-40px' }}
               layout
-              className="group flex flex-col justify-between overflow-hidden border border-[#E6DDCC] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#1D3FFF] hover:shadow-[0_16px_36px_rgba(29,63,255,0.08)]"
+              className="group flex flex-col justify-between overflow-hidden border border-[#E6DDCC] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#0C3844] hover:shadow-[0_16px_36px_rgba(12,56,68,0.12)]"
             >
               <div>
                 {/* Image Banner */}
@@ -277,7 +277,7 @@ export function WorkPathwaysInteractive() {
                       <CountryFlag country={p.country} className="h-3 w-4 rounded-[1px] object-cover" width={16} height={12} />
                       {p.country}
                     </span>
-                    <span className="px-2 py-0.5 bg-[#1D3FFF] text-white text-[10px] font-semibold uppercase tracking-wider rounded-[2px]">
+                    <span className="px-2 py-0.5 bg-[#0C3844] text-white text-[10px] font-semibold uppercase tracking-wider rounded-[2px]">
                       {p.category}
                     </span>
                   </div>
@@ -290,7 +290,7 @@ export function WorkPathwaysInteractive() {
 
                 {/* Content Body */}
                 <div className="p-6">
-                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] leading-snug group-hover:text-[#1D3FFF] transition-colors">
+                  <h3 className="font-serif text-xl font-bold text-[#2A2A2A] leading-snug group-hover:text-[#0C3844] transition-colors">
                     {p.title}
                   </h3>
                   <p className="mt-2.5 text-sm text-[#57514A] leading-relaxed">
@@ -300,13 +300,13 @@ export function WorkPathwaysInteractive() {
                   {/* Requirements List */}
                   <div className="mt-5 pt-4 border-t border-[#E6DDCC]/70">
                     <p className="text-[11px] uppercase tracking-wider font-semibold text-[#2A2A2A] mb-2.5 flex items-center gap-1.5">
-                      <FileCheck size={14} className="text-[#1D3FFF]" />
+                      <FileCheck size={14} className="text-[#0C3844]" />
                       Core Requirements
                     </p>
                     <ul className="space-y-1.5">
                       {p.requirements.map((req) => (
                         <li key={req} className="flex items-start gap-2 text-xs text-[#57514A]">
-                          <CheckCircle2 size={13} className="text-[#1D3FFF] shrink-0 mt-0.5" />
+                          <CheckCircle2 size={13} className="text-[#0C3844] shrink-0 mt-0.5" />
                           <span>{req}</span>
                         </li>
                       ))}
@@ -327,7 +327,7 @@ export function WorkPathwaysInteractive() {
               <div className="px-6 pb-6 pt-2">
                 <Link
                   href={p.href}
-                  className="inline-flex w-full min-h-11 items-center justify-center gap-2 border border-[#1D3FFF] bg-[#1D3FFF]/5 hover:bg-[#1D3FFF] text-[#1D3FFF] hover:text-white px-5 text-xs uppercase tracking-widest font-semibold transition-all rounded-[2px]"
+                  className="inline-flex w-full min-h-11 items-center justify-center gap-2 border border-[#0C3844] bg-[#0C3844]/5 hover:bg-[#0C3844] text-[#0C3844] hover:text-white px-5 text-xs uppercase tracking-widest font-semibold transition-all rounded-[2px]"
                 >
                   Explore Pathway <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
                 </Link>

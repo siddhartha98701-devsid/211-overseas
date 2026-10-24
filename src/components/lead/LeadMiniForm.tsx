@@ -37,7 +37,7 @@ interface LeadMiniFormProps {
 }
 
 const INPUT =
-  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#1D3FFF] focus:ring-1 focus:ring-[#1D3FFF] transition-colors';
+  'w-full px-4 py-3 text-base sm:text-sm min-h-11 bg-white border border-[#E6DDCC] text-black placeholder-[#57514A]/60 focus:outline-none focus:border-[#0C3844] focus:ring-1 focus:ring-[#0C3844] transition-colors';
 const LABEL = 'block text-xs uppercase tracking-wider text-black font-semibold mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
@@ -174,7 +174,7 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
           className="space-y-1"
         >
           <label htmlFor={`${source}-otherCountry`} className={LABEL}>
-            Specify Country of Interest <span className="text-[#1D3FFF]">*</span>
+            Specify Country of Interest <span className="text-[#0C3844]">*</span>
           </label>
           <input
             id={`${source}-otherCountry`}
@@ -191,11 +191,11 @@ export function LeadMiniForm({ interest, source, submitLabel = 'Get free counsel
           <input type="checkbox" className="mt-1 h-4 w-4 shrink-0 filter-checkbox" {...register('consent')} />
           <span className="text-xs text-[#57514A] leading-relaxed">
             I consent to 211 OVERSEAS contacting me regarding overseas study and career pathways.{' '}
-            <Link href="/privacy-policy" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+            <Link href="/privacy-policy" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
               Privacy Policy
             </Link>{' '}
             &amp;{' '}
-            <Link href="/disclaimer" className="underline decoration-[#1D3FFF] underline-offset-2 hover:text-[#1D3FFF]">
+            <Link href="/disclaimer" className="underline decoration-[#0C3844] underline-offset-2 hover:text-[#0C3844]">
               Disclaimer
             </Link>
             .

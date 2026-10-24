@@ -372,17 +372,17 @@ export function PathGatewaySection() {
         {/* Section Header (Pattern a: Two-tone heading + explore link) */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
           <div>
-            <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-[#1D3FFF] mb-2">
+            <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-[#0C3844] mb-2">
               <Sparkles size={14} />
               <span>Global Opportunities</span>
             </div>
             <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#2A2A2A] leading-tight">
-              Study in <span className="text-[#1D3FFF]">{activeCountry.name}</span> for Indian Students
+              Study in <span className="text-[#0C3844]">{activeCountry.name}</span> for Indian Students
             </h2>
           </div>
           <Link
             href={activeCountry.href}
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[#1D3FFF] hover:text-[#1532D4] transition-colors self-start md:self-end cursor-pointer"
+            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[#0C3844] hover:text-[#08262E] transition-colors self-start md:self-end cursor-pointer"
           >
             <span>Explore programs</span>
             <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -502,7 +502,7 @@ export function PathGatewaySection() {
                           sizes="300px"
                           className="object-cover"
                         />
-                        <div className="absolute right-3 -bottom-4 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center font-bold text-xs text-[#1D3FFF] z-10">
+                        <div className="absolute right-3 -bottom-4 w-10 h-10 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
                           {prog.logoMonogram}
                         </div>
                       </div>
@@ -519,13 +519,13 @@ export function PathGatewaySection() {
                             {prog.programTitle}
                           </h4>
 
-                          <span className="inline-block mt-2 text-[10px] xl:text-[11px] font-semibold bg-[#EBF7FF] text-[#0070BA] px-2.5 py-0.5 rounded-full border border-[#0070BA]/20">
+                          <span className="inline-block mt-2 text-[10px] xl:text-[11px] font-semibold bg-[#E7F1F4] text-[#0C3844] px-2.5 py-0.5 rounded-full border border-[#0C3844]/20">
                             {prog.tag}
                           </span>
 
                           <div className="mt-3 space-y-1 text-xs text-[#57514A]">
                             <div className="flex items-center gap-1.5">
-                              <GraduationCap size={14} className="text-[#1D3FFF]" />
+                              <GraduationCap size={14} className="text-[#0C3844]" />
                               <span>{prog.degree}</span>
                             </div>
                             <div className="flex items-center gap-1.5">
@@ -544,7 +544,7 @@ export function PathGatewaySection() {
                               source: `gateway:${activeCountry.id}`,
                             })
                           }
-                          className="mt-3 w-full bg-[#1D3FFF] hover:bg-[#1532D4] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98"
+                          className="mt-3 w-full bg-[#0C3844] hover:bg-[#08262E] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98"
                         >
                           View Program
                         </button>
@@ -571,7 +571,7 @@ export function PathGatewaySection() {
                     onClick={() => setCurrentIndex(idx)}
                     className={`inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
                       active
-                        ? 'bg-[#1D3FFF] text-white shadow-md'
+                        ? 'bg-[#0C3844] text-white shadow-md'
                         : 'bg-white text-[#2A2A2A] border border-[#E6DDCC]'
                     }`}
                   >
@@ -649,7 +649,7 @@ export function PathGatewaySection() {
                       sizes="280px"
                       className="object-cover"
                     />
-                    <div className="absolute right-3 -bottom-4 w-9 h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center font-bold text-xs text-[#1D3FFF] z-10">
+                    <div className="absolute right-3 -bottom-4 w-9 h-9 rounded-full bg-white shadow-md border border-gray-100 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
                       {prog.logoMonogram}
                     </div>
                   </div>
@@ -662,12 +662,12 @@ export function PathGatewaySection() {
                       <h4 className="font-serif text-sm font-bold text-[#2A2A2A] leading-snug line-clamp-1 mt-1">
                         {prog.programTitle}
                       </h4>
-                      <span className="inline-block mt-2 text-[10px] font-semibold bg-[#EBF7FF] text-[#0070BA] px-2.5 py-0.5 rounded-full border border-[#0070BA]/20">
+                      <span className="inline-block mt-2 text-[10px] font-semibold bg-[#E7F1F4] text-[#0C3844] px-2.5 py-0.5 rounded-full border border-[#0C3844]/20">
                         {prog.tag}
                       </span>
                       <div className="mt-3 space-y-1 text-xs text-[#57514A]">
                         <div className="flex items-center gap-1.5">
-                          <GraduationCap size={14} className="text-[#1D3FFF]" />
+                          <GraduationCap size={14} className="text-[#0C3844]" />
                           <span>{prog.degree}</span>
                         </div>
                         <div className="flex items-center gap-1.5">
@@ -684,7 +684,7 @@ export function PathGatewaySection() {
                           source: `gateway:${activeCountry.id}`,
                         })
                       }
-                      className="mt-3 w-full bg-[#1D3FFF] hover:bg-[#1532D4] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer"
+                      className="mt-3 w-full bg-[#0C3844] hover:bg-[#08262E] text-white text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer"
                     >
                       View Program
                     </button>
@@ -704,7 +704,7 @@ export function PathGatewaySection() {
                 i < activeCountry.stats.length - 1 ? 'lg:border-r border-[#E6DDCC]' : ''
               }`}
             >
-              <p className="font-serif text-2xl lg:text-3xl font-bold text-[#1D3FFF] leading-none">
+              <p className="font-serif text-2xl lg:text-3xl font-bold text-[#0C3844] leading-none">
                 {st.value}
               </p>
               <p className="text-xs lg:text-sm text-[#57514A] font-medium leading-tight">

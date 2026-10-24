@@ -17,12 +17,12 @@ export function NotSureSection() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-start">
             {/* Left Column (5 cols) */}
             <div className="lg:col-span-5 space-y-5">
-              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold">
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold">
                 <HelpCircle size={14} />
                 Profile-First Advisory
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#2A2A2A] tracking-tight leading-[1.1]">
-                Not sure which <span className="text-[#1D3FFF]">country</span> fits you?
+                Not sure which <span className="text-[#0C3844]">country</span> fits you?
               </h2>
               <p className="text-sm sm:text-base text-[#57514A] leading-relaxed">
                 {notSure.description} Our advisors assess your academic transcripts, budget, language capabilities, and career goals to find the right destination.
@@ -31,7 +31,7 @@ export function NotSureSection() {
                 <button
                   type="button"
                   onClick={() => openCallback({ interest: 'Not Sure – Need Counselling', source: 'not-sure-section' })}
-                  className="btn-shine inline-flex items-center gap-2 bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                  className="btn-shine inline-flex items-center gap-2 bg-[#0C3844] hover:bg-[#08262E] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
                 >
                   <span>Book Free Consultation</span>
                   <ArrowRight size={14} />
@@ -50,15 +50,15 @@ export function NotSureSection() {
               <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6 sm:p-8 shadow-sm">
                 <p className="text-xs uppercase tracking-wider text-[#2A2A2A] font-bold mb-5 flex items-center justify-between">
                   <span>Questions We Help You Answer</span>
-                  <span className="text-[11px] text-[#1D3FFF] font-semibold">7 Key Criteria</span>
+                  <span className="text-[11px] text-[#0C3844] font-semibold">7 Key Criteria</span>
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {notSure.checklist.map((question, i) => (
                     <div
                       key={i}
-                      className="p-4 bg-white border border-[#E6DDCC] flex items-start gap-3 hover:border-[#1D3FFF] transition-colors"
+                      className="p-4 bg-white border border-[#E6DDCC] flex items-start gap-3 hover:border-[#0C3844] transition-colors"
                     >
-                      <span className="font-serif text-sm font-bold text-[#1D3FFF] shrink-0 pt-0.5">
+                      <span className="font-serif text-sm font-bold text-[#0C3844] shrink-0 pt-0.5">
                         {String(i + 1).padStart(2, '0')}
                       </span>
                       <span className="text-xs sm:text-sm text-[#2A2A2A] leading-snug font-medium">
@@ -68,7 +68,7 @@ export function NotSureSection() {
                   ))}
                 </div>
                 <div className="mt-5 pt-4 border-t border-[#E6DDCC]/70 flex items-center gap-2 text-xs text-[#57514A]">
-                  <CheckCircle2 size={15} className="text-[#1D3FFF] shrink-0" />
+                  <CheckCircle2 size={15} className="text-[#0C3844] shrink-0" />
                   <span>Counselling is 100% confidential and personalised to your profile.</span>
                 </div>
               </div>

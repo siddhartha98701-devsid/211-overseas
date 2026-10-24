@@ -44,12 +44,12 @@ export function ProcessStrip() {
           <div className="lg:col-span-5">
             <div className="lg:sticky lg:top-32 space-y-6">
               <div>
-                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#1D3FFF] font-semibold mb-3">
-                  <span className="h-px w-6 bg-[#1D3FFF]" />
+                <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#0C3844] font-semibold mb-3">
+                  <span className="h-px w-6 bg-[#0C3844]" />
                   How 211 OVERSEAS Works
                 </span>
                 <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.08] text-white">
-                  The smartest way to build your <span className="text-[#1D3FFF]">global future</span>
+                  The smartest way to build your <span className="text-[#0C3844]">global future</span>
                 </h2>
                 <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-md">
                   From initial profile assessment to your departure day, we provide transparent, structured guidance at every milestone.
@@ -60,14 +60,14 @@ export function ProcessStrip() {
               <div className="p-4 rounded-[2px] border border-white/10 bg-white/[0.03] backdrop-blur space-y-3">
                 <div className="flex items-center justify-between text-xs">
                   <span className="text-white/60 uppercase tracking-widest font-medium">Milestone Progress</span>
-                  <span className="text-[#1D3FFF] font-bold tabular-nums">
+                  <span className="text-[#0C3844] font-bold tabular-nums">
                     Step {String(activeStep + 1).padStart(2, '0')} / {String(steps.length).padStart(2, '0')}
                   </span>
                 </div>
                 {/* Visual Progress bar */}
                 <div className="h-1 w-full bg-white/10 overflow-hidden rounded-full">
                   <motion.div
-                    className="h-full bg-[#1D3FFF]"
+                    className="h-full bg-[#0C3844]"
                     initial={{ width: '14%' }}
                     animate={{ width: `${((activeStep + 1) / steps.length) * 100}%` }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
@@ -82,7 +82,7 @@ export function ProcessStrip() {
                 <button
                   type="button"
                   onClick={() => openCallback({ source: 'process-sticky' })}
-                  className="btn-shine inline-flex items-center gap-2 bg-[#1D3FFF] hover:bg-[#1532D4] text-white text-xs uppercase tracking-widest font-semibold px-6 py-3.5 transition-colors cursor-pointer"
+                  className="btn-shine inline-flex items-center gap-2 bg-[#0C3844] hover:bg-[#08262E] text-white text-xs uppercase tracking-widest font-semibold px-6 py-3.5 transition-colors cursor-pointer"
                 >
                   <span>Start Your Journey</span>
                   <ArrowRight size={14} />
@@ -104,14 +104,14 @@ export function ProcessStrip() {
                   data-step-index={i}
                   className={`group relative flex flex-col sm:flex-row border transition-all duration-300 ${
                     isActive
-                      ? 'border-[#1D3FFF] bg-white/[0.07] shadow-[0_12px_40px_rgba(29,63,255,0.12)]'
+                      ? 'border-[#0C3844] bg-white/[0.07] shadow-[0_12px_40px_rgba(12,56,68,0.3)]'
                       : 'border-white/10 bg-white/[0.02] hover:border-white/20'
                   }`}
                 >
                   {/* Left big number tile (stacked reference pattern) */}
                   <div
                     className={`flex items-center justify-center p-6 sm:w-28 shrink-0 transition-colors ${
-                      isActive ? 'bg-[#1D3FFF] text-white' : 'bg-white/[0.04] text-white/60 group-hover:text-white'
+                      isActive ? 'bg-[#0C3844] text-white' : 'bg-white/[0.04] text-white/60 group-hover:text-white'
                     }`}
                   >
                     <span className="font-serif text-3xl sm:text-4xl font-bold tracking-tight tabular-nums">
@@ -125,7 +125,7 @@ export function ProcessStrip() {
                       <div className="flex items-center gap-2 mb-1.5">
                         <CheckCircle2
                           size={15}
-                          className={`transition-colors ${isActive ? 'text-[#1D3FFF]' : 'text-white/40'}`}
+                          className={`transition-colors ${isActive ? 'text-[#0C3844]' : 'text-white/40'}`}
                         />
                         <span className="text-[11px] uppercase tracking-wider font-semibold text-white/50">
                           Phase 0{i + 1}
@@ -141,7 +141,7 @@ export function ProcessStrip() {
 
                     <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-white/50">
                       <span>Verified advisory protocol</span>
-                      <span className={`font-medium ${isActive ? 'text-[#1D3FFF]' : 'text-white/40'}`}>
+                      <span className={`font-medium ${isActive ? 'text-[#0C3844]' : 'text-white/40'}`}>
                         {isActive ? '● Currently Viewing' : 'Step 0' + (i + 1)}
                       </span>
                     </div>
