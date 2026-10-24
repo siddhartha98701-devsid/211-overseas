@@ -9,6 +9,7 @@ import { FormSection } from '@/components/sections/FormSection';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 import { LeadMiniForm } from '@/components/lead/LeadMiniForm';
 import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
+import { InboundCollegesInteractive } from '@/components/inbound/InboundCollegesInteractive';
 
 export const metadata: Metadata = {
   title: 'Inbound International Education & Research in India',
@@ -118,16 +119,17 @@ export default function InboundPage() {
 
               <div className="mt-8 flex flex-wrap gap-3">
                 <a
-                  href="#inbound-form"
-                  className="btn-shine bg-[#0C3844] hover:bg-[#08262E] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
+                  href="#colleges"
+                  className="btn-shine bg-[#0C3844] hover:bg-[#08262E] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
                 >
-                  Apply for Inbound Guidance
+                  <span>Explore Colleges &amp; Maps</span>
+                  <ArrowRight size={14} />
                 </a>
                 <a
-                  href="#how-it-works"
-                  className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors"
+                  href="#inbound-form"
+                  className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors inline-flex items-center"
                 >
-                  How it works
+                  Request Information
                 </a>
               </div>
 
@@ -175,6 +177,19 @@ export default function InboundPage() {
               </div>
             ))}
           </MobileScroller>
+        </div>
+      </section>
+
+      {/* Premier Inbound Colleges & Interactive Map Section */}
+      <section id="colleges" className="py-14 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5] scroll-mt-24" aria-label="Inbound colleges and campus maps">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <SectionHeader
+            eyebrow="Academic Institutions Directory"
+            headline="Explore Premier Inbound Colleges & Research Hubs"
+            description="Inspect verified campus locations across India, official NIRF & QS rankings, accredited degree pathways, international facilities, and interactive satellite campus maps."
+          />
+
+          <InboundCollegesInteractive />
         </div>
       </section>
 
