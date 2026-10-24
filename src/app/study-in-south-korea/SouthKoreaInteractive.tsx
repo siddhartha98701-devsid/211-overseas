@@ -297,9 +297,10 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
 
   const scrollStep = (direction: 'prev' | 'next') => {
     if (!containerRef.current) return;
-    const cardWidth = containerRef.current.clientWidth * 0.82;
+    const firstChild = containerRef.current.children[0] as HTMLElement | undefined;
+    const step = firstChild ? firstChild.offsetWidth + 16 : 320;
     containerRef.current.scrollBy({
-      left: direction === 'next' ? cardWidth : -cardWidth,
+      left: direction === 'next' ? step : -step,
       behavior: 'smooth',
     });
   };

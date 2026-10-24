@@ -9,15 +9,15 @@ import {
   Briefcase,
   ArrowRight,
   Sparkles,
+  ChevronRight,
   ShieldCheck,
-  Clock,
-  Coins,
+  Award,
 } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/SectionHeader';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 import { whatsappLink } from '@/lib/contact';
-import { countryHref } from '@/content/subpages';
 
 interface CountryShowcase {
   id: string;
@@ -119,17 +119,17 @@ const COUNTRIES: CountryShowcase[] = [
     description:
       'Study in one of the safest, most technologically advanced nations in the world. Choose from English-taught undergraduate degrees or intensive Japanese language pathways.',
     image: '/images/destinations/japan-campus.jpg',
-    alt: 'Historic and modern campus gardens in Tokyo, Japan',
+    alt: 'Students walking in scenic Japanese university courtyard',
     href: '/other-destinations/japan',
     programs: [
-      { title: 'Engineering & Robotics', subtitle: 'Kyoto, Tokyo, and Osaka universities' },
-      { title: 'Game Design & Media', subtitle: 'Pioneering digital entertainment tracks' },
-      { title: 'MEXT Scholarships', subtitle: 'Government tuition fee waivers' },
+      { title: 'Engineering & Robotics', subtitle: 'World-leading R&D laboratories' },
+      { title: 'Game Design & Anime', subtitle: 'Direct links to creative industries' },
+      { title: 'Language to Degree', subtitle: 'Intensive university pathway courses' },
     ],
     stats: [
-      { value: '28 Hrs/Wk', label: 'Legal part-time work allowance' },
-      { value: 'Apr & Oct', label: 'Major academic intakes' },
-      { value: 'Top 50', label: 'World-ranked engineering universities' },
+      { value: 'Top 30', label: 'Global university rankings' },
+      { value: '28 Hrs/Wk', label: 'Part-time student work permit' },
+      { value: 'MEXT', label: 'Full government scholarship options' },
     ],
   },
   {
@@ -139,21 +139,21 @@ const COUNTRIES: CountryShowcase[] = [
     kind: 'study',
     badge: 'Historic Academic Pedigree',
     headlineAccent: 'United Kingdom:',
-    headlineRest: '1-Year Master’s & 2-Year Graduate Visa',
+    headlineRest: 'Globally Respected Degrees & Graduate Route',
     description:
-      'Accelerate your degree with 1-year master’s tracks and 3-year bachelor’s degrees, followed by 2 years of post-study work authorization across the UK.',
+      'Fast-track 3-year bachelor’s and 1-year master’s programs at prestigious British institutions with a 2-year post-study work visa (Graduate Route).',
     image: '/images/destinations/uk-campus.jpg',
-    alt: 'Historic university campus grounds in the United Kingdom',
+    alt: 'Historic brick university quad in the United Kingdom',
     href: '/other-destinations/united-kingdom',
     programs: [
-      { title: 'Business & Finance', subtitle: 'London & regional economic hubs' },
-      { title: 'Data Science & AI', subtitle: 'Cutting-edge computational science' },
-      { title: 'Healthcare Management', subtitle: 'NHS and global health consulting' },
+      { title: '1-Year Master’s', subtitle: 'Cost-effective fast-track graduation' },
+      { title: '3-Year Bachelor’s', subtitle: 'Specialized undergraduate honors' },
+      { title: 'NHS Health Visas', subtitle: 'Fast-track healthcare career sponsorship' },
     ],
     stats: [
-      { value: '2 Years', label: 'Graduate post-study work visa' },
-      { value: '1 Year', label: 'Fast-track intensive master’s duration' },
-      { value: 'Sept & Jan', label: 'Primary UK academic intakes' },
+      { value: '1 Year', label: 'Fast-track master’s duration' },
+      { value: '2 Years', label: 'Post-study graduate work visa' },
+      { value: 'Russell Group', label: 'Leading research universities' },
     ],
   },
   {
@@ -161,23 +161,23 @@ const COUNTRIES: CountryShowcase[] = [
     name: 'United States',
     tagline: 'STEM & Tech Leadership',
     kind: 'study',
-    badge: 'Silicon Valley & Global R&D',
+    badge: 'World’s Leading Higher Ed System',
     headlineAccent: 'United States:',
-    headlineRest: '3-Year STEM OPT & Ivy-Tier Research',
+    headlineRest: 'Ivy League & Tier-1 Research Universities',
     description:
-      'Unlock the world’s largest innovation ecosystem. Gain up to 3 years of OPT work authorization for STEM degree holders with direct industry placements.',
+      'The largest and most flexible higher education system in the world. Benefit from 3-year STEM OPT extensions, campus assistantships, and global networking.',
     image: '/images/destinations/usa-campus.jpg',
-    alt: 'Sunlit collegiate campus quad in the United States',
+    alt: 'Lush green Ivy League style university campus in the USA',
     href: '/other-destinations/united-states',
     programs: [
-      { title: 'Computer Science & AI', subtitle: 'Direct links to Silicon Valley recruiters' },
-      { title: 'Fintech & Analytics', subtitle: 'Top Wall Street & consulting programs' },
-      { title: 'Biomedical & Biotech', subtitle: 'Premier lab stipends and research grants' },
+      { title: 'STEM Degrees', subtitle: '3-Year post-study OPT work rights' },
+      { title: 'Graduate Assistantships', subtitle: 'Tuition waiver + monthly stipends' },
+      { title: 'Silicon Valley Ties', subtitle: 'Direct recruitment pipelines in tech' },
     ],
     stats: [
-      { value: '3 Years', label: 'STEM OPT post-study work extension' },
-      { value: 'F-1 Visa', label: 'Comprehensive embassy interview prep' },
-      { value: 'Top Tier', label: 'Highest starting salary benchmarks' },
+      { value: '3 Years', label: 'STEM OPT post-study work permit' },
+      { value: '4,000+', label: 'Accredited higher ed institutions' },
+      { value: 'Fortune 500', label: 'Direct industry recruitment' },
     ],
   },
   {
@@ -185,18 +185,18 @@ const COUNTRIES: CountryShowcase[] = [
     name: 'Singapore',
     tagline: 'Asian Financial Capital',
     kind: 'study',
-    badge: 'Global Financial Hub',
+    badge: 'Global Commerce & Tech Gateway',
     headlineAccent: 'Singapore:',
-    headlineRest: 'World-Ranked Asian Business & Technology',
+    headlineRest: 'World Top-15 Universities in English',
     description:
-      'Study at the crossroads of East and West in the world’s safest, most connected metropolis with premier programs in FinTech, logistics, and global management.',
+      'Study at Asia’s highest-ranked universities in an ultra-modern, safe, English-speaking global business hub with direct regional employment opportunities.',
     image: '/images/destinations/singapore-campus.jpg',
-    alt: 'Modern architectural campus buildings in Singapore',
+    alt: 'Modern architectural university building in Singapore',
     href: '/other-destinations/singapore',
     programs: [
-      { title: 'International Business', subtitle: 'Global MNC headquarters hub' },
-      { title: 'Fintech & Supply Chain', subtitle: 'World leader in maritime & digital trade' },
-      { title: 'Hospitality Management', subtitle: 'World-class luxury management' },
+      { title: 'Tech & AI Programs', subtitle: 'Ranked top 10 globally in CS' },
+      { title: 'Finance & MBA', subtitle: 'Direct access to Asian headquarters' },
+      { title: 'Employment Pass', subtitle: 'Merit-based skilled work visas' },
     ],
     stats: [
       { value: 'Top 15', label: 'QS World University Rankings' },
@@ -212,7 +212,7 @@ export function PathGatewaySection() {
   const activeCountry = COUNTRIES.find((c) => c.id === selectedId) ?? COUNTRIES[0];
 
   return (
-    <section id="paths" className="py-16 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Explore study and work pathways abroad">
+    <section id="paths" className="py-16 md:py-24 border-b border-[#E6DDCC] scroll-mt-24 bg-[#FAF8F5]/40" aria-label="Explore study and work pathways abroad">
       <div className="max-w-[1280px] mx-auto px-6">
         <SectionHeader
           compact
@@ -221,9 +221,9 @@ export function PathGatewaySection() {
           description="Explore our primary destination corridors. Click any country to reveal dedicated program tracks, post-study work permits, and visa details."
         />
 
-        {/* Mobile Horizontal Tabs Switcher with Underline */}
+        {/* Mobile Horizontal Pill Tabs Switcher (UpGrad Style) */}
         <div className="lg:hidden mb-6 -mx-6 px-6 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          <div className="flex gap-2 border-b border-[#E6DDCC] pb-1 min-w-max">
+          <div className="flex gap-2.5 pb-2 min-w-max">
             {COUNTRIES.map((c) => {
               const active = c.id === selectedId;
               return (
@@ -231,27 +231,24 @@ export function PathGatewaySection() {
                   key={c.id}
                   type="button"
                   onClick={() => setSelectedId(c.id)}
-                  className={`relative px-3.5 py-2 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer ${
-                    active ? 'text-[#1D3FFF]' : 'text-[#57514A] hover:text-[#2A2A2A]'
+                  className={`inline-flex items-center gap-2 px-4 py-2.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all cursor-pointer ${
+                    active
+                      ? 'bg-[#1D3FFF] text-white shadow-md'
+                      : 'bg-white text-[#2A2A2A] border border-[#E6DDCC] hover:border-[#1D3FFF]/60'
                   }`}
                 >
+                  <CountryFlag country={c.name} className="h-3.5 w-5 rounded-[2px] object-cover" width={20} height={14} />
                   <span>{c.name}</span>
-                  {active && (
-                    <motion.span
-                      layoutId="gateway-mobile-underline"
-                      className="absolute inset-x-0 bottom-[-1px] h-0.5 bg-[#1D3FFF]"
-                    />
-                  )}
                 </button>
               );
             })}
           </div>
         </div>
 
-        {/* Desktop Layout: Left Vertical Strips + Right Showcase Card & Stat Strip */}
+        {/* Desktop Layout: Left Vertical Country Strips + Right Showcase Card (UpGrad Reference Pattern d) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           {/* Left Vertical Country Strips (hidden on mobile) */}
-          <div className="hidden lg:flex lg:col-span-4 flex-col space-y-2">
+          <div className="hidden lg:flex lg:col-span-4 flex-col space-y-2.5">
             {COUNTRIES.map((c) => {
               const active = c.id === selectedId;
               return (
@@ -259,35 +256,58 @@ export function PathGatewaySection() {
                   key={c.id}
                   type="button"
                   onClick={() => setSelectedId(c.id)}
-                  className={`group relative text-left p-4 border transition-all cursor-pointer ${
+                  className={`group relative text-left p-4 rounded-[4px] border transition-all duration-200 cursor-pointer ${
                     active
-                      ? 'border-[#1D3FFF] bg-[#FAF8F5] shadow-sm'
-                      : 'border-[#E6DDCC] bg-white hover:border-[#1D3FFF]/60 hover:bg-[#FAF8F5]/50'
+                      ? 'border-[#1D3FFF] bg-white shadow-[0_8px_24px_rgba(29,63,255,0.08)] ring-1 ring-[#1D3FFF]/20'
+                      : 'border-[#E6DDCC] bg-white hover:border-[#1D3FFF]/50 hover:bg-[#FAF8F5]'
                   }`}
                 >
-                  {/* Active Indicator Accent Bar */}
+                  {/* Left Active Accent Indicator Bar */}
                   {active && (
                     <motion.span
                       layoutId="gateway-desktop-indicator"
-                      className="absolute left-0 inset-y-0 w-1 bg-[#1D3FFF]"
+                      className="absolute left-0 inset-y-0 w-1.5 bg-[#1D3FFF] rounded-l-[4px]"
                     />
                   )}
-                  <div className="pl-2">
-                    <div className="flex items-center justify-between">
-                      <span className="font-serif text-lg font-bold text-[#2A2A2A] group-hover:text-[#1D3FFF] transition-colors">
-                        {c.name}
-                      </span>
+                  <div className="pl-2 flex items-center justify-between">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <CountryFlag
+                        country={c.name}
+                        className="h-5 w-7 rounded-[2px] object-cover border border-black/10 shrink-0 shadow-xs"
+                        width={28}
+                        height={20}
+                      />
+                      <div className="min-w-0">
+                        <span className={`font-serif text-base font-bold transition-colors block truncate ${
+                          active ? 'text-[#1D3FFF]' : 'text-[#2A2A2A] group-hover:text-[#1D3FFF]'
+                        }`}>
+                          {c.name}
+                        </span>
+                        <p className="text-[11px] text-[#57514A] truncate">{c.tagline}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-2 shrink-0 ml-2">
                       <span
-                        className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 border ${
-                          active
-                            ? 'bg-[#1D3FFF]/10 border-[#1D3FFF]/20 text-[#1D3FFF]'
-                            : 'bg-white border-[#E6DDCC] text-[#57514A]'
+                        className={`text-[10px] uppercase tracking-wider font-semibold px-2 py-0.5 rounded-[2px] border ${
+                          c.kind === 'study'
+                            ? active
+                              ? 'bg-[#1D3FFF] text-white border-[#1D3FFF]'
+                              : 'bg-blue-50 text-[#1D3FFF] border-blue-200'
+                            : active
+                            ? 'bg-[#8A6020] text-white border-[#8A6020]'
+                            : 'bg-amber-50 text-[#8A6020] border-amber-200'
                         }`}
                       >
                         {c.kind === 'study' ? 'Study' : 'Work'}
                       </span>
+                      <ChevronRight
+                        size={15}
+                        className={`transition-transform duration-200 ${
+                          active ? 'text-[#1D3FFF] translate-x-0.5' : 'text-[#57514A]/40 group-hover:translate-x-0.5 group-hover:text-[#1D3FFF]'
+                        }`}
+                      />
                     </div>
-                    <p className="mt-1 text-xs text-[#57514A] truncate">{c.tagline}</p>
                   </div>
                 </button>
               );
@@ -295,14 +315,14 @@ export function PathGatewaySection() {
           </div>
 
           {/* Right Showcase Hero Card with Overlaid Program Cards and Stats Strip */}
-          <div className="lg:col-span-8 flex flex-col justify-between border border-[#E6DDCC] bg-white overflow-hidden shadow-sm">
+          <div className="lg:col-span-8 flex flex-col justify-between rounded-[4px] border border-[#E6DDCC] bg-white overflow-hidden shadow-sm">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeCountry.id}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.22 }}
                 className="flex-1 flex flex-col justify-between"
               >
                 {/* Hero Banner with Dark Contrast Gradient & Two-Tone Heading */}
@@ -315,15 +335,15 @@ export function PathGatewaySection() {
                     sizes="(min-width: 1024px) 800px, 95vw"
                     className="object-cover"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-black/30" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/25" />
                   <div className="absolute inset-0 p-5 sm:p-7 flex flex-col justify-end text-white">
-                    <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-[#D1A95F] font-semibold mb-1.5">
-                      <Sparkles size={12} />
+                    <span className="inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-[#D1A95F] font-semibold mb-2">
+                      <Sparkles size={13} className="text-[#D1A95F]" />
                       {activeCountry.badge}
                     </span>
                     <h3 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-                      <span className="text-[#1D3FFF] mr-2">{activeCountry.headlineAccent}</span>
-                      {activeCountry.headlineRest}
+                      <span className="text-[#1D3FFF] mr-2 drop-shadow-sm">{activeCountry.headlineAccent}</span>
+                      <span className="text-white drop-shadow-sm">{activeCountry.headlineRest}</span>
                     </h3>
                   </div>
                 </div>
@@ -334,32 +354,37 @@ export function PathGatewaySection() {
                     {activeCountry.description}
                   </p>
 
-                  {/* Overlaid Program Cards */}
+                  {/* Overlaid Program Cards (UpGrad Pattern b) */}
                   <div>
-                    <h4 className="text-xs uppercase tracking-wider font-semibold text-[#2A2A2A] mb-3">
+                    <h4 className="text-xs uppercase tracking-wider font-semibold text-[#2A2A2A] mb-3 flex items-center gap-1.5">
+                      {activeCountry.kind === 'study' ? (
+                        <GraduationCap size={15} className="text-[#1D3FFF]" />
+                      ) : (
+                        <Briefcase size={15} className="text-[#8A6020]" />
+                      )}
                       Popular Academic &amp; Career Tracks:
                     </h4>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                       {activeCountry.programs.map((prog) => (
                         <div
                           key={prog.title}
-                          className="border border-[#E6DDCC] bg-[#FAF8F5] p-3.5 hover:border-[#1D3FFF] transition-colors"
+                          className="border border-[#E6DDCC] bg-[#FAF8F5] p-4 rounded-[3px] transition-all duration-200 hover:border-[#1D3FFF] hover:bg-white hover:shadow-sm group/prog"
                         >
-                          <p className="font-serif text-sm font-bold text-[#2A2A2A] leading-snug">
+                          <p className="font-serif text-sm font-bold text-[#2A2A2A] leading-snug group-hover/prog:text-[#1D3FFF] transition-colors">
                             {prog.title}
                           </p>
-                          <p className="mt-1 text-[11px] text-[#57514A]">{prog.subtitle}</p>
+                          <p className="mt-1.5 text-[11px] text-[#57514A] leading-relaxed">{prog.subtitle}</p>
                         </div>
                       ))}
                     </div>
                   </div>
 
-                  {/* Stat Strip Underneath (Reference Pattern d) */}
-                  <div className="pt-4 border-t border-[#E6DDCC]">
-                    <div className="grid grid-cols-3 gap-2 sm:gap-4 bg-[#FAF8F5] border border-[#E6DDCC] p-4 text-center">
+                  {/* Stat Strip Underneath (UpGrad Pattern d) */}
+                  <div className="pt-2">
+                    <div className="grid grid-cols-3 gap-2 sm:gap-4 bg-[#FAF8F5] border border-[#E6DDCC] p-4 rounded-[3px] text-center">
                       {activeCountry.stats.map((st) => (
                         <div key={st.label} className="space-y-1">
-                          <p className="font-serif text-lg sm:text-2xl font-bold text-[#1D3FFF] leading-none">
+                          <p className="font-serif text-xl sm:text-2xl font-bold text-[#1D3FFF] leading-none">
                             {st.value}
                           </p>
                           <p className="text-[10px] sm:text-xs text-[#57514A] leading-tight">
@@ -374,7 +399,7 @@ export function PathGatewaySection() {
                   <div className="pt-2 flex flex-wrap items-center gap-3">
                     <Link
                       href={activeCountry.href}
-                      className="btn-shine inline-flex items-center gap-2 bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                      className="btn-shine inline-flex items-center gap-2 bg-[#1D3FFF] hover:bg-[#1532D4] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer rounded-[2px]"
                     >
                       <span>Explore {activeCountry.name}</span>
                       <ArrowRight size={14} />
@@ -390,7 +415,7 @@ export function PathGatewaySection() {
                           source: `gateway:${activeCountry.id}`,
                         })
                       }
-                      className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer"
+                      className="border border-[#2A2A2A] text-[#2A2A2A] hover:bg-[#2A2A2A] hover:text-white px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors cursor-pointer rounded-[2px]"
                     >
                       Book Free Counselling
                     </button>
@@ -400,7 +425,7 @@ export function PathGatewaySection() {
                       )}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 border border-[#E6DDCC] text-[#2A2A2A] hover:border-[#25D366] hover:text-[#25D366] px-4 py-3 text-xs uppercase tracking-widest font-semibold transition-colors"
+                      className="inline-flex items-center gap-2 border border-[#E6DDCC] text-[#2A2A2A] hover:border-[#25D366] hover:text-[#25D366] px-4 py-3 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px]"
                     >
                       <WhatsAppIcon size={14} />
                       <span>WhatsApp</span>

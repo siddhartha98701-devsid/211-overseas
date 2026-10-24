@@ -10,17 +10,26 @@ import { SUBPAGES, subpageHref } from '@/content/subpages';
 import { useCallbackModal } from '@/components/lead/CallbackProvider';
 
 const studyLinks = [
+  { label: 'Study Abroad Overview', href: '/other-destinations' },
+  { label: "Bachelor's Degree Programs", href: '/study-in-south-korea/bachelors' },
+  { label: "Master's & Postgraduate", href: '/study-in-south-korea/masters' },
+  { label: 'Language Immersion Programs', href: '/study-in-south-korea/korean-language' },
   { label: 'Study in South Korea', href: '/study-in-south-korea' },
-  { label: "Bachelor's Programs", href: '/study-in-south-korea/bachelors' },
-  { label: "Master's Programs", href: '/study-in-south-korea/masters' },
-  { label: 'Korean Language Programs', href: '/study-in-south-korea/korean-language' },
-  { label: 'Other Destinations', href: '/other-destinations' },
+  { label: 'Study in Japan', href: '/other-destinations/japan' },
+  { label: 'Study in United Kingdom', href: '/other-destinations/united-kingdom' },
+  { label: 'Study in United States & Canada', href: '/other-destinations/united-states' },
+  { label: 'Study in Australia', href: '/other-destinations/australia' },
+  { label: 'All Global Study Destinations', href: '/other-destinations' },
 ];
 
 const workLinks = [
-  { label: 'Work Pathways Overview', href: '/work-and-study' },
+  { label: 'Work Abroad Overview', href: '/work-and-study' },
+  { label: 'Healthcare & Nursing Careers', href: '/work-in-germany/nurses' },
+  { label: 'Engineering & Technical Roles', href: '/work-in-uae/engineering-construction' },
+  { label: 'Hospitality & Luxury Hotel Roles', href: '/work-in-uae/hospitality' },
   { label: 'Work in Germany', href: '/work-in-germany' },
-  { label: 'Work in UAE', href: '/work-in-uae' },
+  { label: 'Work in UAE & Dubai', href: '/work-in-uae' },
+  { label: 'UK, Japan & Australia Pathways', href: '/work-and-study#pathways' },
 ];
 
 const otherLinks = [
@@ -30,7 +39,7 @@ const otherLinks = [
 
 type NavLink = { label: string; href: string; children?: { label: string; href: string }[] };
 const navLinks: NavLink[] = [
-  { label: 'Study', href: '/study-in-south-korea', children: studyLinks },
+  { label: 'Study', href: '/other-destinations', children: studyLinks },
   { label: 'Work', href: '/work-and-study', children: workLinks },
   { label: 'Inbound', href: '/inbound' },
   { label: 'Other Destinations', href: '/other-destinations', children: otherLinks },
