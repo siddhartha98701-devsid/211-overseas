@@ -89,7 +89,7 @@ export function MobileScroller({
     <div className={`relative ${className}`} role="region" aria-roledescription="carousel" aria-label={label}>
       <ul
         ref={ref}
-        className="flex snap-x snap-mandatory gap-4 md:gap-6 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory gap-4 md:gap-6 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
       >
         {items.map((child, i) => (
           <li
@@ -136,7 +136,7 @@ export function MobileScroller({
               aria-label="Previous slide"
               onClick={() => go(active - 1)}
               disabled={active === 0}
-              className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border transition-all cursor-pointer disabled:opacity-25 ${tone} hover:border-[#0C3844] hover:text-[#0C3844] active:scale-95 rounded-[2px]`}
+              className={`flex h-11 w-11 items-center justify-center border transition-all cursor-pointer disabled:opacity-25 ${tone} hover:border-[#0C3844] hover:text-[#0C3844] active:scale-95 touch-manipulation rounded-[2px]`}
             >
               <ChevronLeft size={16} aria-hidden="true" />
             </button>
@@ -145,7 +145,7 @@ export function MobileScroller({
               aria-label="Next slide"
               onClick={() => go(active + 1)}
               disabled={active >= items.length - 1}
-              className={`flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center border transition-all cursor-pointer disabled:opacity-25 ${tone} hover:border-[#0C3844] hover:text-[#0C3844] active:scale-95 rounded-[2px]`}
+              className={`flex h-11 w-11 items-center justify-center border transition-all cursor-pointer disabled:opacity-25 ${tone} hover:border-[#0C3844] hover:text-[#0C3844] active:scale-95 touch-manipulation rounded-[2px]`}
             >
               <ChevronRight size={16} aria-hidden="true" />
             </button>

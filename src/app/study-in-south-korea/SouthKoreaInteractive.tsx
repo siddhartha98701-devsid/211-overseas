@@ -322,13 +322,13 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
               </p>
             </div>
 
-            {/* Desktop Navigation Arrows */}
-            <div className="hidden sm:flex items-center gap-2 shrink-0">
+            {/* Navigation Arrows */}
+            <div className="flex items-center gap-2 shrink-0">
               <button
                 type="button"
                 onClick={() => scrollStep('prev')}
                 aria-label="Previous process step"
-                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
+                className="h-11 w-11 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-xs active:scale-95 touch-manipulation"
               >
                 <ArrowLeft size={16} />
               </button>
@@ -336,7 +336,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
                 type="button"
                 onClick={() => scrollStep('next')}
                 aria-label="Next process step"
-                className="h-10 w-10 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-sm"
+                className="h-11 w-11 border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors flex items-center justify-center cursor-pointer shadow-xs active:scale-95 touch-manipulation"
               >
                 <ArrowRight size={16} />
               </button>
@@ -347,7 +347,7 @@ export function SouthKoreaProcessSection({ steps }: { steps: ProcessStep[] }) {
           <div
             ref={containerRef}
             onScroll={handleScroll}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="relative flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-6 px-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
           >
             {steps.map((step) => (
               <div

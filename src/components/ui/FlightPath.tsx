@@ -78,22 +78,22 @@ export function FlightPath() {
   const x = useTransform(progress, ts, xs);
   const y = useTransform(progress, ts, ys);
   const rotate = useTransform(progress, ts, angles);
-  const opacity = useTransform(progress, [0, 0.015, 0.04, 1], [0, 0, 0.4, 0.4]);
+  const opacity = useTransform(progress, [0, 0.015, 0.04, 1], [0, 0, 0.07, 0.07]);
 
-  const size = viewport.w < 640 ? 118 : viewport.w < 1024 ? 160 : 210;
+  const size = viewport.w < 640 ? 64 : viewport.w < 1024 ? 110 : 150;
 
   if (reduce) return null;
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none fixed inset-0 -z-[1] overflow-hidden"
+      className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       style={{ contain: 'strict' }}
     >
       {/* The shadow lives on this non-rotating wrapper so it keeps one direction while the plane turns */}
       <motion.div
         className="absolute left-0 top-0 will-change-transform"
-        style={{ x, y, opacity, filter: 'drop-shadow(10px 16px 9px rgba(42,42,42,0.22))' }}
+        style={{ x, y, opacity, filter: 'drop-shadow(4px 6px 8px rgba(42,42,42,0.06))' }}
       >
         <motion.div
           style={{

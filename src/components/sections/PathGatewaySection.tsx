@@ -480,6 +480,20 @@ export function PathGatewaySection() {
               </motion.div>
             </AnimatePresence>
 
+            {/* Upper-Left Destination & University Overlay */}
+            <div className="absolute top-7 left-7 z-20 max-w-[320px] xl:max-w-[380px] pointer-events-none select-none">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-[11px] font-semibold uppercase tracking-wider text-[#FC7F4E] shadow-sm mb-2">
+                <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs" />
+                <span>{activeCountry.name}</span>
+              </div>
+              <h3 className="font-serif text-2xl xl:text-3xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] leading-tight">
+                {activeCountry.floatingPrograms[0]?.university || activeCountry.name}
+              </h3>
+              <p className="mt-1 text-xs text-white/85 font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] leading-relaxed">
+                Featured destination &amp; accredited university pathways
+              </p>
+            </div>
+
             {/* Bottom-Left Controls: Counter + Circular Navigation Arrows */}
             <div className="absolute bottom-7 left-7 z-20 flex flex-col gap-3">
               <div className="flex items-baseline text-white drop-shadow-md">
@@ -495,7 +509,7 @@ export function PathGatewaySection() {
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all cursor-pointer touch-manipulation"
                   aria-label="Previous country"
                 >
                   <ChevronLeft size={20} className="stroke-[2.5]" />
@@ -503,7 +517,7 @@ export function PathGatewaySection() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 hover:scale-105 active:scale-95 transition-all cursor-pointer touch-manipulation"
                   aria-label="Next country"
                 >
                   <ChevronRight size={20} className="stroke-[2.5]" />
@@ -656,17 +670,28 @@ export function PathGatewaySection() {
               </motion.div>
             </AnimatePresence>
 
+            {/* Upper-Left Destination & University Overlay */}
+            <div className="absolute top-4 left-4 right-4 z-10 pointer-events-none select-none">
+              <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[10px] font-semibold uppercase tracking-wider text-[#FC7F4E] shadow-sm mb-1.5">
+                <CountryFlag country={activeCountry.name} width={14} height={10} className="rounded-xs" />
+                <span>{activeCountry.name}</span>
+              </div>
+              <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] leading-tight max-w-[85%]">
+                {activeCountry.floatingPrograms[0]?.university || activeCountry.name}
+              </h3>
+            </div>
+
             {/* Bottom-Left Counter + Navigation Arrows */}
             <div className="absolute bottom-4 left-4 z-10 flex items-center gap-3">
               <div className="text-white font-bold text-2xl drop-shadow-md">
                 {String(currentIndex + 1).padStart(2, '0')}
                 <span className="text-base font-light text-white/80">/{String(COUNTRIES.length).padStart(2, '0')}</span>
               </div>
-              <div className="flex items-center gap-1.5">
+              <div className="flex items-center gap-2">
                 <button
                   type="button"
                   onClick={handlePrev}
-                  className="w-9 h-9 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95"
+                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95 touch-manipulation"
                   aria-label="Previous country"
                 >
                   <ChevronLeft size={18} />
@@ -674,7 +699,7 @@ export function PathGatewaySection() {
                 <button
                   type="button"
                   onClick={handleNext}
-                  className="w-9 h-9 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95"
+                  className="w-11 h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95 touch-manipulation"
                   aria-label="Next country"
                 >
                   <ChevronRight size={18} />

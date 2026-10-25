@@ -33,11 +33,39 @@ export const metadata: Metadata = {
     '211 OVERSEAS is an independent, Ahmedabad-based study abroad and overseas career consultancy. Meet our profile-first approach, what we promise, what we never do, and where to find us.',
 };
 
-const FOCUS: { icon: LucideIcon; title: string; text: string; href: string }[] = [
-  { icon: GraduationCap, title: 'Study in South Korea', text: 'English-taught bachelor’s, master’s and Korean language programs, from course matching to visa documentation.', href: '/study-in-south-korea' },
-  { icon: HeartPulse, title: 'Healthcare careers in Germany', text: 'Eligibility checks, German language preparation, qualification recognition and interview support for nurses and physiotherapists.', href: '/work-in-germany' },
-  { icon: Building2, title: 'Careers in the UAE', text: 'Guidance for healthcare, hospitality and engineering professionals exploring roles in the UAE.', href: '/work-in-uae' },
-  { icon: Globe2, title: 'Other destinations', text: 'Selected study pathways in Japan, Taiwan, Singapore, the UK, USA, Canada, Australia and Europe.', href: '/other-destinations' },
+const FOCUS: { icon: LucideIcon; title: string; text: string; href: string; image: string; alt: string }[] = [
+  {
+    icon: GraduationCap,
+    title: 'Study in South Korea',
+    text: 'English-taught bachelor’s, master’s and Korean language programs, from course matching to visa documentation.',
+    href: '/study-in-south-korea',
+    image: '/images/generated/korea-gateway.jpg',
+    alt: 'South Korean university campus grounds with international students',
+  },
+  {
+    icon: HeartPulse,
+    title: 'Healthcare careers in Germany',
+    text: 'Eligibility checks, German language preparation, qualification recognition and interview support for nurses and physiotherapists.',
+    href: '/work-in-germany',
+    image: '/images/generated/germany-healthcare.jpg',
+    alt: 'Healthcare professionals collaborating in a modern German hospital',
+  },
+  {
+    icon: Building2,
+    title: 'Careers in the UAE',
+    text: 'Guidance for healthcare, hospitality and engineering professionals exploring roles in the UAE.',
+    href: '/work-in-uae',
+    image: '/images/generated/uae-careers.jpg',
+    alt: 'Dubai skyline and modern commercial towers in the UAE',
+  },
+  {
+    icon: Globe2,
+    title: 'Other destinations',
+    text: 'Selected study pathways in Japan, Taiwan, Singapore, the UK, USA, Canada, Australia and Europe.',
+    href: '/other-destinations',
+    image: '/images/generated/global-campus.jpg',
+    alt: 'International students studying together in a modern global campus atrium',
+  },
 ];
 
 const PRINCIPLES: { icon: LucideIcon; title: string; text: string }[] = [
@@ -162,21 +190,35 @@ export default function AboutPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <SectionHeader eyebrow="What we do" headline="Four specialised focus areas" description={about.vision} compact />
           <MobileScroller label="Focus areas" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {FOCUS.map(({ icon: Icon, title, text, href }, i) => (
+            {FOCUS.map(({ icon: Icon, title, text, href, image, alt }, i) => (
               <Link
                 key={title}
                 href={href}
-                className="group flex h-full w-full flex-col border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.08)]"
+                className="group flex h-full w-full flex-col justify-between border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.08)]"
               >
-                <span className="flex items-center justify-between">
-                  <Icon size={26} strokeWidth={1.5} className="text-[#A33E11]" aria-hidden="true" />
-                  <span className="font-serif text-sm text-[#A33E11]">0{i + 1}</span>
-                </span>
-                <h3 className="mt-4 font-serif text-lg font-bold text-[#1B1C1A]">{title}</h3>
-                <p className="mt-2 flex-1 text-sm text-[#41484B] leading-relaxed">{text}</p>
-                <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#A33E11]">
-                  Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                </span>
+                <div>
+                  <span className="flex items-center justify-between">
+                    <Icon size={26} strokeWidth={1.5} className="text-[#A33E11]" aria-hidden="true" />
+                    <span className="font-serif text-sm text-[#A33E11]">0{i + 1}</span>
+                  </span>
+                  <h3 className="mt-4 font-serif text-lg font-bold text-[#1B1C1A]">{title}</h3>
+                  <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
+                </div>
+                <div className="mt-4">
+                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2px] border border-[#E6DDCC] bg-[#FAF8F5]">
+                    <Image
+                      src={image}
+                      alt={alt}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                  </div>
+                  <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#A33E11]">
+                    Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
+                  </span>
+                </div>
               </Link>
             ))}
           </MobileScroller>
@@ -234,7 +276,7 @@ export default function AboutPage() {
       </section>
 
       {/* Policies */}
-      <section className="py-12 md:py-16 border-b border-[#E6DDCC]" aria-label="Policies and disclaimer">
+      <section className="relative z-10 bg-[#FBF8F1] py-12 md:py-16 border-b border-[#E6DDCC]" aria-label="Policies and disclaimer">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="flex items-start gap-4">
             <ScrollText size={26} strokeWidth={1.5} className="mt-1 shrink-0 text-[#A33E11]" aria-hidden="true" />

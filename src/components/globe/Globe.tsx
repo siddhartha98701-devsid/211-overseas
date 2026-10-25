@@ -549,6 +549,11 @@ export default function Globe({
   const labelHref = activePin.isOrigin ? undefined : activePin.href;
 
   useEffect(() => {
+    if (clearTimer.current) clearTimeout(clearTimer.current);
+    setHoveredPinNow(null);
+  }, [selectedName]);
+
+  useEffect(() => {
     // Check reduced motion preference
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
     setReducedMotion(mq.matches);

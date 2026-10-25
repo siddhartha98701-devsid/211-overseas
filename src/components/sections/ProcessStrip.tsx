@@ -63,7 +63,8 @@ export function ProcessStrip() {
     const cards = el.children;
     const targetCard = cards[index] as HTMLElement;
     if (targetCard) {
-      targetCard.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const targetScroll = targetCard.offsetLeft - (el.clientWidth - targetCard.offsetWidth) / 2;
+      el.scrollTo({ left: Math.max(0, targetScroll), behavior: 'smooth' });
       setActiveStep(index);
     }
   };
@@ -130,7 +131,7 @@ export function ProcessStrip() {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUpOrLeave}
           onMouseLeave={handleMouseUpOrLeave}
-          className="flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-4 -mx-6 px-6 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing"
+          className="relative flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-4 -mx-6 px-6 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing"
           style={{ scrollSnapType: 'x mandatory' }}
           role="region"
           aria-label="Process milestones carousel"
@@ -219,7 +220,7 @@ export function ProcessStrip() {
               type="button"
               onClick={() => scrollToStep(Math.max(0, activeStep - 1))}
               disabled={activeStep === 0}
-              className="h-11 w-11 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
+              className="h-11 w-11 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 touch-manipulation"
               aria-label="Previous phase"
             >
               <ArrowLeft size={18} />
@@ -228,7 +229,7 @@ export function ProcessStrip() {
               type="button"
               onClick={() => scrollToStep(Math.min(steps.length - 1, activeStep + 1))}
               disabled={activeStep === steps.length - 1}
-              className="h-11 w-11 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed active:scale-95"
+              className="h-11 w-11 rounded-full border border-white/20 bg-white/5 hover:bg-white/15 text-white flex items-center justify-center transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 touch-manipulation"
               aria-label="Next phase"
             >
               <ArrowRight size={18} />

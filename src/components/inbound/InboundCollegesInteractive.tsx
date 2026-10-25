@@ -64,18 +64,43 @@ export function InboundCollegesInteractive() {
   }, [filteredColleges, selectedId]);
 
   const carouselRef = useRef<HTMLDivElement>(null);
+  const mobileChipsRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef(false);
   const startX = useRef(0);
   const scrollStartLeft = useRef(0);
 
-  const handleSelectCollege = (id: string) => {
+  const handleSelectCollege = (id: string, autoScrollToDossier = false) => {
     setSelectedId(id);
     if (typeof window !== 'undefined') {
       const el = document.querySelector(`[data-college-id="${id}"]`) as HTMLElement;
       if (el) {
         el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
       }
+      const chip = mobileChipsRef.current?.querySelector<HTMLElement>(`[data-chip-id="${id}"]`);
+      if (chip) {
+        chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }
+      if (autoScrollToDossier && window.innerWidth < 1024) {
+        const dossier = document.getElementById('college-dossier-panel');
+        if (dossier) {
+          const yOffset = -135;
+          const y = dossier.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+      }
     }
+  };
+
+  const handlePrevCollege = () => {
+    const currentIndex = filteredColleges.findIndex((c) => c.id === activeCollege.id);
+    const prevIndex = (currentIndex - 1 + filteredColleges.length) % filteredColleges.length;
+    handleSelectCollege(filteredColleges[prevIndex].id, true);
+  };
+
+  const handleNextCollege = () => {
+    const currentIndex = filteredColleges.findIndex((c) => c.id === activeCollege.id);
+    const nextIndex = (currentIndex + 1) % filteredColleges.length;
+    handleSelectCollege(filteredColleges[nextIndex].id, true);
   };
 
   const handleScrollRow = (direction: 'left' | 'right') => {
@@ -275,10 +300,84 @@ export function InboundCollegesInteractive() {
         </div>
       </div>
 
+      {/* Mobile Sticky University Selector Bar (Sticks below header on mobile) */}
+      <div className="block lg:hidden sticky top-[68px] sm:top-[72px] z-30 bg-[#FAF8F5]/95 backdrop-blur-md py-3 px-4 -mx-6 border-y border-[#E6DDCC] shadow-xs">
+        <div className="flex items-center justify-between gap-2 mb-2">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Building2 size={15} className="text-[#0C3844] shrink-0" />
+            <span className="text-[11px] uppercase tracking-wider font-bold text-[#1B1C1A] truncate">
+              {activeCollege.shortName}
+            </span>
+          </div>
+          <div className="flex items-center gap-1.5 shrink-0">
+            <button
+              type="button"
+              onClick={handlePrevCollege}
+              aria-label="Previous institution"
+              className="h-8 w-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center cursor-pointer active:scale-90"
+            >
+              <ChevronLeft size={16} />
+            </button>
+            <span className="text-[11px] font-semibold text-[#41484B] px-1">
+              {filteredColleges.findIndex((c) => c.id === activeCollege.id) + 1}/{filteredColleges.length}
+            </span>
+            <button
+              type="button"
+              onClick={handleNextCollege}
+              aria-label="Next institution"
+              className="h-8 w-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center cursor-pointer active:scale-90"
+            >
+              <ChevronRight size={16} />
+            </button>
+          </div>
+        </div>
+
+        {/* Quick Dropdown */}
+        <div className="relative mb-2">
+          <select
+            value={activeCollege.id}
+            onChange={(e) => handleSelectCollege(e.target.value, true)}
+            className="w-full text-xs font-semibold py-2 px-3 bg-white border border-[#E6DDCC] rounded-[2px] text-[#1B1C1A] focus:outline-none focus:border-[#A33E11]"
+            aria-label="Select institution"
+          >
+            {filteredColleges.map((col) => (
+              <option key={col.id} value={col.id}>
+                {col.shortName} – {col.city} ({col.nirfRank.split(' ')[0]} {col.nirfRank.split(' ')[1]})
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Horizontally scrollable chip bar */}
+        <div
+          ref={mobileChipsRef}
+          className="flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pt-1"
+        >
+          {filteredColleges.map((col) => {
+            const isSelected = activeCollege?.id === col.id;
+            return (
+              <button
+                key={col.id}
+                data-chip-id={col.id}
+                type="button"
+                onClick={() => handleSelectCollege(col.id, true)}
+                className={`px-3 py-1 text-[11px] font-bold rounded-full transition-all shrink-0 cursor-pointer ${
+                  isSelected
+                    ? 'bg-[#0C3844] text-white shadow-xs'
+                    : 'bg-white text-[#41484B] border border-[#E6DDCC] hover:text-[#1B1C1A]'
+                }`}
+              >
+                {col.shortName}
+              </button>
+            );
+          })}
+        </div>
+      </div>
+
       {/* Main Split Layout: Interactive Map (Left) + College Dossier (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Interactive Map Hub (5 cols) */}
-        <div className="lg:col-span-5 bg-white border border-[#E6DDCC] rounded-[2px] overflow-hidden shadow-xs flex flex-col">
+        {/* Left Column: Interactive Map Hub (5 cols, order-2 on mobile, order-1 on desktop) */}
+        <div className="order-2 lg:order-1 lg:col-span-5 bg-white border border-[#E6DDCC] rounded-[2px] overflow-hidden shadow-xs flex flex-col">
           {/* Map View Header / Toggle Switch */}
           <div className="p-4 border-b border-[#E6DDCC] flex items-center justify-between bg-[#FAF8F5]">
             <div className="flex items-center gap-2">
@@ -365,8 +464,8 @@ export function InboundCollegesInteractive() {
           </div>
         </div>
 
-        {/* Right Column: Comprehensive College Dossier Card (7 cols) */}
-        <div className="lg:col-span-7 bg-white border border-[#E6DDCC] rounded-[2px] shadow-xs overflow-hidden flex flex-col justify-between">
+        {/* Right Column: Comprehensive College Dossier Card (7 cols, order-1 on mobile, order-2 on desktop) */}
+        <div id="college-dossier-panel" className="order-1 lg:order-2 lg:col-span-7 bg-white border border-[#E6DDCC] rounded-[2px] shadow-xs overflow-hidden flex flex-col justify-between scroll-mt-32">
           <div>
             {/* College Header Banner with Campus Photo */}
             <div className="relative aspect-[16/8] sm:aspect-[16/7] w-full overflow-hidden bg-[#00222B]">

@@ -88,11 +88,13 @@ export function GlobeExplorerSection() {
     const card = rail?.querySelector<HTMLElement>(`[data-pin="${selected}"]`);
     if (!rail || !card) return;
     const left = card.offsetLeft - (rail.clientWidth - card.offsetWidth) / 2;
-    rail.scrollTo({ left, behavior: reduceMotion ? 'auto' : 'smooth' });
+    rail.scrollTo({ left: Math.max(0, left), behavior: reduceMotion ? 'auto' : 'smooth' });
   }, [selected, reduceMotion]);
 
   const step = (dir: 1 | -1) => {
-    const next = (index + dir + destinations.length) % destinations.length;
+    const currentIndex = destinations.findIndex((d) => d.pin === selected);
+    const validIndex = currentIndex >= 0 ? currentIndex : 0;
+    const next = (validIndex + dir + destinations.length) % destinations.length;
     setSelected(destinations[next].pin);
   };
 
@@ -148,7 +150,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(-1)}
                   aria-label="Previous destination"
-                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#A33E11] hover:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md"
+                  className="relative z-20 shrink-0 h-11 w-11 sm:h-12 sm:w-12 border border-white/25 bg-black/70 backdrop-blur-md text-white hover:border-[#A33E11] hover:text-[#FC7F4E] active:border-[#A33E11] active:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md touch-manipulation cursor-pointer"
                 >
                   <ArrowLeft className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -158,7 +160,7 @@ export function GlobeExplorerSection() {
                   role="radiogroup"
                   aria-label="Destinations"
                   onKeyDown={onKeyDown}
-                  className="flex-1 min-w-0 flex gap-2.5 sm:gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth py-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                  className="relative flex-1 min-w-0 flex gap-2.5 sm:gap-3 overflow-x-auto snap-x snap-mandatory scroll-smooth py-1 px-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
                 >
                   {destinations.map((d) => {
                     const active = d.pin === selected;
@@ -217,7 +219,7 @@ export function GlobeExplorerSection() {
                   type="button"
                   onClick={() => step(1)}
                   aria-label="Next destination"
-                  className="relative z-10 shrink-0 h-10 w-10 sm:h-11 sm:w-11 border border-white/25 bg-black/60 backdrop-blur-sm text-white hover:border-[#A33E11] hover:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md"
+                  className="relative z-20 shrink-0 h-11 w-11 sm:h-12 sm:w-12 border border-white/25 bg-black/70 backdrop-blur-md text-white hover:border-[#A33E11] hover:text-[#FC7F4E] active:border-[#A33E11] active:text-[#FC7F4E] transition-colors flex items-center justify-center active:scale-95 shadow-md touch-manipulation cursor-pointer"
                 >
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
@@ -225,7 +227,7 @@ export function GlobeExplorerSection() {
             </div>
 
             {/* Details */}
-            <div className="lg:col-span-5 min-h-[22rem]" aria-live="polite">
+            <div className="lg:col-span-5 min-h-[22rem] pb-16 sm:pb-0" aria-live="polite">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={current.pin}

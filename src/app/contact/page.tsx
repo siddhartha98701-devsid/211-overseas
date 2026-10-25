@@ -124,14 +124,14 @@ export default function ContactPage() {
       </section>
 
       {/* Direct Contact Channels Strip */}
-      <section className="py-12 md:py-16 border-b border-[#E6DDCC] bg-white" aria-label="Direct contact channels">
+      <section className="pt-12 pb-28 md:py-16 border-b border-[#E6DDCC] bg-white" aria-label="Direct contact channels">
         <div className="max-w-[1280px] mx-auto px-6">
           <ScrollReveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {/* Phone */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
+                <div className="flex flex-col items-center md:items-start w-full">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
                     <Phone size={18} />
                     <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Telephone</span>
                   </div>
@@ -146,9 +146,9 @@ export default function ContactPage() {
               </div>
 
               {/* WhatsApp */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
+                <div className="flex flex-col items-center md:items-start w-full">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
                     <MessageSquare size={18} />
                     <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">WhatsApp Support</span>
                   </div>
@@ -165,42 +165,42 @@ export default function ContactPage() {
               </div>
 
               {/* Email Enquiries (3 emails) */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-2 mb-2 text-[#A33E11]">
+              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
+                <div className="flex flex-col items-center md:items-start w-full">
+                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
                     <Mail size={18} />
                     <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Email Advisory</span>
                   </div>
-                  <div className="space-y-2 mt-2">
+                  <div className="space-y-3 mt-2 w-full">
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
                         {brand.emails.general.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.general.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
                       >
                         {brand.emails.general.address}
                       </a>
                     </div>
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
                         {brand.emails.admissions.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.admissions.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
                       >
                         {brand.emails.admissions.address}
                       </a>
                     </div>
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium">
+                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
                         {brand.emails.support.label}
                       </span>
                       <a
                         href={`mailto:${brand.emails.support.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
+                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
                       >
                         {brand.emails.support.address}
                       </a>
