@@ -1,11 +1,10 @@
 import type { Metadata } from 'next';
 import { adminConfigured, isAdmin } from '@/lib/server/adminAuth';
 import { listLeads, storageMode } from '@/lib/server/leads';
+import { AdminLoginForm } from './AdminLoginForm';
 
 export const metadata: Metadata = { title: 'Leads admin', robots: { index: false, follow: false } };
 export const dynamic = 'force-dynamic';
-
-const INPUT = 'w-full px-4 py-3 text-sm bg-white border border-[#E6DDCC] focus:outline-none focus:border-[#A33E11]';
 
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ error?: string }> }) {
   const { error } = await searchParams;
@@ -22,19 +21,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   }
 
   if (!(await isAdmin())) {
-    return (
-      <section className="pt-36 pb-24">
-        <div className="max-w-sm mx-auto px-6">
-          <h1 className="font-serif text-3xl font-bold text-[#1B1C1A]">Leads admin</h1>
-          <form method="post" action="/api/admin/login" className="mt-6 space-y-4">
-            <label className="block text-xs uppercase tracking-wider font-medium" htmlFor="pw">Password</label>
-            <input id="pw" name="password" type="password" required autoComplete="current-password" className={INPUT} />
-            {error && <p role="alert" className="text-xs text-red-600">Incorrect password.</p>}
-            <button className="w-full bg-[#A33E11] hover:bg-[#85320D] text-white text-xs uppercase tracking-widest font-medium py-3.5 transition-colors">Sign in</button>
-          </form>
-        </div>
-      </section>
-    );
+    return <AdminLoginForm error={error} />;
   }
 
   const leads = await listLeads();

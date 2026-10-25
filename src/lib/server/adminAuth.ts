@@ -5,14 +5,20 @@ import { cookies } from 'next/headers';
 export const ADMIN_COOKIE = 'admin_session';
 const MAX_AGE = 60 * 60 * 8;
 
-const secret = () => process.env.ADMIN_SESSION_SECRET || process.env.ADMIN_PASSWORD || '';
+// Protected fallback admin password (can be overridden via ADMIN_PASSWORD in environment variables)
+export const DEFAULT_ADMIN_PASSWORD = '211Overseas#GlobalAdmin$2026!';
+
+export const getAdminPassword = () => process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
+
+const secret = () => process.env.ADMIN_SESSION_SECRET || getAdminPassword();
 const sign = (v: string) => createHmac('sha256', secret()).update(v).digest('hex');
 
-export const adminConfigured = () => !!process.env.ADMIN_PASSWORD;
+export const adminConfigured = () => true;
 
 export function passwordMatches(input: string) {
+  const current = getAdminPassword();
   const a = Buffer.from(input);
-  const b = Buffer.from(process.env.ADMIN_PASSWORD || '');
+  const b = Buffer.from(current);
   return a.length === b.length && b.length > 0 && timingSafeEqual(a, b);
 }
 
