@@ -176,8 +176,38 @@ export function DestinationTableSection() {
           </h2>
         </div>
 
-        <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm">
-          <table className="w-full min-w-[620px] text-left border-collapse">
+        {/* Mobile / Tablet Horizontal Scroll Detail Cards */}
+        <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4">
+          {rows.map((row) => (
+            <div
+              key={row.destination}
+              className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+            >
+              <div>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-2">
+                  Destination Overview
+                </span>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2.5 pb-2 border-b border-[#E6DDCC]">
+                  {row.destination}
+                </h3>
+                <p className="text-xs text-[#41484B] leading-relaxed mb-4">
+                  {row.goodStartingPointFor}
+                </p>
+              </div>
+              <Link
+                href={row.href}
+                className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#A33E11] hover:underline"
+              >
+                <span>Explore Destination</span>
+                <ArrowRight size={13} />
+              </Link>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm">
+          <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                 <th className="py-3.5 px-6 font-semibold w-1/4">Destination</th>

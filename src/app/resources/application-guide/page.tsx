@@ -110,8 +110,43 @@ export default function ApplicationGuidePage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-md max-w-4xl mx-auto">
-              <table className="w-full min-w-[540px] text-left border-collapse">
+            {/* Mobile / Tablet Horizontal Scroll Detail Cards */}
+            <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4">
+              {preparationTable.map((row, idx) => (
+                <div
+                  key={idx}
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                >
+                  <div className="space-y-4">
+                    <span className="text-[10px] font-mono font-bold text-[#A33E11] uppercase tracking-wider block">
+                      Requirement 0{idx + 1}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
+                        <GraduationCap className="w-4 h-4 text-[#A33E11]" />
+                        <span>Study Applicants</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {row.study}
+                      </p>
+                    </div>
+                    <div className="pt-3 border-t border-[#E6DDCC]">
+                      <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
+                        <Briefcase className="w-4 h-4 text-[#A33E11]" />
+                        <span>Work Applicants</span>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {row.work}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] bg-white shadow-md max-w-4xl mx-auto">
+              <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                     <th className="py-4 px-6 font-semibold w-1/2">

@@ -62,12 +62,45 @@ export default function ScholarshipsPage() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <div className="overflow-x-auto border border-[#E6DDCC] shadow-md bg-white">
-              <table className="w-full min-w-[560px] text-left border-collapse">
+            {/* Mobile / Tablet Horizontal Scroll Detail Cards */}
+            <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4">
+              {fundingTypes.rows.map((row, idx) => (
+                <div
+                  key={row.type}
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between gap-2 mb-2.5">
+                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11]">
+                        Funding Category
+                      </span>
+                      <span className="text-xs font-mono font-bold text-[#71787B]">
+                        0{idx + 1}
+                      </span>
+                    </div>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3 pb-2.5 border-b border-[#E6DDCC]">
+                      {row.type}
+                    </h3>
+                    <div>
+                      <span className="text-[11px] uppercase tracking-wider text-[#71787B] block mb-1 font-semibold">
+                        What to Check &amp; Verify:
+                      </span>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {row.whatToCheck}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop Table View */}
+            <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] shadow-md bg-white">
+              <table className="w-full text-left border-collapse">
                 <thead>
                   <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                     <th className="py-4 px-6 font-semibold w-1/3">Funding Type</th>
-                    <th className="py-4 px-6 font-semibold">What to Check & Verify</th>
+                    <th className="py-4 px-6 font-semibold">What to Check &amp; Verify</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#E6DDCC] text-sm">
