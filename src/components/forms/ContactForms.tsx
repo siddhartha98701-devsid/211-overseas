@@ -8,17 +8,24 @@ interface ContactFormsProps {
 }
 
 export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
-  const [activeTab, setActiveTab] = useState<'study' | 'work'>(initialTab);
+  const [activeTab, setActiveTab] = useState<'study' | 'work'>(() => {
+    if (typeof window !== 'undefined' && window.location.hash === '#work-enquiry') {
+      return 'work';
+    }
+    return initialTab;
+  });
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
+    const handleHash = () => {
       const hash = window.location.hash;
       if (hash === '#work-enquiry') {
         setActiveTab('work');
       } else if (hash === '#study-enquiry') {
         setActiveTab('study');
       }
-    }
+    };
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
   }, []);
 
   return (

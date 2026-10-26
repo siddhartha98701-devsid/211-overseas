@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Phone, MessageSquare, MapPin, Clock, Mail } from 'lucide-react';
+import Image from 'next/image';
+import { MessageSquare, MapPin, Clock, Mail } from 'lucide-react';
 import { CONTACT_PAGE_CONTENT } from '@/content/contact';
 import { siteContent, SHOW_VERIFIED_COMPANY_DETAILS } from '@/content/site';
 import { ContactForms } from '@/components/forms/ContactForms';
@@ -41,6 +42,25 @@ export default function ContactPage() {
 
           {/* Right Column: Direct Contact Details */}
           <aside className="lg:col-span-4 space-y-6">
+            <div className="relative aspect-[16/10] w-full overflow-hidden border border-[#E6DDCC] bg-[#FBF8F1] shadow-sm rounded-[2px] group">
+              <Image
+                src="/images/generated/counselling-advisory.jpg"
+                alt="211 Overseas in-person and digital counselling advisory"
+                fill
+                sizes="(min-width: 1024px) 380px, 95vw"
+                className="object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+              <div className="absolute bottom-3 left-3.5 right-3.5 text-white">
+                <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                  Advisory Desk
+                </span>
+                <p className="font-serif text-xs font-semibold leading-tight text-white/95">
+                  Direct Counselling &amp; Application Guidance
+                </p>
+              </div>
+            </div>
+
             <div className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
               <span className="text-[11px] font-semibold uppercase tracking-wider text-[#A33E11] block mb-2">
                 Direct Line

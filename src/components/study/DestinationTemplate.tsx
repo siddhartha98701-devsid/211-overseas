@@ -375,6 +375,28 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </span>
               </div>
 
+              {/* Featured Campus Photography Banner */}
+              {visual?.gallery?.[0] && (
+                <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full overflow-hidden border border-[#E6DDCC] mb-6 rounded-[2px] group">
+                  <Image
+                    src={visual.gallery[0].src}
+                    alt={visual.gallery[0].alt}
+                    fill
+                    sizes="(min-width: 1024px) 760px, 95vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                  <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between text-white">
+                    <span className="text-xs font-semibold drop-shadow-sm">
+                      {visual.gallery[0].title}
+                    </span>
+                    <span className="text-[10px] uppercase font-mono tracking-wider text-[#FC7F4E] bg-black/40 px-2 py-0.5 rounded backdrop-blur-xs">
+                      Academic Campus
+                    </span>
+                  </div>
+                </div>
+              )}
+
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {data.universities.list.map((uni) => (
                   <div

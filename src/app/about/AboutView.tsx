@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -12,7 +13,6 @@ import {
   Compass,
   ShieldCheck,
   FileText,
-  Sparkles,
 } from 'lucide-react';
 import { aboutContent } from '@/content/about';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
@@ -52,51 +52,80 @@ export function AboutView() {
         />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: 'easeOut' }}
-            className="max-w-4xl"
-          >
-            {/* Pill Eyebrow with Contrasting Leaves */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-5 rounded-full bg-white/5 border border-white/15 backdrop-blur-sm">
-              <ColorContrastLeafPair />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E]">
-                {hero.eyebrow}
-              </span>
-            </div>
-
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
-              {hero.h1}
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed mb-8 font-light">
-              {hero.paragraph}
-            </p>
-
-            {/* Modern Micro-Value Badges */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.6 }}
-              className="flex flex-wrap items-center gap-3 pt-2"
+              transition={{ duration: 0.65, ease: 'easeOut' }}
+              className="lg:col-span-7"
             >
-              {[
-                'Academic Suitability',
-                'Financial Clarity',
-                'Practical Requirements',
-                'Zero Exaggeration',
-              ].map((badge) => (
-                <span
-                  key={badge}
-                  className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs text-white/90 bg-white/10 hover:bg-white/15 border border-white/15 rounded-full transition-all duration-300 hover:border-[#FC7F4E]"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#FC7F4E]" />
-                  {badge}
+              {/* Pill Eyebrow with Contrasting Leaves */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-5 rounded-full bg-white/5 border border-white/15 backdrop-blur-sm">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E]">
+                  {hero.eyebrow}
                 </span>
-              ))}
+              </div>
+
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
+                {hero.h1}
+              </h1>
+
+              <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed mb-8 font-light">
+                {hero.paragraph}
+              </p>
+
+              {/* Modern Micro-Value Badges */}
+              <motion.div
+                initial={{ opacity: 0, y: 15 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.6 }}
+                className="flex flex-wrap items-center gap-3 pt-2"
+              >
+                {[
+                  'Academic Suitability',
+                  'Financial Clarity',
+                  'Practical Requirements',
+                  'Zero Exaggeration',
+                ].map((badge) => (
+                  <span
+                    key={badge}
+                    className="inline-flex items-center gap-2 px-3.5 py-1.5 text-xs text-white/90 bg-white/10 hover:bg-white/15 border border-white/15 rounded-full transition-all duration-300 hover:border-[#FC7F4E]"
+                  >
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#FC7F4E]" />
+                    {badge}
+                  </span>
+                ))}
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="lg:col-span-5"
+            >
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                <Image
+                  src="/images/generated/counselling-advisory.jpg"
+                  alt="211 Overseas in-person and digital advisory counselling"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                    Advisory Excellence
+                  </span>
+                  <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                    In-Person &amp; Remote Guidance with Grounded Transparency
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -232,6 +261,17 @@ export function AboutView() {
               whileHover={{ y: -4 }}
               className="bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
             >
+              <div className="relative aspect-[21/9] w-full overflow-hidden rounded-[2px] mb-6 border border-[#E6DDCC]">
+                <Image
+                  src="/images/destinations/uk-cambridge.jpg"
+                  alt="Academic degree pathways and campus research"
+                  fill
+                  sizes="(min-width: 768px) 500px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+
               <div className="flex items-center gap-4 mb-8 pb-5 border-b border-[#E6DDCC]">
                 <div className="w-12 h-12 rounded-full bg-[#F3EBDD] flex items-center justify-center text-[#A33E11] group-hover:scale-105 transition-transform">
                   <BookOpen className="w-6 h-6" />
@@ -274,6 +314,17 @@ export function AboutView() {
               whileHover={{ y: -4 }}
               className="bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
             >
+              <div className="relative aspect-[21/9] w-full overflow-hidden rounded-[2px] mb-6 border border-[#E6DDCC]">
+                <Image
+                  src="/images/generated/uae-careers.jpg"
+                  alt="International employment and verified overseas career contracts"
+                  fill
+                  sizes="(min-width: 768px) 500px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+              </div>
+
               <div className="flex items-center gap-4 mb-8 pb-5 border-b border-[#E6DDCC]">
                 <div className="w-12 h-12 rounded-full bg-[#F3EBDD] flex items-center justify-center text-[#A33E11] group-hover:scale-105 transition-transform">
                   <Briefcase className="w-6 h-6" />

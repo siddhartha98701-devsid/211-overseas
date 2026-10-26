@@ -9,15 +9,13 @@ interface ScrollRevealProps {
 }
 
 export function ScrollReveal({ children, className = '', delay = 0 }: ScrollRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(() => {
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Respect prefers-reduced-motion
-    if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setIsVisible(true);
-      return;
-    }
+    if (isVisible) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -41,7 +39,7 @@ export function ScrollReveal({ children, className = '', delay = 0 }: ScrollReve
     }
 
     return () => observer.disconnect();
-  }, [delay]);
+  }, [delay, isVisible]);
 
   return (
     <div

@@ -2,9 +2,29 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, GraduationCap } from 'lucide-react';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 import { studyOverviewContent } from '@/content/study';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
+
+const QUALIFICATION_IMAGES: Record<string, { image: string; alt: string }> = {
+  "Bachelor’s": {
+    image: '/images/korea/korea-campus.jpg',
+    alt: 'Undergraduate university campus grounds and lecture halls',
+  },
+  "Master’s & MBA": {
+    image: '/images/generated/korea-gateway.jpg',
+    alt: 'Master’s degree and postgraduate management campus facilities',
+  },
+  "Language programs": {
+    image: '/images/korea/korea-student.jpg',
+    alt: 'International students studying language immersion programs',
+  },
+  "Postgraduate & research": {
+    image: '/images/destinations/japan-tech-lab.jpg',
+    alt: 'Advanced technology laboratory and postgraduate scientific research',
+  },
+};
 
 export const metadata: Metadata = {
   title: studyOverviewContent.meta.title,
@@ -85,8 +105,9 @@ export default function StudyOverviewPage() {
             </h2>
           </div>
 
-          <div className="overflow-x-auto border border-[#E6DDCC] shadow-sm">
-            <table className="w-full text-left border-collapse">
+          {/* Desktop Table View (hidden on small screens to prevent cramped or cut-off text) */}
+          <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] shadow-sm">
+            <table className="w-full min-w-[680px] text-left border-collapse">
               <thead>
                 <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                   <th className="py-4 px-6 font-semibold w-1/4">Destination</th>
@@ -98,12 +119,21 @@ export default function StudyOverviewPage() {
                 {exploreByDestination.destinations.map((d) => (
                   <tr key={d.name} className="hover:bg-[#F3EBDD]/40 transition-colors">
                     <td className="py-4 px-6 font-serif font-bold text-[#1B1C1A]">
-                      {d.name}
+                      <div className="flex items-center gap-2.5">
+                        <CountryFlag
+                          country={d.name}
+                          width={24}
+                          height={16}
+                          className="w-[24px] h-[16px] rounded-[2px] border border-[#E6DDCC] object-cover flex-shrink-0"
+                          loading="lazy"
+                        />
+                        <span>{d.name}</span>
+                      </div>
                     </td>
-                    <td className="py-4 px-6 text-[#41484B]">
+                    <td className="py-4 px-6 text-[#41484B] leading-relaxed">
                       {d.distinctiveFactor}
                     </td>
-                    <td className="py-4 px-6 text-right">
+                    <td className="py-4 px-6 text-right whitespace-nowrap">
                       <Link
                         href={d.href}
                         className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:underline"
@@ -116,6 +146,41 @@ export default function StudyOverviewPage() {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          {/* Mobile Card View (md:hidden) so text is NEVER cut off or squished on phones/tablets */}
+          <div className="md:hidden space-y-3.5">
+            {exploreByDestination.destinations.map((d) => (
+              <div
+                key={d.name}
+                className="bg-[#FBF8F1] border border-[#E6DDCC] p-4.5 rounded-[2px] shadow-sm hover:border-[#A33E11] transition-colors"
+              >
+                <div className="flex items-center justify-between gap-3 mb-2.5 pb-2.5 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CountryFlag
+                      country={d.name}
+                      width={24}
+                      height={16}
+                      className="w-[24px] h-[16px] rounded-[2px] border border-[#E6DDCC] object-cover flex-shrink-0"
+                      loading="lazy"
+                    />
+                    <h3 className="font-serif text-base font-bold text-[#1B1C1A]">
+                      {d.name}
+                    </h3>
+                  </div>
+                  <Link
+                    href={d.href}
+                    className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:underline shrink-0"
+                  >
+                    <span>Explore</span>
+                    <ArrowRight size={13} />
+                  </Link>
+                </div>
+                <p className="text-sm text-[#41484B] leading-relaxed">
+                  {d.distinctiveFactor}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -133,21 +198,47 @@ export default function StudyOverviewPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {exploreByQualification.qualifications.map((q) => (
-              <div key={q.title} className="bg-white border border-[#E6DDCC] p-6 shadow-sm flex flex-col justify-between">
-                <div>
-                  <div className="w-10 h-10 rounded-full bg-[#F3EBDD] flex items-center justify-center text-[#A33E11] mb-4">
-                    <GraduationCap className="w-5 h-5" />
+            {exploreByQualification.qualifications.map((q) => {
+              const visual = QUALIFICATION_IMAGES[q.title] || {
+                image: '/images/generated/global-campus.jpg',
+                alt: q.title,
+              };
+              return (
+                <div
+                  key={q.title}
+                  className="bg-white border border-[#E6DDCC] overflow-hidden shadow-sm flex flex-col justify-between group hover:border-[#A33E11] hover:shadow-md transition-all duration-300"
+                >
+                  <div>
+                    {/* Visual Photo Header */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
+                      <Image
+                        src={visual.image}
+                        alt={visual.alt}
+                        fill
+                        sizes="(min-width: 1024px) 280px, 95vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                      <div className="absolute top-3 left-3 w-8 h-8 rounded-full bg-[#F3EBDD]/90 backdrop-blur-sm flex items-center justify-center text-[#A33E11] shadow-sm">
+                        <GraduationCap className="w-4 h-4" />
+                      </div>
+                      <span className="absolute bottom-2.5 left-3 text-[11px] font-semibold text-white/95 uppercase tracking-wider">
+                        {q.title}
+                      </span>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
+                        {q.title}
+                      </h3>
+                      <p className="text-sm text-[#41484B] leading-relaxed">
+                        {q.description}
+                      </p>
+                    </div>
                   </div>
-                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
-                    {q.title}
-                  </h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed">
-                    {q.description}
-                  </p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

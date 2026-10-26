@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import {
   ArrowRight,
@@ -12,8 +13,6 @@ import {
   GraduationCap,
   Globe2,
   HelpCircle,
-  Sparkles,
-  ChevronRight,
   Clock,
 } from 'lucide-react';
 import { resourcesHubContent } from '@/content/resources';
@@ -27,36 +26,48 @@ const guideMetadata = [
     badge: 'Cost Calculator',
     readTime: '6 min read',
     category: 'Finance',
+    image: '/images/destinations/singapore-fintech-hub.jpg',
+    alt: 'Financial and cost calculator planning for study abroad',
   },
   {
     icon: <Award className="w-5 h-5 text-[#A33E11]" />,
     badge: 'Funding Breakdown',
     readTime: '8 min read',
     category: 'Scholarships',
+    image: '/images/destinations/usa-harvard-yard.jpg',
+    alt: 'International scholarships and university funding options',
   },
   {
     icon: <FileCheck className="w-5 h-5 text-[#A33E11]" />,
     badge: 'Official Checklist',
     readTime: '7 min read',
     category: 'Admissions',
+    image: '/images/destinations/uk-cambridge.jpg',
+    alt: 'University admissions documentation and application checklist',
   },
   {
     icon: <Briefcase className="w-5 h-5 text-[#A33E11]" />,
     badge: 'Compliance Tool',
     readTime: '5 min read',
     category: 'Employment',
+    image: '/images/generated/uae-careers.jpg',
+    alt: 'Verified overseas employment contract and offer evaluation',
   },
   {
     icon: <GraduationCap className="w-5 h-5 text-[#A33E11]" />,
     badge: 'Destination Dossier',
     readTime: '9 min read',
     category: 'Destinations',
+    image: '/images/korea/seoul-skyline.jpg',
+    alt: 'South Korea academic institutions and degree pathways',
   },
   {
     icon: <Globe2 className="w-5 h-5 text-[#A33E11]" />,
     badge: 'Interactive Matrix',
     readTime: '10 min read',
     category: 'Overview',
+    image: '/images/generated/global-campus.jpg',
+    alt: 'Global university campuses and destination comparison',
   },
 ];
 
@@ -94,54 +105,83 @@ export function ResourcesView() {
         />
 
         <div className="relative z-10 max-w-[1280px] mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: 'easeOut' }}
-            className="max-w-4xl"
-          >
-            {/* Pill Eyebrow with Contrasting Leaves */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-5 rounded-full bg-white/5 border border-white/15 backdrop-blur-sm">
-              <ColorContrastLeafPair />
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E]">
-                {hero.eyebrow}
-              </span>
-            </div>
-
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
-              {hero.h1}
-            </h1>
-
-            <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed mb-8 font-light">
-              {hero.paragraph}
-            </p>
-
-            {/* Interactive Category Filter Pills */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <motion.div
-              initial={{ opacity: 0, y: 14 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.25, duration: 0.55 }}
-              className="flex flex-wrap items-center gap-2 pt-2"
+              transition={{ duration: 0.65, ease: 'easeOut' }}
+              className="lg:col-span-7"
             >
-              <span className="text-xs font-mono uppercase text-white/50 mr-2">Filter Topics:</span>
-              {filterOptions.map((filter) => {
-                const isActive = selectedFilter === filter;
-                return (
-                  <button
-                    key={filter}
-                    onClick={() => setSelectedFilter(filter)}
-                    className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer ${
-                      isActive
-                        ? 'bg-[#FC7F4E] text-[#00222B] font-bold shadow-sm'
-                        : 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white border border-white/10'
-                    }`}
-                  >
-                    {filter}
-                  </button>
-                );
-              })}
+              {/* Pill Eyebrow with Contrasting Leaves */}
+              <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-5 rounded-full bg-white/5 border border-white/15 backdrop-blur-sm">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E]">
+                  {hero.eyebrow}
+                </span>
+              </div>
+
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.15] mb-6 tracking-tight">
+                {hero.h1}
+              </h1>
+
+              <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed mb-8 font-light">
+                {hero.paragraph}
+              </p>
+
+              {/* Interactive Category Filter Pills */}
+              <motion.div
+                initial={{ opacity: 0, y: 14 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.55 }}
+                className="flex flex-wrap items-center gap-2 pt-2"
+              >
+                <span className="text-xs font-mono uppercase text-white/50 mr-2">Filter Topics:</span>
+                {filterOptions.map((filter) => {
+                  const isActive = selectedFilter === filter;
+                  return (
+                    <button
+                      key={filter}
+                      onClick={() => setSelectedFilter(filter)}
+                      className={`px-3.5 py-1.5 text-xs font-medium rounded-full transition-all duration-200 cursor-pointer ${
+                        isActive
+                          ? 'bg-[#FC7F4E] text-[#00222B] font-bold shadow-sm'
+                          : 'bg-white/10 text-white/80 hover:bg-white/15 hover:text-white border border-white/10'
+                      }`}
+                    >
+                      {filter}
+                    </button>
+                  );
+                })}
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+              className="lg:col-span-5"
+            >
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                <Image
+                  src="/images/inbound/indian-campus-library.jpg"
+                  alt="211 Overseas official resource library and academic documentation archives"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                    Official Resource Hub
+                  </span>
+                  <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                    Structured Frameworks for Budgets, Visas &amp; Admissions
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
@@ -198,47 +238,61 @@ export function ResourcesView() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.5, delay: originalIdx * 0.08 }}
                   whileHover={{ y: -6 }}
-                  className="group relative bg-[#FBF8F1] border border-[#E6DDCC] p-8 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="group relative bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   {/* Expanding Top Accent Bar */}
-                  <div className="absolute top-0 left-0 h-1 w-10 bg-[#A33E11] group-hover:w-full transition-all duration-500" />
+                  <div className="absolute top-0 left-0 h-1 w-10 bg-[#A33E11] group-hover:w-full transition-all duration-500 z-10" />
 
-                  <div>
-                    {/* Top Meta Pill & Icon */}
-                    <div className="flex items-center justify-between mb-6">
-                      <div className="w-12 h-12 rounded-full bg-white border border-[#E6DDCC] flex items-center justify-center group-hover:bg-[#A33E11]/10 group-hover:scale-105 transition-all shadow-sm">
-                        {meta.icon}
-                      </div>
-
-                      <div className="flex items-center gap-2">
-                        <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-[#A33E11] bg-white border border-[#E6DDCC] px-2.5 py-1 rounded-full">
+                  {/* Photo Header */}
+                  {meta.image && (
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
+                      <Image
+                        src={meta.image}
+                        alt={meta.alt || guide.title}
+                        fill
+                        sizes="(min-width: 1024px) 360px, 95vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between">
+                        <span className="text-[11px] font-mono font-semibold uppercase tracking-wider text-white bg-black/50 px-2.5 py-0.5 rounded backdrop-blur-xs">
                           {meta.badge}
                         </span>
                       </div>
                     </div>
+                  )}
 
-                    <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors leading-tight">
-                      {guide.title}
-                    </h3>
+                  <div className="p-7 flex flex-col justify-between flex-1">
+                    <div>
+                      {/* Top Meta Icon */}
+                      <div className="flex items-center justify-between mb-4">
+                        <div className="w-10 h-10 rounded-full bg-white border border-[#E6DDCC] flex items-center justify-center group-hover:bg-[#A33E11]/10 group-hover:scale-105 transition-all shadow-sm">
+                          {meta.icon}
+                        </div>
+                        <span className="inline-flex items-center gap-1.5 text-xs text-[#41484B]/70 font-mono">
+                          <Clock size={12} />
+                          {meta.readTime}
+                        </span>
+                      </div>
 
-                    <p className="text-sm text-[#41484B] leading-relaxed mb-8">
-                      {guide.description}
-                    </p>
-                  </div>
+                      <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors leading-tight">
+                        {guide.title}
+                      </h3>
 
-                  <div className="pt-6 border-t border-[#E6DDCC]/70 flex items-center justify-between">
-                    <span className="inline-flex items-center gap-1.5 text-xs text-[#41484B]/70 font-mono">
-                      <Clock size={12} />
-                      {meta.readTime}
-                    </span>
+                      <p className="text-sm text-[#41484B] leading-relaxed mb-6">
+                        {guide.description}
+                      </p>
+                    </div>
 
-                    <Link
-                      href={guide.href}
-                      className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#A33E11] group-hover:text-[#85320D]"
-                    >
-                      <span>Read Guide</span>
-                      <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
-                    </Link>
+                    <div className="pt-4 border-t border-[#E6DDCC]/70 flex items-center justify-end">
+                      <Link
+                        href={guide.href}
+                        className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#A33E11] group-hover:text-[#85320D]"
+                      >
+                        <span>Read Guide</span>
+                        <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
+                      </Link>
+                    </div>
                   </div>
                 </motion.div>
               );

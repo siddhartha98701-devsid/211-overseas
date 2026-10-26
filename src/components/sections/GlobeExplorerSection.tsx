@@ -35,16 +35,6 @@ const DESTINATIONS: Destination[] = [
     featured: true,
   },
   {
-    pin: 'Dubai',
-    country: 'UAE',
-    label: 'Work · Careers',
-    description: 'Browse healthcare, hospitality, technical and commercial opportunities in the UAE.',
-    bullets: ['Healthcare & nursing roles', 'Hospitality & guest services', 'Engineering & skilled trades', 'Verified written offers'],
-    href: '/work/uae',
-    cta: 'Explore UAE',
-    featured: true,
-  },
-  {
     pin: 'Singapore',
     country: 'Singapore',
     label: 'Study',
@@ -52,7 +42,17 @@ const DESTINATIONS: Destination[] = [
     bullets: ['Top Asian institutions', 'Business & computing', 'English medium of instruction', 'Industry linkages'],
     href: '/study/singapore',
     cta: 'Explore Singapore',
-    featured: false,
+    featured: true,
+  },
+  {
+    pin: 'Luxembourg',
+    country: 'Luxembourg',
+    label: 'Study',
+    description: 'Business, finance and international management in a leading European financial centre.',
+    bullets: ['Finance & management', 'Multilingual environment', 'European business hub', 'Merit awards available'],
+    href: '/study/luxembourg',
+    cta: 'Explore Luxembourg',
+    featured: true,
   },
   {
     pin: 'Tokyo',
@@ -62,7 +62,17 @@ const DESTINATIONS: Destination[] = [
     bullets: ['Robotics & engineering', 'MEXT scholarship routes', 'Undergraduate & master’s', 'Research excellence'],
     href: '/study/japan',
     cta: 'Explore Japan',
-    featured: false,
+    featured: true,
+  },
+  {
+    pin: 'Dubai',
+    country: 'UAE',
+    label: 'Work · Careers',
+    description: 'Browse healthcare, hospitality, technical and commercial opportunities in the UAE.',
+    bullets: ['Healthcare & nursing roles', 'Hospitality & guest services', 'Engineering & skilled trades', 'Verified written offers'],
+    href: '/work/uae',
+    cta: 'Explore UAE',
+    featured: true,
   },
   {
     pin: 'Taipei',
@@ -75,13 +85,13 @@ const DESTINATIONS: Destination[] = [
     featured: false,
   },
   {
-    pin: 'Luxembourg',
-    country: 'Luxembourg',
+    pin: 'Berlin',
+    country: 'Europe (Germany)',
     label: 'Study',
-    description: 'Business, finance and international management in a leading European financial centre.',
-    bullets: ['Finance & management', 'Multilingual environment', 'European business hub', 'Merit awards available'],
-    href: '/study/luxembourg',
-    cta: 'Explore Luxembourg',
+    description: 'Tuition-free or low-cost higher education, engineering, automotive and research universities in Germany and Europe.',
+    bullets: ['English-taught degrees', 'Engineering & automotive', 'Post-study job seeker visa', 'Structured research'],
+    href: '/study/europe',
+    cta: 'Explore Europe & Germany',
     featured: false,
   },
   {
@@ -132,7 +142,8 @@ export function GlobeExplorerSection() {
   const railRef = useRef<HTMLDivElement>(null);
   const reduceMotion = usePrefersReducedMotion();
 
-  const index = destinations.findIndex((d) => d.pin === selected);
+  const rawIndex = destinations.findIndex((d) => d.pin === selected);
+  const index = rawIndex >= 0 ? rawIndex : 0;
   const current = destinations[index];
   const pinMeta = GLOBE_PINS.find((p) => p.name === current.pin);
 
@@ -227,13 +238,13 @@ export function GlobeExplorerSection() {
                         tabIndex={active ? 0 : -1}
                         data-pin={d.pin}
                         onClick={() => {
-                          if (d.pin === 'Seoul' && active) {
+                          if (active) {
                             window.location.href = d.href;
                           } else {
                             setSelected(d.pin);
                           }
                         }}
-                        title={d.pin === 'Seoul' ? (active ? 'Click to open Study in South Korea' : 'Select South Korea') : undefined}
+                        title={active ? `Click to open ${d.country}` : `Select ${d.country}`}
                         className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none cursor-pointer ${
                           active
                             ? 'bg-[#A33E11] border-[#A33E11] text-white shadow-[0_4px_16px_rgba(163,62,17,0.35)]'
@@ -249,7 +260,7 @@ export function GlobeExplorerSection() {
                         </span>
                         <div className="flex items-center gap-2.5 mt-2 min-w-0">
                           <CountryFlag
-                            country={d.country}
+                            country={d.country.includes('Germany') ? 'Germany' : d.country}
                             width={26}
                             height={18}
                             className="w-[24px] h-[16px] sm:w-[26px] sm:h-[18px] rounded-[2px] border border-[#A33E11] object-cover flex-shrink-0 shadow-sm"
@@ -258,8 +269,8 @@ export function GlobeExplorerSection() {
                           <span className="font-serif text-sm sm:text-base font-bold leading-tight truncate">
                             {d.country}
                           </span>
-                          {d.pin === 'Seoul' && active && (
-                            <span className="ml-auto text-[10px] text-white/90 underline font-sans shrink-0">
+                          {active && (
+                            <span className="ml-auto text-[10px] text-white underline font-sans shrink-0 font-medium">
                               View →
                             </span>
                           )}
@@ -317,10 +328,10 @@ export function GlobeExplorerSection() {
 
                   <Link
                     href={current.href}
-                    className="btn-shine inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-medium transition-colors group"
+                    className="btn-shine relative z-30 inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-semibold transition-all cursor-pointer group shadow-lg active:scale-95"
                   >
                     <span>{current.cta}</span>
-                    <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1">→</span>
+                    <span className="ml-2 transition-transform duration-200 group-hover:translate-x-1 font-bold">→</span>
                   </Link>
                 </motion.div>
               </AnimatePresence>

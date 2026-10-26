@@ -1195,8 +1195,25 @@ export function subpageHref(p: Pick<SubpageContent, 'group' | 'slug'>) {
 
 /** Map a country name (as used in pins and the enquiry form) to its sub-page, if it has one. */
 export function countryHref(name: string) {
-  const p = SUBPAGES.find((s) => s.group === 'other-destinations' && s.name.toLowerCase() === name.toLowerCase());
-  return p ? subpageHref(p) : '/other-destinations';
+  const map: Record<string, string> = {
+    'south korea': '/study/south-korea',
+    'korea': '/study/south-korea',
+    'japan': '/study/japan',
+    'taiwan': '/study/taiwan',
+    'singapore': '/study/singapore',
+    'luxembourg': '/study/luxembourg',
+    'united kingdom': '/study/uk',
+    'uk': '/study/uk',
+    'united states': '/study/usa',
+    'usa': '/study/usa',
+    'canada': '/study/canada',
+    'australia': '/study/australia',
+    'uae': '/work/uae',
+    'germany': '/study/europe',
+    'europe': '/study/europe',
+    'greece': '/work/greece',
+  };
+  return map[name.toLowerCase()] || '/study';
 }
 
 export const GROUP_LABEL: Record<SubpageGroup, { label: string; href: string }> = {

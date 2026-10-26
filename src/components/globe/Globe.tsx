@@ -189,7 +189,7 @@ function PinMarker({
       <mesh
         onPointerOver={(e) => {
           e.stopPropagation();
-          if (pin.name === 'Seoul') {
+          if (pin.href && !pin.isOrigin) {
             document.body.style.cursor = 'pointer';
           }
           onHover();
@@ -201,12 +201,12 @@ function PinMarker({
         onClick={(e) => {
           e.stopPropagation();
           onSelect?.();
-          if (pin.name === 'Seoul') {
-            window.location.href = '/study-in-south-korea';
+          if (pin.href && !pin.isOrigin) {
+            window.location.href = pin.href;
           }
         }}
       >
-        <sphereGeometry args={[0.1, 12, 12]} />
+        <sphereGeometry args={[0.12, 12, 12]} />
         <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
 
@@ -532,9 +532,26 @@ export default function Globe({
   selectedName?: string | null;
   onSelect?: (name: string) => void;
 }) {
-  const [reducedMotion, setReducedMotion] = useState(false);
-  const [hasWebGL, setHasWebGL] = useState(true);
+  const [reducedMotion, setReducedMotion] = useState(() => {
+    return typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  });
+  const [hasWebGL] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    try {
+      const canvas = document.createElement('canvas');
+      return Boolean(canvas.getContext('webgl') || canvas.getContext('experimental-webgl'));
+    } catch {
+      return false;
+    }
+  });
   const [hoveredPin, setHoveredPinNow] = useState<GlobePin | null>(null);
+  const [prevSelectedName, setPrevSelectedName] = useState(selectedName);
+
+  if (prevSelectedName !== selectedName) {
+    setPrevSelectedName(selectedName);
+    setHoveredPinNow(null);
+  }
+
   const clearTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   // Short grace period on un-hover so the pointer can travel from the pin onto its (clickable) label.
   const setHoveredPin = useCallback((pin: GlobePin | null) => {
@@ -549,25 +566,10 @@ export default function Globe({
   const labelHref = activePin.isOrigin ? undefined : activePin.href;
 
   useEffect(() => {
-    if (clearTimer.current) clearTimeout(clearTimer.current);
-    setHoveredPinNow(null);
-  }, [selectedName]);
-
-  useEffect(() => {
     // Check reduced motion preference
     const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setReducedMotion(mq.matches);
     const handler = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
     mq.addEventListener('change', handler);
-
-    // Check WebGL availability
-    try {
-      const canvas = document.createElement('canvas');
-      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
-      if (!gl) setHasWebGL(false);
-    } catch {
-      setHasWebGL(false);
-    }
 
     return () => mq.removeEventListener('change', handler);
   }, []);
@@ -633,7 +635,7 @@ export default function Globe({
                 }`}
               >
                 <span>{activePin.name}</span>
-                {activePin.name === 'Seoul' && (
+                {!activePin.isOrigin && (
                   <span className="text-[10px] text-[#FC7F4E] opacity-75 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all">
                     →
                   </span>
