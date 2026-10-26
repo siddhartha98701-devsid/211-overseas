@@ -97,7 +97,7 @@ export default function InboundCollaborationsPage() {
             <span className="font-semibold text-white">College Collaboration Desk</span>
             <span className="text-white/40">|</span>
             <Link href="/inbound/students" className="text-[#FC7F4E] hover:underline font-medium inline-flex items-center gap-1">
-              <span>Are you an International Student? Visit Student Admissions Portal</span>
+              <span>Are you a Student? Visit Student Admissions Portal</span>
               <ArrowRight size={13} />
             </Link>
           </div>

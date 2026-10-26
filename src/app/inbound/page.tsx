@@ -198,8 +198,8 @@ const INSTITUTION_CARDS = [
 // Section L FAQs Data (Verbatim)
 const INBOUND_FAQS = [
   {
-    q: 'Can international students study at universities in India?',
-    a: 'Yes. Eligible international applicants can apply to Indian universities, subject to academic qualifications, admission categories and the institution’s own procedures.',
+    q: 'Who can apply to Indian universities through 211 Overseas?',
+    a: 'All eligible students—domestic, NRI, and international applicants—can explore degree options and admission pathways across Indian universities, subject to course qualifications, admission categories and the institution’s own procedures.',
   },
   {
     q: 'Are the universities listed partners of 211 Overseas?',
@@ -266,7 +266,7 @@ export default function InboundPage() {
               </p>
 
               <p className="text-base sm:text-lg text-[#41484B] leading-relaxed max-w-2xl mb-8">
-                Explore premier academic and collaborative possibilities in one of the world&apos;s most dynamic higher education landscapes. Whether you are an international student seeking degree admissions or a global university forging bilateral institutional partnerships, 211 Overseas connects you with India&apos;s top colleges and research hubs.
+                Explore premier academic and collaborative possibilities in one of the world&apos;s most dynamic higher education landscapes. Whether you are a student exploring college and university admissions or an institution forging bilateral academic partnerships, 211 Overseas connects you with India&apos;s top colleges and research hubs.
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
@@ -325,7 +325,7 @@ export default function InboundPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {/* Card 1: For International Students */}
+            {/* Card 1: For Students */}
             <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] p-8 transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
               <div>
                 <div className="w-14 h-14 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-6 rounded-xs group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
@@ -335,23 +335,23 @@ export default function InboundPage() {
                   Student Gateway
                 </span>
                 <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
-                  For International Students
+                  For Students &amp; Aspirants
                 </h3>
                 <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
-                  Comprehensive guidance for international candidates seeking undergraduate, postgraduate, and clinical research admissions across premier Indian institutions, along with SII &amp; ICCR scholarship advisory and student visa assistance.
+                  Comprehensive admissions and course guidance for students seeking undergraduate, postgraduate, and doctoral degrees across premier Indian universities and colleges, along with merit scholarship advisory and campus onboarding.
                 </p>
                 <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>English-taught engineering, medicine, AI &amp; business programs</span>
+                    <span>Engineering, medicine, management, AI &amp; liberal arts degrees</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Scholarship evaluation (Study in India &amp; ICCR fellowships)</span>
+                    <span>Merit scholarship evaluation and institutional fee assistance</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>e-Student Visa documentation &amp; campus hostel accommodation</span>
+                    <span>Campus discovery across Gujarat and premier national university hubs</span>
                   </div>
                 </div>
               </div>
@@ -429,13 +429,13 @@ export default function InboundPage() {
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="max-w-2xl mb-12">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
-              WHY STUDY IN INDIA?
+              WHY HIGHER EDUCATION IN INDIA?
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
-              International Education. An Experience Uniquely Indian.
+              Higher Education in India. Diverse, Dynamic &amp; Forward-Looking.
             </h2>
             <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
-              An extensive higher education landscape, emerging industries, culturally diverse communities and academic programmes across disciplines.
+              An extensive higher education landscape, emerging industries, culturally diverse communities and academic programmes across disciplines for all aspiring students.
             </p>
           </div>
 
@@ -475,7 +475,7 @@ export default function InboundPage() {
               Universities in Gujarat
             </h2>
             <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
-              Explore selected private universities across Gujarat with international admissions facilities and a range of academic pathways. The universities below are independent institutions presented for student discovery.
+              Explore selected private universities across Gujarat with established admissions facilities and a range of academic pathways. The universities below are independent institutions presented for student discovery.
             </p>
           </div>
 
@@ -516,7 +516,7 @@ export default function InboundPage() {
               Other Universities
             </h2>
             <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
-              Look beyond one state. India has private and deemed-to-be universities with established international admissions arrangements and multicultural campuses. Explore these additional options according to course preference, budget and student-support needs.
+              Look beyond one state. India has premier private and deemed-to-be universities with established admissions arrangements and multicultural campuses. Explore these additional options according to course preference, budget and student-support needs.
             </p>
           </div>
 

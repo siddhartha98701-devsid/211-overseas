@@ -106,7 +106,7 @@ export const siteContent = {
         href: '/inbound',
         children: [
           { label: 'Inbound Overview', href: '/inbound' },
-          { label: 'For International Students', href: '/inbound/students' },
+          { label: 'For Students', href: '/inbound/students' },
           { label: 'Institutional Collaborations', href: '/inbound/collaborations' },
         ],
       },

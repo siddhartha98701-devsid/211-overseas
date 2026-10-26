@@ -16,9 +16,9 @@ import { InboundEnquiryForm } from '@/components/inbound/InboundEnquiryForm';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 
 export const metadata: Metadata = {
-  title: 'International Student Admissions in India | Inbound Study & Research | 211 Overseas',
+  title: 'Student Admissions in India | Inbound Study & Research | 211 Overseas',
   description:
-    'Dedicated international student admissions gateway for Indian universities. Guidance on degrees, eligibility, ICCR & SII scholarships, student visa (e-Visa), and campus life.',
+    'Dedicated admissions gateway for Indian universities and premier colleges. Guidance on degrees, eligibility, scholarships, application processes, and campus life for all students.',
 };
 
 const DISCIPLINES = [
@@ -58,37 +58,37 @@ const ADMISSION_STEPS = [
   {
     step: '01',
     title: 'Academic Profile Evaluation',
-    desc: 'We review your high school or undergraduate transcripts, evaluate AIU equivalency requirements, and identify suitable degree levels and disciplines.',
+    desc: 'We review your academic background, assess eligibility across central, state, and premier private universities, and identify suitable degree levels and disciplines.',
   },
   {
     step: '02',
     title: 'University Shortlist & Fit Analysis',
-    desc: 'Compare public central universities, premier institutes of national importance, and top private universities in Gujarat, Bengaluru, Delhi, and across India.',
+    desc: 'Compare premier institutes of national importance, leading universities, and top accredited campuses in Gujarat, Bengaluru, Delhi, and across India.',
   },
   {
     step: '03',
     title: 'Application Dossier & Offer Letter',
-    desc: 'We assist with document preparation, formal university submissions, entrance evaluations, and securing your unconditional admission offer letter.',
+    desc: 'We assist with document preparation, formal university submissions, entrance evaluations, and securing your admission offer letter.',
   },
   {
     step: '04',
-    title: 'Student Visa (e-Visa) & FRRO Registration',
-    desc: 'Complete guidance on bona fide student certificates, Indian embassy student visa processing, arrival protocols, and local FRRO registration formalities.',
+    title: 'Enrollment, Formalities & Campus Onboarding',
+    desc: 'Complete guidance on admission verification, fee schedules, scholarship applications, student accommodation, and campus transition.',
   },
 ];
 
 const SCHOLARSHIP_ROUTES = [
   {
-    name: 'Study in India (SII) Scholarships',
-    scope: 'Government of India flagship initiative offering fee waivers of 100%, 50%, or 25% on tuition for qualifying international candidates.',
+    name: 'Merit & Need-Based Institutional Awards',
+    scope: 'Direct tuition fee concessions and merit waivers awarded by participating Indian universities based on prior academic scores.',
   },
   {
-    name: 'ICCR Fellowships (Indian Council for Cultural Relations)',
-    scope: 'Comprehensive full-ride government scholarships covering full tuition, living stipend, hostel accommodation, and medical insurance.',
+    name: 'Government & National Scholarships',
+    scope: 'National and state-level scholarship schemes for eligible candidates covering tuition support, academic grants, and research stipends.',
   },
   {
-    name: 'Institutional Merit Awards',
-    scope: 'Direct merit-based tuition reductions awarded by individual participating Indian universities based on prior academic marks.',
+    name: 'Study in India (SII) & ICCR Fellowships',
+    scope: 'Specialized government initiatives offering full and partial tuition fee waivers and stipends for eligible inbound scholars.',
   },
 ];
 
@@ -106,7 +106,7 @@ export default function InboundStudentsPage() {
             <span>/</span>
             <Link href="/inbound" className="hover:text-white transition-colors">Inbound India</Link>
             <span>/</span>
-            <span className="text-[#FC7F4E] font-semibold">For International Students</span>
+            <span className="text-[#FC7F4E] font-semibold">For Students</span>
           </nav>
 
           {/* Audience Switcher Banner */}
@@ -121,11 +121,11 @@ export default function InboundStudentsPage() {
           </div>
 
           <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6">
-            Study &amp; Research in India: <span className="text-[#FC7F4E]">International Student Gateway</span>
+            Study &amp; Research in India: <span className="text-[#FC7F4E]">Student Gateway</span>
           </h1>
 
           <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-10">
-            India is home to world-class research institutes, high-ranking technological hubs, and vibrant cultural campuses. 211 Overseas provides comprehensive end-to-end guidance for international students—from degree matching and admission applications to scholarship applications and Indian student visas.
+            India is home to world-class research institutes, high-ranking technological hubs, and vibrant academic campuses. 211 Overseas provides comprehensive end-to-end guidance for all students—from degree matching and admission applications to scholarship guidance, document verification, and campus transition.
           </p>
 
           <div className="flex flex-wrap items-center gap-4">
@@ -153,10 +153,10 @@ export default function InboundStudentsPage() {
               Academic Horizons
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
-              Popular Study Fields for International Candidates
+              Popular Study Fields for Aspirants &amp; Students
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
-              Explore English-medium undergraduate, postgraduate, and doctoral degree pathways recognized internationally and accredited by UGC, AICTE, and statutory councils.
+              Explore undergraduate, postgraduate, and doctoral degree pathways across premier disciplines accredited by UGC, AICTE, and statutory councils.
             </p>
           </div>
 
@@ -194,7 +194,7 @@ export default function InboundStudentsPage() {
               Your Inbound Admission Process
             </h2>
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
-              Transparent, professional advisory that simplifies university applications, documentation verification, and visa formalities.
+              Transparent, professional advisory that simplifies university applications, documentation verification, and campus onboarding.
             </p>
           </div>
 
@@ -224,23 +224,23 @@ export default function InboundStudentsPage() {
               Financial Planning
             </span>
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
-              Scholarships &amp; Affordable Living in India
+              Scholarships &amp; Affordable Higher Education in India
             </h2>
             <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
-              Higher education in India offers exceptional value. Tuition across premier state and private institutions averages between \$2,500 and \$6,000 USD per year, with living and hostel costs rarely exceeding \$250 to \$400 USD monthly.
+              Higher education in India offers exceptional value. Tuition across premier state and private institutions remains cost-effective with transparent fee structures, alongside accessible hostel accommodation, dining, and campus amenities.
             </p>
             <div className="space-y-3 text-xs sm:text-sm text-[#1B1C1A]">
               <div className="flex items-center gap-2">
                 <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
-                <span>On-campus student hostels with high security</span>
+                <span>On-campus student hostels with modern amenities and high security</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
-                <span>Subsidized healthcare and student insurance</span>
+                <span>Subsidized healthcare and student wellness support</span>
               </div>
               <div className="flex items-center gap-2">
                 <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
-                <span>Active international student associations on campus</span>
+                <span>Vibrant student communities and active campus student clubs</span>
               </div>
             </div>
           </div>
@@ -272,7 +272,7 @@ export default function InboundStudentsPage() {
               Request Your Indian University Admissions Shortlist
             </h2>
             <p className="mt-3 text-sm text-[#41484B] leading-relaxed">
-              Submit your academic details. Our inbound student advisory team will assess your eligibility and connect with verified options and next steps.
+              Submit your academic details. Our student advisory team will assess your eligibility and connect with verified options and next steps.
             </p>
           </div>
 
@@ -283,7 +283,7 @@ export default function InboundStudentsPage() {
       </section>
 
       {/* Quick Consultation CTA */}
-      <CtaStrip heading="Have questions about studying in India?" interest="Study in India (Inbound Student)" />
+      <CtaStrip heading="Have questions about studying in India?" interest="Study in India (Student Admissions)" />
     </div>
   );
 }
