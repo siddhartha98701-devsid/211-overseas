@@ -802,13 +802,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-[10px] text-[#0C3844]">
                             {meta.monogram}
                           </div>
-
-                          {/* Bottom field count badge */}
-                          <div className="absolute bottom-2.5 left-3">
-                            <span className="text-[11px] font-mono font-semibold text-white/90">
-                              Subject 0{idx + 1}
-                            </span>
-                          </div>
                         </div>
 
                         {/* Card Content */}
