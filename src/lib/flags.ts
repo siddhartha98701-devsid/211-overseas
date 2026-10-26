@@ -30,6 +30,7 @@ export const COUNTRY_ISO_MAP: Record<string, string> = {
   'japan': 'jp',
   'taiwan': 'tw',
   'singapore': 'sg',
+  'luxembourg': 'lu',
   'europe': 'eu',
   'ireland': 'ie',
   'new zealand': 'nz',
