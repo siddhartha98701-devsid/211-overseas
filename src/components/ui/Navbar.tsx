@@ -35,6 +35,7 @@ export function Navbar() {
 
   // Close mobile menu on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false);
   }, [pathname]);
 
@@ -67,7 +68,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-7" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-3.5 xl:space-x-7" aria-label="Main Navigation">
             {siteContent.navigation.items.map((item) => {
               const isActive = pathname === item.href;
               const hasChildren = 'children' in item && Array.isArray(item.children);
@@ -86,7 +87,7 @@ export function Navbar() {
                   <div key={item.href} className="relative group">
                     <Link
                       href={item.href}
-                      className={`link-draw text-sm tracking-normal transition-colors py-1 inline-flex items-center gap-1 ${
+                      className={`link-draw text-xs xl:text-sm tracking-normal transition-colors py-1 inline-flex items-center gap-1 ${
                         isSolid
                           ? isGroupActive
                             ? 'text-[#1B1C1A] font-semibold'
@@ -158,7 +159,7 @@ export function Navbar() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`link-draw text-sm tracking-normal transition-colors py-1 ${
+                  className={`link-draw text-xs xl:text-sm tracking-normal transition-colors py-1 ${
                     isSolid
                       ? isActive
                         ? 'text-[#1B1C1A] font-semibold'
@@ -179,7 +180,7 @@ export function Navbar() {
           <div className="hidden lg:flex items-center gap-3">
             <Link
               href={siteContent.navigation.stickyAction.desktop.href}
-              className="bg-[#A33E11] hover:bg-[#85320D] text-white text-xs uppercase tracking-wider font-semibold px-5 py-2.5 transition-colors cursor-pointer"
+              className="bg-[#A33E11] hover:bg-[#85320D] text-white text-[11px] xl:text-xs uppercase tracking-wider font-semibold px-3.5 xl:px-5 py-2 xl:py-2.5 transition-colors cursor-pointer"
             >
               {siteContent.navigation.stickyAction.desktop.label}
             </Link>

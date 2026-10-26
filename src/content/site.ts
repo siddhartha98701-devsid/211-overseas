@@ -107,6 +107,7 @@ export const siteContent = {
         children: [
           { label: 'Inbound Overview', href: '/inbound' },
           { label: 'For Students', href: '/inbound/students' },
+          { label: 'Participating Colleges', href: '/inbound/students#colleges' },
           { label: 'Institutional Collaborations', href: '/inbound/collaborations' },
         ],
       },
@@ -160,6 +161,7 @@ export const siteContent = {
           { label: 'Australia', href: '/study/australia' },
           { label: 'Inbound India', href: '/inbound' },
           { label: 'Inbound: Students', href: '/inbound/students' },
+          { label: 'Inbound: Participating Colleges', href: '/inbound/students#colleges' },
           { label: 'Inbound: Collaborations', href: '/inbound/collaborations' },
         ],
       },

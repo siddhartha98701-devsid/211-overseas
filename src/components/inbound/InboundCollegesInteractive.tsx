@@ -16,6 +16,7 @@ import {
   DollarSign,
   ChevronLeft,
   ChevronRight,
+  ChevronDown,
   ShieldCheck,
   Map as MapIcon,
   Layers,
@@ -132,8 +133,8 @@ export function InboundCollegesInteractive() {
     isDragging.current = false;
   };
 
-  const handleApplyClick = (_collegeName: string) => {
-    const formSection = document.getElementById('inbound-form');
+  const handleApplyClick = () => {
+    const formSection = document.getElementById('student-form') || document.getElementById('inbound-form');
     if (formSection) {
       formSection.scrollIntoView({ behavior: 'smooth' });
     }
@@ -143,9 +144,9 @@ export function InboundCollegesInteractive() {
     <div className="space-y-8">
       {/* Search & Filter Controls */}
       <div className="bg-white border border-[#E6DDCC] p-4 sm:p-6 rounded-[2px] shadow-xs space-y-4">
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
           {/* Search Input */}
-          <div className="relative flex-1 max-w-md">
+          <div className="relative flex-1 max-w-lg">
             <Search
               size={16}
               className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#41484B]/60"
@@ -168,9 +169,9 @@ export function InboundCollegesInteractive() {
             )}
           </div>
 
-          {/* Region Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <span className="text-[11px] uppercase tracking-wider font-semibold text-[#41484B] mr-1 hidden sm:inline">
+          {/* Region Tabs (Desktop) */}
+          <div className="hidden lg:flex items-center gap-1.5 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <span className="text-[11px] uppercase tracking-wider font-semibold text-[#41484B] mr-1">
               Region:
             </span>
             {REGIONS.map((reg) => (
@@ -190,8 +191,65 @@ export function InboundCollegesInteractive() {
           </div>
         </div>
 
-        {/* Category Pills */}
-        <div className="flex items-center gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pt-2 border-t border-[#E6DDCC]/60">
+        {/* Dedicated Mobile & Tablet Filter Dropdowns (< lg) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-3 pt-2 border-t border-[#E6DDCC]/60">
+          <div className="space-y-1">
+            <label
+              htmlFor="discipline-filter-mobile"
+              className="block text-[11px] font-semibold uppercase tracking-wider text-[#41484B]"
+            >
+              Academic Discipline
+            </label>
+            <div className="relative">
+              <select
+                id="discipline-filter-mobile"
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full text-xs font-semibold py-2.5 pl-3 pr-8 bg-[#FAF8F5] border border-[#E6DDCC] rounded-[2px] text-[#1B1C1A] focus:outline-none focus:border-[#A33E11] appearance-none"
+              >
+                {CATEGORIES.map((cat) => (
+                  <option key={cat} value={cat}>
+                    {cat}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={14}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#41484B] pointer-events-none"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-1">
+            <label
+              htmlFor="region-filter-mobile"
+              className="block text-[11px] font-semibold uppercase tracking-wider text-[#41484B]"
+            >
+              Campus Region
+            </label>
+            <div className="relative">
+              <select
+                id="region-filter-mobile"
+                value={selectedRegion}
+                onChange={(e) => setSelectedRegion(e.target.value)}
+                className="w-full text-xs font-semibold py-2.5 pl-3 pr-8 bg-[#FAF8F5] border border-[#E6DDCC] rounded-[2px] text-[#1B1C1A] focus:outline-none focus:border-[#A33E11] appearance-none"
+              >
+                {REGIONS.map((reg) => (
+                  <option key={reg} value={reg}>
+                    {reg}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                size={14}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-[#41484B] pointer-events-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Category Pills (Desktop) */}
+        <div className="hidden lg:flex items-center gap-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pt-2 border-t border-[#E6DDCC]/60">
           {CATEGORIES.map((cat) => (
             <button
               key={cat}
@@ -211,6 +269,26 @@ export function InboundCollegesInteractive() {
             Showing <strong className="text-[#1B1C1A]">{filteredColleges.length}</strong> premier institutions
           </span>
         </div>
+
+        {/* Active Filters Reset Indicator */}
+        {(selectedCategory !== 'All Disciplines' || selectedRegion !== 'All India' || searchQuery.trim() !== '') && (
+          <div className="flex items-center justify-between pt-2 border-t border-[#E6DDCC]/40 text-xs text-[#41484B]">
+            <span>
+              Showing <strong className="text-[#1B1C1A]">{filteredColleges.length}</strong> of {INBOUND_COLLEGES.length} institutions
+            </span>
+            <button
+              type="button"
+              onClick={() => {
+                setSelectedCategory('All Disciplines');
+                setSelectedRegion('All India');
+                setSearchQuery('');
+              }}
+              className="text-[#A33E11] hover:underline font-semibold cursor-pointer"
+            >
+              Reset All Filters
+            </button>
+          </div>
+        )}
       </div>
 
       {/* Institution Selection Horizontal Scroll-Snap Carousel */}
@@ -301,7 +379,7 @@ export function InboundCollegesInteractive() {
       </div>
 
       {/* Mobile Sticky University Selector Bar (Sticks below header on mobile) */}
-      <div className="block lg:hidden sticky top-[68px] sm:top-[72px] z-30 bg-[#FAF8F5]/95 backdrop-blur-md py-3 px-4 -mx-6 border-y border-[#E6DDCC] shadow-xs">
+      <div className="block lg:hidden sticky top-[68px] sm:top-[72px] z-30 bg-[#FAF8F5]/95 backdrop-blur-md py-3 px-4 -mx-6 sm:mx-0 sm:rounded-[2px] border-y sm:border border-[#E6DDCC] shadow-xs">
         <div className="flex items-center justify-between gap-2 mb-2">
           <div className="flex items-center gap-1.5 min-w-0">
             <Building2 size={15} className="text-[#0C3844] shrink-0" />
@@ -416,7 +494,7 @@ export function InboundCollegesInteractive() {
           </div>
 
           {/* Interactive Google Maps Container */}
-          <div className="relative aspect-[4/3] sm:aspect-[1/1] w-full bg-[#FAF8F5] overflow-hidden flex-1 min-h-[380px]">
+          <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] lg:aspect-[1/1] w-full bg-[#FAF8F5] overflow-hidden flex-1 min-h-[380px]">
             <iframe
               key={`${activeCollege.id}-${mapMode}`}
               title={`Google Map of ${activeCollege.name}`}
@@ -618,7 +696,7 @@ export function InboundCollegesInteractive() {
             <div className="flex items-center gap-3">
               <button
                 type="button"
-                onClick={() => handleApplyClick(activeCollege.name)}
+                onClick={handleApplyClick}
                 className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px] cursor-pointer inline-flex items-center gap-2"
               >
                 <span>Inquire for {activeCollege.shortName}</span>

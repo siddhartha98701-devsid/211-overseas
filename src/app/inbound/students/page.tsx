@@ -13,6 +13,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
+import { InboundCollegesInteractive } from '@/components/inbound/InboundCollegesInteractive';
 import { InboundEnquiryForm } from '@/components/inbound/InboundEnquiryForm';
 import { CtaStrip } from '@/components/sections/CtaStrip';
 
@@ -144,12 +145,12 @@ export default function InboundStudentsPage() {
                 >
                   Apply for Admissions Review
                 </a>
-                <Link
-                  href="/inbound#colleges"
+                <a
+                  href="#colleges"
                   className="border border-white/60 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
                 >
                   Browse Participating Colleges
-                </Link>
+                </a>
               </div>
             </div>
 
@@ -376,6 +377,25 @@ export default function InboundStudentsPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Participating Colleges & Research Hubs Directory */}
+      <section id="colleges" className="py-16 md:py-24 border-b border-[#E6DDCC] bg-white scroll-mt-24">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Participating Colleges &amp; Hubs
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Explore Premier Inbound Colleges &amp; Research Hubs
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Filter premier Indian universities by academic discipline and region. Inspect interactive Google Maps campus locations, accreditation rankings, and admission pathways.
+            </p>
+          </div>
+
+          <InboundCollegesInteractive />
         </div>
       </section>
 
