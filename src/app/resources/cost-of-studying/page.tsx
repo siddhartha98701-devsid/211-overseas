@@ -62,7 +62,7 @@ export default function CostOfStudyingPage() {
 
           <ScrollReveal delay={0.1}>
             <div className="overflow-x-auto border border-[#E6DDCC] shadow-md max-w-4xl mx-auto bg-white">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full min-w-[560px] text-left border-collapse">
                 <thead>
                   <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                     <th className="py-4 px-6 font-semibold w-1/3">Cost Component</th>
@@ -107,7 +107,7 @@ export default function CostOfStudyingPage() {
 
           <ScrollReveal delay={0.1}>
             <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-md max-w-4xl mx-auto mb-8">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full min-w-[580px] text-left border-collapse">
                 <thead>
                   <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                     <th className="py-4 px-6 font-semibold w-1/4">Destination</th>

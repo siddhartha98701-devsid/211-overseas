@@ -131,7 +131,7 @@ export function ProcessStrip() {
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUpOrLeave}
           onMouseLeave={handleMouseUpOrLeave}
-          className="relative flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-4 -mx-6 px-6 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing"
+          className="relative flex gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-4 -mx-6 px-6 sm:mx-0 sm:px-0 cursor-grab active:cursor-grabbing after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
           style={{ scrollSnapType: 'x mandatory' }}
           role="region"
           aria-label="Process milestones carousel"

@@ -245,7 +245,7 @@ export function GlobeExplorerSection() {
                           }
                         }}
                         title={active ? `Click to open ${d.country}` : `Select ${d.country}`}
-                        className={`snap-center shrink-0 w-[180px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none cursor-pointer ${
+                        className={`snap-center shrink-0 w-[160px] sm:w-[205px] text-left px-3.5 sm:px-4 py-3 border transition-colors select-none cursor-pointer ${
                           active
                             ? 'bg-[#A33E11] border-[#A33E11] text-white shadow-[0_4px_16px_rgba(163,62,17,0.35)]'
                             : 'bg-black/50 border-white/20 text-white hover:border-[#A33E11] hover:bg-black/70'

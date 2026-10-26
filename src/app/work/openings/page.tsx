@@ -208,9 +208,9 @@ export default function CurrentOpeningsPage() {
                   </p>
 
                   <div className="space-y-2 py-3 border-t border-b border-[#E6DDCC] text-xs text-[#41484B] mb-4">
-                    <div className="flex justify-between">
-                      <span className="text-[#71787B]">Compensation:</span>
-                      <span className="font-semibold text-[#1B1C1A]">
+                    <div className="flex justify-between items-baseline gap-2 flex-wrap sm:flex-nowrap">
+                      <span className="text-[#71787B] shrink-0">Compensation:</span>
+                      <span className="font-semibold text-[#1B1C1A] text-right sm:text-left">
                         {vacancy.compensation.currency} {vacancy.compensation.amount} ({vacancy.compensation.basis}) {vacancy.compensation.period}
                       </span>
                     </div>

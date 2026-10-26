@@ -111,7 +111,7 @@ export default function ApplicationGuidePage() {
 
           <ScrollReveal delay={0.1}>
             <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-md max-w-4xl mx-auto">
-              <table className="w-full text-left border-collapse">
+              <table className="w-full min-w-[540px] text-left border-collapse">
                 <thead>
                   <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                     <th className="py-4 px-6 font-semibold w-1/2">

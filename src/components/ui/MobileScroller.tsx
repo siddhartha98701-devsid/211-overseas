@@ -89,7 +89,7 @@ export function MobileScroller({
     <div className={`relative ${className}`} role="region" aria-roledescription="carousel" aria-label={label}>
       <ul
         ref={ref}
-        className="relative flex snap-x snap-mandatory gap-4 md:gap-6 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden"
+        className="relative flex snap-x snap-mandatory gap-4 md:gap-6 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:none] [-webkit-overflow-scrolling:touch] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-2 sm:after:hidden"
       >
         {items.map((child, i) => (
           <li

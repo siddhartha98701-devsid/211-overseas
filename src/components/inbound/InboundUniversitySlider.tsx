@@ -114,7 +114,7 @@ export function InboundUniversitySlider({
         aria-label={carouselAriaLabel}
         tabIndex={0}
         onKeyDown={handleKeyDown}
-        className="flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus-visible:ring-2 focus-visible:ring-[#A33E11] focus-visible:outline-none pb-4 -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+        className="flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus-visible:ring-2 focus-visible:ring-[#A33E11] focus-visible:outline-none pb-4 -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
       >
         {universities.map((uni, idx) => {
           const displayInitials = uni.initials || uni.name.split(' ').map((w) => w[0]).join('').slice(0, 4);

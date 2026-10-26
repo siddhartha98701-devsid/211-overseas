@@ -97,7 +97,7 @@ export default function RootLayout({
         <CallbackProvider>
         <FlightPath />
         <Navbar />
-        <main className="min-h-screen pb-12 sm:pb-6">{children}</main>
+        <main className="min-h-screen pb-20 sm:pb-8">{children}</main>
         <Footer />
         <script
           type="application/ld+json"

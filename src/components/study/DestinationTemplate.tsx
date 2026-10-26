@@ -516,7 +516,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
           {/* Quick Facts Grid */}
           {data.hero.facts && data.hero.facts.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 pt-6 border-t border-white/15">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mt-10 pt-6 border-t border-white/15">
               {data.hero.facts.map((fact) => (
                 <div key={fact.label} className="bg-white/5 border border-white/10 p-4">
                   <span className="text-[11px] uppercase tracking-wider text-white/50 block mb-1">
@@ -764,7 +764,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                 <div
                   ref={coursesCarouselRef}
-                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
                   {data.popularCourses.items.map((course, idx, allCourses) => {
                     const meta = getCourseMeta(course);
