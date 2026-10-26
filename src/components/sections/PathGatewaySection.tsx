@@ -462,7 +462,14 @@ export function PathGatewaySection() {
         {/* Desktop View (>= lg): Left Vertical Tall Strips + Center/Right Active Hero Card (UpGrad Reference Pattern d) */}
         <div className="hidden lg:flex gap-3.5 items-stretch h-[620px] xl:h-[640px]">
           {/* Left Inactive Country Strips (Accordion Style) */}
-          <div className="flex gap-2.5 shrink-0 items-stretch max-w-[320px] xl:max-w-[360px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-0.5">
+          <div
+            className="flex gap-2.5 shrink-0 items-stretch max-w-[336px] xl:max-w-[430px] overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-0.5 select-none"
+            onWheel={(e) => {
+              if (e.deltaY !== 0 && e.currentTarget.scrollWidth > e.currentTarget.clientWidth) {
+                e.currentTarget.scrollLeft += e.deltaY;
+              }
+            }}
+          >
             {COUNTRIES.map((c, idx) => {
               if (idx === currentIndex) return null;
               return (
@@ -470,7 +477,7 @@ export function PathGatewaySection() {
                   key={c.id}
                   type="button"
                   onClick={() => setCurrentIndex(idx)}
-                  className="w-20 xl:w-24 hover:w-28 xl:hover:w-32 h-full rounded-2xl overflow-hidden relative group cursor-pointer transition-all duration-300 ease-out shrink-0 shadow-sm border border-black/5"
+                  className="w-[74px] xl:w-[86px] hover:w-[84px] xl:hover:w-[98px] h-full rounded-2xl overflow-hidden relative group cursor-pointer transition-all duration-300 ease-out shrink-0 shadow-sm border border-black/5"
                   aria-label={`View ${c.name}`}
                 >
                   <Image
@@ -484,9 +491,11 @@ export function PathGatewaySection() {
                   <div className="absolute top-4 left-1/2 -translate-x-1/2 z-10 p-1 bg-white/20 backdrop-blur-xs rounded-sm border border-white/20">
                     <CountryFlag country={c.name} width={22} height={15} className="rounded-xs object-cover" />
                   </div>
-                  <span className="absolute bottom-6 left-1/2 -translate-x-1/2 [writing-mode:vertical-rl] rotate-180 uppercase tracking-widest text-white font-bold text-xs xl:text-sm whitespace-nowrap drop-shadow-md select-none">
-                    {c.name}
-                  </span>
+                  <div className="absolute inset-x-0 bottom-6 top-16 flex items-center justify-center pointer-events-none">
+                    <span className="[writing-mode:vertical-rl] rotate-180 uppercase tracking-wider text-white font-bold text-xs xl:text-sm drop-shadow-md whitespace-nowrap select-none text-center">
+                      {c.name}
+                    </span>
+                  </div>
                 </button>
               );
             })}
@@ -517,16 +526,16 @@ export function PathGatewaySection() {
             </AnimatePresence>
 
             {/* Upper-Left Destination & University Overlay */}
-            <div className="absolute top-7 left-7 z-20 max-w-[320px] xl:max-w-[380px] pointer-events-none select-none">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/45 backdrop-blur-md border border-white/20 text-[11px] font-semibold uppercase tracking-wider text-[#FC7F4E] shadow-sm mb-2">
+            <div className="absolute top-7 left-7 z-20 max-w-[260px] xl:max-w-[300px] pointer-events-none select-none">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-[11px] font-semibold uppercase tracking-wider text-[#FC7F4E] shadow-sm mb-2 whitespace-nowrap">
                 <CountryFlag country={activeCountry.name} width={18} height={12} className="rounded-xs" />
                 <span>{activeCountry.name}</span>
               </div>
               <h3 className="font-serif text-2xl xl:text-3xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] leading-tight">
-                {activeCountry.floatingPrograms[0]?.university || activeCountry.name}
+                {activeCountry.name}
               </h3>
-              <p className="mt-1 text-xs text-white/85 font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] leading-relaxed">
-                Featured destination &amp; accredited university pathways
+              <p className="mt-1 text-xs text-white/90 font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] leading-relaxed">
+                {activeCountry.floatingPrograms[0]?.university || 'Accredited university pathways'}
               </p>
             </div>
 
@@ -562,7 +571,7 @@ export function PathGatewaySection() {
             </div>
 
             {/* Overlaid Floating Program Cards (Right Half: horizontal scroll-snap carousel) */}
-            <div className="absolute right-6 top-6 bottom-6 z-20 flex gap-4 items-stretch max-w-[calc(100%-200px)] overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-2">
+            <div className="absolute right-6 top-6 bottom-6 z-20 flex gap-4 items-stretch max-w-[calc(100%-280px)] xl:max-w-[calc(100%-320px)] overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pr-2">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`programs-${activeCountry.id}`}
@@ -713,8 +722,11 @@ export function PathGatewaySection() {
                 <span>{activeCountry.name}</span>
               </div>
               <h3 className="font-serif text-lg sm:text-xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] leading-tight max-w-[85%]">
-                {activeCountry.floatingPrograms[0]?.university || activeCountry.name}
+                {activeCountry.name}
               </h3>
+              <p className="mt-0.5 text-[11px] text-white/85 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] line-clamp-1">
+                {activeCountry.floatingPrograms[0]?.university || 'Accredited university pathways'}
+              </p>
             </div>
 
             {/* Bottom-Left Counter + Navigation Arrows */}
