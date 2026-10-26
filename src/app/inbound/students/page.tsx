@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   GraduationCap,
   ShieldCheck,
@@ -26,31 +27,37 @@ const DISCIPLINES = [
     icon: GraduationCap,
     title: 'Engineering, Computing & AI',
     desc: 'Cutting-edge B.Tech, M.Tech, and dual degrees in Artificial Intelligence, Computer Science, Data Engineering, and Robotics across premier Indian technology institutes.',
+    image: '/images/inbound/iit-bombay.jpg',
   },
   {
     icon: HeartPulse,
     title: 'Medicine, Pharmacy & Health',
     desc: 'World-renowned medical training, clinical pharmacy, biomedical sciences, physiotherapy, and public health with intensive hands-on clinical exposure.',
+    image: '/images/inbound/aiims-delhi.jpg',
   },
   {
     icon: Briefcase,
     title: 'Management & Global Business',
     desc: 'AACSB / AMBA accredited MBA, BBA, and specialised master’s programs offering deep exposure to one of the world’s fastest-growing major economies.',
+    image: '/images/inbound/iim-ahmedabad.jpg',
   },
   {
     icon: BookOpen,
     title: 'Liberal Arts, Law & Humanities',
     desc: 'Interdisciplinary social sciences, international relations, policy studies, corporate law, and cultural studies with vibrant intellectual campus communities.',
+    image: '/images/inbound/jnu-delhi.jpg',
   },
   {
     icon: Layers,
     title: 'Pure Sciences & Advanced Research',
     desc: 'Direct laboratory research pathways in quantum materials, biotechnology, computational chemistry, and astrophysics at premier national research centres.',
+    image: '/images/inbound/iisc-bengaluru.jpg',
   },
   {
     icon: Sparkles,
     title: 'Design, Media & Architecture',
     desc: 'Creative degrees in industrial design, animation, sustainable architecture, urban planning, and visual communication.',
+    image: '/images/inbound/mahe-manipal.jpg',
   },
 ];
 
@@ -120,27 +127,63 @@ export default function InboundStudentsPage() {
             </Link>
           </div>
 
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6">
-            Study &amp; Research in India: <span className="text-[#FC7F4E]">Student Gateway</span>
-          </h1>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] mb-6">
+                Study &amp; Research in India: <span className="text-[#FC7F4E]">Student Gateway</span>
+              </h1>
 
-          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-10">
-            India is home to world-class research institutes, high-ranking technological hubs, and vibrant academic campuses. 211 Overseas provides comprehensive end-to-end guidance for all students—from degree matching and admission applications to scholarship guidance, document verification, and campus transition.
-          </p>
+              <p className="text-base sm:text-lg text-white/80 leading-relaxed mb-8">
+                India is home to world-class research institutes, high-ranking technological hubs, and vibrant academic campuses. 211 Overseas provides comprehensive end-to-end guidance for all students—from degree matching and admission applications to scholarship guidance, document verification, and campus transition.
+              </p>
 
-          <div className="flex flex-wrap items-center gap-4">
-            <a
-              href="#student-form"
-              className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
-            >
-              Apply for Admissions Review
-            </a>
-            <Link
-              href="/inbound#colleges"
-              className="border border-white/60 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
-            >
-              Browse Participating Colleges
-            </Link>
+              <div className="flex flex-wrap items-center gap-4">
+                <a
+                  href="#student-form"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors shadow-md"
+                >
+                  Apply for Admissions Review
+                </a>
+                <Link
+                  href="/inbound#colleges"
+                  className="border border-white/60 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+                >
+                  Browse Participating Colleges
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Hero Visual Card */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl group">
+                <Image
+                  src="/images/inbound/indian-campus-quad.jpg"
+                  alt="Modern Indian university campus quad with students"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 92vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute top-4 left-4">
+                  <span className="px-3 py-1 bg-[#A33E11] text-white text-[11px] font-bold uppercase tracking-wider shadow-sm">
+                    Student Admissions Gateway
+                  </span>
+                </div>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <p className="text-xs uppercase tracking-widest text-[#FC7F4E] font-bold mb-1">
+                    Premier Higher Education
+                  </p>
+                  <h3 className="font-serif text-lg sm:text-xl font-bold leading-tight">
+                    World-Class Campuses &amp; Research Centers
+                  </h3>
+                  <div className="mt-3 pt-3 border-t border-white/20 flex items-center justify-between text-[11px] text-white/80">
+                    <span>100% English Medium</span>
+                    <span>UGC &amp; NAAC A++ Campuses</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -164,17 +207,30 @@ export default function InboundStudentsPage() {
             {DISCIPLINES.map((d) => {
               const Icon = d.icon;
               return (
-                <div key={d.title} className="bg-white border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors">
+                <div key={d.title} className="bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group">
                   <div>
-                    <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
-                      <Icon size={24} />
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
+                      <Image
+                        src={d.image}
+                        alt={d.title}
+                        fill
+                        sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                      <span className="absolute top-3 left-3 flex h-10 w-10 items-center justify-center bg-[#0C3844]/90 backdrop-blur-xs text-white border border-white/20">
+                        <Icon size={20} />
+                      </span>
                     </div>
-                    <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">
-                      {d.title}
-                    </h3>
-                    <p className="text-sm text-[#41484B] leading-relaxed">
-                      {d.desc}
-                    </p>
+
+                    <div className="p-6">
+                      <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                        {d.title}
+                      </h3>
+                      <p className="text-sm text-[#41484B] leading-relaxed">
+                        {d.desc}
+                      </p>
+                    </div>
                   </div>
                 </div>
               );
@@ -216,8 +272,115 @@ export default function InboundStudentsPage() {
         </div>
       </section>
 
-      {/* Scholarships & Affordability */}
+      {/* Campus Life & Academic Facilities Visual Showcase */}
       <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Campus Glimpse
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              World-Class Infrastructure &amp; Student Life
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Experience dynamic university environments featuring high-tech laboratories, state-of-the-art libraries, vibrant student quads, and lush residential campuses.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
+                <Image
+                  src="/images/inbound/indian-campus-library.jpg"
+                  alt="Modern central university library"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block">Facilities</span>
+                  <p className="font-serif text-base font-bold leading-tight">Modern Digital Libraries</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-xs text-[#41484B] leading-relaxed">
+                  High-speed campus networks, vast academic repositories, and 24/7 collaborative study hubs.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
+                <Image
+                  src="/images/inbound/indian-campus-lab.jpg"
+                  alt="Robotics and computing research lab"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block">Innovation</span>
+                  <p className="font-serif text-base font-bold leading-tight">Advanced Research Labs</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-xs text-[#41484B] leading-relaxed">
+                  Hands-on experimentation in AI, robotics, biotechnology, and nano-materials engineering.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
+                <Image
+                  src="/images/inbound/mahe-manipal.jpg"
+                  alt="Modern student campus architecture"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block">Residential</span>
+                  <p className="font-serif text-base font-bold leading-tight">Student Residences &amp; Hostels</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-xs text-[#41484B] leading-relaxed">
+                  Secure on-campus accommodation with international dining options, gyms, and sports complexes.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
+                <Image
+                  src="/images/inbound/bhu-varanasi.jpg"
+                  alt="Historic university campus heritage"
+                  fill
+                  sizes="(min-width: 1024px) 280px, 50vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                <div className="absolute bottom-3 left-3 right-3 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block">Culture</span>
+                  <p className="font-serif text-base font-bold leading-tight">Rich Campus Traditions</p>
+                </div>
+              </div>
+              <div className="p-4">
+                <p className="text-xs text-[#41484B] leading-relaxed">
+                  Lush botanical greens, cultural festivals, student societies, and inclusive campus communities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scholarships & Affordability */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-white">
         <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-5">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
@@ -247,7 +410,7 @@ export default function InboundStudentsPage() {
 
           <div className="lg:col-span-7 space-y-4">
             {SCHOLARSHIP_ROUTES.map((sch) => (
-              <div key={sch.name} className="bg-white border border-[#E6DDCC] p-6">
+              <div key={sch.name} className="bg-[#FAF8F5] border border-[#E6DDCC] p-6">
                 <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1.5 flex items-center gap-2">
                   <Wallet size={18} className="text-[#A33E11]" />
                   <span>{sch.name}</span>

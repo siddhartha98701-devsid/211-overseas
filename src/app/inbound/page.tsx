@@ -46,21 +46,25 @@ const WHY_STUDY_IN_INDIA = [
     icon: Globe2,
     title: 'Diverse Academic Pathways',
     text: 'Explore engineering, healthcare, business, design, humanities and more.',
+    image: '/images/inbound/iit-bombay.jpg',
   },
   {
     icon: Building,
     title: 'Education Within Reach',
     text: 'Compare tuition, accommodation and living costs across institutions and cities.',
+    image: '/images/inbound/bhu-varanasi.jpg',
   },
   {
     icon: Users,
     title: 'Multicultural Campuses',
     text: 'Connect with students from different countries, cultures and backgrounds.',
+    image: '/images/inbound/indian-campus-quad.jpg',
   },
   {
     icon: ShieldCheck,
     title: 'Knowledge Meets Innovation',
     text: 'Discover institutions connected to research, entrepreneurship and evolving industries.',
+    image: '/images/inbound/indian-campus-lab.jpg',
   },
 ];
 
@@ -326,36 +330,55 @@ export default function InboundPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {/* Card 1: For Students */}
-            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] p-8 transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
               <div>
-                <div className="w-14 h-14 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-6 rounded-xs group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
-                  <GraduationCap size={28} />
+                <div className="relative aspect-[16/8] w-full overflow-hidden bg-[#00222B]">
+                  <Image
+                    src="/images/inbound/indian-campus-quad.jpg"
+                    alt="Students on Indian university campus"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute top-3 left-4">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-[#A33E11] px-2.5 py-1">
+                      STUDENT ADMISSIONS
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 left-4">
+                    <span className="text-white font-serif text-lg font-bold drop-shadow-md">
+                      Degrees &amp; Campus Pathways
+                    </span>
+                  </div>
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
-                  Student Gateway
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
-                  For Students &amp; Aspirants
-                </h3>
-                <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
-                  Comprehensive admissions and course guidance for students seeking undergraduate, postgraduate, and doctoral degrees across premier Indian universities and colleges, along with merit scholarship advisory and campus onboarding.
-                </p>
-                <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Engineering, medicine, management, AI &amp; liberal arts degrees</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Merit scholarship evaluation and institutional fee assistance</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Campus discovery across Gujarat and premier national university hubs</span>
+                <div className="p-8">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
+                    Student Gateway
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
+                    For Students &amp; Aspirants
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
+                    Comprehensive admissions and course guidance for students seeking undergraduate, postgraduate, and doctoral degrees across premier Indian universities and colleges, along with merit scholarship advisory and campus onboarding.
+                  </p>
+                  <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Engineering, medicine, management, AI &amp; liberal arts degrees</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Merit scholarship evaluation and institutional fee assistance</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Campus discovery across Gujarat and premier national university hubs</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="pt-6 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
+              <div className="p-8 pt-0 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
                 <Link
                   href="/inbound/students"
                   className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
@@ -373,36 +396,55 @@ export default function InboundPage() {
             </div>
 
             {/* Card 2: For Colleges & Institutional Collaborations */}
-            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] p-8 transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
               <div>
-                <div className="w-14 h-14 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-6 rounded-xs group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
-                  <Building size={28} />
+                <div className="relative aspect-[16/8] w-full overflow-hidden bg-[#00222B]">
+                  <Image
+                    src="/images/inbound/iit-delhi.jpg"
+                    alt="Institutional partner campus"
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                  <div className="absolute top-3 left-4">
+                    <span className="text-[10px] font-bold uppercase tracking-widest text-white bg-[#0C3844] px-2.5 py-1">
+                      GLOBAL LINKAGES
+                    </span>
+                  </div>
+                  <div className="absolute bottom-3 left-4">
+                    <span className="text-white font-serif text-lg font-bold drop-shadow-md">
+                      MOUs &amp; Dual Degrees
+                    </span>
+                  </div>
                 </div>
-                <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
-                  Institutional Gateway
-                </span>
-                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
-                  For Colleges &amp; Universities
-                </h3>
-                <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
-                  Dedicated institutional liaisons for foreign universities, deans, and academic bodies seeking dual-degree articulations (2+2, 3+1), reciprocal student mobility, faculty sabbatical exchanges, and bilateral research MOUs in India.
-                </p>
-                <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Dual degrees &amp; academic credit transfer under NEP 2020</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Reciprocal student semester abroad &amp; summer immersion</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
-                    <span>Bilateral MOU structuring, compliance &amp; delegation hosting</span>
+                <div className="p-8">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
+                    Institutional Gateway
+                  </span>
+                  <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
+                    For Colleges &amp; Universities
+                  </h3>
+                  <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
+                    Dedicated institutional liaisons for foreign universities, deans, and academic bodies seeking dual-degree articulations (2+2, 3+1), reciprocal student mobility, faculty sabbatical exchanges, and bilateral research MOUs in India.
+                  </p>
+                  <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Dual degrees &amp; academic credit transfer under NEP 2020</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Reciprocal student semester abroad &amp; summer immersion</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                      <span>Bilateral MOU structuring, compliance &amp; delegation hosting</span>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div className="pt-6 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
+              <div className="p-8 pt-0 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
                 <Link
                   href="/inbound/collaborations"
                   className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
@@ -440,17 +482,29 @@ export default function InboundPage() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {WHY_STUDY_IN_INDIA.map(({ icon: Icon, title, text }) => (
+            {WHY_STUDY_IN_INDIA.map(({ icon: Icon, title, text, image }) => (
               <div
                 key={title}
-                className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] overflow-hidden hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
-                  <span className="flex h-12 w-12 items-center justify-center bg-[#0C3844] text-white mb-5">
-                    <Icon size={22} aria-hidden="true" />
-                  </span>
-                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
+                    <Image
+                      src={image}
+                      alt={title}
+                      fill
+                      sizes="(min-width: 1024px) 280px, 50vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                    <span className="absolute top-3 left-3 flex h-10 w-10 items-center justify-center bg-[#0C3844]/90 backdrop-blur-xs text-white border border-white/20">
+                      <Icon size={18} aria-hidden="true" />
+                    </span>
+                  </div>
+                  <div className="p-6">
+                    <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-2">{title}</h3>
+                    <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                  </div>
                 </div>
               </div>
             ))}

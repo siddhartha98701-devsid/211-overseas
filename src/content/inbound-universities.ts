@@ -23,6 +23,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'A multidisciplinary university with an established international student community, offering programmes across engineering, healthcare, management, technology, design and other fields.',
     url: 'https://www.paruluniversity.ac.in/international-admissions/',
     initials: 'PU',
+    image: '/images/inbound/mahe-manipal.jpg',
   },
   {
     name: 'Marwadi University',
@@ -32,6 +33,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'An internationally active university with students from numerous countries. Explore engineering, management, computer applications, sciences and other academic pathways, alongside campus accommodation and arrival support.',
     url: 'https://www.marwadiuniversity.ac.in/international-admissions/',
     initials: 'MU',
+    image: '/images/inbound/iit-delhi.jpg',
   },
   {
     name: 'RK University',
@@ -41,6 +43,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'A multidisciplinary campus with a dedicated international admissions route and a university-reported international student community. Explore programmes in engineering, management, pharmacy, sciences and related fields.',
     url: 'https://international.rku.ac.in/',
     initials: 'RKU',
+    image: '/images/inbound/iit-bombay.jpg',
   },
   {
     name: 'Ganpat University',
@@ -50,6 +53,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'A multidisciplinary university offering technology, management, pharmacy and other professional programmes, with international institutional engagement. Confirm current programme-specific foreign-student eligibility before applying.',
     url: 'https://ganpatuniversity.edu.in/',
     initials: 'GUNI',
+    image: '/images/inbound/bhu-varanasi.jpg',
   },
   {
     name: 'Indus University',
@@ -59,6 +63,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Offers a dedicated international admissions process with options spanning engineering, computing, aviation, design and management. Check programme-specific requirements and available international seats.',
     url: 'https://international.indusuni.ac.in/',
     initials: 'IU',
+    image: '/images/inbound/indian-campus-lab.jpg',
   },
   {
     name: 'Silver Oak University',
@@ -68,6 +73,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Provides an international admissions pathway and guidance on documentation and student requirements, with multidisciplinary programmes to explore.',
     url: 'https://silveroakuni.ac.in/international-admission',
     initials: 'SOU',
+    image: '/images/inbound/iim-ahmedabad.jpg',
   },
   {
     name: 'Karnavati University',
@@ -77,6 +83,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Explore design, law, management and other programmes in a specialised academic environment. International student eligibility and course availability should be confirmed directly.',
     url: 'https://karnavatiuniversity.edu.in/',
     initials: 'KU',
+    image: '/images/inbound/indian-campus-quad.jpg',
   },
   {
     name: 'Nirma University',
@@ -86,6 +93,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'An established university with published international admissions categories and programmes spanning engineering, management, law, pharmacy and other disciplines.',
     url: 'https://internationalrelations.nirmauni.ac.in/admissions/',
     initials: 'NU',
+    image: '/images/inbound/iisc-bengaluru.jpg',
   },
   {
     name: 'Pandit Deendayal Energy University (PDEU)',
@@ -95,6 +103,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Explore programmes in engineering, energy, technology, management and liberal studies. Confirm international admission eligibility through the university’s official channels.',
     url: 'https://pdeu.ac.in/',
     initials: 'PDEU',
+    image: '/images/inbound/indian-campus-library.jpg',
   },
   {
     name: 'CHARUSAT',
@@ -104,6 +113,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Offers education in engineering, pharmacy, applied sciences, healthcare, management and related fields, with international academic engagement.',
     url: 'https://www.charusat.ac.in/',
     initials: 'CHARU',
+    image: '/images/inbound/jnu-delhi.jpg',
   },
   {
     name: 'Ahmedabad University',
@@ -113,6 +123,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'A multidisciplinary and research-oriented institution offering selected pathways for international applicants. Explore programme requirements and its admissions process.',
     url: 'https://ahduni.edu.in/',
     initials: 'AU',
+    image: '/images/inbound/iim-ahmedabad.jpg',
   },
   {
     name: 'GLS University',
@@ -122,6 +133,7 @@ export const GUJARAT_UNIVERSITIES: InboundUniversity[] = [
       'Explore management, commerce, IT, design and other professional programmes; confirm current international admissions availability and eligibility directly.',
     url: 'https://www.glsuniversity.ac.in/',
     initials: 'GLS',
+    image: '/images/inbound/indian-campus-quad.jpg',
   },
 ];
 
@@ -134,6 +146,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'An internationally oriented multidisciplinary campus offering pathways in engineering, management, allied sciences and more.',
     url: 'https://www.sharda.ac.in/International/',
     initials: 'SU',
+    image: '/images/inbound/iit-bombay.jpg',
   },
   {
     name: 'Manipal Academy of Higher Education (MAHE)',
@@ -143,6 +156,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'An established international admissions route with academic options spanning healthcare, engineering, management and more.',
     url: 'https://www.manipal.edu/admission/international-admissions',
     initials: 'MAHE',
+    image: '/images/inbound/mahe-manipal.jpg',
   },
   {
     name: 'Chandigarh University',
@@ -152,6 +166,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'Offers broad academic programmes and international admissions services; verify current eligibility and student intake by course.',
     url: 'https://www.cuchd.in/',
     initials: 'CU',
+    image: '/images/inbound/bhu-varanasi.jpg',
   },
   {
     name: 'Symbiosis International (Deemed University)',
@@ -161,6 +176,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'International-oriented programmes across management, law, media, liberal arts and professional disciplines.',
     url: 'https://www.siu.edu.in/',
     initials: 'SIU',
+    image: '/images/inbound/iim-ahmedabad.jpg',
   },
   {
     name: 'Amity University',
@@ -170,6 +186,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'Offers multidisciplinary programmes and an international admission framework; select the relevant campus and confirm programme terms.',
     url: 'https://www.amityuniversity.edu/',
     initials: 'AMITY',
+    image: '/images/inbound/iit-delhi.jpg',
   },
   {
     name: 'SRM Institute of Science and Technology',
@@ -179,6 +196,7 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'Wide-ranging technology, science, management and other programmes, with a dedicated international admissions system.',
     url: 'https://www.srmist.edu.in/',
     initials: 'SRM',
+    image: '/images/inbound/iisc-bengaluru.jpg',
   },
   {
     name: 'KIIT Deemed to be University',
@@ -188,5 +206,6 @@ export const OTHER_UNIVERSITIES: InboundUniversity[] = [
       'A multidisciplinary institution with international student admissions across multiple programmes.',
     url: 'https://kiit.ac.in/',
     initials: 'KIIT',
+    image: '/images/inbound/indian-campus-quad.jpg',
   },
 ];

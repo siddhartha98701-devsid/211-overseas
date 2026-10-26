@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import type { InboundUniversity } from '@/content/inbound-universities';
 
@@ -10,16 +11,6 @@ interface InboundUniversitySliderProps {
   prevAriaLabel: string;
   nextAriaLabel: string;
 }
-
-// Brand gradient palettes for abstract panels
-const ABSTRACT_GRADIENTS = [
-  'from-[#00222B] via-[#0C3844] to-[#164e5f]',
-  'from-[#0C3844] via-[#00222B] to-[#1b2830]',
-  'from-[#164e5f] via-[#00222B] to-[#0C3844]',
-  'from-[#00222B] via-[#1a3840] to-[#0d2a33]',
-  'from-[#0C3844] via-[#164e5f] to-[#00222B]',
-  'from-[#00222B] via-[#0b2931] to-[#124250]',
-];
 
 export function InboundUniversitySlider({
   universities,
@@ -126,7 +117,6 @@ export function InboundUniversitySlider({
         className="flex gap-5 sm:gap-6 overflow-x-auto scroll-smooth snap-x snap-mandatory focus-visible:ring-2 focus-visible:ring-[#A33E11] focus-visible:outline-none pb-4 -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
       >
         {universities.map((uni, idx) => {
-          const gradient = ABSTRACT_GRADIENTS[idx % ABSTRACT_GRADIENTS.length];
           const displayInitials = uni.initials || uni.name.split(' ').map((w) => w[0]).join('').slice(0, 4);
 
           return (
@@ -136,37 +126,42 @@ export function InboundUniversitySlider({
               className="w-[85vw] sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 snap-start bg-white border border-[#E6DDCC] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
             >
               <div>
-                {/* Abstract Brand Panel (No real campus photos or logos) */}
+                {/* Real Campus Photography Panel */}
                 <div
-                  aria-hidden="true"
-                  className={`relative h-44 w-full bg-gradient-to-br ${gradient} p-6 flex flex-col justify-between overflow-hidden border-b border-[#E6DDCC]`}
+                  className="relative h-48 w-full overflow-hidden border-b border-[#E6DDCC] bg-[#00222B]"
                 >
-                  {/* Subtle geometric pattern overlay */}
-                  <div
-                    className="absolute inset-0 opacity-15 pointer-events-none"
-                    style={{
-                      backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-                      backgroundSize: '24px 24px',
-                    }}
+                  <Image
+                    src={uni.image || '/images/inbound/iisc-bengaluru.jpg'}
+                    alt={`${uni.name} campus`}
+                    fill
+                    sizes="(min-width: 1024px) 380px, (min-width: 640px) 50vw, 85vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
                   />
-                  {/* Subtle rust accent corner */}
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-[#A33E11]/20 rounded-bl-full pointer-events-none" />
+                  {/* Subtle layered vignette & gradient scrim for text readability */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20" />
 
-                  <div className="relative z-10 flex items-center justify-between">
-                    <span className="text-[11px] font-mono uppercase tracking-widest text-white/70 bg-white/10 px-2.5 py-1 border border-white/15">
+                  {/* Top Badges */}
+                  <div className="relative z-10 p-4 flex items-center justify-between">
+                    <span className="text-[11px] font-mono uppercase tracking-widest text-white/90 bg-black/60 backdrop-blur-xs px-2.5 py-1 border border-white/20">
                       {uni.location.split(',')[0]}
                     </span>
-                    <span className="text-xs font-mono font-bold text-[#FC7F4E]">
+                    <span className="text-xs font-mono font-bold text-[#FC7F4E] bg-black/60 backdrop-blur-xs px-2 py-0.5 border border-white/20">
                       #{String(idx + 1).padStart(2, '0')}
                     </span>
                   </div>
 
-                  <div className="relative z-10">
-                    <span className="font-serif text-3xl sm:text-4xl font-bold tracking-wider text-white/90 block">
-                      {displayInitials}
-                    </span>
-                    <span className="text-xs text-white/60 font-light block mt-0.5">
-                      {uni.location}
+                  {/* Bottom Overlay Badge with Initials & Location */}
+                  <div className="absolute bottom-3 left-4 right-4 z-10 flex items-end justify-between">
+                    <div>
+                      <span className="font-serif text-2xl font-bold tracking-wider text-white drop-shadow-md block">
+                        {displayInitials}
+                      </span>
+                      <span className="text-[11px] text-white/80 font-medium block drop-shadow-sm">
+                        {uni.location}
+                      </span>
+                    </div>
+                    <span className="text-[10px] uppercase tracking-wider text-white/90 bg-[#A33E11] px-2 py-0.5 font-semibold">
+                      {uni.type.replace(' university', '')}
                     </span>
                   </div>
                 </div>
