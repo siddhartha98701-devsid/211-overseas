@@ -216,16 +216,19 @@ export default function CostOfStudyingPage() {
               </div>
             </ScrollReveal>
 
-            <div className="space-y-3.5">
-              {whatToAsk.bullets.map((b, idx) => (
-                <ScrollReveal key={b} delay={idx * 0.06}>
-                  <div className="p-5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-3.5 hover:border-[#A33E11] hover:shadow-md transition-all">
+            <ScrollReveal delay={0.1}>
+              <div className="flex overflow-x-auto snap-x snap-mandatory md:space-y-3.5 md:block gap-4 -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 md:after:hidden">
+                {whatToAsk.bullets.map((b) => (
+                  <div
+                    key={b}
+                    className="w-[82vw] sm:w-[320px] md:w-full shrink-0 snap-start p-5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-3.5 hover:border-[#A33E11] hover:shadow-md transition-all md:mb-3.5 last:md:mb-0"
+                  >
                     <CheckCircle2 size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
                     <span className="text-sm font-medium text-[#1B1C1A] leading-relaxed">{b}</span>
                   </div>
-                </ScrollReveal>
-              ))}
-            </div>
+                ))}
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
