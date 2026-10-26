@@ -12,12 +12,48 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: true, message: 'Received' });
     }
 
-    // Required fields validation
-    if (!body.fullName || !body.mobile) {
-      return NextResponse.json(
-        { success: false, message: 'Please provide your name and mobile number.' },
-        { status: 400 }
-      );
+    const isInbound = String(body.source || '').toLowerCase().includes('inbound');
+
+    if (isInbound) {
+      if (!body.fullName || String(body.fullName).trim().length < 2) {
+        return NextResponse.json(
+          { success: false, message: 'Please provide your full name (minimum 2 characters).' },
+          { status: 400 }
+        );
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!body.email || !emailRegex.test(String(body.email))) {
+        return NextResponse.json(
+          { success: false, message: 'Please provide a valid email address.' },
+          { status: 400 }
+        );
+      }
+      if (!body.countryOfResidence || String(body.countryOfResidence).trim().length < 2) {
+        return NextResponse.json(
+          { success: false, message: 'Please provide your country of residence.' },
+          { status: 400 }
+        );
+      }
+      const validEnquiryTypes = [
+        'Undergraduate study',
+        'Postgraduate study',
+        'Short-term / professional study',
+        'Institutional collaboration',
+      ];
+      if (!body.enquiryType || !validEnquiryTypes.includes(String(body.enquiryType))) {
+        return NextResponse.json(
+          { success: false, message: 'Please select a valid enquiry type.' },
+          { status: 400 }
+        );
+      }
+    } else {
+      // Required fields validation for standard forms
+      if (!body.fullName || !body.mobile) {
+        return NextResponse.json(
+          { success: false, message: 'Please provide your name and mobile number.' },
+          { status: 400 }
+        );
+      }
     }
 
     // Consent is mandatory (IT Act 2000 / DPDP Act)
@@ -40,7 +76,7 @@ export async function POST(req: NextRequest) {
       id: `211-${Date.now().toString(36).toUpperCase()}`,
       createdAt: new Date().toISOString(),
       fullName: String(body.fullName).slice(0, 120),
-      mobile: String(body.mobile).slice(0, 20),
+      mobile: body.mobile ? String(body.mobile).slice(0, 20) : 'Not specified',
       email: body.email ? String(body.email).slice(0, 160) : undefined,
       interests: Array.isArray(body.interests) ? body.interests.map((i: unknown) => String(i).slice(0, 120)) : [],
       destination: body.destination ? String(body.destination).slice(0, 120) : undefined,

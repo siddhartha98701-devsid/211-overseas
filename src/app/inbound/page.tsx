@@ -1,252 +1,717 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Check, Globe2, BookOpen, Building, ShieldCheck, ArrowRight } from 'lucide-react';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { MobileScroller } from '@/components/ui/MobileScroller';
-import { FaqSection } from '@/components/sections/FaqSection';
-import { FormSection } from '@/components/sections/FormSection';
-import { CtaStrip } from '@/components/sections/CtaStrip';
-import { LeadMiniForm } from '@/components/lead/LeadMiniForm';
+import {
+  Globe2,
+  Building,
+  ShieldCheck,
+  ArrowRight,
+  GraduationCap,
+  HeartPulse,
+  Briefcase,
+  Palette,
+  UtensilsCrossed,
+  Microscope,
+  Compass,
+  FileText,
+  BadgePercent,
+  Plane,
+  Home as HomeIcon,
+  Users,
+  Network,
+  MessageSquare,
+  FileCheck2,
+  SmilePlus,
+  BarChart3,
+  Layers,
+} from 'lucide-react';
 import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
-import { InboundCollegesInteractive } from '@/components/inbound/InboundCollegesInteractive';
+import { FaqSection } from '@/components/sections/FaqSection';
+import { CtaStrip } from '@/components/sections/CtaStrip';
+import { FormSection } from '@/components/sections/FormSection';
+import { GUJARAT_UNIVERSITIES, OTHER_UNIVERSITIES } from '@/content/inbound-universities';
+import { InboundUniversitySlider } from '@/components/inbound/InboundUniversitySlider';
+import { InboundEnquiryForm } from '@/components/inbound/InboundEnquiryForm';
+import { InboundCollaborationButton } from '@/components/inbound/InboundCollaborationButton';
 
 export const metadata: Metadata = {
-  title: 'Inbound International Education & Research in India',
+  title: 'Study in India for International Students | 211 Overseas',
   description:
-    'Structured inbound academic pathways for international students, researchers, and interns seeking study abroad, semester exchange, and research opportunities in India with 211 OVERSEAS.',
+    'Explore universities across India. 211 Overseas guides international students on courses, applications, fees, scholarships, visa paperwork and arrival.',
 };
 
-const INBOUND_BENEFITS = [
+// Section B Data
+const WHY_STUDY_IN_INDIA = [
   {
     icon: Globe2,
-    title: 'Globally Accredited Institutions',
-    text: 'Access premier institutes, central universities, and research centers with world-class faculty and laboratories.',
-  },
-  {
-    icon: BookOpen,
-    title: '100% English-Medium Curriculum',
-    text: 'All graduate, postgraduate, and professional coursework is conducted entirely in English with internationally transferable credits.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Full Visa & FRRO Assistance',
-    text: 'End-to-end support for Student Visa (S-Visa), Research Visa invitations, and mandatory FRRO registration upon arrival.',
+    title: 'Diverse Academic Pathways',
+    text: 'Explore engineering, healthcare, business, design, humanities and more.',
   },
   {
     icon: Building,
-    title: 'Affordable Living & Safe Campus Life',
-    text: 'Modern university accommodation, on-campus dining, and dedicated international student host offices.',
+    title: 'Education Within Reach',
+    text: 'Compare tuition, accommodation and living costs across institutions and cities.',
+  },
+  {
+    icon: Users,
+    title: 'Multicultural Campuses',
+    text: 'Connect with students from different countries, cultures and backgrounds.',
+  },
+  {
+    icon: ShieldCheck,
+    title: 'Knowledge Meets Innovation',
+    text: 'Discover institutions connected to research, entrepreneurship and evolving industries.',
   },
 ];
 
-const WHO_ITS_FOR = [
-  'International undergraduate and graduate students pursuing semester abroad or degree tracks in India',
-  'Postdoctoral researchers and visiting scholars collaborating with Indian research institutes',
-  'Medical, paramedical, and technical interns seeking clinical rotations or industrial apprenticeships',
-  'NRI and diaspora youth seeking cultural immersion and academic roots exploration',
+// Section E Data
+const ACADEMIC_OPTIONS = [
+  {
+    icon: GraduationCap,
+    title: 'Engineering & Technology',
+    text: 'Computer Science, AI, Data Science, Electronics, Mechanical and Civil Engineering.',
+  },
+  {
+    icon: HeartPulse,
+    title: 'Healthcare & Allied Sciences',
+    text: 'Pharmacy, Physiotherapy, Public Health, Biotechnology and eligible professional courses.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Business & Management',
+    text: 'BBA, MBA, Finance, Marketing, Entrepreneurship and International Business.',
+  },
+  {
+    icon: Palette,
+    title: 'Design & Creative Studies',
+    text: 'Architecture, Communication, Fashion, Media, Animation and Digital Design.',
+  },
+  {
+    icon: UtensilsCrossed,
+    title: 'Hospitality & Tourism',
+    text: 'Hotel Management, Culinary Arts, Tourism and Hospitality Operations.',
+  },
+  {
+    icon: Microscope,
+    title: 'Sciences & Humanities',
+    text: 'Life Sciences, Psychology, Economics, Environmental Studies and Liberal Arts.',
+  },
 ];
 
-const INBOUND_STEPS = [
+// Section F Data
+const OUR_SERVICES = [
+  {
+    icon: Compass,
+    title: 'University & Course Discovery',
+    text: 'Shortlisting institutions and programmes aligned to your eligibility, interests and budget.',
+  },
+  {
+    icon: FileText,
+    title: 'Application Guidance',
+    text: 'Supporting document preparation, application processes and academic communication.',
+  },
+  {
+    icon: BadgePercent,
+    title: 'Financial & Scholarship Guidance',
+    text: 'Understanding fees and exploring eligible tuition concessions or assistance schemes.',
+  },
+  {
+    icon: Plane,
+    title: 'Visa & Pre-Arrival Preparation',
+    text: 'Guidance on official requirements, appropriate documentation and travel preparation.',
+  },
+  {
+    icon: HomeIcon,
+    title: 'Accommodation & Arrival Coordination',
+    text: 'Exploring student accommodation and appropriate airport reception or orientation arrangements.',
+  },
+  {
+    icon: Users,
+    title: 'Student Support & Communication',
+    text: 'A defined point of contact for agreed onboarding and institution-related coordination.',
+  },
+];
+
+// Section G Data
+const YOUR_JOURNEY_STEPS = [
   {
     number: '01',
-    title: 'Profile & Institute Matching',
-    desc: 'We match your academic background and research interests with certified host institutions in India.',
+    title: 'Tell Us About Yourself',
+    desc: 'Share your background, country of residence, interests and goals.',
   },
   {
     number: '02',
-    title: 'Formal Admission & Visa Letter',
-    desc: 'Issuance of formal provisional admission letter and Ministry-approved visa recommendation documents.',
+    title: 'Explore Your Options',
+    desc: 'Understand suitable institutions, programmes, eligibility and costs.',
   },
   {
     number: '03',
-    title: 'Student Visa (S-Visa) Processing',
-    desc: 'Complete guidance on submission to Indian embassies/consulates worldwide for fast-track visa issuance.',
+    title: 'Prepare Your Application',
+    desc: 'Organise documents and navigate institutional processes.',
   },
   {
     number: '04',
-    title: 'Arrival, FRRO & Campus Onboarding',
-    desc: 'Airport reception, foreign regional registration (FRRO) filing, hostel check-in, and local orientation.',
+    title: 'Plan Your Arrival',
+    desc: 'Prepare for travel, accommodation and applicable visa formalities.',
+  },
+  {
+    number: '05',
+    title: 'Begin Your Next Chapter',
+    desc: 'Settle in with appropriate onboarding and coordination support.',
   },
 ];
 
+// Section J Data
+const INSTITUTION_CARDS = [
+  {
+    icon: Network,
+    title: 'Institutional Outreach',
+    text: 'Connecting prospective applicants with accurate information on Indian academic options.',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Student Engagement',
+    text: 'Structured communication and information provision in overseas markets.',
+  },
+  {
+    icon: FileCheck2,
+    title: 'Application Readiness',
+    text: 'Supporting document completeness and preparedness before submission.',
+  },
+  {
+    icon: SmilePlus,
+    title: 'Student Transition Support',
+    text: 'Developing consistent pre-arrival, orientation and onboarding workflows.',
+  },
+  {
+    icon: BarChart3,
+    title: 'Impact & Accountability',
+    text: 'Measuring verified enquiries, readiness, processing outcomes and service experience.',
+  },
+  {
+    icon: Layers,
+    title: 'Scalable Systems',
+    text: 'Progressively introducing standardised, technology-supported coordination.',
+  },
+];
+
+// Section L FAQs Data (Verbatim)
 const INBOUND_FAQS = [
   {
-    q: 'Can international students study full degrees in India through 211 OVERSEAS?',
-    a: 'Yes. We assist international students with direct admissions into bachelor’s, master’s, PhD, and short-term study abroad or semester exchange programs across recognized Indian universities.',
+    q: 'Can international students study at universities in India?',
+    a: 'Yes. Eligible international applicants can apply to Indian universities, subject to academic qualifications, admission categories and the institution’s own procedures.',
   },
   {
-    q: 'What type of visa is required for studying in India?',
-    a: 'International students require an official Student Visa (S-Visa) or Research Visa issued by the Indian Embassy or High Commission in their home country, backed by an official university admission offer letter.',
+    q: 'Are the universities listed partners of 211 Overseas?',
+    a: 'No formal partnership is implied. The universities are presented as independent options to explore; institutions make their own admission decisions.',
   },
   {
-    q: 'Is English proficiency proof needed?',
-    a: 'Yes, basic English proficiency (IELTS, TOEFL, or official certification of prior English-medium education) is required since university instruction is conducted in English.',
+    q: 'Can I explore universities in different Indian states?',
+    a: 'Yes. We help prospective students explore suitable universities across India. The order of universities on this page does not limit the destinations we cover.',
   },
   {
-    q: 'How does 211 OVERSEAS assist with FRRO registration?',
-    a: 'All foreign nationals staying in India for more than 180 days on a student visa must register with the Foreigners Regional Registration Office (e-FRRO) within 14 days of arrival. Our team handles the documentation and online filing.',
+    q: 'Are scholarships available?',
+    a: 'Some universities and eligible schemes offer assistance or tuition concessions. Eligibility, selection and funding amounts are determined independently.',
+  },
+  {
+    q: 'Can 211 Overseas help with student visa paperwork?',
+    a: 'We offer documentation and process guidance; decisions on visas are made solely by the competent authorities.',
+  },
+  {
+    q: 'Can 211 Overseas guarantee admission or placement?',
+    a: 'No. Admission and other official decisions remain with the competent institutions and authorities.',
   },
 ];
 
 export default function InboundPage() {
   return (
-    <>
-      {/* Hero with subtle handcrafted botanical leaf & blossom animation */}
-      <section className="relative overflow-hidden pt-32 pb-14 md:pt-40 md:pb-20 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Inbound education hero">
+    <div className="bg-[#FAF8F5] min-h-screen">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION A: HERO */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section
+        className="relative overflow-hidden pt-32 pb-16 md:pt-40 md:pb-24 border-b border-[#E6DDCC] bg-[#FAF8F5]"
+        aria-label="Inbound education hero"
+      >
         <BlossomLeafAnimation />
         <div className="relative z-10 max-w-[1280px] mx-auto px-6">
+          {/* Breadcrumb */}
           <nav aria-label="Breadcrumb" className="mb-6 text-xs text-[#41484B]">
             <ol className="flex items-center gap-2">
-              <li><Link href="/" className="hover:text-[#A33E11]">Home</Link></li>
+              <li>
+                <Link href="/" className="hover:text-[#A33E11] transition-colors">
+                  Home
+                </Link>
+              </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-[#1B1C1A] font-medium">Inbound Education &amp; Research</li>
+              <li aria-current="page" className="text-[#1B1C1A] font-medium">
+                Inbound Education &amp; Research
+              </li>
             </ol>
           </nav>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            {/* Left Content Column */}
             <div className="lg:col-span-7">
-              <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold mb-4">
-                <span className="h-px w-8 bg-[#A33E11]" />
-                Inbound Global Programs
-              </p>
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1]">
-                Study &amp; Research in India: <span className="text-[#A33E11]">Inbound Pathways</span>
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-3">
+                211 OVERSEAS · INBOUND EDUCATION
+              </span>
+
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B1C1A] tracking-tight leading-[1.12] mb-3">
+                Your Future Has a Place in India.
               </h1>
-              <p className="mt-5 text-base md:text-lg text-[#41484B] leading-relaxed max-w-2xl">
-                211 OVERSEAS bridges international students, visiting researchers, and global scholars with premier academic institutions and research ecosystems across India.
+
+              <p className="font-serif text-lg sm:text-xl text-[#A33E11] font-semibold italic mb-5">
+                Discover. Study. Belong.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <p className="text-base sm:text-lg text-[#41484B] leading-relaxed max-w-2xl mb-8">
+                Explore a world of academic possibilities in one of the most diverse and dynamic countries. From choosing a university to preparing for your arrival, 211 Overseas helps international students navigate higher education in India.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
                 <a
                   href="#colleges"
-                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-7 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
                 >
-                  <span>Explore Colleges &amp; Maps</span>
-                  <ArrowRight size={14} />
+                  <span>Explore Universities ↗</span>
                 </a>
                 <a
                   href="#inbound-form"
-                  className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center"
+                  className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center shadow-sm cursor-pointer"
                 >
-                  Request Information
+                  Plan My Study Journey
                 </a>
               </div>
+            </div>
 
-              {/* Inbound hero photo */}
-              <div className="mt-8 relative aspect-[16/9] w-full overflow-hidden rounded-[3px] border border-[#E6DDCC] bg-[#FAF8F5] shadow-sm">
+            {/* Right Hero Image Column */}
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[4/3] sm:aspect-[16/11] w-full overflow-hidden border border-[#E6DDCC] bg-white shadow-xl">
                 <Image
                   src="/images/generated/global-campus.jpg"
                   alt="International students and researchers collaborating on campus grounds"
                   fill
                   priority
-                  sizes="(min-width: 1024px) 720px, 92vw"
+                  sizes="(min-width: 1024px) 540px, 92vw"
                   className="object-cover"
                 />
               </div>
             </div>
-
-            {/* Quick Callback Widget */}
-            <aside className="lg:col-span-5 bg-white border-t-4 border-[#A33E11] p-6 sm:p-7 shadow-[0_20px_50px_rgba(42,42,42,0.08)]">
-              <p className="text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold">Inbound Desk</p>
-              <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">Request Information</h2>
-              <p className="mb-5 text-sm text-[#41484B]">Connect with our inbound advisory desk for international students.</p>
-              <LeadMiniForm interest="Inbound Programs & Research" source="inbound-page" />
-            </aside>
           </div>
         </div>
       </section>
 
-      {/* Core Benefits */}
-      <section className="py-14 md:py-20 border-b border-[#E6DDCC] bg-white" aria-label="Why study in India">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION B: WHY STUDY IN INDIA */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Why study in India">
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader
-            eyebrow="Key Advantages"
-            headline="Why Choose Inbound Education in India?"
-            description="India offers world-ranked STEM education, extensive clinical case exposures, cutting-edge tech innovation, and deeply affordable living costs."
-            compact
-          />
-          <MobileScroller label="Inbound benefits" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {INBOUND_BENEFITS.map(({ icon: Icon, title, text }) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-white p-6 hover:border-[#A33E11] transition-colors">
-                <span className="flex h-11 w-11 items-center justify-center bg-[#0C3844] text-white">
-                  <Icon size={20} aria-hidden="true" />
-                </span>
-                <h3 className="mt-4 font-serif text-lg font-bold text-[#1B1C1A]">{title}</h3>
-                <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              WHY STUDY IN INDIA?
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              International Education. An Experience Uniquely Indian.
+            </h2>
+            <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+              An extensive higher education landscape, emerging industries, culturally diverse communities and academic programmes across disciplines.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {WHY_STUDY_IN_INDIA.map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="flex h-12 w-12 items-center justify-center bg-[#0C3844] text-white mb-5">
+                    <Icon size={22} aria-hidden="true" />
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
+                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                </div>
               </div>
             ))}
-          </MobileScroller>
+          </div>
         </div>
       </section>
 
-      {/* Premier Inbound Colleges & Interactive Map Section */}
-      <section id="colleges" className="py-14 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5] scroll-mt-24" aria-label="Inbound colleges and campus maps">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION C: UNIVERSITIES IN GUJARAT (#colleges) */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section
+        id="colleges"
+        className="py-20 md:py-28 border-b border-[#E6DDCC] bg-[#FAF8F5] scroll-mt-24"
+        aria-label="Universities in Gujarat"
+      >
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader
-            eyebrow="Academic Institutions Directory"
-            headline="Explore Premier Inbound Colleges & Research Hubs"
-            description="Inspect verified campus locations across India, official NIRF & QS rankings, accredited degree pathways, international facilities, and interactive satellite campus maps."
+          <div className="max-w-3xl mb-8">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              UNIVERSITY OPTIONS | GUJARAT
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              Universities in Gujarat
+            </h2>
+            <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+              Explore selected private universities across Gujarat with international admissions facilities and a range of academic pathways. The universities below are independent institutions presented for student discovery.
+            </p>
+          </div>
+
+          {/* Slider 1: Gujarat Universities */}
+          <InboundUniversitySlider
+            universities={GUJARAT_UNIVERSITIES}
+            carouselAriaLabel="Universities in Gujarat carousel"
+            prevAriaLabel="Previous universities in Gujarat"
+            nextAriaLabel="Next universities in Gujarat"
           />
 
-          <InboundCollegesInteractive />
+          {/* Button below Slider 1 */}
+          <div className="mt-12 text-center">
+            <a
+              href="#inbound-form"
+              className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+            >
+              <span>Help Me Find the Right University</span>
+              <ArrowRight size={14} />
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Who it's for */}
-      <section className="bgl bgl-gray py-14 md:py-20 border-b border-[#E6DDCC]" aria-label="Who can apply for inbound">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION D: OTHER UNIVERSITIES */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section
+        className="py-20 md:py-28 border-b border-[#E6DDCC] bg-white scroll-mt-24"
+        aria-label="Other Universities Across India"
+      >
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader
-            eyebrow="Candidate Profiles"
-            headline="Who Can Connect with Our Inbound Desk"
-            description="Our inbound team facilitates individual scholars as well as institutional bilateral exchange partnerships."
-            compact
+          <div className="max-w-3xl mb-8">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              PRIVATE UNIVERSITIES ACROSS INDIA
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              Other Universities
+            </h2>
+            <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+              Look beyond one state. India has private and deemed-to-be universities with established international admissions arrangements and multicultural campuses. Explore these additional options according to course preference, budget and student-support needs.
+            </p>
+          </div>
+
+          {/* Slider 2: Other Universities (Independent instance) */}
+          <InboundUniversitySlider
+            universities={OTHER_UNIVERSITIES}
+            carouselAriaLabel="Other universities across India carousel"
+            prevAriaLabel="Previous other universities"
+            nextAriaLabel="Next other universities"
           />
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {WHO_ITS_FOR.map((item) => (
-              <li key={item} className="flex items-start gap-3 bg-white p-5 border border-[#E6DDCC]">
-                <span className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#A33E11] text-white">
-                  <Check size={14} strokeWidth={2.5} aria-hidden="true" />
-                </span>
-                <span className="text-sm text-[#1B1C1A] leading-relaxed font-medium">{item}</span>
-              </li>
-            ))}
-          </ul>
+
+          {/* Button below Slider 2 */}
+          <div className="mt-12 text-center">
+            <a
+              href="#inbound-form"
+              className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-8 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-sm cursor-pointer"
+            >
+              <span>Compare Universities Across India</span>
+              <ArrowRight size={14} />
+            </a>
+          </div>
+
+          {/* REQUIRED REPRESENTATION DISCLAIMER */}
+          <div className="mt-10 max-w-4xl mx-auto p-4 border border-[#E6DDCC] bg-[#FAF8F5] text-center">
+            <p className="text-xs text-[#71787B] leading-relaxed">
+              Featured universities are presented for educational information and discovery only. Inclusion does not imply partnership, authorisation or endorsement. Admission, fees, eligibility and applicable approvals remain subject to the relevant institutions and authorities.
+            </p>
+          </div>
         </div>
       </section>
 
-      {/* How it works */}
-      <section id="how-it-works" className="bgl bgl-black py-16 md:py-24 text-white" aria-label="Inbound process">
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION E: ACADEMIC OPTIONS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Academic Options">
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader
-            dark
-            eyebrow="Step-by-step roadmap"
-            headline="Your Inbound Journey in 4 Steps"
-            description="We simplify foreign documentation, institution clearances, and embassy visa protocols."
-            compact
-          />
-          <MobileScroller dark label="Inbound steps" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {INBOUND_STEPS.map((s) => (
-              <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-white text-xs font-bold">
-                  {s.number}
-                </span>
-                <h3 className="mt-4 font-serif text-lg font-bold">{s.title}</h3>
-                <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.desc}</p>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              ACADEMIC OPTIONS
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              Your Interests. Your Ambitions. Your Academic Pathway.
+            </h2>
+            <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+              Explore disciplines across India’s higher education ecosystem.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {ACADEMIC_OPTIONS.map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="bg-white border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
+                    <Icon size={22} aria-hidden="true" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
+                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                </div>
               </div>
             ))}
-          </MobileScroller>
+          </div>
         </div>
       </section>
 
-      {/* FAQs */}
-      <FaqSection items={INBOUND_FAQS} headline="Frequently asked questions about Inbound study" />
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION F: OUR SERVICES */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Our Services">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              OUR SERVICES
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              One Journey. Many Decisions. Guidance at Every Stage.
+            </h2>
+            <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+              We help organise academic, financial and practical decisions involved in studying in India.
+            </p>
+          </div>
 
-      {/* Form Section */}
-      <div id="inbound-form">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {OUR_SERVICES.map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 bg-[#0C3844] text-white flex items-center justify-center mb-5">
+                    <Icon size={22} aria-hidden="true" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
+                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION G: YOUR JOURNEY (5 Steps) */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28 border-b border-[#E6DDCC] bg-[#00222B] text-white" aria-label="Your Journey">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-2">
+              YOUR JOURNEY
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
+              From Exploring Possibilities to Finding Your Place.
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+            {YOUR_JOURNEY_STEPS.map((s) => (
+              <div
+                key={s.number}
+                className="border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between hover:border-[#FC7F4E]/60 transition-colors"
+              >
+                <div>
+                  <span className="flex h-11 w-11 items-center justify-center bg-[#A33E11] text-white text-xs font-bold font-mono mb-5 shadow-sm">
+                    {s.number}
+                  </span>
+                  <h3 className="font-serif text-lg font-bold text-white mb-2">{s.title}</h3>
+                  <p className="text-sm text-white/70 leading-relaxed font-light">{s.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION H: FINANCES & SCHOLARSHIPS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Finances and Scholarships">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              FINANCES &amp; SCHOLARSHIPS
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              A Clearer Picture of Your Education Investment.
+            </h2>
+            <p className="text-base text-[#41484B] leading-relaxed">
+              Choosing where to study also means understanding the financial commitment. We help students and families evaluate tuition, accommodation and living expenses, along with suitable institutional concessions or eligible scholarship programmes.
+            </p>
+            <p className="text-xs md:text-sm text-[#71787B] italic bg-[#FAF8F5] border border-[#E6DDCC] p-4 max-w-2xl mx-auto leading-relaxed">
+              Awards, concessions and financial assistance depend on independent eligibility and selection criteria. We offer informed guidance, not scholarship guarantees.
+            </p>
+            <div className="pt-4">
+              <a
+                href="#inbound-form"
+                className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+              >
+                <span>Discuss Fees &amp; Scholarships ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION I: FOR PARENTS, GUARDIANS & SPONSORS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="For Parents and Sponsors">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+                FOR PARENTS, GUARDIANS &amp; SPONSORS
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+                A New Country for Them. Confidence for You.
+              </h2>
+              <p className="text-base text-[#41484B] leading-relaxed">
+                Studying abroad is a family decision. Parents, guardians and sponsors deserve clarity about academic choices, accommodation, wellbeing, budgets and support arrangements.
+              </p>
+              <p className="text-base text-[#41484B] leading-relaxed">
+                211 Overseas aims to make the transition more organised through practical guidance, transparent communication and defined student-support services.
+              </p>
+            </div>
+
+            <div className="lg:col-span-5 bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm border-l-4 border-l-[#A33E11]">
+              <blockquote className="font-serif text-2xl md:text-3xl text-[#1B1C1A] italic leading-snug">
+                “Beyond admission, a better prepared journey.”
+              </blockquote>
+              <span className="block mt-4 text-xs font-mono uppercase tracking-widest text-[#A33E11]">
+                211 Overseas Advisory Ethos
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION J: INSTITUTIONS & DEVELOPMENT ORGANISATIONS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-28 border-b border-[#E6DDCC] bg-white" aria-label="Institutions and Organizations">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-3xl mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              INSTITUTIONS &amp; DEVELOPMENT ORGANISATIONS
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              Helping Indian Education Connect With the World.
+            </h2>
+            <p className="text-base text-[#41484B] leading-relaxed mb-4">
+              211 Overseas is developing a service-led inbound education facilitation initiative designed to support responsible, measurable international student mobility across India.
+            </p>
+            <p className="text-base text-[#41484B] leading-relaxed">
+              Our proposed approach brings together international student awareness, academic discovery, application readiness, arrival coordination and transition support. We welcome conversations with education institutions, incubators, public agencies and development organisations on suitable collaboration opportunities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {INSTITUTION_CARDS.map(({ icon: Icon, title, text }) => (
+              <div
+                key={title}
+                className="bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] transition-all flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-12 h-12 bg-[#0C3844] text-white flex items-center justify-center mb-5">
+                    <Icon size={22} aria-hidden="true" />
+                  </div>
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
+                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Callout Box */}
+          <div className="bg-[#FAF8F5] border border-[#E6DDCC] p-8 md:p-10 flex flex-col md:flex-row md:items-center justify-between gap-8 border-l-4 border-l-[#0C3844]">
+            <div className="max-w-2xl space-y-2">
+              <h3 className="font-serif text-xl md:text-2xl font-bold text-[#1B1C1A]">
+                A service-led approach with nationwide relevance.
+              </h3>
+              <p className="text-sm md:text-base text-[#41484B] leading-relaxed">
+                A proposed human-led pilot model that can be evaluated, refined and expanded over time.
+              </p>
+            </div>
+            <div className="shrink-0">
+              <InboundCollaborationButton />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION K: OUR VISION */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-20 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Our Vision">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-3xl mx-auto text-center space-y-6">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              OUR VISION
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Making Education Across Borders More Accessible, Connected and Human.
+            </h2>
+            <p className="text-base sm:text-lg text-[#41484B] leading-relaxed">
+              International education should begin with clarity, not confusion. We aim to build responsible student facilitation workflows that improve access to educational information, student preparation and transition support. Through evidence, institutional engagement and progressively improved systems, this model can evolve to support international student mobility across India.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION L: FAQS (6 Verbatim FAQs) */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <FaqSection
+        items={INBOUND_FAQS}
+        headline="Good Questions Deserve Clear Answers."
+      />
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* SECTION M: ENQUIRY FORM (#inbound-form) */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section id="inbound-form" className="py-20 md:py-28 border-b border-[#E6DDCC] bg-white scroll-mt-24" aria-label="Inbound Enquiry">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+            <div className="lg:col-span-5 space-y-5">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block">
+                BEGIN WITH A CONVERSATION
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight leading-tight">
+                Your Education Journey to India Starts Here.
+              </h2>
+              <p className="text-base text-[#41484B] leading-relaxed">
+                Tell us your preferred course and country of residence. Our team can guide you through possible universities, applications and practical next steps.
+              </p>
+              <p className="text-sm text-[#41484B] leading-relaxed bg-[#FAF8F5] p-4 border border-[#E6DDCC]">
+                For institutional enquiries, select the collaboration option in the form.
+              </p>
+            </div>
+
+            <div className="lg:col-span-7">
+              <InboundEnquiryForm />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* AFTER SECTION M: KEPT AS-IS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <div id="direct-consultation-block">
         <CtaStrip source="inbound-page" interest="Inbound Programs & Research" />
         <FormSection />
       </div>
-    </>
+    </div>
   );
 }
