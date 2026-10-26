@@ -31,10 +31,10 @@ const CATEGORIES = [
   'Management & Arts',
 ] as const;
 
-const REGIONS = ['All India', 'North', 'South', 'West'] as const;
+const REGIONS = ['All India', 'Gujarat', 'North', 'South', 'West', 'East'] as const;
 
 export function InboundCollegesInteractive() {
-  const [selectedId, setSelectedId] = useState<string>('iisc-bengaluru');
+  const [selectedId, setSelectedId] = useState<string>('parul-university');
   const [selectedCategory, setSelectedCategory] = useState<string>('All Disciplines');
   const [selectedRegion, setSelectedRegion] = useState<string>('All India');
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -46,7 +46,9 @@ export function InboundCollegesInteractive() {
       const matchCat =
         selectedCategory === 'All Disciplines' || c.category === selectedCategory;
       const matchRegion =
-        selectedRegion === 'All India' || c.region === selectedRegion;
+        selectedRegion === 'All India' ||
+        (selectedRegion === 'Gujarat' && (c.region === 'Gujarat' || c.state.toLowerCase().includes('gujarat'))) ||
+        c.region === selectedRegion;
       const q = searchQuery.trim().toLowerCase();
       const matchSearch =
         !q ||
@@ -349,8 +351,8 @@ export function InboundCollegesInteractive() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-2.5">
-                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-[2px] bg-white border border-[#E6DDCC] text-[#0C3844]">
-                      {col.shortName.split(' ')[0]}
+                    <span className="text-[10px] uppercase tracking-wider font-bold px-2 py-0.5 rounded-[2px] bg-white border border-[#E6DDCC] text-[#0C3844] truncate max-w-[140px]">
+                      {col.badge}
                     </span>
                     <span className="text-[11px] text-[#A33E11] font-semibold">
                       {col.city}
@@ -420,7 +422,7 @@ export function InboundCollegesInteractive() {
           >
             {filteredColleges.map((col) => (
               <option key={col.id} value={col.id}>
-                {col.shortName} – {col.city} ({col.nirfRank.split(' ')[0]} {col.nirfRank.split(' ')[1]})
+                {col.shortName} – {col.city} ({col.badge})
               </option>
             ))}
           </select>
@@ -693,7 +695,7 @@ export function InboundCollegesInteractive() {
 
           {/* Action Links Footer */}
           <div className="p-6 bg-[#FAF8F5] border-t border-[#E6DDCC] flex flex-wrap items-center justify-between gap-4">
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap items-center gap-3">
               <button
                 type="button"
                 onClick={handleApplyClick}
@@ -702,6 +704,18 @@ export function InboundCollegesInteractive() {
                 <span>Inquire for {activeCollege.shortName}</span>
                 <ChevronRight size={14} />
               </button>
+
+              {activeCollege.url && (
+                <a
+                  href={activeCollege.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-[#0C3844] text-[#0C3844] hover:bg-[#0C3844] hover:text-white px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors rounded-[2px] cursor-pointer inline-flex items-center gap-1.5"
+                >
+                  <span>Official Admissions</span>
+                  <ExternalLink size={13} />
+                </a>
+              )}
 
               <button
                 type="button"
