@@ -218,6 +218,190 @@ const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
   'united arab emirates university': '/images/web/uae-wide.webp',
 };
 
+interface CourseSubjectMeta {
+  image: string;
+  category: string;
+  monogram: string;
+}
+
+function getCourseMeta(courseText: string): CourseSubjectMeta {
+  const text = courseText.toLowerCase();
+
+  // 1. Aviation
+  if (text.includes('aviation')) {
+    return {
+      image: '/images/destinations/australia-sydney-harbour.jpg',
+      category: 'Aviation Management',
+      monogram: 'AVN',
+    };
+  }
+
+  // 2. Semiconductor & Microelectronics
+  if (text.includes('semiconductor') || text.includes('electronic systems')) {
+    return {
+      image: '/images/destinations/taiwan-semiconductor-lab.jpg',
+      category: 'Semiconductor Engineering',
+      monogram: 'SEMI',
+    };
+  }
+
+  // 3. AI, Computer Science & Data Analytics
+  if (
+    text.includes('computer science') ||
+    text.includes('computing') ||
+    text.includes('artificial intelligence') ||
+    text.includes('ai') ||
+    text.includes('data analytics') ||
+    text.includes('data science') ||
+    text.includes('information systems')
+  ) {
+    return {
+      image: '/images/destinations/usa-tech-hub.jpg',
+      category: 'Computer Science & AI',
+      monogram: 'CS/AI',
+    };
+  }
+
+  // 4. Robotics & Mechanical / Automotive / Materials / Industrial Engineering
+  if (
+    text.includes('robotics') ||
+    text.includes('mechanical') ||
+    text.includes('electrical') ||
+    text.includes('materials') ||
+    text.includes('automotive') ||
+    text.includes('applied technology') ||
+    text.includes('applied science') ||
+    text.includes('engineering')
+  ) {
+    return {
+      image: '/images/destinations/japan-tech-lab.jpg',
+      category: 'Engineering & Robotics',
+      monogram: 'ENG',
+    };
+  }
+
+  // 5. Biotechnology & Life Sciences
+  if (
+    text.includes('biotechnology') ||
+    text.includes('biotech') ||
+    text.includes('life sciences')
+  ) {
+    return {
+      image: '/images/destinations/europe-research.jpg',
+      category: 'Biotechnology & Research',
+      monogram: 'BIO',
+    };
+  }
+
+  // 6. Healthcare, Medicine, Nursing & Public Health
+  if (
+    text.includes('public health') ||
+    text.includes('health') ||
+    text.includes('medical') ||
+    text.includes('healthcare')
+  ) {
+    return {
+      image: '/images/generated/germany-healthcare.jpg',
+      category: 'Healthcare & Public Health',
+      monogram: 'MED',
+    };
+  }
+
+  // 7. Finance, Banking, Accounting & Capital Markets
+  if (
+    text.includes('finance') ||
+    text.includes('banking') ||
+    text.includes('accounting') ||
+    text.includes('accountancy') ||
+    text.includes('capital markets') ||
+    text.includes('auditing') ||
+    text.includes('taxation')
+  ) {
+    return {
+      image: '/images/destinations/singapore-fintech-hub.jpg',
+      category: 'Finance & Banking',
+      monogram: 'FIN',
+    };
+  }
+
+  // 8. Business, Management, Economics & Trade
+  if (
+    text.includes('business') ||
+    text.includes('management') ||
+    text.includes('economics') ||
+    text.includes('trade') ||
+    text.includes('strategy') ||
+    text.includes('entrepreneurship') ||
+    text.includes('supply chain') ||
+    text.includes('logistics')
+  ) {
+    return {
+      image: '/images/generated/uae-sector-sales.jpg',
+      category: 'Business & Management',
+      monogram: 'BIZ',
+    };
+  }
+
+  // 9. Hospitality & Culinary Management
+  if (text.includes('hospitality') || text.includes('culinary')) {
+    return {
+      image: '/images/generated/uae-sector-hospitality.jpg',
+      category: 'Hospitality Management',
+      monogram: 'HOSP',
+    };
+  }
+
+  // 10. Design, Fashion, Media, Arts & Cultural Studies
+  if (
+    text.includes('design') ||
+    text.includes('fashion') ||
+    text.includes('cultural') ||
+    text.includes('media') ||
+    text.includes('communication') ||
+    text.includes('architecture') ||
+    text.includes('chinese studies')
+  ) {
+    return {
+      image: '/images/destinations/taiwan-culture.jpg',
+      category: 'Design & Cultural Studies',
+      monogram: 'DES',
+    };
+  }
+
+  // 11. Law, Policy & International Relations
+  if (
+    text.includes('law') ||
+    text.includes('international relations') ||
+    text.includes('compliance')
+  ) {
+    return {
+      image: '/images/destinations/uk-oxford-library.jpg',
+      category: 'Law & International Relations',
+      monogram: 'LAW',
+    };
+  }
+
+  // 12. Environment, Agriculture & Marine Sciences
+  if (
+    text.includes('environment') ||
+    text.includes('renewable') ||
+    text.includes('agriculture') ||
+    text.includes('marine')
+  ) {
+    return {
+      image: '/images/destinations/singapore-gardens.jpg',
+      category: 'Environmental Sciences',
+      monogram: 'ENV',
+    };
+  }
+
+  return {
+    image: '/images/destinations/usa-campus.jpg',
+    category: 'Academic Pathway',
+    monogram: 'UNI',
+  };
+}
+
 export function DestinationTemplate({ data, destinationName }: { data: DestinationData; destinationName: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const visual = getDestinationVisual(destinationName);
@@ -263,6 +447,17 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
       else handlePrevUni();
     }
     touchStartX.current = null;
+  };
+
+  const coursesCarouselRef = useRef<HTMLDivElement>(null);
+  const scrollCourses = (direction: 'left' | 'right') => {
+    const el = coursesCarouselRef.current;
+    if (!el) return;
+    const scrollAmount = 340;
+    el.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
   };
 
   const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
@@ -538,19 +733,111 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* 2. Popular Courses */}
             {data.popularCourses && (
               <section aria-label="Popular Courses" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
-                  <BookOpen className="w-5 h-5 text-[#A33E11]" />
-                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
-                    {data.popularCourses.headline}
-                  </h2>
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <BookOpen className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.popularCourses.headline}
+                    </h2>
+                  </div>
+
+                  {/* Desktop scroll navigation buttons */}
+                  <div className="hidden sm:flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollCourses('left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollCourses('right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
                 </div>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {data.popularCourses.items.map((course) => (
-                    <div key={course} className="flex items-start gap-2.5 p-3 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                      <span className="text-sm font-medium text-[#1B1C1A]">{course}</span>
-                    </div>
-                  ))}
+
+                <div
+                  ref={coursesCarouselRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden touch-pan-x"
+                >
+                  {data.popularCourses.items.map((course, idx, allCourses) => {
+                    const meta = getCourseMeta(course);
+                    const totalCourses = allCourses.length;
+                    const totalStr = totalCourses < 10 ? `0${totalCourses}` : String(totalCourses);
+
+                    return (
+                      <div
+                        key={course}
+                        onClick={() => {
+                          const formEl = document.getElementById('destination-lead-form') || document.querySelector('form');
+                          if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                        }}
+                        className="w-[82vw] max-w-[340px] sm:w-[320px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] rounded-xl overflow-hidden hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                      >
+                        {/* 16:10 Topic Photographic Header */}
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={meta.image}
+                            alt={course}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+
+                          {/* Category Tag */}
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-[2px]">
+                              {meta.category}
+                            </span>
+                          </div>
+
+                          {/* Top-Right Monogram */}
+                          <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-[10px] text-[#0C3844]">
+                            {meta.monogram}
+                          </div>
+
+                          {/* Bottom field count badge */}
+                          <div className="absolute bottom-2.5 left-3">
+                            <span className="text-[11px] font-mono font-semibold text-white/90">
+                              Subject 0{idx + 1}
+                            </span>
+                          </div>
+                        </div>
+
+                        {/* Card Content */}
+                        <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between gap-3 bg-white">
+                          <div>
+                            <div className="flex items-start gap-2.5 mb-2">
+                              <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                              <h3 className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] leading-snug group-hover:text-[#A33E11] transition-colors line-clamp-2">
+                                {course}
+                              </h3>
+                            </div>
+                            <p className="text-xs text-[#71787B] leading-relaxed pl-6">
+                              Undergraduate &amp; postgraduate international study pathways
+                            </p>
+                          </div>
+
+                          <div className="pt-3 border-t border-[#E6DDCC]/70 pl-6 flex items-center justify-between">
+                            <span className="text-[11px] font-semibold text-[#A33E11] uppercase tracking-wider group-hover:translate-x-0.5 transition-transform inline-flex items-center gap-1">
+                              <span>Inquire Course</span>
+                              <ChevronRight size={13} />
+                            </span>
+                            <span className="text-[10px] font-mono font-semibold text-[#71787B]">
+                              0{idx + 1}/{totalStr}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             )}
