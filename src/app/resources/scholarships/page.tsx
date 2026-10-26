@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { ArrowRight, Award, CheckCircle2, ShieldAlert } from 'lucide-react';
 import { scholarshipsContent } from '@/content/resources/scholarships';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
+import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
+import { BotanicalWatermark, ColorContrastLeafPair } from '@/components/ui/BotanicalLeafAccents';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export const metadata: Metadata = {
   title: scholarshipsContent.meta.title,
@@ -13,126 +16,165 @@ export default function ScholarshipsPage() {
   const { hero, fundingTypes, routesToResearch, beforeRelying, closing } = scholarshipsContent;
 
   return (
-    <div className="bg-[#FBF8F1] min-h-screen">
-      {/* Hero */}
-      <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC]">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
-            {hero.eyebrow}
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+    <div className="bg-[#FBF8F1] min-h-screen relative overflow-hidden">
+      {/* Hero with High-Contrast Leaves */}
+      <section className="relative bg-[#00222B] text-white pt-36 pb-24 md:pt-40 md:pb-28 border-b border-[#E6DDCC] overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0C3844]/60 via-[#00222B]/90 to-[#00222B]"
+        />
+        <BlossomLeafAnimation theme="dark" density="normal" />
+        <BotanicalWatermark variant="gold" opacity={0.12} className="w-80 h-80 -top-16 -right-16" />
+
+        <div className="relative z-10 max-w-[1280px] mx-auto px-6">
+          <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 mb-5 rounded-full bg-white/5 border border-white/15 backdrop-blur-sm">
+            <ColorContrastLeafPair />
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E]">
+              {hero.eyebrow}
+            </span>
+          </div>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6 tracking-tight">
             {hero.h1}
           </h1>
-          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/85 max-w-3xl leading-relaxed font-light">
             {hero.paragraph}
           </p>
         </div>
       </section>
 
       {/* Funding Types & What to Check */}
-      <section className="py-20 border-b border-[#E6DDCC] bg-white">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
-              Financial Aid Categories
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
-              {fundingTypes.headline}
-            </h2>
-          </div>
+      <section className="py-24 border-b border-[#E6DDCC] bg-white relative overflow-hidden">
+        <BotanicalWatermark variant="rust" opacity={0.05} className="w-80 h-80 -bottom-16 -left-16" />
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <div className="inline-flex items-center justify-center gap-2 mb-3">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11]">
+                  Financial Aid Categories
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+                {fundingTypes.headline}
+              </h2>
+            </div>
+          </ScrollReveal>
 
-          <div className="overflow-x-auto border border-[#E6DDCC] shadow-sm">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
-                  <th className="py-3.5 px-6 font-semibold w-1/3">Funding Type</th>
-                  <th className="py-3.5 px-6 font-semibold">What to Check & Verify</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E6DDCC] text-sm">
-                {fundingTypes.rows.map((row) => (
-                  <tr key={row.type} className="hover:bg-[#F3EBDD]/40 transition-colors">
-                    <td className="py-4 px-6 font-serif font-bold text-[#1B1C1A]">
-                      {row.type}
-                    </td>
-                    <td className="py-4 px-6 text-[#41484B]">
-                      {row.whatToCheck}
-                    </td>
+          <ScrollReveal delay={0.1}>
+            <div className="overflow-x-auto border border-[#E6DDCC] shadow-md bg-white">
+              <table className="w-full text-left border-collapse">
+                <thead>
+                  <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
+                    <th className="py-4 px-6 font-semibold w-1/3">Funding Type</th>
+                    <th className="py-4 px-6 font-semibold">What to Check & Verify</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+                </thead>
+                <tbody className="divide-y divide-[#E6DDCC] text-sm">
+                  {fundingTypes.rows.map((row) => (
+                    <tr key={row.type} className="hover:bg-[#F3EBDD]/40 transition-colors">
+                      <td className="py-4 px-6 font-serif font-bold text-[#1B1C1A]">
+                        {row.type}
+                      </td>
+                      <td className="py-4 px-6 text-[#41484B] leading-relaxed">
+                        {row.whatToCheck}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </ScrollReveal>
         </div>
       </section>
 
       {/* Scholarship Routes to Research */}
-      <section className="py-20 border-b border-[#E6DDCC] bg-[#FBF8F1]">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
-              By Study Destination
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
-              {routesToResearch.headline}
-            </h2>
-          </div>
+      <section className="py-24 border-b border-[#E6DDCC] bg-[#FBF8F1] relative overflow-hidden">
+        <BotanicalWatermark variant="emerald" opacity={0.06} className="w-80 h-80 -top-16 -right-16" />
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <div className="inline-flex items-center justify-center gap-2 mb-3">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11]">
+                  By Study Destination
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+                {routesToResearch.headline}
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {routesToResearch.routes.map((r) => (
-              <div key={r.destination} className="bg-white border border-[#E6DDCC] p-6 shadow-sm">
-                <span className="px-2.5 py-1 bg-[#F3EBDD] text-[#A33E11] text-xs font-semibold uppercase tracking-wider mb-3 inline-block">
-                  {r.destination}
-                </span>
-                <p className="text-sm text-[#41484B] leading-relaxed">
-                  {r.details}
-                </p>
-              </div>
+            {routesToResearch.routes.map((r, idx) => (
+              <ScrollReveal key={r.destination} delay={idx * 0.08}>
+                <div className="bg-white border border-[#E6DDCC] p-7 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 h-full flex flex-col justify-between group">
+                  <div>
+                    <span className="px-3 py-1 bg-[#F3EBDD] text-[#A33E11] text-xs font-semibold uppercase tracking-wider mb-4 inline-block group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
+                      {r.destination}
+                    </span>
+                    <p className="text-sm text-[#41484B] leading-relaxed">
+                      {r.details}
+                    </p>
+                  </div>
+                </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Four Considerations Before Relying on a Scholarship */}
-      <section className="py-20 border-b border-[#E6DDCC] bg-white">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
-              Prudent Planning
-            </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
-              {beforeRelying.headline}
-            </h2>
-          </div>
+      <section className="py-24 border-b border-[#E6DDCC] bg-white relative overflow-hidden">
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+          <ScrollReveal>
+            <div className="text-center max-w-2xl mx-auto mb-14">
+              <div className="inline-flex items-center justify-center gap-2 mb-3">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11]">
+                  Prudent Planning
+                </span>
+              </div>
+              <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+                {beforeRelying.headline}
+              </h2>
+            </div>
+          </ScrollReveal>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {beforeRelying.steps.map((st) => (
-              <div key={st.number} className="bg-[#FBF8F1] border border-[#E6DDCC] p-6 flex flex-col justify-between">
-                <div>
-                  <span className="text-2xl font-serif font-bold text-[#A33E11] block mb-2">
-                    {st.number}
-                  </span>
-                  <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2">
-                    {st.title}
-                  </h3>
-                  <p className="text-xs text-[#41484B] leading-relaxed">
-                    {st.description}
-                  </p>
+            {beforeRelying.steps.map((st, idx) => (
+              <ScrollReveal key={st.number} delay={idx * 0.1}>
+                <div className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 h-full group">
+                  <div>
+                    <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3 group-hover:scale-105 transition-transform">
+                      {st.number}
+                    </span>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                      {st.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                      {st.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
       </section>
 
       {/* Consultation Section */}
-      <section className="py-20 bg-[#FBF8F1]">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section className="py-24 bg-[#FBF8F1] relative overflow-hidden">
+        <BlossomLeafAnimation theme="contrast" density="subtle" />
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-7 space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block">
-                Scholarship Advisory
-              </span>
+            <ScrollReveal className="lg:col-span-7 space-y-6">
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-white border border-[#E6DDCC] rounded-full">
+                <ColorContrastLeafPair />
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11]">
+                  Scholarship Advisory
+                </span>
+              </div>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1B1C1A] leading-tight">
                 Evaluate your eligibility for international scholarships.
               </h2>
@@ -142,22 +184,25 @@ export default function ScholarshipsPage() {
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
                   href={closing.ctas.primary.href}
-                  className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                  className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors inline-flex items-center gap-2 group"
                 >
-                  {closing.ctas.primary.label}
+                  <span>{closing.ctas.primary.label}</span>
+                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href={closing.ctas.secondary.href}
-                  className="px-6 py-3.5 border border-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white text-[#1B1C1A] text-xs font-semibold uppercase tracking-widest transition-colors"
+                  className="px-6 py-3.5 border border-[#1B1C1A] bg-white hover:bg-[#1B1C1A] hover:text-white text-[#1B1C1A] text-xs font-semibold uppercase tracking-widest transition-colors"
                 >
                   {closing.ctas.secondary.label}
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
-            <div className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto">
-              <HomeLeadForm source="scholarships_page" />
-            </div>
+            <ScrollReveal delay={0.2} className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto">
+              <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11]/60 transition-colors p-2 shadow-xl">
+                <HomeLeadForm source="scholarships_page" />
+              </div>
+            </ScrollReveal>
           </div>
         </div>
       </section>
