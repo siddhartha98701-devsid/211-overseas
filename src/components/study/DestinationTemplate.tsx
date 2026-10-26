@@ -89,6 +89,35 @@ export interface DestinationData {
     headline: string;
     steps: ReadonlyArray<{ step: string; detail: string }>;
   };
+  shortlistSteps?: {
+    headline: string;
+    steps: ReadonlyArray<{ number: string; title: string; description: string }>;
+  };
+  whatToCompare?: {
+    headline: string;
+    steps?: ReadonlyArray<{ number: string; title: string; description: string }>;
+    bullets?: ReadonlyArray<string>;
+  };
+  beforeApplying?: {
+    headline: string;
+    steps: ReadonlyArray<{ number: string; title: string; description: string }>;
+  };
+  beforeYouPay?: {
+    headline: string;
+    bullets: ReadonlyArray<string>;
+  };
+  countryPriority?: {
+    headline: string;
+    items: ReadonlyArray<{ priority: string; countries: string }>;
+  };
+  fundingOptions?: {
+    headline: string;
+    description: string;
+  };
+  documents?: {
+    headline: string;
+    description: string;
+  };
   faqs?: {
     headline: string;
     items: ReadonlyArray<{ q: string; a: string }>;
@@ -674,15 +703,17 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     {data.costApproach.headline}
                   </h2>
                 </div>
-                <div className="space-y-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.costApproach.points.map((pt) => (
-                    <div key={pt.title} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {pt.title}
-                      </h3>
-                      <p className="text-sm text-[#41484B] leading-relaxed">
-                        {pt.description}
-                      </p>
+                    <div key={pt.title} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {pt.title}
+                        </h3>
+                        <p className="text-sm text-[#41484B] leading-relaxed">
+                          {pt.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -709,20 +740,22 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   </h2>
                 </div>
                 {data.costPlanning.paragraph && (
-                  <p className="text-sm text-[#41484B] leading-relaxed">
+                  <p className="text-sm text-[#41484B] leading-relaxed mb-4">
                     {data.costPlanning.paragraph}
                   </p>
                 )}
                 {data.costPlanning.points && (
-                  <div className="space-y-4">
+                  <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                     {data.costPlanning.points.map((pt) => (
-                      <div key={pt.title} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                          {pt.title}
-                        </h3>
-                        <p className="text-sm text-[#41484B] leading-relaxed">
-                          {pt.description}
-                        </p>
+                      <div key={pt.title} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                            {pt.title}
+                          </h3>
+                          <p className="text-sm text-[#41484B] leading-relaxed">
+                            {pt.description}
+                          </p>
+                        </div>
                       </div>
                     ))}
                   </div>
@@ -1109,7 +1142,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.chooseYourRoute.headline}
                 </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.chooseYourRoute.routes.map((route) => (
                     <div
                       key={route.title}
@@ -1134,18 +1167,23 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.chooseByCourse.headline}
                 </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.chooseByCourse.steps.map((st) => (
-                    <div key={st.number} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
-                        {st.number}
-                      </span>
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {st.title}
-                      </h3>
-                      <p className="text-xs text-[#41484B] leading-relaxed">
-                        {st.description}
-                      </p>
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          {st.number}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {st.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1157,21 +1195,191 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.purposefulShortlist.headline}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.purposefulShortlist.steps.map((st) => (
-                    <div key={st.number} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
-                        {st.number}
-                      </span>
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {st.title}
-                      </h3>
-                      <p className="text-xs text-[#41484B] leading-relaxed">
-                        {st.description}
-                      </p>
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          {st.number}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {st.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
+              </section>
+            )}
+
+            {data.shortlistSteps && (
+              <section aria-label="Shortlist Steps" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
+                  {data.shortlistSteps.headline}
+                </h2>
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.shortlistSteps.steps.map((st) => (
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          {st.number}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {st.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {data.beforeApplying && (
+              <section aria-label="Before Applying" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
+                  {data.beforeApplying.headline}
+                </h2>
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.beforeApplying.steps.map((st) => (
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          {st.number}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {st.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {data.whatToCompare && (
+              <section aria-label="What to Compare" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
+                  {data.whatToCompare.headline}
+                </h2>
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.whatToCompare.steps ? (
+                    data.whatToCompare.steps.map((st) => (
+                      <div
+                        key={st.number}
+                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      >
+                        <div>
+                          <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                            {st.number}
+                          </span>
+                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                            {st.title}
+                          </h3>
+                          <p className="text-xs text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))
+                  ) : data.whatToCompare.bullets ? (
+                    data.whatToCompare.bullets.map((b, i) => (
+                      <div
+                        key={i}
+                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                      >
+                        <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                        <span className="text-sm text-[#41484B] leading-relaxed">{b}</span>
+                      </div>
+                    ))
+                  ) : null}
+                </div>
+              </section>
+            )}
+
+            {data.beforeYouPay && (
+              <section aria-label="Before You Pay" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
+                  {data.beforeYouPay.headline}
+                </h2>
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.beforeYouPay.bullets.map((b, i) => (
+                    <div
+                      key={i}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                    >
+                      <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                      <span className="text-sm text-[#41484B] leading-relaxed">{b}</span>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {data.countryPriority && (
+              <section aria-label="Country Priority" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
+                  {data.countryPriority.headline}
+                </h2>
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.countryPriority.items.map((it, i) => (
+                    <div
+                      key={it.priority}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-[10px] font-mono font-bold text-[#A33E11] uppercase tracking-wider block mb-1">
+                          Priority 0{i + 1}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {it.priority}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {it.countries}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {data.fundingOptions && (
+              <section aria-label="Funding Options" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
+                  {data.fundingOptions.headline}
+                </h2>
+                <p className="text-sm text-[#41484B] leading-relaxed">
+                  {data.fundingOptions.description}
+                </p>
+              </section>
+            )}
+
+            {data.documents && (
+              <section aria-label="Required Documents" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
+                  {data.documents.headline}
+                </h2>
+                <p className="text-sm text-[#41484B] leading-relaxed">
+                  {data.documents.description}
+                </p>
               </section>
             )}
 
@@ -1181,15 +1389,20 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.whatToLookFor.headline}
                 </h2>
-                <div className="space-y-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.whatToLookFor.points.map((pt) => (
-                    <div key={pt.title} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {pt.title}
-                      </h3>
-                      <p className="text-sm text-[#41484B] leading-relaxed">
-                        {pt.description}
-                      </p>
+                    <div
+                      key={pt.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {pt.title}
+                        </h3>
+                        <p className="text-sm text-[#41484B] leading-relaxed">
+                          {pt.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1201,15 +1414,20 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.programTypes.headline}
                 </h2>
-                <div className="space-y-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.programTypes.programs.map((prog) => (
-                    <div key={prog.title} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {prog.title}
-                      </h3>
-                      <p className="text-sm text-[#41484B] leading-relaxed">
-                        {prog.description}
-                      </p>
+                    <div
+                      key={prog.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {prog.title}
+                        </h3>
+                        <p className="text-sm text-[#41484B] leading-relaxed">
+                          {prog.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1225,18 +1443,23 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <p className="text-xs text-[#71787B] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.programmeSpotlight.intro}
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.programmeSpotlight.programmes.map((p) => (
-                    <div key={p.name} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {p.name}
-                      </h3>
-                      <p className="text-xs font-semibold text-[#A33E11] mb-2">
-                        {p.tuition}
-                      </p>
-                      <p className="text-xs text-[#41484B]">
-                        {p.consideration}
-                      </p>
+                    <div
+                      key={p.name}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {p.name}
+                        </h3>
+                        <p className="text-xs font-semibold text-[#A33E11] mb-2">
+                          {p.tuition}
+                        </p>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {p.consideration}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1249,7 +1472,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.scholarships.headline}
                 </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.scholarships.items.map((item, i) => (
                     <div
                       key={i}
@@ -1269,18 +1492,23 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.admissionsChecklist.headline}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.admissionsChecklist.steps.map((st) => (
-                    <div key={st.number} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
-                        {st.number}
-                      </span>
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
-                        {st.title}
-                      </h3>
-                      <p className="text-xs text-[#41484B] leading-relaxed">
-                        {st.description}
-                      </p>
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          {st.number}
+                        </span>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          {st.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1293,9 +1521,9 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.admissionsAndVisas.headline}
                 </h2>
-                <div className="space-y-3">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                   {data.admissionsAndVisas.steps.map((st) => (
-                    <div key={st.step} className="p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col sm:flex-row sm:items-baseline gap-2">
+                    <div key={st.step} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col sm:flex-row sm:items-baseline gap-2">
                       <span className="text-xs font-bold uppercase tracking-wider text-[#A33E11] sm:w-1/3 shrink-0">
                         {st.step}
                       </span>
