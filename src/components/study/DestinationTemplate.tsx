@@ -410,7 +410,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   </span>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {data.budget.items.map((item, idx) => {
                     const itemName = item.item.toLowerCase();
                     const isTuition = itemName.includes('tuition') || itemName.includes('fee');
@@ -420,7 +420,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     return (
                       <div
                         key={item.item}
-                        className="bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-[2px] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-md transition-all duration-300 group"
+                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-[2px] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-md transition-all duration-300 group"
                       >
                         <div>
                           <div className="flex items-center justify-between gap-2 mb-3">

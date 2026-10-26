@@ -6,6 +6,7 @@ import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
 import { BotanicalWatermark, ColorContrastLeafPair } from '@/components/ui/BotanicalLeafAccents';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
+import { ScholarshipDestinationsShowcase } from '@/components/resources/ScholarshipDestinationsShowcase';
 
 export const metadata: Metadata = {
   title: scholarshipsContent.meta.title,
@@ -105,22 +106,7 @@ export default function ScholarshipsPage() {
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {routesToResearch.routes.map((r, idx) => (
-              <ScrollReveal key={r.destination} delay={idx * 0.08}>
-                <div className="bg-white border border-[#E6DDCC] p-7 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 h-full flex flex-col justify-between group">
-                  <div>
-                    <span className="px-3 py-1 bg-[#F3EBDD] text-[#A33E11] text-xs font-semibold uppercase tracking-wider mb-4 inline-block group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
-                      {r.destination}
-                    </span>
-                    <p className="text-sm text-[#41484B] leading-relaxed">
-                      {r.details}
-                    </p>
-                  </div>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
+          <ScholarshipDestinationsShowcase routes={routesToResearch.routes} />
         </div>
       </section>
 

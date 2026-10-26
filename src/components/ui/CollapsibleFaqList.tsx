@@ -4,13 +4,23 @@ import { useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Plus } from 'lucide-react';
 
-interface FaqItem {
-  q: string;
-  a: string;
+export interface FaqItem {
+  q?: string;
+  question?: string;
+  a?: string;
+  answer?: string;
 }
 
-export function CollapsibleFaqList({ items }: { items: ReadonlyArray<FaqItem> }) {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+export function CollapsibleFaqList({
+  items,
+  showNumbers = false,
+  initialOpenIndex = 0,
+}: {
+  items: ReadonlyArray<FaqItem>;
+  showNumbers?: boolean;
+  initialOpenIndex?: number | null;
+}) {
+  const [openIndex, setOpenIndex] = useState<number | null>(initialOpenIndex);
 
   const toggle = (idx: number) => {
     setOpenIndex(openIndex === idx ? null : idx);
@@ -19,22 +29,33 @@ export function CollapsibleFaqList({ items }: { items: ReadonlyArray<FaqItem> })
   return (
     <div className="space-y-3">
       {items.map((item, idx) => {
+        const question = item.question || item.q || '';
+        const answer = item.answer || item.a || '';
         const isOpen = openIndex === idx;
+        const num = idx + 1 < 10 ? `0${idx + 1}` : idx + 1;
+
         return (
           <div
             key={idx}
-            className="border border-[#E6DDCC] bg-[#FBF8F1] transition-colors rounded-[2px] overflow-hidden"
+            className="border border-[#E6DDCC] bg-[#FBF8F1] transition-all rounded-[2px] overflow-hidden hover:border-[#A33E11]"
           >
             <h3>
               <button
                 type="button"
                 onClick={() => toggle(idx)}
                 aria-expanded={isOpen}
-                className="w-full flex items-center justify-between gap-4 p-5 text-left cursor-pointer group hover:bg-white transition-colors"
+                className="w-full flex items-center justify-between gap-4 p-5 sm:p-6 text-left cursor-pointer group hover:bg-white transition-colors"
               >
-                <span className="font-serif text-base font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors pr-2">
-                  {item.q}
-                </span>
+                <div className="flex items-center gap-3.5 pr-2">
+                  {showNumbers && (
+                    <span className="text-xs font-mono font-bold text-[#A33E11] shrink-0">
+                      {num}
+                    </span>
+                  )}
+                  <span className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors">
+                    {question}
+                  </span>
+                </div>
                 <motion.span
                   animate={{ rotate: isOpen ? 45 : 0 }}
                   transition={{ duration: 0.2 }}
@@ -54,9 +75,13 @@ export function CollapsibleFaqList({ items }: { items: ReadonlyArray<FaqItem> })
                   transition={{ duration: 0.25, ease: 'easeInOut' }}
                   className="overflow-hidden"
                 >
-                  <div className="p-5 pt-0 border-t border-[#E6DDCC]/60 bg-white">
-                    <p className="text-sm text-[#41484B] leading-relaxed pt-3">
-                      {item.a}
+                  <div className="p-5 sm:p-6 pt-0 border-t border-[#E6DDCC]/60 bg-white">
+                    <p
+                      className={`text-sm sm:text-base text-[#41484B] leading-relaxed pt-3 ${
+                        showNumbers ? 'sm:pl-8' : ''
+                      }`}
+                    >
+                      {answer}
                     </p>
                   </div>
                 </motion.div>

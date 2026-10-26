@@ -224,7 +224,7 @@ export function ResourcesView() {
           </motion.div>
 
           {/* Guides Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 lg:gap-8 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {filteredGuides.map((guide, originalIdx) => {
               const meta =
                 guideMetadata.find((m) => m.badge.toLowerCase().includes(guide.title.split(' ')[0].toLowerCase())) ||
@@ -238,7 +238,7 @@ export function ResourcesView() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.5, delay: originalIdx * 0.08 }}
                   whileHover={{ y: -6 }}
-                  className="group relative bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 overflow-hidden"
+                  className="w-[84vw] sm:w-[350px] lg:w-auto shrink-0 snap-start group relative bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 overflow-hidden"
                 >
                   {/* Expanding Top Accent Bar */}
                   <div className="absolute top-0 left-0 h-1 w-10 bg-[#A33E11] group-hover:w-full transition-all duration-500 z-10" />

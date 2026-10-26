@@ -98,17 +98,6 @@ export default function InboundCollaborationsPage() {
             <span className="text-[#FC7F4E] font-semibold">Institutional Collaborations</span>
           </nav>
 
-          {/* Audience Switcher Banner */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs mb-6">
-            <span className="flex h-2 w-2 rounded-full bg-[#FC7F4E]" />
-            <span className="font-semibold text-white">College Collaboration Desk</span>
-            <span className="text-white/40">|</span>
-            <Link href="/inbound/students" className="text-[#FC7F4E] hover:underline font-medium inline-flex items-center gap-1">
-              <span>Are you a Student? Visit Student Admissions Portal</span>
-              <ArrowRight size={13} />
-            </Link>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] mb-6">
@@ -243,20 +232,20 @@ export default function InboundCollaborationsPage() {
               </p>
             </div>
 
-            <div className="mt-8 grid grid-cols-2 gap-4">
-              <div className="p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
+            <div className="mt-8 flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-2 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="w-[75vw] sm:w-auto shrink-0 snap-start p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
                 <span className="font-serif text-2xl font-bold text-[#A33E11] block mb-1">1000+</span>
                 <span className="text-xs text-[#41484B]">Accredited universities &amp; national research hubs</span>
               </div>
-              <div className="p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
+              <div className="w-[75vw] sm:w-auto shrink-0 snap-start p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
                 <span className="font-serif text-2xl font-bold text-[#A33E11] block mb-1">100%</span>
                 <span className="text-xs text-[#41484B]">English-medium instruction across professional degrees</span>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-6 space-y-4">
-            <div className="relative aspect-[16/9] w-full overflow-hidden border border-[#E6DDCC] bg-[#00222B] shadow-sm group">
+          <div className="lg:col-span-6 flex overflow-x-auto snap-x snap-mandatory lg:space-y-4 lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="w-[84vw] sm:w-[360px] lg:w-auto shrink-0 snap-start relative aspect-[16/9] overflow-hidden border border-[#E6DDCC] bg-[#00222B] shadow-sm group">
               <Image
                 src="/images/inbound/indian-campus-library.jpg"
                 alt="Collaborative academic library and research facility"
@@ -275,34 +264,40 @@ export default function InboundCollaborationsPage() {
               </div>
             </div>
 
-            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
-              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
-                <ShieldCheck size={20} className="text-[#A33E11]" />
-                <span>Institutional Due Diligence &amp; Accreditation Matchmaking</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                211 Overseas performs rigorous vetting of partner credentials, verifying NAAC, NIRF, and statutory council standings prior to MOU initiation.
-              </p>
+            <div className="w-[84vw] sm:w-[360px] lg:w-auto shrink-0 snap-start border border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                  <ShieldCheck size={20} className="text-[#A33E11] shrink-0" />
+                  <span>Institutional Due Diligence &amp; Accreditation Matchmaking</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  211 Overseas performs rigorous vetting of partner credentials, verifying NAAC, NIRF, and statutory council standings prior to MOU initiation.
+                </p>
+              </div>
             </div>
 
-            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
-              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
-                <FileSpreadsheet size={20} className="text-[#A33E11]" />
-                <span>Credit Mapping &amp; Curriculum Alignment</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                We bridge academic frameworks between ECTS, US semester credits, and India’s National Credit Framework to guarantee seamless credit portability.
-              </p>
+            <div className="w-[84vw] sm:w-[360px] lg:w-auto shrink-0 snap-start border border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                  <FileSpreadsheet size={20} className="text-[#A33E11] shrink-0" />
+                  <span>Credit Mapping &amp; Curriculum Alignment</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  We bridge academic frameworks between ECTS, US semester credits, and India’s National Credit Framework to guarantee seamless credit portability.
+                </p>
+              </div>
             </div>
 
-            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
-              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
-                <Globe2 size={20} className="text-[#A33E11]" />
-                <span>High-Level Delegation &amp; Signing Ceremonies</span>
-              </h3>
-              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                Complete institutional protocol management: arranging bilateral leadership visits, campus tours, and formal signing ceremonies with senior university leadership.
-              </p>
+            <div className="w-[84vw] sm:w-[360px] lg:w-auto shrink-0 snap-start border border-[#E6DDCC] bg-[#FAF8F5] p-6 flex flex-col justify-between">
+              <div>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                  <Globe2 size={20} className="text-[#A33E11] shrink-0" />
+                  <span>High-Level Delegation &amp; Signing Ceremonies</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  Complete institutional protocol management: arranging bilateral leadership visits, campus tours, and formal signing ceremonies with senior university leadership.
+                </p>
+              </div>
             </div>
           </div>
         </div>

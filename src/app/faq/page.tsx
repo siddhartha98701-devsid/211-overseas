@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { HelpCircle, ArrowRight } from 'lucide-react';
 import { FAQ_PAGE_CONTENT } from '@/content/faq';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
+import { CollapsibleFaqList } from '@/components/ui/CollapsibleFaqList';
 
 export const metadata: Metadata = {
   title: FAQ_PAGE_CONTENT.seoTitle,
@@ -50,25 +51,8 @@ export default function FaqPage() {
 
       {/* All 12 FAQs */}
       <section className="py-20 border-b border-[#E6DDCC] bg-white">
-        <div className="max-w-[1000px] mx-auto px-6 space-y-6">
-          {faqs.map((faq, idx) => (
-            <div
-              key={idx}
-              className="border border-[#E6DDCC] bg-[#FBF8F1] p-6 lg:p-8 hover:border-[#A33E11] transition-colors"
-            >
-              <div className="flex items-start gap-3.5 mb-3">
-                <span className="text-xs font-mono font-bold text-[#A33E11] mt-1 shrink-0">
-                  {idx + 1 < 10 ? `0${idx + 1}` : idx + 1}
-                </span>
-                <h2 className="font-serif text-lg sm:text-xl font-bold text-[#1B1C1A]">
-                  {faq.question}
-                </h2>
-              </div>
-              <p className="text-sm sm:text-base text-[#41484B] leading-relaxed pl-7">
-                {faq.answer}
-              </p>
-            </div>
-          ))}
+        <div className="max-w-[1000px] mx-auto px-6">
+          <CollapsibleFaqList items={faqs} showNumbers={true} initialOpenIndex={null} />
         </div>
       </section>
 
