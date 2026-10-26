@@ -48,6 +48,20 @@ export const siteContent = {
     ],
   },
 
+  howItWorks: {
+    eyebrow: 'How 211 OVERSEAS Works',
+    headline: 'Your Overseas Journey, Simplified',
+    steps: [
+      { number: '01', title: 'Tell Us Your Goal', description: 'Study abroad? Build an international career? Looking for a particular country? Start with a conversation.' },
+      { number: '02', title: 'Profile Assessment', description: 'We understand your education, experience, goals, budget, timeline and destination preferences.' },
+      { number: '03', title: 'Explore Your Options', description: 'Potential destinations, courses or career pathways are identified according to your profile.' },
+      { number: '04', title: 'Application & Documentation', description: 'We guide you through the applicable application and documentation requirements.' },
+      { number: '05', title: 'Admission / Career Process', description: 'You proceed through the relevant university admission or recruitment process.' },
+      { number: '06', title: 'Visa & Pre-Departure', description: 'We assist you in preparing for the applicable visa documentation and your international journey.' },
+      { number: '07', title: 'Ongoing Support', description: 'Our team stays in touch to address queries as you prepare for your move abroad.' },
+    ],
+  },
+
   navigation: {
     stickyAction: {
       desktop: { label: 'Get Guidance', href: '/contact' },
