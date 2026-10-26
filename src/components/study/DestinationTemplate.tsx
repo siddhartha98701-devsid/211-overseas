@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
@@ -107,9 +108,125 @@ export interface DestinationData {
   };
 }
 
+const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
+  // South Korea
+  'seoul national university': '/images/universities/snu.jpg',
+  'snu': '/images/universities/snu.jpg',
+  'kaist': '/images/universities/kaist.jpg',
+  'yonsei university': '/images/universities/yonsei.jpg',
+  'korea university': '/images/universities/ku.jpg',
+  'hanyang university': '/images/universities/hanyang.jpg',
+  'sungkyunkwan university': '/images/universities/skku.jpg',
+  'postech': '/images/universities/postech.jpg',
+  'kyung hee university': '/images/universities/khu.jpg',
+  'pusan national university': '/images/korea/korea-campus.jpg',
+  'sejong university': '/images/universities/gist.jpg',
+  'ewha womans university': '/images/korea/korea-student.jpg',
+  'kyungpook national university': '/images/universities/unist.jpg',
+
+  // Singapore
+  'national university of singapore': '/images/destinations/singapore-fintech-hub.jpg',
+  'nanyang technological university': '/images/destinations/singapore-campus.jpg',
+  'singapore management university': '/images/destinations/singapore-marina-bay.jpg',
+  'singapore university of technology and design': '/images/destinations/singapore-gardens.jpg',
+  'singapore institute of technology': '/images/destinations/singapore-campus.jpg',
+  'singapore university of social sciences': '/images/destinations/singapore-fintech-hub.jpg',
+
+  // Japan
+  'university of tokyo': '/images/destinations/japan-campus.jpg',
+  'kyoto university': '/images/destinations/japan-culture.jpg',
+  'osaka university': '/images/destinations/japan-campus.jpg',
+  'tohoku university': '/images/destinations/japan-tech-lab.jpg',
+  'nagoya university': '/images/destinations/japan-culture.jpg',
+  'kyushu university': '/images/destinations/japan-campus.jpg',
+  'institute of science tokyo': '/images/destinations/japan-tech-lab.jpg',
+  'waseda university': '/images/destinations/japan-tokyo-city.jpg',
+  'keio university': '/images/destinations/japan-campus.jpg',
+  'sophia university': '/images/destinations/japan-culture.jpg',
+
+  // Taiwan
+  'national taiwan university': '/images/destinations/taiwan-campus.jpg',
+  'national tsing hua university': '/images/destinations/taiwan-semiconductor-lab.jpg',
+  'national yang ming chiao tung university': '/images/destinations/taiwan-culture.jpg',
+  'national cheng kung university': '/images/destinations/taiwan-taipei-skyline.jpg',
+  'national chengchi university': '/images/destinations/taiwan-campus.jpg',
+
+  // United Kingdom
+  'imperial college london': '/images/destinations/uk-cambridge.jpg',
+  'university college london': '/images/destinations/uk-london-city.jpg',
+  'king’s college london': '/images/destinations/uk-oxford-library.jpg',
+  'university of manchester': '/images/destinations/uk-campus.jpg',
+  'university of edinburgh': '/images/destinations/uk-cambridge.jpg',
+  'university of warwick': '/images/destinations/uk-london-city.jpg',
+  'university of bristol': '/images/destinations/uk-oxford-library.jpg',
+  'university of birmingham': '/images/destinations/uk-campus.jpg',
+
+  // United States
+  'massachusetts institute of technology': '/images/destinations/usa-tech-hub.jpg',
+  'stanford university': '/images/destinations/usa-harvard-yard.jpg',
+  'university of california, berkeley': '/images/destinations/usa-campus.jpg',
+  'carnegie mellon university': '/images/destinations/usa-nyc-campus.jpg',
+  'georgia institute of technology': '/images/destinations/usa-tech-hub.jpg',
+  'university of michigan': '/images/destinations/usa-harvard-yard.jpg',
+  'purdue university': '/images/destinations/usa-campus.jpg',
+  'university of illinois urbana-champaign': '/images/destinations/usa-nyc-campus.jpg',
+  'university of california, los angeles': '/images/destinations/usa-campus.jpg',
+
+  // Canada
+  'university of toronto': '/images/destinations/canada-toronto-skyline.jpg',
+  'university of british columbia': '/images/destinations/canada-ubc-campus.jpg',
+  'mcgill university': '/images/destinations/canada-montreal.jpg',
+  'university of waterloo': '/images/destinations/canada-campus.jpg',
+  'mcmaster university': '/images/destinations/canada-ubc-campus.jpg',
+  'university of alberta': '/images/destinations/canada-toronto-skyline.jpg',
+  'western university': '/images/destinations/canada-montreal.jpg',
+  'queen’s university': '/images/destinations/canada-campus.jpg',
+
+  // Australia
+  'university of melbourne': '/images/destinations/australia-melbourne-quad.jpg',
+  'university of sydney': '/images/destinations/australia-sydney-harbour.jpg',
+  'unsw sydney': '/images/destinations/australia-campus.jpg',
+  'monash university': '/images/destinations/australia-student-life.jpg',
+  'university of queensland': '/images/destinations/australia-melbourne-quad.jpg',
+  'university of adelaide': '/images/destinations/australia-sydney-harbour.jpg',
+  'university of western australia': '/images/destinations/australia-campus.jpg',
+
+  // Europe
+  'technical university of munich': '/images/destinations/europe-research.jpg',
+  'rwth aachen university': '/images/destinations/europe-campus.jpg',
+  'delft university of technology': '/images/destinations/europe-library.jpg',
+  'university of amsterdam': '/images/destinations/europe-city-life.jpg',
+  'trinity college dublin': '/images/destinations/europe-research.jpg',
+  'university college dublin': '/images/destinations/europe-campus.jpg',
+  'politecnico di milano': '/images/destinations/europe-library.jpg',
+  'sciences po': '/images/destinations/europe-city-life.jpg',
+
+  // Luxembourg
+  'university of luxembourg': '/images/destinations/europe-campus.jpg',
+  'luxembourg school of business': '/images/destinations/europe-research.jpg',
+
+  // UAE
+  'university of birmingham dubai': '/images/generated/uae-careers.jpg',
+  'heriot-watt university dubai': '/images/uae.jpg',
+  'middlesex university dubai': '/images/web/uae-wide.webp',
+  'university of wollongong in dubai': '/images/generated/uae-careers.jpg',
+  'canadian university dubai': '/images/uae.jpg',
+  'american university in dubai': '/images/web/uae-wide.webp',
+  'university of sharjah': '/images/generated/uae-careers.jpg',
+  'khalifa university': '/images/uae.jpg',
+  'united arab emirates university': '/images/web/uae-wide.webp',
+};
+
 export function DestinationTemplate({ data, destinationName }: { data: DestinationData; destinationName: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const visual = getDestinationVisual(destinationName);
+
+  const defaultUni = data.universities.list[0] || '';
+  const [selectedUni, setSelectedUni] = useState<string>(defaultUni);
+  const currentUni = selectedUni || defaultUni;
+
+  const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
+  const currentUniImage = UNIVERSITY_IMAGE_MAP[currentUni.toLowerCase().trim()] || defaultImage;
 
   return (
     <div className="bg-[#FBF8F1] min-h-screen">
@@ -375,37 +492,57 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </span>
               </div>
 
-              {/* Featured Campus Photography Banner */}
-              {visual?.gallery?.[0] && (
-                <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full overflow-hidden border border-[#E6DDCC] mb-6 rounded-[2px] group">
-                  <Image
-                    src={visual.gallery[0].src}
-                    alt={visual.gallery[0].alt}
-                    fill
-                    sizes="(min-width: 1024px) 760px, 95vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                  <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between text-white">
-                    <span className="text-xs font-semibold drop-shadow-sm">
-                      {visual.gallery[0].title}
-                    </span>
-                    <span className="text-[10px] uppercase font-mono tracking-wider text-[#FC7F4E] bg-black/40 px-2 py-0.5 rounded backdrop-blur-xs">
-                      Academic Campus
-                    </span>
-                  </div>
-                </div>
-              )}
+              {/* Dynamic Featured Campus Photography Banner */}
+              <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full overflow-hidden border border-[#E6DDCC] mb-6 rounded-[2px] group bg-[#00222B]">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentUni}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="absolute inset-0"
+                  >
+                    <Image
+                      src={currentUniImage}
+                      alt={`${currentUni} academic campus`}
+                      fill
+                      sizes="(min-width: 1024px) 760px, 95vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                    <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between text-white">
+                      <span className="text-xs sm:text-sm font-serif font-bold drop-shadow-sm truncate mr-2">
+                        {currentUni}
+                      </span>
+                      <span className="text-[10px] uppercase font-mono tracking-wider text-[#FC7F4E] bg-black/50 px-2 py-0.5 rounded backdrop-blur-xs shrink-0">
+                        Academic Campus
+                      </span>
+                    </div>
+                  </motion.div>
+                </AnimatePresence>
+              </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {data.universities.list.map((uni) => (
-                  <div
-                    key={uni}
-                    className="p-3 bg-[#FBF8F1] border border-[#E6DDCC] text-center text-xs font-semibold text-[#1B1C1A] hover:border-[#A33E11] transition-colors"
-                  >
-                    {uni}
-                  </div>
-                ))}
+                {data.universities.list.map((uni) => {
+                  const isSelected = uni === currentUni;
+                  return (
+                    <button
+                      key={uni}
+                      type="button"
+                      role="tab"
+                      aria-selected={isSelected}
+                      onClick={() => setSelectedUni(uni)}
+                      className={`p-3 text-center text-xs font-semibold rounded-[2px] transition-all cursor-pointer ${
+                        isSelected
+                          ? 'bg-[#A33E11] border border-[#A33E11] text-white shadow-md font-bold scale-[1.02]'
+                          : 'bg-[#FBF8F1] border border-[#E6DDCC] text-[#1B1C1A] hover:border-[#A33E11] hover:bg-white'
+                      }`}
+                    >
+                      {uni}
+                    </button>
+                  );
+                })}
               </div>
 
               <p className="text-xs text-[#71787B] mt-6 italic pt-4 border-t border-[#E6DDCC]">
