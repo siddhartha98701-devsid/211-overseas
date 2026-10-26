@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { ChevronDown, ArrowRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
+import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
 
 export interface DestinationData {
   meta: {
@@ -111,8 +112,9 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
   return (
     <div className="bg-[#FBF8F1] min-h-screen">
       {/* Hero */}
-      <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC]">
-        <div className="max-w-[1280px] mx-auto px-6">
+      <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] relative overflow-hidden">
+        <CountryAtmosphereAnimation country={destinationName} />
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
           <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
             {data.hero.eyebrow}
           </span>

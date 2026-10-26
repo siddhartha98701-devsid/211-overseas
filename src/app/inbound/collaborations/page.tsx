@@ -1,0 +1,285 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import {
+  Network,
+  Users2,
+  FileSpreadsheet,
+  Globe2,
+  Award,
+  ArrowRight,
+  ShieldCheck,
+  Briefcase,
+  Share2,
+  FileCheck2,
+} from 'lucide-react';
+import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
+import { InboundCollaborationForm } from '@/components/inbound/InboundCollaborationForm';
+import { CtaStrip } from '@/components/sections/CtaStrip';
+
+export const metadata: Metadata = {
+  title: 'Institutional Academic Collaborations with Indian Colleges & Universities | 211 Overseas',
+  description:
+    'Dedicated institutional gateway for international universities and colleges seeking bilateral MOUs, dual-degree articulations, faculty exchanges, and research partnerships in India.',
+};
+
+const COLLABORATION_PILLARS = [
+  {
+    icon: Award,
+    title: 'Dual Degrees & Articulation Frameworks',
+    desc: 'Establish 2+2 undergraduate, 3+1 bachelor’s, and 1+1 master’s degree pathways with mutual academic credit recognition and structured student transition protocols.',
+  },
+  {
+    icon: Users2,
+    title: 'Reciprocal Student Exchange & Immersions',
+    desc: 'Facilitate semester-abroad exchange, summer research internships, and customized cultural-academic immersions with top-tier Indian host institutions.',
+  },
+  {
+    icon: Share2,
+    title: 'Faculty Mobility & Scholar Sabbaticals',
+    desc: 'Foster cross-border academic excellence through visiting professorships, co-teaching models, faculty development programs (FDP), and guest lectureships.',
+  },
+  {
+    icon: Network,
+    title: 'Joint Research & Co-Publications',
+    desc: 'Initiate bilateral research grants, shared computational laboratories, joint Ph.D. co-supervision, and collaborative high-impact academic publications.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Executive Education & Industry Tours',
+    desc: 'Design bespoke executive management seminars, engineering innovation tours, and tech incubator immersion trips across India’s leading corporate centres.',
+  },
+  {
+    icon: FileCheck2,
+    title: 'Bilateral MOUs & Delegation Hosting',
+    desc: 'End-to-end facilitation of bilateral memorandums of understanding (MOUs), government/consular compliance, and high-level leadership delegation itineraries.',
+  },
+];
+
+const INSTITUTIONAL_FAQS = [
+  {
+    q: 'How does NEP 2020 support international university partnerships in India?',
+    a: 'India’s National Education Policy (NEP 2020) actively encourages internationalization through twinning programs, joint degrees, dual-degree pathways, and credit transfers aligned with the National Credit Framework (NCrF).',
+  },
+  {
+    q: 'What role does 211 Overseas play in facilitating bilateral institutional MOUs?',
+    a: 'We act as an authorized liaison desk: identifying compatible accredited Indian institutions, mapping curriculum equivalencies, coordinating legal and academic approvals, organizing bilateral signing visits, and managing ongoing student enrollment logistics.',
+  },
+  {
+    q: 'Can foreign universities establish semester exchange programs with Indian institutions?',
+    a: 'Yes. Several premier central, state, and private universities in India operate structured international student exchange desks with on-campus guest housing and verified English-medium coursework.',
+  },
+  {
+    q: 'What institutional categories in India are eligible for collaboration?',
+    a: 'Partnerships can be forged across Institutes of National Importance (IITs, IIMs, IISc, NITs), UGC-recognized Central & State Public Universities, and NAAC ‘A++’ accredited private global campuses.',
+  },
+];
+
+export default function InboundCollaborationsPage() {
+  return (
+    <div className="bg-[#FAF8F5] min-h-screen">
+      {/* Hero */}
+      <section className="relative bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] overflow-hidden">
+        <BlossomLeafAnimation theme="dark" density="subtle" />
+
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-white/60 mb-6" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/inbound" className="hover:text-white transition-colors">Inbound India</Link>
+            <span>/</span>
+            <span className="text-[#FC7F4E] font-semibold">Institutional Collaborations</span>
+          </nav>
+
+          {/* Audience Switcher Banner */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs mb-6">
+            <span className="flex h-2 w-2 rounded-full bg-[#FC7F4E]" />
+            <span className="font-semibold text-white">College Collaboration Desk</span>
+            <span className="text-white/40">|</span>
+            <Link href="/inbound/students" className="text-[#FC7F4E] hover:underline font-medium inline-flex items-center gap-1">
+              <span>Are you an International Student? Visit Student Admissions Portal</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6">
+            Institutional Collaborations &amp; <span className="text-[#FC7F4E]">Global Academic Linkages with India</span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-10">
+            Connect your university or college with India’s leading higher education and research ecosystem. 211 Overseas assists international universities, deans, and academic bodies in structuring bilateral MOUs, dual-degree articulations, reciprocal student mobility, and joint research ventures.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#collab-form"
+              className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+            >
+              Submit Partnership Proposal
+            </a>
+            <Link
+              href="/inbound#colleges"
+              className="border border-white/60 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+            >
+              Explore Participating Indian Campuses
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Collaboration Modes */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Partnership Frameworks
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Bilateral Academic Engagement Models
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Tailored institutional engagement frameworks designed to enhance your university’s global footprint, research output, and international student mobility.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {COLLABORATION_PILLARS.map((p) => {
+              const Icon = p.icon;
+              return (
+                <div key={p.title} className="bg-white border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors">
+                  <div>
+                    <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
+                      <Icon size={24} />
+                    </div>
+                    <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">
+                      {p.title}
+                    </h3>
+                    <p className="text-sm text-[#41484B] leading-relaxed">
+                      {p.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Collaborate with Indian Institutions */}
+      <section className="py-16 md:py-24 bg-white border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-6">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Strategic Value
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-5">
+              Why Partner with India’s Academic Ecosystem?
+            </h2>
+            <div className="space-y-4 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              <p>
+                India houses the world’s largest cohort of STEM, technology, and management learners. Under the National Education Policy (NEP 2020), Indian universities have unprecedented regulatory autonomy to forge dual degrees, joint certifications, and reciprocal credit transfer agreements with accredited foreign institutions.
+              </p>
+              <p>
+                From biotechnology labs in Gujarat to computer science faculties in Bengaluru and medical research clusters in Delhi, partnering with Indian institutions unlocks high-caliber talent pipelines, research co-funding, and reciprocal student mobility.
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-4">
+              <div className="p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
+                <span className="font-serif text-2xl font-bold text-[#A33E11] block mb-1">1000+</span>
+                <span className="text-xs text-[#41484B]">Accredited universities &amp; national research hubs</span>
+              </div>
+              <div className="p-4 bg-[#FAF8F5] border border-[#E6DDCC]">
+                <span className="font-serif text-2xl font-bold text-[#A33E11] block mb-1">100%</span>
+                <span className="text-xs text-[#41484B]">English-medium instruction across professional degrees</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-6 space-y-4">
+            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
+              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                <ShieldCheck size={20} className="text-[#A33E11]" />
+                <span>Institutional Due Diligence &amp; Accreditation Matchmaking</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                211 Overseas performs rigorous vetting of partner credentials, verifying NAAC, NIRF, and statutory council standings prior to MOU initiation.
+              </p>
+            </div>
+
+            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
+              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                <FileSpreadsheet size={20} className="text-[#A33E11]" />
+                <span>Credit Mapping &amp; Curriculum Alignment</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                We bridge academic frameworks between ECTS, US semester credits, and India’s National Credit Framework to guarantee seamless credit portability.
+              </p>
+            </div>
+
+            <div className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
+              <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 flex items-center gap-2">
+                <Globe2 size={20} className="text-[#A33E11]" />
+                <span>High-Level Delegation &amp; Signing Ceremonies</span>
+              </h3>
+              <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                Complete institutional protocol management: arranging bilateral leadership visits, campus tours, and formal signing ceremonies with senior university leadership.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional Form Section */}
+      <section className="py-16 md:py-24 bg-[#FAF8F5] border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Partnership Portal
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Initiate an Institutional Collaboration
+            </h2>
+            <p className="mt-3 text-sm text-[#41484B] leading-relaxed">
+              Are you a university representative, Dean, or International Relations Officer? Submit your institutional profile to schedule an exploratory discussion with our Institutional Desk.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <InboundCollaborationForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Institutional FAQs */}
+      <section className="py-16 md:py-24 bg-white border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Institutional Queries
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Frequently Asked Questions for Institutions
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {INSTITUTIONAL_FAQS.map((faq) => (
+              <div key={faq.q} className="border border-[#E6DDCC] bg-[#FAF8F5] p-6">
+                <h3 className="font-serif text-base sm:text-lg font-bold text-[#1B1C1A] mb-2">
+                  {faq.q}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  {faq.a}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Consultation strip */}
+      <CtaStrip heading="Connect directly with our Academic Linkages team" interest="Institutional Collaboration" />
+    </div>
+  );
+}

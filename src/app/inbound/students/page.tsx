@@ -1,0 +1,289 @@
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import {
+  GraduationCap,
+  ShieldCheck,
+  Wallet,
+  ArrowRight,
+  BookOpen,
+  HeartPulse,
+  Briefcase,
+  Layers,
+  Sparkles,
+} from 'lucide-react';
+import { BlossomLeafAnimation } from '@/components/ui/BlossomLeafAnimation';
+import { InboundEnquiryForm } from '@/components/inbound/InboundEnquiryForm';
+import { CtaStrip } from '@/components/sections/CtaStrip';
+
+export const metadata: Metadata = {
+  title: 'International Student Admissions in India | Inbound Study & Research | 211 Overseas',
+  description:
+    'Dedicated international student admissions gateway for Indian universities. Guidance on degrees, eligibility, ICCR & SII scholarships, student visa (e-Visa), and campus life.',
+};
+
+const DISCIPLINES = [
+  {
+    icon: GraduationCap,
+    title: 'Engineering, Computing & AI',
+    desc: 'Cutting-edge B.Tech, M.Tech, and dual degrees in Artificial Intelligence, Computer Science, Data Engineering, and Robotics across premier Indian technology institutes.',
+  },
+  {
+    icon: HeartPulse,
+    title: 'Medicine, Pharmacy & Health',
+    desc: 'World-renowned medical training, clinical pharmacy, biomedical sciences, physiotherapy, and public health with intensive hands-on clinical exposure.',
+  },
+  {
+    icon: Briefcase,
+    title: 'Management & Global Business',
+    desc: 'AACSB / AMBA accredited MBA, BBA, and specialised master’s programs offering deep exposure to one of the world’s fastest-growing major economies.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Liberal Arts, Law & Humanities',
+    desc: 'Interdisciplinary social sciences, international relations, policy studies, corporate law, and cultural studies with vibrant intellectual campus communities.',
+  },
+  {
+    icon: Layers,
+    title: 'Pure Sciences & Advanced Research',
+    desc: 'Direct laboratory research pathways in quantum materials, biotechnology, computational chemistry, and astrophysics at premier national research centres.',
+  },
+  {
+    icon: Sparkles,
+    title: 'Design, Media & Architecture',
+    desc: 'Creative degrees in industrial design, animation, sustainable architecture, urban planning, and visual communication.',
+  },
+];
+
+const ADMISSION_STEPS = [
+  {
+    step: '01',
+    title: 'Academic Profile Evaluation',
+    desc: 'We review your high school or undergraduate transcripts, evaluate AIU equivalency requirements, and identify suitable degree levels and disciplines.',
+  },
+  {
+    step: '02',
+    title: 'University Shortlist & Fit Analysis',
+    desc: 'Compare public central universities, premier institutes of national importance, and top private universities in Gujarat, Bengaluru, Delhi, and across India.',
+  },
+  {
+    step: '03',
+    title: 'Application Dossier & Offer Letter',
+    desc: 'We assist with document preparation, formal university submissions, entrance evaluations, and securing your unconditional admission offer letter.',
+  },
+  {
+    step: '04',
+    title: 'Student Visa (e-Visa) & FRRO Registration',
+    desc: 'Complete guidance on bona fide student certificates, Indian embassy student visa processing, arrival protocols, and local FRRO registration formalities.',
+  },
+];
+
+const SCHOLARSHIP_ROUTES = [
+  {
+    name: 'Study in India (SII) Scholarships',
+    scope: 'Government of India flagship initiative offering fee waivers of 100%, 50%, or 25% on tuition for qualifying international candidates.',
+  },
+  {
+    name: 'ICCR Fellowships (Indian Council for Cultural Relations)',
+    scope: 'Comprehensive full-ride government scholarships covering full tuition, living stipend, hostel accommodation, and medical insurance.',
+  },
+  {
+    name: 'Institutional Merit Awards',
+    scope: 'Direct merit-based tuition reductions awarded by individual participating Indian universities based on prior academic marks.',
+  },
+];
+
+export default function InboundStudentsPage() {
+  return (
+    <div className="bg-[#FAF8F5] min-h-screen">
+      {/* Hero */}
+      <section className="relative bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] overflow-hidden">
+        <BlossomLeafAnimation theme="dark" density="subtle" />
+
+        <div className="max-w-[1280px] mx-auto px-6 relative z-10">
+          {/* Breadcrumb */}
+          <nav className="flex items-center gap-2 text-xs text-white/60 mb-6" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <span>/</span>
+            <Link href="/inbound" className="hover:text-white transition-colors">Inbound India</Link>
+            <span>/</span>
+            <span className="text-[#FC7F4E] font-semibold">For International Students</span>
+          </nav>
+
+          {/* Audience Switcher Banner */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs mb-6">
+            <span className="flex h-2 w-2 rounded-full bg-[#FC7F4E]" />
+            <span className="font-semibold text-white">Student Admissions Portal</span>
+            <span className="text-white/40">|</span>
+            <Link href="/inbound/collaborations" className="text-[#FC7F4E] hover:underline font-medium inline-flex items-center gap-1">
+              <span>Looking for College Collaborations? Visit Institutional Desk</span>
+              <ArrowRight size={13} />
+            </Link>
+          </div>
+
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6">
+            Study &amp; Research in India: <span className="text-[#FC7F4E]">International Student Gateway</span>
+          </h1>
+
+          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-10">
+            India is home to world-class research institutes, high-ranking technological hubs, and vibrant cultural campuses. 211 Overseas provides comprehensive end-to-end guidance for international students—from degree matching and admission applications to scholarship applications and Indian student visas.
+          </p>
+
+          <div className="flex flex-wrap items-center gap-4">
+            <a
+              href="#student-form"
+              className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+            >
+              Apply for Admissions Review
+            </a>
+            <Link
+              href="/inbound#colleges"
+              className="border border-white/60 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors"
+            >
+              Browse Participating Colleges
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Key Academic Disciplines */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Academic Horizons
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Popular Study Fields for International Candidates
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Explore English-medium undergraduate, postgraduate, and doctoral degree pathways recognized internationally and accredited by UGC, AICTE, and statutory councils.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {DISCIPLINES.map((d) => {
+              const Icon = d.icon;
+              return (
+                <div key={d.title} className="bg-white border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors">
+                  <div>
+                    <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
+                      <Icon size={24} />
+                    </div>
+                    <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">
+                      {d.title}
+                    </h3>
+                    <p className="text-sm text-[#41484B] leading-relaxed">
+                      {d.desc}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* 4-Step Student Admission Journey */}
+      <section className="py-16 md:py-24 bg-white border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Step-by-Step Roadmap
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Your Inbound Admission Process
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Transparent, professional advisory that simplifies university applications, documentation verification, and visa formalities.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {ADMISSION_STEPS.map((s) => (
+              <div key={s.step} className="border border-[#E6DDCC] bg-[#FAF8F5] p-6 relative">
+                <span className="font-serif text-3xl font-bold text-[#A33E11] block mb-3">
+                  {s.step}
+                </span>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
+                  {s.title}
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  {s.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Scholarships & Affordability */}
+      <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]">
+        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          <div className="lg:col-span-5">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Financial Planning
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight mb-4">
+              Scholarships &amp; Affordable Living in India
+            </h2>
+            <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
+              Higher education in India offers exceptional value. Tuition across premier state and private institutions averages between \$2,500 and \$6,000 USD per year, with living and hostel costs rarely exceeding \$250 to \$400 USD monthly.
+            </p>
+            <div className="space-y-3 text-xs sm:text-sm text-[#1B1C1A]">
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
+                <span>On-campus student hostels with high security</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
+                <span>Subsidized healthcare and student insurance</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <ShieldCheck size={18} className="text-[#A33E11] shrink-0" />
+                <span>Active international student associations on campus</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="lg:col-span-7 space-y-4">
+            {SCHOLARSHIP_ROUTES.map((sch) => (
+              <div key={sch.name} className="bg-white border border-[#E6DDCC] p-6">
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1.5 flex items-center gap-2">
+                  <Wallet size={18} className="text-[#A33E11]" />
+                  <span>{sch.name}</span>
+                </h3>
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                  {sch.scope}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Student Application Form Section */}
+      <section id="student-form" className="py-16 md:py-24 bg-white border-b border-[#E6DDCC] scroll-mt-24">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="max-w-2xl mx-auto text-center mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Admissions Desk
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold text-[#1B1C1A] tracking-tight">
+              Request Your Indian University Admissions Shortlist
+            </h2>
+            <p className="mt-3 text-sm text-[#41484B] leading-relaxed">
+              Submit your academic details. Our inbound student advisory team will assess your eligibility and connect with verified options and next steps.
+            </p>
+          </div>
+
+          <div className="max-w-2xl mx-auto">
+            <InboundEnquiryForm />
+          </div>
+        </div>
+      </section>
+
+      {/* Quick Consultation CTA */}
+      <CtaStrip heading="Have questions about studying in India?" interest="Study in India (Inbound Student)" />
+    </div>
+  );
+}

@@ -35,9 +35,9 @@ import { InboundEnquiryForm } from '@/components/inbound/InboundEnquiryForm';
 import { InboundCollaborationButton } from '@/components/inbound/InboundCollaborationButton';
 
 export const metadata: Metadata = {
-  title: 'Study in India for International Students | 211 Overseas',
+  title: 'Study in India & Institutional Collaborations | Inbound Portal | 211 Overseas',
   description:
-    'Explore universities across India. 211 Overseas guides international students on courses, applications, fees, scholarships, visa paperwork and arrival.',
+    'Explore universities across India for international student admissions and institutional academic partnerships, dual degrees, and faculty exchange.',
 };
 
 // Section B Data
@@ -254,7 +254,7 @@ export default function InboundPage() {
             {/* Left Content Column */}
             <div className="lg:col-span-7">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-3">
-                211 OVERSEAS · INBOUND EDUCATION
+                211 OVERSEAS · INBOUND EDUCATION &amp; INSTITUTIONAL GATEWAY
               </span>
 
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-[#1B1C1A] tracking-tight leading-[1.12] mb-3">
@@ -262,25 +262,33 @@ export default function InboundPage() {
               </h1>
 
               <p className="font-serif text-lg sm:text-xl text-[#A33E11] font-semibold italic mb-5">
-                Discover. Study. Belong.
+                Discover. Collaborate. Belong.
               </p>
 
               <p className="text-base sm:text-lg text-[#41484B] leading-relaxed max-w-2xl mb-8">
-                Explore a world of academic possibilities in one of the most diverse and dynamic countries. From choosing a university to preparing for your arrival, 211 Overseas helps international students navigate higher education in India.
+                Explore premier academic and collaborative possibilities in one of the world&apos;s most dynamic higher education landscapes. Whether you are an international student seeking degree admissions or a global university forging bilateral institutional partnerships, 211 Overseas connects you with India&apos;s top colleges and research hubs.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4">
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="/inbound/students"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+                >
+                  <GraduationCap size={15} />
+                  <span>Student Admissions Portal →</span>
+                </Link>
+                <Link
+                  href="/inbound/collaborations"
+                  className="bg-[#00222B] hover:bg-[#003442] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+                >
+                  <Building size={15} />
+                  <span>College Collaborations Desk →</span>
+                </Link>
                 <a
                   href="#colleges"
-                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-7 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center gap-2 shadow-md cursor-pointer"
+                  className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-5 py-3.5 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center shadow-sm cursor-pointer"
                 >
-                  <span>Explore Universities ↗</span>
-                </a>
-                <a
-                  href="#inbound-form"
-                  className="border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 py-4 text-xs uppercase tracking-widest font-semibold transition-all inline-flex items-center shadow-sm cursor-pointer"
-                >
-                  Plan My Study Journey
+                  Browse Universities
                 </a>
               </div>
             </div>
@@ -296,6 +304,118 @@ export default function InboundPage() {
                   sizes="(min-width: 1024px) 540px, 92vw"
                   className="object-cover"
                 />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ────────────────────────────────────────────────────────── */}
+      {/* DUAL PATHWAY SELECTOR: STUDENTS vs INSTITUTIONAL COLLABORATIONS */}
+      {/* ────────────────────────────────────────────────────────── */}
+      <section className="py-12 md:py-16 bg-[#F3EBDD]/60 border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="text-center max-w-xl mx-auto mb-8">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1.5">
+              Choose Your Pathway
+            </span>
+            <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A]">
+              Dedicated Inbound Portals
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Card 1: For International Students */}
+            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] p-8 transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+              <div>
+                <div className="w-14 h-14 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-6 rounded-xs group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
+                  <GraduationCap size={28} />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
+                  Student Gateway
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
+                  For International Students
+                </h3>
+                <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
+                  Comprehensive guidance for international candidates seeking undergraduate, postgraduate, and clinical research admissions across premier Indian institutions, along with SII &amp; ICCR scholarship advisory and student visa assistance.
+                </p>
+                <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>English-taught engineering, medicine, AI &amp; business programs</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>Scholarship evaluation (Study in India &amp; ICCR fellowships)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>e-Student Visa documentation &amp; campus hostel accommodation</span>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-6 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
+                <Link
+                  href="/inbound/students"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
+                >
+                  <span>Student Admissions Portal</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <a
+                  href="#colleges"
+                  className="border border-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white text-[#1B1C1A] px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors"
+                >
+                  View Colleges
+                </a>
+              </div>
+            </div>
+
+            {/* Card 2: For Colleges & Institutional Collaborations */}
+            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] p-8 transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+              <div>
+                <div className="w-14 h-14 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-6 rounded-xs group-hover:bg-[#A33E11] group-hover:text-white transition-colors">
+                  <Building size={28} />
+                </div>
+                <span className="text-xs font-bold uppercase tracking-widest text-[#A33E11] block mb-2">
+                  Institutional Gateway
+                </span>
+                <h3 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] mb-3">
+                  For Colleges &amp; Universities
+                </h3>
+                <p className="text-sm sm:text-base text-[#41484B] leading-relaxed mb-6">
+                  Dedicated institutional liaisons for foreign universities, deans, and academic bodies seeking dual-degree articulations (2+2, 3+1), reciprocal student mobility, faculty sabbatical exchanges, and bilateral research MOUs in India.
+                </p>
+                <div className="space-y-2 mb-8 text-xs text-[#1B1C1A]">
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>Dual degrees &amp; academic credit transfer under NEP 2020</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>Reciprocal student semester abroad &amp; summer immersion</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#A33E11]" />
+                    <span>Bilateral MOU structuring, compliance &amp; delegation hosting</span>
+                  </div>
+                </div>
+              </div>
+              <div className="pt-6 border-t border-[#E6DDCC] flex flex-wrap items-center gap-3">
+                <Link
+                  href="/inbound/collaborations"
+                  className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2"
+                >
+                  <span>Institutional Collaboration Desk</span>
+                  <ArrowRight size={14} />
+                </Link>
+                <Link
+                  href="/inbound/collaborations#collab-form"
+                  className="border border-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white text-[#1B1C1A] px-5 py-3 text-xs uppercase tracking-widest font-semibold transition-colors"
+                >
+                  Submit Proposal
+                </Link>
               </div>
             </div>
           </div>
@@ -643,7 +763,13 @@ export default function InboundPage() {
                 A proposed human-led pilot model that can be evaluated, refined and expanded over time.
               </p>
             </div>
-            <div className="shrink-0">
+            <div className="shrink-0 flex flex-wrap items-center gap-3">
+              <Link
+                href="/inbound/collaborations"
+                className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-7 py-3.5 text-xs uppercase tracking-widest font-semibold transition-colors inline-flex items-center gap-2 shadow-md"
+              >
+                <span>Institutional Collaboration Desk →</span>
+              </Link>
               <InboundCollaborationButton />
             </div>
           </div>

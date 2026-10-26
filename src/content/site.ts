@@ -104,6 +104,11 @@ export const siteContent = {
       {
         label: 'Inbound',
         href: '/inbound',
+        children: [
+          { label: 'Inbound Overview', href: '/inbound' },
+          { label: 'For International Students', href: '/inbound/students' },
+          { label: 'Institutional Collaborations', href: '/inbound/collaborations' },
+        ],
       },
       {
         label: 'About Us',
@@ -154,6 +159,8 @@ export const siteContent = {
           { label: 'UK', href: '/study/uk' },
           { label: 'Australia', href: '/study/australia' },
           { label: 'Inbound India', href: '/inbound' },
+          { label: 'Inbound: Students', href: '/inbound/students' },
+          { label: 'Inbound: Collaborations', href: '/inbound/collaborations' },
         ],
       },
       work: {
