@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, BookOpen, GraduationCap, Compass, HelpCircle } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, GraduationCap } from 'lucide-react';
 import { studyOverviewContent } from '@/content/study';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
@@ -20,28 +21,54 @@ export default function StudyOverviewPage() {
       <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] relative overflow-hidden">
         <CountryAtmosphereAnimation country="study" />
         <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
-            {hero.eyebrow}
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
-            {hero.h1}
-          </h1>
-          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
-            {hero.paragraph}
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              href={hero.ctas.primary.href}
-              className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
-            >
-              {hero.ctas.primary.label}
-            </Link>
-            <Link
-              href={hero.ctas.secondary.href}
-              className="px-6 py-3.5 border border-white/60 hover:bg-white hover:text-black text-white text-xs font-semibold uppercase tracking-widest transition-colors"
-            >
-              {hero.ctas.secondary.label}
-            </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+                {hero.eyebrow}
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+                {hero.h1}
+              </h1>
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
+                {hero.paragraph}
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href={hero.ctas.primary.href}
+                  className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.ctas.primary.label}
+                </Link>
+                <Link
+                  href={hero.ctas.secondary.href}
+                  className="px-6 py-3.5 border border-white/60 hover:bg-white hover:text-black text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.ctas.secondary.label}
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                <Image
+                  src="/images/generated/global-campus.jpg"
+                  alt="Global university campuses and international students"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                    Global Destinations
+                  </span>
+                  <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                    World-Class Academic Campuses &amp; Degree Pathways
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

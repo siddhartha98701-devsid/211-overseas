@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle2, ShieldCheck, Building2, MapPin, Briefcase } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, MapPin } from 'lucide-react';
 import { workOverviewContent } from '@/content/work';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
@@ -19,28 +20,54 @@ export default function WorkOverviewPage() {
       <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] relative overflow-hidden">
         <CountryAtmosphereAnimation country="work" />
         <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
-            {hero.eyebrow}
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
-            {hero.h1}
-          </h1>
-          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
-            {hero.paragraph}
-          </p>
-          <div className="flex flex-wrap items-center gap-4">
-            <Link
-              href={hero.ctas.primary.href}
-              className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
-            >
-              {hero.ctas.primary.label}
-            </Link>
-            <Link
-              href={hero.ctas.secondary.href}
-              className="px-6 py-3.5 border border-white/60 hover:bg-white hover:text-black text-white text-xs font-semibold uppercase tracking-widest transition-colors"
-            >
-              {hero.ctas.secondary.label}
-            </Link>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+                {hero.eyebrow}
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+                {hero.h1}
+              </h1>
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
+                {hero.paragraph}
+              </p>
+              <div className="flex flex-wrap items-center gap-4">
+                <Link
+                  href={hero.ctas.primary.href}
+                  className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.ctas.primary.label}
+                </Link>
+                <Link
+                  href={hero.ctas.secondary.href}
+                  className="px-6 py-3.5 border border-white/60 hover:bg-white hover:text-black text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.ctas.secondary.label}
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                <Image
+                  src="/images/generated/uae-careers.jpg"
+                  alt="International career and employment pathways abroad"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                    International Careers
+                  </span>
+                  <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                    Verified Work Corridors in the UAE &amp; Greece
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -58,35 +85,60 @@ export default function WorkOverviewPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {countryFocus.countries.map((c) => (
-              <div
-                key={c.name}
-                className="bg-[#FBF8F1] border border-[#E6DDCC] p-8 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-[#F3EBDD] text-[#A33E11] text-xs font-semibold uppercase tracking-wider">
-                      Recruitment Pathway
-                    </span>
-                    <MapPin className="w-5 h-5 text-[#A33E11]" />
-                  </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
-                    Work in {c.name}
-                  </h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed mb-8">
-                    {c.description}
-                  </p>
-                </div>
+            {countryFocus.countries.map((c) => {
+              const countryImg =
+                c.name === 'UAE'
+                  ? '/images/generated/uae-careers.jpg'
+                  : '/images/greece/greece-resort.jpg';
 
-                <Link
-                  href={c.href}
-                  className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:text-[#85320D]"
+              return (
+                <div
+                  key={c.name}
+                  className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-colors"
                 >
-                  <span>Explore {c.name} opportunities</span>
-                  <ArrowRight size={14} />
-                </Link>
-              </div>
-            ))}
+                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
+                    <Image
+                      src={countryImg}
+                      alt={`Work opportunities in ${c.name}`}
+                      fill
+                      sizes="(min-width: 768px) 540px, 100vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+                    <div className="absolute top-4 left-4">
+                      <span className="px-3 py-1 bg-[#A33E11] text-white text-[11px] font-bold uppercase tracking-wider">
+                        {c.name} Opportunities
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="p-8 flex-1 flex flex-col justify-between">
+                    <div>
+                      <div className="flex items-center justify-between mb-4">
+                        <span className="px-3 py-1 bg-[#F3EBDD] text-[#A33E11] text-xs font-semibold uppercase tracking-wider">
+                          Recruitment Pathway
+                        </span>
+                        <MapPin className="w-5 h-5 text-[#A33E11]" />
+                      </div>
+                      <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors">
+                        Work in {c.name}
+                      </h3>
+                      <p className="text-sm text-[#41484B] leading-relaxed mb-8">
+                        {c.description}
+                      </p>
+                    </div>
+
+                    <Link
+                      href={c.href}
+                      className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:text-[#85320D]"
+                    >
+                      <span>Explore {c.name} opportunities</span>
+                      <ArrowRight size={14} />
+                    </Link>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

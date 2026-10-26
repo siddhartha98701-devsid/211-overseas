@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Filter, Calendar, MapPin, Briefcase, Building2, CheckCircle2, AlertCircle } from 'lucide-react';
+import Image from 'next/image';
+import { Filter, MapPin, Briefcase, AlertCircle } from 'lucide-react';
 import { currentOpeningsContent } from '@/content/work/openings';
 import { getActiveVacancies, type Vacancy } from '@/content/vacancies';
 import { siteContent } from '@/content/site';
@@ -31,15 +32,41 @@ export default function CurrentOpeningsPage() {
       <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] relative overflow-hidden">
         <CountryAtmosphereAnimation country="openings" />
         <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
-            {hero.eyebrow}
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
-            {hero.h1}
-          </h1>
-          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
-            {hero.paragraph}
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className="lg:col-span-7">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+                {hero.eyebrow}
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+                {hero.h1}
+              </h1>
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+                {hero.paragraph}
+              </p>
+            </div>
+
+            <div className="lg:col-span-5">
+              <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                <Image
+                  src="/images/generated/uae-careers.jpg"
+                  alt="Verified international vacancies and recruitment pathways"
+                  fill
+                  priority
+                  sizes="(min-width: 1024px) 520px, 95vw"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                  <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                    Verified Vacancies
+                  </span>
+                  <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                    Verified Global Openings · Transparent Roles &amp; Terms
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 

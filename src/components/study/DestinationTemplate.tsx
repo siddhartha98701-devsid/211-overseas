@@ -1,10 +1,11 @@
 'use client';
 
 import { useState } from 'react';
-import Link from 'next/link';
-import { ChevronDown, ArrowRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
+import Image from 'next/image';
+import { ChevronDown, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
+import { getDestinationVisual } from '@/content/destinationVisuals';
 
 export interface DestinationData {
   meta: {
@@ -108,6 +109,7 @@ export interface DestinationData {
 
 export function DestinationTemplate({ data, destinationName }: { data: DestinationData; destinationName: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const visual = getDestinationVisual(destinationName);
 
   return (
     <div className="bg-[#FBF8F1] min-h-screen">
@@ -115,26 +117,54 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
       <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC] relative overflow-hidden">
         <CountryAtmosphereAnimation country={destinationName} />
         <div className="max-w-[1280px] mx-auto px-6 relative z-10">
-          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
-            {data.hero.eyebrow}
-          </span>
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
-            {data.hero.h1}
-          </h1>
-          {data.hero.subtitle && (
-            <p className="font-serif italic text-lg sm:text-xl text-[#FC7F4E] mb-6">
-              {data.hero.subtitle}
-            </p>
-          )}
-          {data.hero.paragraph && (
-            <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-10">
-              {data.hero.paragraph}
-            </p>
-          )}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+            <div className={visual ? 'lg:col-span-7' : 'lg:col-span-12'}>
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+                {data.hero.eyebrow}
+              </span>
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
+                {data.hero.h1}
+              </h1>
+              {data.hero.subtitle && (
+                <p className="font-serif italic text-lg sm:text-xl text-[#FC7F4E] mb-6">
+                  {data.hero.subtitle}
+                </p>
+              )}
+              {data.hero.paragraph && (
+                <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-6">
+                  {data.hero.paragraph}
+                </p>
+              )}
+            </div>
+
+            {visual && (
+              <div className="lg:col-span-5">
+                <div className="relative aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden border border-white/20 bg-black/40 shadow-2xl rounded-[3px] group">
+                  <Image
+                    src={visual.heroImage.src}
+                    alt={visual.heroImage.alt}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 520px, 95vw"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
+                  <div className="absolute bottom-3.5 left-4 right-4 text-white">
+                    <span className="text-[10px] uppercase font-bold tracking-widest text-[#FC7F4E] block mb-0.5">
+                      Flagship Campus &amp; Landmark
+                    </span>
+                    <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
+                      {visual.heroImage.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
 
           {/* Quick Facts Grid */}
           {data.hero.facts && data.hero.facts.length > 0 && (
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t border-white/15">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-10 pt-6 border-t border-white/15">
               {data.hero.facts.map((fact) => (
                 <div key={fact.label} className="bg-white/5 border border-white/10 p-4">
                   <span className="text-[11px] uppercase tracking-wider text-white/50 block mb-1">
@@ -149,6 +179,52 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
           )}
         </div>
       </section>
+
+      {/* Visual Showcase: Life & Academic Campuses */}
+      {visual && visual.gallery && visual.gallery.length > 0 && (
+        <section
+          className="border-b border-[#E6DDCC] py-8 md:py-12 bg-white"
+          aria-label={`Life and campuses in ${destinationName}`}
+        >
+          <div className="max-w-[1280px] mx-auto px-6">
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1">
+                  Visual Showcase
+                </span>
+                <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">
+                  Campuses, Research Hubs &amp; Student Life in {destinationName}
+                </h2>
+              </div>
+            </div>
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-5">
+              {visual.gallery.map((item) => (
+                <div
+                  key={item.title}
+                  className="group relative aspect-[4/3] w-full overflow-hidden rounded-[2px] border border-[#E6DDCC] bg-[#FAF8F5] shadow-xs"
+                >
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 25vw"
+                    loading="lazy"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent flex flex-col justify-end p-3 text-white">
+                    <span className="font-serif text-xs sm:text-sm font-bold leading-tight drop-shadow-sm">
+                      {item.title}
+                    </span>
+                    <span className="text-[10px] text-white/80 hidden sm:block truncate mt-0.5">
+                      {item.caption}
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Main Content Area */}
       <div className="max-w-[1280px] mx-auto px-6 py-16">
