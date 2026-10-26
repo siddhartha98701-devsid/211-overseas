@@ -1,19 +1,32 @@
 import { MetadataRoute } from 'next';
-import { SUBPAGES, subpageHref } from '@/content/subpages';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://211overseas.com';
+  const baseUrl = 'https://www.211overseas.com';
 
   const routes = [
-    ...SUBPAGES.map(subpageHref),
     '',
-    '/work-and-study',
-    '/inbound',
-    '/study-in-south-korea',
-    '/work-in-germany',
-    '/work-in-uae',
-    '/other-destinations',
+    '/study',
+    '/study/south-korea',
+    '/study/singapore',
+    '/study/luxembourg',
+    '/study/japan',
+    '/study/taiwan',
+    '/study/uae',
+    '/study/europe',
+    '/study/usa',
+    '/study/canada',
+    '/study/uk',
+    '/study/australia',
+    '/work',
+    '/work/uae',
+    '/work/greece',
+    '/work/openings',
     '/about',
+    '/resources',
+    '/resources/scholarships',
+    '/resources/cost-of-studying',
+    '/resources/application-guide',
+    '/faq',
     '/contact',
     '/privacy-policy',
     '/terms-and-conditions',
@@ -24,7 +37,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    changeFrequency: route === '' ? 'weekly' : 'monthly',
+    changeFrequency: route === '' ? 'weekly' : route.startsWith('/work/openings') ? 'weekly' : 'monthly',
     priority: route === '' ? 1.0 : route.startsWith('/study') || route.startsWith('/work') ? 0.8 : 0.6,
   }));
 }

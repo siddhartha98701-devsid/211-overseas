@@ -9,8 +9,6 @@ import { GlobeWrapper } from '@/components/globe/GlobeWrapper';
 import { GLOBE_PINS } from '@/components/globe/pins';
 import { ScrollReveal } from '@/components/ui/ScrollReveal';
 import { SectionHeader } from '@/components/ui/SectionHeader';
-import { siteContent } from '@/content/site';
-import { countryHref } from '@/content/subpages';
 import { CountryFlag } from '@/components/ui/CountryFlag';
 
 interface Destination {
@@ -25,52 +23,108 @@ interface Destination {
   featured: boolean;
 }
 
-const DESTINATIONS: Destination[] = buildDestinations();
-
-function buildDestinations(): Destination[] {
-  const [korea, germany, uae] = siteContent.pathways;
-  const featured: Destination[] = [
-    { pin: 'Seoul', country: 'South Korea', label: 'Study', ...pick(korea) },
-    { pin: 'Berlin', country: 'Germany', label: 'Work · Healthcare', ...pick(germany) },
-    { pin: 'Dubai', country: 'UAE', label: 'Work · Careers', ...pick(uae) },
-  ];
-
-  const others: [string, string][] = [
-    ['Tokyo', 'Japan'],
-    ['Taipei', 'Taiwan'],
-    ['Singapore', 'Singapore'],
-    ['London', 'United Kingdom'],
-    ['New York', 'United States'],
-    ['Toronto', 'Canada'],
-    ['Sydney', 'Australia'],
-  ];
-
-  const rest: Destination[] = others.map(([pin, country]) => {
-    const entry = siteContent.otherDestinations.countries.find((c) => c.name === country);
-    return {
-      pin,
-      country,
-      label: 'Study · Work',
-      description: `Explore education and career pathways in ${country}, matched to your profile.`,
-      bullets: entry?.bullets ?? [],
-      href: countryHref(country),
-      cta: `Explore ${country}`,
-      featured: false,
-    };
-  });
-
-  return [...featured, ...rest];
-}
-
-function pick(p: (typeof siteContent.pathways)[number]) {
-  return {
-    description: p.description,
-    bullets: p.bullets.slice(0, 4),
-    href: p.cta.href,
-    cta: p.cta.label,
+const DESTINATIONS: Destination[] = [
+  {
+    pin: 'Seoul',
+    country: 'South Korea',
+    label: 'Study',
+    description: 'Explore undergraduate, postgraduate and language study options in South Korea.',
+    bullets: ['Language programs & degrees', 'March / September intakes', 'GKS & university funding', 'STEM & creative fields'],
+    href: '/study/south-korea',
+    cta: 'Explore South Korea',
     featured: true,
-  };
-}
+  },
+  {
+    pin: 'Dubai',
+    country: 'UAE',
+    label: 'Work · Careers',
+    description: 'Browse healthcare, hospitality, technical and commercial opportunities in the UAE.',
+    bullets: ['Healthcare & nursing roles', 'Hospitality & guest services', 'Engineering & skilled trades', 'Verified written offers'],
+    href: '/work/uae',
+    cta: 'Explore UAE',
+    featured: true,
+  },
+  {
+    pin: 'Singapore',
+    country: 'Singapore',
+    label: 'Study',
+    description: 'English-medium universities, applied learning, computing and finance.',
+    bullets: ['Top Asian institutions', 'Business & computing', 'English medium of instruction', 'Industry linkages'],
+    href: '/study/singapore',
+    cta: 'Explore Singapore',
+    featured: false,
+  },
+  {
+    pin: 'Tokyo',
+    country: 'Japan',
+    label: 'Study',
+    description: 'Advanced engineering, robotics, manufacturing and scientific research in Japan.',
+    bullets: ['Robotics & engineering', 'MEXT scholarship routes', 'Undergraduate & master’s', 'Research excellence'],
+    href: '/study/japan',
+    cta: 'Explore Japan',
+    featured: false,
+  },
+  {
+    pin: 'Taipei',
+    country: 'Taiwan',
+    label: 'Study',
+    description: 'Global semiconductor ecosystem, computing, electronics and research.',
+    bullets: ['Semiconductors & tech', 'English-taught options', 'Government scholarships', 'Affordable tuition'],
+    href: '/study/taiwan',
+    cta: 'Explore Taiwan',
+    featured: false,
+  },
+  {
+    pin: 'Luxembourg',
+    country: 'Luxembourg',
+    label: 'Study',
+    description: 'Business, finance and international management in a leading European financial centre.',
+    bullets: ['Finance & management', 'Multilingual environment', 'European business hub', 'Merit awards available'],
+    href: '/study/luxembourg',
+    cta: 'Explore Luxembourg',
+    featured: false,
+  },
+  {
+    pin: 'London',
+    country: 'United Kingdom',
+    label: 'Study',
+    description: 'Focused degrees, one-year Master’s programs and diverse university options in the UK.',
+    bullets: ['1-year Master’s options', 'Global recognition', 'Specialised curricula', 'Clear visa funds rules'],
+    href: '/study/uk',
+    cta: 'Explore UK',
+    featured: false,
+  },
+  {
+    pin: 'New York',
+    country: 'United States',
+    label: 'Study',
+    description: 'Broad institutional choice, flexible courses and extensive research scale in the US.',
+    bullets: ['Research universities', 'Flexible curricula', 'STEM OPT opportunities', 'Diverse campus choices'],
+    href: '/study/usa',
+    cta: 'Explore USA',
+    featured: false,
+  },
+  {
+    pin: 'Toronto',
+    country: 'Canada',
+    label: 'Study',
+    description: 'Universities and colleges across technology, business, sciences and healthcare in Canada.',
+    bullets: ['Universities & colleges', 'Recognised credentials', 'Co-op work terms', 'Post-study planning'],
+    href: '/study/canada',
+    cta: 'Explore Canada',
+    featured: false,
+  },
+  {
+    pin: 'Sydney',
+    country: 'Australia',
+    label: 'Study',
+    description: 'Research universities and professionally oriented degree programs in Australia.',
+    bullets: ['Group of Eight & more', 'Industry-led courses', 'Global qualifications', 'Student visa standards'],
+    href: '/study/australia',
+    cta: 'Explore Australia',
+    featured: false,
+  },
+];
 
 export function GlobeExplorerSection() {
   const destinations = DESTINATIONS;

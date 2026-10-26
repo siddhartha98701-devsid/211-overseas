@@ -117,7 +117,7 @@ export function CallbackProvider({ children }: { children: ReactNode }) {
               >
                 <X size={20} />
               </button>
-              <p className="text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium">Free counselling</p>
+              <p className="text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium">Direct consultation</p>
               <h2 id="callback-title" className="mt-2 mb-1 font-serif text-2xl font-bold text-[#1B1C1A]">
                 {opts?.auto ? 'Plan your move abroad' : 'Request a call back'}
               </h2>

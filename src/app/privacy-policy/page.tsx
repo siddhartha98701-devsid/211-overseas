@@ -143,8 +143,8 @@ export default function PrivacyPolicyPage() {
                 <p><strong className="text-black font-medium">Address:</strong> {brand.address}</p>
                 <p>
                   <strong className="text-black font-medium">Email:</strong>{' '}
-                  <a href={`mailto:${brand.emails.general.address}`} className="text-[#A33E11] underline hover:text-[#85320D]">
-                    {brand.emails.general.address}
+                  <a href={`mailto:${brand.emails.general}`} className="text-[#A33E11] underline hover:text-[#85320D]">
+                    {brand.emails.general}
                   </a>{' '}
                   / {' '}
                   <a href={`mailto:${brand.emails.admin}`} className="text-[#A33E11] underline hover:text-[#85320D]">

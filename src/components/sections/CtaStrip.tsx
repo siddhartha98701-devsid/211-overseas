@@ -28,22 +28,22 @@ export function CtaStrip({
   const options = [
     {
       icon: <CalendarCheck size={26} strokeWidth={1.5} aria-hidden="true" />,
-      title: 'Book free counselling',
-      text: 'Share your details and we call you back.',
+      title: 'Book a consultation',
+      text: 'Share your details and we connect with you.',
       primary: true,
       onClick: () => openCallback({ interest, source }),
     },
     {
       icon: <WhatsAppIcon size={26} />,
       title: 'Chat on WhatsApp',
-      text: 'Quick questions and document checks.',
+      text: 'Direct questions and document checks.',
       href: whatsappLink(interest ? `Hi 211 OVERSEAS, I am interested in: ${interest}.` : undefined),
       external: true,
     },
     {
       icon: <Phone size={26} strokeWidth={1.5} aria-hidden="true" />,
       title: phone,
-      text: 'Mon – Sat, 10:00 AM – 7:00 PM IST',
+      text: 'Direct Phone & WhatsApp Line',
       href: `tel:${phone.replace(/\s/g, '')}`,
     },
   ];
@@ -52,7 +52,7 @@ export function CtaStrip({
     <section className="bgl bgl-black text-white" aria-label="Talk to a counsellor">
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         <div className="max-w-2xl">
-          <p className="text-xs uppercase tracking-[0.25em] font-medium text-[#FC7F4E]">Free counselling</p>
+          <p className="text-xs uppercase tracking-[0.25em] font-medium text-[#FC7F4E]">Direct Consultation</p>
           <h2 className="mt-2 font-serif text-2xl sm:text-3xl md:text-4xl font-semibold leading-tight">{heading}</h2>
           <p className="mt-3 text-white/70 leading-relaxed">
             Start with your profile, not a country. Pick the easiest way to reach us and a counsellor will help you decide.

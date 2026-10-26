@@ -1,217 +1,124 @@
 import type { Metadata } from 'next';
-import { siteContent } from '@/content/site';
-import { ScrollReveal } from '@/components/ui/ScrollReveal';
-import { EnquiryForm } from '@/components/sections/EnquiryForm';
-import { MapPin, Phone, MessageSquare, Mail, Clock, ExternalLink } from 'lucide-react';
+import { Phone, MessageSquare, MapPin, Clock, Mail } from 'lucide-react';
+import { CONTACT_PAGE_CONTENT } from '@/content/contact';
+import { siteContent, SHOW_VERIFIED_COMPANY_DETAILS } from '@/content/site';
+import { ContactForms } from '@/components/forms/ContactForms';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
-  description:
-    'Connect with 211 OVERSEAS counsellors. Call or WhatsApp +91 99985 85211. Ahmedabad, Gujarat, India.',
+  title: CONTACT_PAGE_CONTENT.seoTitle,
+  description: CONTACT_PAGE_CONTENT.intro,
 };
 
 export default function ContactPage() {
+  const { eyebrow, heading, intro, phoneDisplay, phoneTel, whatsappUrl, tagline } =
+    CONTACT_PAGE_CONTENT;
   const { brand } = siteContent;
 
   return (
-    <>
+    <div className="bg-[#FBF8F1] min-h-screen">
       {/* Hero */}
-      <section className="pt-36 pb-16 md:pt-44 md:pb-24 border-b border-[#E6DDCC]" aria-label="Contact hero">
+      <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-3xl">
-            <span className="text-xs uppercase tracking-widest text-[#41484B] font-medium mb-3 block">
-              Contact 211 OVERSEAS
-            </span>
-            <h1 className="font-serif text-3xl sm:text-5xl md:text-6xl font-bold text-[#1B1C1A] tracking-tight leading-[1.05] mb-6">
-              Start a conversation with our advisors
-            </h1>
-            <p className="text-base sm:text-lg text-[#41484B] leading-relaxed font-light">
-              Confused about where to start? Start with your profile — not a country. Share your
-              details or connect directly with our Ahmedabad advisory team.
-            </p>
-          </div>
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+            {eyebrow}
+          </span>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+            {heading}
+          </h1>
+          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+            {intro}
+          </p>
         </div>
       </section>
 
-      {/* Main Section: Form & Office Location side-by-side on desktop, stacked on mobile */}
-      <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-[#FAF8F5]" aria-label="Enquiry and location">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            {/* Contact Form */}
-            <div className="lg:col-span-7">
-              <div className="mb-8">
-                <span className="text-xs uppercase tracking-widest text-[#A33E11] font-medium block mb-2">
-                  Send Your Profile
-                </span>
-                <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A] tracking-tight">
-                  Free profile assessment
-                </h2>
-                <p className="mt-2 text-sm text-[#41484B] leading-relaxed">
-                  Fill in your details below. Our senior counselor will review your qualifications and contact you within 24 hours.
-                </p>
-              </div>
-              <EnquiryForm />
-            </div>
-
-            {/* Office Location Block + Embedded Google Map */}
-            <div className="lg:col-span-5 space-y-8">
-              <div className="bg-white border border-[#E6DDCC] p-6 sm:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-4 text-[#A33E11]">
-                  <MapPin size={20} />
-                  <span className="text-xs uppercase tracking-widest font-semibold">Office Location</span>
-                </div>
-                <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
-                  Headquarters
-                </h3>
-                <p className="text-sm text-[#1B1C1A] font-medium leading-relaxed mb-1">
-                  {brand.address}
-                </p>
-                <p className="text-xs text-[#41484B] mb-6">
-                  {brand.city}
-                </p>
-
-                {/* Office Hours */}
-                <div className="border-t border-[#E6DDCC] pt-5 mb-6">
-                  <div className="flex items-center gap-2 mb-3 text-[#A33E11]">
-                    <Clock size={16} />
-                    <span className="text-xs uppercase tracking-wider font-semibold">Office Hours</span>
-                  </div>
-                  <div className="space-y-1.5 text-xs text-[#41484B]">
-                    <div className="flex justify-between py-1 border-b border-[#E6DDCC]/60">
-                      <span className="font-medium text-[#1B1C1A]">Monday – Saturday</span>
-                      <span>10:00 AM – 7:00 PM IST</span>
-                    </div>
-                    <div className="flex justify-between py-1">
-                      <span className="font-medium text-[#1B1C1A]">Sunday</span>
-                      <span className="text-[#A33E11]">Prior Appointment Only</span>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Embedded Google Map */}
-                <div className="overflow-hidden border border-[#E6DDCC] bg-[#F0EDE8] mb-6 relative">
-                  <iframe
-                    title="211 Overseas Office Location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3670.366226673898!2d72.51347077603723!3d23.08365691404179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e832961d7b1b3%3A0xc3c92842e1d7131b!2sThe%20Capital%2C%20Science%20City%20Rd%2C%20Sola%2C%20Ahmedabad%2C%20Gujarat%20380060!5e0!3m2!1sen!2sin!4v1710000000000!5m2!1sen!2sin"
-                    width="100%"
-                    height="240"
-                    style={{ border: 0 }}
-                    allowFullScreen={false}
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                    className="w-full h-[240px] block"
-                  />
-                </div>
-
-                {/* Get Directions Button */}
-                <a
-                  href="https://www.google.com/maps/search/?api=1&query=The+Capital+Science+City+Road+Sola+Ahmedabad+Gujarat+380060"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-shine w-full inline-flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 py-3.5 text-xs uppercase tracking-widest font-medium transition-colors shadow-sm"
-                >
-                  <span>Get Directions</span>
-                  <ExternalLink size={14} />
-                </a>
-
-                <p className="mt-4 text-[11px] text-[#41484B] text-center leading-relaxed">
-                  In-person advisory available by appointment. Parking available on site.
-                </p>
-              </div>
-            </div>
+      {/* Main Section */}
+      <div className="max-w-[1280px] mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Discrete Study and Work Enquiry Forms */}
+          <div className="lg:col-span-8">
+            <ContactForms />
           </div>
-        </div>
-      </section>
 
-      {/* Direct Contact Channels Strip */}
-      <section className="pt-12 pb-28 md:py-16 border-b border-[#E6DDCC] bg-white" aria-label="Direct contact channels">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <ScrollReveal>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Phone */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
-                <div className="flex flex-col items-center md:items-start w-full">
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
-                    <Phone size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Telephone</span>
-                  </div>
+          {/* Right Column: Direct Contact Details */}
+          <aside className="lg:col-span-4 space-y-6">
+            <div className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+              <span className="text-[11px] font-semibold uppercase tracking-wider text-[#A33E11] block mb-2">
+                Direct Line
+              </span>
+              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-1">
+                211 OVERSEAS
+              </h2>
+              <p className="font-serif italic text-sm text-[#FC7F4E] mb-6">
+                {tagline}
+              </p>
+
+              <div className="space-y-4 pt-4 border-t border-[#E6DDCC]">
+                <div>
+                  <span className="block text-xs uppercase tracking-wider text-[#71787B] mb-1">
+                    Call / WhatsApp
+                  </span>
                   <a
-                    href={`tel:${brand.phone.replace(/\s/g, '')}`}
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block mb-1"
+                    href={`tel:${phoneTel}`}
+                    className="text-lg font-bold text-[#1B1C1A] hover:text-[#A33E11] transition-colors"
                   >
-                    {brand.phone}
+                    {phoneDisplay}
                   </a>
-                  <p className="text-xs text-[#41484B]">Direct phone assistance (IST)</p>
                 </div>
-              </div>
 
-              {/* WhatsApp */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
-                <div className="flex flex-col items-center md:items-start w-full">
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
-                    <MessageSquare size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">WhatsApp Support</span>
-                  </div>
+                <div>
                   <a
-                    href={brand.whatsapp}
+                    href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block mb-1"
+                    className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-wider transition-colors"
                   >
-                    Chat on WhatsApp →
+                    <MessageSquare size={16} />
+                    <span>Chat on WhatsApp</span>
                   </a>
-                  <p className="text-xs text-[#41484B]">Quick queries &amp; document assessment</p>
                 </div>
               </div>
 
-              {/* Email Enquiries (3 emails) */}
-              <div className="border-t border-[#E6DDCC] pt-6 flex flex-col items-center md:items-start text-center md:text-left justify-between">
-                <div className="flex flex-col items-center md:items-start w-full">
-                  <div className="flex items-center justify-center md:justify-start gap-2 mb-2 text-[#A33E11]">
-                    <Mail size={18} />
-                    <span className="text-xs uppercase tracking-wider text-[#41484B] font-medium">Email Advisory</span>
+              {SHOW_VERIFIED_COMPANY_DETAILS && (
+                <div className="mt-8 pt-6 border-t border-[#E6DDCC] space-y-4 text-xs text-[#41484B]">
+                  <div className="flex items-start gap-2.5">
+                    <MapPin size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
+                    <div>
+                      <span className="font-semibold text-[#1B1C1A] block">Office Address</span>
+                      <p>{brand.address}</p>
+                      <p>{brand.city}</p>
+                    </div>
                   </div>
-                  <div className="space-y-3 mt-2 w-full">
+
+                  <div className="flex items-start gap-2.5">
+                    <Mail size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
-                        {brand.emails.general.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.general.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
-                      >
-                        {brand.emails.general.address}
+                      <span className="font-semibold text-[#1B1C1A] block">Email Advisory</span>
+                      <a href={`mailto:${brand.emails.general}`} className="hover:text-[#A33E11]">
+                        {brand.emails.general}
                       </a>
                     </div>
+                  </div>
+
+                  <div className="flex items-start gap-2.5">
+                    <Clock size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
                     <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
-                        {brand.emails.admissions.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.admissions.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
-                      >
-                        {brand.emails.admissions.address}
-                      </a>
-                    </div>
-                    <div>
-                      <span className="block text-[11px] uppercase tracking-wider text-[#A33E11] font-medium text-center md:text-left">
-                        {brand.emails.support.label}
-                      </span>
-                      <a
-                        href={`mailto:${brand.emails.support.address}`}
-                        className="text-sm font-semibold text-[#1B1C1A] hover:text-[#A33E11] transition-colors block text-center md:text-left"
-                      >
-                        {brand.emails.support.address}
-                      </a>
+                      <span className="font-semibold text-[#1B1C1A] block">Office Hours</span>
+                      <p>{brand.hours}</p>
                     </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
-          </ScrollReveal>
+
+            <div className="bg-[#00222B] text-white p-6 border-t-4 border-[#A33E11]">
+              <h3 className="font-serif text-lg font-bold mb-2">Measured Next Steps</h3>
+              <p className="text-xs text-white/70 leading-relaxed">
+                We review qualification documents and professional experience against verified course and employer criteria before recommending commitments.
+              </p>
+            </div>
+          </aside>
         </div>
-      </section>
-    </>
+      </div>
+    </div>
   );
 }

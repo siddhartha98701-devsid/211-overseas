@@ -75,7 +75,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Profile submitted successfully. Our team will connect with you.',
+      message: 'Thank you. Your enquiry has been received. Our team will review the information and contact you regarding the next relevant step.',
       submissionId: lead.id,
     });
   } catch (error) {

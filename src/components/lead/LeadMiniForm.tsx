@@ -41,7 +41,7 @@ const INPUT =
 const LABEL = 'block text-xs uppercase tracking-wider text-[#1B1C1A] font-semibold mb-1.5';
 
 /** Compact name + mobile lead form used in the hero, the call-back popup and result panels. */
-export function LeadMiniForm({ interest, source, submitLabel = 'Get free counselling', showEmail = false, onSuccess }: LeadMiniFormProps) {
+export function LeadMiniForm({ interest, source, submitLabel = 'Request consultation', showEmail = false, onSuccess }: LeadMiniFormProps) {
   const [busy, setBusy] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);

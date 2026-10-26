@@ -1,333 +1,183 @@
+/**
+ * 211 OVERSEAS — Global Site Content & Navigation
+ * Source of truth: /content-source/content_source_211_overseas.md (October 2026)
+ */
+
+export const SHOW_VERIFIED_COMPANY_DETAILS = false;
+
 export const siteContent = {
   brand: {
-    name: '211 OVERSEAS study abroad',
-    shortName: '211 OVERSEAS',
-    domain: 'www.211overseas.com',
-    tagline: 'Your Future Has No Borders',
-    taglines: [
-      'Your future has no borders',
-      'Guidance beyond borders',
-      'Clear choices. Confident next steps.',
-      'Dream Learn Grow Globally',
-      'Turn Your Passion Into a Global Degree',
-      'A Global Education for a Brighter Tomorrow',
-    ],
-    positioning: 'Guidance beyond borders. Institutional confidence with human warmth — international ambition, without visual clutter.',
-    description: 'Ahmedabad-based international education and overseas career consultancy helping students and professionals explore opportunities beyond India with organised guidance and transparent next steps.',
+    name: '211 OVERSEAS',
+    fullName: '211 Overseas — International education and career pathways',
+    tagline: 'Your Future Has No Borders.',
+    brandLine: '211 Overseas — International education and career pathways. Your Future Has No Borders.',
+    description: 'International education and career pathways. Your Future Has No Borders.',
     phone: '+91 99985 85211',
     whatsapp: 'https://wa.me/919998585211',
+    domain: 'www.211overseas.com',
+    canonicalBase: 'https://www.211overseas.com',
+    // Kept for internal reference; hidden from public display when SHOW_VERIFIED_COMPANY_DETAILS is false
     address: 'B-1405, The Capital, Science City Road, Sola, Ahmedabad 380060',
     city: 'Ahmedabad, Gujarat, India',
     emails: {
-      general: { label: 'General Enquiries', address: 'info@211overseas.com' },
-      admissions: { label: 'Admissions', address: 'admissions@211overseas.com' },
-      support: { label: 'Support', address: 'support@211overseas.com' },
+      general: 'info@211overseas.com',
+      admissions: 'admissions@211overseas.com',
+      support: 'support@211overseas.com',
       admin: 'admin@211overseas.com',
     },
+    hours: 'Mon–Sat, 10:00 AM–7:00 PM IST',
   },
-  nav: {
-    links: [
-      { label: 'Home', href: '/' },
-      { label: 'Study', href: '/study-in-south-korea' },
-      { label: 'Work', href: '/work-and-study' },
-      { label: 'Other Destinations', href: '/other-destinations' },
-      { label: 'About Us', href: '/about' },
-      { label: 'Contact', href: '/contact' },
-    ],
-    cta: 'Book Free Counselling',
-  },
-  hero: {
-    eyebrow: 'YOUR FUTURE HAS NO BORDERS',
-    headline: 'Your future has no borders.',
-    subheadline: 'Clear choices. Confident next steps.',
-    description: 'Explore international study and work pathways with organised guidance and transparent next steps. From course selection to documentation, applications, visa guidance and pre-departure support — we make your overseas journey easier.',
-    ctas: [
-      { label: 'Explore Destinations', href: '#globe' },
-      { label: 'Book Free Counselling', href: '/contact' },
-    ],
-  },
-  intro: {
-    eyebrow: 'Opportunities Beyond Borders',
-    text: 'The right destination should depend on your education, experience, career goals, budget and long-term plans — not simply on what is popular.',
-  },
-  pathways: [
-    {
-      id: 'south-korea',
-      title: 'Study in South Korea',
-      tag: 'Our Featured Study Destination',
-      description: 'Innovation. Technology. Global Education. South Korea has become an exciting destination for international students seeking high-quality education.',
-      bullets: [
-        "Bachelor's Programs",
-        "Master's Programs",
-        'English-Taught Programs',
-        'Korean Language Programs',
-        'Engineering & Technology',
-        'Artificial Intelligence',
-        'Game Design & Animation',
-        'Scholarship Opportunities',
-      ],
-      cta: { label: 'Explore South Korea', href: '/study-in-south-korea' },
-      featured: true,
-    },
-    {
-      id: 'germany',
-      title: 'Work in Germany',
-      tag: 'Healthcare Careers',
-      description: 'Germany offers structured professional pathways for eligible international healthcare professionals. Our current focus includes Nurses and Physiotherapists.',
-      bullets: [
-        'Eligibility Assessment',
-        'German Language Prep',
-        'Documentation Support',
-        'Qualification Recognition',
-        'Interview Preparation',
-        'Employment Assistance',
-        'Visa Documentation',
-        'Pre-Departure Guidance',
-      ],
-      cta: { label: 'Explore Germany', href: '/work-in-germany' },
-      featured: false,
-    },
-    {
-      id: 'uae',
-      title: 'Work in UAE',
-      tag: 'Career Opportunities',
-      description: 'Dubai, Abu Dhabi and the wider UAE continue to attract professionals from around the world across multiple industries.',
-      bullets: [
-        'Healthcare',
-        'Hospitality & Hotels',
-        'Engineering',
-        'Construction',
-        'Sales & Marketing',
-        'Retail & Admin',
-        'Technical Roles',
-        'Skilled Professions',
-      ],
-      cta: { label: 'Explore UAE', href: '/work-in-uae' },
-      featured: false,
-    },
-  ],
-  notSure: {
-    headline: 'Not sure which country?',
-    description: "That's completely fine. Start with your profile — not a country.",
-    checklist: [
-      'What is your highest qualification?',
-      'Are you a student or a working professional?',
-      'Do you want to study abroad or work abroad?',
-      'Do you have a preferred country or region?',
-      'What is your approximate budget?',
-      'When are you planning to move?',
-      'Do you have any language proficiency (English, German, Korean, etc.)?',
-    ],
-    cta: 'Book Free Counselling',
-  },
-  howItWorks: {
-    eyebrow: 'How 211 OVERSEAS Works',
-    headline: 'Your Overseas Journey, Simplified',
-    steps: [
-      { number: '01', title: 'Tell Us Your Goal', description: 'Study abroad? Build an international career? Looking for a particular country? Start with a conversation.' },
-      { number: '02', title: 'Profile Assessment', description: 'We understand your education, experience, goals, budget, timeline and destination preferences.' },
-      { number: '03', title: 'Explore Your Options', description: 'Potential destinations, courses or career pathways are identified according to your profile.' },
-      { number: '04', title: 'Application & Documentation', description: 'We guide you through the applicable application and documentation requirements.' },
-      { number: '05', title: 'Admission / Career Process', description: 'You proceed through the relevant university admission or recruitment process.' },
-      { number: '06', title: 'Visa & Pre-Departure', description: 'We assist you in preparing for the applicable visa documentation and your international journey.' },
-      { number: '07', title: 'Ongoing Support', description: 'Our team stays in touch to address queries as you prepare for your move abroad.' },
-    ],
-  },
-  whyUs: {
-    eyebrow: 'Why 211 OVERSEAS?',
-    points: [
-      { title: 'Personalised Approach', description: 'Your options are based on your profile, not simply on the destination someone wants to sell you.' },
-      { title: 'Specialised Focus', description: 'Study in South Korea, Healthcare Careers in Germany, Career Opportunities in UAE — along with selected opportunities across other countries.' },
-      { title: 'End-to-End Guidance', description: 'From initial counselling to applications, documentation, visa guidance and pre-departure preparation.' },
-      { title: 'Clear Communication', description: 'We keep candidates informed regarding eligibility, process, documentation, timelines and applicable costs.' },
-      { title: 'Profile-Based Recommendations', description: 'Different students and professionals require different pathways. Our approach begins by understanding the individual.' },
-    ],
-  },
-  whoCanConnect: {
-    headline: 'Who can connect with us',
-    profiles: ['Students', 'Graduates', 'Nurses', 'Physiotherapists', 'Hospitality Professionals', 'Skilled Professionals', 'Parents'],
-  },
-  counselling: {
-    headline: 'Start Your Overseas Journey',
-    description: 'Confused about where to start? Start with your profile — not a country.',
-    questions: [
-      'What do I study abroad?',
-      'Which country suits my profile?',
-      'Can I afford it?',
-      'What are the visa requirements?',
-      'How do I start?',
-    ],
-    note: 'Limited Counselling Slots Available Each Week',
-    cta: 'Book My Free Counselling',
-  },
+
   form: {
     interests: [
       'Study in South Korea',
-      "Bachelor's in South Korea",
-      "Master's in South Korea",
-      'Korean Language Program',
-      'Study in Japan',
-      'Work in Japan (SSW & Tech)',
-      'Work in Germany – Nursing',
-      'Work in Germany – Physiotherapy',
-      'Work in Germany – Opportunity Card',
-      'Work in UAE (Healthcare, Hospitality, Engineering)',
-      'Study in United Kingdom',
-      'Work in United Kingdom (Health & Skilled)',
-      'Study in United States',
-      'Study in Canada',
-      'Study in Australia',
-      'Work in Australia (Skilled Migration)',
       'Study in Singapore',
-      'Work in Singapore (Employment Pass)',
+      'Study in Luxembourg',
+      'Study in Japan',
       'Study in Taiwan',
+      'Study in UAE',
       'Study in Europe',
-      'Other Countries (Specify)',
-      'Not Sure – Need Counselling',
+      'Study in USA',
+      'Study in Canada',
+      'Study in UK',
+      'Study in Australia',
+      'Work in UAE',
+      'Work in Greece',
+      'Other',
     ],
   },
-  // SOUTH KOREA PAGE
-  southKorea: {
-    hero: {
-      eyebrow: 'Featured Study Destination',
-      headline: 'Study in South Korea',
-      description: 'Make South Korea Your Next Destination — a distinctive combination of education, technology, research, culture and global exposure.',
+
+  navigation: {
+    stickyAction: {
+      desktop: { label: 'Get Guidance', href: '/contact' },
+      mobile: { label: 'WhatsApp', href: 'https://wa.me/919998585211' },
     },
-    whyStudy: {
-      headline: 'Why study in South Korea?',
-      points: [
-        { title: 'Globally Recognised Education', description: 'Explore universities with strong academic and research ecosystems across Seoul, Busan, Daejeon and other major hubs.' },
-        { title: 'Technology & Innovation', description: 'Study within an economy recognised globally for electronics, semiconductors, automotive technology and digital innovation.' },
-        { title: 'Future-Focused Courses', description: 'Explore programs in AI, engineering, computer science, biotechnology, game design and business.' },
-        { title: 'English-Taught Options', description: 'Selected universities offer courses and degree programs taught partly or completely in English.' },
-        { title: 'Scholarship Opportunities', description: 'Eligible international students may explore university and government scholarship opportunities.' },
-        { title: 'Gateway to Asia', description: 'Gain academic and cultural exposure within one of Asia\'s major economies. Modern infrastructure and lifestyle.' },
-        { title: 'Cultural Experience', description: 'Experience a unique blend of tradition and modernity — from K-culture to cutting-edge technology.' },
-      ],
-    },
-    universities: [
-      { name: 'Seoul National University', abbr: 'SNU', image: '/images/universities/snu.jpg', description: 'Sciences, engineering, business, humanities, social sciences and more.' },
-      { name: 'KAIST', abbr: 'KAIST', fullName: 'Korea Advanced Institute of Science & Technology', image: '/images/universities/kaist.jpg', description: 'Science, engineering, technology, CS, AI and research-driven education.' },
-      { name: 'Yonsei University', abbr: 'Yonsei', image: '/images/universities/yonsei.jpg', description: 'Business, engineering, sciences, economics, international studies.' },
-      { name: 'Korea University', abbr: 'KU', image: '/images/universities/ku.jpg', description: 'Business, economics, engineering, technology, international studies.' },
-      { name: 'POSTECH', abbr: 'POSTECH', fullName: 'Pohang University of Science and Technology', image: '/images/universities/postech.jpg', description: 'Specialised science and technology with strong engineering focus.' },
-      { name: 'SKKU', abbr: 'SKKU', fullName: 'Sungkyunkwan University', image: '/images/universities/skku.jpg', description: 'Engineering, technology, business, science, humanities.' },
-      { name: 'Hanyang University', abbr: 'Hanyang', image: '/images/universities/hanyang.jpg', description: 'Engineering, technology, business, architecture and related areas.' },
-      { name: 'UNIST', abbr: 'UNIST', fullName: 'Ulsan National Institute of Science & Technology', image: '/images/universities/unist.jpg', description: 'Engineering, AI, computer science, biotechnology, energy.' },
-      { name: 'Kyung Hee University', abbr: 'KHU', image: '/images/universities/khu.jpg', description: 'Business, hospitality, international studies, sciences.' },
-      { name: 'GIST', abbr: 'GIST', fullName: 'Gwangju Institute of Science and Technology', image: '/images/universities/gist.jpg', description: 'Science, engineering, technology and research-based education.' },
-    ],
-    courseCategories: [
+    items: [
+      { label: 'Home', href: '/' },
       {
-        name: 'Technology & Computing',
-        subcategories: [
-          { name: 'AI & Machine Learning', courses: ['Artificial Intelligence', 'Machine Learning & Deep Learning', 'Data Science', 'Robotics', 'Intelligent Systems'] },
-          { name: 'Computer Science & Software Engineering', courses: ['Software Engineering', 'Information Technology', 'Cloud Computing', 'Cybersecurity', 'Data Analytics'] },
-          { name: 'Semiconductor & Electronics', courses: ['Semiconductor Engineering', 'Electronics Engineering', 'Microelectronics', 'Materials Engineering', 'Embedded Systems'] },
+        label: 'Study',
+        href: '/study',
+        children: [
+          { label: 'South Korea (Featured)', href: '/study/south-korea' },
+          { label: 'Singapore', href: '/study/singapore' },
+          { label: 'Luxembourg', href: '/study/luxembourg' },
+          { label: 'Japan', href: '/study/japan' },
+          { label: 'Taiwan', href: '/study/taiwan' },
+          { label: 'UAE', href: '/study/uae' },
+          {
+            label: 'Other Destinations',
+            isHeader: true,
+            items: [
+              { label: 'Europe', href: '/study/europe' },
+              { label: 'USA', href: '/study/usa' },
+              { label: 'Canada', href: '/study/canada' },
+              { label: 'UK', href: '/study/uk' },
+              { label: 'Australia', href: '/study/australia' },
+            ],
+          },
         ],
       },
-      { name: 'Engineering', courses: ['Mechanical Engineering', 'Electrical Engineering', 'Civil Engineering', 'Chemical Engineering', 'Automotive Engineering'] },
-      { name: 'Business & Management', courses: ['Business Administration', 'International Business', 'Finance & Economics', 'Marketing & Entrepreneurship', 'Supply Chain Management'] },
-      { name: 'Biotechnology & Life Sciences', courses: ['Biotechnology', 'Biomedical Sciences', 'Bioengineering', 'Life Sciences', 'Healthcare Technology'] },
-      { name: 'Media & Creative', courses: ['Media & Communication', 'Film & Broadcasting', 'Animation & Game Design', 'Digital Media', 'Visual Communication'] },
-      { name: 'International Studies & Social Sciences', courses: ['International Relations', 'Global Studies', 'Political Science', 'Public Policy', 'Korean Studies'] },
-      { name: 'Hospitality & Tourism', courses: ['Hospitality Management', 'Tourism Management', 'Hotel Administration', 'Event Management', 'Food & Beverage Management'] },
-    ],
-    programs: {
-      korean: { title: 'Korean Language Programs', description: 'Foundation language programs for students planning to study in Korean-medium courses.' },
-      bachelors: { title: "Bachelor's Programs", description: 'Undergraduate degree programs across multiple disciplines at leading South Korean universities.' },
-      masters: { title: "Master's Programs", description: 'Postgraduate programs for graduates seeking advanced education and research opportunities in South Korea.' },
-    },
-    process: [
-      { number: '01', title: 'Profile Assessment', description: 'We understand your academic background, preferred course, budget, career goals, language proficiency and preferred intake.' },
-      { number: '02', title: 'Course Shortlisting', description: 'We identify suitable fields of study based on your academic background and goals.' },
-      { number: '03', title: 'University Shortlisting', description: 'Potential universities are shortlisted according to eligibility, program availability and student preferences.' },
-      { number: '04', title: 'Application Preparation', description: 'We assist with organising and preparing the required application documents.' },
-      { number: '05', title: 'University Application', description: "Applications are submitted according to the respective university's admission procedure." },
-      { number: '06', title: 'Admission Process', description: 'Students are guided through the next steps following application and admission decisions.' },
-      { number: '07', title: 'Visa Documentation', description: 'We assist students in understanding and preparing the documentation required for their visa application.' },
-      { number: '08', title: 'Pre-Departure Guidance', description: 'Students receive guidance regarding important next steps for their move to South Korea.' },
-    ],
-  },
-  // GERMANY PAGE
-  germany: {
-    hero: {
-      eyebrow: 'Healthcare Careers',
-      headline: 'Work in Germany',
-      description: 'Build Your Healthcare Career in Germany. Structured pathways for eligible nurses and physiotherapists.',
-    },
-    nurses: {
-      title: 'Nurses in Germany',
-      tag: 'Primary Focus',
-      description: 'Take your nursing career international. Qualified nurses may complete several stages depending upon their profile.',
-      steps: ['Profile Assessment', 'German Language Training', 'Documentation Support', 'Qualification Recognition', 'Career Opportunities', 'Interview Preparation', 'Visa Process', 'Pre-Departure Support'],
-      cta: 'Check Nursing Eligibility',
-    },
-    physio: {
-      title: 'Physiotherapists in Germany',
-      tag: 'Professional Pathway',
-      description: 'Explore an international physiotherapy career. Subject to eligibility, language and recognition requirements.',
-      steps: ['Eligibility Assessment', 'German Language Prep', 'Document Preparation', 'Qualification Recognition', 'Employment Exploration', 'Interview Preparation', 'Visa Documentation', 'Pre-Departure Guidance'],
-      cta: 'Check Physiotherapy Eligibility',
-    },
-  },
-  // UAE PAGE
-  uae: {
-    hero: {
-      eyebrow: 'Career Opportunities',
-      headline: 'Work in UAE',
-      description: 'The UAE attracts professionals from around the world across healthcare, hospitality, engineering, retail, construction and service industries.',
-    },
-    sectors: [
-      { name: 'Healthcare', roles: ['Nurses', 'Physiotherapists', 'Allied Healthcare Professionals', 'Other eligible healthcare roles'] },
-      { name: 'Hospitality', roles: ['Front Office', 'Guest Relations', 'F&B', 'Chefs', 'Housekeeping', 'Hotel Operations'] },
-      { name: 'Engineering & Technical', roles: ['Civil', 'Mechanical', 'Electrical', 'Technical roles', 'Skilled trades', 'Construction'] },
-      { name: 'Sales & Business', roles: ['Sales', 'Business Development', 'Retail', 'Customer Service', 'Administration', 'Marketing'] },
-    ],
-    process: [
-      { number: '01', title: 'Submit Your Profile', description: 'Share your CV, education and professional experience.' },
-      { number: '02', title: 'Profile Evaluation', description: 'Your profile is assessed against currently available opportunities.' },
-      { number: '03', title: 'Opportunity Identification', description: 'Suitable vacancies may be shared depending upon availability.' },
-      { number: '04', title: 'Interview & Documentation', description: 'Selected candidates proceed through recruitment and documentation.' },
-      { number: '05', title: 'Visa & Pre-Departure', description: 'Guidance regarding applicable visa process and travel preparation.' },
-      { number: '06', title: 'Placement Support', description: 'Assistance with onboarding and initial settlement guidance.' },
-      { number: '07', title: 'Ongoing Communication', description: 'We stay connected to support your transition into the new role.' },
-    ],
-    cta: 'Submit Your Profile',
-  },
-  // OTHER DESTINATIONS
-  otherDestinations: {
-    headline: "Your Future Doesn't Have to Be Limited to One Country",
-    description: 'Explore education and career opportunities across the world.',
-    countries: [
-      { name: 'Japan', bullets: ['Higher Education Programs', 'Technology Programs', 'Language Pathways', 'Professional Opportunities'], cta: 'Explore Japan' },
-      { name: 'Taiwan', bullets: ['Technology & Engineering', 'Business & Sciences', 'Research Programs'], cta: 'Explore Taiwan' },
-      { name: 'Singapore', bullets: ['Education Programs', 'Professional Opportunities', 'Business Hub Access'], cta: 'Explore Singapore' },
-      { name: 'Europe', bullets: ['Higher Education', 'Healthcare & Hospitality', 'Professional Careers', 'Internships'], cta: 'Explore Europe' },
-      { name: 'United Kingdom', bullets: ['Undergraduate Programs', 'Postgraduate Programs', 'Broad Range of Disciplines'] },
-      { name: 'United States', bullets: ["Bachelor's Programs", "Master's Programs", 'Specialised Education'] },
-      { name: 'Canada', bullets: ['Higher Education', 'Admission Guidance', 'Immigration Support'] },
-      { name: 'Australia', bullets: ['Undergraduate Programs', 'Postgraduate Programs', 'International Education'] },
+      {
+        label: 'Work',
+        href: '/work',
+        children: [
+          { label: 'UAE', href: '/work/uae' },
+          { label: 'Greece', href: '/work/greece' },
+          { label: 'Current Openings', href: '/work/openings' },
+        ],
+      },
+      {
+        label: 'About Us',
+        href: '/about',
+        children: [
+          { label: 'Approach', href: '/about#approach' },
+          { label: 'What we help with', href: '/about#what-we-help-with' },
+          { label: 'Enquiry', href: '/about#enquiry' },
+        ],
+      },
+      {
+        label: 'Resources',
+        href: '/resources',
+        children: [
+          { label: 'Scholarships', href: '/resources/scholarships' },
+          { label: 'Study Budget Planner', href: '/resources/cost-of-studying' },
+          { label: 'Application Guide', href: '/resources/application-guide' },
+          { label: 'FAQs', href: '/faq' },
+        ],
+      },
+      {
+        label: 'Contact Us',
+        href: '/contact',
+        children: [
+          { label: 'Study enquiry', href: '/contact#study-enquiry' },
+          { label: 'Work enquiry', href: '/contact#work-enquiry' },
+          { label: 'WhatsApp / Call', href: 'https://wa.me/919998585211', external: true },
+        ],
+      },
     ],
   },
-  // ABOUT PAGE
-  about: {
-    headline: 'About 211 OVERSEAS',
-    description: '211 OVERSEAS is an Ahmedabad-based international education and overseas career consultancy helping students and professionals explore opportunities beyond India.',
-    focus: 'Our focus is simple: Understand the candidate first. Recommend the pathway second.',
-    keyAreas: [
-      'Study in South Korea',
-      'Healthcare Careers in Germany',
-      'Career Opportunities in UAE',
-      'Selected opportunities across other countries',
-    ],
-    vision: 'To help Indian students and professionals confidently explore international opportunities through transparent and personalised guidance.',
-  },
-  // FOOTER
-  footer: {
-    disclaimer: '211 OVERSEAS is an independent overseas education and career guidance consultancy. Universities and institutions referenced on this website are provided for general informational purposes. Their inclusion does not imply affiliation, endorsement or partnership unless specifically stated. University admissions, scholarships, employment opportunities, visa approvals and immigration outcomes are determined by the respective authorities and are subject to individual eligibility.',
-    copyright: '© 211 OVERSEAS. All Rights Reserved.',
-  },
-};
 
-export type SiteContent = typeof siteContent;
+  footer: {
+    brandLine: '211 Overseas — International education and career pathways. Your Future Has No Borders.',
+    columns: {
+      study: {
+        title: 'STUDY',
+        links: [
+          { label: 'South Korea', href: '/study/south-korea' },
+          { label: 'Singapore', href: '/study/singapore' },
+          { label: 'Luxembourg', href: '/study/luxembourg' },
+          { label: 'Japan', href: '/study/japan' },
+          { label: 'Taiwan', href: '/study/taiwan' },
+          { label: 'UAE', href: '/study/uae' },
+          { label: 'Europe', href: '/study/europe' },
+          { label: 'USA', href: '/study/usa' },
+          { label: 'Canada', href: '/study/canada' },
+          { label: 'UK', href: '/study/uk' },
+          { label: 'Australia', href: '/study/australia' },
+        ],
+      },
+      work: {
+        title: 'WORK',
+        links: [
+          { label: 'UAE', href: '/work/uae' },
+          { label: 'Greece', href: '/work/greece' },
+          { label: 'Current Openings', href: '/work/openings' },
+          { label: 'Work Enquiry', href: '/contact#work-enquiry' },
+        ],
+      },
+      companyResources: {
+        title: 'COMPANY / RESOURCES',
+        links: [
+          { label: 'About Us', href: '/about' },
+          { label: 'Scholarships', href: '/resources/scholarships' },
+          { label: 'Cost Guide', href: '/resources/cost-of-studying' },
+          { label: 'FAQs', href: '/faq' },
+          { label: 'Contact', href: '/contact' },
+        ],
+        policyLinks: [
+          { label: 'Privacy Policy', href: '/privacy-policy' },
+          { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+          { label: 'Disclaimer', href: '/disclaimer' },
+          { label: 'Refund Policy', href: '/refund-policy' },
+        ],
+      },
+    },
+    disclaimer:
+      'Information on this website is provided for education and career planning. University names are listed for research and comparison and do not indicate an affiliation or representation relationship unless expressly stated. Fees, scholarships, vacancies, salaries, immigration requirements and deadlines are subject to change. Admissions, employment and visa decisions are made by the responsible institutions, employers and public authorities. Applicants should check official information and written terms before making payments or travel arrangements.',
+  },
+
+  disclaimers: {
+    general:
+      'Information on this website is provided for education and career planning. University names are listed for research and comparison and do not indicate an affiliation or representation relationship unless expressly stated. Fees, scholarships, vacancies, salaries, immigration requirements and deadlines are subject to change. Admissions, employment and visa decisions are made by the responsible institutions, employers and public authorities. Applicants should check official information and written terms before making payments or travel arrangements.',
+    privacy:
+      'By submitting this form, you agree that 211 Overseas may contact you regarding your enquiry. Personal information will be handled in accordance with the published Privacy Policy.',
+    vacancy:
+      'Vacancy details are subject to employer confirmation. Only written offers and applicable legal approvals establish actual employment terms.',
+    illustrativeUniversities:
+      'Illustrative institutions for independent research and shortlisting. University listing does not signify an affiliation or admission arrangement.',
+    uaeUniversities:
+      'These are illustrative institutions for profile-based shortlisting, not claimed 211 Overseas partners. Confirm the awarding institution, campus recognition, program accreditation and eligibility for any available agent channel before promoting a particular intake.',
+    confirmation:
+      'Thank you. Your enquiry has been received. Our team will review the information and contact you regarding the next relevant step.',
+  },
+} as const;

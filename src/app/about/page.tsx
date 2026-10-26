@@ -1,294 +1,115 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import Link from 'next/link';
-import {
-  ArrowRight,
-  Ban,
-  BadgeCheck,
-  Building2,
-  Clock,
-  Eye,
-  FileCheck2,
-  Globe2,
-  GraduationCap,
-  HeartPulse,
-  Lock,
-  MapPin,
-  Phone,
-  ScrollText,
-  type LucideIcon,
-} from 'lucide-react';
-import { siteContent } from '@/content/site';
-import { FormSection } from '@/components/sections/FormSection';
-import { CtaStrip } from '@/components/sections/CtaStrip';
-import { FaqSection } from '@/components/sections/FaqSection';
-import { SectionHeader } from '@/components/ui/SectionHeader';
-import { MobileScroller } from '@/components/ui/MobileScroller';
-import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon';
-import { whatsappLink } from '@/lib/contact';
+import { ArrowRight, CheckCircle2, Shield, Compass, BookOpen, Briefcase } from 'lucide-react';
+import { aboutContent } from '@/content/about';
+import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 
 export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    '211 OVERSEAS is an independent, Ahmedabad-based study abroad and overseas career consultancy. Meet our profile-first approach, what we promise, what we never do, and where to find us.',
+  title: aboutContent.meta.title,
+  description: aboutContent.meta.description,
 };
 
-const FOCUS: { icon: LucideIcon; title: string; text: string; href: string; image: string; alt: string }[] = [
-  {
-    icon: GraduationCap,
-    title: 'Study in South Korea',
-    text: 'English-taught bachelor’s, master’s and Korean language programs, from course matching to visa documentation.',
-    href: '/study-in-south-korea',
-    image: '/images/generated/korea-gateway.jpg',
-    alt: 'South Korean university campus grounds with international students',
-  },
-  {
-    icon: HeartPulse,
-    title: 'Healthcare careers in Germany',
-    text: 'Eligibility checks, German language preparation, qualification recognition and interview support for nurses and physiotherapists.',
-    href: '/work-in-germany',
-    image: '/images/generated/germany-healthcare.jpg',
-    alt: 'Healthcare professionals collaborating in a modern German hospital',
-  },
-  {
-    icon: Building2,
-    title: 'Careers in the UAE',
-    text: 'Guidance for healthcare, hospitality and engineering professionals exploring roles in the UAE.',
-    href: '/work-in-uae',
-    image: '/images/generated/uae-careers.jpg',
-    alt: 'Dubai skyline and modern commercial towers in the UAE',
-  },
-  {
-    icon: Globe2,
-    title: 'Other destinations',
-    text: 'Selected study pathways in Japan, Taiwan, Singapore, the UK, USA, Canada, Australia and Europe.',
-    href: '/other-destinations',
-    image: '/images/generated/global-campus.jpg',
-    alt: 'International students studying together in a modern global campus atrium',
-  },
-];
-
-const PRINCIPLES: { icon: LucideIcon; title: string; text: string }[] = [
-  { icon: BadgeCheck, title: 'Profile first, country second', text: 'We assess your academics, goals, budget and language readiness before recommending anything, so advice fits you rather than a quota.' },
-  { icon: Eye, title: 'Clear about process and costs', text: 'You get straight answers on steps, documents, timelines and likely costs before you commit to anything.' },
-  { icon: FileCheck2, title: 'Hands-on with the paperwork', text: 'Applications, documentation, recognition and visa paperwork are handled step by step, with you in the loop.' },
-  { icon: Lock, title: 'Your data stays with you', text: 'We only contact you with your consent and use your details to process your profile. Our Privacy Policy explains how.' },
-];
-
-const WE_DO = [
-  'Review your profile honestly and tell you which options are realistic',
-  'Explain eligibility, language and documentation requirements up front',
-  'Guide applications, recognition and visa paperwork from start to finish',
-  'Keep you updated at every stage, on call or WhatsApp',
-];
-const WE_NEVER = [
-  'Guarantee admission, a job offer or a visa. Those decisions belong to universities, employers and embassies',
-  'Push a country because of commissions or quotas',
-  'Ask you to submit documents that are not genuine',
-  'Share your details without your consent',
-];
-
-const POLICIES = [
-  { label: 'Privacy Policy', href: '/privacy-policy' },
-  { label: 'Terms & Conditions', href: '/terms-and-conditions' },
-  { label: 'Disclaimer', href: '/disclaimer' },
-  { label: 'Refund & Cancellation', href: '/refund-policy' },
-];
-
 export default function AboutPage() {
-  const { about, brand, howItWorks } = siteContent;
-  const phoneHref = `tel:${brand.phone.replace(/\s/g, '')}`;
+  const { hero, whatGuidesUs, whatWeHelpWith, approachInPractice, closing } = aboutContent;
 
   return (
-    <>
-      {/* Hero */}
-      <section className="pt-32 pb-12 md:pt-40 md:pb-20 border-b border-[#E6DDCC]" aria-label="About hero">
-        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-7">
-            <p className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#A33E11] font-medium mb-5">
-              <span className="h-px w-10 bg-[#A33E11]" />
-              About 211 OVERSEAS
-            </p>
-            <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1B1C1A] tracking-tight leading-[1.1] mb-5">
-              Honest guidance for students and professionals going <span className="text-[#A33E11]">abroad</span>
-            </h1>
-            <p className="text-base md:text-lg text-[#41484B] leading-relaxed">{about.description}</p>
-            <p className="mt-4 text-base text-[#41484B] leading-relaxed">
-              We are an independent consultancy, and mentioning a university or country never implies an affiliation or endorsement. Our focus is
-              simple: understand the candidate first, recommend the pathway second.
-            </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              <Link href="/contact#enquiry-form" className="btn-shine inline-flex min-h-11 items-center bg-[#A33E11] hover:bg-[#85320D] text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
-                Talk to a counsellor
-              </Link>
-              <a href="#visit" className="inline-flex min-h-11 items-center border border-[#1B1C1A] text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white px-7 text-xs uppercase tracking-widest font-medium transition-colors">
-                Visit our office
-              </a>
-            </div>
-          </div>
-          <div className="lg:col-span-5">
-            <div className="relative shrink-0 aspect-[16/10] sm:aspect-[4/3] w-full overflow-hidden bg-[#E6DDCC]/30">
-              <Image src="/images/web/graduates-square.webp" alt="Graduates celebrating together" fill priority sizes="(min-width: 1024px) 480px, 100vw" className="object-cover" />
-            </div>
-          </div>
+    <div className="bg-[#FBF8F1] min-h-screen">
+      {/* Hero Section */}
+      <section className="bg-[#00222B] text-white pt-36 pb-20 border-b border-[#E6DDCC]">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
+            {hero.eyebrow}
+          </span>
+          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+            {hero.h1}
+          </h1>
+          <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+            {hero.paragraph}
+          </p>
         </div>
       </section>
 
-      {/* Contact facts bar: the trust basics up front */}
-      <section className="bgl bgl-black text-white" aria-label="Contact details">
-        <ul className="max-w-[1280px] mx-auto px-6 py-6 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-          <li className="flex items-start gap-3">
-            <MapPin size={20} className="mt-0.5 shrink-0 text-[#FC7F4E]" aria-hidden="true" />
-            <span className="text-sm text-white/80">{brand.address}</span>
-          </li>
-          <li className="flex items-center gap-3">
-            <Phone size={20} className="shrink-0 text-[#FC7F4E]" aria-hidden="true" />
-            <a href={phoneHref} className="text-sm text-white/80 hover:text-[#FC7F4E]">{brand.phone}</a>
-          </li>
-          <li className="flex items-center gap-3">
-            <Clock size={20} className="shrink-0 text-[#FC7F4E]" aria-hidden="true" />
-            <span className="text-sm text-white/80">Mon – Sat, 10:00 AM – 7:00 PM IST</span>
-          </li>
-        </ul>
-      </section>
-
-      {/* What we promise (How we work) */}
-      <section className="py-16 md:py-24 border-b border-[#E6DDCC] bg-white" aria-label="Our principles">
+      {/* Section 1: What Guides Us (#approach) */}
+      <section id={whatGuidesUs.id} className="py-20 border-b border-[#E6DDCC] bg-white scroll-mt-24">
         <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader
-            eyebrow="How we work"
-            headline="Four promises we make to every candidate"
-            description="Our structured advisory principles ensure honest guidance, profile-first recommendations, and verified processes."
-            compact
-          />
-          <MobileScroller label="Our principles" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {PRINCIPLES.map(({ icon: Icon, title, text }, i) => (
-              <div key={title} className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] p-6 hover:border-[#A33E11] transition-all flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="flex h-11 w-11 items-center justify-center bg-[#00222B] text-white">
-                      <Icon size={20} strokeWidth={1.5} aria-hidden="true" />
-                    </span>
-                    <span className="font-serif text-xs font-bold text-[#A33E11] uppercase tracking-wider">
-                      Promise 0{i + 1}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] leading-snug">{title}</h3>
-                  <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
-                </div>
-                <div className="mt-4 pt-3 border-t border-[#E6DDCC]/60 text-[11px] text-[#A33E11] font-medium uppercase tracking-wider">
-                  Guaranteed standard
-                </div>
-              </div>
-            ))}
-          </MobileScroller>
-        </div>
-      </section>
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Core Principles
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+              {whatGuidesUs.headline}
+            </h2>
+          </div>
 
-      {/* Focus areas */}
-      <section className="py-14 md:py-24 border-b border-[#E6DDCC]" aria-label="What we do">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader eyebrow="What we do" headline="Four specialised focus areas" description={about.vision} compact />
-          <MobileScroller label="Focus areas" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {FOCUS.map(({ icon: Icon, title, text, href, image, alt }, i) => (
-              <Link
-                key={title}
-                href={href}
-                className="group flex h-full w-full flex-col justify-between border border-[#E6DDCC] bg-white p-6 transition-all hover:-translate-y-1 hover:border-[#A33E11] hover:shadow-[0_12px_30px_rgba(163,62,17,0.08)]"
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {whatGuidesUs.cards.map((card, i) => (
+              <div
+                key={card.title}
+                className="bg-[#FBF8F1] border border-[#E6DDCC] p-6 relative hover:border-[#A33E11] transition-colors"
               >
-                <div>
-                  <span className="flex items-center justify-between">
-                    <Icon size={26} strokeWidth={1.5} className="text-[#A33E11]" aria-hidden="true" />
-                    <span className="font-serif text-sm text-[#A33E11]">0{i + 1}</span>
-                  </span>
-                  <h3 className="mt-4 font-serif text-lg font-bold text-[#1B1C1A]">{title}</h3>
-                  <p className="mt-2 text-sm text-[#41484B] leading-relaxed">{text}</p>
-                </div>
-                <div className="mt-4">
-                  <div className="relative aspect-[16/10] w-full overflow-hidden rounded-[2px] border border-[#E6DDCC] bg-[#FAF8F5]">
-                    <Image
-                      src={image}
-                      alt={alt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                  </div>
-                  <span className="mt-4 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-widest font-medium text-[#A33E11]">
-                    Explore <ArrowRight size={14} className="transition-transform group-hover:translate-x-1" />
-                  </span>
-                </div>
-              </Link>
-            ))}
-          </MobileScroller>
-        </div>
-      </section>
-
-      {/* Process */}
-      <section className="bgl bgl-black py-14 md:py-24 text-white" aria-label="Our process">
-        <div className="max-w-[1280px] mx-auto px-6">
-          <SectionHeader dark eyebrow="Our process" headline="From first call to departure, in 7 steps" compact />
-          <MobileScroller dark label="Our process" desktopClassName="md:grid-cols-2 lg:grid-cols-4">
-            {howItWorks.steps.map((s) => (
-              <div key={s.number} className="h-full w-full border border-white/15 bg-white/[0.04] p-6">
-                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#A33E11] text-white text-xs font-bold">{s.number}</span>
-                <h3 className="mt-3 font-serif text-lg font-bold leading-snug">{s.title}</h3>
-                <p className="mt-2 text-sm text-white/65 leading-relaxed">{s.description}</p>
+                <span className="text-xs font-mono font-bold text-[#A33E11] block mb-3">
+                  0{i + 1}
+                </span>
+                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
+                  {card.title}
+                </h3>
+                <p className="text-sm text-[#41484B] leading-relaxed">
+                  {card.description}
+                </p>
               </div>
             ))}
-          </MobileScroller>
-        </div>
-      </section>
-
-      {/* Visit us */}
-      <section id="visit" className="bgl bgl-gray py-14 md:py-24 border-b border-[#E6DDCC] scroll-mt-24" aria-label="Visit our office">
-        <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-          <div className="lg:col-span-5">
-            <SectionHeader eyebrow="Visit us" headline="Meet the team in Ahmedabad" description="Prefer to talk in person? Book a visit and we will make time for you and your family." compact />
-            <ul className="space-y-4 text-[#1B1C1A]">
-              <li className="flex items-start gap-3"><MapPin size={20} className="mt-0.5 shrink-0 text-[#A33E11]" aria-hidden="true" />{brand.address}</li>
-              <li className="flex items-center gap-3"><Phone size={20} className="shrink-0 text-[#A33E11]" aria-hidden="true" /><a href={phoneHref} className="hover:text-[#A33E11]">{brand.phone}</a></li>
-              <li className="flex items-center gap-3"><Clock size={20} className="shrink-0 text-[#A33E11]" aria-hidden="true" />Mon – Sat, 10:00 AM – 7:00 PM IST</li>
-            </ul>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a href={whatsappLink('Hi 211 OVERSEAS, I would like to book an office visit.')} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white px-6 text-xs uppercase tracking-widest font-medium transition-colors">
-                <WhatsAppIcon size={16} /> Book a visit
-              </a>
-              <Link href="/contact" className="inline-flex min-h-11 items-center border border-[#1B1C1A] px-6 text-xs uppercase tracking-widest font-medium text-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white transition-colors">
-                Contact page
-              </Link>
-            </div>
-          </div>
-          <div className="lg:col-span-7">
-            <div className="aspect-[4/3] w-full overflow-hidden border border-[#E6DDCC] bg-[#F3EBDD]">
-              <iframe
-                title="211 OVERSEAS office location on Google Maps"
-                src={`https://www.google.com/maps?q=${encodeURIComponent(brand.address)}&output=embed`}
-                className="h-full w-full border-0"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
           </div>
         </div>
       </section>
 
-      {/* Policies */}
-      <section className="relative z-10 bg-[#FBF8F1] py-12 md:py-16 border-b border-[#E6DDCC]" aria-label="Policies and disclaimer">
+      {/* Section 2: What We Can Help With (#what-we-help-with) */}
+      <section id={whatWeHelpWith.id} className="py-20 border-b border-[#E6DDCC] bg-[#FBF8F1] scroll-mt-24">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="flex items-start gap-4">
-            <ScrollText size={26} strokeWidth={1.5} className="mt-1 shrink-0 text-[#A33E11]" aria-hidden="true" />
-            <div>
-              <h2 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">Policies you can read before you decide</h2>
-              <p className="mt-3 max-w-3xl text-sm text-[#41484B] leading-relaxed">{siteContent.footer.disclaimer}</p>
-              <ul className="mt-5 flex flex-wrap gap-3">
-                {POLICIES.map((p) => (
-                  <li key={p.href}>
-                    <Link href={p.href} className="inline-flex min-h-11 items-center border border-[#E6DDCC] bg-white px-4 text-sm text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] transition-colors">
-                      {p.label}
-                    </Link>
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Scope of Advisory
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+              {whatWeHelpWith.headline}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+            {/* Education Box */}
+            <div className="bg-white border border-[#E6DDCC] p-8 shadow-sm">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <div className="w-10 h-10 rounded-full bg-[#F3EBDD] flex items-center justify-center text-[#A33E11]">
+                  <BookOpen className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#1B1C1A]">
+                  {whatWeHelpWith.education.title}
+                </h3>
+              </div>
+              <ul className="space-y-3.5">
+                {whatWeHelpWith.education.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[#41484B]">
+                    <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Employment Box */}
+            <div className="bg-white border border-[#E6DDCC] p-8 shadow-sm">
+              <div className="flex items-center gap-3 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <div className="w-10 h-10 rounded-full bg-[#F3EBDD] flex items-center justify-center text-[#A33E11]">
+                  <Briefcase className="w-5 h-5" />
+                </div>
+                <h3 className="text-sm font-bold uppercase tracking-wider text-[#1B1C1A]">
+                  {whatWeHelpWith.employment.title}
+                </h3>
+              </div>
+              <ul className="space-y-3.5">
+                {whatWeHelpWith.employment.items.map((item) => (
+                  <li key={item} className="flex items-start gap-3 text-sm text-[#41484B]">
+                    <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
@@ -297,9 +118,77 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <FaqSection limit={4} />
-      <CtaStrip source="about" />
-      <FormSection />
-    </>
+      {/* Section 3: Our Approach in Practice */}
+      <section className="py-20 border-b border-[#E6DDCC] bg-white">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="text-center max-w-2xl mx-auto mb-14">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
+              Execution Methodology
+            </span>
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+              {approachInPractice.headline}
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {approachInPractice.steps.map((step) => (
+              <div
+                key={step.number}
+                className="bg-[#FBF8F1] border border-[#E6DDCC] p-6 relative flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3">
+                    {step.number}
+                  </span>
+                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-2">
+                    {step.title}
+                  </h3>
+                  <p className="text-sm text-[#41484B] leading-relaxed">
+                    {step.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Section 4: Enquiry / Direct Consultation (#enquiry) */}
+      <section id={closing.id} className="py-20 bg-[#FBF8F1] scroll-mt-24">
+        <div className="max-w-[1280px] mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-7 space-y-6">
+              <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block">
+                Begin The Discussion
+              </span>
+              <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1B1C1A] leading-tight">
+                Plan your international education and career pathway with confidence.
+              </h2>
+              <p className="text-base text-[#41484B] leading-relaxed">
+                Connect directly with our team in Ahmedabad for an objective review of your qualifications, goals, and destination opportunities.
+              </p>
+              <div className="flex flex-wrap items-center gap-4 pt-2">
+                <Link
+                  href={closing.ctas.primary.href}
+                  className="px-6 py-3.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {closing.ctas.primary.label}
+                </Link>
+                <Link
+                  href={closing.ctas.secondary.href}
+                  className="px-6 py-3.5 border border-[#1B1C1A] hover:bg-[#1B1C1A] hover:text-white text-[#1B1C1A] text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {closing.ctas.secondary.label}
+                </Link>
+              </div>
+            </div>
+
+            <div className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto">
+              <HomeLeadForm source="about_page_enquiry" />
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }

@@ -147,7 +147,7 @@ export function NotSureModal() {
           mobile: data.mobile,
           email: data.email,
           destination: data.preferredCountry,
-          courseOrCareer: data.message || 'Not sure where to start - Free counselling request',
+          courseOrCareer: data.message || 'Not sure where to start - Guidance request',
           consent: true,
         }),
       });
@@ -351,7 +351,7 @@ export function NotSureModal() {
                     disabled={submitting}
                     className="btn-shine w-full flex items-center justify-center gap-2 bg-[#A33E11] hover:bg-[#85320D] disabled:opacity-60 text-white text-xs uppercase tracking-widest font-semibold py-3.5 transition-colors cursor-pointer shadow-md"
                   >
-                    {submitting ? 'Submitting…' : 'Get Free Counselling'}
+                    {submitting ? 'Submitting…' : 'Request Guidance'}
                     {!submitting && <ArrowRight size={14} />}
                   </button>
                 </form>

@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/api/', '/admin'],
     },
-    sitemap: 'https://211overseas.com/sitemap.xml',
+    sitemap: 'https://www.211overseas.com/sitemap.xml',
   };
 }

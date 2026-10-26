@@ -1,235 +1,126 @@
 import Link from 'next/link';
-import { siteContent } from '@/content/site';
+import { siteContent, SHOW_VERIFIED_COMPANY_DETAILS } from '@/content/site';
 import { Logo } from './Logo';
-import { countryHref } from '@/content/subpages';
 
 export function Footer() {
+  const { brand, footer } = siteContent;
+
   return (
     <footer className="bgl bgl-black text-white border-t-4 border-[#A33E11] overflow-hidden" aria-label="Footer">
-      <div className="max-w-[1280px] mx-auto px-6 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
-          {/* Column 1: Brand */}
-          <div className="space-y-4">
-            <div>
-              <Link href="/" aria-label="211 OVERSEAS study abroad - home" className="inline-block">
-                <Logo variant="primary-white" height={56} />
-              </Link>
-              <p className="mt-3 font-serif italic text-base text-[#FC7F4E]">
-                {siteContent.brand.tagline}
-              </p>
-            </div>
-            <p className="text-sm text-white/65 leading-relaxed">
-              {siteContent.brand.description}
+      <div className="max-w-[1280px] mx-auto px-6 py-16">
+        {/* Brand Banner */}
+        <div className="pb-10 mb-12 border-b border-white/15 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+          <div>
+            <Link href="/" aria-label="211 OVERSEAS home" className="inline-block">
+              <Logo variant="primary-white" height={48} />
+            </Link>
+            <p className="mt-3 font-serif text-base text-[#FC7F4E] max-w-xl">
+              {footer.brandLine}
             </p>
-            <div className="pt-2 space-y-1 text-xs text-white/65">
-              <p>{siteContent.brand.address}</p>
-              <p>
-                Call / WhatsApp:{' '}
-                <a
-                  href={`tel:${siteContent.brand.phone.replace(/\s/g, '')}`}
-                  className="text-white underline decoration-[#A33E11] underline-offset-4 hover:text-[#FC7F4E]"
-                >
-                  {siteContent.brand.phone}
-                </a>
-              </p>
+          </div>
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 text-sm text-white/80">
+            <div>
+              <span className="block text-xs uppercase tracking-wider text-white/50">Direct Line</span>
+              <a
+                href={`tel:${brand.phone.replace(/\s/g, '')}`}
+                className="font-medium text-white hover:text-[#FC7F4E] transition-colors"
+              >
+                {brand.phone}
+              </a>
             </div>
-            {/* Contact Emails */}
-            <div className="pt-3 border-t border-white/10 space-y-2 text-xs text-white/75">
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
-                  {siteContent.brand.emails.general.label}
-                </span>
-                <a
-                  href={`mailto:${siteContent.brand.emails.general.address}`}
-                  className="text-white hover:text-[#FC7F4E] transition-colors"
-                >
-                  {siteContent.brand.emails.general.address}
-                </a>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
-                  {siteContent.brand.emails.admissions.label}
-                </span>
-                <a
-                  href={`mailto:${siteContent.brand.emails.admissions.address}`}
-                  className="text-white hover:text-[#FC7F4E] transition-colors"
-                >
-                  {siteContent.brand.emails.admissions.address}
-                </a>
-              </div>
-              <div>
-                <span className="block text-[10px] uppercase tracking-wider text-[#FC7F4E] font-medium">
-                  {siteContent.brand.emails.support.label}
-                </span>
-                <a
-                  href={`mailto:${siteContent.brand.emails.support.address}`}
-                  className="text-white hover:text-[#FC7F4E] transition-colors"
-                >
-                  {siteContent.brand.emails.support.address}
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Column 2: Study Abroad */}
-          <div>
-            <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-5">
-              Study Abroad
-            </h4>
-            <ul className="space-y-3 text-sm text-white/65" aria-label="Study abroad destinations">
-              <li>
-                <Link href="/study-in-south-korea" className="hover:text-[#FC7F4E] transition-colors">
-                  South Korea
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Japan")} className="hover:text-[#FC7F4E] transition-colors">
-                  Japan
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Taiwan")} className="hover:text-[#FC7F4E] transition-colors">
-                  Taiwan
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Singapore")} className="hover:text-[#FC7F4E] transition-colors">
-                  Singapore
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Europe")} className="hover:text-[#FC7F4E] transition-colors">
-                  Europe
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("United Kingdom")} className="hover:text-[#FC7F4E] transition-colors">
-                  United Kingdom
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("United States")} className="hover:text-[#FC7F4E] transition-colors">
-                  United States
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Canada")} className="hover:text-[#FC7F4E] transition-colors">
-                  Canada
-                </Link>
-              </li>
-              <li>
-                <Link href={countryHref("Australia")} className="hover:text-[#FC7F4E] transition-colors">
-                  Australia
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Work Abroad */}
-          <div>
-            <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-5">
-              Work Abroad
-            </h4>
-            <ul className="space-y-3 text-sm text-white/65" aria-label="Work abroad destinations">
-              <li>
-                <Link href="/work-in-germany/nurses" className="hover:text-[#FC7F4E] transition-colors">
-                  Germany – Nurses
-                </Link>
-              </li>
-              <li>
-                <Link href="/work-in-germany/physiotherapists" className="hover:text-[#FC7F4E] transition-colors">
-                  Germany – Physiotherapists
-                </Link>
-              </li>
-              <li>
-                <Link href="/work-in-uae" className="hover:text-[#FC7F4E] transition-colors">
-                  Work in UAE
-                </Link>
-              </li>
-              <li>
-                <Link href="/work-and-study" className="hover:text-[#FC7F4E] transition-colors">
-                  Work Pathways Overview
-                </Link>
-              </li>
-              <li>
-                <Link href="/work-and-study#pathways" className="hover:text-[#FC7F4E] transition-colors">
-                  UK, Japan & Singapore Work
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Quick Links */}
-          <div>
-            <h4 className="text-xs uppercase tracking-wider text-white font-semibold mb-5">
-              Navigation
-            </h4>
-            <ul className="space-y-3 text-sm text-white/65" aria-label="Quick links">
-              <li>
-                <Link href="/about" className="hover:text-[#FC7F4E] transition-colors">
-                  About Us
-                </Link>
-              </li>
-              <li>
-                <Link href="/inbound" className="hover:text-[#FC7F4E] transition-colors">
-                  Inbound Education
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#FC7F4E] transition-colors">
-                  Book Free Consultation
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-[#FC7F4E] transition-colors">
-                  Contact Information
-                </Link>
-              </li>
-              <li>
-                <a
-                  href={siteContent.brand.whatsapp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-[#FC7F4E] transition-colors"
-                >
-                  WhatsApp Support
-                </a>
-              </li>
-              <li className="pt-3 border-t border-white/15">
-                <Link href="/privacy-policy" className="text-xs hover:text-[#FC7F4E] transition-colors">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-and-conditions" className="text-xs hover:text-[#FC7F4E] transition-colors">
-                  Terms & Conditions
-                </Link>
-              </li>
-              <li>
-                <Link href="/disclaimer" className="text-xs hover:text-[#FC7F4E] transition-colors">
-                  Disclaimer
-                </Link>
-              </li>
-              <li>
-                <Link href="/refund-policy" className="text-xs hover:text-[#FC7F4E] transition-colors">
-                  Refund & Cancellation Policy
-                </Link>
-              </li>
-            </ul>
+            <a
+              href={brand.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-wider transition-colors"
+            >
+              Chat on WhatsApp →
+            </a>
           </div>
         </div>
 
-        {/* Disclaimer & Copyright */}
-        <div className="mt-16 pt-8 border-t border-white/15">
-          <p className="text-xs text-white/65 leading-relaxed max-w-4xl">
-            <strong className="text-white font-medium">Important Disclaimer:</strong>{' '}
-            {siteContent.footer.disclaimer}
+        {/* 3-Column Navigation */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-12 pb-12 border-b border-white/15">
+          {/* Column 1: Study */}
+          <div>
+            <h4 className="text-xs uppercase tracking-wider text-[#FC7F4E] font-semibold mb-5">
+              {footer.columns.study.title}
+            </h4>
+            <ul className="grid grid-cols-2 gap-y-2.5 gap-x-4 text-sm text-white/70" aria-label="Study abroad destinations">
+              {footer.columns.study.links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 2: Work */}
+          <div>
+            <h4 className="text-xs uppercase tracking-wider text-[#FC7F4E] font-semibold mb-5">
+              {footer.columns.work.title}
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/70" aria-label="Work abroad pathways">
+              {footer.columns.work.links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            {SHOW_VERIFIED_COMPANY_DETAILS && (
+              <div className="mt-8 pt-6 border-t border-white/10 text-xs text-white/60 space-y-1">
+                <p className="text-white/80 font-medium">Head Office</p>
+                <p>{brand.address}</p>
+                <p>{brand.hours}</p>
+              </div>
+            )}
+          </div>
+
+          {/* Column 3: Company / Resources */}
+          <div>
+            <h4 className="text-xs uppercase tracking-wider text-[#FC7F4E] font-semibold mb-5">
+              {footer.columns.companyResources.title}
+            </h4>
+            <ul className="space-y-2.5 text-sm text-white/70" aria-label="Company and resources">
+              {footer.columns.companyResources.links.map((link) => (
+                <li key={link.href}>
+                  <Link href={link.href} className="hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+
+            <div className="mt-6 pt-5 border-t border-white/10 flex flex-wrap gap-x-4 gap-y-2 text-xs text-white/60">
+              {footer.columns.companyResources.policyLinks.map((policy) => (
+                <Link key={policy.href} href={policy.href} className="hover:text-white transition-colors">
+                  {policy.label}
+                </Link>
+              ))}
+            </div>
+
+            {SHOW_VERIFIED_COMPANY_DETAILS && (
+              <div className="mt-6 pt-5 border-t border-white/10 text-xs text-white/60 space-y-1">
+                <p>Email: <a href={`mailto:${brand.emails.general}`} className="text-white/80 hover:text-white">{brand.emails.general}</a></p>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* General Disclaimer */}
+        <div className="mt-10">
+          <p className="text-xs text-white/55 leading-relaxed max-w-5xl">
+            <strong className="text-white/80 font-medium">Disclaimer: </strong>
+            {footer.disclaimer}
           </p>
-          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-white/65 gap-2">
-            <p>{siteContent.footer.copyright}</p>
-            <p>
-              {siteContent.brand.domain} · {siteContent.brand.city}
-            </p>
+          <div className="mt-8 flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-white/50 gap-2">
+            <p>© {new Date().getFullYear()} 211 Overseas. All rights reserved.</p>
+            <p>{brand.domain}</p>
           </div>
         </div>
       </div>
