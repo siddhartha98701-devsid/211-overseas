@@ -301,7 +301,7 @@ export function InboundCollegesInteractive() {
               Select an Institution to Inspect Campus Map &amp; Admissions
             </p>
             <p className="text-xs text-[#41484B] mt-0.5">
-              Swipe or click any institution to update the live campus dossier below
+              Select or click any institution to update the live campus dossier below
             </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">

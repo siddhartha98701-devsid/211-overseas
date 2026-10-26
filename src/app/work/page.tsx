@@ -82,9 +82,6 @@ export default function WorkOverviewPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {countryFocus.headline}
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe to explore recruitment destinations →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -156,13 +153,33 @@ export default function WorkOverviewPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {properVacancy.headline}
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe table horizontally to review details →
-            </p>
           </div>
 
-          <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            <table className="w-full min-w-[560px] text-left border-collapse">
+          {/* Mobile / Tablet Horizontal Scroll Detail Cards */}
+          <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 pb-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            {properVacancy.rows.map((row) => (
+              <div
+                key={row.detail}
+                className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-2">
+                    Transparency Standard
+                  </span>
+                  <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2.5 pb-2 border-b border-[#E6DDCC]">
+                    {row.detail}
+                  </h3>
+                  <p className="text-xs text-[#41484B] leading-relaxed">
+                    {row.whyItMatters}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop Table View */}
+          <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm">
+            <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                   <th className="py-3.5 px-6 font-semibold w-1/3">Detail</th>
@@ -196,9 +213,6 @@ export default function WorkOverviewPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {process.headline}
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe horizontally to review 5-step sequence →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

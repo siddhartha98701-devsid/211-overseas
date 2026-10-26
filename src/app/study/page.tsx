@@ -114,92 +114,59 @@ export default function StudyOverviewPage() {
             <PathGatewaySection />
           </div>
 
-          {/* Comprehensive Destination Matrix Header */}
-          <div className="border-t border-[#E6DDCC] pt-12 mb-8">
-            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
-              Comparative Destination Matrix
-            </h3>
-            <p className="text-xs sm:text-sm text-[#41484B]">
-              Quick overview of academic distinctive factors and destination-specific advisory routes.
-            </p>
-          </div>
+          {/* Comparative Destination Matrix (Desktop only, hidden on mobile per user request) */}
+          <div className="hidden md:block border-t border-[#E6DDCC] pt-12">
+            <div className="mb-8">
+              <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
+                Comparative Destination Matrix
+              </h3>
+              <p className="text-xs sm:text-sm text-[#41484B]">
+                Quick overview of academic distinctive factors and destination-specific advisory routes.
+              </p>
+            </div>
 
-          {/* Desktop Table View (hidden on small screens to prevent cramped or cut-off text) */}
-          <div className="hidden md:block overflow-x-auto border border-[#E6DDCC] shadow-sm">
-            <table className="w-full min-w-[680px] text-left border-collapse">
-              <thead>
-                <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
-                  <th className="py-4 px-6 font-semibold w-1/4">Destination</th>
-                  <th className="py-4 px-6 font-semibold">Distinctive Factor</th>
-                  <th className="py-4 px-6 font-semibold text-right">Guidance</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-[#E6DDCC] text-sm">
-                {exploreByDestination.destinations.map((d) => (
-                  <tr key={d.name} className="hover:bg-[#F3EBDD]/40 transition-colors">
-                    <td className="py-4 px-6 font-serif font-bold text-[#1B1C1A]">
-                      <div className="flex items-center gap-2.5">
-                        <CountryFlag
-                          country={d.name}
-                          width={24}
-                          height={16}
-                          className="w-[24px] h-[16px] rounded-[2px] border border-[#E6DDCC] object-cover flex-shrink-0"
-                          loading="lazy"
-                        />
-                        <span>{d.name}</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-6 text-[#41484B] leading-relaxed">
-                      {d.distinctiveFactor}
-                    </td>
-                    <td className="py-4 px-6 text-right whitespace-nowrap">
-                      <Link
-                        href={d.href}
-                        className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:underline"
-                      >
-                        <span>Explore</span>
-                        <ArrowRight size={13} />
-                      </Link>
-                    </td>
+            {/* Desktop Table View */}
+            <div className="overflow-x-auto border border-[#E6DDCC] shadow-sm">
+              <table className="w-full min-w-[680px] text-left border-collapse">
+                <thead>
+                  <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
+                    <th className="py-4 px-6 font-semibold w-1/4">Destination</th>
+                    <th className="py-4 px-6 font-semibold">Distinctive Factor</th>
+                    <th className="py-4 px-6 font-semibold text-right">Guidance</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Mobile Card View (md:hidden) so text is NEVER cut off or squished on phones/tablets */}
-          <div className="md:hidden space-y-3.5">
-            {exploreByDestination.destinations.map((d) => (
-              <div
-                key={d.name}
-                className="bg-[#FBF8F1] border border-[#E6DDCC] p-4.5 rounded-[2px] shadow-sm hover:border-[#A33E11] transition-colors"
-              >
-                <div className="flex items-center justify-between gap-3 mb-2.5 pb-2.5 border-b border-[#E6DDCC]">
-                  <div className="flex items-center gap-2.5">
-                    <CountryFlag
-                      country={d.name}
-                      width={24}
-                      height={16}
-                      className="w-[24px] h-[16px] rounded-[2px] border border-[#E6DDCC] object-cover flex-shrink-0"
-                      loading="lazy"
-                    />
-                    <h3 className="font-serif text-base font-bold text-[#1B1C1A]">
-                      {d.name}
-                    </h3>
-                  </div>
-                  <Link
-                    href={d.href}
-                    className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:underline shrink-0"
-                  >
-                    <span>Explore</span>
-                    <ArrowRight size={13} />
-                  </Link>
-                </div>
-                <p className="text-sm text-[#41484B] leading-relaxed">
-                  {d.distinctiveFactor}
-                </p>
-              </div>
-            ))}
+                </thead>
+                <tbody className="divide-y divide-[#E6DDCC] text-sm">
+                  {exploreByDestination.destinations.map((d) => (
+                    <tr key={d.name} className="hover:bg-[#F3EBDD]/40 transition-colors">
+                      <td className="py-4 px-6 font-serif font-bold text-[#1B1C1A]">
+                        <div className="flex items-center gap-2.5">
+                          <CountryFlag
+                            country={d.name}
+                            width={24}
+                            height={16}
+                            className="w-[24px] h-[16px] rounded-[2px] border border-[#E6DDCC] object-cover flex-shrink-0"
+                            loading="lazy"
+                          />
+                          <span>{d.name}</span>
+                        </div>
+                      </td>
+                      <td className="py-4 px-6 text-[#41484B] leading-relaxed">
+                        {d.distinctiveFactor}
+                      </td>
+                      <td className="py-4 px-6 text-right whitespace-nowrap">
+                        <Link
+                          href={d.href}
+                          className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:underline"
+                        >
+                          <span>Explore</span>
+                          <ArrowRight size={13} />
+                        </Link>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -214,9 +181,6 @@ export default function StudyOverviewPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {exploreByQualification.headline}
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe horizontally to explore qualifications →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -275,9 +239,6 @@ export default function StudyOverviewPage() {
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {fiveDecisions.headline}
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe horizontally to review all 5 decisions →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">

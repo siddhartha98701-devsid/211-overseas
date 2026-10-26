@@ -326,9 +326,6 @@ export default function InboundPage() {
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A]">
               Dedicated Inbound Portals
             </h2>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe horizontally to explore portals →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -484,11 +481,11 @@ export default function InboundPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {WHY_STUDY_IN_INDIA.map(({ icon: Icon, title, text, image }) => (
               <div
                 key={title}
-                className="h-full w-full border border-[#E6DDCC] bg-[#FAF8F5] overflow-hidden hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
+                className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start border border-[#E6DDCC] bg-[#FAF8F5] overflow-hidden hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group"
               >
                 <div>
                   <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
@@ -622,11 +619,11 @@ export default function InboundPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ACADEMIC_OPTIONS.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="bg-white border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start bg-white border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
@@ -658,11 +655,11 @@ export default function InboundPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {OUR_SERVICES.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
+                className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 bg-[#0C3844] text-white flex items-center justify-center mb-5">
@@ -691,11 +688,11 @@ export default function InboundPage() {
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {YOUR_JOURNEY_STEPS.map((s) => (
               <div
                 key={s.number}
-                className="border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between hover:border-[#FC7F4E]/60 transition-colors"
+                className="w-[80vw] sm:w-[280px] lg:w-full shrink-0 snap-start border border-white/15 bg-white/[0.04] p-6 flex flex-col justify-between hover:border-[#FC7F4E]/60 transition-colors"
               >
                 <div>
                   <span className="flex h-11 w-11 items-center justify-center bg-[#A33E11] text-white text-xs font-bold font-mono mb-5 shadow-sm">

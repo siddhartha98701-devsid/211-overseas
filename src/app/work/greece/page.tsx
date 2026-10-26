@@ -148,9 +148,6 @@ export default function WorkGreecePage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {rolesUnderConsideration.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to view hospitality sectors →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {/* Hotel Operations */}
@@ -219,9 +216,6 @@ export default function WorkGreecePage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {liveOpeningFields.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to view transparency fields →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {liveOpeningFields.rows.map((row) => (
@@ -246,9 +240,6 @@ export default function WorkGreecePage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {process.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to view recruitment steps →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {process.steps.map((st) => (

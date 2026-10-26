@@ -66,9 +66,6 @@ export default function ApplicationGuidePage() {
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
                 The Application Roadmap
               </h2>
-              <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-                ← Swipe horizontally to review roadmap steps →
-              </p>
             </div>
           </ScrollReveal>
 

@@ -148,9 +148,6 @@ export default function WorkUAEPage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {industries.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to explore industries →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {industries.list.map((ind) => {
@@ -191,9 +188,6 @@ export default function WorkUAEPage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {howAssessed.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to view criteria →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {howAssessed.rows.map((row) => (
@@ -218,9 +212,6 @@ export default function WorkUAEPage() {
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {understandOffer.headline}
                 </h2>
-                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
-                  ← Swipe to view standards →
-                </span>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {understandOffer.points.map((pt, i) => (

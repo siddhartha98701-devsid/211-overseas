@@ -3,7 +3,8 @@
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen, GraduationCap, Calendar } from 'lucide-react';
+import { CountryFlag } from '@/components/ui/CountryFlag';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
 import { getDestinationVisual } from '@/content/destinationVisuals';
@@ -226,14 +227,42 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
   const currentUni = selectedUni || defaultUni;
 
   const carouselRef = useRef<HTMLDivElement>(null);
-  const handleScrollRow = (direction: 'left' | 'right') => {
+  const totalUnis = data.universities.list.length;
+  const currentIdx = Math.max(0, data.universities.list.indexOf(currentUni));
+
+  const scrollToUni = (idx: number) => {
     const el = carouselRef.current;
     if (!el) return;
-    const cardWidth = (el.firstElementChild as HTMLElement)?.offsetWidth || 300;
-    el.scrollBy({
-      left: direction === 'left' ? -cardWidth - 16 : cardWidth + 16,
-      behavior: 'smooth',
-    });
+    const cards = el.querySelectorAll('[data-uni-card]');
+    if (cards[idx]) {
+      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    }
+  };
+
+  const handlePrevUni = () => {
+    const prevIdx = (currentIdx - 1 + totalUnis) % totalUnis;
+    setSelectedUni(data.universities.list[prevIdx]);
+    scrollToUni(prevIdx);
+  };
+
+  const handleNextUni = () => {
+    const nextIdx = (currentIdx + 1) % totalUnis;
+    setSelectedUni(data.universities.list[nextIdx]);
+    scrollToUni(nextIdx);
+  };
+
+  const touchStartX = useRef<number | null>(null);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartX.current === null) return;
+    const diff = touchStartX.current - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) handleNextUni();
+      else handlePrevUni();
+    }
+    touchStartX.current = null;
   };
 
   const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
@@ -362,30 +391,67 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* 1. Budget Snapshot / Cost Approach */}
             {data.budget && (
               <section aria-label="Budget Snapshot" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
-                  <Wallet className="w-5 h-5 text-[#A33E11]" />
-                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
-                    {data.budget.headline}
-                  </h2>
-                </div>
-
-                <div className="divide-y divide-[#E6DDCC]">
-                  {data.budget.items.map((item) => (
-                    <div key={item.item} className="py-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-2 text-sm">
-                      <span className="font-semibold text-[#1B1C1A] sm:w-1/3 shrink-0">
-                        {item.item}
-                      </span>
-                      <span className="text-[#41484B] sm:w-2/3">
-                        {item.indicativeInfo}
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-full bg-[#FC7F4E]/10 text-[#A33E11] flex items-center justify-center shrink-0 border border-[#FC7F4E]/30">
+                      <Wallet className="w-5 h-5" />
+                    </div>
+                    <div>
+                      <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                        {data.budget.headline}
+                      </h2>
+                      <span className="text-xs text-[#71787B] block mt-0.5">
+                        Indicative expenditure estimates for informed student planning
                       </span>
                     </div>
-                  ))}
+                  </div>
+                  <span className="hidden sm:inline-flex px-3 py-1 bg-[#FAF8F5] border border-[#E6DDCC] text-[11px] font-bold uppercase tracking-wider text-[#0C3844] rounded-[2px]">
+                    Financial Guide
+                  </span>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {data.budget.items.map((item, idx) => {
+                    const itemName = item.item.toLowerCase();
+                    const isTuition = itemName.includes('tuition') || itemName.includes('fee');
+                    const isLiving = itemName.includes('living') || itemName.includes('housing') || itemName.includes('accommodation');
+                    const isInsurance = itemName.includes('insurance') || itemName.includes('health') || itemName.includes('medical');
+
+                    return (
+                      <div
+                        key={item.item}
+                        className="bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-[2px] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-md transition-all duration-300 group"
+                      >
+                        <div>
+                          <div className="flex items-center justify-between gap-2 mb-3">
+                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 border border-[#FC7F4E]/30 px-2 py-0.5 rounded-[2px]">
+                              {isTuition ? 'Academic Fee' : isLiving ? 'Cost of Living' : isInsurance ? 'Health & Cover' : `Category ${idx + 1}`}
+                            </span>
+                            <span className="text-xs font-mono font-bold text-[#71787B]">
+                              0{idx + 1}
+                            </span>
+                          </div>
+                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                            {item.item}
+                          </h3>
+                        </div>
+                        <div className="mt-3 pt-3 border-t border-[#E6DDCC]/70 bg-white/80 p-3 rounded-[2px] border border-[#E6DDCC]">
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-1">
+                            Estimated Range
+                          </span>
+                          <p className="text-sm font-semibold text-[#00222B] leading-snug">
+                            {item.indicativeInfo}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
 
                 {data.budget.planningReference && (
-                  <div className="mt-6 pt-4 border-t border-[#E6DDCC] flex items-start gap-2.5 text-xs text-[#71787B] bg-[#FBF8F1] p-3.5 border">
-                    <AlertCircle size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                    <p>{data.budget.planningReference}</p>
+                  <div className="mt-6 pt-4 border-t border-[#E6DDCC] flex items-start gap-3 text-xs text-[#41484B] bg-[#FAF8F5] p-4 border border-[#E6DDCC] rounded-[2px]">
+                    <AlertCircle size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
+                    <p className="leading-relaxed">{data.budget.planningReference}</p>
                   </div>
                 )}
               </section>
@@ -489,7 +555,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
               </section>
             )}
 
-            {/* 3. Universities to Explore (Sliding Colleges Carousel Pattern) */}
+            {/* 3. Universities to Explore (Homepage-style Slide Showcase on Desktop & Mobile) */}
             <section aria-label="Universities to explore" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
                 <div className="flex items-center gap-2">
@@ -501,23 +567,23 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                 <div className="flex items-center gap-3 self-end sm:self-auto">
                   <span className="text-xs font-mono font-bold text-[#41484B]">
-                    {String(data.universities.list.indexOf(currentUni) + 1).padStart(2, '0')}/
-                    {String(data.universities.list.length).padStart(2, '0')}
+                    {String(currentIdx + 1).padStart(2, '0')}/
+                    {String(totalUnis).padStart(2, '0')}
                   </span>
                   <div className="flex items-center gap-1.5">
                     <button
                       type="button"
-                      onClick={() => handleScrollRow('left')}
+                      onClick={handlePrevUni}
                       className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
-                      aria-label="Previous college"
+                      aria-label="Previous university"
                     >
                       <ChevronLeft size={16} />
                     </button>
                     <button
                       type="button"
-                      onClick={() => handleScrollRow('right')}
+                      onClick={handleNextUni}
                       className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
-                      aria-label="Next college"
+                      aria-label="Next university"
                     >
                       <ChevronRight size={16} />
                     </button>
@@ -525,38 +591,102 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </div>
               </div>
 
-              {/* Dynamic Featured Campus Photography Banner */}
-              <div className="relative aspect-[21/9] sm:aspect-[24/9] w-full overflow-hidden border border-[#E6DDCC] mb-6 rounded-[2px] group bg-[#00222B]">
+              {/* Horizontal Pill Tabs Switcher (Top quick selection) */}
+              <div className="mb-6 -mx-2 px-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div className="flex gap-2 pb-1 min-w-max">
+                  {data.universities.list.map((uni, idx) => {
+                    const active = idx === currentIdx;
+                    return (
+                      <button
+                        key={uni}
+                        type="button"
+                        onClick={() => {
+                          setSelectedUni(uni);
+                          scrollToUni(idx);
+                        }}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
+                          active
+                            ? 'bg-[#00222B] text-white shadow-sm ring-1 ring-black/10'
+                            : 'bg-[#FAF8F5] text-[#1B1C1A] border border-[#E6DDCC] hover:border-[#A33E11]'
+                        }`}
+                      >
+                        <CountryFlag country={destinationName} width={14} height={10} className="rounded-xs object-cover" />
+                        <span>{uni}</span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Hero Banner with Counter and Navigation Arrows (Homepage Slide Pattern) */}
+              <div
+                className="relative aspect-[16/10] sm:aspect-[21/9] w-full rounded-2xl overflow-hidden shadow-md bg-[#00222B] touch-pan-y mb-6"
+                onTouchStart={handleTouchStart}
+                onTouchEnd={handleTouchEnd}
+              >
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentUni}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.25 }}
+                    transition={{ duration: 0.3 }}
                     className="absolute inset-0"
                   >
                     <Image
                       src={currentUniImage}
                       alt={`${currentUni} academic campus`}
                       fill
-                      sizes="(min-width: 1024px) 760px, 95vw"
-                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      priority
+                      sizes="(min-width: 1024px) 850px, 95vw"
+                      className="object-cover"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                    <div className="absolute bottom-2.5 left-3.5 right-3.5 flex items-center justify-between text-white">
-                      <span className="text-xs sm:text-sm font-serif font-bold drop-shadow-sm truncate mr-2">
-                        {currentUni}
-                      </span>
-                      <span className="text-[10px] uppercase font-mono tracking-wider text-[#FC7F4E] bg-black/50 px-2 py-0.5 rounded backdrop-blur-xs shrink-0">
-                        Academic Campus
-                      </span>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" />
                   </motion.div>
                 </AnimatePresence>
+
+                {/* Upper-Left Destination & University Overlay */}
+                <div className="absolute top-4 left-4 right-4 z-10 pointer-events-none select-none">
+                  <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-black/50 backdrop-blur-md border border-white/20 text-[10px] font-semibold uppercase tracking-wider text-[#FC7F4E] shadow-sm mb-1.5">
+                    <CountryFlag country={destinationName} width={14} height={10} className="rounded-xs" />
+                    <span>{destinationName}</span>
+                  </div>
+                  <h3 className="font-serif text-lg sm:text-2xl font-bold text-white tracking-tight drop-shadow-[0_2px_8px_rgba(0,0,0,0.85)] leading-tight max-w-[85%]">
+                    {currentUni}
+                  </h3>
+                  <p className="mt-0.5 text-[11px] sm:text-xs text-white/85 font-medium drop-shadow-[0_1px_3px_rgba(0,0,0,0.7)] line-clamp-1">
+                    Accredited international academic pathways &amp; university degrees
+                  </p>
+                </div>
+
+                {/* Bottom-Left Counter + Navigation Arrows */}
+                <div className="absolute bottom-4 left-4 z-10 flex items-center gap-3">
+                  <div className="text-white font-bold text-2xl drop-shadow-md">
+                    {String(currentIdx + 1).padStart(2, '0')}
+                    <span className="text-base font-light text-white/80">/{String(totalUnis).padStart(2, '0')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <button
+                      type="button"
+                      onClick={handlePrevUni}
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95 touch-manipulation"
+                      aria-label="Previous university"
+                    >
+                      <ChevronLeft size={18} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleNextUni}
+                      className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white text-[#1B1C1A] shadow-md flex items-center justify-center hover:bg-gray-100 transition-all cursor-pointer active:scale-95 touch-manipulation"
+                      aria-label="Next university"
+                    >
+                      <ChevronRight size={18} />
+                    </button>
+                  </div>
+                </div>
               </div>
 
-              {/* Horizontal Sliding Colleges Carousel as shown in reference showcase */}
+              {/* Sliding University Cards Carousel (Peeking next card layout matching homepage) */}
               <div className="mb-6">
                 <div className="flex items-center justify-between mb-3">
                   <p className="text-xs font-semibold uppercase tracking-wider text-[#A33E11]">
@@ -569,12 +699,12 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                 <div
                   ref={carouselRef}
-                  className="flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1 -mx-2 px-2"
+                  className="flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-3 pt-1 -mx-2 px-2"
                   style={{ scrollSnapType: 'x mandatory' }}
                   role="region"
                   aria-label="Universities carousel"
                 >
-                  {data.universities.list.map((uni) => {
+                  {data.universities.list.map((uni, idx) => {
                     const isSelected = uni === currentUni;
                     const uniKey = uni.toLowerCase().trim();
                     const uniImg = UNIVERSITY_IMAGE_MAP[uniKey] || defaultImage;
@@ -589,55 +719,81 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     return (
                       <div
                         key={uni}
-                        onClick={() => setSelectedUni(uni)}
-                        className={`w-[82vw] sm:w-[290px] md:w-[310px] shrink-0 snap-start bg-white border rounded-[4px] overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between ${
+                        data-uni-card
+                        onClick={() => {
+                          setSelectedUni(uni);
+                          scrollToUni(idx);
+                        }}
+                        className={`w-[85vw] max-w-[340px] sm:w-[320px] bg-white rounded-2xl shadow-md overflow-hidden border snap-start shrink-0 flex flex-col justify-between transition-all cursor-pointer ${
                           isSelected
-                            ? 'border-[#A33E11] ring-1 ring-[#A33E11] bg-[#FAF8F5]'
+                            ? 'border-[#A33E11] ring-2 ring-[#A33E11]/30 shadow-lg'
                             : 'border-[#E6DDCC] hover:border-[#A33E11]'
                         }`}
                       >
-                        <div>
-                          {/* Campus Header Photo with Monogram */}
-                          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
-                            <Image
-                              src={uniImg}
-                              alt={`${uni} academic campus`}
-                              fill
-                              sizes="(min-width: 768px) 310px, 85vw"
-                              className="object-cover group-hover:scale-105 transition-transform duration-500"
-                            />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-                            <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                              <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 bg-black/60 text-[#FC7F4E] backdrop-blur-xs rounded">
-                                {destinationName}
-                              </span>
-                              <span className="w-7 h-7 rounded-full bg-white/95 text-[#00222B] text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
-                                {monogram}
-                              </span>
-                            </div>
-                            <div className="absolute bottom-2 left-2.5 right-2.5 text-white">
-                              <span className="text-xs font-serif font-bold truncate block drop-shadow-sm">
-                                {uni}
-                              </span>
-                            </div>
+                        {/* 16:10 Campus Image with monogram badge */}
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 shrink-0">
+                          <Image
+                            src={uniImg}
+                            alt={`${uni} academic campus`}
+                            fill
+                            sizes="(min-width: 768px) 340px, 85vw"
+                            className="object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                          <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
+                            {monogram}
                           </div>
-
-                          {/* University Meta Details */}
-                          <div className="p-4 space-y-2">
-                            <span className="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#A33E11] bg-[#FC7F4E]/10 border border-[#FC7F4E]/30 rounded-[2px]">
-                              {isSelected ? '● Selected Campus' : 'Featured Institution'}
-                            </span>
-                            <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug line-clamp-2">
+                          <div className="absolute bottom-2.5 left-3 right-3">
+                            <span className="text-white font-serif text-sm font-bold truncate block drop-shadow-sm">
                               {uni}
-                            </h4>
-                            <p className="text-xs text-[#41484B] leading-relaxed line-clamp-2">
-                              Higher education institution offering accredited undergraduate &amp; postgraduate degrees for international students.
-                            </p>
+                            </span>
                           </div>
                         </div>
 
-                        {/* Interactive Inquire CTA */}
-                        <div className="p-4 pt-0">
+                        {/* Card Body */}
+                        <div className="p-4 pt-3 flex-1 flex flex-col justify-between gap-3">
+                          <div>
+                            {/* Flag + Destination Name */}
+                            <div className="flex items-center gap-1.5 mb-1.5">
+                              <CountryFlag country={destinationName} width={16} height={11} className="rounded-xs object-cover shrink-0" />
+                              <span className="text-[11px] font-semibold text-[#71787B] uppercase tracking-wider">{destinationName}</span>
+                            </div>
+
+                            {/* Tag pill */}
+                            <div className="mb-2">
+                              <span className={`inline-block text-[10px] font-semibold px-2.5 py-0.5 rounded-full border ${
+                                isSelected
+                                  ? 'bg-[#A33E11] text-white border-[#A33E11]'
+                                  : 'bg-[#FC7F4E]/10 text-[#A33E11] border-[#FC7F4E]/30'
+                              }`}>
+                                {isSelected ? '● Selected Campus' : 'Featured Institution'}
+                              </span>
+                            </div>
+
+                            {/* University Title */}
+                            <h4 className="font-serif text-base font-bold text-[#1B1C1A] leading-snug line-clamp-2">
+                              {uni}
+                            </h4>
+
+                            {/* Description */}
+                            <p className="mt-1.5 text-xs text-[#41484B] leading-relaxed line-clamp-2">
+                              Higher education institution offering accredited undergraduate &amp; postgraduate degrees for international students.
+                            </p>
+
+                            {/* Degree & Duration */}
+                            <div className="mt-3 pt-2.5 border-t border-[#E6DDCC]/60 space-y-1.5 text-xs text-[#41484B]">
+                              <div className="flex items-center gap-1.5">
+                                <GraduationCap size={14} className="text-[#0C3844] shrink-0" />
+                                <span>Undergraduate &amp; Postgraduate</span>
+                              </div>
+                              <div className="flex items-center gap-1.5">
+                                <Calendar size={14} className="text-[#41484B] shrink-0" />
+                                <span>3 - 4 Years | International Cohort</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          {/* CTA Button */}
                           <button
                             type="button"
                             onClick={(e) => {
@@ -646,10 +802,10 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                               const formEl = document.getElementById('destination-lead-form') || document.querySelector('form');
                               if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
                             }}
-                            className={`w-full py-2.5 px-3 text-xs font-semibold uppercase tracking-wider text-center transition-colors rounded-[2px] cursor-pointer inline-flex items-center justify-center gap-1.5 ${
+                            className={`w-full text-xs font-bold uppercase tracking-wider py-2.5 rounded-xl text-center transition-colors cursor-pointer shadow-xs active:scale-98 inline-flex items-center justify-center gap-1.5 ${
                               isSelected
-                                ? 'bg-[#A33E11] hover:bg-[#85320D] text-white shadow-xs'
-                                : 'bg-[#FBF8F1] hover:bg-[#A33E11] text-[#1B1C1A] hover:text-white border border-[#E6DDCC]'
+                                ? 'bg-[#A33E11] hover:bg-[#85320D] text-white'
+                                : 'bg-[#FAF8F5] hover:bg-[#A33E11] text-[#1B1C1A] hover:text-white border border-[#E6DDCC]'
                             }`}
                           >
                             <span>Inquire for {monogram || 'Uni'}</span>
@@ -664,7 +820,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
               {/* Quick-Select University Pills */}
               <div className="flex flex-wrap gap-2 pt-4 border-t border-[#E6DDCC]/60">
-                {data.universities.list.map((uni) => {
+                {data.universities.list.map((uni, idx) => {
                   const isSelected = uni === currentUni;
                   return (
                     <button
@@ -672,7 +828,10 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                       type="button"
                       role="tab"
                       aria-selected={isSelected}
-                      onClick={() => setSelectedUni(uni)}
+                      onClick={() => {
+                        setSelectedUni(uni);
+                        scrollToUni(idx);
+                      }}
                       className={`px-3 py-1.5 text-center text-xs font-semibold rounded-[2px] transition-all cursor-pointer ${
                         isSelected
                           ? 'bg-[#A33E11] border border-[#A33E11] text-white shadow-xs font-bold scale-[1.02]'
@@ -696,15 +855,20 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.chooseYourRoute.headline}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {data.chooseYourRoute.routes.map((route) => (
-                    <div key={route.title} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1.5">
-                        {route.title}
-                      </h3>
-                      <p className="text-xs text-[#41484B] leading-relaxed">
-                        {route.description}
-                      </p>
+                    <div
+                      key={route.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    >
+                      <div>
+                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1.5">
+                          {route.title}
+                        </h3>
+                        <p className="text-xs text-[#41484B] leading-relaxed">
+                          {route.description}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -716,7 +880,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.chooseByCourse.headline}
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {data.chooseByCourse.steps.map((st) => (
                     <div key={st.number} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
                       <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
@@ -831,11 +995,14 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                   {data.scholarships.headline}
                 </h2>
-                <div className="space-y-3">
+                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                   {data.scholarships.items.map((item, i) => (
-                    <div key={i} className="flex items-start gap-2.5 p-3.5 bg-[#FBF8F1] border border-[#E6DDCC]">
+                    <div
+                      key={i}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start flex items-start gap-2.5 p-4 bg-[#FBF8F1] border border-[#E6DDCC]"
+                    >
                       <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                      <span className="text-sm text-[#41484B]">{item}</span>
+                      <span className="text-sm text-[#41484B] leading-relaxed">{item}</span>
                     </div>
                   ))}
                 </div>

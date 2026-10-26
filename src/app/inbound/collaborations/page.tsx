@@ -183,9 +183,6 @@ export default function InboundCollaborationsPage() {
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
               Tailored institutional engagement frameworks designed to enhance your university’s global footprint, research output, and international student mobility.
             </p>
-            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
-              ← Swipe horizontally to review engagement models →
-            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
