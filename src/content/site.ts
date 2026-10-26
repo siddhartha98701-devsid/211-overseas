@@ -43,6 +43,7 @@ export const siteContent = {
       'Study in Australia',
       'Work in UAE',
       'Work in Greece',
+      'Inbound Programs & Research',
       'Other',
     ],
   },
@@ -85,6 +86,10 @@ export const siteContent = {
           { label: 'Greece', href: '/work/greece' },
           { label: 'Current Openings', href: '/work/openings' },
         ],
+      },
+      {
+        label: 'Inbound',
+        href: '/inbound',
       },
       {
         label: 'About Us',
@@ -134,6 +139,7 @@ export const siteContent = {
           { label: 'Canada', href: '/study/canada' },
           { label: 'UK', href: '/study/uk' },
           { label: 'Australia', href: '/study/australia' },
+          { label: 'Inbound India', href: '/inbound' },
         ],
       },
       work: {

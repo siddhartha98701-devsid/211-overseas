@@ -15,10 +15,6 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // Retired Inbound route
-      { source: '/inbound', destination: '/', permanent: true },
-      { source: '/inbound/:path*', destination: '/', permanent: true },
-
       // Retired Germany routes
       { source: '/work-in-germany', destination: '/work', permanent: true },
       { source: '/work-in-germany/:path*', destination: '/work', permanent: true },

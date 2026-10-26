@@ -21,6 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/work/uae',
     '/work/greece',
     '/work/openings',
+    '/inbound',
     '/about',
     '/resources',
     '/resources/scholarships',
