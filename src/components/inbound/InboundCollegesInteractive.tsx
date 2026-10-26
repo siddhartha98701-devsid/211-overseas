@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useMemo, useRef } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import {
   MapPin,
@@ -39,6 +39,18 @@ export function InboundCollegesInteractive() {
   const [selectedRegion, setSelectedRegion] = useState<string>('All India');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [mapMode, setMapMode] = useState<'standard' | 'satellite'>('standard');
+
+  // Support direct deep-linking from academic disciplines or external query parameters
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const params = new URLSearchParams(window.location.search);
+    const cat = params.get('category');
+    if (cat && (CATEGORIES as readonly string[]).includes(cat)) {
+      setSelectedCategory(cat);
+      const match = INBOUND_COLLEGES.find((c) => c.category === cat);
+      if (match) setSelectedId(match.id);
+    }
+  }, []);
 
   // Filtered colleges
   const filteredColleges = useMemo(() => {

@@ -818,33 +818,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </div>
               </div>
 
-              {/* Quick-Select University Pills */}
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-[#E6DDCC]/60">
-                {data.universities.list.map((uni, idx) => {
-                  const isSelected = uni === currentUni;
-                  return (
-                    <button
-                      key={uni}
-                      type="button"
-                      role="tab"
-                      aria-selected={isSelected}
-                      onClick={() => {
-                        setSelectedUni(uni);
-                        scrollToUni(idx);
-                      }}
-                      className={`px-3 py-1.5 text-center text-xs font-semibold rounded-[2px] transition-all cursor-pointer ${
-                        isSelected
-                          ? 'bg-[#A33E11] border border-[#A33E11] text-white shadow-xs font-bold scale-[1.02]'
-                          : 'bg-[#FBF8F1] border border-[#E6DDCC] text-[#1B1C1A] hover:border-[#A33E11] hover:bg-white'
-                      }`}
-                    >
-                      {uni}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <p className="text-xs text-[#71787B] mt-6 italic pt-4 border-t border-[#E6DDCC]">
+              <p className="text-xs text-[#71787B] mt-4 italic pt-4 border-t border-[#E6DDCC]">
                 {data.universities.disclaimer}
               </p>
             </section>

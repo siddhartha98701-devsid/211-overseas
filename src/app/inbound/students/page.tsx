@@ -117,17 +117,6 @@ export default function InboundStudentsPage() {
             <span className="text-[#FC7F4E] font-semibold">For Students</span>
           </nav>
 
-          {/* Audience Switcher Banner */}
-          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/10 border border-white/15 backdrop-blur-sm text-xs mb-6">
-            <span className="flex h-2 w-2 rounded-full bg-[#FC7F4E]" />
-            <span className="font-semibold text-white">Student Admissions Portal</span>
-            <span className="text-white/40">|</span>
-            <Link href="/inbound/collaborations" className="text-[#FC7F4E] hover:underline font-medium inline-flex items-center gap-1">
-              <span>Looking for College Collaborations? Visit Institutional Desk</span>
-              <ArrowRight size={13} />
-            </Link>
-          </div>
-
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
             <div className="lg:col-span-7">
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08] mb-6">
@@ -296,8 +285,8 @@ export default function InboundStudentsPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
                 <Image
                   src="/images/inbound/indian-campus-library.jpg"
@@ -319,7 +308,7 @@ export default function InboundStudentsPage() {
               </div>
             </div>
 
-            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+            <div className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
                 <Image
                   src="/images/inbound/indian-campus-lab.jpg"
@@ -341,7 +330,7 @@ export default function InboundStudentsPage() {
               </div>
             </div>
 
-            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+            <div className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
                 <Image
                   src="/images/inbound/mahe-manipal.jpg"
@@ -363,7 +352,7 @@ export default function InboundStudentsPage() {
               </div>
             </div>
 
-            <div className="bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
+            <div className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden group shadow-xs">
               <div className="relative aspect-[16/11] w-full overflow-hidden bg-[#00222B]">
                 <Image
                   src="/images/inbound/bhu-varanasi.jpg"
@@ -436,16 +425,18 @@ export default function InboundStudentsPage() {
             </div>
           </div>
 
-          <div className="lg:col-span-7 space-y-4">
+          <div className="lg:col-span-7 flex overflow-x-auto snap-x snap-mandatory lg:space-y-4 lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {SCHOLARSHIP_ROUTES.map((sch) => (
-              <div key={sch.name} className="bg-[#FAF8F5] border border-[#E6DDCC] p-6">
-                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1.5 flex items-center gap-2">
-                  <Wallet size={18} className="text-[#A33E11]" />
-                  <span>{sch.name}</span>
-                </h3>
-                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                  {sch.scope}
-                </p>
+              <div key={sch.name} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-6 flex flex-col justify-between">
+                <div>
+                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1.5 flex items-center gap-2">
+                    <Wallet size={18} className="text-[#A33E11] shrink-0" />
+                    <span>{sch.name}</span>
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                    {sch.scope}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

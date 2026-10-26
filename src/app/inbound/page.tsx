@@ -620,20 +620,39 @@ export default function InboundPage() {
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {ACADEMIC_OPTIONS.map(({ icon: Icon, title, text }) => (
-              <div
-                key={title}
-                className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start bg-white border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5">
-                    <Icon size={22} aria-hidden="true" />
+            {ACADEMIC_OPTIONS.map(({ icon: Icon, title, text }) => {
+              const categoryQuery =
+                title === 'Engineering & Technology'
+                  ? 'Engineering & Technology'
+                  : title === 'Healthcare & Allied Sciences'
+                  ? 'Medicine & Clinical'
+                  : title === 'Sciences & Humanities'
+                  ? 'Science & Research'
+                  : 'Management & Arts';
+
+              return (
+                <Link
+                  key={title}
+                  href={`/inbound/students?category=${encodeURIComponent(categoryQuery)}#colleges`}
+                  className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start bg-white border border-[#E6DDCC] p-7 hover:border-[#A33E11] hover:shadow-lg transition-all duration-300 flex flex-col justify-between group cursor-pointer"
+                >
+                  <div>
+                    <div className="w-12 h-12 bg-[#F3EBDD] text-[#A33E11] flex items-center justify-center mb-5 group-hover:scale-105 transition-transform">
+                      <Icon size={22} aria-hidden="true" />
+                    </div>
+                    <div className="flex items-center justify-between gap-2 mb-3">
+                      <h3 className="font-serif text-xl font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors">{title}</h3>
+                      <ArrowRight size={16} className="text-[#A33E11] opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all shrink-0" />
+                    </div>
+                    <p className="text-sm text-[#41484B] leading-relaxed mb-4">{text}</p>
                   </div>
-                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">{title}</h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed">{text}</p>
-                </div>
-              </div>
-            ))}
+                  <div className="pt-4 border-t border-[#E6DDCC]/60 flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-[#A33E11]">
+                    <span>Explore Colleges in {title}</span>
+                    <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -790,11 +809,11 @@ export default function InboundPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 mb-12 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {INSTITUTION_CARDS.map(({ icon: Icon, title, text }) => (
               <div
                 key={title}
-                className="bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] transition-all flex flex-col justify-between"
+                className="w-[82vw] sm:w-[320px] lg:w-full shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-7 hover:border-[#A33E11] transition-all flex flex-col justify-between"
               >
                 <div>
                   <div className="w-12 h-12 bg-[#0C3844] text-white flex items-center justify-center mb-5">

@@ -167,7 +167,7 @@ export function AboutView() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {whatGuidesUs.cards.map((card, i) => (
               <motion.div
                 key={card.title}
@@ -176,7 +176,7 @@ export function AboutView() {
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.55, delay: i * 0.1 }}
                 whileHover={{ y: -6 }}
-                className="group relative bg-[#FBF8F1] border border-[#E6DDCC] p-7 transition-all duration-300 hover:border-[#A33E11] hover:shadow-xl flex flex-col justify-between overflow-hidden"
+                className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start group relative bg-[#FBF8F1] border border-[#E6DDCC] p-7 transition-all duration-300 hover:border-[#A33E11] hover:shadow-xl flex flex-col justify-between overflow-hidden"
               >
                 {/* Expanding Top Accent Bar */}
                 <div className="absolute top-0 left-0 h-1 w-10 bg-[#A33E11] group-hover:w-full transition-all duration-500" />
@@ -251,7 +251,7 @@ export function AboutView() {
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 gap-6 md:gap-8 lg:gap-12 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {/* Education Box */}
             <motion.div
               initial={{ opacity: 0, x: -24 }}
@@ -259,7 +259,7 @@ export function AboutView() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
+              className="w-[86vw] sm:w-[420px] md:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
             >
               <div className="relative aspect-[21/9] w-full overflow-hidden rounded-[2px] mb-6 border border-[#E6DDCC]">
                 <Image
@@ -312,7 +312,7 @@ export function AboutView() {
               viewport={{ once: true, margin: '-50px' }}
               transition={{ duration: 0.6 }}
               whileHover={{ y: -4 }}
-              className="bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
+              className="w-[86vw] sm:w-[420px] md:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-8 md:p-10 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative overflow-hidden group"
             >
               <div className="relative aspect-[21/9] w-full overflow-hidden rounded-[2px] mb-6 border border-[#E6DDCC]">
                 <Image
@@ -399,7 +399,7 @@ export function AboutView() {
               className="hidden lg:block absolute top-1/2 -translate-y-8 left-12 right-12 h-[2px] bg-gradient-to-r from-[#A33E11]/20 via-[#A33E11]/60 to-[#FC7F4E]/30 z-0 pointer-events-none"
             />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
+            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 relative z-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
               {approachInPractice.steps.map((step, idx) => (
                 <motion.div
                   key={step.number}
@@ -408,7 +408,7 @@ export function AboutView() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: idx * 0.12 }}
                   whileHover={{ y: -6 }}
-                  className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 relative flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
+                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-7 relative flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
                 >
                   <div>
                     <div className="flex items-center justify-between mb-5">
