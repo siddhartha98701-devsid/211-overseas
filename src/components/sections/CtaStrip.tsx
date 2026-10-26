@@ -49,7 +49,7 @@ export function CtaStrip({
   ];
 
   return (
-    <section className="bgl bgl-black text-white" aria-label="Talk to a counsellor">
+    <section className="relative bg-[#00222B] text-white" aria-label="Talk to a counsellor">
       <div className="max-w-[1280px] mx-auto px-6 py-12 md:py-16">
         <div className="max-w-2xl">
           <p className="text-xs uppercase tracking-[0.25em] font-medium text-[#FC7F4E]">Direct Consultation</p>
