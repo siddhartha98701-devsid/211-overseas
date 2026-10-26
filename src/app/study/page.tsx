@@ -294,7 +294,7 @@ export default function StudyOverviewPage() {
               </div>
             </div>
 
-            <div className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto">
+            <div id="shortlist-form" className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto scroll-mt-24">
               <HomeLeadForm source="study_overview_page" />
             </div>
           </div>

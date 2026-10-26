@@ -11,8 +11,11 @@ interface ContactFormsProps {
 export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
   const [activeTab, setActiveTab] = useState<'study' | 'work' | 'collaboration'>(() => {
     if (typeof window !== 'undefined') {
-      if (window.location.hash === '#work-enquiry') return 'work';
-      if (window.location.hash === '#collaboration-enquiry') return 'collaboration';
+      const h = window.location.hash;
+      const s = window.location.search;
+      if (h === '#work-enquiry' || s.includes('intent=work')) return 'work';
+      if (h === '#collaboration-enquiry' || s.includes('intent=collaboration')) return 'collaboration';
+      if (h === '#study-enquiry' || s.includes('intent=study')) return 'study';
     }
     return initialTab;
   });
@@ -20,11 +23,12 @@ export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
   useEffect(() => {
     const handleHash = () => {
       const hash = window.location.hash;
-      if (hash === '#work-enquiry') {
+      const search = window.location.search;
+      if (hash === '#work-enquiry' || search.includes('intent=work')) {
         setActiveTab('work');
-      } else if (hash === '#study-enquiry') {
+      } else if (hash === '#study-enquiry' || search.includes('intent=study')) {
         setActiveTab('study');
-      } else if (hash === '#collaboration-enquiry') {
+      } else if (hash === '#collaboration-enquiry' || search.includes('intent=collaboration')) {
         setActiveTab('collaboration');
       }
     };

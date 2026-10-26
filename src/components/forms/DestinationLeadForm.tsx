@@ -93,8 +93,9 @@ export function DestinationLeadForm({ destination, className = '' }: Destination
 
   return (
     <form
+      id="destination-lead-form"
       onSubmit={handleSubmit}
-      className={`bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-[0_16px_32px_rgba(0,34,43,0.06)] flex flex-col gap-4 text-left ${className}`}
+      className={`bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-[0_16px_32px_rgba(0,34,43,0.06)] flex flex-col gap-4 text-left scroll-mt-28 ${className}`}
     >
       <div>
         <div className="inline-block px-2.5 py-1 bg-[#F3EBDD] text-[#A33E11] text-[11px] font-semibold uppercase tracking-wider mb-2">

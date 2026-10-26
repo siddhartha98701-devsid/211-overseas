@@ -48,6 +48,6 @@ export const FAQS: Faq[] = [
   {
     q: 'Do you help with destinations other than South Korea?',
     a: 'Yes — we also guide on healthcare careers in Germany, career opportunities in the UAE and selected opportunities in other countries.',
-    link: { label: 'Explore other destinations', href: '/other-destinations' },
+    link: { label: 'Explore other destinations', href: '/study' },
   },
 ];
