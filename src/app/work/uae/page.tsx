@@ -5,6 +5,7 @@ import { ShieldCheck } from 'lucide-react';
 import { workUaeContent } from '@/content/work/uae';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
+import { CollapsibleFaqList } from '@/components/ui/CollapsibleFaqList';
 
 export const metadata: Metadata = {
   title: workUaeContent.meta.title,
@@ -143,14 +144,22 @@ export default function WorkUAEPage() {
           <div className="lg:col-span-8 space-y-16">
             {/* 1. Industries to Explore */}
             <section aria-label="Industries" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {industries.headline}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {industries.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to explore industries →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {industries.list.map((ind) => {
                   const img = UAE_INDUSTRY_IMAGES[ind.title];
                   return (
-                    <div key={ind.title} className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-colors">
+                    <div
+                      key={ind.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-colors"
+                    >
                       {img && (
                         <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                           <Image
@@ -178,12 +187,20 @@ export default function WorkUAEPage() {
 
             {/* 2. Candidate Assessment Before Applying */}
             <section aria-label="Candidate Assessment" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {howAssessed.headline}
-              </h2>
-              <div className="divide-y divide-[#E6DDCC]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {howAssessed.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to view criteria →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {howAssessed.rows.map((row) => (
-                  <div key={row.criterion} className="py-3.5 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm">
+                  <div
+                    key={row.criterion}
+                    className="w-[80vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] lg:bg-transparent border border-[#E6DDCC] lg:border-0 p-4 lg:p-0 lg:py-3.5 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm"
+                  >
                     <span className="font-semibold text-[#1B1C1A] sm:w-1/3 shrink-0">
                       {row.criterion}
                     </span>
@@ -197,12 +214,20 @@ export default function WorkUAEPage() {
 
             {/* 3. Understand Your UAE Offer */}
             <section aria-label="Offer Standards" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {understandOffer.headline}
-              </h2>
-              <div className="space-y-3">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {understandOffer.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to view standards →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {understandOffer.points.map((pt, i) => (
-                  <div key={i} className="p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5">
+                  <div
+                    key={i}
+                    className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                  >
                     <ShieldCheck size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
                     <p className="text-sm text-[#41484B] leading-relaxed">{pt}</p>
                   </div>
@@ -210,23 +235,12 @@ export default function WorkUAEPage() {
               </div>
             </section>
 
-            {/* 4. FAQs */}
+            {/* 4. FAQs (Collapsible Animated Accordion) */}
             <section aria-label="UAE FAQs" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
               <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                 {faqs.headline}
               </h2>
-              <div className="space-y-3">
-                {faqs.items.map((item, idx) => (
-                  <div key={idx} className="border border-[#E6DDCC] bg-[#FBF8F1] p-5">
-                    <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2">
-                      {item.q}
-                    </h3>
-                    <p className="text-sm text-[#41484B] leading-relaxed">
-                      {item.a}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <CollapsibleFaqList items={faqs.items} />
             </section>
           </div>
 

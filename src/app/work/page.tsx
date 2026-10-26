@@ -75,16 +75,19 @@ export default function WorkOverviewPage() {
       {/* Country Focus: UAE and Greece */}
       <section className="py-20 border-b border-[#E6DDCC] bg-white">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Recruitment Destinations
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {countryFocus.headline}
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe to explore recruitment destinations →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {countryFocus.countries.map((c) => {
               const countryImg =
                 c.name === 'UAE'
@@ -94,7 +97,7 @@ export default function WorkOverviewPage() {
               return (
                 <div
                   key={c.name}
-                  className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-colors"
+                  className="w-[86vw] sm:w-[420px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-colors"
                 >
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                     <Image
@@ -146,17 +149,20 @@ export default function WorkOverviewPage() {
       {/* What a Proper Vacancy Should Tell You */}
       <section className="py-20 border-b border-[#E6DDCC] bg-[#FBF8F1]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Transparency Standards
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {properVacancy.headline}
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe table horizontally to review details →
+            </p>
           </div>
 
-          <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm">
-            <table className="w-full text-left border-collapse">
+          <div className="overflow-x-auto border border-[#E6DDCC] bg-white shadow-sm -mx-6 px-6 sm:mx-0 sm:px-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <table className="w-full min-w-[560px] text-left border-collapse">
               <thead>
                 <tr className="bg-[#00222B] text-white text-xs uppercase tracking-wider">
                   <th className="py-3.5 px-6 font-semibold w-1/3">Detail</th>
@@ -183,18 +189,24 @@ export default function WorkOverviewPage() {
       {/* From Enquiry to Joining (5 Steps) */}
       <section className="py-20 border-b border-[#E6DDCC] bg-white">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Recruitment Sequence
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {process.headline}
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to review 5-step sequence →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-5">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {process.steps.map((st) => (
-              <div key={st.number} className="bg-[#FBF8F1] border border-[#E6DDCC] p-5 flex flex-col justify-between">
+              <div
+                key={st.number}
+                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-5 flex flex-col justify-between"
+              >
                 <div>
                   <span className="text-2xl font-serif font-bold text-[#A33E11] block mb-2">
                     {st.number}

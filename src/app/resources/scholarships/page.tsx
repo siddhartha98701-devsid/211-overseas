@@ -128,7 +128,7 @@ export default function ScholarshipsPage() {
       <section className="py-24 border-b border-[#E6DDCC] bg-white relative overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-6 relative z-10">
           <ScrollReveal>
-            <div className="text-center max-w-2xl mx-auto mb-14">
+            <div className="text-center max-w-2xl mx-auto mb-10">
               <div className="inline-flex items-center justify-center gap-2 mb-3">
                 <ColorContrastLeafPair />
                 <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11]">
@@ -138,12 +138,15 @@ export default function ScholarshipsPage() {
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
                 {beforeRelying.headline}
               </h2>
+              <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+                ← Swipe horizontally to review planning steps →
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {beforeRelying.steps.map((st, idx) => (
-              <ScrollReveal key={st.number} delay={idx * 0.1}>
+              <ScrollReveal key={st.number} delay={idx * 0.1} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
                 <div className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 h-full group">
                   <div>
                     <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3 group-hover:scale-105 transition-transform">

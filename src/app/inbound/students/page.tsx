@@ -192,7 +192,7 @@ export default function InboundStudentsPage() {
       {/* Key Academic Disciplines */}
       <section className="py-16 md:py-24 border-b border-[#E6DDCC]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-8">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Academic Horizons
             </span>
@@ -202,13 +202,19 @@ export default function InboundStudentsPage() {
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
               Explore undergraduate, postgraduate, and doctoral degree pathways across premier disciplines accredited by UGC, AICTE, and statutory councils.
             </p>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to explore study fields →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {DISCIPLINES.map((d) => {
               const Icon = d.icon;
               return (
-                <div key={d.title} className="bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group">
+                <div
+                  key={d.title}
+                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
+                >
                   <div>
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                       <Image
@@ -243,7 +249,7 @@ export default function InboundStudentsPage() {
       {/* 4-Step Student Admission Journey */}
       <section className="py-16 md:py-24 bg-white border-b border-[#E6DDCC]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-8">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Step-by-Step Roadmap
             </span>
@@ -253,20 +259,28 @@ export default function InboundStudentsPage() {
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
               Transparent, professional advisory that simplifies university applications, documentation verification, and campus onboarding.
             </p>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to review admission steps →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {ADMISSION_STEPS.map((s) => (
-              <div key={s.step} className="border border-[#E6DDCC] bg-[#FAF8F5] p-6 relative">
-                <span className="font-serif text-3xl font-bold text-[#A33E11] block mb-3">
-                  {s.step}
-                </span>
-                <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
-                  {s.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                  {s.desc}
-                </p>
+              <div
+                key={s.step}
+                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start border border-[#E6DDCC] bg-[#FAF8F5] p-6 relative flex flex-col justify-between"
+              >
+                <div>
+                  <span className="font-serif text-3xl font-bold text-[#A33E11] block mb-3">
+                    {s.step}
+                  </span>
+                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2">
+                    {s.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

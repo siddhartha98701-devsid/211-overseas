@@ -5,6 +5,7 @@ import { CheckCircle2, Utensils, Hotel, ShieldAlert } from 'lucide-react';
 import { workGreeceContent } from '@/content/work/greece';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
+import { CollapsibleFaqList } from '@/components/ui/CollapsibleFaqList';
 
 export const metadata: Metadata = {
   title: workGreeceContent.meta.title,
@@ -143,12 +144,17 @@ export default function WorkGreecePage() {
           <div className="lg:col-span-8 space-y-16">
             {/* 1. Roles Under Consideration */}
             <section aria-label="Roles" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {rolesUnderConsideration.headline}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {rolesUnderConsideration.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to view hospitality sectors →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {/* Hotel Operations */}
-                <div className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden group">
+                <div className="w-[85vw] sm:w-[350px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden group">
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                     <Image
                       src="/images/greece/greece-resort.jpg"
@@ -177,7 +183,7 @@ export default function WorkGreecePage() {
                 </div>
 
                 {/* Food & Beverage */}
-                <div className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden group">
+                <div className="w-[85vw] sm:w-[350px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden group">
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                     <Image
                       src="/images/greece/greece-culinary.jpg"
@@ -209,12 +215,20 @@ export default function WorkGreecePage() {
 
             {/* 2. Candidate Transparency Fields (8 Fields) */}
             <section aria-label="Transparency Fields" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {liveOpeningFields.headline}
-              </h2>
-              <div className="divide-y divide-[#E6DDCC]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {liveOpeningFields.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to view transparency fields →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {liveOpeningFields.rows.map((row) => (
-                  <div key={row.field} className="py-3 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm">
+                  <div
+                    key={row.field}
+                    className="w-[80vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] lg:bg-transparent border border-[#E6DDCC] lg:border-0 p-4 lg:p-0 lg:py-3 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm"
+                  >
                     <span className="font-semibold text-[#1B1C1A] sm:w-1/3 shrink-0">
                       {row.field}
                     </span>
@@ -228,21 +242,31 @@ export default function WorkGreecePage() {
 
             {/* 3. Recruitment Process */}
             <section aria-label="Process" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                {process.headline}
-              </h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
+                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                  {process.headline}
+                </h2>
+                <span className="lg:hidden text-xs text-[#A33E11] font-semibold">
+                  ← Swipe to view recruitment steps →
+                </span>
+              </div>
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
                 {process.steps.map((st) => (
-                  <div key={st.number} className="p-4 bg-[#FBF8F1] border border-[#E6DDCC]">
-                    <span className="text-xl font-serif font-bold text-[#A33E11] block mb-1">
-                      {st.number}
-                    </span>
-                    <h3 className="font-serif text-sm font-bold text-[#1B1C1A] mb-1">
-                      {st.title}
-                    </h3>
-                    <p className="text-xs text-[#41484B]">
-                      {st.description}
-                    </p>
+                  <div
+                    key={st.number}
+                    className="w-[78vw] sm:w-[260px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                  >
+                    <div>
+                      <span className="text-xl font-serif font-bold text-[#A33E11] block mb-1">
+                        {st.number}
+                      </span>
+                      <h3 className="font-serif text-sm font-bold text-[#1B1C1A] mb-1">
+                        {st.title}
+                      </h3>
+                      <p className="text-xs text-[#41484B]">
+                        {st.description}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -263,23 +287,12 @@ export default function WorkGreecePage() {
               </div>
             </section>
 
-            {/* 5. FAQs */}
+            {/* 5. FAQs (Collapsible Animated Accordion) */}
             <section aria-label="Greece FAQs" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
               <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
                 {faqs.headline}
               </h2>
-              <div className="space-y-3">
-                {faqs.items.map((item, idx) => (
-                  <div key={idx} className="border border-[#E6DDCC] bg-[#FBF8F1] p-5">
-                    <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2">
-                      {item.q}
-                    </h3>
-                    <p className="text-sm text-[#41484B] leading-relaxed">
-                      {item.a}
-                    </p>
-                  </div>
-                ))}
-              </div>
+              <CollapsibleFaqList items={faqs.items} />
             </section>
           </div>
 

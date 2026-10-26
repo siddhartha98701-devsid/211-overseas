@@ -173,7 +173,7 @@ export default function InboundCollaborationsPage() {
       {/* Collaboration Modes */}
       <section className="py-16 md:py-24 border-b border-[#E6DDCC]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="max-w-2xl mb-12">
+          <div className="max-w-2xl mb-8">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Partnership Frameworks
             </span>
@@ -183,13 +183,19 @@ export default function InboundCollaborationsPage() {
             <p className="mt-3 text-sm sm:text-base text-[#41484B] leading-relaxed">
               Tailored institutional engagement frameworks designed to enhance your university’s global footprint, research output, and international student mobility.
             </p>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to review engagement models →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {COLLABORATION_PILLARS.map((p) => {
               const Icon = p.icon;
               return (
-                <div key={p.title} className="bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group">
+                <div
+                  key={p.title}
+                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
+                >
                   <div>
                     <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
                       <Image

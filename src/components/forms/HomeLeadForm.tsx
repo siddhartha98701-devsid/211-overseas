@@ -11,7 +11,8 @@ interface HomeLeadFormProps {
 export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadFormProps) {
   const [fullName, setFullName] = useState('');
   const [mobile, setMobile] = useState('');
-  const [routeType, setRouteType] = useState<'study' | 'work'>('study');
+  const [routeType, setRouteType] = useState<'study' | 'work' | 'collaboration'>('study');
+  const [institutionName, setInstitutionName] = useState('');
   const [consent, setConsent] = useState(true);
   const [faxNumber, setFaxNumber] = useState(''); // honeypot
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
@@ -24,6 +25,11 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
       return;
     }
 
+    if (routeType === 'collaboration' && !institutionName.trim()) {
+      setErrorMessage('Please enter your institution or university name.');
+      return;
+    }
+
     if (!consent) {
       setErrorMessage('Please agree to the contact terms to proceed.');
       return;
@@ -33,13 +39,21 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
     setErrorMessage('');
 
     try {
+      const interests = [
+        routeType === 'study'
+          ? 'Study Abroad'
+          : routeType === 'work'
+          ? 'Work Abroad'
+          : 'Institutional Collaboration (Inbound)',
+      ];
+
       const res = await fetch('/api/enquiry', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          fullName,
+          fullName: routeType === 'collaboration' && institutionName ? `${fullName} (${institutionName})` : fullName,
           mobile,
-          interests: [routeType === 'study' ? 'Study Abroad' : 'Work Abroad'],
+          interests,
           source,
           consent: true,
           faxNumber,
@@ -108,16 +122,16 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
         aria-hidden="true"
       />
 
-      {/* Route Selector (Study vs Work) */}
+      {/* Route Selector (Study vs Work vs Institutional Collaborations) */}
       <div>
         <label className="block text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider mb-2">
           I am looking for
         </label>
-        <div className="grid grid-cols-2 gap-2">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
           <button
             type="button"
             onClick={() => setRouteType('study')}
-            className={`py-2 px-3 text-xs font-semibold border transition-colors ${
+            className={`py-2 px-2.5 text-xs font-semibold border transition-colors cursor-pointer text-center ${
               routeType === 'study'
                 ? 'bg-[#00222B] text-white border-[#00222B]'
                 : 'bg-white text-[#41484B] border-[#E6DDCC] hover:border-[#1B1C1A]'
@@ -128,7 +142,7 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
           <button
             type="button"
             onClick={() => setRouteType('work')}
-            className={`py-2 px-3 text-xs font-semibold border transition-colors ${
+            className={`py-2 px-2.5 text-xs font-semibold border transition-colors cursor-pointer text-center ${
               routeType === 'work'
                 ? 'bg-[#00222B] text-white border-[#00222B]'
                 : 'bg-white text-[#41484B] border-[#E6DDCC] hover:border-[#1B1C1A]'
@@ -136,13 +150,42 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
           >
             Work Abroad
           </button>
+          <button
+            type="button"
+            onClick={() => setRouteType('collaboration')}
+            className={`py-2 px-2.5 text-xs font-semibold border transition-colors cursor-pointer text-center ${
+              routeType === 'collaboration'
+                ? 'bg-[#A33E11] text-white border-[#A33E11]'
+                : 'bg-white text-[#41484B] border-[#E6DDCC] hover:border-[#A33E11]'
+            }`}
+          >
+            College Collaboration
+          </button>
         </div>
       </div>
+
+      {/* University / Institution Name (Visible for Collaborations) */}
+      {routeType === 'collaboration' && (
+        <div>
+          <label htmlFor="home-lead-institution" className="block text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider mb-1">
+            College / University Name <span className="text-[#A33E11]">*</span>
+          </label>
+          <input
+            id="home-lead-institution"
+            type="text"
+            required
+            value={institutionName}
+            onChange={(e) => setInstitutionName(e.target.value)}
+            placeholder="e.g. Parul University / Global Partner Campus"
+            className="w-full px-3 py-2.5 text-sm bg-[#FBF8F1] border border-[#E6DDCC] focus:outline-none focus:border-[#A33E11] text-[#1B1C1A]"
+          />
+        </div>
+      )}
 
       {/* Full Name */}
       <div>
         <label htmlFor="home-lead-name" className="block text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider mb-1">
-          Full Name <span className="text-[#A33E11]">*</span>
+          {routeType === 'collaboration' ? 'Contact Person / Designation' : 'Full Name'} <span className="text-[#A33E11]">*</span>
         </label>
         <input
           id="home-lead-name"
@@ -150,7 +193,7 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
           required
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
-          placeholder="e.g. Rahul Sharma"
+          placeholder={routeType === 'collaboration' ? 'e.g. Prof. / Dr. Sharma (Head of International Relations)' : 'e.g. Rahul Sharma'}
           className="w-full px-3 py-2.5 text-sm bg-[#FBF8F1] border border-[#E6DDCC] focus:outline-none focus:border-[#A33E11] text-[#1B1C1A]"
         />
       </div>

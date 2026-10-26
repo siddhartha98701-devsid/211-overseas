@@ -1,9 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen } from 'lucide-react';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
 import { getDestinationVisual } from '@/content/destinationVisuals';
@@ -224,6 +224,17 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
   const defaultUni = data.universities.list[0] || '';
   const [selectedUni, setSelectedUni] = useState<string>(defaultUni);
   const currentUni = selectedUni || defaultUni;
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const handleScrollRow = (direction: 'left' | 'right') => {
+    const el = carouselRef.current;
+    if (!el) return;
+    const cardWidth = (el.firstElementChild as HTMLElement)?.offsetWidth || 300;
+    el.scrollBy({
+      left: direction === 'left' ? -cardWidth - 16 : cardWidth + 16,
+      behavior: 'smooth',
+    });
+  };
 
   const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
   const currentUniImage = UNIVERSITY_IMAGE_MAP[currentUni.toLowerCase().trim()] || defaultImage;
@@ -478,18 +489,40 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
               </section>
             )}
 
-            {/* 3. Universities to Explore */}
+            {/* 3. Universities to Explore (Sliding Colleges Carousel Pattern) */}
             <section aria-label="Universities to explore" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#E6DDCC]">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
                 <div className="flex items-center gap-2">
                   <Building2 className="w-5 h-5 text-[#A33E11]" />
                   <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                     {data.universities.headline}
                   </h2>
                 </div>
-                <span className="text-xs uppercase tracking-wider text-[#A33E11] font-semibold">
-                  Independent Research
-                </span>
+
+                <div className="flex items-center gap-3 self-end sm:self-auto">
+                  <span className="text-xs font-mono font-bold text-[#41484B]">
+                    {String(data.universities.list.indexOf(currentUni) + 1).padStart(2, '0')}/
+                    {String(data.universities.list.length).padStart(2, '0')}
+                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => handleScrollRow('left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Previous college"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleScrollRow('right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:border-[#A33E11] hover:text-[#A33E11] flex items-center justify-center transition-colors shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Next college"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
               </div>
 
               {/* Dynamic Featured Campus Photography Banner */}
@@ -523,7 +556,114 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </AnimatePresence>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+              {/* Horizontal Sliding Colleges Carousel as shown in reference showcase */}
+              <div className="mb-6">
+                <div className="flex items-center justify-between mb-3">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#A33E11]">
+                    Browse Participating &amp; Recognized Colleges
+                  </p>
+                  <span className="text-[11px] text-[#41484B] hidden sm:inline">
+                    Click to inspect or slide horizontally
+                  </span>
+                </div>
+
+                <div
+                  ref={carouselRef}
+                  className="flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden py-1 -mx-2 px-2"
+                  style={{ scrollSnapType: 'x mandatory' }}
+                  role="region"
+                  aria-label="Universities carousel"
+                >
+                  {data.universities.list.map((uni) => {
+                    const isSelected = uni === currentUni;
+                    const uniKey = uni.toLowerCase().trim();
+                    const uniImg = UNIVERSITY_IMAGE_MAP[uniKey] || defaultImage;
+                    const monogram = uni
+                      .replace(/\([^)]*\)/g, '')
+                      .split(/\s+/)
+                      .filter(Boolean)
+                      .map((w) => w[0].toUpperCase())
+                      .slice(0, 4)
+                      .join('');
+
+                    return (
+                      <div
+                        key={uni}
+                        onClick={() => setSelectedUni(uni)}
+                        className={`w-[82vw] sm:w-[290px] md:w-[310px] shrink-0 snap-start bg-white border rounded-[4px] overflow-hidden shadow-xs hover:shadow-md transition-all cursor-pointer flex flex-col justify-between ${
+                          isSelected
+                            ? 'border-[#A33E11] ring-1 ring-[#A33E11] bg-[#FAF8F5]'
+                            : 'border-[#E6DDCC] hover:border-[#A33E11]'
+                        }`}
+                      >
+                        <div>
+                          {/* Campus Header Photo with Monogram */}
+                          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B]">
+                            <Image
+                              src={uniImg}
+                              alt={`${uni} academic campus`}
+                              fill
+                              sizes="(min-width: 768px) 310px, 85vw"
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                            <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
+                              <span className="text-[10px] font-mono font-bold tracking-wider uppercase px-2 py-0.5 bg-black/60 text-[#FC7F4E] backdrop-blur-xs rounded">
+                                {destinationName}
+                              </span>
+                              <span className="w-7 h-7 rounded-full bg-white/95 text-[#00222B] text-[11px] font-bold font-serif flex items-center justify-center shadow-sm">
+                                {monogram}
+                              </span>
+                            </div>
+                            <div className="absolute bottom-2 left-2.5 right-2.5 text-white">
+                              <span className="text-xs font-serif font-bold truncate block drop-shadow-sm">
+                                {uni}
+                              </span>
+                            </div>
+                          </div>
+
+                          {/* University Meta Details */}
+                          <div className="p-4 space-y-2">
+                            <span className="inline-block px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[#A33E11] bg-[#FC7F4E]/10 border border-[#FC7F4E]/30 rounded-[2px]">
+                              {isSelected ? '● Selected Campus' : 'Featured Institution'}
+                            </span>
+                            <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug line-clamp-2">
+                              {uni}
+                            </h4>
+                            <p className="text-xs text-[#41484B] leading-relaxed line-clamp-2">
+                              Higher education institution offering accredited undergraduate &amp; postgraduate degrees for international students.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Interactive Inquire CTA */}
+                        <div className="p-4 pt-0">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              setSelectedUni(uni);
+                              const formEl = document.getElementById('destination-lead-form') || document.querySelector('form');
+                              if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className={`w-full py-2.5 px-3 text-xs font-semibold uppercase tracking-wider text-center transition-colors rounded-[2px] cursor-pointer inline-flex items-center justify-center gap-1.5 ${
+                              isSelected
+                                ? 'bg-[#A33E11] hover:bg-[#85320D] text-white shadow-xs'
+                                : 'bg-[#FBF8F1] hover:bg-[#A33E11] text-[#1B1C1A] hover:text-white border border-[#E6DDCC]'
+                            }`}
+                          >
+                            <span>Inquire for {monogram || 'Uni'}</span>
+                            <ChevronRight size={13} />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Quick-Select University Pills */}
+              <div className="flex flex-wrap gap-2 pt-4 border-t border-[#E6DDCC]/60">
                 {data.universities.list.map((uni) => {
                   const isSelected = uni === currentUni;
                   return (
@@ -533,9 +673,9 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                       role="tab"
                       aria-selected={isSelected}
                       onClick={() => setSelectedUni(uni)}
-                      className={`p-3 text-center text-xs font-semibold rounded-[2px] transition-all cursor-pointer ${
+                      className={`px-3 py-1.5 text-center text-xs font-semibold rounded-[2px] transition-all cursor-pointer ${
                         isSelected
-                          ? 'bg-[#A33E11] border border-[#A33E11] text-white shadow-md font-bold scale-[1.02]'
+                          ? 'bg-[#A33E11] border border-[#A33E11] text-white shadow-xs font-bold scale-[1.02]'
                           : 'bg-[#FBF8F1] border border-[#E6DDCC] text-[#1B1C1A] hover:border-[#A33E11] hover:bg-white'
                       }`}
                     >

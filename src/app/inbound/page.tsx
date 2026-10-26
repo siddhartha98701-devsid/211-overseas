@@ -326,11 +326,14 @@ export default function InboundPage() {
             <h2 className="font-serif text-2xl sm:text-3xl font-bold text-[#1B1C1A]">
               Dedicated Inbound Portals
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to explore portals →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {/* Card 1: For Students */}
-            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+            <div className="w-[86vw] sm:w-[420px] lg:w-auto shrink-0 snap-start bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
               <div>
                 <div className="relative aspect-[16/8] w-full overflow-hidden bg-[#00222B]">
                   <Image
@@ -396,7 +399,7 @@ export default function InboundPage() {
             </div>
 
             {/* Card 2: For Colleges & Institutional Collaborations */}
-            <div className="bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
+            <div className="w-[86vw] sm:w-[420px] lg:w-auto shrink-0 snap-start bg-white border-2 border-[#E6DDCC] hover:border-[#A33E11] overflow-hidden transition-all flex flex-col justify-between shadow-sm hover:shadow-md group">
               <div>
                 <div className="relative aspect-[16/8] w-full overflow-hidden bg-[#00222B]">
                   <Image

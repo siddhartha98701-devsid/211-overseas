@@ -2,15 +2,17 @@
 
 import { useState, useEffect } from 'react';
 import { siteContent } from '@/content/site';
+import { InboundCollaborationForm } from '@/components/inbound/InboundCollaborationForm';
 
 interface ContactFormsProps {
-  initialTab?: 'study' | 'work';
+  initialTab?: 'study' | 'work' | 'collaboration';
 }
 
 export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
-  const [activeTab, setActiveTab] = useState<'study' | 'work'>(() => {
-    if (typeof window !== 'undefined' && window.location.hash === '#work-enquiry') {
-      return 'work';
+  const [activeTab, setActiveTab] = useState<'study' | 'work' | 'collaboration'>(() => {
+    if (typeof window !== 'undefined') {
+      if (window.location.hash === '#work-enquiry') return 'work';
+      if (window.location.hash === '#collaboration-enquiry') return 'collaboration';
     }
     return initialTab;
   });
@@ -22,6 +24,8 @@ export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
         setActiveTab('work');
       } else if (hash === '#study-enquiry') {
         setActiveTab('study');
+      } else if (hash === '#collaboration-enquiry') {
+        setActiveTab('collaboration');
       }
     };
     window.addEventListener('hashchange', handleHash);
@@ -31,12 +35,12 @@ export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
   return (
     <div className="w-full">
       {/* Tab Switcher */}
-      <div className="flex border-b border-[#E6DDCC] mb-8">
+      <div className="flex flex-wrap border-b border-[#E6DDCC] mb-8 gap-2 sm:gap-0">
         <button
           type="button"
           id="study-enquiry"
           onClick={() => setActiveTab('study')}
-          className={`pb-4 px-6 text-sm font-semibold uppercase tracking-wider transition-all relative ${
+          className={`pb-4 px-4 sm:px-6 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all cursor-pointer relative ${
             activeTab === 'study'
               ? 'text-[#A33E11] border-b-2 border-[#A33E11] -mb-[1px]'
               : 'text-[#41484B] hover:text-[#1B1C1A]'
@@ -48,7 +52,7 @@ export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
           type="button"
           id="work-enquiry"
           onClick={() => setActiveTab('work')}
-          className={`pb-4 px-6 text-sm font-semibold uppercase tracking-wider transition-all relative ${
+          className={`pb-4 px-4 sm:px-6 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all cursor-pointer relative ${
             activeTab === 'work'
               ? 'text-[#A33E11] border-b-2 border-[#A33E11] -mb-[1px]'
               : 'text-[#41484B] hover:text-[#1B1C1A]'
@@ -56,10 +60,41 @@ export function ContactForms({ initialTab = 'study' }: ContactFormsProps) {
         >
           Work Enquiry
         </button>
+        <button
+          type="button"
+          id="collaboration-enquiry"
+          onClick={() => setActiveTab('collaboration')}
+          className={`pb-4 px-4 sm:px-6 text-xs sm:text-sm font-semibold uppercase tracking-wider transition-all cursor-pointer relative ${
+            activeTab === 'collaboration'
+              ? 'text-[#A33E11] border-b-2 border-[#A33E11] -mb-[1px]'
+              : 'text-[#41484B] hover:text-[#1B1C1A]'
+          }`}
+        >
+          College Collaborations
+        </button>
       </div>
 
       {/* Render Active Form */}
-      {activeTab === 'study' ? <StudyEnquiryForm /> : <WorkEnquiryForm />}
+      {activeTab === 'study' ? (
+        <StudyEnquiryForm />
+      ) : activeTab === 'work' ? (
+        <WorkEnquiryForm />
+      ) : (
+        <div className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-xs">
+          <div className="mb-6 pb-4 border-b border-[#E6DDCC]">
+            <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1">
+              Institutional Partnership Enquiry
+            </span>
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">
+              Connect for University Collaborations &amp; MOUs
+            </h3>
+            <p className="text-xs sm:text-sm text-[#41484B] mt-1.5 leading-relaxed">
+              For domestic and foreign colleges, university leadership, deans, and faculty seeking bilateral agreements, dual degrees, and academic linkages.
+            </p>
+          </div>
+          <InboundCollaborationForm />
+        </div>
+      )}
     </div>
   );
 }

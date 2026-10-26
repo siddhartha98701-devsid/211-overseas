@@ -66,12 +66,15 @@ export default function ApplicationGuidePage() {
               <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
                 The Application Roadmap
               </h2>
+              <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+                ← Swipe horizontally to review roadmap steps →
+              </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {steps.map((st, idx) => (
-              <ScrollReveal key={st.number} delay={idx * 0.07}>
+              <ScrollReveal key={st.number} delay={idx * 0.07} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
                 <div className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 h-full group">
                   <div>
                     <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3 group-hover:scale-105 transition-transform">

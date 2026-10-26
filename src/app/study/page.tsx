@@ -6,6 +6,7 @@ import { CountryFlag } from '@/components/ui/CountryFlag';
 import { studyOverviewContent } from '@/content/study';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
+import { PathGatewaySection } from '@/components/sections/PathGatewaySection';
 
 const QUALIFICATION_IMAGES: Record<string, { image: string; alt: string }> = {
   "Bachelor’s": {
@@ -96,13 +97,31 @@ export default function StudyOverviewPage() {
       {/* Destinations Comparison Table / Grid (#destinations) */}
       <section id="destinations" className="py-20 border-b border-[#E6DDCC] bg-white scroll-mt-20">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Global Comparison
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {exploreByDestination.headline}
             </h2>
+            <p className="mt-3 text-sm text-[#41484B] leading-relaxed">
+              Explore leading universities and featured academic programs across our premier global study destinations with interactive sliding showcases.
+            </p>
+          </div>
+
+          {/* Interactive Sliding Colleges Showcase matching Home Page Pattern */}
+          <div className="-mx-6 sm:mx-0 mb-12">
+            <PathGatewaySection />
+          </div>
+
+          {/* Comprehensive Destination Matrix Header */}
+          <div className="border-t border-[#E6DDCC] pt-12 mb-8">
+            <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A] mb-2">
+              Comparative Destination Matrix
+            </h3>
+            <p className="text-xs sm:text-sm text-[#41484B]">
+              Quick overview of academic distinctive factors and destination-specific advisory routes.
+            </p>
           </div>
 
           {/* Desktop Table View (hidden on small screens to prevent cramped or cut-off text) */}
@@ -188,16 +207,19 @@ export default function StudyOverviewPage() {
       {/* Explore By Qualification */}
       <section className="py-20 border-b border-[#E6DDCC] bg-[#FBF8F1]">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               By Academic Level
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {exploreByQualification.headline}
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to explore qualifications →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {exploreByQualification.qualifications.map((q) => {
               const visual = QUALIFICATION_IMAGES[q.title] || {
                 image: '/images/generated/global-campus.jpg',
@@ -206,7 +228,7 @@ export default function StudyOverviewPage() {
               return (
                 <div
                   key={q.title}
-                  className="bg-white border border-[#E6DDCC] overflow-hidden shadow-sm flex flex-col justify-between group hover:border-[#A33E11] hover:shadow-md transition-all duration-300"
+                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden shadow-sm flex flex-col justify-between group hover:border-[#A33E11] hover:shadow-md transition-all duration-300"
                 >
                   <div>
                     {/* Visual Photo Header */}
@@ -246,27 +268,35 @@ export default function StudyOverviewPage() {
       {/* Five Decisions Before Committing */}
       <section className="py-20 border-b border-[#E6DDCC] bg-white">
         <div className="max-w-[1280px] mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-14">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Prudent Planning
             </span>
             <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
               {fiveDecisions.headline}
             </h2>
+            <p className="lg:hidden text-xs text-[#A33E11] font-semibold mt-2">
+              ← Swipe horizontally to review all 5 decisions →
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {fiveDecisions.decisions.map((dec, i) => (
-              <div key={dec.title} className="bg-[#FBF8F1] border border-[#E6DDCC] p-5">
-                <span className="text-xs font-mono font-bold text-[#A33E11] block mb-2">
-                  0{i + 1}
-                </span>
-                <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2">
-                  {dec.title}
-                </h3>
-                <p className="text-xs text-[#41484B] leading-relaxed">
-                  {dec.description}
-                </p>
+              <div
+                key={dec.title}
+                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-5 flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-mono font-bold text-[#A33E11] block mb-2">
+                    0{i + 1}
+                  </span>
+                  <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2">
+                    {dec.title}
+                  </h3>
+                  <p className="text-xs text-[#41484B] leading-relaxed">
+                    {dec.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>
