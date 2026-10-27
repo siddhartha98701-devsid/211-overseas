@@ -231,6 +231,7 @@ const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
   'university of melbourne': '/images/destinations/australia-melbourne-quad.jpg',
   'university of sydney': '/images/destinations/australia-sydney-harbour.jpg',
   'unsw sydney': '/images/destinations/australia-campus.jpg',
+  'australian national university': '/images/destinations/australia-campus.jpg',
   'monash university': '/images/destinations/australia-student-life.jpg',
   'university of queensland': '/images/destinations/australia-melbourne-quad.jpg',
   'university of adelaide': '/images/destinations/australia-sydney-harbour.jpg',
