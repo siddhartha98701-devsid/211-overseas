@@ -217,18 +217,33 @@ export default function WorkGreecePage() {
                   {liveOpeningFields.headline}
                 </h2>
               </div>
-              <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {liveOpeningFields.rows.map((row) => (
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                {liveOpeningFields.rows.map((row, idx) => (
                   <div
                     key={row.field}
-                    className="w-[80vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] lg:bg-transparent border border-[#E6DDCC] lg:border-0 p-4 lg:p-0 lg:py-3 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm"
+                    className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                   >
-                    <span className="font-semibold text-[#1B1C1A] sm:w-1/3 shrink-0">
-                      {row.field}
-                    </span>
-                    <span className="text-[#41484B] sm:w-2/3">
-                      {row.detail}
-                    </span>
+                    <div>
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                        Transparency Field 0{idx + 1}
+                      </span>
+                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                        {row.field}
+                      </h3>
+                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Field 0{idx + 1}</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Disclosure</span>
+                        </div>
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Contract Term</span>
+                        </div>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {row.detail}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -241,20 +256,30 @@ export default function WorkGreecePage() {
                   {process.headline}
                 </h2>
               </div>
-              <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
                 {process.steps.map((st) => (
                   <div
                     key={st.number}
-                    className="w-[78vw] sm:w-[260px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                    className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                   >
                     <div>
-                      <span className="text-xl font-serif font-bold text-[#A33E11] block mb-1">
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                         {st.number}
                       </span>
-                      <h3 className="font-serif text-sm font-bold text-[#1B1C1A] mb-1">
+                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                         {st.title}
                       </h3>
-                      <p className="text-xs text-[#41484B]">
+                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                        </div>
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Greece</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recruitment</span>
+                        </div>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                         {st.description}
                       </p>
                     </div>

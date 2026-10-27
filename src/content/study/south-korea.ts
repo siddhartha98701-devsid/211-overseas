@@ -150,6 +150,32 @@ export const southKoreaContent = {
     headline: 'Documents commonly requested',
     description:
       'Academic transcripts and certificates; passport; language-test evidence where required; study plan/personal statement; recommendations; financial documents and authenticated records as requested by the institution.',
+    items: [
+      {
+        title: 'Academic Transcripts & Certificates',
+        detail: 'Official graduation certificates, degree records and authenticated grade sheets.',
+      },
+      {
+        title: 'Valid Passport & Identification',
+        detail: 'Clear copies of passport photo page, national ID, and family relations proof if required.',
+      },
+      {
+        title: 'Language-Test Evidence',
+        detail: 'Valid TOPIK score for Korean-taught tracks or IELTS/TOEFL report for English programs.',
+      },
+      {
+        title: 'Study Plan & Personal Statement',
+        detail: 'Structured statement of intent, academic motivation, and planned course trajectory.',
+      },
+      {
+        title: 'Academic Recommendations',
+        detail: 'Letters of recommendation from previous teachers, academic professors, or counselors.',
+      },
+      {
+        title: 'Financial Documentation & Records',
+        detail: 'Bank statements or sponsor guarantees meeting the target institution balance requirements.',
+      },
+    ],
   },
 
   faqs: {

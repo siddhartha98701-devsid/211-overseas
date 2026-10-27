@@ -108,7 +108,6 @@ export const siteContent = {
         children: [
           { label: 'Overview', href: '/inbound' },
           { label: 'For Students', href: '/inbound/students' },
-          { label: 'Participating Colleges', href: '/inbound/students#colleges' },
           { label: 'Institutional Collaborations', href: '/inbound/collaborations' },
         ],
       },

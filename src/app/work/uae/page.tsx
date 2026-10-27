@@ -189,18 +189,33 @@ export default function WorkUAEPage() {
                   {howAssessed.headline}
                 </h2>
               </div>
-              <div className="flex overflow-x-auto snap-x snap-mandatory lg:divide-y lg:divide-[#E6DDCC] lg:block gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-                {howAssessed.rows.map((row) => (
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                {howAssessed.rows.map((row, idx) => (
                   <div
                     key={row.criterion}
-                    className="w-[80vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] lg:bg-transparent border border-[#E6DDCC] lg:border-0 p-4 lg:p-0 lg:py-3.5 flex flex-col sm:flex-row sm:items-baseline gap-2 text-sm"
+                    className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                   >
-                    <span className="font-semibold text-[#1B1C1A] sm:w-1/3 shrink-0">
-                      {row.criterion}
-                    </span>
-                    <span className="text-[#41484B] sm:w-2/3">
-                      {row.whatToPrepare}
-                    </span>
+                    <div>
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                        Criterion 0{idx + 1}
+                      </span>
+                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                        {row.criterion}
+                      </h3>
+                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Assessment</span>
+                        </div>
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Prepared</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
+                        </div>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {row.whatToPrepare}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -213,14 +228,31 @@ export default function WorkUAEPage() {
                   {understandOffer.headline}
                 </h2>
               </div>
-              <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                 {understandOffer.points.map((pt, i) => (
                   <div
                     key={i}
-                    className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                    className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                   >
-                    <ShieldCheck size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
-                    <p className="text-sm text-[#41484B] leading-relaxed">{pt}</p>
+                    <div>
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                        Offer Pillar 0{i + 1}
+                      </span>
+                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Protected</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">UAE Standard</span>
+                        </div>
+                        <div>
+                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Compliant</span>
+                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">MOHRE Legal</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2.5 mt-2">
+                        <ShieldCheck size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">{pt}</p>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

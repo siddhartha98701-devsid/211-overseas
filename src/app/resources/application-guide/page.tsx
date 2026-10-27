@@ -72,14 +72,24 @@ export default function ApplicationGuidePage() {
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {steps.map((st, idx) => (
               <ScrollReveal key={st.number} delay={idx * 0.07} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
-                <div className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 h-full group">
+                <div className="bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group h-full">
                   <div>
-                    <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3 group-hover:scale-105 transition-transform">
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                       {st.number}
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       {st.title}
                     </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Roadmap</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Sequence</span>
+                      </div>
+                    </div>
                     <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                       {st.description}
                     </p>
@@ -115,29 +125,44 @@ export default function ApplicationGuidePage() {
               {preparationTable.map((row, idx) => (
                 <div
                   key={idx}
-                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                 >
-                  <div className="space-y-4">
-                    <span className="text-[10px] font-mono font-bold text-[#A33E11] uppercase tracking-wider block">
+                  <div>
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                       Requirement 0{idx + 1}
                     </span>
-                    <div>
-                      <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
-                        <GraduationCap className="w-4 h-4 text-[#A33E11]" />
-                        <span>Study Applicants</span>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                      Priority Dossier Item 0{idx + 1}
+                    </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Study</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Academic Track</span>
                       </div>
-                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                        {row.study}
-                      </p>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Work</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Career Track</span>
+                      </div>
                     </div>
-                    <div className="pt-3 border-t border-[#E6DDCC]">
-                      <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
-                        <Briefcase className="w-4 h-4 text-[#A33E11]" />
-                        <span>Work Applicants</span>
+                    <div className="space-y-3 mt-3">
+                      <div>
+                        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
+                          <GraduationCap className="w-4 h-4 text-[#A33E11]" />
+                          <span>Study Applicants</span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {row.study}
+                        </p>
                       </div>
-                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                        {row.work}
-                      </p>
+                      <div className="pt-3 border-t border-[#E6DDCC]">
+                        <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">
+                          <Briefcase className="w-4 h-4 text-[#A33E11]" />
+                          <span>Work Applicants</span>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {row.work}
+                        </p>
+                      </div>
                     </div>
                   </div>
                 </div>

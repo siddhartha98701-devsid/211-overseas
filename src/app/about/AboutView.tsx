@@ -399,7 +399,7 @@ export function AboutView() {
               className="hidden lg:block absolute top-1/2 -translate-y-8 left-12 right-12 h-[2px] bg-gradient-to-r from-[#A33E11]/20 via-[#A33E11]/60 to-[#FC7F4E]/30 z-0 pointer-events-none"
             />
 
-            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 relative z-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 relative z-10 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
               {approachInPractice.steps.map((step, idx) => (
                 <motion.div
                   key={step.number}
@@ -408,11 +408,11 @@ export function AboutView() {
                   viewport={{ once: true, margin: '-40px' }}
                   transition={{ duration: 0.55, delay: idx * 0.12 }}
                   whileHover={{ y: -6 }}
-                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-7 relative flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 group"
+                  className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 relative flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className="w-12 h-12 rounded-full bg-white border border-[#E6DDCC] flex items-center justify-center font-serif text-xl font-bold text-[#A33E11] group-hover:bg-[#A33E11] group-hover:text-white transition-colors shadow-sm">
+                    <div className="flex items-center justify-between mb-3">
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit">
                         {step.number}
                       </span>
                       <span className="text-[11px] font-mono uppercase tracking-widest text-[#41484B]/70">
@@ -420,16 +420,27 @@ export function AboutView() {
                       </span>
                     </div>
 
-                    <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors">
+                    <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors">
                       {step.title}
                     </h3>
+
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Phase 0{idx + 1}</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Execution</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Advisory</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Workflow</span>
+                      </div>
+                    </div>
 
                     <p className="text-sm text-[#41484B] leading-relaxed">
                       {step.description}
                     </p>
                   </div>
 
-                  <div className="pt-6 mt-6 border-t border-[#E6DDCC]/70 flex items-center justify-between text-xs font-mono text-[#A33E11]">
+                  <div className="pt-4 mt-5 border-t border-[#E6DDCC]/70 flex items-center justify-between text-xs font-mono text-[#A33E11]">
                     <span>Step 0{idx + 1} of 04</span>
                     <ArrowRight size={14} className="group-hover:translate-x-1.5 transition-transform" />
                   </div>

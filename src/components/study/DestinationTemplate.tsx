@@ -3,7 +3,7 @@
 import { useState, useRef } from 'react';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen, GraduationCap, Calendar } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, CheckCircle2, AlertCircle, Building2, Wallet, BookOpen, GraduationCap, Calendar, Compass, FileText } from 'lucide-react';
 import { CountryFlag } from '@/components/ui/CountryFlag';
 import { DestinationLeadForm } from '@/components/forms/DestinationLeadForm';
 import { CountryAtmosphereAnimation } from '@/components/ui/CountryAtmosphereAnimation';
@@ -117,6 +117,7 @@ export interface DestinationData {
   documents?: {
     headline: string;
     description: string;
+    items?: ReadonlyArray<{ title: string; detail: string }>;
   };
   faqs?: {
     headline: string;
@@ -489,6 +490,34 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
     });
   };
 
+  const scrollTrack = (ref: React.RefObject<HTMLDivElement | null>, direction: 'left' | 'right') => {
+    const el = ref.current;
+    if (!el) return;
+    const scrollAmount = 340;
+    el.scrollBy({
+      left: direction === 'left' ? -scrollAmount : scrollAmount,
+      behavior: 'smooth',
+    });
+  };
+
+  const budgetRef = useRef<HTMLDivElement>(null);
+  const routeTrackRef = useRef<HTMLDivElement>(null);
+  const documentsRef = useRef<HTMLDivElement>(null);
+  const scholarshipsRef = useRef<HTMLDivElement>(null);
+  const spotlightRef = useRef<HTMLDivElement>(null);
+  const checklistRef = useRef<HTMLDivElement>(null);
+  const courseTrackRef = useRef<HTMLDivElement>(null);
+  const shortlistTrackRef = useRef<HTMLDivElement>(null);
+  const compareTrackRef = useRef<HTMLDivElement>(null);
+  const beforeApplyingRef = useRef<HTMLDivElement>(null);
+  const beforeYouPayRef = useRef<HTMLDivElement>(null);
+  const countryPriorityRef = useRef<HTMLDivElement>(null);
+  const whatToLookForRef = useRef<HTMLDivElement>(null);
+  const programTypesRef = useRef<HTMLDivElement>(null);
+  const costApproachRef = useRef<HTMLDivElement>(null);
+  const costPlanningRef = useRef<HTMLDivElement>(null);
+  const visasRef = useRef<HTMLDivElement>(null);
+
   const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
   const currentUniImage = UNIVERSITY_IMAGE_MAP[currentUni.toLowerCase().trim()] || defaultImage;
 
@@ -629,12 +658,30 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                       </span>
                     </div>
                   </div>
-                  <span className="hidden sm:inline-flex px-3 py-1 bg-[#FAF8F5] border border-[#E6DDCC] text-[11px] font-bold uppercase tracking-wider text-[#0C3844] rounded-[2px]">
-                    Financial Guide
-                  </span>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(budgetRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(budgetRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
                 </div>
 
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                <div
+                  ref={budgetRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.budget.items.map((item, idx) => {
                     const itemName = item.item.toLowerCase();
                     const isTuition = itemName.includes('tuition') || itemName.includes('fee');
@@ -644,28 +691,29 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     return (
                       <div
                         key={item.item}
-                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-[2px] flex flex-col justify-between hover:border-[#A33E11] hover:shadow-md transition-all duration-300 group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
                         <div>
-                          <div className="flex items-center justify-between gap-2 mb-3">
-                            <span className="text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 border border-[#FC7F4E]/30 px-2 py-0.5 rounded-[2px]">
-                              {isTuition ? 'Academic Fee' : isLiving ? 'Cost of Living' : isInsurance ? 'Health & Cover' : `Category ${idx + 1}`}
-                            </span>
-                            <span className="text-xs font-mono font-bold text-[#71787B]">
-                              0{idx + 1}
-                            </span>
-                          </div>
-                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                            {isTuition ? 'Academic Fee' : isLiving ? 'Cost of Living' : isInsurance ? 'Health & Cover' : `Financial Item 0${idx + 1}`}
+                          </span>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {item.item}
                           </h3>
-                        </div>
-                        <div className="mt-3 pt-3 border-t border-[#E6DDCC]/70 bg-white/80 p-3 rounded-[2px] border border-[#E6DDCC]">
-                          <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-1">
-                            Estimated Range
-                          </span>
-                          <p className="text-sm font-semibold text-[#00222B] leading-snug">
-                            {item.indicativeInfo}
-                          </p>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Indicative</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Estimated Cost</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">0{idx + 1}</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Pillar</span>
+                            </div>
+                          </div>
+                          <div className="mt-2 text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-0.5">Annual / Periodic Range</span>
+                            <span className="font-semibold text-[#00222B]">{item.indicativeInfo}</span>
+                          </div>
                         </div>
                       </div>
                     );
@@ -697,20 +745,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.costApproach && (
               <section aria-label="Cost Approach" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
-                  <Wallet className="w-5 h-5 text-[#A33E11]" />
-                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
-                    {data.costApproach.headline}
-                  </h2>
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <Wallet className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.costApproach.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(costApproachRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(costApproachRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
                 </div>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.costApproach.points.map((pt) => (
-                    <div key={pt.title} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between">
+                <div
+                  ref={costApproachRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.costApproach.points.map((pt, idx) => (
+                    <div
+                      key={pt.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                    >
                       <div>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Financial Pillar 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {pt.title}
                         </h3>
-                        <p className="text-sm text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Essential</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Line</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Self-Funded</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Cost Planning</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {pt.description}
                         </p>
                       </div>
@@ -733,26 +820,67 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.costPlanning && (
               <section aria-label="Cost Planning" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
-                  <Wallet className="w-5 h-5 text-[#A33E11]" />
-                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
-                    {data.costPlanning.headline}
-                  </h2>
+                <div className="flex items-center justify-between gap-4 mb-4 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <Wallet className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.costPlanning.headline}
+                    </h2>
+                  </div>
+                  {data.costPlanning.points && (
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(costPlanningRef, 'left')}
+                        className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                        aria-label="Scroll left"
+                      >
+                        <ChevronLeft size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(costPlanningRef, 'right')}
+                        className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                        aria-label="Scroll right"
+                      >
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+                  )}
                 </div>
                 {data.costPlanning.paragraph && (
-                  <p className="text-sm text-[#41484B] leading-relaxed mb-4">
+                  <p className="text-sm text-[#41484B] leading-relaxed mb-6">
                     {data.costPlanning.paragraph}
                   </p>
                 )}
                 {data.costPlanning.points && (
-                  <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                    {data.costPlanning.points.map((pt) => (
-                      <div key={pt.title} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between">
+                  <div
+                    ref={costPlanningRef}
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                  >
+                    {data.costPlanning.points.map((pt, idx) => (
+                      <div
+                        key={pt.title}
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      >
                         <div>
-                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                            Budget Pillar 0{idx + 1}
+                          </span>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {pt.title}
                           </h3>
-                          <p className="text-sm text-[#41484B] leading-relaxed">
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pillar 0{idx + 1}</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fund Line</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Ground Truth</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Published Baseline</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {pt.description}
                           </p>
                         </div>
@@ -1139,20 +1267,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* 4. Page-Specific Module: Choose Your Route */}
             {data.chooseYourRoute && (
               <section aria-label="Study Routes" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.chooseYourRoute.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.chooseYourRoute.routes.map((route) => (
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <Compass className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.chooseYourRoute.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(routeTrackRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(routeTrackRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={routeTrackRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.chooseYourRoute.routes.map((route, idx) => (
                     <div
                       key={route.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1.5">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Route 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {route.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pathway</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Target Track</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Admissions</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {route.description}
                         </p>
                       </div>
@@ -1164,23 +1331,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.chooseByCourse && (
               <section aria-label="Course Selection" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.chooseByCourse.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <BookOpen className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.chooseByCourse.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(courseTrackRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(courseTrackRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={courseTrackRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.chooseByCourse.steps.map((st) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                           {st.number}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Focus</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Discipline</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
                       </div>
@@ -1192,23 +1395,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.purposefulShortlist && (
               <section aria-label="Shortlist Guidance" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.purposefulShortlist.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.purposefulShortlist.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(shortlistTrackRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(shortlistTrackRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={shortlistTrackRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.purposefulShortlist.steps.map((st) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                           {st.number}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Strategy</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlist</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
                       </div>
@@ -1220,23 +1459,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.shortlistSteps && (
               <section aria-label="Shortlist Steps" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.shortlistSteps.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.shortlistSteps.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(shortlistTrackRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(shortlistTrackRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={shortlistTrackRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.shortlistSteps.steps.map((st) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                           {st.number}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlisting</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
                       </div>
@@ -1248,23 +1523,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.beforeApplying && (
               <section aria-label="Before Applying" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.beforeApplying.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.beforeApplying.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(beforeApplyingRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(beforeApplyingRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={beforeApplyingRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.beforeApplying.steps.map((st) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                           {st.number}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Preparation</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
                       </div>
@@ -1276,24 +1587,60 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.whatToCompare && (
               <section aria-label="What to Compare" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.whatToCompare.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.whatToCompare.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(compareTrackRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(compareTrackRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={compareTrackRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.whatToCompare.steps ? (
                     data.whatToCompare.steps.map((st) => (
                       <div
                         key={st.number}
-                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
                         <div>
-                          <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                             {st.number}
                           </span>
-                          <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <p className="text-xs text-[#41484B] leading-relaxed">
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Factor</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparison</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
                         </div>
@@ -1303,10 +1650,26 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     data.whatToCompare.bullets.map((b, i) => (
                       <div
                         key={i}
-                        className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                        <span className="text-sm text-[#41484B] leading-relaxed">{b}</span>
+                        <div>
+                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                            Comparison 0{i + 1}
+                          </span>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Criterion 0{i + 1}</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Benchmark</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparative</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Decision</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {b}
+                          </p>
+                        </div>
                       </div>
                     ))
                   ) : null}
@@ -1316,17 +1679,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.beforeYouPay && (
               <section aria-label="Before You Pay" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.beforeYouPay.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <AlertCircle className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.beforeYouPay.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(beforeYouPayRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(beforeYouPayRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={beforeYouPayRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.beforeYouPay.bullets.map((b, i) => (
                     <div
                       key={i}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-2.5"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                      <span className="text-sm text-[#41484B] leading-relaxed">{b}</span>
+                      <div>
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Verification 0{i + 1}
+                        </span>
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Crucial</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Pre-Payment</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Protected</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fee Security</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {b}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1335,23 +1740,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.countryPriority && (
               <section aria-label="Country Priority" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.countryPriority.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <Compass className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.countryPriority.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(countryPriorityRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(countryPriorityRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={countryPriorityRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.countryPriority.items.map((it, i) => (
                     <div
                       key={it.priority}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-[10px] font-mono font-bold text-[#A33E11] uppercase tracking-wider block mb-1">
-                          Priority 0{i + 1}
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Tier 0{i + 1}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {it.priority}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Priority 0{i + 1}</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Tier Ranking</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Destination</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Focus List</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {it.countries}
                         </p>
                       </div>
@@ -1374,32 +1815,133 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.documents && (
               <section aria-label="Required Documents" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
-                  {data.documents.headline}
-                </h2>
-                <p className="text-sm text-[#41484B] leading-relaxed">
-                  {data.documents.description}
-                </p>
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <FileText className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.documents.headline}
+                    </h2>
+                  </div>
+                  {data.documents.items && (
+                    <div className="flex items-center gap-1.5">
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(documentsRef, 'left')}
+                        className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                        aria-label="Scroll left"
+                      >
+                        <ChevronLeft size={16} />
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => scrollTrack(documentsRef, 'right')}
+                        className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                        aria-label="Scroll right"
+                      >
+                        <ChevronRight size={16} />
+                      </button>
+                    </div>
+                  )}
+                </div>
+                {data.documents.description && (
+                  <p className="text-sm text-[#41484B] leading-relaxed mb-6">
+                    {data.documents.description}
+                  </p>
+                )}
+                {data.documents.items && (
+                  <div
+                    ref={documentsRef}
+                    className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                  >
+                    {data.documents.items.map((doc, idx) => (
+                      <div
+                        key={doc.title}
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      >
+                        <div>
+                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                            Document 0{idx + 1}
+                          </span>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {doc.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Required</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Dossier Item</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Official</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {doc.detail}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </section>
             )}
 
             {/* 5. Page-Specific Module: What To Look For / Program Types */}
             {data.whatToLookFor && (
               <section aria-label="Considerations" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.whatToLookFor.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.whatToLookFor.points.map((pt) => (
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.whatToLookFor.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(whatToLookForRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(whatToLookForRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={whatToLookForRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.whatToLookFor.points.map((pt, idx) => (
                     <div
                       key={pt.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Consideration 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {pt.title}
                         </h3>
-                        <p className="text-sm text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Key Factor</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Academic</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fit &amp; Rigour</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {pt.description}
                         </p>
                       </div>
@@ -1411,20 +1953,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
             {data.programTypes && (
               <section aria-label="Program Types" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.programTypes.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.programTypes.programs.map((prog) => (
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <BookOpen className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.programTypes.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(programTypesRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(programTypesRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={programTypesRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.programTypes.programs.map((prog, idx) => (
                     <div
                       key={prog.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Format 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {prog.title}
                         </h3>
-                        <p className="text-sm text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Degree Level</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recognition</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Curriculum</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Structure</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {prog.description}
                         </p>
                       </div>
@@ -1437,26 +2018,62 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* Programme Spotlight (e.g. LSB Luxembourg) */}
             {data.programmeSpotlight && (
               <section aria-label="Programme Spotlight" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-2">
-                  {data.programmeSpotlight.headline}
-                </h2>
-                <p className="text-xs text-[#71787B] mb-6 pb-4 border-b border-[#E6DDCC]">
+                <div className="flex items-center justify-between gap-4 mb-2 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <GraduationCap className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.programmeSpotlight.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(spotlightRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(spotlightRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <p className="text-xs text-[#71787B] mb-6">
                   {data.programmeSpotlight.intro}
                 </p>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.programmeSpotlight.programmes.map((p) => (
+                <div
+                  ref={spotlightRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.programmeSpotlight.programmes.map((p, idx) => (
                     <div
                       key={p.name}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Programme 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {p.name}
                         </h3>
-                        <p className="text-xs font-semibold text-[#A33E11] mb-2">
-                          {p.tuition}
-                        </p>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Tuition</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5 truncate">{p.tuition}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">LSB</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Luxembourg</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {p.consideration}
                         </p>
                       </div>
@@ -1469,17 +2086,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* Scholarships */}
             {data.scholarships && (
               <section aria-label="Scholarships" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.scholarships.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <GraduationCap className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.scholarships.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(scholarshipsRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(scholarshipsRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={scholarshipsRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.scholarships.items.map((item, i) => (
                     <div
                       key={i}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start flex items-start gap-2.5 p-4 bg-[#FBF8F1] border border-[#E6DDCC]"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
-                      <span className="text-sm text-[#41484B] leading-relaxed">{item}</span>
+                      <div>
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Grant Opportunity 0{i + 1}
+                        </span>
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Funded</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Merit/Need</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Scholarship</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">International</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {item}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -1489,23 +2148,59 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* Admissions Checklist */}
             {data.admissionsChecklist && (
               <section aria-label="Admissions Checklist" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.admissionsChecklist.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.admissionsChecklist.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(checklistRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(checklistRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={checklistRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
                   {data.admissionsChecklist.steps.map((st) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-4 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col justify-between"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
                       <div>
-                        <span className="text-xs font-mono font-bold text-[#A33E11] block mb-1">
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                           {st.number}
                         </span>
-                        <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1">
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <p className="text-xs text-[#41484B] leading-relaxed">
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
                       </div>
@@ -1518,18 +2213,62 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
             {/* 6. Admissions & Visas */}
             {data.admissionsAndVisas && (
               <section aria-label="Admissions & Visas" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
-                <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-6 pb-4 border-b border-[#E6DDCC]">
-                  {data.admissionsAndVisas.headline}
-                </h2>
-                <div className="flex overflow-x-auto snap-x snap-mandatory lg:space-y-3 lg:block gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.admissionsAndVisas.steps.map((st) => (
-                    <div key={st.step} className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start p-3.5 bg-[#FBF8F1] border border-[#E6DDCC] flex flex-col sm:flex-row sm:items-baseline gap-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#A33E11] sm:w-1/3 shrink-0">
-                        {st.step}
-                      </span>
-                      <span className="text-sm text-[#41484B] sm:w-2/3">
-                        {st.detail}
-                      </span>
+                <div className="flex items-center justify-between gap-4 mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <div className="flex items-center gap-2.5">
+                    <FileText className="w-5 h-5 text-[#A33E11]" />
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.admissionsAndVisas.headline}
+                    </h2>
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(visasRef, 'left')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll left"
+                    >
+                      <ChevronLeft size={16} />
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => scrollTrack(visasRef, 'right')}
+                      className="w-8 h-8 rounded-full border border-[#E6DDCC] bg-white text-[#1B1C1A] hover:bg-[#A33E11] hover:text-white hover:border-[#A33E11] flex items-center justify-center transition-all shadow-xs cursor-pointer active:scale-95"
+                      aria-label="Scroll right"
+                    >
+                      <ChevronRight size={16} />
+                    </button>
+                  </div>
+                </div>
+                <div
+                  ref={visasRef}
+                  className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
+                >
+                  {data.admissionsAndVisas.steps.map((st, idx) => (
+                    <div
+                      key={st.step}
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      <div>
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          Step 0{idx + 1}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                          {st.step}
+                        </h3>
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Visa &amp; Entry</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Requirement</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {st.detail}
+                        </p>
+                      </div>
                     </div>
                   ))}
                 </div>

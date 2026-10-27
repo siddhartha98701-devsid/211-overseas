@@ -67,20 +67,25 @@ export default function ScholarshipsPage() {
               {fundingTypes.rows.map((row, idx) => (
                 <div
                   key={row.type}
-                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11]">
-                        Funding Category
-                      </span>
-                      <span className="text-xs font-mono font-bold text-[#71787B]">
-                        0{idx + 1}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3 pb-2.5 border-b border-[#E6DDCC]">
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                      Funding Category 0{idx + 1}
+                    </span>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       {row.type}
                     </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Grant / Aid</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Category</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Compliance</span>
+                      </div>
+                    </div>
                     <div>
                       <span className="text-[11px] uppercase tracking-wider text-[#71787B] block mb-1 font-semibold">
                         What to Check &amp; Verify:
@@ -163,14 +168,24 @@ export default function ScholarshipsPage() {
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {beforeRelying.steps.map((st, idx) => (
               <ScrollReveal key={st.number} delay={idx * 0.1} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
-                <div className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] hover:shadow-xl transition-all duration-300 h-full group">
+                <div className="bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group h-full">
                   <div>
-                    <span className="text-3xl font-serif font-bold text-[#A33E11] block mb-3 group-hover:scale-105 transition-transform">
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
                       {st.number}
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-2 group-hover:text-[#A33E11] transition-colors">
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       {st.title}
                     </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Rule</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Financial</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Prudence</span>
+                      </div>
+                    </div>
                     <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                       {st.description}
                     </p>

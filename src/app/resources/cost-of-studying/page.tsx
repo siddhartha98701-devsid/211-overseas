@@ -66,20 +66,25 @@ export default function CostOfStudyingPage() {
               {sevenParts.rows.map((row, idx) => (
                 <div
                   key={row.component}
-                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
-                    <div className="flex items-center justify-between gap-2 mb-2.5">
-                      <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11]">
-                        Budget Component
-                      </span>
-                      <span className="text-xs font-mono font-bold text-[#71787B]">
-                        0{idx + 1}
-                      </span>
-                    </div>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3 pb-2.5 border-b border-[#E6DDCC]">
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                      Budget Component 0{idx + 1}
+                    </span>
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       {row.component}
                     </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Component</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Essential</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Part</span>
+                      </div>
+                    </div>
                     <div>
                       <span className="text-[11px] uppercase tracking-wider text-[#71787B] block mb-1 font-semibold">
                         Items to Include:
@@ -141,18 +146,28 @@ export default function CostOfStudyingPage() {
           <ScrollReveal delay={0.1}>
             {/* Mobile / Tablet Horizontal Scroll Detail Cards */}
             <div className="md:hidden flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 pb-4 mb-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4">
-              {officialReferences.rows.map((row) => (
+              {officialReferences.rows.map((row, idx) => (
                 <div
                   key={row.destination}
-                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white border border-[#E6DDCC] p-5 shadow-sm flex flex-col justify-between"
+                  className="w-[82vw] sm:w-[320px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                 >
                   <div>
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-2">
-                      Official Reference
+                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                      Official Benchmark 0{idx + 1}
                     </span>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3 pb-2.5 border-b border-[#E6DDCC]">
+                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       {row.destination}
                     </h3>
+                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Published</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Government</span>
+                      </div>
+                      <div>
+                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Baseline</span>
+                      </div>
+                    </div>
                     <div>
                       <span className="text-[11px] uppercase tracking-wider text-[#71787B] block mb-1 font-semibold">
                         Official Published Benchmark:
@@ -218,13 +233,30 @@ export default function CostOfStudyingPage() {
 
             <ScrollReveal delay={0.1}>
               <div className="flex overflow-x-auto snap-x snap-mandatory md:space-y-3.5 md:block gap-4 -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 md:after:hidden">
-                {whatToAsk.bullets.map((b) => (
+                {whatToAsk.bullets.map((b, idx) => (
                   <div
                     key={b}
-                    className="w-[82vw] sm:w-[320px] md:w-full shrink-0 snap-start p-5 bg-[#FBF8F1] border border-[#E6DDCC] flex items-start gap-3.5 hover:border-[#A33E11] hover:shadow-md transition-all md:mb-3.5 last:md:mb-0"
+                    className="w-[82vw] sm:w-[320px] md:w-full shrink-0 snap-start p-6 bg-white rounded-2xl border border-[#E6DDCC] shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all flex flex-col justify-between group md:mb-3.5 last:md:mb-0"
                   >
-                    <CheckCircle2 size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
-                    <span className="text-sm font-medium text-[#1B1C1A] leading-relaxed">{b}</span>
+                    <div>
+                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                        Diligence Item 0{idx + 1}
+                      </span>
+                      <div className="my-2 p-2.5 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                        <div>
+                          <span className="text-xs font-bold font-mono text-[#A33E11] block leading-tight">Checklist</span>
+                          <span className="text-[9px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Pre-Commitment</span>
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold font-mono text-[#00222B] block leading-tight">Financial</span>
+                          <span className="text-[9px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Clarity</span>
+                        </div>
+                      </div>
+                      <div className="flex items-start gap-2.5 mt-2">
+                        <CheckCircle2 size={16} className="text-[#A33E11] mt-0.5 shrink-0" />
+                        <span className="text-xs sm:text-sm font-medium text-[#1B1C1A] leading-relaxed">{b}</span>
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>
