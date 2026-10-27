@@ -80,7 +80,7 @@ const COUNTRIES: CountryShowcase[] = [
   },
   {
     id: 'uae',
-    name: 'UAE & Dubai',
+    name: 'UAE',
     heroImage: '/images/web/uae-wide.webp',
     stripImage: '/images/generated/uae-careers.jpg',
     alt: 'Modern skyscrapers and university centers in Dubai, UAE',
