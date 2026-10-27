@@ -1209,7 +1209,7 @@ export function countryHref(name: string) {
     'canada': '/study/canada',
     'australia': '/study/australia',
     'uae': '/work/uae',
-    'germany': '/study/europe',
+    'germany': '/study/germany',
     'europe': '/study/europe',
     'greece': '/work/greece',
   };

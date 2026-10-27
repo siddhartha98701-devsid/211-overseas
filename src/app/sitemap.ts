@@ -7,6 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '',
     '/study',
     '/study/south-korea',
+    '/study/germany',
     '/study/singapore',
     '/study/luxembourg',
     '/study/japan',

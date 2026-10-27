@@ -86,6 +86,40 @@ export const DESTINATION_VISUALS: Record<string, DestinationVisual> = {
     ],
   },
 
+  Germany: {
+    heroImage: {
+      src: '/images/web/germany-wide.webp',
+      alt: 'German university research campus and landmark historic architecture in Munich and Berlin',
+      caption: 'Germany · Tuition-Free Academic Excellence & Engineering Powerhouse',
+    },
+    gallery: [
+      {
+        src: '/images/destinations/europe-campus.jpg',
+        alt: 'Historic university main building and research quadrangle in Germany',
+        title: 'TU9 Research Universities',
+        caption: 'Top-tier technical institutions with extensive industry partnerships',
+      },
+      {
+        src: '/images/destinations/europe-research.jpg',
+        alt: 'State-of-the-art engineering and automotive laboratory in Germany',
+        title: 'Precision Engineering & Industry 4.0',
+        caption: 'Direct collaboration with Siemens, BMW, Bosch and SAP',
+      },
+      {
+        src: '/images/destinations/europe-library.jpg',
+        alt: 'Historic German university library and study halls',
+        title: 'Rich Academic Tradition',
+        caption: 'Centuries of scholarly distinction with modern research facilities',
+      },
+      {
+        src: '/images/destinations/europe-city-life.jpg',
+        alt: 'German city streetscape and student vibrant lifestyle',
+        title: 'High Quality of Living',
+        caption: 'Safe, culturally vibrant student cities with 18-month post-study visa',
+      },
+    ],
+  },
+
   Luxembourg: {
     heroImage: {
       src: '/images/destinations/europe-city-life.jpg',

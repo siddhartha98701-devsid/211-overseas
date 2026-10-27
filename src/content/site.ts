@@ -75,6 +75,7 @@ export const siteContent = {
         href: '/study',
         children: [
           { label: 'South Korea (Featured)', href: '/study/south-korea' },
+          { label: 'Germany', href: '/study/germany' },
           { label: 'Singapore', href: '/study/singapore' },
           { label: 'Luxembourg', href: '/study/luxembourg' },
           { label: 'Japan', href: '/study/japan' },
@@ -149,6 +150,7 @@ export const siteContent = {
         title: 'STUDY',
         links: [
           { label: 'South Korea', href: '/study/south-korea' },
+          { label: 'Germany', href: '/study/germany' },
           { label: 'Singapore', href: '/study/singapore' },
           { label: 'Luxembourg', href: '/study/luxembourg' },
           { label: 'Japan', href: '/study/japan' },

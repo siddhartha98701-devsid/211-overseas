@@ -30,6 +30,11 @@ export const studyOverviewContent = {
         distinctiveFactor: 'Technology, business, creativity; Korean-language and degree pathways',
       },
       {
+        name: 'Germany',
+        href: '/study/germany',
+        distinctiveFactor: 'Tuition-free public universities, world-class engineering, automotive, AI and industry internships',
+      },
+      {
         name: 'Singapore',
         href: '/study/singapore',
         distinctiveFactor: 'English-medium education; selective universities and applied learning',

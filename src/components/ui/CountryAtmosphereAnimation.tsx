@@ -5,6 +5,7 @@ import React, { useEffect, useRef } from 'react';
 export type CountryTheme =
   | 'south-korea'
   | 'korea'
+  | 'germany'
   | 'japan'
   | 'singapore'
   | 'taiwan'
@@ -57,6 +58,7 @@ function normalizeTheme(country?: string): CountryTheme {
   if (!country) return 'study';
   const c = country.toLowerCase().trim();
   if (c.includes('korea')) return 'south-korea';
+  if (c.includes('germany') || c.includes('deutschland')) return 'germany';
   if (c.includes('japan')) return 'japan';
   if (c.includes('singapore')) return 'singapore';
   if (c.includes('taiwan')) return 'taiwan';
@@ -404,6 +406,27 @@ export function CountryAtmosphereAnimation({
           }
           ctx.fillStyle = grad;
           ctx.fill();
+          break;
+        }
+
+        case 'germany': {
+          // German Academic Golden Sparks & Precision Amber Oak Leaves
+          if (p.itemKind === 0) {
+            // Golden Sparkle
+            ctx.beginPath();
+            ctx.arc(0, 0, s * 0.3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(234, 179, 8, ${alpha * 0.95})`;
+            ctx.fill();
+          } else {
+            // Amber Oak Leaf
+            ctx.beginPath();
+            ctx.ellipse(0, 0, s * 0.35, s * 0.72, 0, 0, Math.PI * 2);
+            const grad = ctx.createLinearGradient(0, -s * 0.72, 0, s * 0.72);
+            grad.addColorStop(0, `rgba(217, 119, 6, ${alpha * 0.9})`);
+            grad.addColorStop(1, `rgba(30, 41, 59, ${alpha * 0.85})`);
+            ctx.fillStyle = grad;
+            ctx.fill();
+          }
           break;
         }
 
