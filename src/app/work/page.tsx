@@ -63,7 +63,7 @@ export default function WorkOverviewPage() {
                     International Careers
                   </span>
                   <p className="font-serif text-xs sm:text-sm font-semibold leading-tight drop-shadow-sm">
-                    Verified Work Corridors in the UAE &amp; Greece
+                    Verified Work Corridors in the UAE, Germany &amp; Greece
                   </p>
                 </div>
               </div>
@@ -72,7 +72,7 @@ export default function WorkOverviewPage() {
         </div>
       </section>
 
-      {/* Country Focus: UAE and Greece */}
+      {/* Country Focus: UAE, Germany and Greece */}
       <section className="py-20 border-b border-[#E6DDCC] bg-white">
         <div className="max-w-[1280px] mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-10">
@@ -84,11 +84,13 @@ export default function WorkOverviewPage() {
             </h2>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-2 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {countryFocus.countries.map((c) => {
               const countryImg =
                 c.name === 'UAE'
                   ? '/images/generated/uae-careers.jpg'
+                  : c.name === 'Germany'
+                  ? '/images/generated/germany-healthcare.jpg'
                   : '/images/greece/greece-resort.jpg';
 
               return (

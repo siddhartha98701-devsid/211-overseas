@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/study/australia',
     '/work',
     '/work/uae',
+    '/work/germany',
     '/work/greece',
     '/work/openings',
     '/inbound',

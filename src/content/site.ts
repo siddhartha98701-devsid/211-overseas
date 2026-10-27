@@ -99,6 +99,7 @@ export const siteContent = {
         href: '/work',
         children: [
           { label: 'UAE', href: '/work/uae' },
+          { label: 'Germany', href: '/work/germany' },
           { label: 'Greece', href: '/work/greece' },
           { label: 'Current Openings', href: '/work/openings' },
         ],
@@ -171,6 +172,7 @@ export const siteContent = {
         title: 'WORK',
         links: [
           { label: 'UAE', href: '/work/uae' },
+          { label: 'Germany', href: '/work/germany' },
           { label: 'Greece', href: '/work/greece' },
           { label: 'Current Openings', href: '/work/openings' },
           { label: 'Work Enquiry', href: '/contact#work-enquiry' },

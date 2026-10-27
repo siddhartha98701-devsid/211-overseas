@@ -13,7 +13,7 @@
 export interface Vacancy {
   id: string; // used as vacancyId on applications
   title: string;
-  country: 'UAE' | 'Greece';
+  country: 'UAE' | 'Germany' | 'Greece';
   cityOrRegion: string;
   employerName?: string; // only if writtenPermission === true
   writtenPermission: boolean;

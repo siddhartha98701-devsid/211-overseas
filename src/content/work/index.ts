@@ -32,6 +32,12 @@ export const workOverviewContent = {
           'Browse healthcare, hospitality, customer-facing, technical and professional roles when active requisitions are available.',
       },
       {
+        name: 'Germany',
+        href: '/work/germany',
+        description:
+          'Explore healthcare (nursing & physiotherapy), engineering, IT and skilled trade opportunities under Germany’s Skilled Immigration Act.',
+      },
+      {
         name: 'Greece',
         href: '/work/greece',
         description:

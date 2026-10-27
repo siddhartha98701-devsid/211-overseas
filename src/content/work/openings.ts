@@ -20,7 +20,7 @@ export const currentOpeningsContent = {
   filters: {
     destination: {
       label: 'Destination',
-      options: ['All', 'UAE', 'Greece'],
+      options: ['All', 'UAE', 'Germany', 'Greece'],
     },
     sector: {
       label: 'Sector',
