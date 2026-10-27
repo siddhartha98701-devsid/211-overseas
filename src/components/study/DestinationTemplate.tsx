@@ -140,6 +140,126 @@ export interface DestinationData {
   };
 }
 
+const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
+  // South Korea
+  'seoul national university': '/images/universities/snu.jpg',
+  'snu': '/images/universities/snu.jpg',
+  'kaist': '/images/universities/kaist.jpg',
+  'yonsei university': '/images/universities/yonsei.jpg',
+  'korea university': '/images/universities/ku.jpg',
+  'hanyang university': '/images/universities/hanyang.jpg',
+  'sungkyunkwan university': '/images/universities/skku.jpg',
+  'postech': '/images/universities/postech.jpg',
+  'kyung hee university': '/images/universities/khu.jpg',
+  'pusan national university': '/images/korea/korea-campus.jpg',
+  'sejong university': '/images/universities/gist.jpg',
+  'ewha womans university': '/images/korea/korea-student.jpg',
+  'kyungpook national university': '/images/universities/unist.jpg',
+
+  // Singapore
+  'national university of singapore': '/images/destinations/singapore-fintech-hub.jpg',
+  'nanyang technological university': '/images/destinations/singapore-campus.jpg',
+  'singapore management university': '/images/destinations/singapore-marina-bay.jpg',
+  'singapore university of technology and design': '/images/destinations/singapore-gardens.jpg',
+  'singapore institute of technology': '/images/destinations/singapore-campus.jpg',
+  'singapore university of social sciences': '/images/destinations/singapore-fintech-hub.jpg',
+
+  // Germany
+  'technical university of munich': '/images/destinations/europe-research.jpg',
+  'ludwig maximilian university of munich': '/images/destinations/europe-campus.jpg',
+  'lmu munich': '/images/destinations/europe-campus.jpg',
+  'heidelberg university': '/images/destinations/europe-library.jpg',
+  'rwth aachen university': '/images/destinations/europe-campus.jpg',
+  'karlsruhe institute of technology': '/images/destinations/europe-research.jpg',
+  'humboldt university of berlin': '/images/destinations/europe-library.jpg',
+  'free university of berlin': '/images/destinations/europe-campus.jpg',
+  'technical university of berlin': '/images/destinations/europe-research.jpg',
+  'university of freiburg': '/images/destinations/europe-city-life.jpg',
+  'university of stuttgart': '/images/destinations/europe-research.jpg',
+
+  // Japan
+  'university of tokyo': '/images/destinations/japan-campus.jpg',
+  'kyoto university': '/images/destinations/japan-culture.jpg',
+  'osaka university': '/images/destinations/japan-campus.jpg',
+  'tohoku university': '/images/destinations/japan-tech-lab.jpg',
+  'nagoya university': '/images/destinations/japan-culture.jpg',
+  'kyushu university': '/images/destinations/japan-campus.jpg',
+  'institute of science tokyo': '/images/destinations/japan-tech-lab.jpg',
+  'waseda university': '/images/destinations/japan-tokyo-city.jpg',
+  'keio university': '/images/destinations/japan-campus.jpg',
+  'sophia university': '/images/destinations/japan-culture.jpg',
+
+  // Taiwan
+  'national taiwan university': '/images/destinations/taiwan-campus.jpg',
+  'national tsing hua university': '/images/destinations/taiwan-semiconductor-lab.jpg',
+  'national yang ming chiao tung university': '/images/destinations/taiwan-culture.jpg',
+  'national cheng kung university': '/images/destinations/taiwan-taipei-skyline.jpg',
+  'national chengchi university': '/images/destinations/taiwan-campus.jpg',
+
+  // United Kingdom
+  'imperial college london': '/images/destinations/uk-cambridge.jpg',
+  'university college london': '/images/destinations/uk-london-city.jpg',
+  'king’s college london': '/images/destinations/uk-oxford-library.jpg',
+  'university of manchester': '/images/destinations/uk-campus.jpg',
+  'university of edinburgh': '/images/destinations/uk-cambridge.jpg',
+  'university of warwick': '/images/destinations/uk-london-city.jpg',
+  'university of bristol': '/images/destinations/uk-oxford-library.jpg',
+  'university of birmingham': '/images/destinations/uk-campus.jpg',
+
+  // United States
+  'massachusetts institute of technology': '/images/destinations/usa-tech-hub.jpg',
+  'stanford university': '/images/destinations/usa-harvard-yard.jpg',
+  'university of california, berkeley': '/images/destinations/usa-campus.jpg',
+  'carnegie mellon university': '/images/destinations/usa-nyc-campus.jpg',
+  'georgia institute of technology': '/images/destinations/usa-tech-hub.jpg',
+  'university of michigan': '/images/destinations/usa-harvard-yard.jpg',
+  'purdue university': '/images/destinations/usa-campus.jpg',
+  'university of illinois urbana-champaign': '/images/destinations/usa-nyc-campus.jpg',
+  'university of california, los angeles': '/images/destinations/usa-campus.jpg',
+
+  // Canada
+  'university of toronto': '/images/destinations/canada-toronto-skyline.jpg',
+  'university of british columbia': '/images/destinations/canada-ubc-campus.jpg',
+  'mcgill university': '/images/destinations/canada-montreal.jpg',
+  'university of waterloo': '/images/destinations/canada-campus.jpg',
+  'mcmaster university': '/images/destinations/canada-ubc-campus.jpg',
+  'university of alberta': '/images/destinations/canada-toronto-skyline.jpg',
+  'western university': '/images/destinations/canada-montreal.jpg',
+  'queen’s university': '/images/destinations/canada-campus.jpg',
+
+  // Australia
+  'university of melbourne': '/images/destinations/australia-melbourne-quad.jpg',
+  'university of sydney': '/images/destinations/australia-sydney-harbour.jpg',
+  'unsw sydney': '/images/destinations/australia-campus.jpg',
+  'monash university': '/images/destinations/australia-student-life.jpg',
+  'university of queensland': '/images/destinations/australia-melbourne-quad.jpg',
+  'university of adelaide': '/images/destinations/australia-sydney-harbour.jpg',
+  'university of western australia': '/images/destinations/australia-campus.jpg',
+
+  // Europe
+  'delft university of technology': '/images/destinations/europe-library.jpg',
+  'university of amsterdam': '/images/destinations/europe-city-life.jpg',
+  'trinity college dublin': '/images/destinations/europe-research.jpg',
+  'university college dublin': '/images/destinations/europe-campus.jpg',
+  'politecnico di milano': '/images/destinations/europe-library.jpg',
+  'sciences po': '/images/destinations/europe-city-life.jpg',
+
+  // Luxembourg
+  'university of luxembourg': '/images/destinations/europe-campus.jpg',
+  'luxembourg school of business': '/images/destinations/europe-research.jpg',
+
+  // UAE
+  'university of birmingham dubai': '/images/generated/uae-careers.jpg',
+  'heriot-watt university dubai': '/images/uae.jpg',
+  'middlesex university dubai': '/images/web/uae-wide.webp',
+  'university of wollongong in dubai': '/images/generated/uae-careers.jpg',
+  'canadian university dubai': '/images/uae.jpg',
+  'american university in dubai': '/images/web/uae-wide.webp',
+  'university of sharjah': '/images/generated/uae-careers.jpg',
+  'khalifa university': '/images/uae.jpg',
+  'united arab emirates university': '/images/web/uae-wide.webp',
+};
+
 interface CourseSubjectMeta {
   image: string;
   category: string;
@@ -409,6 +529,8 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
   const costApproachRef = useRef<HTMLDivElement>(null);
   const costPlanningRef = useRef<HTMLDivElement>(null);
   const visasRef = useRef<HTMLDivElement>(null);
+
+  const defaultImage = visual?.gallery?.[0]?.src || visual?.heroImage?.src || '/images/generated/global-campus.jpg';
 
   return (
     <div className="bg-[#FBF8F1] min-h-screen">
@@ -1018,6 +1140,8 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 >
                   {data.universities.list.map((uni, idx) => {
                     const isSelected = uni === currentUni;
+                    const uniKey = uni.toLowerCase().trim();
+                    const uniImg = UNIVERSITY_IMAGE_MAP[uniKey] || defaultImage;
                     const monogram = uni
                       .replace(/\([^)]*\)/g, '')
                       .split(/\s+/)
@@ -1040,12 +1164,25 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                             : 'border-[#E6DDCC] hover:border-[#A33E11]'
                         }`}
                       >
-                        {/* 16:10 Upper University Logo Card */}
-                        <UniversityLogo
-                          university={uni}
-                          destinationName={destinationName}
-                          variant="card"
-                        />
+                        {/* 16:10 Campus Image with monogram badge */}
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-gray-100 shrink-0">
+                          <Image
+                            src={uniImg}
+                            alt={`${uni} academic campus`}
+                            fill
+                            sizes="(min-width: 768px) 340px, 85vw"
+                            className="object-cover transition-transform duration-500 hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-transparent to-transparent" />
+                          <div className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/95 backdrop-blur-xs shadow-md border border-black/10 flex items-center justify-center font-bold text-xs text-[#0C3844] z-10">
+                            {monogram}
+                          </div>
+                          <div className="absolute bottom-2.5 left-3 right-3">
+                            <span className="text-white font-serif text-sm font-bold truncate block drop-shadow-sm">
+                              {uni}
+                            </span>
+                          </div>
+                        </div>
 
                         {/* Card Body */}
                         <div className="p-4 pt-3 flex-1 flex flex-col justify-between gap-3">

@@ -75,12 +75,12 @@ export const siteContent = {
         href: '/study',
         children: [
           { label: 'South Korea (Featured)', href: '/study/south-korea' },
+          { label: 'UAE', href: '/study/uae' },
           { label: 'Germany', href: '/study/germany' },
           { label: 'Singapore', href: '/study/singapore' },
           { label: 'Luxembourg', href: '/study/luxembourg' },
           { label: 'Japan', href: '/study/japan' },
           { label: 'Taiwan', href: '/study/taiwan' },
-          { label: 'UAE', href: '/study/uae' },
           {
             label: 'Other Destinations',
             isHeader: true,
@@ -151,12 +151,12 @@ export const siteContent = {
         title: 'STUDY',
         links: [
           { label: 'South Korea', href: '/study/south-korea' },
+          { label: 'UAE', href: '/study/uae' },
           { label: 'Germany', href: '/study/germany' },
           { label: 'Singapore', href: '/study/singapore' },
           { label: 'Luxembourg', href: '/study/luxembourg' },
           { label: 'Japan', href: '/study/japan' },
           { label: 'Taiwan', href: '/study/taiwan' },
-          { label: 'UAE', href: '/study/uae' },
           { label: 'Europe', href: '/study/europe' },
           { label: 'USA', href: '/study/usa' },
           { label: 'Canada', href: '/study/canada' },
