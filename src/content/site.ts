@@ -43,6 +43,7 @@ export const siteContent = {
       'Study in Australia',
       'Work in UAE',
       'Work in Greece',
+      'Second Citizenship / Global Residency',
       'Study in India (Inbound)',
       'College & University Collaboration (Inbound)',
       'Other',
@@ -102,6 +103,17 @@ export const siteContent = {
           { label: 'Germany', href: '/work/germany' },
           { label: 'Greece', href: '/work/greece' },
           { label: 'Current Openings', href: '/work/openings' },
+        ],
+      },
+      {
+        label: 'Invest',
+        href: '/invest',
+        children: [
+          { label: 'Overview', href: '/invest' },
+          { label: 'Citizenship by Investment', href: '/invest#citizenship-showcase' },
+          { label: 'Residency by Investment', href: '/invest#residency-showcase' },
+          { label: 'Business Migration', href: '/invest#business-showcase' },
+          { label: 'Private Consultation', href: '/invest#consultation' },
         ],
       },
       {
@@ -182,6 +194,7 @@ export const siteContent = {
         title: 'COMPANY / RESOURCES',
         links: [
           { label: 'About Us', href: '/about' },
+          { label: 'Second Citizenship & Residency', href: '/invest' },
           { label: 'Scholarships', href: '/resources/scholarships' },
           { label: 'Cost Guide', href: '/resources/cost-of-studying' },
           { label: 'FAQs', href: '/faq' },
