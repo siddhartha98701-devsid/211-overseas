@@ -103,11 +103,11 @@ export default function InvestPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden mb-12">
             {whyThinkGlobally.cards.map((card) => (
               <div
                 key={card.number}
-                className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
+                className="w-[82vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
               >
                 <div>
                   <span className="font-mono text-xs font-bold text-[#A33E11] block mb-3">
@@ -158,11 +158,11 @@ export default function InvestPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 lg:gap-8 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
             {pathways.items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white border border-[#E6DDCC] p-8 flex flex-col justify-between hover:border-[#A33E11] transition-all shadow-sm"
+                className="w-[85vw] sm:w-[380px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-6 sm:p-8 flex flex-col justify-between hover:border-[#A33E11] transition-all shadow-sm"
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
@@ -237,11 +237,11 @@ export default function InvestPage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
             {citizenship.destinations.map((d) => (
               <div
                 key={d.name}
-                className="bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-all"
+                className="w-[82vw] sm:w-[340px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-all"
               >
                 {d.image && (
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
@@ -318,11 +318,11 @@ export default function InvestPage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
             {residency.destinations.map((d) => (
               <div
                 key={d.name}
-                className="bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-all shadow-sm"
+                className="w-[82vw] sm:w-[340px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] overflow-hidden flex flex-col justify-between group hover:border-[#A33E11] transition-all shadow-sm"
               >
                 {d.image && (
                   <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B]">
@@ -391,11 +391,11 @@ export default function InvestPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden mb-12">
             {businessMigration.pathways.map((p) => (
               <div
                 key={p.country}
-                className="bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
+                className="w-[82vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
               >
                 <div>
                   <span className="px-2.5 py-1 bg-[#F3EBDD] text-[#A33E11] text-[10px] font-bold uppercase tracking-wider inline-block mb-3">
@@ -444,11 +444,11 @@ export default function InvestPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden mb-12">
             {familySecurity.pillars.map((pil) => (
               <div
                 key={pil.number}
-                className="bg-white/5 border border-white/15 p-7 flex flex-col justify-between hover:border-[#FC7F4E] transition-colors backdrop-blur-sm"
+                className="w-[82vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-white/5 border border-white/15 p-7 flex flex-col justify-between hover:border-[#FC7F4E] transition-colors backdrop-blur-sm"
               >
                 <div>
                   <span className="font-mono text-xs font-bold text-[#FC7F4E] block mb-3">
@@ -494,11 +494,11 @@ export default function InvestPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden mb-12">
             {advisoryProcess.steps.map((st) => (
               <div
                 key={st.step}
-                className="bg-white border border-[#E6DDCC] p-7 relative hover:border-[#A33E11] transition-colors"
+                className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-7 relative hover:border-[#A33E11] transition-colors"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className="font-mono text-xs font-bold text-[#A33E11]">
