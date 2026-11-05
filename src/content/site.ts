@@ -52,15 +52,53 @@ export const siteContent = {
 
   howItWorks: {
     eyebrow: 'How 211 OVERSEAS Works',
-    headline: 'Your Overseas Journey, Simplified',
+    headline: 'From "What If?" to "What\'s Next?"',
+    description:
+      'Every international journey begins with a question. Which country? What course? Which university? Where could my career take me? We help you discover your possibilities, understand your options and move forward with greater confidence.',
+    cta: 'Start My Profile Review',
     steps: [
-      { number: '01', title: 'Tell Us Your Goal', description: 'Study abroad? Build an international career? Looking for a particular country? Start with a conversation.' },
-      { number: '02', title: 'Profile Assessment', description: 'We understand your education, experience, goals, budget, timeline and destination preferences.' },
-      { number: '03', title: 'Explore Your Options', description: 'Potential destinations, courses or career pathways are identified according to your profile.' },
-      { number: '04', title: 'Application & Documentation', description: 'We guide you through the applicable application and documentation requirements.' },
-      { number: '05', title: 'Admission / Career Process', description: 'You proceed through the relevant university admission or recruitment process.' },
-      { number: '06', title: 'Visa & Pre-Departure', description: 'We assist you in preparing for the applicable visa documentation and your international journey.' },
-      { number: '07', title: 'Ongoing Support', description: 'Our team stays in touch to address queries as you prepare for your move abroad.' },
+      {
+        number: '01',
+        title: 'Tell Us What Excites You',
+        description:
+          "Share your academic interests, career ambitions and the destinations you've been thinking about. You don't need to have everything figured out.",
+      },
+      {
+        number: '02',
+        title: "Let's Understand Your Profile",
+        description:
+          "We'll look at your qualifications, academic achievements, experience and preferences to understand your starting point.",
+      },
+      {
+        number: '03',
+        title: 'Discover Your Possibilities',
+        description:
+          'Explore universities, courses and international career pathways suited to your interests, background and financial readiness.',
+      },
+      {
+        number: '04',
+        title: 'Get Application Ready',
+        description:
+          "From academic records and personal statements to CVs and supporting documents, we'll help you prepare for the application process.",
+      },
+      {
+        number: '05',
+        title: 'Prepare for Your Next Milestone',
+        description:
+          'University selection, admission requirements, employer interviews or relevant assessments - understand what your pathway involves.',
+      },
+      {
+        number: '06',
+        title: 'Get Ready for Your Move',
+        description:
+          'Navigate visa documentation, travel preparation and the practical arrangements associated with your international journey.',
+      },
+      {
+        number: '07',
+        title: 'Begin Your New Chapter',
+        description:
+          'Take your next step with guidance on the transition, including post arrival support.',
+      },
     ],
   },
 
@@ -72,7 +110,7 @@ export const siteContent = {
     items: [
       { label: 'Home', href: '/' },
       {
-        label: 'Study',
+        label: 'Study Abroad',
         href: '/study',
         children: [
           { label: 'South Korea (Featured)', href: '/study/south-korea' },
@@ -96,7 +134,7 @@ export const siteContent = {
         ],
       },
       {
-        label: 'Work',
+        label: 'Work Abroad',
         href: '/work',
         children: [
           { label: 'UAE', href: '/work/uae' },
@@ -122,7 +160,7 @@ export const siteContent = {
         children: [
           { label: 'Overview', href: '/inbound' },
           { label: 'For Students', href: '/inbound/students' },
-          { label: 'Institutional Collaborations', href: '/inbound/collaborations' },
+          { label: 'Partnerships', href: '/inbound/collaborations' },
         ],
       },
       {
@@ -139,8 +177,8 @@ export const siteContent = {
         href: '/resources',
         children: [
           { label: 'Scholarships', href: '/resources/scholarships' },
-          { label: 'Study Budget Planner', href: '/resources/cost-of-studying' },
-          { label: 'Application Guide', href: '/resources/application-guide' },
+          { label: 'Study Planning', href: '/resources/application-guide' },
+          { label: 'Cost Guide', href: '/resources/cost-of-studying' },
           { label: 'FAQs', href: '/faq' },
         ],
       },
@@ -160,7 +198,7 @@ export const siteContent = {
     brandLine: '211 Overseas — International education and career pathways. Your Future Has No Borders.',
     columns: {
       study: {
-        title: 'STUDY',
+        title: 'STUDY ABROAD',
         links: [
           { label: 'South Korea', href: '/study/south-korea' },
           { label: 'UAE', href: '/study/uae' },
@@ -181,7 +219,7 @@ export const siteContent = {
         ],
       },
       work: {
-        title: 'WORK',
+        title: 'WORK ABROAD',
         links: [
           { label: 'UAE', href: '/work/uae' },
           { label: 'Germany', href: '/work/germany' },

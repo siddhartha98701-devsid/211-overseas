@@ -68,7 +68,7 @@ export function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-3.5 xl:space-x-7" aria-label="Main Navigation">
+          <nav className="hidden lg:flex items-center space-x-2.5 xl:space-x-5" aria-label="Main Navigation">
             {siteContent.navigation.items.map((item) => {
               const isActive = pathname === item.href;
               const hasChildren = 'children' in item && Array.isArray(item.children);

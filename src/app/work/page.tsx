@@ -25,9 +25,14 @@ export default function WorkOverviewPage() {
               <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
                 {hero.eyebrow}
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
                 {hero.h1}
               </h1>
+              {hero.supportingHeadline && (
+                <p className="font-serif text-lg sm:text-xl text-[#FC7F4E] mb-6 font-medium">
+                  {hero.supportingHeadline}
+                </p>
+              )}
               <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
                 {hero.paragraph}
               </p>
@@ -79,9 +84,12 @@ export default function WorkOverviewPage() {
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Recruitment Destinations
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] mb-3">
               {countryFocus.headline}
             </h2>
+            <p className="text-sm text-[#41484B] leading-relaxed">
+              {countryFocus.description}
+            </p>
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
@@ -122,12 +130,22 @@ export default function WorkOverviewPage() {
                         </span>
                         <MapPin className="w-5 h-5 text-[#A33E11]" />
                       </div>
-                      <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3 group-hover:text-[#A33E11] transition-colors">
+                      <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-1 group-hover:text-[#A33E11] transition-colors">
                         Work in {c.name}
                       </h3>
-                      <p className="text-sm text-[#41484B] leading-relaxed mb-8">
+                      {'headline' in c && c.headline && (
+                        <p className="text-xs font-semibold uppercase tracking-wider text-[#A33E11] mb-3">
+                          {c.headline}
+                        </p>
+                      )}
+                      <p className="text-sm text-[#41484B] leading-relaxed mb-4">
                         {c.description}
                       </p>
+                      {'relevantBackgrounds' in c && c.relevantBackgrounds && (
+                        <p className="text-xs text-[#1B1C1A] pt-3 border-t border-[#E6DDCC]/70 mb-6">
+                          <strong className="text-[#A33E11]">Relevant:</strong> {c.relevantBackgrounds}
+                        </p>
+                      )}
                     </div>
 
                     <Link
@@ -227,12 +245,15 @@ export default function WorkOverviewPage() {
             <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-2">
               Recruitment Sequence
             </span>
-            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A]">
+            <h2 className="font-serif text-3xl md:text-4xl font-bold text-[#1B1C1A] mb-3">
               {process.headline}
             </h2>
+            <p className="text-sm text-[#41484B] leading-relaxed">
+              {process.description}
+            </p>
           </div>
 
-          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
+          <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
             {process.steps.map((st) => (
               <div
                 key={st.number}

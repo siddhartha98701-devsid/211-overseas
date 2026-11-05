@@ -1,47 +1,57 @@
 /**
  * 211 OVERSEAS — Work Abroad Overview Content (Page 13)
- * Source of truth: /content-source/content_source_211_overseas.md (October 2026)
+ * Source of truth: Master Specification PDF (Pages 169–175)
  */
 
 export const workOverviewContent = {
   meta: {
-    title: 'Work Abroad | UAE, Greece & Current Vacancies',
+    title: 'Work Abroad | UAE, Germany & Greece Career Pathways | 211 OVERSEAS',
     description:
-      'Search current overseas recruitment opportunities by country, industry and role. Review vacancy standards, screening procedures and verified openings in UAE and Greece.',
+      'Explore international career pathways in healthcare, caregiving and hospitality across Germany, the UAE and Greece with 211 Overseas.',
   },
 
   hero: {
     eyebrow: 'WORK ABROAD',
-    h1: 'Explore overseas work with the offer—not a promise—at the centre.',
+    h1: 'Your Skills Were Built with Purpose. Where Could They Take You Next?',
+    supportingHeadline:
+      'Explore international career pathways in healthcare, caregiving and hospitality.',
     paragraph:
-      'Search current overseas recruitment opportunities by country, industry and role. Eligibility, compensation, working conditions and immigration requirements depend on the employer and the specific vacancy.',
+      'A nursing qualification earned through years of dedication. The knowledge and experience of a physiotherapist. The creativity and service skills of a hospitality professional. Every qualification represents hard work, learning and ambition. For professionals interested in gaining international exposure, different countries offer career pathways with their own professional standards, workplace cultures and opportunities. From healthcare-related pathways in Germany to nursing, caregiving and hospitality opportunities in the UAE and Greece, discover what your qualifications could make possible. At 211 Overseas, we help you understand international career requirements, explore suitable pathways and take an informed first step.',
     ctas: {
-      primary: { label: 'View Current Openings', href: '/work/openings' },
-      secondary: { label: 'Submit My CV', href: '/contact#work-enquiry' },
+      primary: { label: 'Explore Career Pathways', href: '#destinations' },
+      secondary: { label: 'Understand My Eligibility', href: '/contact#work-enquiry' },
     },
     formFields: ['Profession', 'Experience', 'Preferred country', 'WhatsApp'],
   },
 
   countryFocus: {
-    headline: 'Current country focus',
+    headline: 'Different Countries. Different Industries. Different Ways to Grow.',
+    description:
+      'Every country has its own professional requirements and employment environment. Some destinations have structured recognition routes for internationally qualified healthcare professionals. Others offer opportunities within international hospitality and service industries. Explore the destinations and professional fields that match your qualifications.',
     countries: [
       {
         name: 'UAE',
+        headline: 'International Healthcare and Hospitality in a Global Business Hub.',
         href: '/work/uae',
         description:
-          'Browse healthcare, hospitality, customer-facing, technical and professional roles when active requisitions are available.',
+          'The UAE brings together hospitals, healthcare facilities, hotels, resorts and hospitality businesses serving a diverse international population. Discover the professional requirements associated with nursing, caregiving and hospitality roles.',
+        relevantBackgrounds: 'Nursing, ANM, Caregiving, Hotel Management and Hospitality.',
       },
       {
         name: 'Germany',
+        headline: 'Healthcare Skills Meet German Professional Standards.',
         href: '/work/germany',
         description:
-          'Explore healthcare (nursing & physiotherapy), engineering, IT and skilled trade opportunities under Germany’s Skilled Immigration Act.',
+          'Germany offers structured pathways for internationally qualified healthcare professionals, including nurses and physiotherapists. Explore qualification recognition, German-language preparation, professional registration requirements and the stages involved in pursuing eligible healthcare roles.',
+        relevantBackgrounds: 'BSc Nursing, GNM Nursing and Physiotherapy.',
       },
       {
         name: 'Greece',
+        headline: 'Discover Hospitality Careers in the Mediterranean.',
         href: '/work/greece',
         description:
-          'Explore hospitality, hotel operations, culinary and related roles according to confirmed recruitment cycles.',
+          'Greece is internationally recognised for its tourism industry, island destinations, resorts and distinctive hospitality culture. Explore the qualifications, experience and employer-related requirements relevant to selected seasonal hospitality pathways.',
+        relevantBackgrounds: 'Hospitality, Hotel Management, Food & Beverage Service and related fields.',
       },
     ],
   },
@@ -77,41 +87,64 @@ export const workOverviewContent = {
   },
 
   process: {
-    headline: 'From enquiry to joining',
+    headline: 'From Exploring a Pathway to Understanding the Next Step.',
+    description:
+      'Pursuing an international career should begin with clear information about eligibility, qualifications and the organisations responsible for the process.',
     steps: [
       {
         number: '01',
-        title: 'Apply to an active role.',
-        description: 'Submit basic profile and relevant documents.',
+        title: 'Tell Us About Your Background',
+        description:
+          "Share your educational qualification, professional experience and the countries or career fields you're interested in.",
       },
       {
         number: '02',
-        title: 'Pass eligibility screening.',
-        description: 'Education, experience, language and other criteria are checked.',
+        title: 'Understand the Relevant Pathway',
+        description:
+          'Learn about the qualification, language, professional recognition and other requirements associated with your destination and profession.',
       },
       {
         number: '03',
-        title: 'Interview with the employer.',
-        description: 'Shortlisted candidates proceed according to employer requirements.',
+        title: 'Explore Suitable Possibilities',
+        description:
+          'Where an appropriate and legally permitted referral arrangement is available, candidate information may be shared with an external recruitment organisation after the candidate has provided informed consent.',
       },
       {
         number: '04',
-        title: 'Review the written offer.',
-        description: 'Pay, location, hours, benefits and legal conditions must be clear.',
+        title: 'Independent Assessment',
+        description:
+          'The relevant recruitment organisation assesses available pathways and determines whether a candidate may be considered for a particular opportunity.',
       },
       {
         number: '05',
-        title: 'Complete required authorisations.',
-        description: 'Work permit, visa and travel follow the applicable law and approvals.',
+        title: 'Employer-Led Selection',
+        description:
+          'Where applicable, the employer or authorised recruitment organisation may conduct assessments, interviews or other selection procedures. An enquiry or profile review does not constitute an employment offer.',
+      },
+      {
+        number: '06',
+        title: 'Employment & Immigration Formalities',
+        description:
+          'If selected, employment documentation, professional approvals and immigration formalities are undertaken according to applicable destination-country laws.',
+      },
+      {
+        number: '07',
+        title: 'Prepare for Your International Role',
+        description:
+          'Prepare for relocation, workplace induction and professional integration in your new destination.',
       },
     ],
-    disclaimer: 'Selection, recruitment timelines and work authorisation are never guaranteed.',
+    disclaimer:
+      'Profile reviews and initial consultations do not constitute an offer of employment. Official terms, compensation and visas are established solely by written employer contracts and relevant government authorities.',
   },
 
   closing: {
+    headline: 'Your next professional chapter starts with a conversation.',
+    paragraph:
+      'Tell us your qualifications, language skills and career goals. We’ll help you understand which pathways you may qualify for.',
     ctas: {
-      primary: { label: 'Browse Verified Openings', href: '/work/openings' },
-      secondary: { label: 'Ask About My Eligibility', href: '/contact#work-enquiry' },
+      primary: { label: 'Submit My Profile', href: '#shortlist-form' },
+      secondary: { label: 'Explore Destinations', href: '#destinations' },
     },
   },
 } as const;

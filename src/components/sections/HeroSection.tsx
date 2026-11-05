@@ -192,7 +192,7 @@ export function HeroSection() {
             className="inline-flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#FC7F4E] font-medium mb-6"
           >
             <span className="h-px w-10 bg-[#A33E11]" />
-            211 OVERSEAS · study abroad
+            STUDY ABROAD · INTERNATIONAL CAREERS · GLOBAL MOBILITY
           </motion.p>
 
           <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-[4.5rem] font-bold text-white tracking-tight leading-[1.02] mb-6">
@@ -221,7 +221,7 @@ export function HeroSection() {
             animate="show"
             className="text-base sm:text-lg text-white/90 font-light mb-4"
           >
-            Clear choices. Confident next steps.
+            Big ambitions begin with discovering what&apos;s possible.
           </motion.p>
 
           <motion.p
@@ -231,7 +231,7 @@ export function HeroSection() {
             animate="show"
             className="text-sm sm:text-base text-white/75 leading-relaxed max-w-2xl mb-10"
           >
-            Explore international study and work pathways with organised guidance and transparent next steps. From course selection to documentation, applications, visa guidance and pre-departure support — we make your overseas journey easier.
+            Imagine studying Artificial Intelligence in Germany, business in Dubai or design in Europe. Or taking your nursing, physiotherapy or hospitality career international. Wherever your curiosity leads, 211 Overseas helps you discover exciting international opportunities and turn possibilities into a plan worth pursuing.
           </motion.p>
 
           <motion.div
@@ -242,28 +242,20 @@ export function HeroSection() {
             className="flex flex-wrap items-center gap-4"
           >
             <Link
-              href="#globe"
+              href="/study"
               className="btn-shine bg-[#A33E11] hover:bg-[#85320D] text-white px-8 py-3.5 text-xs uppercase tracking-widest transition-colors font-medium"
             >
-              Explore destinations
+              Explore Study Destinations
             </Link>
             <Link
               href="/contact"
               className="border border-white/70 hover:bg-white hover:text-black text-white px-8 py-3.5 text-xs uppercase tracking-widest transition-colors font-medium"
             >
-              Book free consultation
+              Discuss My Plans
             </Link>
-            <button
-              type="button"
-              onClick={() => {
-                if (typeof window !== 'undefined') {
-                  window.dispatchEvent(new CustomEvent('open-not-sure-modal'));
-                }
-              }}
-              className="w-full sm:w-auto text-xs text-[#FC7F4E] hover:text-white underline underline-offset-4 tracking-wider transition-colors font-medium cursor-pointer py-1"
-            >
-              Not sure where to start? Free Counselling →
-            </button>
+            <p className="w-full text-xs text-[#FC7F4E] tracking-wider font-light mt-1">
+              No destination in mind yet? Start with what excites you.
+            </p>
           </motion.div>
         </div>
 
@@ -273,13 +265,13 @@ export function HeroSection() {
           custom={1.4}
           initial={reduce ? false : 'hidden'}
           animate="show"
-          aria-label="Get free counselling"
+          aria-label="What Could Your Next Chapter Look Like"
           className="lg:col-span-5 w-full max-w-md lg:max-w-none lg:ml-auto bg-[#FAF8F5] border-t-4 border-[#A33E11] p-6 sm:p-7 shadow-[0_24px_60px_rgba(0,0,0,0.45)]"
         >
-          <p className="text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold">Free counselling</p>
-          <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">Talk to an expert</h2>
-          <p className="mb-5 text-sm text-[#41484B]">Get a call back about studying in South Korea.</p>
-          <LeadMiniForm interest="Study in South Korea" source="hero-form" />
+          <p className="text-xs uppercase tracking-[0.25em] text-[#A33E11] font-semibold">Hero Enquiry</p>
+          <h2 className="mt-1 mb-1 font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">What Could Your Next Chapter Look Like?</h2>
+          <p className="mb-5 text-sm text-[#41484B]">Tell us what interests you — even if your plans are still taking shape.</p>
+          <LeadMiniForm interest="Exploring Overseas Options" submitLabel="Help Me Find My Options" source="hero-form" />
         </motion.aside>
       </div>
 

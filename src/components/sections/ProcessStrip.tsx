@@ -107,10 +107,10 @@ export function ProcessStrip() {
               How 211 OVERSEAS Works
             </span>
             <h2 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight leading-[1.08] text-white">
-              The smartest way to build your <span className="text-[#FC7F4E]">global future</span>
+              From &quot;What If?&quot; to <span className="text-[#FC7F4E]">&quot;What&apos;s Next?&quot;</span>
             </h2>
             <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed max-w-2xl">
-              From initial profile assessment to your departure day, we provide transparent, structured guidance at every milestone.
+              Every international journey begins with a question. Which country? What course? Which university? Where could my career take me? We help you discover your possibilities, understand your options and move forward with greater confidence.
             </p>
           </div>
 
@@ -119,7 +119,7 @@ export function ProcessStrip() {
             onClick={() => openCallback({ source: 'process-header' })}
             className="btn-shine inline-flex items-center gap-2 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs uppercase tracking-widest font-semibold px-6 py-3.5 transition-colors cursor-pointer self-start md:self-end shrink-0"
           >
-            <span>Start Your Journey</span>
+            <span>Start My Profile Review</span>
             <ArrowRight size={14} />
           </button>
         </div>

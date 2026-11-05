@@ -67,10 +67,10 @@ const DESTINATIONS: Destination[] = [
   {
     pin: 'Dubai',
     country: 'UAE',
-    label: 'Work · Careers',
-    description: 'Browse healthcare, hospitality, technical and commercial opportunities in the UAE.',
-    bullets: ['Healthcare & nursing roles', 'Hospitality & guest services', 'Engineering & skilled trades', 'Verified written offers'],
-    href: '/work/uae',
+    label: 'Study & Work',
+    description: 'Explore world-class university campuses in Dubai as well as international healthcare, hospitality and corporate career pathways.',
+    bullets: ['37 International university campuses', 'Healthcare, nursing & caregiving', 'Hospitality & guest services', 'Post-study & work visa frameworks'],
+    href: '/study/uae',
     cta: 'Explore UAE',
     featured: true,
   },
@@ -187,9 +187,9 @@ export function GlobeExplorerSection() {
         <SectionHeader
           compact
           dark
-          eyebrow="Choose your destination"
-          headline="Spin the globe. Find your direction."
-          description="Drag the globe, tap a pin, or slide through the destinations below — each one shows the pathways we can guide you on."
+          eyebrow="Ahmedabad to the World"
+          headline="What if your best chapter begins somewhere you've never been?"
+          description="From Dubai's international energy and Germany's innovation culture to Japan's fascinating traditions and Australia's extraordinary coastlines, every destination has a story worth discovering. Spin the globe, explore what makes each country unique and find the study or career opportunities that could be waiting for you."
         />
 
         <ScrollReveal>
@@ -206,7 +206,7 @@ export function GlobeExplorerSection() {
                 />
               </div>
               <p className="mt-2 text-center text-[11px] uppercase tracking-widest text-white/50">
-                Drag to rotate · tap a pin to select
+                Drag to explore. Tap a destination to discover more.
               </p>
 
               {/* Slider with isolated navigation arrows and spacious cards */}

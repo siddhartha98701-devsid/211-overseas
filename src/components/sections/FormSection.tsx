@@ -29,11 +29,10 @@ export function FormSection({ defaultInterest, defaultDestination, heading }: Fo
         <ScrollReveal>
           <div className="max-w-2xl mb-12 text-white">
             <h2 className="font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight leading-[1.1] mb-4 text-white">
-              {heading ?? 'Start your overseas journey'}
+              {heading ?? 'One Conversation Could Open Up a Whole New Direction.'}
             </h2>
             <p className="text-base sm:text-base text-white/80 font-light leading-relaxed">
-              Confused about where to start? Start with your profile — not a country. Limited
-              counselling slots available each week.
+              A university you&apos;ve never considered. A country that matches your ambitions. A career opportunity worth exploring. You never know where the right conversation might lead. Tell us a little about yourself, and let&apos;s discover what&apos;s possible.
             </p>
           </div>
 

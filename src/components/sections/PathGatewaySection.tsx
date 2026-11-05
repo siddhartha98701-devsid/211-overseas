@@ -440,22 +440,25 @@ export function PathGatewaySection() {
     >
       <div className="max-w-[1280px] mx-auto px-6">
         {/* Section Header (Pattern a: Two-tone heading + explore link) */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-          <div>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+          <div className="max-w-3xl">
             <div className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-wider uppercase text-[#A33E11] mb-2">
               <Sparkles size={14} />
-              <span>Global Opportunities</span>
+              <span>DISCOVER YOUR POSSIBILITIES</span>
             </div>
-            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1B1C1A] leading-tight">
-              Study in <span className="text-[#A33E11]">{activeCountry.name}</span> for Indian Students
+            <h2 className="font-serif text-2xl sm:text-3xl lg:text-4xl font-bold text-[#1B1C1A] leading-tight mb-3">
+              A Destination Sparks the Idea. The Right Course Makes It Real.
             </h2>
+            <p className="text-sm sm:text-base text-[#41484B] leading-relaxed">
+              Engineering and innovation in Germany. Global business and technology in Dubai. Fashion and creative design in Italy. Semiconductors, aesthetics and culinary arts in South Korea. Discover universities, courses and student experiences that spark your curiosity — and find out which ones could suit your academic background.
+            </p>
           </div>
           <Link
-            href={activeCountry.href}
-            className="group inline-flex items-center gap-1.5 text-sm font-semibold text-[#A33E11] hover:text-[#85320D] transition-colors self-start md:self-end cursor-pointer"
+            href="/study"
+            className="group inline-flex items-center gap-1.5 px-6 py-3 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-wider transition-colors self-start md:self-end shrink-0 cursor-pointer"
           >
-            <span>Explore programs</span>
-            <ChevronRight size={16} className="transition-transform group-hover:translate-x-1" />
+            <span>Explore My Study Options</span>
+            <ChevronRight size={14} className="transition-transform group-hover:translate-x-1" />
           </Link>
         </div>
 

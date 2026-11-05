@@ -19,7 +19,7 @@ export default function HomePage() {
       <GlobeExplorerSection />
       <PathGatewaySection />
       <ProcessStrip />
-      <FaqSection limit={4} />
+      <FaqSection limit={10} headline="Wondering If Studying or Working Abroad Could Be for You?" />
       <FormSection />
     </>
   );

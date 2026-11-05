@@ -4,50 +4,48 @@ export interface Faq {
   link?: { label: string; href: string };
 }
 
-/** FAQ answers stay within what the brand & legal guidelines state. */
+/**
+ * Source of truth: Master Specification PDF (Home Page, Section 5, Pages 5-6)
+ */
 export const FAQS: Faq[] = [
   {
-    q: 'Do I need to know Korean to study in South Korea?',
-    a: 'Not for 100% English-taught programs. Learning Korean helps with daily life and careers, and we can also guide you on Korean language programs.',
+    q: 'Do I need to decide on a country before contacting 211 Overseas?',
+    a: 'Not at all! Tell us about your education, interests and aspirations. We can help you compare destinations and discover opportunities worth exploring.',
   },
   {
-    q: 'What English score do I need?',
-    a: 'Typically IELTS 5.5 or above, and the Duolingo English Test is accepted. Exact requirements vary by university and program, and your counsellor will confirm them for you.',
+    q: 'What can I study through 211 Overseas?',
+    a: 'From AI, engineering and business to fashion, design, hospitality, beauty and aesthetics, arts and other specialised subjects, there are exciting academic directions to explore. Available options depend on the university and destination.',
   },
   {
-    q: 'Which levels and fields can I apply for?',
-    a: 'Undergraduate and graduate programs, including Game Development, Animation, Film & Visual Effects, Digital Design, Korean Language & Business, Global Business Administration and Computer Science.',
+    q: 'Can you help me shortlist universities?',
+    a: 'Absolutely. We help you compare universities and courses based on your academic profile, interests, preferred study environment and future ambitions.',
   },
   {
-    q: 'Which cities do you focus on?',
-    a: 'Our study destinations in South Korea include Seoul and Busan, two of the country’s most dynamic student cities.',
+    q: 'Are scholarships available for international students?',
+    a: 'Yes. Many institutions offer merit-based scholarships and other funding opportunities. Depending on your academic profile, chosen university and eligibility, some programmes may offer substantial tuition scholarships.',
   },
   {
-    q: 'What does 211 OVERSEAS actually help with?',
-    a: 'University selection, application processing, interview preparation and visa guidance. We act as an advisory bridge between you and the university.',
+    q: 'Which international career pathways can I explore?',
+    a: 'Our current focus includes healthcare pathways in Germany, nursing and caregiving opportunities in Dubai, and hospitality routes in Greece, the UAE and other destinations where opportunities are available.',
   },
   {
-    q: 'Which documents will I need?',
-    a: 'Commonly: academic transcripts, language test scores, a resume, letters of recommendation, passport details and financial statements. Your counsellor will give you the exact checklist.',
+    q: 'Can ANM-qualified candidates explore opportunities in Dubai?',
+    a: 'Yes. ANM candidates can enquire about caregiver roles in Dubai, subject to relevant employer requirements.',
   },
   {
-    q: 'Can you guarantee admission or a visa?',
-    a: 'No. We provide expert guidance and application assistance to maximise your chances, but admissions, scholarships and visas are decided by the universities and embassies.',
-    link: { label: 'Read our disclaimer', href: '/disclaimer' },
+    q: 'Do I need to know German before enquiring about Germany’s healthcare pathways?',
+    a: 'You can begin your enquiry as a complete beginner or with existing German-language knowledge. Your current level helps determine the preparation suitable for your route.',
   },
   {
-    q: 'Are consultation fees refundable?',
-    a: 'Consultation and registration fees paid to 211 OVERSEAS are non-refundable once advisory services begin. Fees paid to universities, test centres or embassies follow those bodies’ own policies.',
-    link: { label: 'See the refund policy', href: '/refund-policy' },
+    q: 'What if I already have B2-level German?',
+    a: 'Physiotherapists with B2 German can enquire about a speaking assessment and the next stages of professional and interview preparation.',
   },
   {
-    q: 'How is my personal data used?',
-    a: 'Your data is used only to assess eligibility, process applications and assist with your visa, and is shared only with admissions departments and relevant authorities. We do not sell it.',
-    link: { label: 'Read the privacy policy', href: '/privacy-policy' },
+    q: 'Can I explore international hospitality opportunities after Class 12?',
+    a: 'Yes. Depending on the opportunity, Class 12 applicants, hospitality diploma holders and graduates, including BBA and MBA candidates, can request a profile review.',
   },
   {
-    q: 'Do you help with destinations other than South Korea?',
-    a: 'Yes — we also guide on healthcare careers in Germany, career opportunities in the UAE and selected opportunities in other countries.',
-    link: { label: 'Explore other destinations', href: '/study' },
+    q: 'How do I get started?',
+    a: 'Simply tell us about your qualifications, interests or career experience. Our team will help you understand the next steps worth exploring.',
   },
 ];

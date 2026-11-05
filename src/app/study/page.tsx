@@ -47,9 +47,14 @@ export default function StudyOverviewPage() {
               <span className="text-xs font-semibold uppercase tracking-widest text-[#FC7F4E] block mb-3">
                 {hero.eyebrow}
               </span>
-              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
+              <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-4">
                 {hero.h1}
               </h1>
+              {hero.supportingHeadline && (
+                <p className="font-serif text-lg sm:text-xl text-[#FC7F4E] mb-6 font-medium">
+                  {hero.supportingHeadline}
+                </p>
+              )}
               <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-8">
                 {hero.paragraph}
               </p>
@@ -242,28 +247,21 @@ export default function StudyOverviewPage() {
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
-            {fiveDecisions.decisions.map((dec, i) => (
+            {fiveDecisions.decisions.map((dec) => (
               <div
                 key={dec.title}
-                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-6 flex flex-col justify-between"
               >
                 <div>
-                  <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                    Decision 0{i + 1}
+                  <span className="font-mono text-xs font-bold text-[#A33E11] block mb-2">
+                    DECISION {dec.number}
                   </span>
-                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1">
                     {dec.title}
                   </h3>
-                  <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{i + 1}</span>
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Advisory</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checkpoint</span>
-                    </div>
-                  </div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-[#A33E11] mb-2.5">
+                    {dec.question}
+                  </p>
                   <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                     {dec.description}
                   </p>
@@ -280,13 +278,13 @@ export default function StudyOverviewPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 space-y-6">
               <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block">
-                Independent Advisory
+                Independent Shortlisting
               </span>
               <h2 className="font-serif text-3xl sm:text-4xl font-bold text-[#1B1C1A] leading-tight">
-                Find your international study direction.
+                {closing.headline}
               </h2>
               <p className="text-base text-[#41484B] leading-relaxed">
-                Connect with our advisors to compare country options, verify tuition standards, and understand student visa requirements.
+                {closing.description}
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link
