@@ -12,6 +12,19 @@ export const metadata: Metadata = {
   description: investContent.meta.description,
 };
 
+const WHY_THINK_IMAGES: Record<string, string> = {
+  '01': '/images/hero.jpg',
+  '02': '/images/destinations/singapore-fintech-hub.jpg',
+  '03': '/images/web/graduates-wide.webp',
+  '04': '/images/destinations/singapore-marina-bay.jpg',
+};
+
+const PATHWAY_IMAGES: Record<string, string> = {
+  '01': '/images/destinations/europe-city-life.jpg',
+  '02': '/images/destinations/europe-campus.jpg',
+  '03': '/images/generated/uae-careers.jpg',
+};
+
 export default function InvestPage() {
   const {
     hero,
@@ -104,24 +117,45 @@ export default function InvestPage() {
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden mb-12">
-            {whyThinkGlobally.cards.map((card) => (
-              <div
-                key={card.number}
-                className="w-[82vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-7 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
-              >
-                <div>
-                  <span className="font-mono text-xs font-bold text-[#A33E11] block mb-3">
-                    {card.number}
-                  </span>
-                  <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-3">
-                    {card.title}
-                  </h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed">
-                    {card.description}
-                  </p>
+            {whyThinkGlobally.cards.map((card) => {
+              const cardImg = WHY_THINK_IMAGES[card.number] || '/images/hero.jpg';
+              return (
+                <div
+                  key={card.number}
+                  className="w-[82vw] sm:w-[300px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#A33E11] transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                      <Image
+                        src={cardImg}
+                        alt={card.title}
+                        fill
+                        sizes="(min-width: 1024px) 280px, 82vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <span className="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-white/20">
+                        {card.number}
+                      </span>
+                      <div className="absolute bottom-2 left-2.5 right-2.5">
+                        <span className="text-white font-serif text-xs font-bold truncate block drop-shadow-xs">
+                          {card.title}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-2.5 group-hover:text-[#A33E11] transition-colors">
+                        {card.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {card.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="bg-[#00222B] text-white p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 border-l-4 border-[#FC7F4E]">
@@ -159,57 +193,81 @@ export default function InvestPage() {
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-3 gap-6 lg:gap-8 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
-            {pathways.items.map((item) => (
-              <div
-                key={item.id}
-                className="w-[85vw] sm:w-[380px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-6 sm:p-8 flex flex-col justify-between hover:border-[#A33E11] transition-all shadow-sm"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="px-3 py-1 bg-[#F3EBDD] text-[#A33E11] text-[11px] font-bold uppercase tracking-wider">
-                      {item.category}
-                    </span>
-                    <span className="font-mono text-xs font-bold text-[#41484B]">
-                      PATHWAY {item.number}
-                    </span>
-                  </div>
-                  <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
-                    {item.headline}
-                  </h3>
-                  <p className="text-sm text-[#41484B] leading-relaxed mb-6">
-                    {item.description}
-                  </p>
-
-                  <div className="mb-6 pt-5 border-t border-[#E6DDCC]/70">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#1B1C1A] block mb-2.5">
-                      Explore Eligible Jurisdictions:
-                    </span>
-                    <div className="flex flex-wrap gap-1.5">
-                      {item.jurisdictions.map((j) => (
-                        <span
-                          key={j}
-                          className="px-2.5 py-1 bg-[#FBF8F1] border border-[#E6DDCC] text-xs text-[#1B1C1A] font-medium"
-                        >
-                          {j}
+            {pathways.items.map((item) => {
+              const pathImg = PATHWAY_IMAGES[item.number] || '/images/destinations/europe-campus.jpg';
+              return (
+                <div
+                  key={item.id}
+                  className="w-[85vw] sm:w-[380px] lg:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] rounded-2xl overflow-hidden flex flex-col justify-between hover:border-[#A33E11] transition-all shadow-sm group"
+                >
+                  <div>
+                    {/* Visual Header */}
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                      <Image
+                        src={pathImg}
+                        alt={item.headline}
+                        fill
+                        sizes="(min-width: 1024px) 380px, 85vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <div className="absolute top-3 left-3 flex items-center gap-2">
+                        <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FAF8F5] text-[10px] font-bold uppercase tracking-wider rounded-full border border-white/20">
+                          {item.category}
                         </span>
-                      ))}
+                      </div>
+                      <span className="absolute top-3 right-3 font-mono text-[10px] font-bold text-[#FC7F4E] bg-black/60 backdrop-blur-xs px-2 py-0.5 rounded-full border border-white/20">
+                        PATHWAY {item.number}
+                      </span>
+                      <div className="absolute bottom-2.5 left-3 right-3">
+                        <span className="text-white font-serif text-sm font-bold truncate block drop-shadow-xs">
+                          {item.headline}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-6">
+                      <h3 className="font-serif text-xl font-bold text-[#1B1C1A] mb-2.5 group-hover:text-[#A33E11] transition-colors">
+                        {item.headline}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed mb-5">
+                        {item.description}
+                      </p>
+
+                      <div className="mb-5 pt-4 border-t border-[#E6DDCC]/70">
+                        <span className="text-[10px] font-bold uppercase tracking-wider text-[#1B1C1A] block mb-2">
+                          Explore Eligible Jurisdictions:
+                        </span>
+                        <div className="flex flex-wrap gap-1.5">
+                          {item.jurisdictions.map((j) => (
+                            <span
+                              key={j}
+                              className="px-2.5 py-1 bg-[#FBF8F1] border border-[#E6DDCC] text-xs text-[#1B1C1A] font-medium rounded-xs"
+                            >
+                              {j}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-[#41484B]/80 italic mb-4">
+                        {item.note}
+                      </p>
                     </div>
                   </div>
 
-                  <p className="text-xs text-[#41484B]/80 italic mb-6">
-                    {item.note}
-                  </p>
+                  <div className="p-6 pt-0">
+                    <Link
+                      href={item.href}
+                      className="inline-flex items-center justify-between w-full pt-4 border-t border-[#E6DDCC] text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:text-[#85320D] group"
+                    >
+                      <span>{item.buttonLabel}</span>
+                      <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
+                    </Link>
+                  </div>
                 </div>
-
-                <Link
-                  href={item.href}
-                  className="inline-flex items-center justify-between w-full pt-4 border-t border-[#E6DDCC] text-xs font-semibold uppercase tracking-wider text-[#A33E11] hover:text-[#85320D] group"
-                >
-                  <span>{item.buttonLabel}</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

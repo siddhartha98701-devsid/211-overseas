@@ -27,6 +27,14 @@ const QUALIFICATION_IMAGES: Record<string, { image: string; alt: string }> = {
   },
 };
 
+const DECISION_IMAGES: Record<string, string> = {
+  '1': '/images/destinations/uk-cambridge.jpg',
+  '2': '/images/destinations/singapore-fintech-hub.jpg',
+  '3': '/images/destinations/europe-city-life.jpg',
+  '4': '/images/generated/uae-careers.jpg',
+  '5': '/images/destinations/japan-tokyo-city.jpg',
+};
+
 export const metadata: Metadata = {
   title: studyOverviewContent.meta.title,
   description: studyOverviewContent.meta.description,
@@ -247,27 +255,48 @@ export default function StudyOverviewPage() {
           </div>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-5 gap-5 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
-            {fiveDecisions.decisions.map((dec) => (
-              <div
-                key={dec.title}
-                className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] p-6 flex flex-col justify-between"
-              >
-                <div>
-                  <span className="font-mono text-xs font-bold text-[#A33E11] block mb-2">
-                    DECISION {dec.number}
-                  </span>
-                  <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-1">
-                    {dec.title}
-                  </h3>
-                  <p className="text-xs font-semibold uppercase tracking-wider text-[#A33E11] mb-2.5">
-                    {dec.question}
-                  </p>
-                  <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                    {dec.description}
-                  </p>
+            {fiveDecisions.decisions.map((dec) => {
+              const img = DECISION_IMAGES[dec.number] || '/images/destinations/europe-campus.jpg';
+              return (
+                <div
+                  key={dec.title}
+                  className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start bg-[#FBF8F1] border border-[#E6DDCC] rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#A33E11] transition-all flex flex-col justify-between group"
+                >
+                  <div>
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                      <Image
+                        src={img}
+                        alt={dec.title}
+                        fill
+                        sizes="(min-width: 1024px) 240px, 80vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                      <span className="absolute top-2.5 left-2.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] text-[10px] font-mono font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-white/20">
+                        DECISION {dec.number}
+                      </span>
+                      <div className="absolute bottom-2 left-2.5 right-2.5">
+                        <span className="text-white font-serif text-xs font-bold truncate block drop-shadow-xs">
+                          {dec.title}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-5">
+                      <h3 className="font-serif text-base font-bold text-[#1B1C1A] mb-1 group-hover:text-[#A33E11] transition-colors">
+                        {dec.title}
+                      </h3>
+                      <p className="text-[11px] font-semibold uppercase tracking-wider text-[#A33E11] mb-2.5">
+                        {dec.question}
+                      </p>
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                        {dec.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

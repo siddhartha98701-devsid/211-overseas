@@ -288,17 +288,56 @@ const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
   // Luxembourg
   'university of luxembourg': '/images/destinations/europe-campus.jpg',
   'luxembourg school of business': '/images/destinations/europe-research.jpg',
+  'lunex university': '/images/destinations/europe-research.jpg',
+  'bbi luxembourg international business institute': '/images/destinations/europe-city-life.jpg',
+  'united business institutes': '/images/destinations/singapore-fintech-hub.jpg',
+  'european business university of luxembourg': '/images/destinations/europe-library.jpg',
 
   // UAE
   'university of birmingham dubai': '/images/generated/uae-careers.jpg',
   'heriot-watt university dubai': '/images/uae.jpg',
   'middlesex university dubai': '/images/web/uae-wide.webp',
-  'university of wollongong in dubai': '/images/generated/uae-careers.jpg',
-  'canadian university dubai': '/images/uae.jpg',
-  'american university in dubai': '/images/web/uae-wide.webp',
-  'university of sharjah': '/images/generated/uae-careers.jpg',
-  'khalifa university': '/images/uae.jpg',
-  'united arab emirates university': '/images/web/uae-wide.webp',
+  'university of wollongong in dubai': '/images/destinations/australia-campus.jpg',
+  'curtin university dubai': '/images/destinations/australia-student-life.jpg',
+  'murdoch university dubai': '/images/destinations/australia-melbourne-quad.jpg',
+  'rochester institute of technology dubai': '/images/destinations/usa-tech-hub.jpg',
+  'canadian university dubai': '/images/destinations/canada-campus.jpg',
+  'american university in dubai': '/images/destinations/usa-campus.jpg',
+  'manipal academy of higher education dubai': '/images/destinations/singapore-campus.jpg',
+  'amity university dubai': '/images/generated/uae-careers.jpg',
+  'university of sharjah': '/images/uae.jpg',
+  'khalifa university': '/images/web/uae-wide.webp',
+  'united arab emirates university': '/images/uae.jpg',
+
+  // Singapore PEIs & Clusters
+  'curtin singapore': '/images/destinations/australia-campus.jpg',
+  'james cook university singapore': '/images/destinations/australia-student-life.jpg',
+  'psb academy': '/images/destinations/singapore-campus.jpg',
+  'amity global institute': '/images/destinations/singapore-marina-bay.jpg',
+  'nanyang institute of management': '/images/destinations/singapore-fintech-hub.jpg',
+  'dimensions international college': '/images/destinations/singapore-gardens.jpg',
+  'management development institute of singapore': '/images/destinations/singapore-campus.jpg',
+  'raffles college of higher education': '/images/destinations/taiwan-culture.jpg',
+  'at-sunrice globalchef academy': '/images/generated/uae-sector-hospitality.jpg',
+  'william angliss institute — singapore': '/images/destinations/australia-student-life.jpg',
+
+  // Germany Applied Sciences
+  'srh university': '/images/germany.jpg',
+  'gisma university of applied sciences': '/images/web/germany-wide.webp',
+  'university of europe for applied sciences': '/images/destinations/europe-city-life.jpg',
+  'international school of management': '/images/destinations/singapore-fintech-hub.jpg',
+  'hochschule fresenius': '/images/destinations/europe-campus.jpg',
+  'macromedia university of applied sciences': '/images/destinations/taiwan-culture.jpg',
+  'fom university of applied sciences': '/images/destinations/europe-library.jpg',
+  'international graduate center — hochschule bremen': '/images/destinations/europe-campus.jpg',
+
+  // Taiwan
+  'national taiwan university of science and technology': '/images/destinations/taiwan-semiconductor-lab.jpg',
+  'national taipei university of technology': '/images/destinations/taiwan-campus.jpg',
+  'national central university': '/images/destinations/taiwan-culture.jpg',
+  'national sun yat-sen university': '/images/destinations/taiwan-taipei-skyline.jpg',
+  'national chung hsing university': '/images/destinations/taiwan-campus.jpg',
+  'taipei medical university': '/images/generated/germany-healthcare.jpg',
 };
 
 interface CourseSubjectMeta {
@@ -615,6 +654,151 @@ function getGeneralTrackImage(index: number): string {
     '/images/destinations/uk-cambridge.jpg',
   ];
   return pool[index % pool.length];
+}
+
+const COUNTRY_DIRECTORY_VISUALS: Record<string, string> = {
+  germany: '/images/germany.jpg',
+  france: '/images/destinations/europe-city-life.jpg',
+  netherlands: '/images/destinations/europe-campus.jpg',
+  ireland: '/images/destinations/europe-library.jpg',
+  sweden: '/images/destinations/europe-research.jpg',
+  finland: '/images/destinations/europe-campus.jpg',
+  poland: '/images/destinations/europe-library.jpg',
+  spain: '/images/destinations/europe-city-life.jpg',
+  italy: '/images/destinations/europe-campus.jpg',
+  switzerland: '/images/destinations/europe-research.jpg',
+  austria: '/images/destinations/europe-library.jpg',
+  hungary: '/images/destinations/europe-campus.jpg',
+  'czech republic': '/images/destinations/europe-city-life.jpg',
+  portugal: '/images/destinations/europe-campus.jpg',
+  denmark: '/images/destinations/europe-research.jpg',
+  norway: '/images/destinations/europe-library.jpg',
+  belgium: '/images/destinations/europe-campus.jpg',
+  greece: '/images/work/greece-hero.jpg',
+};
+
+function getCountryDirectoryVisual(countryName: string, index: number = 0): { image: string } {
+  const key = countryName.toLowerCase().trim();
+  if (COUNTRY_DIRECTORY_VISUALS[key]) {
+    return { image: COUNTRY_DIRECTORY_VISUALS[key] };
+  }
+  for (const [k, v] of Object.entries(COUNTRY_DIRECTORY_VISUALS)) {
+    if (key.includes(k) || k.includes(key)) {
+      return { image: v };
+    }
+  }
+  const pool = [
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/europe-library.jpg',
+    '/images/destinations/europe-research.jpg',
+    '/images/destinations/europe-city-life.jpg',
+  ];
+  return { image: pool[index % pool.length] };
+}
+
+function getInstitutionImage(name: string, destinationName?: string, index: number = 0): string {
+  const key = name.toLowerCase().trim();
+
+  // 1. Direct or partial lookup in UNIVERSITY_IMAGE_MAP
+  if (UNIVERSITY_IMAGE_MAP[key]) return UNIVERSITY_IMAGE_MAP[key];
+  for (const [k, v] of Object.entries(UNIVERSITY_IMAGE_MAP)) {
+    if (key.includes(k) || k.includes(key)) {
+      return v;
+    }
+  }
+
+  // 2. Destination-specific image pools
+  const d = (destinationName || '').toLowerCase();
+  if (d.includes('uae') || d.includes('dubai')) {
+    const uaePool = [
+      '/images/uae.jpg',
+      '/images/web/uae-wide.webp',
+      '/images/generated/uae-careers.jpg',
+      '/images/destinations/singapore-fintech-hub.jpg',
+      '/images/destinations/singapore-marina-bay.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return uaePool[(Math.abs(h) + index) % uaePool.length];
+  }
+
+  if (d.includes('germany')) {
+    const dePool = [
+      '/images/destinations/europe-campus.jpg',
+      '/images/destinations/europe-research.jpg',
+      '/images/destinations/europe-library.jpg',
+      '/images/germany.jpg',
+      '/images/web/germany-wide.webp',
+      '/images/destinations/europe-city-life.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return dePool[(Math.abs(h) + index) % dePool.length];
+  }
+
+  if (d.includes('japan')) {
+    const jpPool = [
+      '/images/destinations/japan-campus.jpg',
+      '/images/destinations/japan-tech-lab.jpg',
+      '/images/destinations/japan-culture.jpg',
+      '/images/destinations/japan-tokyo-city.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return jpPool[(Math.abs(h) + index) % jpPool.length];
+  }
+
+  if (d.includes('singapore')) {
+    const sgPool = [
+      '/images/destinations/singapore-campus.jpg',
+      '/images/destinations/singapore-fintech-hub.jpg',
+      '/images/destinations/singapore-marina-bay.jpg',
+      '/images/destinations/singapore-gardens.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return sgPool[(Math.abs(h) + index) % sgPool.length];
+  }
+
+  if (d.includes('taiwan')) {
+    const twPool = [
+      '/images/destinations/taiwan-campus.jpg',
+      '/images/destinations/taiwan-semiconductor-lab.jpg',
+      '/images/destinations/taiwan-culture.jpg',
+      '/images/destinations/taiwan-taipei-skyline.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return twPool[(Math.abs(h) + index) % twPool.length];
+  }
+
+  if (d.includes('korea')) {
+    const krPool = [
+      '/images/korea/korea-campus.jpg',
+      '/images/generated/korea-gateway.jpg',
+      '/images/korea/korea-student.jpg',
+      '/images/universities/snu.jpg',
+      '/images/universities/yonsei.jpg',
+      '/images/universities/ku.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return krPool[(Math.abs(h) + index) % krPool.length];
+  }
+
+  // 3. Fallback academic image pool
+  const fallback = [
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/europe-library.jpg',
+    '/images/destinations/europe-research.jpg',
+    '/images/destinations/europe-city-life.jpg',
+    '/images/destinations/uk-campus.jpg',
+    '/images/destinations/usa-campus.jpg',
+    '/images/destinations/australia-campus.jpg',
+  ];
+  let h = 0;
+  for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+  return fallback[(Math.abs(h) + index) % fallback.length];
 }
 
 export function DestinationTemplate({ data, destinationName }: { data: DestinationData; destinationName: string }) {
@@ -1598,33 +1782,72 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                       </p>
                     )}
                     <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                      {cluster.list.map((item) => (
-                        <div
-                          key={item}
-                          className="w-[72vw] sm:w-[260px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-4 rounded-xl flex flex-col justify-between"
-                        >
-                          <div>
-                            <span className="text-[10px] font-bold uppercase tracking-wider text-[#71787B] block mb-1">
-                              Institution
-                            </span>
-                            <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug">
-                              {item}
-                            </h4>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={() => {
-                              setSelectedUni(item);
-                              const formEl = document.getElementById('enquiry') || document.getElementById('destination-lead-form');
-                              if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
-                            }}
-                            className="mt-3 text-[11px] font-semibold text-[#A33E11] hover:underline flex items-center gap-1 cursor-pointer"
+                      {cluster.list.map((item, itemIdx) => {
+                        const itemImg = getInstitutionImage(item, destinationName, itemIdx);
+                        const monogram = item
+                          .replace(/University of |University|Institute of |Institute|College|The /gi, '')
+                          .trim()
+                          .split(/\s+/)
+                          .slice(0, 3)
+                          .map((w) => w[0]?.toUpperCase())
+                          .join('') || 'UNI';
+
+                        return (
+                          <div
+                            key={item}
+                            className="w-[76vw] sm:w-[280px] shrink-0 snap-start bg-white border border-[#E6DDCC] rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#A33E11] transition-all flex flex-col justify-between group"
                           >
-                            <span>Select for consultation</span>
-                            <ChevronRight size={12} />
-                          </button>
-                        </div>
-                      ))}
+                            {/* Photographic Campus Header */}
+                            <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                              <Image
+                                src={itemImg}
+                                alt={`${item} academic campus`}
+                                fill
+                                sizes="(min-width: 640px) 280px, 76vw"
+                                className="object-cover group-hover:scale-105 transition-transform duration-500"
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                              <div className="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                                <span className="bg-black/60 backdrop-blur-xs text-[#FAF8F5] text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full border border-white/20">
+                                  Institution
+                                </span>
+                              </div>
+                              <div className="absolute top-2.5 right-2.5 w-7 h-7 rounded-full bg-white/95 backdrop-blur-xs shadow-xs border border-black/10 flex items-center justify-center font-bold text-[10px] text-[#0C3844] z-10">
+                                {monogram}
+                              </div>
+                              <div className="absolute bottom-2 left-2.5 right-2.5">
+                                <span className="text-white font-serif text-xs font-bold truncate block drop-shadow-xs">
+                                  {item}
+                                </span>
+                              </div>
+                            </div>
+
+                            {/* Card Body */}
+                            <div className="p-4 flex-1 flex flex-col justify-between">
+                              <div>
+                                <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-1">
+                                  Recognized Campus
+                                </span>
+                                <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug group-hover:text-[#A33E11] transition-colors line-clamp-2">
+                                  {item}
+                                </h4>
+                              </div>
+                              <button
+                                type="button"
+                                onClick={() => {
+                                  setSelectedUni(item);
+                                  const formEl = document.getElementById('enquiry') || document.getElementById('destination-lead-form');
+                                  if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                                }}
+                                className="mt-3 text-[11px] font-semibold text-[#A33E11] hover:underline flex items-center gap-1 cursor-pointer"
+                              >
+                                <span>Select for consultation</span>
+                                <ChevronRight size={12} />
+                              </button>
+                            </div>
+                          </div>
+                        );
+                      })}
                     </div>
                   </section>
                 ))}
@@ -1647,27 +1870,49 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 </div>
 
                 <div className="flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {data.countryDirectory.countries.map((c) => (
-                    <div
-                      key={c.name}
-                      className="w-[82vw] sm:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-2xl flex flex-col justify-between"
-                    >
-                      <div>
-                        <div className="flex items-center gap-2 mb-2">
-                          <span className="font-serif text-lg font-bold text-[#1B1C1A]">
-                            {c.name}
-                          </span>
+                  {data.countryDirectory.countries.map((c, cIdx) => {
+                    const countryVisual = getCountryDirectoryVisual(c.name, cIdx);
+                    return (
+                      <div
+                        key={c.name}
+                        className="w-[82vw] sm:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#A33E11] transition-all flex flex-col justify-between group"
+                      >
+                        {/* Country Photo Header */}
+                        <div className="relative aspect-[16/9] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={countryVisual.image}
+                            alt={`${c.name} higher education destination`}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                          <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-black/60 backdrop-blur-xs text-[#FAF8F5] text-[11px] font-bold uppercase tracking-wider px-2.5 py-1 rounded-full border border-white/20">
+                            <CountryFlag country={c.name} width={16} height={11} className="rounded-2xs object-cover shrink-0" />
+                            <span>{c.name}</span>
+                          </div>
+                          <div className="absolute bottom-2.5 left-3 right-3">
+                            <span className="text-white font-serif text-sm font-bold truncate block drop-shadow-xs">
+                              {c.name}
+                            </span>
+                          </div>
                         </div>
-                        <p className="text-xs text-[#41484B] leading-relaxed mb-3">
-                          {c.highlights}
-                        </p>
+
+                        {/* Country Body */}
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed mb-3">
+                              {c.highlights}
+                            </p>
+                          </div>
+                          <div className="pt-3 border-t border-[#E6DDCC]/70 text-[11px] text-[#71787B]">
+                            <strong className="text-[#1B1C1A] block mb-0.5">Key Study Fields:</strong>
+                            {c.popularFields}
+                          </div>
+                        </div>
                       </div>
-                      <div className="pt-3 border-t border-[#E6DDCC]/70 text-[11px] text-[#71787B]">
-                        <strong className="text-[#1B1C1A] block mb-0.5">Key Study Fields:</strong>
-                        {c.popularFields}
-                      </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             )}
