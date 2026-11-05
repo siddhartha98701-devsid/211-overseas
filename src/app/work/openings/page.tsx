@@ -183,11 +183,11 @@ export default function CurrentOpeningsPage() {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="flex overflow-x-auto snap-x snap-mandatory md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 -mx-6 px-6 md:mx-0 md:px-0 pb-4 md:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 md:after:hidden">
             {filteredVacancies.map((vacancy: Vacancy) => (
               <div
                 key={vacancy.id}
-                className="bg-white border border-[#E6DDCC] p-6 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
+                className="w-[85vw] sm:w-[340px] md:w-auto shrink-0 snap-start bg-white border border-[#E6DDCC] p-6 flex flex-col justify-between hover:border-[#A33E11] transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between mb-3">

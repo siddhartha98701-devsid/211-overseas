@@ -64,9 +64,23 @@ export default function WorkGreecePage() {
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
                 {hero.h1}
               </h1>
-              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-6">
                 {hero.paragraph}
               </p>
+              <div className="flex flex-wrap items-center gap-4 mt-6">
+                <a
+                  href="#work-enquiry"
+                  className="px-6 py-3 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors shadow-sm"
+                >
+                  {hero.primaryButton || 'Explore Greece Hospitality Pathways'}
+                </a>
+                <a
+                  href="#seasonal-framework"
+                  className="px-6 py-3 border border-white/40 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.secondaryButton || 'Understand My Eligibility'}
+                </a>
+              </div>
             </div>
 
             <div className="lg:col-span-5">
@@ -142,6 +156,43 @@ export default function WorkGreecePage() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Greece Hospitality Information Modules */}
           <div className="lg:col-span-8 space-y-16">
+            {/* 0. 9-Month Seasonal Employment Framework */}
+            {workGreeceContent.seasonalFramework && (
+              <section id="seasonal-framework" aria-label="Seasonal Framework" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm scroll-mt-28">
+                <div className="mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1">
+                    Legal Framework
+                  </span>
+                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                    {workGreeceContent.seasonalFramework.headline}
+                  </h2>
+                  <p className="text-sm text-[#41484B] mt-2 leading-relaxed">
+                    {workGreeceContent.seasonalFramework.description}
+                  </p>
+                </div>
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {workGreeceContent.seasonalFramework.pillars.map((pil) => (
+                    <div
+                      key={pil.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-6 rounded-2xl flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          {pil.badge}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3">
+                          {pil.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {pil.detail}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* 1. Roles Under Consideration */}
             <section aria-label="Roles" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
@@ -314,7 +365,8 @@ export default function WorkGreecePage() {
 
           {/* Right Column: Pre-selected Lead Form */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="sticky top-28">
+            <div id="work-enquiry" className="sticky top-28 scroll-mt-28">
+              <span id="enquiry" className="block -mt-28 pt-28" />
               <DestinationLeadForm destination="Greece Hospitality" />
 
               <div className="mt-6 bg-[#00222B] text-white p-6 border-t-4 border-[#A33E11]">

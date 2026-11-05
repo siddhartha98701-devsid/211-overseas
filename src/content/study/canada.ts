@@ -1,42 +1,52 @@
 /**
- * 211 OVERSEAS — Study in Canada Content (Page 10)
- * Source of truth: /content-source/content_source_211_overseas.md (October 2026)
+ * 211 OVERSEAS — Study in Canada Content
+ * Source of truth: 245-page Master Specification PDF (Pages 147–153)
  */
 
 export const canadaContent = {
   meta: {
-    title: 'Study in Canada | Institutions, Costs & Permits',
+    title: 'Study in Canada | Top Universities, Applied Colleges & Admissions',
     description:
-      'Canada offers universities and colleges across business, technology, engineering, sciences and healthcare. Compare institutions, permit requirements and living costs.',
+      'Explore higher education in Canada across research universities and applied polytechnic colleges. Insights on Designated Learning Institutions, study permits and admissions.',
   },
 
   hero: {
-    eyebrow: 'STUDY DESTINATION / 10',
-    h1: 'Study in Canada',
-    subtitle: 'University and college pathways with important program-specific requirements.',
+    eyebrow: 'STUDY DESTINATION / CANADA',
+    h1: 'Big Cities. Bigger Landscapes. Countless Academic Directions.',
+    subtitle: "Discover Canada's research universities, applied colleges, multicultural communities and extraordinary natural beauty.",
     paragraph:
-      'Canada offers universities and colleges across business, technology, engineering, sciences and healthcare. Before choosing, verify the credential, institution and latest study-permit requirements—not just the course title.',
+      "Imagine studying in a country where modern cities meet mountain ranges, forests, lakes and some of the world's most recognisable natural landscapes. Canada offers a diverse academic environment, with universities, colleges and polytechnic institutions providing different approaches to education. From Artificial Intelligence and Engineering to Business, Healthcare-related disciplines, Creative Media and Applied Technology, students can explore courses that match their academic backgrounds and interests.",
+    primaryButton: 'Explore Canada Institutions',
+    secondaryButton: 'Find My Study Options',
     facts: [
-      { label: 'Institutions', value: 'Universities · colleges' },
-      { label: 'Credential', value: 'Degree / diploma / certificate' },
-      { label: 'Immigration', value: 'Rules updated periodically' },
-      { label: 'Budget', value: 'Tuition + required living funds' },
+      { label: 'Education Landscape', value: 'U15 Research Universities & Public Colleges' },
+      { label: 'Study Pathways', value: "Bachelor's, Master's & Post-Graduate Diplomas" },
+      { label: 'Key Sectors', value: 'AI, CleanTech, Mining & Financial Services' },
+      { label: 'Campus Culture', value: 'Safe, Multicultural & Student-Friendly' },
     ],
   },
 
+  whyStudy: {
+    headline: 'Toronto’s Skyline, Vancouver’s Mountains — A Country of Contrasts',
+    paragraph:
+      'Canada combines exceptional academic standards with an outdoor lifestyle unmatched anywhere in the world. From the tech innovation hubs of Toronto, Montreal and Waterloo to the coastal beauty of British Columbia, students experience a welcoming society, clean modern cities and world-class healthcare and safety infrastructure.',
+  },
+
   popularCourses: {
-    headline: 'Popular courses and subject areas',
+    headline: 'Research, Technology or Applied Learning — Find Your Direction',
     items: [
-      'Computing, AI and analytics',
-      'Engineering and applied technology',
-      'Business, accounting and supply chain',
-      'Life sciences, biotechnology and environment',
-      'Health sciences and social sciences',
+      'Artificial Intelligence, Data Analytics & Software Engineering',
+      'Computer Science & Cybersecurity Systems',
+      'Civil, Mechanical, Mining & Sustainable Engineering',
+      'Business Administration, Finance & Global Supply Chain',
+      'Health Sciences, Nursing Leadership & Public Health',
+      'Digital Media, Animation, Game Design & Creative Tech',
+      'Environmental Sciences, Forestry & Renewable Energy',
     ],
   },
 
   universities: {
-    headline: 'Universities to explore',
+    headline: 'Universities & Higher Education Institutions in Canada',
     list: [
       'University of Toronto',
       'University of British Columbia',
@@ -48,66 +58,87 @@ export const canadaContent = {
       'Queen’s University',
     ],
     disclaimer:
-      'Illustrative institutions for independent research and shortlisting. University listing does not signify an affiliation or admission arrangement.',
+      'Illustrative institutions for independent research and profile-based shortlisting. University listing does not signify an affiliation or admission arrangement. Ensure the institution is an approved Designated Learning Institution (DLI) and verify provincial attestation letter (PAL) rules, post-graduation work permit (PGWP) eligibility criteria and study permit requirements prior to applying.',
   },
 
-  beforeYouPay: {
-    headline: 'Before you pay an institution',
-    bullets: [
-      'Confirm the awarding institution and exact qualification.',
-      'Check whether the institution and program meet the relevant immigration rules at the time of application.',
-      'Verify tuition and refund conditions in writing.',
-      'Examine program length and what further academic or professional progression it enables.',
+  chooseYourRoute: {
+    headline: 'Compare Canadian Higher Education Pathways',
+    routes: [
+      {
+        title: 'Research Universities (U15 Group)',
+        description:
+          'Institutions focused on academic discovery, graduate research, theory-driven curricula and specialized Bachelor’s, Master’s and PhD degrees.',
+      },
+      {
+        title: 'Public Colleges & Institutes of Technology',
+        description:
+          'Applied, career-focused post-secondary education featuring practical co-op work terms, industry certifications and postgraduate certificates.',
+      },
+      {
+        title: 'Co-op Education Degree Programmes',
+        description:
+          'Programmes combining classroom academic semesters with paid, full-time professional work terms directly integrated into the curriculum (e.g. Waterloo Co-op).',
+      },
+      {
+        title: 'Post-Degree Diplomas & Certificates',
+        description:
+          'Specialized 1-year and 2-year accelerated programmes for university graduates looking to build applied industry skills in high-demand Canadian sectors.',
+      },
     ],
   },
 
-  budget: {
-    headline: 'Budget snapshot',
+  documents: {
+    headline: 'Canada Application & Study Permit Checklist',
+    description: 'Guidelines for international students preparing Canadian admissions documentation.',
     items: [
-      {
-        item: 'Living funds benchmark',
-        indicativeInfo:
-          'For a single applicant outside Quebec applying from 1 September 2026: CAD 23,448 for one year, excluding tuition and travel.',
-      },
-      {
-        item: 'Tuition',
-        indicativeInfo: 'University and course specific; compare the latest fee schedule.',
-      },
-      {
-        item: 'Extra expenditure',
-        indicativeInfo: 'Insurance, flights, first rent/deposit, winter clothing and contingencies.',
-      },
-    ],
-    planningReference:
-      'Planning reference: Immigration, Refugees and Citizenship Canada published study-permit financial-support requirements, effective September 2026. Check course-specific fees, student status, city and intake before applying.',
-    _sources: [
-      { label: 'IRCC Study Permit Financial Support', url: 'https://www.canada.ca/en/immigration-refugees-citizenship/services/study-canada/study-permit/get-documents/financial-support.html', lastReviewed: '08 October 2026' },
+      { title: 'Academic Transcripts', detail: 'Class 10, Class 12 and Bachelor’s degree marksheets evaluated according to Canadian grading scales.' },
+      { title: 'Letter of Acceptance (LOA)', detail: 'Official acceptance letter from an authorized Canadian Designated Learning Institution (DLI).' },
+      { title: 'Provincial Attestation Letter (PAL)', detail: 'Mandatory provincial attestation confirmation issued by provincial authorities for study permit filing.' },
+      { title: 'Language Test Results', detail: 'IELTS Academic, PTE Core/Academic, or TOEFL iBT test scores meeting institution benchmarks.' },
+      { title: 'Proof of Financial Support', detail: 'Demonstration of tuition payment and living funds via an approved Guaranteed Investment Certificate (GIC).' },
+      { title: 'Statement of Purpose', detail: 'Clear study plan articulating why you selected the programme and your future career intentions.' },
     ],
   },
 
   faqs: {
-    headline: 'Common questions',
+    headline: 'Frequently Asked Questions About Studying in Canada',
     items: [
       {
-        q: 'Is the proof-of-funds figure my actual budget?',
-        a: 'No. It is a financial-evidence minimum for the specified situation; your spending may be higher.',
+        q: 'Can I study in Canada after Class 12?',
+        a: 'Yes. Students can explore Bachelor’s degrees at universities or applied diploma programmes at accredited public colleges, depending on academic marks and prerequisites.',
       },
       {
-        q: 'Does every college program offer the same future rights?',
-        a: 'No. Rules differ and may change; check the exact program and current immigration policy.',
+        q: 'What is the difference between a Canadian university and a college?',
+        a: 'Universities primarily award academic degrees (Bachelor’s, Master’s, PhD) with a focus on theoretical study and research. Colleges and polytechnics emphasize applied, hands-on career training and diplomas.',
       },
       {
-        q: 'Are scholarships offered?',
-        a: 'Yes, depending on institution and profile; funding varies substantially.',
+        q: 'What is a Designated Learning Institution (DLI)?',
+        a: 'A DLI is a school approved by a provincial or territorial government to host international students. You must have an acceptance letter from a DLI to apply for a Canadian study permit.',
+      },
+      {
+        q: 'What is a Provincial Attestation Letter (PAL)?',
+        a: 'Under Canadian immigration regulations, most international post-secondary students must provide a Provincial Attestation Letter (PAL) from the province where they plan to study alongside their study permit application.',
+      },
+      {
+        q: 'Can international students work while studying in Canada?',
+        a: 'Eligible full-time international students holding a valid study permit may work off-campus up to 20 hours per week during academic terms and full-time during scheduled study breaks.',
+      },
+      {
+        q: 'What is the Post-Graduation Work Permit (PGWP)?',
+        a: 'The PGWP allows eligible graduates from qualifying programmes at designated institutions to work in Canada for up to three years, depending on the length and level of their study programme.',
+      },
+      {
+        q: 'How can 211 Overseas help with my Canada application?',
+        a: 'We evaluate your profile, verify DLI and PAL requirements, guide you through college or university shortlisting, and provide comprehensive support with admissions and documentation.',
       },
     ],
   },
 
   closing: {
+    headline: 'Find a Canadian Programme That Makes Sense for You',
     ctas: {
-      primary: { label: 'Review Canada Course Options', href: '#enquiry' },
-      secondary: { label: 'Check Program & Permit Requirements', href: '/resources/application-guide' },
+      primary: { label: 'Explore Canada Institutions', href: '#enquiry' },
+      secondary: { label: 'Find My Study Options', href: '#enquiry' },
     },
-    formFields: ['Qualification', 'Subject', 'Intake', 'Budget'],
   },
 } as const;

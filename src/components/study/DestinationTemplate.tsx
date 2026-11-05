@@ -20,11 +20,51 @@ export interface DestinationData {
     h1: string;
     subtitle?: string;
     paragraph?: string;
+    primaryButton?: string;
+    secondaryButton?: string;
     facts?: ReadonlyArray<{ label: string; value: string }>;
+  };
+  whyStudy?: {
+    headline: string;
+    paragraph: string;
   };
   whyStudyInUae?: {
     headline: string;
     paragraph: string;
+  };
+  khdaData?: {
+    headline: string;
+    period: string;
+    source: string;
+    stats: ReadonlyArray<{ label: string; value: string; description: string }>;
+  };
+  universityClusters?: ReadonlyArray<{
+    title: string;
+    badge?: string;
+    description?: string;
+    list: ReadonlyArray<string>;
+  }>;
+  featuredInstitution?: {
+    badge: string;
+    headline: string;
+    description: string;
+    bulletPoints: ReadonlyArray<string>;
+    ctaLabel?: string;
+    ctaHref?: string;
+  };
+  editorialNotice?: {
+    badge: string;
+    headline: string;
+    paragraph: string;
+  };
+  countryDirectory?: {
+    headline: string;
+    description: string;
+    countries: ReadonlyArray<{
+      name: string;
+      highlights: string;
+      popularFields: string;
+    }>;
   };
   budget?: {
     headline: string;
@@ -557,6 +597,20 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.hero.paragraph}
                 </p>
               )}
+              <div className="flex flex-wrap items-center gap-4 mt-6">
+                <a
+                  href="#enquiry"
+                  className="px-6 py-3 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors shadow-sm"
+                >
+                  {data.hero.primaryButton || `Explore ${destinationName} Universities`}
+                </a>
+                <a
+                  href="#enquiry"
+                  className="px-6 py-3 border border-white/40 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {data.hero.secondaryButton || 'Find My Study Options'}
+                </a>
+              </div>
             </div>
 
             {visual && (
@@ -819,14 +873,100 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
               </section>
             )}
 
-            {data.whyStudyInUae && (
-              <section aria-label="Why Study in UAE" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+            {(data.whyStudy || data.whyStudyInUae) && (
+              <section aria-label="Why Study" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
-                  {data.whyStudyInUae.headline}
+                  {data.whyStudy?.headline || data.whyStudyInUae?.headline}
                 </h2>
                 <p className="text-sm text-[#41484B] leading-relaxed">
-                  {data.whyStudyInUae.paragraph}
+                  {data.whyStudy?.paragraph || data.whyStudyInUae?.paragraph}
                 </p>
+              </section>
+            )}
+
+            {data.khdaData && (
+              <section aria-label="Official KHDA Data" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <div className="flex items-center gap-2 mb-2 pb-3 border-b border-[#E6DDCC]">
+                  <Building2 className="w-5 h-5 text-[#A33E11]" />
+                  <div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block">
+                      Official Higher Education Statistics
+                    </span>
+                    <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                      {data.khdaData.headline}
+                    </h2>
+                  </div>
+                </div>
+                <p className="text-xs text-[#71787B] mb-6 font-mono">
+                  Source: {data.khdaData.source} ({data.khdaData.period})
+                </p>
+
+                <div className="flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.khdaData.stats.map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="w-[75vw] sm:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-xl flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="text-2xl lg:text-3xl font-serif font-bold text-[#A33E11] block mb-1">
+                          {stat.value}
+                        </span>
+                        <span className="text-xs font-bold uppercase tracking-wider text-[#1B1C1A] block mb-2">
+                          {stat.label}
+                        </span>
+                      </div>
+                      <p className="text-xs text-[#41484B] leading-relaxed">
+                        {stat.description}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {data.editorialNotice && (
+              <div className="p-4 border border-[#E6DDCC] bg-[#FAF8F5] rounded-xl flex items-start gap-3">
+                <AlertCircle className="w-5 h-5 text-[#A33E11] shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-0.5">
+                    {data.editorialNotice.badge}
+                  </span>
+                  <h3 className="font-serif text-sm font-bold text-[#1B1C1A] mb-1">
+                    {data.editorialNotice.headline}
+                  </h3>
+                  <p className="text-xs text-[#41484B] leading-relaxed">
+                    {data.editorialNotice.paragraph}
+                  </p>
+                </div>
+              </div>
+            )}
+
+            {data.featuredInstitution && (
+              <section aria-label="Featured Institution" className="bg-[#FAF8F5] border border-[#E6DDCC] p-6 lg:p-8 rounded-2xl shadow-sm">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] bg-[#FC7F4E]/10 px-2.5 py-1 rounded-full border border-[#FC7F4E]/25 inline-block mb-3">
+                  {data.featuredInstitution.badge}
+                </span>
+                <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
+                  {data.featuredInstitution.headline}
+                </h3>
+                <p className="text-sm text-[#41484B] leading-relaxed mb-4">
+                  {data.featuredInstitution.description}
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
+                  {data.featuredInstitution.bulletPoints.map((pt, idx) => (
+                    <div key={idx} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-[#E6DDCC]/70">
+                      <CheckCircle2 size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
+                      <span className="text-xs font-medium text-[#1B1C1A]">{pt}</span>
+                    </div>
+                  ))}
+                </div>
+                <a
+                  href={data.featuredInstitution.ctaHref || '#enquiry'}
+                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors rounded-xl shadow-xs"
+                >
+                  <span>{data.featuredInstitution.ctaLabel || 'Inquire About Pathway'}</span>
+                  <ChevronRight size={14} />
+                </a>
               </section>
             )}
 
@@ -1257,6 +1397,103 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                 {data.universities.disclaimer}
               </p>
             </section>
+
+            {/* University Clusters / Classifications */}
+            {data.universityClusters && data.universityClusters.length > 0 && (
+              <div className="space-y-6">
+                {data.universityClusters.map((cluster) => (
+                  <section key={cluster.title} className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 pb-3 border-b border-[#E6DDCC]">
+                      <div>
+                        {cluster.badge && (
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] block mb-0.5">
+                            {cluster.badge}
+                          </span>
+                        )}
+                        <h3 className="font-serif text-xl sm:text-2xl font-bold text-[#1B1C1A]">
+                          {cluster.title}
+                        </h3>
+                      </div>
+                    </div>
+                    {cluster.description && (
+                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed mb-4">
+                        {cluster.description}
+                      </p>
+                    )}
+                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-3 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                      {cluster.list.map((item) => (
+                        <div
+                          key={item}
+                          className="w-[72vw] sm:w-[260px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-4 rounded-xl flex flex-col justify-between"
+                        >
+                          <div>
+                            <span className="text-[10px] font-bold uppercase tracking-wider text-[#71787B] block mb-1">
+                              Institution
+                            </span>
+                            <h4 className="font-serif text-sm font-bold text-[#1B1C1A] leading-snug">
+                              {item}
+                            </h4>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setSelectedUni(item);
+                              const formEl = document.getElementById('enquiry') || document.getElementById('destination-lead-form');
+                              if (formEl) formEl.scrollIntoView({ behavior: 'smooth' });
+                            }}
+                            className="mt-3 text-[11px] font-semibold text-[#A33E11] hover:underline flex items-center gap-1 cursor-pointer"
+                          >
+                            <span>Select for consultation</span>
+                            <ChevronRight size={12} />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  </section>
+                ))}
+              </div>
+            )}
+
+            {/* European Country Directory */}
+            {data.countryDirectory && (
+              <section aria-label="European Destination Directory" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <div className="mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1">
+                    European Directory
+                  </span>
+                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                    {data.countryDirectory.headline}
+                  </h2>
+                  <p className="text-sm text-[#41484B] mt-2 leading-relaxed">
+                    {data.countryDirectory.description}
+                  </p>
+                </div>
+
+                <div className="flex overflow-x-auto snap-x snap-mandatory sm:grid sm:grid-cols-2 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 sm:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {data.countryDirectory.countries.map((c) => (
+                    <div
+                      key={c.name}
+                      className="w-[82vw] sm:w-auto shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-5 rounded-2xl flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="font-serif text-lg font-bold text-[#1B1C1A]">
+                            {c.name}
+                          </span>
+                        </div>
+                        <p className="text-xs text-[#41484B] leading-relaxed mb-3">
+                          {c.highlights}
+                        </p>
+                      </div>
+                      <div className="pt-3 border-t border-[#E6DDCC]/70 text-[11px] text-[#71787B]">
+                        <strong className="text-[#1B1C1A] block mb-0.5">Key Study Fields:</strong>
+                        {c.popularFields}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* 4. Page-Specific Module: Choose Your Route */}
             {data.chooseYourRoute && (
@@ -2308,7 +2545,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
           {/* Right Column: Pre-selected Lead Capture Form & Direct Line */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="sticky top-28">
+            <div id="enquiry" className="sticky top-28 scroll-mt-28">
               <DestinationLeadForm destination={destinationName} />
 
               <div className="mt-6 bg-[#00222B] text-white p-6 border-t-4 border-[#A33E11]">

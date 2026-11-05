@@ -11,50 +11,28 @@ export const southKoreaContent = {
   },
 
   hero: {
-    eyebrow: 'STUDY DESTINATION / 03',
+    eyebrow: 'STUDY DESTINATION / SOUTH KOREA',
     h1: 'Study in South Korea',
-    subtitle: 'Language programs, undergraduate degrees and postgraduate study.',
+    subtitle: 'Your global education journey starts here.',
     paragraph:
-      'South Korea offers pathways in technology, engineering, business, science and the creative industries. The right route depends on your intended degree, teaching language, academic profile and preferred city.',
+      'Explore internationally recognised universities, innovative learning environments, Korean-language programmes and exciting opportunities to experience life in South Korea. From technology and engineering to business, life sciences and creative industries, South Korea offers a range of study pathways for students with different academic interests and career ambitions.',
+    primaryButton: 'Discover Universities in South Korea',
+    secondaryButton: 'Find My South Korea Study Route',
     facts: [
-      { label: 'Pathways', value: 'Language · Bachelor’s · Master’s · Postgraduate' },
-      { label: 'Typical intakes', value: 'March / September for many degrees' },
-      { label: 'Language', value: 'Korean or English, course dependent' },
-      { label: 'Funding', value: 'GKS · institutional · research' },
+      { label: 'Study Options', value: "Bachelor's, Master's & Korean-Language Programmes" },
+      { label: 'Language Choices', value: 'Korean-taught & English-taught Options' },
+      { label: 'Popular Intakes', value: 'March & September Intakes' },
+      { label: 'Scholarship Opportunities', value: 'Up to 100% Tuition Coverage for Eligible Students' },
     ],
   },
 
-  budget: {
-    headline: 'Budget snapshot',
+  scholarships: {
+    headline: 'Scholarships & Funding Opportunities in South Korea',
     items: [
-      {
-        item: 'University tuition',
-        indicativeInfo:
-          'Government category overview: about KRW 6.8 million average annually for four-year institutions; actual fees vary considerably.',
-      },
-      {
-        item: 'National / public',
-        indicativeInfo: 'Approx. KRW 4.3 million average annual tuition (category overview).',
-      },
-      {
-        item: 'Private',
-        indicativeInfo: 'Approx. KRW 7.6 million average annual tuition (category overview).',
-      },
-      {
-        item: 'Living costs',
-        indicativeInfo: 'Approx. KRW 750,000–1,000,000 per month (government guidance).',
-      },
-      {
-        item: 'Also budget for',
-        indicativeInfo: 'Dormitory or housing deposit, insurance, meals, transport, flights, visa and study materials.',
-      },
-    ],
-    planningReference:
-      'Planning reference: Study in Korea government tuition overview and living-expenses guidance, accessed October 2026. Check course-specific fees, student status, city and intake before applying.',
-    // Internal audit metadata
-    _sources: [
-      { label: 'Tuition overview', url: 'https://studyinkorea.go.kr/ko/plan/schoolType.do', lastReviewed: '08 October 2026' },
-      { label: 'Living expenses', url: 'https://www.studyinkorea.go.kr/ko/life/livingExpense.do', lastReviewed: '08 October 2026' },
+      'Global Korea Scholarship (GKS): Prestigious government scholarship providing full tuition coverage, living allowance, airfare and language training for eligible international students.',
+      'University Tuition Scholarships: Leading national and private universities offer merit awards covering 30% to 100% of tuition fees based on academic and language achievements.',
+      'Graduate Research Assistantships: STEM Master’s and PhD students may receive tuition waivers and research stipends directly through participating university laboratory grants.',
+      'Important Note: A 100% tuition scholarship does not automatically cover housing, insurance or living expenses, which students should plan separately.',
     ],
   },
 
@@ -134,15 +112,6 @@ export const southKoreaContent = {
         location: 'Other regional cities',
         consideration: 'Often worth evaluating for tuition, accommodation and campus focus.',
       },
-    ],
-  },
-
-  scholarships: {
-    headline: 'Scholarships worth investigating',
-    items: [
-      'Global Korea Scholarship (GKS): criteria, supported programs, country quotas and deadlines are intake-specific.',
-      'University merit awards: may be linked to academic performance, TOPIK scores or other conditions.',
-      'Graduate research support: research assistantships or grants may be offered by specific departments or faculty.',
     ],
   },
 

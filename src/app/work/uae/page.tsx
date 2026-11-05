@@ -64,9 +64,23 @@ export default function WorkUAEPage() {
               <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white max-w-4xl leading-tight mb-6">
                 {hero.h1}
               </h1>
-              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed">
+              <p className="text-base sm:text-lg text-white/80 max-w-3xl leading-relaxed mb-6">
                 {hero.paragraph}
               </p>
+              <div className="flex flex-wrap items-center gap-4 mt-6">
+                <a
+                  href="#work-enquiry"
+                  className="px-6 py-3 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors shadow-sm"
+                >
+                  {hero.primaryButton || 'Explore UAE Career Pathways'}
+                </a>
+                <a
+                  href="#how-assessed"
+                  className="px-6 py-3 border border-white/40 hover:bg-white/10 text-white text-xs font-semibold uppercase tracking-widest transition-colors"
+                >
+                  {hero.secondaryButton || 'Understand My Eligibility'}
+                </a>
+              </div>
             </div>
 
             <div className="lg:col-span-5">
@@ -182,8 +196,45 @@ export default function WorkUAEPage() {
               </div>
             </section>
 
+            {/* Healthcare Regulatory Authorities */}
+            {workUaeContent.authorities && (
+              <section aria-label="UAE Healthcare Regulators" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+                <div className="mb-6 pb-4 border-b border-[#E6DDCC]">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#A33E11] block mb-1">
+                    Regulatory Jurisdictions
+                  </span>
+                  <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
+                    Understanding UAE Healthcare Authorities
+                  </h2>
+                  <p className="text-sm text-[#41484B] mt-2 leading-relaxed">
+                    Healthcare in the UAE is governed across distinct emirate and federal jurisdictions. Ensure your licensing pathway matches your intended workplace.
+                  </p>
+                </div>
+                <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
+                  {workUaeContent.authorities.map((auth, i) => (
+                    <div
+                      key={auth.title}
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-6 rounded-2xl flex flex-col justify-between"
+                    >
+                      <div>
+                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
+                          {auth.badge}
+                        </span>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3">
+                          {auth.title}
+                        </h3>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {auth.description}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
             {/* 2. Candidate Assessment Before Applying */}
-            <section aria-label="Candidate Assessment" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
+            <section id="how-assessed" aria-label="Candidate Assessment" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm scroll-mt-28">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-6 pb-4 border-b border-[#E6DDCC]">
                 <h2 className="font-serif text-2xl font-bold text-[#1B1C1A]">
                   {howAssessed.headline}
@@ -269,7 +320,8 @@ export default function WorkUAEPage() {
 
           {/* Right Column: Pre-selected Lead Form */}
           <aside className="lg:col-span-4 space-y-6">
-            <div className="sticky top-28">
+            <div id="work-enquiry" className="sticky top-28 scroll-mt-28">
+              <span id="enquiry" className="block -mt-28 pt-28" />
               <DestinationLeadForm destination="UAE Work" />
 
               <div className="mt-6 bg-[#00222B] text-white p-6 border-t-4 border-[#A33E11]">
