@@ -257,33 +257,37 @@ export function Navbar() {
                   >
                     {hasChildren ? (
                       <div>
-                        <div className="flex items-center justify-between">
-                          <Link
-                            href={item.href}
-                            className={`font-serif text-2xl transition-colors ${
-                              pathname === item.href ? 'text-[#FC7F4E]' : 'text-white hover:text-[#FC7F4E]'
-                            }`}
-                            onClick={() => setIsOpen(false)}
-                          >
+                        <button
+                          type="button"
+                          aria-label={`${expanded === item.href ? 'Collapse' : 'Expand'} ${item.label}`}
+                          aria-expanded={expanded === item.href}
+                          onClick={() => setExpanded(expanded === item.href ? null : item.href)}
+                          className="flex items-center justify-between w-full py-1 text-left font-serif text-2xl text-white hover:text-[#FC7F4E] transition-colors cursor-pointer group"
+                        >
+                          <span className={pathname === item.href || expanded === item.href ? 'text-[#FC7F4E]' : ''}>
                             {item.label}
-                          </Link>
-                          <button
-                            type="button"
-                            aria-label={`${expanded === item.href ? 'Collapse' : 'Expand'} ${item.label}`}
-                            aria-expanded={expanded === item.href}
-                            onClick={() => setExpanded(expanded === item.href ? null : item.href)}
-                            className="flex h-11 w-11 items-center justify-center text-white"
-                          >
+                          </span>
+                          <span className="flex h-11 w-11 items-center justify-center text-white/80 group-hover:text-white">
                             <ChevronDown
                               size={22}
                               className={`transition-transform duration-200 ${
-                                expanded === item.href ? 'rotate-180' : ''
+                                expanded === item.href ? 'rotate-180 text-[#FC7F4E]' : ''
                               }`}
                             />
-                          </button>
-                        </div>
+                          </span>
+                        </button>
                         {expanded === item.href && (
                           <ul className="mt-2 mb-2 ml-1 space-y-2 border-l border-[#A33E11] pl-4">
+                            <li>
+                              <Link
+                                href={item.href}
+                                className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#FC7F4E] hover:underline mb-1"
+                                onClick={() => setIsOpen(false)}
+                              >
+                                <span>Explore All {item.label}</span>
+                                <ArrowUpRight size={13} />
+                              </Link>
+                            </li>
                             {item.children.map((child: DropdownChild, cIdx: number) => {
                               if (child.isHeader) {
                                 return (

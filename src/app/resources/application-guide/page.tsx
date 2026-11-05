@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ArrowRight, CheckCircle2, FileCheck2, UserCheck, Briefcase, GraduationCap } from 'lucide-react';
 import { APPLICATION_GUIDE_CONTENT } from '@/content/resources/application-guide';
 import { HomeLeadForm } from '@/components/forms/HomeLeadForm';
@@ -70,33 +71,56 @@ export default function ApplicationGuidePage() {
           </ScrollReveal>
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-            {steps.map((st, idx) => (
-              <ScrollReveal key={st.number} delay={idx * 0.07} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
-                <div className="bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group h-full">
-                  <div>
-                    <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                      {st.number}
-                    </span>
-                    <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                      {st.title}
-                    </h3>
-                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                      </div>
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Roadmap</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Sequence</span>
+            {steps.map((st, idx) => {
+              const stepImgs = [
+                '/images/destinations/uk-oxford-library.jpg',
+                '/images/destinations/europe-campus.jpg',
+                '/images/generated/counselling-advisory.jpg',
+                '/images/hero.jpg',
+              ];
+              return (
+                <ScrollReveal key={st.number} delay={idx * 0.07} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
+                  <div className="bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group h-full">
+                    <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                      <Image
+                        src={stepImgs[idx % stepImgs.length]}
+                        alt={st.title}
+                        fill
+                        sizes="(min-width: 640px) 340px, 80vw"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                          {st.number}
+                        </span>
                       </div>
                     </div>
-                    <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                      {st.description}
-                    </p>
+
+                    <div className="p-5 flex-1 flex flex-col justify-between">
+                      <div>
+                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                          {st.title}
+                        </h3>
+                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                          </div>
+                          <div>
+                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Roadmap</span>
+                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Sequence</span>
+                          </div>
+                        </div>
+                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                          {st.description}
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </ScrollReveal>
-            ))}
+                </ScrollReveal>
+              );
+            })}
           </div>
         </div>
       </section>

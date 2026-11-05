@@ -171,24 +171,46 @@ export default function WorkGreecePage() {
                   </p>
                 </div>
                 <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                  {workGreeceContent.seasonalFramework.pillars.map((pil) => (
-                    <div
-                      key={pil.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] p-6 rounded-2xl flex flex-col justify-between"
-                    >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {pil.badge}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] mb-3">
-                          {pil.title}
-                        </h3>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {pil.detail}
-                        </p>
+                  {workGreeceContent.seasonalFramework.pillars.map((pil, idx) => {
+                    const pilImgs = [
+                      '/images/greece/greece-resort.jpg',
+                      '/images/greece/greece-culinary.jpg',
+                      '/images/destinations/europe-city-life.jpg',
+                    ];
+                    return (
+                      <div
+                        key={pil.title}
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-[#FAF8F5] border border-[#E6DDCC] rounded-2xl overflow-hidden flex flex-col justify-between shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 group"
+                      >
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={pilImgs[idx % pilImgs.length]}
+                            alt={pil.title}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              {pil.badge}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                              {pil.title}
+                            </h3>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              {pil.detail}
+                            </p>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </section>
             )}
@@ -269,34 +291,61 @@ export default function WorkGreecePage() {
                 </h2>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
-                {liveOpeningFields.rows.map((row, idx) => (
-                  <div
-                    key={row.field}
-                    className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
-                  >
-                    <div>
-                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                        Transparency Field 0{idx + 1}
-                      </span>
-                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                        {row.field}
-                      </h3>
-                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                        <div>
-                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Field 0{idx + 1}</span>
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Disclosure</span>
-                        </div>
-                        <div>
-                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Contract Term</span>
+                {liveOpeningFields.rows.map((row, idx) => {
+                  const fieldImgs = [
+                    '/images/greece/greece-resort.jpg',
+                    '/images/greece/greece-culinary.jpg',
+                    '/images/destinations/europe-city-life.jpg',
+                    '/images/guidance.jpg',
+                    '/images/hero.jpg',
+                    '/images/destinations/europe-campus.jpg',
+                    '/images/destinations/singapore-fintech-hub.jpg',
+                    '/images/destinations/singapore-marina-bay.jpg',
+                  ];
+                  return (
+                    <div
+                      key={row.field}
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={fieldImgs[idx % fieldImgs.length]}
+                          alt={row.field}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Transparency Field 0{idx + 1}
+                          </span>
                         </div>
                       </div>
-                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                        {row.detail}
-                      </p>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {row.field}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Field 0{idx + 1}</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Disclosure</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Contract Term</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {row.detail}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
 
@@ -308,34 +357,57 @@ export default function WorkGreecePage() {
                 </h2>
               </div>
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
-                {process.steps.map((st) => (
-                  <div
-                    key={st.number}
-                    className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
-                  >
-                    <div>
-                      <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                        {st.number}
-                      </span>
-                      <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                        {st.title}
-                      </h3>
-                      <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                        <div>
-                          <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                        </div>
-                        <div>
-                          <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Greece</span>
-                          <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recruitment</span>
+                {process.steps.map((st, idx) => {
+                  const processImgs = [
+                    '/images/destinations/uk-oxford-library.jpg',
+                    '/images/generated/counselling-advisory.jpg',
+                    '/images/hero.jpg',
+                    '/images/greece/greece-resort.jpg',
+                  ];
+                  return (
+                    <div
+                      key={st.number}
+                      className="w-[82vw] sm:w-[320px] lg:w-auto shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                    >
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={processImgs[idx % processImgs.length]}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
                       </div>
-                      <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                        {st.description}
-                      </p>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Greece</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recruitment</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </section>
 

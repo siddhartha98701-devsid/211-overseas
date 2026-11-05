@@ -485,6 +485,138 @@ function getCourseMeta(courseText: string): CourseSubjectMeta {
   };
 }
 
+function getDocumentImage(title: string, index: number): string {
+  const t = title.toLowerCase();
+  if (t.includes('academic') || t.includes('transcript') || t.includes('certificate') || t.includes('record') || t.includes('grade')) {
+    return '/images/destinations/uk-oxford-library.jpg';
+  }
+  if (t.includes('passport') || t.includes('travel') || t.includes('identity') || t.includes('id')) {
+    return '/images/hero.jpg';
+  }
+  if (t.includes('language') || t.includes('english') || t.includes('ielts') || t.includes('toefl') || t.includes('german') || t.includes('test') || t.includes('proficiency')) {
+    return '/images/generated/counselling-advisory.jpg';
+  }
+  if (t.includes('sop') || t.includes('statement') || t.includes('cv') || t.includes('resume') || t.includes('portfolio') || t.includes('essay') || t.includes('motivation')) {
+    return '/images/destinations/uk-campus.jpg';
+  }
+  if (t.includes('financial') || t.includes('bank') || t.includes('fund') || t.includes('solvency') || t.includes('income') || t.includes('sponsor') || t.includes('deposit')) {
+    return '/images/destinations/singapore-fintech-hub.jpg';
+  }
+  if (t.includes('recommendation') || t.includes('lor') || t.includes('reference')) {
+    return '/images/destinations/usa-harvard-yard.jpg';
+  }
+  if (t.includes('medical') || t.includes('health') || t.includes('insurance') || t.includes('vaccin')) {
+    return '/images/generated/germany-healthcare.jpg';
+  }
+  if (t.includes('visa') || t.includes('cas') || t.includes('i-20') || t.includes('acceptance') || t.includes('offer') || t.includes('admit')) {
+    return '/images/destinations/australia-student-life.jpg';
+  }
+  const pool = [
+    '/images/destinations/europe-library.jpg',
+    '/images/guidance.jpg',
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/canada-campus.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getScholarshipImage(item: string, index: number): string {
+  const t = item.toLowerCase();
+  if (t.includes('merit') || t.includes('academic') || t.includes('excellence')) {
+    return '/images/destinations/uk-cambridge.jpg';
+  }
+  if (t.includes('need') || t.includes('bursary') || t.includes('financial') || t.includes('grant') || t.includes('hardship')) {
+    return '/images/destinations/singapore-fintech-hub.jpg';
+  }
+  if (t.includes('government') || t.includes('chevening') || t.includes('fulbright') || t.includes('daad') || t.includes('ministry')) {
+    return '/images/destinations/usa-harvard-yard.jpg';
+  }
+  if (t.includes('alumni') || t.includes('community') || t.includes('fellowship') || t.includes('research') || t.includes('phd')) {
+    return '/images/destinations/europe-research.jpg';
+  }
+  const pool = [
+    '/images/web/graduates-wide.webp',
+    '/images/destinations/uk-cambridge.jpg',
+    '/images/destinations/usa-harvard-yard.jpg',
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/australia-student-life.jpg',
+    '/images/destinations/singapore-campus.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getRouteImage(index: number): string {
+  const pool = [
+    '/images/destinations/uk-campus.jpg',
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/australia-campus.jpg',
+    '/images/destinations/canada-campus.jpg',
+    '/images/destinations/singapore-campus.jpg',
+    '/images/destinations/usa-campus.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getConsiderationImage(index: number): string {
+  const pool = [
+    '/images/destinations/europe-research.jpg',
+    '/images/destinations/uk-oxford-library.jpg',
+    '/images/destinations/singapore-fintech-hub.jpg',
+    '/images/destinations/europe-city-life.jpg',
+    '/images/destinations/australia-student-life.jpg',
+    '/images/destinations/canada-toronto-skyline.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getProgramTypeImage(index: number): string {
+  const pool = [
+    '/images/destinations/uk-cambridge.jpg',
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/usa-harvard-yard.jpg',
+    '/images/destinations/australia-melbourne-quad.jpg',
+    '/images/destinations/canada-ubc-campus.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getBudgetItemImage(itemName: string, index: number): string {
+  const n = itemName.toLowerCase();
+  if (n.includes('tuition') || n.includes('fee') || n.includes('academic')) {
+    return '/images/destinations/uk-oxford-library.jpg';
+  }
+  if (n.includes('living') || n.includes('housing') || n.includes('accommodation') || n.includes('rent')) {
+    return '/images/destinations/europe-city-life.jpg';
+  }
+  if (n.includes('insurance') || n.includes('health') || n.includes('medical')) {
+    return '/images/generated/germany-healthcare.jpg';
+  }
+  if (n.includes('visa') || n.includes('permit') || n.includes('flight') || n.includes('travel')) {
+    return '/images/hero.jpg';
+  }
+  const pool = [
+    '/images/destinations/singapore-fintech-hub.jpg',
+    '/images/destinations/singapore-marina-bay.jpg',
+    '/images/destinations/usa-tech-hub.jpg',
+    '/images/destinations/canada-toronto-skyline.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
+function getGeneralTrackImage(index: number): string {
+  const pool = [
+    '/images/destinations/europe-campus.jpg',
+    '/images/destinations/uk-oxford-library.jpg',
+    '/images/destinations/australia-student-life.jpg',
+    '/images/destinations/singapore-campus.jpg',
+    '/images/destinations/canada-campus.jpg',
+    '/images/destinations/europe-research.jpg',
+    '/images/destinations/usa-campus.jpg',
+    '/images/destinations/uk-cambridge.jpg',
+  ];
+  return pool[index % pool.length];
+}
+
 export function DestinationTemplate({ data, destinationName }: { data: DestinationData; destinationName: string }) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const visual = getDestinationVisual(destinationName);
@@ -757,28 +889,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     return (
                       <div
                         key={item.item}
-                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                            {isTuition ? 'Academic Fee' : isLiving ? 'Cost of Living' : isInsurance ? 'Health & Cover' : `Financial Item 0${idx + 1}`}
-                          </span>
-                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                            {item.item}
-                          </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Indicative</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Estimated Cost</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">0{idx + 1}</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Pillar</span>
-                            </div>
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={getBudgetItemImage(item.item, idx)}
+                            alt={item.item}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              {isTuition ? 'Academic Fee' : isLiving ? 'Cost of Living' : isInsurance ? 'Health & Cover' : `Financial Item 0${idx + 1}`}
+                            </span>
                           </div>
-                          <div className="mt-2 text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                            <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-0.5">Annual / Periodic Range</span>
-                            <span className="font-semibold text-[#00222B]">{item.indicativeInfo}</span>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                              {item.item}
+                            </h3>
+                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Indicative</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Estimated Cost</span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">0{idx + 1}</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Pillar</span>
+                              </div>
+                            </div>
+                            <div className="mt-2 text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-0.5">Annual / Periodic Range</span>
+                              <span className="font-semibold text-[#00222B]">{item.indicativeInfo}</span>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -844,28 +991,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.costApproach.points.map((pt, idx) => (
                     <div
                       key={pt.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Financial Pillar 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {pt.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Essential</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Line</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Self-Funded</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Cost Planning</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getBudgetItemImage(pt.title, idx)}
+                          alt={pt.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Financial Pillar 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {pt.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {pt.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Essential</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Line</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Self-Funded</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Cost Planning</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {pt.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1013,28 +1175,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     {data.costPlanning.points.map((pt, idx) => (
                       <div
                         key={pt.title}
-                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                            Budget Pillar 0{idx + 1}
-                          </span>
-                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                            {pt.title}
-                          </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pillar 0{idx + 1}</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fund Line</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Ground Truth</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Published Baseline</span>
-                            </div>
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={getBudgetItemImage(pt.title, idx)}
+                            alt={pt.title}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              Budget Pillar 0{idx + 1}
+                            </span>
                           </div>
-                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                            {pt.description}
-                          </p>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                              {pt.title}
+                            </h3>
+                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pillar 0{idx + 1}</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fund Line</span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Ground Truth</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Published Baseline</span>
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              {pt.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -1531,28 +1708,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.chooseYourRoute.routes.map((route, idx) => (
                     <div
                       key={route.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Route 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {route.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pathway</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Target Track</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Admissions</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getRouteImage(idx)}
+                          alt={route.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Route 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {route.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {route.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pathway</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Target Track</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Admissions</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {route.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1592,31 +1784,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   ref={courseTrackRef}
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
-                  {data.chooseByCourse.steps.map((st) => (
+                  {data.chooseByCourse.steps.map((st, idx) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {st.number}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Focus</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Discipline</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getGeneralTrackImage(idx)}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Focus</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Discipline</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1656,31 +1863,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   ref={shortlistTrackRef}
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
-                  {data.purposefulShortlist.steps.map((st) => (
+                  {data.purposefulShortlist.steps.map((st, idx) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {st.number}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Strategy</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlist</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getConsiderationImage(idx)}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Strategy</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlist</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1720,31 +1942,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   ref={shortlistTrackRef}
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
-                  {data.shortlistSteps.steps.map((st) => (
+                  {data.shortlistSteps.steps.map((st, idx) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {st.number}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlisting</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getConsiderationImage(idx)}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlisting</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1784,31 +2021,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   ref={beforeApplyingRef}
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
-                  {data.beforeApplying.steps.map((st) => (
+                  {data.beforeApplying.steps.map((st, idx) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {st.number}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Preparation</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getGeneralTrackImage(idx)}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Preparation</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -1849,31 +2101,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
                   {data.whatToCompare.steps ? (
-                    data.whatToCompare.steps.map((st) => (
+                    data.whatToCompare.steps.map((st, idx) => (
                       <div
                         key={st.number}
-                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                            {st.number}
-                          </span>
-                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                            {st.title}
-                          </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Factor</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparison</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
-                            </div>
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={getGeneralTrackImage(idx)}
+                            alt={st.title}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              {st.number}
+                            </span>
                           </div>
-                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                            {st.description}
-                          </p>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                              {st.title}
+                            </h3>
+                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Factor</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparison</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              {st.description}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))
@@ -1881,25 +2148,40 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     data.whatToCompare.bullets.map((b, i) => (
                       <div
                         key={i}
-                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                            Comparison 0{i + 1}
-                          </span>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Criterion 0{i + 1}</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Benchmark</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparative</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Decision</span>
-                            </div>
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={getGeneralTrackImage(i)}
+                            alt={`Comparison 0${i + 1}`}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              Comparison 0{i + 1}
+                            </span>
                           </div>
-                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                            {b}
-                          </p>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Criterion 0{i + 1}</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Benchmark</span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparative</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Decision</span>
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              {b}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))
@@ -1943,25 +2225,40 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.beforeYouPay.bullets.map((b, i) => (
                     <div
                       key={i}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Verification 0{i + 1}
-                        </span>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Crucial</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Pre-Payment</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Protected</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fee Security</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getGeneralTrackImage(i)}
+                          alt={`Verification 0${i + 1}`}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Verification 0{i + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {b}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Crucial</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Pre-Payment</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Protected</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fee Security</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {b}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2004,28 +2301,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.countryPriority.items.map((it, i) => (
                     <div
                       key={it.priority}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Tier 0{i + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {it.priority}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Priority 0{i + 1}</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Tier Ranking</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Destination</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Focus List</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getGeneralTrackImage(i)}
+                          alt={it.priority}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Tier 0{i + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {it.countries}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {it.priority}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Priority 0{i + 1}</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Tier Ranking</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Destination</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Focus List</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {it.countries}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2087,28 +2399,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                     {data.documents.items.map((doc, idx) => (
                       <div
                         key={doc.title}
-                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                        className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                       >
-                        <div>
-                          <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                            Document 0{idx + 1}
-                          </span>
-                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                            {doc.title}
-                          </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Required</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Dossier Item</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Official</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
-                            </div>
+                        <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                          <Image
+                            src={getDocumentImage(doc.title, idx)}
+                            alt={doc.title}
+                            fill
+                            sizes="(min-width: 640px) 340px, 82vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                          <div className="absolute top-3 left-3">
+                            <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                              Document 0{idx + 1}
+                            </span>
                           </div>
-                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                            {doc.detail}
-                          </p>
+                        </div>
+
+                        <div className="p-5 flex-1 flex flex-col justify-between">
+                          <div>
+                            <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                              {doc.title}
+                            </h3>
+                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Required</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Dossier Item</span>
+                              </div>
+                              <div>
+                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Official</span>
+                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
+                              </div>
+                            </div>
+                            <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                              {doc.detail}
+                            </p>
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -2153,28 +2480,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.whatToLookFor.points.map((pt, idx) => (
                     <div
                       key={pt.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Consideration 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {pt.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Key Factor</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Academic</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fit &amp; Rigour</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getConsiderationImage(idx)}
+                          alt={pt.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Consideration 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {pt.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {pt.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Key Factor</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Academic</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fit &amp; Rigour</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {pt.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2217,28 +2559,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.programTypes.programs.map((prog, idx) => (
                     <div
                       key={prog.title}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Format 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {prog.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Degree Level</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recognition</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Curriculum</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Structure</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getProgramTypeImage(idx)}
+                          alt={prog.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Format 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {prog.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {prog.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Degree Level</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recognition</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Curriculum</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Structure</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {prog.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2285,28 +2642,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.programmeSpotlight.programmes.map((p, idx) => (
                     <div
                       key={p.name}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Programme 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {p.name}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Tuition</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5 truncate">{p.tuition}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">LSB</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Luxembourg</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getRouteImage(idx)}
+                          alt={p.name}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Programme 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {p.consideration}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {p.name}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Tuition</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5 truncate">{p.tuition}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">LSB</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Luxembourg</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {p.consideration}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2350,25 +2722,40 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.scholarships.items.map((item, i) => (
                     <div
                       key={i}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Grant Opportunity 0{i + 1}
-                        </span>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Funded</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Merit/Need</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Scholarship</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">International</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getScholarshipImage(item, i)}
+                          alt={`Grant Opportunity 0${i + 1}`}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Grant Opportunity 0{i + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {item}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Funded</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Merit/Need</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Scholarship</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">International</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {item}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2409,31 +2796,46 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   ref={checklistRef}
                   className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden"
                 >
-                  {data.admissionsChecklist.steps.map((st) => (
+                  {data.admissionsChecklist.steps.map((st, idx) => (
                     <div
                       key={st.number}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          {st.number}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.title}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getGeneralTrackImage(idx)}
+                          alt={st.title}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            {st.number}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.description}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.title}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.description}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
@@ -2477,28 +2879,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   {data.admissionsAndVisas.steps.map((st, idx) => (
                     <div
                       key={st.step}
-                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] p-6 shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
+                      className="w-[82vw] sm:w-[320px] lg:w-[340px] shrink-0 snap-start bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group"
                     >
-                      <div>
-                        <span className="px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest text-[#A33E11] bg-[#FC7F4E]/10 rounded-full border border-[#FC7F4E]/25 block w-fit mb-2.5">
-                          Step 0{idx + 1}
-                        </span>
-                        <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
-                          {st.step}
-                        </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Visa &amp; Entry</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Requirement</span>
-                          </div>
+                      <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
+                        <Image
+                          src={getDocumentImage(st.step, idx)}
+                          alt={st.step}
+                          fill
+                          sizes="(min-width: 640px) 340px, 82vw"
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
+                        <div className="absolute top-3 left-3">
+                          <span className="px-2.5 py-0.5 bg-black/60 backdrop-blur-xs text-[#FC7F4E] border border-white/20 text-[10px] font-bold uppercase tracking-wider rounded-full">
+                            Step 0{idx + 1}
+                          </span>
                         </div>
-                        <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
-                          {st.detail}
-                        </p>
+                      </div>
+
+                      <div className="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                          <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
+                            {st.step}
+                          </h3>
+                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
+                            </div>
+                            <div>
+                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Visa &amp; Entry</span>
+                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Requirement</span>
+                            </div>
+                          </div>
+                          <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
+                            {st.detail}
+                          </p>
+                        </div>
                       </div>
                     </div>
                   ))}
