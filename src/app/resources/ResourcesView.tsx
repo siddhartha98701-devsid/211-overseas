@@ -26,7 +26,7 @@ const guideMetadata = [
     badge: 'Cost Calculator',
     readTime: '6 min read',
     category: 'Finance',
-    image: '/images/destinations/singapore-fintech-hub.jpg',
+    image: '/images/documents/financial-guarantee.jpg',
     alt: 'Financial and cost calculator planning for study abroad',
   },
   {
@@ -34,7 +34,7 @@ const guideMetadata = [
     badge: 'Funding Breakdown',
     readTime: '8 min read',
     category: 'Scholarships',
-    image: '/images/destinations/usa-harvard-yard.jpg',
+    image: '/images/web/graduates-wide.webp',
     alt: 'International scholarships and university funding options',
   },
   {
@@ -42,7 +42,7 @@ const guideMetadata = [
     badge: 'Official Checklist',
     readTime: '7 min read',
     category: 'Admissions',
-    image: '/images/destinations/uk-cambridge.jpg',
+    image: '/images/documents/academic-records.jpg',
     alt: 'University admissions documentation and application checklist',
   },
   {

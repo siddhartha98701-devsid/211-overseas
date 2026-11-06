@@ -526,35 +526,36 @@ function getCourseMeta(courseText: string): CourseSubjectMeta {
 
 function getDocumentImage(title: string, index: number): string {
   const t = title.toLowerCase();
-  if (t.includes('academic') || t.includes('transcript') || t.includes('certificate') || t.includes('record') || t.includes('grade')) {
-    return '/images/destinations/uk-oxford-library.jpg';
+  if (t.includes('academic') || t.includes('transcript') || t.includes('certificate') || t.includes('record') || t.includes('grade') || t.includes('diploma')) {
+    return '/images/documents/academic-records.jpg';
   }
   if (t.includes('passport') || t.includes('travel') || t.includes('identity') || t.includes('id')) {
-    return '/images/hero.jpg';
+    return '/images/documents/passport-identity.jpg';
   }
-  if (t.includes('language') || t.includes('english') || t.includes('ielts') || t.includes('toefl') || t.includes('german') || t.includes('test') || t.includes('proficiency')) {
-    return '/images/generated/counselling-advisory.jpg';
+  if (t.includes('language') || t.includes('english') || t.includes('ielts') || t.includes('toefl') || t.includes('german') || t.includes('test') || t.includes('proficiency') || t.includes('topik')) {
+    return '/images/documents/language-proficiency.jpg';
   }
-  if (t.includes('sop') || t.includes('statement') || t.includes('cv') || t.includes('resume') || t.includes('portfolio') || t.includes('essay') || t.includes('motivation')) {
-    return '/images/destinations/uk-campus.jpg';
+  if (t.includes('sop') || t.includes('statement') || t.includes('cv') || t.includes('resume') || t.includes('portfolio') || t.includes('essay') || t.includes('motivation') || t.includes('plan')) {
+    return '/images/documents/statement-of-purpose.jpg';
   }
-  if (t.includes('financial') || t.includes('bank') || t.includes('fund') || t.includes('solvency') || t.includes('income') || t.includes('sponsor') || t.includes('deposit')) {
-    return '/images/destinations/singapore-fintech-hub.jpg';
+  if (t.includes('financial') || t.includes('bank') || t.includes('fund') || t.includes('solvency') || t.includes('income') || t.includes('sponsor') || t.includes('deposit') || t.includes('guarantee')) {
+    return '/images/documents/financial-guarantee.jpg';
   }
   if (t.includes('recommendation') || t.includes('lor') || t.includes('reference')) {
-    return '/images/destinations/usa-harvard-yard.jpg';
+    return '/images/documents/statement-of-purpose.jpg';
   }
   if (t.includes('medical') || t.includes('health') || t.includes('insurance') || t.includes('vaccin')) {
     return '/images/generated/germany-healthcare.jpg';
   }
   if (t.includes('visa') || t.includes('cas') || t.includes('i-20') || t.includes('acceptance') || t.includes('offer') || t.includes('admit')) {
-    return '/images/destinations/australia-student-life.jpg';
+    return '/images/documents/passport-identity.jpg';
   }
   const pool = [
-    '/images/destinations/europe-library.jpg',
-    '/images/guidance.jpg',
-    '/images/destinations/europe-campus.jpg',
-    '/images/destinations/canada-campus.jpg',
+    '/images/documents/academic-records.jpg',
+    '/images/documents/passport-identity.jpg',
+    '/images/documents/language-proficiency.jpg',
+    '/images/documents/statement-of-purpose.jpg',
+    '/images/documents/financial-guarantee.jpg',
   ];
   return pool[index % pool.length];
 }
@@ -565,10 +566,10 @@ function getScholarshipImage(item: string, index: number): string {
     return '/images/destinations/uk-cambridge.jpg';
   }
   if (t.includes('need') || t.includes('bursary') || t.includes('financial') || t.includes('grant') || t.includes('hardship')) {
-    return '/images/destinations/singapore-fintech-hub.jpg';
+    return '/images/documents/financial-guarantee.jpg';
   }
   if (t.includes('government') || t.includes('chevening') || t.includes('fulbright') || t.includes('daad') || t.includes('ministry')) {
-    return '/images/destinations/usa-harvard-yard.jpg';
+    return '/images/web/graduates-wide.webp';
   }
   if (t.includes('alumni') || t.includes('community') || t.includes('fellowship') || t.includes('research') || t.includes('phd')) {
     return '/images/destinations/europe-research.jpg';
@@ -578,8 +579,8 @@ function getScholarshipImage(item: string, index: number): string {
     '/images/destinations/uk-cambridge.jpg',
     '/images/destinations/usa-harvard-yard.jpg',
     '/images/destinations/europe-campus.jpg',
+    '/images/documents/financial-guarantee.jpg',
     '/images/destinations/australia-student-life.jpg',
-    '/images/destinations/singapore-campus.jpg',
   ];
   return pool[index % pool.length];
 }
@@ -600,7 +601,7 @@ function getConsiderationImage(index: number): string {
   const pool = [
     '/images/destinations/europe-research.jpg',
     '/images/destinations/uk-oxford-library.jpg',
-    '/images/destinations/singapore-fintech-hub.jpg',
+    '/images/destinations/usa-tech-hub.jpg',
     '/images/destinations/europe-city-life.jpg',
     '/images/destinations/australia-student-life.jpg',
     '/images/destinations/canada-toronto-skyline.jpg',
@@ -631,11 +632,11 @@ function getBudgetItemImage(itemName: string, index: number): string {
     return '/images/generated/germany-healthcare.jpg';
   }
   if (n.includes('visa') || n.includes('permit') || n.includes('flight') || n.includes('travel')) {
-    return '/images/hero.jpg';
+    return '/images/documents/passport-identity.jpg';
   }
   const pool = [
-    '/images/destinations/singapore-fintech-hub.jpg',
-    '/images/destinations/singapore-marina-bay.jpg',
+    '/images/documents/financial-guarantee.jpg',
+    '/images/destinations/europe-city-life.jpg',
     '/images/destinations/usa-tech-hub.jpg',
     '/images/destinations/canada-toronto-skyline.jpg',
   ];
@@ -674,7 +675,7 @@ const COUNTRY_DIRECTORY_VISUALS: Record<string, string> = {
   denmark: '/images/destinations/europe-research.jpg',
   norway: '/images/destinations/europe-library.jpg',
   belgium: '/images/destinations/europe-campus.jpg',
-  greece: '/images/work/greece-hero.jpg',
+  greece: '/images/greece/greece-resort.jpg',
 };
 
 function getCountryDirectoryVisual(countryName: string, index: number = 0): { image: string } {
@@ -714,12 +715,60 @@ function getInstitutionImage(name: string, destinationName?: string, index: numb
       '/images/uae.jpg',
       '/images/web/uae-wide.webp',
       '/images/generated/uae-careers.jpg',
-      '/images/destinations/singapore-fintech-hub.jpg',
-      '/images/destinations/singapore-marina-bay.jpg',
+      '/images/generated/uae-sector-engineering.jpg',
+      '/images/generated/uae-sector-healthcare.jpg',
     ];
     let h = 0;
     for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
     return uaePool[(Math.abs(h) + index) % uaePool.length];
+  }
+
+  if (d.includes('uk') || d.includes('united kingdom') || d.includes('britain')) {
+    const ukPool = [
+      '/images/destinations/uk-campus.jpg',
+      '/images/destinations/uk-oxford-library.jpg',
+      '/images/destinations/uk-cambridge.jpg',
+      '/images/destinations/uk-london-city.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return ukPool[(Math.abs(h) + index) % ukPool.length];
+  }
+
+  if (d.includes('usa') || d.includes('united states') || d.includes('america')) {
+    const usaPool = [
+      '/images/destinations/usa-campus.jpg',
+      '/images/destinations/usa-harvard-yard.jpg',
+      '/images/destinations/usa-tech-hub.jpg',
+      '/images/destinations/usa-nyc-campus.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return usaPool[(Math.abs(h) + index) % usaPool.length];
+  }
+
+  if (d.includes('australia')) {
+    const auPool = [
+      '/images/destinations/australia-campus.jpg',
+      '/images/destinations/australia-melbourne-quad.jpg',
+      '/images/destinations/australia-student-life.jpg',
+      '/images/destinations/australia-sydney-harbour.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return auPool[(Math.abs(h) + index) % auPool.length];
+  }
+
+  if (d.includes('canada')) {
+    const caPool = [
+      '/images/destinations/canada-campus.jpg',
+      '/images/destinations/canada-ubc-campus.jpg',
+      '/images/destinations/canada-toronto-skyline.jpg',
+      '/images/destinations/canada-montreal.jpg',
+    ];
+    let h = 0;
+    for (let i = 0; i < name.length; i++) h = (h << 5) - h + name.charCodeAt(i);
+    return caPool[(Math.abs(h) + index) % caPool.length];
   }
 
   if (d.includes('germany')) {
@@ -810,15 +859,35 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
   const currentUni = selectedUni || defaultUni;
 
   const carouselRef = useRef<HTMLDivElement>(null);
+  const pillsRef = useRef<HTMLDivElement>(null);
+  const scrollDebounceRef = useRef<NodeJS.Timeout | null>(null);
+  const isProgrammaticScrollRef = useRef<boolean>(false);
   const totalUnis = data.universities.list.length;
   const currentIdx = Math.max(0, data.universities.list.indexOf(currentUni));
+
+  const scrollPillIntoView = (idx: number) => {
+    const el = pillsRef.current;
+    if (!el) return;
+    const pills = el.querySelectorAll<HTMLElement>('[data-uni-pill]');
+    const pill = pills[idx];
+    if (pill) {
+      const targetLeft = pill.offsetLeft - (el.clientWidth - pill.clientWidth) / 2;
+      el.scrollTo({ left: targetLeft, behavior: 'smooth' });
+    }
+  };
 
   const scrollToUni = (idx: number) => {
     const el = carouselRef.current;
     if (!el) return;
-    const cards = el.querySelectorAll('[data-uni-card]');
-    if (cards[idx]) {
-      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    const cards = el.querySelectorAll<HTMLElement>('[data-uni-card]');
+    const card = cards[idx];
+    if (card) {
+      isProgrammaticScrollRef.current = true;
+      const targetLeft = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2;
+      el.scrollTo({ left: targetLeft, behavior: 'smooth' });
+      setTimeout(() => {
+        isProgrammaticScrollRef.current = false;
+      }, 450);
     }
   };
 
@@ -826,12 +895,43 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
     const prevIdx = (currentIdx - 1 + totalUnis) % totalUnis;
     setSelectedUni(data.universities.list[prevIdx]);
     scrollToUni(prevIdx);
+    scrollPillIntoView(prevIdx);
   };
 
   const handleNextUni = () => {
     const nextIdx = (currentIdx + 1) % totalUnis;
     setSelectedUni(data.universities.list[nextIdx]);
     scrollToUni(nextIdx);
+    scrollPillIntoView(nextIdx);
+  };
+
+  const handleCarouselScroll = () => {
+    if (isProgrammaticScrollRef.current) return;
+    if (scrollDebounceRef.current) clearTimeout(scrollDebounceRef.current);
+
+    scrollDebounceRef.current = setTimeout(() => {
+      const el = carouselRef.current;
+      if (!el) return;
+      const cards = el.querySelectorAll<HTMLElement>('[data-uni-card]');
+      const centerX = el.scrollLeft + el.clientWidth / 2;
+      let closestIdx = 0;
+      let minDistance = Infinity;
+
+      cards.forEach((card, i) => {
+        const cardCenter = card.offsetLeft + card.clientWidth / 2;
+        const distance = Math.abs(cardCenter - centerX);
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestIdx = i;
+        }
+      });
+
+      const targetUni = data.universities.list[closestIdx];
+      if (targetUni && targetUni !== selectedUni) {
+        setSelectedUni(targetUni);
+        scrollPillIntoView(closestIdx);
+      }
+    }, 80);
   };
 
   const touchStartX = useRef<number | null>(null);
@@ -1546,17 +1646,22 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
               </div>
 
               {/* Horizontal Pill Tabs Switcher (Top quick selection) */}
-              <div className="mb-6 -mx-2 px-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              <div
+                ref={pillsRef}
+                className="mb-6 -mx-2 px-2 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              >
                 <div className="flex gap-2 pb-1 min-w-max">
                   {data.universities.list.map((uni, idx) => {
                     const active = idx === currentIdx;
                     return (
                       <button
                         key={uni}
+                        data-uni-pill
                         type="button"
                         onClick={() => {
                           setSelectedUni(uni);
                           scrollToUni(idx);
+                          scrollPillIntoView(idx);
                         }}
                         className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-all cursor-pointer ${
                           active
@@ -1635,6 +1740,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                 <div
                   ref={carouselRef}
+                  onScroll={handleCarouselScroll}
                   className="flex gap-4 overflow-x-auto snap-x snap-mandatory [scrollbar-width:none] [&::-webkit-scrollbar]:hidden pb-3 pt-1 -mx-2 px-2"
                   style={{ scrollSnapType: 'x mandatory' }}
                   role="region"
@@ -1659,6 +1765,7 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                         onClick={() => {
                           setSelectedUni(uni);
                           scrollToUni(idx);
+                          scrollPillIntoView(idx);
                         }}
                         className={`w-[85vw] max-w-[340px] sm:w-[320px] bg-white rounded-2xl shadow-md overflow-hidden border snap-start shrink-0 flex flex-col justify-between transition-all cursor-pointer ${
                           isSelected

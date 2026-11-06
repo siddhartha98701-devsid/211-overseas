@@ -69,9 +69,11 @@ export function ScholarshipDestinationsShowcase({
   const scrollToCard = (idx: number) => {
     const el = carouselRef.current;
     if (!el) return;
-    const cards = el.querySelectorAll('[data-dest-card]');
-    if (cards[idx]) {
-      cards[idx].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    const cards = el.querySelectorAll<HTMLElement>('[data-dest-card]');
+    const card = cards[idx];
+    if (card) {
+      const targetLeft = card.offsetLeft - (el.clientWidth - card.clientWidth) / 2;
+      el.scrollTo({ left: targetLeft, behavior: 'smooth' });
     }
   };
 

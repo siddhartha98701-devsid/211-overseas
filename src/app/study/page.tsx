@@ -18,8 +18,8 @@ const QUALIFICATION_IMAGES: Record<string, { image: string; alt: string }> = {
     alt: 'Master’s degree and postgraduate management campus facilities',
   },
   "Language programs": {
-    image: '/images/korea/korea-student.jpg',
-    alt: 'International students studying language immersion programs',
+    image: '/images/documents/language-proficiency.jpg',
+    alt: 'International students studying language immersion programs and test proficiency',
   },
   "Postgraduate & research": {
     image: '/images/destinations/japan-tech-lab.jpg',
@@ -28,11 +28,16 @@ const QUALIFICATION_IMAGES: Record<string, { image: string; alt: string }> = {
 };
 
 const DECISION_IMAGES: Record<string, string> = {
-  '1': '/images/destinations/uk-cambridge.jpg',
-  '2': '/images/destinations/singapore-fintech-hub.jpg',
-  '3': '/images/destinations/europe-city-life.jpg',
-  '4': '/images/generated/uae-careers.jpg',
-  '5': '/images/destinations/japan-tokyo-city.jpg',
+  '01': '/images/destinations/uk-oxford-library.jpg',
+  '02': '/images/destinations/europe-city-life.jpg',
+  '03': '/images/documents/academic-records.jpg',
+  '04': '/images/documents/financial-guarantee.jpg',
+  '05': '/images/destinations/usa-tech-hub.jpg',
+  '1': '/images/destinations/uk-oxford-library.jpg',
+  '2': '/images/destinations/europe-city-life.jpg',
+  '3': '/images/documents/academic-records.jpg',
+  '4': '/images/documents/financial-guarantee.jpg',
+  '5': '/images/destinations/usa-tech-hub.jpg',
 };
 
 export const metadata: Metadata = {

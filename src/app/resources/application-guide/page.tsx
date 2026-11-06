@@ -72,18 +72,23 @@ export default function ApplicationGuidePage() {
 
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {steps.map((st, idx) => {
-              const stepImgs = [
-                '/images/destinations/uk-oxford-library.jpg',
-                '/images/destinations/europe-campus.jpg',
-                '/images/generated/counselling-advisory.jpg',
-                '/images/hero.jpg',
-              ];
+              const stepImgs: Record<string, string> = {
+                '01': '/images/generated/counselling-advisory.jpg',
+                '02': '/images/destinations/uk-oxford-library.jpg',
+                '03': '/images/documents/academic-records.jpg',
+                '04': '/images/documents/statement-of-purpose.jpg',
+                '05': '/images/destinations/europe-campus.jpg',
+                '06': '/images/destinations/uk-cambridge.jpg',
+                '07': '/images/documents/financial-guarantee.jpg',
+                '08': '/images/documents/passport-identity.jpg',
+              };
+              const img = stepImgs[st.number] || '/images/destinations/europe-campus.jpg';
               return (
                 <ScrollReveal key={st.number} delay={idx * 0.07} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">
                   <div className="bg-white rounded-2xl border border-[#E6DDCC] overflow-hidden shadow-sm hover:shadow-xl hover:border-[#A33E11] transition-all duration-300 flex flex-col justify-between group h-full">
                     <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#00222B] shrink-0">
                       <Image
-                        src={stepImgs[idx % stepImgs.length]}
+                        src={img}
                         alt={st.title}
                         fill
                         sizes="(min-width: 640px) 340px, 80vw"

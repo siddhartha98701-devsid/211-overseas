@@ -16,7 +16,7 @@ const GERMANY_INDUSTRY_IMAGES: Record<string, string> = {
   'Nursing & Healthcare': '/images/generated/germany-healthcare.jpg',
   'Physiotherapy & Rehabilitation': '/images/generated/germany-physio.jpg',
   'Engineering & Automotive': '/images/destinations/europe-research.jpg',
-  'IT & Software Development': '/images/destinations/europe-campus.jpg',
+  'IT & Software Development': '/images/destinations/usa-tech-hub.jpg',
 };
 
 const GERMANY_GALLERY = [
@@ -265,9 +265,11 @@ export default function WorkGermanyPage() {
               <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                 {howAssessed.rows.map((row, idx) => {
                   const assessedImgs = [
-                    '/images/destinations/europe-library.jpg',
-                    '/images/generated/counselling-advisory.jpg',
-                    '/images/destinations/uk-oxford-library.jpg',
+                    '/images/documents/academic-records.jpg',
+                    '/images/documents/language-proficiency.jpg',
+                    '/images/generated/germany-healthcare.jpg',
+                    '/images/documents/statement-of-purpose.jpg',
+                    '/images/documents/passport-identity.jpg',
                   ];
                   return (
                     <div
@@ -326,9 +328,12 @@ export default function WorkGermanyPage() {
               <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                 {understandOffer.points.map((pt, i) => {
                   const offerImgs = [
-                    '/images/destinations/europe-city-life.jpg',
-                    '/images/destinations/singapore-fintech-hub.jpg',
+                    '/images/documents/financial-guarantee.jpg',
                     '/images/generated/germany-healthcare.jpg',
+                    '/images/destinations/europe-research.jpg',
+                    '/images/destinations/europe-city-life.jpg',
+                    '/images/web/germany-wide.webp',
+                    '/images/documents/academic-records.jpg',
                   ];
                   return (
                     <div

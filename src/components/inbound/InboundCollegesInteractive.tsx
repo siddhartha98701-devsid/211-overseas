@@ -87,13 +87,15 @@ export function InboundCollegesInteractive() {
   const handleSelectCollege = (id: string, autoScrollToDossier = false) => {
     setSelectedId(id);
     if (typeof window !== 'undefined') {
-      const el = document.querySelector(`[data-college-id="${id}"]`) as HTMLElement;
-      if (el) {
-        el.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      const el = carouselRef.current?.querySelector<HTMLElement>(`[data-college-id="${id}"]`);
+      if (el && carouselRef.current) {
+        const targetLeft = el.offsetLeft - (carouselRef.current.clientWidth - el.clientWidth) / 2;
+        carouselRef.current.scrollTo({ left: targetLeft, behavior: 'smooth' });
       }
       const chip = mobileChipsRef.current?.querySelector<HTMLElement>(`[data-chip-id="${id}"]`);
-      if (chip) {
-        chip.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      if (chip && mobileChipsRef.current) {
+        const targetLeft = chip.offsetLeft - (mobileChipsRef.current.clientWidth - chip.clientWidth) / 2;
+        mobileChipsRef.current.scrollTo({ left: targetLeft, behavior: 'smooth' });
       }
       if (autoScrollToDossier && window.innerWidth < 1024) {
         const dossier = document.getElementById('college-dossier-panel');

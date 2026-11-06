@@ -296,11 +296,11 @@ export default function WorkGreecePage() {
                     '/images/greece/greece-resort.jpg',
                     '/images/greece/greece-culinary.jpg',
                     '/images/destinations/europe-city-life.jpg',
-                    '/images/guidance.jpg',
-                    '/images/hero.jpg',
+                    '/images/documents/passport-identity.jpg',
+                    '/images/documents/financial-guarantee.jpg',
                     '/images/destinations/europe-campus.jpg',
-                    '/images/destinations/singapore-fintech-hub.jpg',
-                    '/images/destinations/singapore-marina-bay.jpg',
+                    '/images/documents/statement-of-purpose.jpg',
+                    '/images/generated/counselling-advisory.jpg',
                   ];
                   return (
                     <div
@@ -359,9 +359,9 @@ export default function WorkGreecePage() {
               <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 lg:after:hidden">
                 {process.steps.map((st, idx) => {
                   const processImgs = [
-                    '/images/destinations/uk-oxford-library.jpg',
+                    '/images/documents/academic-records.jpg',
                     '/images/generated/counselling-advisory.jpg',
-                    '/images/hero.jpg',
+                    '/images/documents/passport-identity.jpg',
                     '/images/greece/greece-resort.jpg',
                   ];
                   return (

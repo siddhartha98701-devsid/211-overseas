@@ -169,10 +169,10 @@ export default function ScholarshipsPage() {
           <div className="flex overflow-x-auto snap-x snap-mandatory lg:grid lg:grid-cols-4 gap-6 -mx-6 px-6 sm:mx-0 sm:px-0 pb-4 lg:pb-0 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
             {beforeRelying.steps.map((st, idx) => {
               const ruleImgs = [
-                '/images/destinations/singapore-fintech-hub.jpg',
+                '/images/documents/academic-records.jpg',
+                '/images/documents/financial-guarantee.jpg',
                 '/images/destinations/uk-cambridge.jpg',
-                '/images/destinations/usa-harvard-yard.jpg',
-                '/images/destinations/europe-research.jpg',
+                '/images/web/graduates-wide.webp',
               ];
               return (
                 <ScrollReveal key={st.number} delay={idx * 0.1} className="w-[80vw] sm:w-[280px] lg:w-auto shrink-0 snap-start">

@@ -215,7 +215,7 @@ export default function WorkUAEPage() {
                     const authImgs = [
                       '/images/generated/uae-sector-healthcare.jpg',
                       '/images/generated/uae-careers.jpg',
-                      '/images/destinations/singapore-fintech-hub.jpg',
+                      '/images/web/uae-wide.webp',
                     ];
                     return (
                       <div
@@ -265,9 +265,11 @@ export default function WorkUAEPage() {
               <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                 {howAssessed.rows.map((row, idx) => {
                   const assessedImgs = [
-                    '/images/guidance.jpg',
+                    '/images/documents/academic-records.jpg',
+                    '/images/documents/passport-identity.jpg',
                     '/images/generated/uae-sector-healthcare.jpg',
                     '/images/generated/uae-careers.jpg',
+                    '/images/documents/language-proficiency.jpg',
                   ];
                   return (
                     <div
@@ -326,9 +328,12 @@ export default function WorkUAEPage() {
               <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 -mx-6 px-6 sm:mx-0 sm:px-0 pb-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden after:content-[''] after:shrink-0 after:w-4 sm:after:hidden">
                 {understandOffer.points.map((pt, i) => {
                   const offerImgs = [
-                    '/images/destinations/singapore-fintech-hub.jpg',
-                    '/images/destinations/singapore-marina-bay.jpg',
+                    '/images/uae.jpg',
+                    '/images/web/uae-wide.webp',
                     '/images/generated/uae-careers.jpg',
+                    '/images/generated/uae-sector-sales.jpg',
+                    '/images/documents/financial-guarantee.jpg',
+                    '/images/documents/passport-identity.jpg',
                   ];
                   return (
                     <div
