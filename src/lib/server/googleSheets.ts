@@ -1,12 +1,15 @@
 import 'server-only';
 import type { StoredLead } from './leads';
 
+export const DEFAULT_GOOGLE_SHEETS_WEBHOOK_URL =
+  'https://script.google.com/macros/s/AKfycbzy6WROOEONGlmgBx0zuGl1POdYn2gTbnOtkRLK_lz4yK69uZdlgNF_5ZhuiK6d5q7Paw/exec';
+
 /**
  * Appends a lead to a Google Sheet via a Google Apps Script Webhook.
  * Zero external libraries needed; works reliably on any serverless or Node hosting.
  */
 export async function appendLeadToGoogleSheet(lead: StoredLead): Promise<boolean> {
-  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
+  const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL || DEFAULT_GOOGLE_SHEETS_WEBHOOK_URL;
   if (!webhookUrl) {
     return false;
   }
