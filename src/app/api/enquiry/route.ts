@@ -2,9 +2,39 @@ import { NextRequest, NextResponse } from 'next/server';
 import { siteContent } from '@/content/site';
 import { emailLead } from '@/lib/server/mailer';
 import { saveLead, type StoredLead } from '@/lib/server/leads';
+import { checkRateLimit, getClientIp } from '@/lib/server/rateLimit';
+
+function maskMobile(m?: string): string {
+  if (!m) return 'Not specified';
+  const clean = m.trim();
+  if (clean.length < 6) return '******';
+  return `${clean.slice(0, 3)}****${clean.slice(-3)}`;
+}
+
+function maskEmail(e?: string): string {
+  if (!e) return 'Not specified';
+  const parts = e.split('@');
+  if (parts.length !== 2) return '******';
+  const name = parts[0];
+  const maskedName = name.length > 2 ? `${name[0]}***${name.slice(-1)}` : `${name[0]}*`;
+  return `${maskedName}@${parts[1]}`;
+}
 
 export async function POST(req: NextRequest) {
   try {
+    // 1. IP Rate Limiting: Max 10 submissions per 15 minutes per IP
+    const clientIp = getClientIp(req);
+    const rateLimit = checkRateLimit(clientIp, 10, 15 * 60 * 1000);
+    if (!rateLimit.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: 'Too many submissions from your connection. Please wait a few minutes before trying again.',
+        },
+        { status: 429 }
+      );
+    }
+
     const body = await req.json();
 
     // Honeypot check: If the hidden faxNumber is filled, silently reject bots
@@ -85,18 +115,17 @@ export async function POST(req: NextRequest) {
       emailed: false,
     };
 
-    // Server-side logging of candidate profile including admin BCC
+    // Server-side logging of candidate profile (Masked for privacy)
     console.log(`\n======================================================`);
     console.log(`[211 OVERSEAS CRM - NEW CANDIDATE PROFILE ENQUIRY]`);
     console.log(`Time: ${lead.createdAt}`);
-    console.log(`Admin BCC / Recipient: ${adminEmail}`);
+    console.log(`Admin Recipient: ${adminEmail}`);
     console.log(`Candidate Name: ${lead.fullName}`);
-    console.log(`Mobile: ${lead.mobile}`);
-    console.log(`Email: ${lead.email || 'Not specified'}`);
+    console.log(`Mobile: ${maskMobile(lead.mobile)}`);
+    console.log(`Email: ${maskEmail(lead.email)}`);
     console.log(`Source: ${lead.source}`);
     console.log(`Interests: ${lead.interests.join(', ') || 'None selected'}`);
     console.log(`Destination: ${lead.destination || 'Not specified'}`);
-    console.log(`Additional Details:`, JSON.stringify(details, null, 2));
     console.log(`======================================================\n`);
 
     // Email to configured recipients (including admin@211overseas.com)

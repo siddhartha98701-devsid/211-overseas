@@ -4,7 +4,10 @@ import { listLeads } from '@/lib/server/leads';
 
 const cell = (v: unknown) => {
   let s = String(v ?? '');
-  if (/^[=+\-@]/.test(s)) s = `'${s}`; // neutralise spreadsheet formulas
+  // Neutralise spreadsheet formula injection (including leading whitespace, tabs, carriage returns, and pipes)
+  if (/^[\s\t\r\n]*[=+\-@|]/.test(s)) {
+    s = `'${s}`;
+  }
   return `"${s.replace(/"/g, '""')}"`;
 };
 

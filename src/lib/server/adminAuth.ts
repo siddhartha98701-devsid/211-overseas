@@ -8,7 +8,17 @@ const MAX_AGE = 60 * 60 * 8;
 // Protected fallback admin password (can be overridden via ADMIN_PASSWORD in environment variables)
 export const DEFAULT_ADMIN_PASSWORD = '211Overseas#GlobalAdmin$2026!';
 
-export const getAdminPassword = () => process.env.ADMIN_PASSWORD || DEFAULT_ADMIN_PASSWORD;
+let warnedDefault = false;
+export const getAdminPassword = () => {
+  if (!process.env.ADMIN_PASSWORD) {
+    if (!warnedDefault && process.env.NODE_ENV === 'production') {
+      warnedDefault = true;
+      console.warn('[SECURITY WARNING] ADMIN_PASSWORD environment variable is not configured in production. Using fallback. Please configure ADMIN_PASSWORD in your hosting environment.');
+    }
+    return DEFAULT_ADMIN_PASSWORD;
+  }
+  return process.env.ADMIN_PASSWORD;
+};
 
 const secret = () => process.env.ADMIN_SESSION_SECRET || getAdminPassword();
 const sign = (v: string) => createHmac('sha256', secret()).update(v).digest('hex');
