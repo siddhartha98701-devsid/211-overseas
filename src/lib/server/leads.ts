@@ -3,6 +3,7 @@ import { promises as fs } from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { isFirebaseConfigured, saveLeadToFirebase, listLeadsFromFirebase } from './firebase';
+import { appendLeadToGoogleSheet } from './googleSheets';
 
 export interface StoredLead {
   id: string;
@@ -57,6 +58,13 @@ export function storageMode() {
 }
 
 export async function saveLead(lead: StoredLead) {
+  // Sync to Google Sheets if configured
+  try {
+    await appendLeadToGoogleSheet(lead);
+  } catch (sheetErr) {
+    console.error('[lead] Error syncing to Google Sheets:', sheetErr);
+  }
+
   let savedToFirebase = false;
   if (isFirebaseConfigured()) {
     try {
