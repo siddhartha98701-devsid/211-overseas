@@ -189,16 +189,6 @@ export default function WorkOverviewPage() {
                   <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                     {row.detail}
                   </h3>
-                  <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Standard</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Vacancy Detail</span>
-                    </div>
-                  </div>
                   <div>
                     <span className="text-[11px] uppercase tracking-wider text-[#71787B] block mb-1 font-semibold">
                       Why It Matters:
@@ -266,16 +256,6 @@ export default function WorkOverviewPage() {
                   <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                     {st.title}
                   </h3>
-                  <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                    </div>
-                    <div>
-                      <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Placement</span>
-                      <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Milestone</span>
-                    </div>
-                  </div>
                   <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                     {st.description}
                   </p>

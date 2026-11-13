@@ -424,17 +424,6 @@ export function AboutView() {
                       {step.title}
                     </h3>
 
-                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Phase 0{idx + 1}</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Execution</span>
-                      </div>
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Advisory</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Workflow</span>
-                      </div>
-                    </div>
-
                     <p className="text-sm text-[#41484B] leading-relaxed">
                       {step.description}
                     </p>

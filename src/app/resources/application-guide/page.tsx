@@ -107,16 +107,6 @@ export default function ApplicationGuidePage() {
                         <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                           {st.title}
                         </h3>
-                        <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                          </div>
-                          <div>
-                            <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Roadmap</span>
-                            <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Sequence</span>
-                          </div>
-                        </div>
                         <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                           {st.description}
                         </p>
@@ -163,16 +153,6 @@ export default function ApplicationGuidePage() {
                     <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                       Priority Dossier Item 0{idx + 1}
                     </h3>
-                    <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Study</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Academic Track</span>
-                      </div>
-                      <div>
-                        <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Work</span>
-                        <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Career Track</span>
-                      </div>
-                    </div>
                     <div className="space-y-3 mt-3">
                       <div>
                         <div className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#00222B] mb-1">

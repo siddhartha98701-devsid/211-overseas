@@ -1196,16 +1196,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                             <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                               {item.item}
                             </h3>
-                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Indicative</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Estimated Cost</span>
-                              </div>
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">0{idx + 1}</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Pillar</span>
-                              </div>
-                            </div>
                             <div className="mt-2 text-xs sm:text-sm text-[#41484B] leading-relaxed">
                               <span className="text-[10px] uppercase font-bold tracking-wider text-[#71787B] block mb-0.5">Annual / Periodic Range</span>
                               <span className="font-semibold text-[#00222B]">{item.indicativeInfo}</span>
@@ -1298,16 +1288,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {pt.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Essential</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Budget Line</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Self-Funded</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Cost Planning</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {pt.description}
                           </p>
@@ -1482,16 +1462,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                             <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                               {pt.title}
                             </h3>
-                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pillar 0{idx + 1}</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fund Line</span>
-                              </div>
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Ground Truth</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Published Baseline</span>
-                              </div>
-                            </div>
                             <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                               {pt.description}
                             </p>
@@ -2083,16 +2053,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {route.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Pathway</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Target Track</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Verified</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Admissions</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {route.description}
                           </p>
@@ -2162,16 +2122,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Focus</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Discipline</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
@@ -2241,16 +2191,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Strategy</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlist</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
@@ -2320,16 +2260,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Step</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Shortlisting</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
@@ -2399,16 +2329,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Preparation</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
@@ -2479,16 +2399,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                             <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                               {st.title}
                             </h3>
-                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Factor</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                              </div>
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparison</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
-                              </div>
-                            </div>
                             <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                               {st.description}
                             </p>
@@ -2520,16 +2430,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                         <div className="p-5 flex-1 flex flex-col justify-between">
                           <div>
-                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Criterion 0{i + 1}</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Benchmark</span>
-                              </div>
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Comparative</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Decision</span>
-                              </div>
-                            </div>
                             <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                               {b}
                             </p>
@@ -2597,16 +2497,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                       <div className="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Crucial</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Pre-Payment</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Protected</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fee Security</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {b}
                           </p>
@@ -2676,16 +2566,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {it.priority}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Priority 0{i + 1}</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Tier Ranking</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Destination</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Focus List</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {it.countries}
                           </p>
@@ -2774,16 +2654,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                             <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                               {doc.title}
                             </h3>
-                            <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Required</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Dossier Item</span>
-                              </div>
-                              <div>
-                                <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Official</span>
-                                <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
-                              </div>
-                            </div>
                             <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                               {doc.detail}
                             </p>
@@ -2855,16 +2725,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {pt.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Key Factor</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Evaluation</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Academic</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Fit &amp; Rigour</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {pt.description}
                           </p>
@@ -2934,16 +2794,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {prog.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Degree Level</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Recognition</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Curriculum</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Structure</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {prog.description}
                           </p>
@@ -3017,16 +2867,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {p.name}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Tuition</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5 truncate">{p.tuition}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">LSB</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Luxembourg</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {p.consideration}
                           </p>
@@ -3094,16 +2934,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
 
                       <div className="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Funded</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Merit/Need</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Scholarship</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">International</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {item}
                           </p>
@@ -3174,16 +3004,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.title}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">{st.number}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Admissions</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Checklist</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.description}
                           </p>
@@ -3254,16 +3074,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {st.step}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">0{idx + 1}</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Visa &amp; Entry</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Requirement</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {st.detail}
                           </p>

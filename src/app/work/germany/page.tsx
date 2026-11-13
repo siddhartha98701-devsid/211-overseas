@@ -297,16 +297,6 @@ export default function WorkGermanyPage() {
                           <h3 className="font-serif text-lg font-bold text-[#1B1C1A] group-hover:text-[#A33E11] transition-colors mb-3">
                             {row.criterion}
                           </h3>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Stage</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Verification</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Process</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">Anerkennung</span>
-                            </div>
-                          </div>
                           <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">
                             {row.whatToPrepare}
                           </p>
@@ -358,17 +348,7 @@ export default function WorkGermanyPage() {
 
                       <div className="p-5 flex-1 flex flex-col justify-between">
                         <div>
-                          <div className="my-3 p-3 bg-[#FAF8F5] rounded-xl border border-[#E6DDCC]/70 grid grid-cols-2 gap-2">
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#A33E11] block leading-tight">Protected</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">German Standard</span>
-                            </div>
-                            <div>
-                              <span className="text-sm font-bold font-mono text-[#00222B] block leading-tight">Compliant</span>
-                              <span className="text-[10px] font-semibold uppercase tracking-wider text-[#71787B] block mt-0.5">AufenthG Legal</span>
-                            </div>
-                          </div>
-                          <div className="flex items-start gap-2.5 mt-2">
+                          <div className="flex items-start gap-2.5 mt-1">
                             <ShieldCheck size={18} className="text-[#A33E11] mt-0.5 shrink-0" />
                             <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed">{pt}</p>
                           </div>
