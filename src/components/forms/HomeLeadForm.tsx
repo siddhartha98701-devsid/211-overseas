@@ -6,9 +6,15 @@ import { siteContent } from '@/content/site';
 interface HomeLeadFormProps {
   className?: string;
   source?: string;
+  hideCollaboration?: boolean;
 }
 
-export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadFormProps) {
+export function HomeLeadForm({
+  className = '',
+  source = 'home_hero',
+  hideCollaboration = false,
+}: HomeLeadFormProps) {
+  const shouldHideCollaboration = hideCollaboration || source.includes('study');
   const [fullName, setFullName] = useState('');
   const [mobile, setMobile] = useState('');
   const [routeType, setRouteType] = useState<'study' | 'work' | 'collaboration'>('study');
@@ -127,7 +133,7 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
         <label className="block text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider mb-2">
           I am looking for
         </label>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
+        <div className={`grid gap-2 ${shouldHideCollaboration ? 'grid-cols-2' : 'grid-cols-1 sm:grid-cols-3'}`}>
           <button
             type="button"
             onClick={() => setRouteType('study')}
@@ -150,22 +156,24 @@ export function HomeLeadForm({ className = '', source = 'home_hero' }: HomeLeadF
           >
             Work Abroad
           </button>
-          <button
-            type="button"
-            onClick={() => setRouteType('collaboration')}
-            className={`py-2 px-2.5 text-xs font-semibold border transition-colors cursor-pointer text-center ${
-              routeType === 'collaboration'
-                ? 'bg-[#A33E11] text-white border-[#A33E11]'
-                : 'bg-white text-[#41484B] border-[#E6DDCC] hover:border-[#A33E11]'
-            }`}
-          >
-            College Collaboration
-          </button>
+          {!shouldHideCollaboration && (
+            <button
+              type="button"
+              onClick={() => setRouteType('collaboration')}
+              className={`py-2 px-2.5 text-xs font-semibold border transition-colors cursor-pointer text-center ${
+                routeType === 'collaboration'
+                  ? 'bg-[#A33E11] text-white border-[#A33E11]'
+                  : 'bg-white text-[#41484B] border-[#E6DDCC] hover:border-[#A33E11]'
+              }`}
+            >
+              College Collaboration
+            </button>
+          )}
         </div>
       </div>
 
       {/* University / Institution Name (Visible for Collaborations) */}
-      {routeType === 'collaboration' && (
+      {!shouldHideCollaboration && routeType === 'collaboration' && (
         <div>
           <label htmlFor="home-lead-institution" className="block text-xs font-semibold text-[#1B1C1A] uppercase tracking-wider mb-1">
             College / University Name <span className="text-[#A33E11]">*</span>

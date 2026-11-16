@@ -337,7 +337,7 @@ export default function StudyOverviewPage() {
             </div>
 
             <div id="shortlist-form" className="lg:col-span-5 w-full max-w-md lg:max-w-none mx-auto scroll-mt-24">
-              <HomeLeadForm source="study_overview_page" />
+              <HomeLeadForm source="study_overview_page" hideCollaboration={true} />
             </div>
           </div>
         </div>

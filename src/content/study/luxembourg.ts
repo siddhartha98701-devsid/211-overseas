@@ -15,187 +15,237 @@ export const luxembourgContent = {
     h1: 'Three Borders. Three Languages. A Thousand Possibilities.',
     subtitle: "Discover Europe's multilingual heart, where historic castles meet international finance, business and innovation.",
     paragraph:
-      'What if your university experience came with medieval castles, forest trails, international financial institutions and three neighbouring countries waiting to be explored? Welcome to Luxembourg. Tucked between France, Germany and Belgium, Luxembourg is one of Europe’s most distinctive destinations. Its capital brings together historic fortifications, modern business districts, European Union institutions and a truly multinational community where people from across the globe live, study and work together. From International Finance and Banking to Business Administration, Logistics, Digital Technologies and European Law, discover academic pathways in a country that thinks and operates internationally.',
-    primaryButton: 'Discover Luxembourg Institutions',
-    secondaryButton: 'Explore My Study Options',
+      'What if your university experience came with medieval castles, forest trails, international financial institutions and three neighbouring countries waiting to be explored? Welcome to Luxembourg. Tucked between France, Germany and Belgium, Luxembourg is one of Europe’s most distinctive destinations. Its capital brings together historic fortifications, modern European institutions, international businesses and a remarkably multicultural community. For students interested in Business, Management, Finance, Leadership and Entrepreneurship, Luxembourg offers a fascinating environment in which to explore international education. And beyond your studies? Picture cobblestone streets, beautiful valleys, multilingual conversations and spontaneous journeys through the heart of Europe.',
+    primaryButton: 'Explore Luxembourg School of Business',
+    secondaryButton: 'Discover My Study Options',
     facts: [
-      { label: 'Location', value: 'Heart of Europe (Borders France, Germany, Belgium)' },
-      { label: 'Public Transport', value: '100% Free Nationwide Transport' },
-      { label: 'Core Strengths', value: 'International Finance, Banking & Wealth Management' },
-      { label: 'Language of Study', value: 'English-taught Degrees in Selected Institutions' },
+      { label: 'Location', value: 'Western Europe (Borders France, Germany & Belgium)' },
+      { label: 'Public Transport', value: '100% Free Nationwide Public Transport' },
+      { label: 'Featured Institution', value: 'Luxembourg School of Business (LSB)' },
+      { label: 'Industry Identity', value: 'International Finance, Banking & EU Institutions' },
     ],
   },
 
   whyStudy: {
-    headline: 'Forest Trails, Castle Towns and Coffee Across Three Borders',
+    headline: 'Fairytale Castles by Day. A European Capital by Night.',
     paragraph:
-      'Luxembourg is a compact nation with extraordinary global reach. It is home to major European institutions, the European Investment Bank and hundreds of international investment funds. Outside lectures, enjoy free public transport nationwide, explore UNESCO-listed old quarters and hike through the Little Switzerland region — or take a weekend train directly to Paris, Brussels or Frankfurt.',
+      'Luxembourg feels unlike many larger European destinations. Here, centuries-old fortresses sit beside modern architecture, international professionals share neighbourhoods with local communities, and green landscapes are never far from the city. From Luxembourg City’s UNESCO-listed Old Quarters and historic Vianden Castle to the forests of the Mullerthal region and Moselle vineyards, discover a small country with a seat at Europe’s biggest tables.',
   },
 
   popularCourses: {
-    headline: 'From International Banking to High-Tech Logistics — What Will You Study?',
+    headline: 'Finance, Leadership, Global Business — Luxembourg Has Its Own Academic Strengths',
     items: [
-      'International Finance & Wealth Management',
-      'Banking, Financial Technologies (FinTech) & Compliance',
-      'Business Administration, Management & Strategy',
-      'Logistics, Supply Chain & Cross-Border Trade',
-      'Accounting, Taxation & Audit Services',
-      'European & International Business Law',
-      'Sports Management, Physiotherapy & Health Sciences',
-      'Entrepreneurship, Digital Innovation & Technology Management',
+      'International Business & Management',
+      'Master in Management (MiM)',
+      'Master of Business Administration (MBA)',
+      'Finance & Banking',
+      'Entrepreneurship & Innovation',
+      'Financial Technology (FinTech) & Digital Finance',
+      'Computer Science & Data Analytics',
+      'European Business, Law & Governance',
+      'Engineering & Applied Sciences',
+      'Physiotherapy & Sports Science',
     ],
   },
 
+  featuredInstitution: {
+    badge: 'Featured Institution',
+    headline: 'Luxembourg School of Business (LSB)',
+    subtitle: 'Where Business Education Meets an International Financial Hub.',
+    description:
+      'Located in Luxembourg, Luxembourg School of Business offers a focused academic environment for students and professionals interested in management and leadership. Its international outlook and business-oriented programmes make it an interesting option for those looking to develop their understanding of global markets, business strategy and management.',
+    programs: [
+      {
+        name: 'Master in Management',
+        description:
+          'Explore the fundamentals of management, strategy, finance and organisational decision-making through a postgraduate programme designed for aspiring business professionals.',
+      },
+      {
+        name: 'Master of Business Administration (MBA)',
+        description:
+          'Designed for professionals looking to develop leadership capabilities, strategic thinking and broader management expertise.',
+      },
+      {
+        name: 'Executive & Professional Education',
+        description:
+          'Explore selected programmes designed to support professional development and advanced business knowledge.',
+      },
+    ],
+    bulletPoints: [
+      'Located in an established international financial and business centre.',
+      'Focused on Management, Leadership and Business Education.',
+      'International learning environment with diverse global peers.',
+      'Academic programmes for graduates and experienced professionals.',
+    ],
+    ctaLabel: 'Explore Programmes at Luxembourg School of Business',
+    ctaHref: '#enquiry',
+  },
+
   universities: {
-    headline: 'Higher Education Institutions in Luxembourg',
+    headline: 'Study Business in One of Europe’s Leading Financial Centres',
+    description:
+      'Luxembourg’s international business environment makes it a fascinating destination for students interested in Management, Finance, Entrepreneurship and Global Business. With international companies, financial institutions and European organisations operating in the country, Luxembourg offers a distinctive setting for business education.',
     list: [
+      'Luxembourg School of Business (LSB)',
       'University of Luxembourg',
       'LUNEX University',
-      'BBI Luxembourg International Business Institute',
-      'United Business Institutes',
-      'European Business University of Luxembourg',
     ],
     disclaimer:
-      'These are illustrative institutions for profile-based shortlisting and independent research, not claimed 211 Overseas exclusive agents. The University of Luxembourg is the national public research university; specialized private institutions offer focused vocational and business degrees. Admissions, housing availability and student visa approvals remain subject to institutional and government criteria.',
+      'Luxembourg School of Business is the featured business school. The University of Luxembourg is the national public research university; LUNEX specializes in sports science and physiotherapy. Admissions, housing availability and student visa approvals remain subject to institutional and government criteria.',
   },
 
   universityClusters: [
     {
+      badge: 'Featured Business Institution',
+      title: 'Luxembourg School of Business (LSB)',
+      description:
+        'A dedicated international business school in Luxembourg offering Master in Management, MBA and executive education tailored for global financial and management careers.',
+      list: ['Luxembourg School of Business (LSB)'],
+    },
+    {
       badge: 'National Public Research University',
       title: 'University of Luxembourg (Université du Luxembourg)',
       description:
-        'The state public research university of the Grand Duchy, renowned for bilingual and trilingual curricula, European law, cybersecurity and wealth management research.',
+        'The country’s public research university, offering academic programmes across Computer Science, Finance, Engineering, Law, Sciences and other disciplines. Applications follow the university’s official admissions process.',
       list: ['University of Luxembourg'],
     },
     {
-      badge: 'Specialist Private Higher Education',
-      title: 'Specialized Business, Sports & Management Institutes',
+      badge: 'Specialist Health & Sports Education',
+      title: 'LUNEX',
       description:
-        'Internationally focused private higher education institutions offering English-taught degrees in business management, sports physiotherapy and hospitality.',
-      list: [
-        'LUNEX University',
-        'BBI Luxembourg International Business Institute',
-        'United Business Institutes',
-        'European Business University of Luxembourg',
-      ],
+        'A specialist higher-education institution offering programmes related to Physiotherapy, Sport Science and human movement.',
+      list: ['LUNEX University'],
     },
   ],
 
   chooseYourRoute: {
-    headline: 'Find Your Study Pathway in Luxembourg',
+    headline: 'Your Career Ambitions Could Begin with a Business Degree in Europe',
     routes: [
       {
-        title: "Bachelor's Degrees",
-        description: 'Undergraduate degrees in business administration, economics, computer science and sports sciences with strong European industry connections.',
+        title: 'Master in Management',
+        description:
+          'For graduates beginning their professional journey. Explore postgraduate business education covering management, strategy, finance and organisational decision-making at Luxembourg School of Business.',
       },
       {
-        title: "Master's Degrees & MBAs",
-        description: 'Postgraduate programmes in wealth management, quantitative finance, logistics, European law and international management.',
+        title: 'Master of Business Administration (MBA)',
+        description:
+          'For professionals interested in leadership and management. Explore advanced business education focused on leadership, strategic thinking, international business and organisational development.',
       },
       {
-        title: 'Sports & Healthcare Specialisms',
-        description: 'At institutions like LUNEX, pursue specialized European degrees in physiotherapy, sports management and movement sciences.',
+        title: 'Executive & Professional Programmes',
+        description:
+          'For working professionals seeking specialised learning designed around professional development, business leadership and management skills.',
       },
       {
-        title: 'Cross-Border European Study',
-        description: 'Leverage Luxembourg’s position within the Greater Region for cross-border internships and European corporate exposure.',
+        title: 'Bachelor’s & Other Master’s Degrees',
+        description:
+          'For students exploring different academic disciplines including Finance, Computing, Sciences and Economics through eligible institutions such as the University of Luxembourg.',
+      },
+      {
+        title: 'Specialist Health & Sports Programmes',
+        description:
+          'For students with interests beyond business. Explore selected programmes in Physiotherapy, Sport Science and related fields at specialist institutions like LUNEX.',
       },
     ],
   },
 
   scholarships: {
-    headline: 'Scholarships & State Financial Support in Luxembourg',
+    headline: 'Your Academic Achievements Could Take You Further',
     items: [
-      'Guillaume Dupaix International Master’s Scholarship: Awarded to outstanding international students admitted to Master’s programmes at the University of Luxembourg.',
-      'State Financial Aid (AideFi): Financial assistance schemes administered through the Ministry of Higher Education and Research for eligible students.',
-      'Institutional Merit Awards: Select private business institutions offer partial tuition waivers for students with strong academic track records.',
+      'Business School Scholarships: Students exploring Luxembourg School of Business can enquire about any currently available institutional scholarship opportunities or awards associated with their chosen programme.',
+      'University of Luxembourg Scholarships: The University of Luxembourg offers selected scholarships for eligible students, including the Guillaume Dupaix International Excellence Scholarship for qualifying master’s applicants.',
+      'Programme-Specific Funding: Some institutions offer scholarships or academic support connected to particular programmes, achievements or applicant categories.',
+      'Postgraduate & Research Funding: Students considering research-oriented academic routes can explore relevant funded opportunities where available.',
     ],
   },
 
   documents: {
-    headline: 'Getting Ready to Apply — Luxembourg Study Checklist',
-    description: 'Ensure your documentation meets Luxembourg academic and consular requirements.',
+    headline: 'Your Luxembourg Plans Begin with the Right Qualifications',
+    description:
+      'Applying to Luxembourg starts with understanding your chosen institution’s entry requirements, programme structure and documentation. Preparing your information in advance is an important first step.',
     items: [
-      { title: 'Academic Transcripts', detail: 'Class 10, Class 12 and Bachelor’s certificates with certified French, German or English translations.' },
-      { title: 'Proof of English Proficiency', detail: 'IELTS / TOEFL or Medium of Instruction (MOI) evidence where accepted by the programme.' },
-      { title: 'Statement of Purpose & CV', detail: 'Detailed academic resume and cover letter articulating your career motivation in Luxembourg.' },
-      { title: 'Proof of Financial Resources', detail: 'Evidence of sufficient funds to cover living expenses for the duration of the study year.' },
-      { title: 'Accommodation Arrangements', detail: 'Proof of housing reservation or student residence application, crucial for visa approval.' },
-      { title: 'Temporary Authorisation to Stay (AST)', detail: 'Official entry authorization processed through the Luxembourg Directorate of Immigration before visa stamping.' },
+      { title: 'Academic Certificates & Transcripts', detail: 'Your school, undergraduate or postgraduate qualifications, depending on the programme.' },
+      { title: 'Passport & Identification', detail: 'A valid passport and other identification documents requested for admission and immigration purposes.' },
+      { title: 'English-Language Proficiency', detail: 'Selected English-taught programmes require evidence of language proficiency (IELTS, TOEFL or accepted alternatives).' },
+      { title: 'Motivation Letter or Statement of Purpose', detail: 'An explanation of your academic interests, career ambitions and reasons for choosing the course.' },
+      { title: 'Curriculum Vitae (CV)', detail: 'Postgraduate business programmes require a detailed CV outlining your education, experience and achievements.' },
+      { title: 'Work Experience — Where Applicable', detail: 'Some MBA and professional programmes require relevant employment experience.' },
+      { title: 'Recommendation Letters & Supporting Documents', detail: 'Certain courses request academic or professional recommendations, interviews or supplementary materials.' },
+      { title: 'Student Visa & Residence Preparation', detail: 'Indian students planning long-term studies follow Luxembourg’s student residence and entry clearance procedures.' },
     ],
   },
 
   faqs: {
-    headline: 'Frequently Asked Questions About Studying in Luxembourg',
+    headline: 'Luxembourg Is Different. Your Questions Probably Are Too.',
     items: [
       {
-        q: 'Can 211 Overseas help me apply to Luxembourg universities?',
-        a: 'Yes. We assist students in understanding eligibility, comparing degree options at the University of Luxembourg and specialist business institutes, and navigating the application process.',
+        q: 'Where exactly is Luxembourg?',
+        a: 'Luxembourg is a small country in Western Europe, bordered by France, Germany and Belgium. Its capital is Luxembourg City.',
       },
       {
-        q: 'Are courses taught in English in Luxembourg?',
-        a: 'Yes. While Luxembourg is a trilingual country (Luxembourgish, French, German), many Master’s and specialized Bachelor’s programmes are taught entirely in English.',
+        q: 'Why should I consider Luxembourg for business studies?',
+        a: 'Luxembourg is an established international financial and business centre, with significant activity in banking, investment funds and professional services. For students interested in Business, Finance and Management, it offers a distinctive international environment.',
       },
       {
-        q: 'Is public transport really free in Luxembourg?',
-        a: 'Yes. Luxembourg is the first country in the world to make all standard nationwide public transport (trains, trams and buses) completely free of charge for residents, students and visitors.',
+        q: 'What is Luxembourg School of Business?',
+        a: 'Luxembourg School of Business is a specialist business school offering management education, including a Master in Management, MBA and selected executive education programmes.',
       },
       {
-        q: 'What is the University of Luxembourg known for?',
-        a: 'The University of Luxembourg is celebrated for its international research in finance, cybersecurity, materials science, European law and educational sciences.',
+        q: 'Can I pursue a Master in Management in Luxembourg?',
+        a: 'Yes. Luxembourg School of Business offers a Master in Management programme designed for eligible applicants interested in developing business and management knowledge.',
       },
       {
-        q: 'Can international students work part-time in Luxembourg?',
-        a: 'Eligible non-EU international students holding a valid student residence permit can work up to 15 hours per week during term time and up to 40 hours per week during academic holidays.',
+        q: 'Can I pursue an MBA in Luxembourg?',
+        a: 'Yes. Luxembourg School of Business offers MBA education for eligible professionals. Admission requirements, including any professional-experience criteria, depend on the programme.',
       },
       {
-        q: 'What are the accommodation options in Luxembourg?',
-        a: 'Students can apply for university residences (halls of residence managed by the university) or secure private shared accommodation. Early housing reservation is strongly recommended.',
+        q: 'Is Luxembourg an English-speaking country?',
+        a: 'Luxembourg is a multilingual country where Luxembourgish, French and German play important roles. English is also widely used in international business and selected higher-education settings.',
       },
       {
-        q: 'What is the Temporary Authorisation to Stay (AST)?',
-        a: 'Before applying for a Schengen student visa, non-EU nationals must obtain a Temporary Authorisation to Stay (Autorisation de Séjour Temporaire) from the Luxembourg Ministry of Foreign and European Affairs.',
+        q: 'Can I study in Luxembourg in English?',
+        a: 'Yes. Selected academic programmes are taught in English. Other programmes may require French, German or a combination of languages. Applicants should check the specific teaching-language requirements.',
       },
       {
-        q: 'Is Luxembourg expensive to live in?',
-        a: 'While rent can be high due to limited supply, free nationwide public transport, subsidised university meals and competitive student discounts help manage monthly costs.',
+        q: 'Can I study in Luxembourg after Class 12?',
+        a: 'Yes. Students can explore bachelor’s programmes at eligible institutions, subject to their academic qualifications, language requirements and any applicable qualification-recognition process.',
       },
       {
-        q: 'Can I stay in Luxembourg after graduation?',
-        a: 'Graduates holding a Master’s degree from an approved Luxembourg institution may apply for a residence permit allowing them to stay for up to 9 months to look for qualified employment.',
+        q: 'Does Luxembourg have a public university?',
+        a: 'Yes. The University of Luxembourg is the country’s public research university, offering academic programmes across several disciplines.',
       },
       {
-        q: 'Which industries hire in Luxembourg?',
-        a: 'Major employers include international private banking, asset management, audit firms (the Big Four), Amazon’s European headquarters, logistics networks and EU agencies.',
-      },
-      {
-        q: 'Can I study sports or physiotherapy in Luxembourg?',
-        a: 'Yes. LUNEX University specializes in English-taught undergraduate and postgraduate degrees in Physiotherapy, Sports Science and International Sports Management.',
-      },
-      {
-        q: 'Do I need to speak French or German?',
-        a: 'Not for English-taught degrees. However, learning conversational French or German enhances day-to-day integration and local employment prospects.',
+        q: 'Can 211 Overseas help me explore Luxembourg School of Business?',
+        a: 'Yes. We can help you review available programmes, understand relevant entry requirements, prepare application documents and explore the appropriate admission process.',
       },
       {
         q: 'Are scholarships available for international students?',
-        a: 'The Guillaume Dupaix scholarship provides financial support to select outstanding Master’s candidates. Other institutional bursaries exist based on merit.',
+        a: 'Selected institutions offer scholarship opportunities for eligible applicants. Scholarship availability and coverage depend on the institution, academic level and individual award criteria.',
       },
       {
-        q: 'Can I travel to other European countries easily?',
-        a: 'Luxembourg sits at the crossroads of Europe. Paris is two hours away by high-speed TGV train, Brussels is under three hours, and Frankfurt is easily accessible.',
+        q: 'Can I work while studying in Luxembourg?',
+        a: 'Eligible international students may undertake permitted work under applicable student-residence rules, including up to 15 hours per week averaged over a month during study periods.',
       },
       {
-        q: 'How do I start my application with 211 Overseas?',
-        a: 'Share your qualifications, academic transcripts and target intake with us. We’ll help you assess requirements and prepare a competitive Luxembourg application.',
+        q: 'Can I remain in Luxembourg after completing my degree?',
+        a: 'Eligible graduates of qualifying master’s or doctoral programmes may apply for a 12-month residence permit to seek employment or establish a business, subject to Luxembourg’s applicable immigration rules.',
+      },
+      {
+        q: 'Can I visit nearby European countries?',
+        a: 'Luxembourg borders France, Belgium and Germany and forms part of the Schengen Area. Students can explore neighbouring destinations while observing the relevant entry and residence conditions.',
+      },
+      {
+        q: 'How can 211 Overseas help me study in Luxembourg?',
+        a: 'Tell us your qualifications, preferred course and intended intake. We’ll help you explore suitable academic options, understand programme requirements and prepare for the relevant application process.',
       },
     ],
   },
 
   closing: {
-    headline: 'Your European Story Begins in Luxembourg',
+    headline: 'A Global Business Perspective. A Distinctly European Experience.',
     ctas: {
-      primary: { label: 'Discover Luxembourg Institutions', href: '#enquiry' },
-      secondary: { label: 'Explore My Study Options', href: '#enquiry' },
+      primary: { label: 'Explore Luxembourg School of Business', href: '#enquiry' },
+      secondary: { label: 'Discuss My Luxembourg Study Options', href: '#enquiry' },
     },
   },
 } as const;

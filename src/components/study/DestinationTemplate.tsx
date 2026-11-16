@@ -47,7 +47,9 @@ export interface DestinationData {
   featuredInstitution?: {
     badge: string;
     headline: string;
+    subtitle?: string;
     description: string;
+    programs?: ReadonlyArray<{ name: string; description: string }>;
     bulletPoints: ReadonlyArray<string>;
     ctaLabel?: string;
     ctaHref?: string;
@@ -90,6 +92,7 @@ export interface DestinationData {
   };
   universities: {
     headline: string;
+    description?: string;
     list: ReadonlyArray<string>;
     disclaimer: string;
   };
@@ -338,6 +341,39 @@ const UNIVERSITY_IMAGE_MAP: Record<string, string> = {
   'national sun yat-sen university': '/images/destinations/taiwan-taipei-skyline.jpg',
   'national chung hsing university': '/images/destinations/taiwan-campus.jpg',
   'taipei medical university': '/images/generated/germany-healthcare.jpg',
+
+  // Luxembourg & European Specialist Institutions
+  'luxembourg school of business (lsb)': '/images/destinations/europe-campus.jpg',
+  'lunex': '/images/destinations/europe-campus.jpg',
+  'istituto marangoni': '/images/destinations/europe-city-life.jpg',
+  'le cordon bleu': '/images/destinations/europe-campus.jpg',
+  'culinary arts academy switzerland': '/images/destinations/europe-campus.jpg',
+  'swiss hotel management school': '/images/destinations/europe-library.jpg',
+  'césar ritz colleges switzerland': '/images/destinations/europe-campus.jpg',
+  'bhms': '/images/destinations/europe-research.jpg',
+  'bhms — business & hotel management school': '/images/destinations/europe-research.jpg',
+  'naba': '/images/destinations/europe-city-life.jpg',
+  'naba — nuova accademia di belle arti': '/images/destinations/europe-city-life.jpg',
+  'domus academy': '/images/destinations/europe-library.jpg',
+  'raffles milano': '/images/destinations/europe-city-life.jpg',
+  'neoma business school': '/images/destinations/europe-campus.jpg',
+  'skema business school': '/images/destinations/europe-research.jpg',
+  'eae business school': '/images/destinations/europe-campus.jpg',
+  'eu business school': '/images/destinations/europe-city-life.jpg',
+  'kozminski university': '/images/destinations/europe-campus.jpg',
+  'international business school': '/images/destinations/europe-library.jpg',
+  'international business school (hungary)': '/images/destinations/europe-library.jpg',
+  'wittenborg university of applied sciences': '/images/destinations/europe-campus.jpg',
+  'tio university of applied sciences': '/images/destinations/europe-research.jpg',
+  'university of twente': '/images/destinations/europe-research.jpg',
+  'technological university dublin': '/images/destinations/europe-campus.jpg',
+  'university of debrecen': '/images/destinations/europe-library.jpg',
+  'university of galway': '/images/destinations/europe-campus.jpg',
+  'university of limerick': '/images/destinations/europe-library.jpg',
+  'universidad europea': '/images/destinations/europe-campus.jpg',
+  'budapest metropolitan university': '/images/destinations/europe-city-life.jpg',
+  'university of west bohemia': '/images/destinations/europe-library.jpg',
+  'eka university of applied sciences': '/images/destinations/europe-campus.jpg',
 };
 
 interface CourseSubjectMeta {
@@ -1367,35 +1403,6 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
               </div>
             )}
 
-            {data.featuredInstitution && (
-              <section aria-label="Featured Institution" className="bg-[#FAF8F5] border border-[#E6DDCC] p-6 lg:p-8 rounded-2xl shadow-sm">
-                <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] bg-[#FC7F4E]/10 px-2.5 py-1 rounded-full border border-[#FC7F4E]/25 inline-block mb-3">
-                  {data.featuredInstitution.badge}
-                </span>
-                <h3 className="font-serif text-2xl font-bold text-[#1B1C1A] mb-3">
-                  {data.featuredInstitution.headline}
-                </h3>
-                <p className="text-sm text-[#41484B] leading-relaxed mb-4">
-                  {data.featuredInstitution.description}
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mb-6">
-                  {data.featuredInstitution.bulletPoints.map((pt, idx) => (
-                    <div key={idx} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-[#E6DDCC]/70">
-                      <CheckCircle2 size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
-                      <span className="text-xs font-medium text-[#1B1C1A]">{pt}</span>
-                    </div>
-                  ))}
-                </div>
-                <a
-                  href={data.featuredInstitution.ctaHref || '#enquiry'}
-                  className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors rounded-xl shadow-xs"
-                >
-                  <span>{data.featuredInstitution.ctaLabel || 'Inquire About Pathway'}</span>
-                  <ChevronRight size={14} />
-                </a>
-              </section>
-            )}
-
             {data.costPlanning && (
               <section aria-label="Cost Planning" className="bg-white border border-[#E6DDCC] p-6 lg:p-8 shadow-sm">
                 <div className="flex items-center justify-between gap-4 mb-4 pb-4 border-b border-[#E6DDCC]">
@@ -1614,6 +1621,67 @@ export function DestinationTemplate({ data, destinationName }: { data: Destinati
                   </div>
                 </div>
               </div>
+
+              {data.universities.description && (
+                <p className="text-xs sm:text-sm text-[#41484B] leading-relaxed -mt-2 mb-6">
+                  {data.universities.description}
+                </p>
+              )}
+
+              {/* Featured Institution Showcase (Prominently displayed within Institutions section) */}
+              {data.featuredInstitution && (
+                <div className="bg-[#FAF8F5] border border-[#E6DDCC] p-6 lg:p-8 rounded-2xl shadow-sm mb-8">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#A33E11] bg-[#FC7F4E]/10 px-2.5 py-1 rounded-full border border-[#FC7F4E]/25 inline-block mb-3">
+                    {data.featuredInstitution.badge}
+                  </span>
+                  <h3 className="font-serif text-2xl lg:text-3xl font-bold text-[#1B1C1A] mb-1">
+                    {data.featuredInstitution.headline}
+                  </h3>
+                  {data.featuredInstitution.subtitle && (
+                    <p className="text-sm font-medium text-[#A33E11] mb-3">
+                      {data.featuredInstitution.subtitle}
+                    </p>
+                  )}
+                  <p className="text-sm text-[#41484B] leading-relaxed mb-4">
+                    {data.featuredInstitution.description}
+                  </p>
+                  {data.featuredInstitution.programs && data.featuredInstitution.programs.length > 0 && (
+                    <div className="mb-5">
+                      <span className="text-[11px] font-bold uppercase tracking-wider text-[#1B1C1A] block mb-2.5">
+                        Popular Study Options
+                      </span>
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+                        {data.featuredInstitution.programs.map((prog, pIdx) => (
+                          <div key={pIdx} className="bg-white p-3.5 rounded-xl border border-[#E6DDCC] flex flex-col justify-between">
+                            <h4 className="font-serif text-sm font-bold text-[#1B1C1A] mb-1">{prog.name}</h4>
+                            <p className="text-xs text-[#41484B] leading-relaxed">{prog.description}</p>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                  <div className="mb-5">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-[#1B1C1A] block mb-2">
+                      Why Explore {data.featuredInstitution.headline}?
+                    </span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                      {data.featuredInstitution.bulletPoints.map((pt, idx) => (
+                        <div key={idx} className="flex items-start gap-2 bg-white p-3 rounded-xl border border-[#E6DDCC]/70">
+                          <CheckCircle2 size={16} className="text-[#A33E11] shrink-0 mt-0.5" />
+                          <span className="text-xs font-medium text-[#1B1C1A]">{pt}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <a
+                    href={data.featuredInstitution.ctaHref || '#enquiry'}
+                    className="inline-flex items-center gap-2 px-6 py-2.5 bg-[#A33E11] hover:bg-[#85320D] text-white text-xs font-semibold uppercase tracking-widest transition-colors rounded-xl shadow-xs"
+                  >
+                    <span>{data.featuredInstitution.ctaLabel || 'Inquire About Pathway'}</span>
+                    <ChevronRight size={14} />
+                  </a>
+                </div>
+              )}
 
               {/* Horizontal Pill Tabs Switcher (Top quick selection) */}
               <div
